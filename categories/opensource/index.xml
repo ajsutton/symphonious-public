@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSource on Symphonious</title>
+    <link>https://www.symphonious.net/categories/opensource/</link>
+    <description>Recent content in OpenSource on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sat, 06 Jan 2018 22:51:53 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/opensource/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modernising Our JavaScript – Supporting OpenSource</title>
+      <link>https://www.symphonious.net/2018/01/07/modernising-our-javascript-supporting-opensource/</link>
+      <pubDate>Sat, 06 Jan 2018 22:51:53 +0000</pubDate>
+      <guid>https://www.symphonious.net/2018/01/07/modernising-our-javascript-supporting-opensource/</guid>
+      <description>&lt;p&gt;At LMAX, we&amp;rsquo;ve been using &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent.  For anything new though, we started using &lt;a href=&#34;https://vuetifyjs.com&#34;&gt;Vuetify&lt;/a&gt; to give us better UIs much more easily.&lt;/p&gt;
+&lt;p&gt;Vuetify is close to reaching it&amp;rsquo;s 1.0 release now and we&amp;rsquo;ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions.  So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s been a resounding success.&lt;/p&gt;
+&lt;p&gt;As a project, Vuetify has continued to grow – mostly because of the excellent work John was doing to build the community – giving more stability and now has multiple regular contributors. With the number of supporters also growing John quit his day job and is now focussed on Vuetify full-time. So our primary aim of supporting the viability and longevity of the project has worked out well.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve also had secondary benefits. As part of being a platinum supporter the LMAX logo appears on the Vuetify site and we&amp;rsquo;ve set it up to link to &lt;a href=&#34;https://careers.lmax.com/&#34;&gt;our jobs site&lt;/a&gt;. It&amp;rsquo;s driven quite a lot of traffic that way and I think is actually the top source of traffic to our careers site.&lt;/p&gt;
+&lt;p&gt;I believe we also get some guaranteed support time as part of the package, but frankly John is so responsive I&amp;rsquo;m not sure if we&amp;rsquo;d actually notice the difference. We&amp;rsquo;re also keen to contribute code but the project is now moving along so well that stuff gets fixed for us before we get a chance to do it. It&amp;rsquo;s possible some of my colleague who are doing more with Vuetify have contributed some stuff, but every bug I&amp;rsquo;ve found has been fixed almost as soon as I can finish the bug report…&lt;/p&gt;
+&lt;p&gt;Overall, it&amp;rsquo;s been a huge success and well worth the money. I&amp;rsquo;d definitely encourage others to become financial backers of projects they depend on.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Open Source Is The New Shareware</title>
+      <link>https://www.symphonious.net/2011/01/06/open-source-is-the-new-shareware/</link>
+      <pubDate>Thu, 06 Jan 2011 12:00:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/01/06/open-source-is-the-new-shareware/</guid>
+      <description>&lt;p&gt;There has been a trend over the past few years for open source projects to routinely ask for “donations” through a donate button on the site and increasingly in the software itself. I put “donations” in quotes because in the vast majority of cases these aren’t payments to a charitable organisation — they go straight into the pocket of the one and only developer.&lt;/p&gt;
+&lt;p&gt;Now it’s important to be clear, there are quite a number of open source organisations that are set up as actual charities or at least are independent organisations where the money donated actually goes towards the open source projects supported by that organisation. For example, when you donate to the Apache Software Foundation they use that money to pay for servers, bandwidth, legal advice the projects need, subsidising conferences around the projects and so on&lt;a href=&#34;#footnote1:1294312313194&#34;&gt;1&lt;/a&gt;{#footlink1:1294312313194.footnote}. These are great places to donate your money or time to — they handle donations very professionally as the funds directly benefit the projects and ecosystem around the projects.&lt;/p&gt;
+&lt;p&gt;What bothers me are the projects which ask for donations but don’t have any way to keep the donations separate from the main contributors personal funds. That money isn’t going to the &lt;em&gt;project&lt;/em&gt;, it’s going to the &lt;em&gt;person&lt;/em&gt; — that’s not a donation. From the New Oxford American Dictionary:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;donation |dōˈnā sh ən|&lt;/p&gt;
+&lt;p&gt;noun&lt;/p&gt;
+&lt;p&gt;something that is given to a charity, esp. a sum of money &lt;em&gt;: a tax-deductible donation of $200.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the action of donating something.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If someone asked you to donate to the poor and then pocketed the money you gave them, you’d be pretty annoyed — even if that person themselves was poor. On the other hand, if that person asked for money because &lt;em&gt;they&lt;/em&gt; were poor, you’d expect them to pocket it. Why should we not expect the same honesty from open source developers?&lt;/p&gt;
+&lt;h2 id=&#34;what-do-you-need-money-for-anyway&#34;&gt;What Do You Need Money for Anyway?&lt;/h2&gt;
+&lt;p&gt;For small open source projects there are so many free services available that money really isn’t an issue. If you’re asking for donations to support your project, what exactly is that money going to be used for? How is that money going to further the project’s goals?&lt;/p&gt;
+&lt;p&gt;Bottom line, it’s not.&lt;/p&gt;
+&lt;p&gt;Between Sourceforge, Google Code, GitHub and a whole suite of others, small open source projects are very unlikely to require any kind of funding. At best it might contribute to the main developer buying a faster computer so they can be more productive, but is that really for this project or something they want for themselves? Again, it comes down to honesty – if the only computer they can afford hampers their productivity then upfront ask for donations towards a faster computer, it’s not only more honest, it’s also more compelling.&lt;/p&gt;
+&lt;h2 id=&#34;a-more-honest-term&#34;&gt;A More Honest Term&lt;/h2&gt;
+&lt;p&gt;I have no problem with people asking for money as reward for their efforts developing software, that’s how I make my living. It doesn’t matter if the payment is optional or compulsory, what matters is that there’s honesty about what the payment is for.&lt;/p&gt;
+&lt;p&gt;The New Oxford American Dictionary can come to our aid here, since it includes a section under the term &lt;em&gt;present&lt;/em&gt; about choosing the right word:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;THE RIGHT WORD&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;What&amp;rsquo;s the difference between a birthday &lt;em&gt;present&lt;/em&gt; and a Christmas &lt;em&gt;gift&lt;/em&gt; ? Both words refer to something given as an expression of friendship, affection, esteem, etc.&lt;/p&gt;
+&lt;p&gt;But &lt;em&gt;gift&lt;/em&gt; is a more formal term, often suggesting something of monetary value that is formally bestowed on an individual, group, or institution (&lt;em&gt;: a gift to the university&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Present&lt;/em&gt;, on the other hand, implies something of less value that is an expression of goodwill (&lt;em&gt;: a housewarming present; a present for the teacher&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Largesse&lt;/em&gt; is a somewhat pompous term for a very generous gift that is conferred in an ostentatious or condescending way, often on many recipients (&lt;em&gt;: the king&amp;rsquo;s largesse; the largesse of our government&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;A &lt;em&gt;gratuity&lt;/em&gt; is associated with tipping and other forms of voluntary compensation for special attention or service above and beyond what is included in a charge (&lt;em&gt;: known for her generous gratuities, the duchess enjoyed watching the waiters compete with each other to serve her&lt;/em&gt;), while a &lt;em&gt;lagniappe&lt;/em&gt; is a Southern word, used chiefly in Louisiana and southeast Texas, for either a gratuity or a small gift given to a customer along with a purchase.&lt;/p&gt;
+&lt;p&gt;If you give money or anything else as a gift to a philanthropic, charitable, or religious organization, it is known as a &lt;em&gt;donation&lt;/em&gt; (&lt;em&gt;: donations for the poor&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;But if your employer gives you money at the end of the year in addition to your regular salary, it isn&amp;rsquo;t a Christmas &lt;em&gt;gift&lt;/em&gt;; it&amp;rsquo;s a Christmas &lt;em&gt;bonus&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since we’re not giving to a philanthropic, charitable or religious organization, &lt;em&gt;donation&lt;/em&gt; isn’t the word we want. &lt;em&gt;Gift&lt;/em&gt; or &lt;em&gt;present&lt;/em&gt; might be since mostly the monetary contribution is an expression of esteem. Importantly both terms imply that the receiver can do whatever they like with it, it’s not earmarked for a project in any way.&lt;/p&gt;
+&lt;p&gt;The best term in there however seems to be &lt;em&gt;gratuity&lt;/em&gt; or the more colloquial &lt;em&gt;tip&lt;/em&gt;. It’s recognition that someone has done something for you above and beyond what they charged you for. It also seems to be really getting at the heart of what I believe most people are after: encouragement. Having someone part with even a small amount of money is a very strong sign of appreciation, especially when it’s combined with a well-worded note rather than just money turning up in a PayPal account.&lt;/p&gt;
+&lt;p&gt;So perhaps going forward if you need money to support your open source project, provide some information about what the money will be used for and why it’s important to the project. If you just want to be rewarded for your hard work or encouraged, put out a virtual tip jar rather than a donation button.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1294312313194&#34; id=&#34;footnote1:1294312313194&#34;&gt;1&lt;/a&gt; &amp;#8211; actually many of those types of services and even server hardware may be donated as well&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1294312313194&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Big Forking Problem</title>
+      <link>https://www.symphonious.net/2010/09/06/a-big-forking-problem/</link>
+      <pubDate>Mon, 06 Sep 2010 13:00:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/06/a-big-forking-problem/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/groupevent-coloured2_43793.png&#34; style=&#34; float: right;&#34; /&gt;Back when git and GitHub were relatively new to the mainstream, there was a &lt;a href=&#34;http://www.symphonious.net/2009/05/05/communities-and-git/&#34;&gt;big discussion about how it promoted forking and was potentially bad for community building&lt;/a&gt;. Since then GitHub has well and truly proven that it can successfully support significant community and very successful projects. Looking around GitHub though, it’s clear that not every project successfully builds community there and the tendency to fork can still become a problem.&lt;/p&gt;
+&lt;p&gt;The big difference that I see between projects thriving with GitHub and those where forking looks like more of a problem is that thriving projects have a “&lt;a href=&#34;http://enthusiasm.cozy.org/archives/2009/05/git-balene-for-knowledge&#34;&gt;campfire&lt;/a&gt;” other than the source code for people to gather around. Often that’s a mailing list, other times it’s IRC and various other technologies but there’s always one common place where the community can build. GitHub by itself is unlikely to build up such a community because there isn’t a really good way to engage everyone in conversation. As such, you get a lot of forks and people making improvements, but not really working together and often the various forks never get folded back into the original.&lt;/p&gt;
+&lt;p&gt;The good news is that despite all the forks often remaining off on their own, it doesn’t seem to be detrimental to the original project. People find the main GitHub repository through other means, mostly links on the web, so there doesn’t seem to be confusion over which fork is the “main” one. On the other hand, most of those forks represent a wasted effort which could have pushed the project forward if only there had been some communication.&lt;/p&gt;
+&lt;p&gt;Finally, it’s interesting that the GitHub model of anyone creating a fork is &lt;em&gt;far&lt;/em&gt; more successful for projects which don’t need a contributor agreement to be signed. In that case, any fork that looks promising can be pulled in without needing extra permissions, so even without the extra communication channel the effort can be utilised. With a contributor agreement, you have to reach out and get the author to sign, which is a significant barrier.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Open Core, Open Development and Co-location</title>
+      <link>https://www.symphonious.net/2010/07/21/open-core-open-development-and-co-location/</link>
+      <pubDate>Wed, 21 Jul 2010 10:25:38 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/07/21/open-core-open-development-and-co-location/</guid>
+      <description>&lt;p&gt;It would be hard to have not noticed the on-going debate around “open core”. From what I can tell, it largely, but not completely, boils down to concerns about a product being called “open source” if the core that’s open source is generally unusable without the commercial-only additions. Mostly, people are ok with there being separate commercial-only plugins or tools provided so long as the open source product can stand alone and be useful and effective. &lt;a href=&#34;http://blogs.gnome.org/bolsh/2010/07/19/rotten-to-the-open-core/&#34;&gt;Dave Neary hits on what I think is a key warning sign&lt;/a&gt; that a product is using a damaging open-core model:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;And that’s what I think gets people riled up – if you’re releasing something as free software, then there should at least be the pretence that you are giving the community the opportunity to fend for itself – even if that is by providing an “unofficial” git tree where the community can code up GPL features competing with your commercial offering, or a nice forum for people to share templates, themes and extensions and fend for themselves. But what gets people riled is hearing a company call themselves “an Open Source company” when most of the users of their “open source” product do not have software freedom.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The open source definition is all about what license is being used for the software, but the effectiveness of something being open source is at least equally affected by the development model in use. The ability for anyone to jump in and contribute to the project reasonably easily is what drives extra innovation and enables the development investment to be spread among many users of the software. Having access to the source code and the ability to modify it yourself is useful to avoid lock-in, but maintaining the entire software is generally too expensive to be worthwhile for users – it’s cheaper to incur the costs of switching to another product instead.&lt;/p&gt;
+&lt;p&gt;What Dave Neary’s paragraph above starts to move towards is looking for a product that uses open development rather than just open source. &lt;a href=&#34;http://grep.codeconsult.ch/2010/07/16/this-is-how-we-work-at-apache/&#34;&gt;Bertrand Delacrétaz wrote up how we work at Apache&lt;/a&gt; recently and it’s a great model of things to look for in open development&lt;a href=&#34;#footnote1:1279707008156&#34;&gt;1&lt;/a&gt;{#footlink1:1279707008156.footnote}. In particular Apache lives and dies by the first item: “All technical discussions and decisions on public mailing lists” or as I’ve often heard it put, “if it didn’t happen on the mailing list, it didn’t happen”. Unless all discussions wind up happening in a public forum, be it a mailing list, forum, wiki, wave or whatever, it’s unlikely that open development will be possible&lt;a href=&#34;#footnote2:1279707279318&#34;&gt;2&lt;/a&gt;{#footlink2:1279707279318.footnote}.&lt;/p&gt;
+&lt;p&gt;So all of this leads me to a somewhat unexpected realisation: &lt;strong&gt;any open source company that insists on having all its developers colocated is failing to do open development effectively&lt;/strong&gt;. If your employees can’t develop effectively from remote locations, how can you possibly expect to benefit from significant community contributions?&lt;/p&gt;
+&lt;p&gt;Anyone have examples of companies using exclusively co-located developers but still fostering an open development model?&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1279707008156&#34; id=&#34;footnote1:1279707008156&#34;&gt;1&lt;/a&gt; &amp;#8211; of course there are other approaches to open development, but few are as well articulated as the Apache way these days.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1279707008156&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1279707279318&#34; id=&#34;footnote2:1279707279318&#34;&gt;2&lt;/a&gt; &amp;#8211; Apache does use face to face meet-ups, but they make a point of keeping the mailing list in the loop about what was discussed there so everyone can still be involved &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1279707279318&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ephox Enterprise TinyMCE</title>
+      <link>https://www.symphonious.net/2010/05/25/ephox-enterprise-tinymce/</link>
+      <pubDate>Tue, 25 May 2010 15:35:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/05/25/ephox-enterprise-tinymce/</guid>
+      <description>&lt;p&gt;The new &lt;a href=&#34;http://tinymce.ephox.com/&#34;&gt;Ephox Enterprise TinyMCE site&lt;/a&gt; has now gone live, a result of our new partnership with &lt;a href=&#34;http://www.moxiecode.com/&#34;&gt;Moxiecode&lt;/a&gt;, the company behind everyone’s favorite open source editor TinyMCE. I’m really excited about the potential of this partnership and have really enjoyed the opportunity to work with the Moxiecode team so far.&lt;/p&gt;
+&lt;h3 id=&#34;what-were-adding&#34;&gt;What We’re Adding…&lt;/h3&gt;
+&lt;p&gt;We think we can bring a lot to the TinyMCE community, the things below are just where we’re starting.&lt;/p&gt;
+&lt;h4 id=&#34;enterprise-grade-support&#34;&gt;Enterprise Grade Support&lt;/h4&gt;
+&lt;p&gt;We’re really proud of the level of support we’ve been able to offer for EditLive! and we’re bringing that over to TinyMCE. TinyMCE gets used in all kinds of mission critical systems where down time costs real money. Ephox’s support packages offer service level agreements to ensure you get help quickly and keep things running smoothly.&lt;/p&gt;
+&lt;h4 id=&#34;more-resources-for-tinymce&#34;&gt;More Resources for TinyMCE&lt;/h4&gt;
+&lt;p&gt;Ephox is dedicating resources to help develop TinyMCE, improve it’s quality, answer questions on the forums (even for the free LGPL version) and generally help make TinyMCE even better.&lt;/p&gt;
+&lt;p&gt;We’ve already had a number of patches accepted into the main TinyMCE branch and are using our build farm to run TinyMCE’s tests across a wide range of browsers and platforms to help the Moxiecode team keep quality levels high (&lt;a href=&#34;http://tinymce.ephox.com/test-results&#34;&gt;check out the results here&lt;/a&gt;). You’ll also see Ephox folk popping up in places like the TinyMCE forums to answer TinyMCE questions.&lt;/p&gt;
+&lt;h4 id=&#34;quick-and-easy-commercial-licensing&#34;&gt;Quick and Easy Commercial Licensing&lt;/h4&gt;
+&lt;p&gt;If you don’t want to distribute changes you make to TinyMCE under the LGPL or prefer a more traditional commercial software license for whatever reason, you can quickly and easily buy one straight from our &lt;a href=&#34;http://tinymce.ephox.com/pricing&#34;&gt;web store&lt;/a&gt;, with our without a support package.&lt;/p&gt;
+&lt;h4 id=&#34;express-edit&#34;&gt;Express Edit&lt;/h4&gt;
+&lt;p&gt;We’re currently working to update our “Express Edit” feature of EditLive! to make it simple to integrate &lt;em&gt;both&lt;/em&gt; EditLive! and TinyMCE with the same set of APIs and have the most appropriate editor for the situation load. Express Edit has been around for a while, but with the power of TinyMCE we think it’s time has really come to shine. With Express Edit you can offer all the advanced features of EditLive! but know that if Java isn’t available or you just need a lightning fast editor to make a quick change you’re users will have TinyMCE available too. Basically, you get the best possible editor for any situation.&lt;/p&gt;
+&lt;h3 id=&#34;committed-to&#34;&gt;Committed To…&lt;/h3&gt;
+&lt;p&gt;In case you were worried there’s a few things that we’re absolutely committed to:&lt;/p&gt;
+&lt;h4 id=&#34;editlive&#34;&gt;EditLive!&lt;/h4&gt;
+&lt;p&gt;We still see EditLive! as being Microsoft Word for the web. It’s a full featured, enterprise editor that dramatically improves author productivity and assists them in creating higher quality content. EditLive! has been the leading online editor for many years now and we are going to continue improving it as fast as we can. There’s plenty of great stuff coming down the pipeline for EditLive! including of course an improved Express Edit.&lt;/p&gt;
+&lt;h4 id=&#34;open-source&#34;&gt;Open Source&lt;/h4&gt;
+&lt;p&gt;Ephox as a company may not have had much to do with open source in the past, but most of the people working for Ephox have and we’re big fans. Now we get the privilege of working with the vast TinyMCE community and that’s really exciting.&lt;/p&gt;
+&lt;p&gt;Most importantly, TinyMCE is absolutely still available under the LGPL, Ephox is even providing a direct download link from our site to ensure everyone knows they are quite welcome to take TinyMCE and use it for free. The only difference between the LGPL community edition download and the commercially licensed options we’re providing is the license information.&lt;/p&gt;
+&lt;h4 id=&#34;tinymce&#34;&gt;TinyMCE&lt;/h4&gt;
+&lt;p&gt;Ephox and Moxiecode are working together closely on this venture. Ephox Enterprise TinyMCE is a distribution of TinyMCE, much like projects such as Debian include other open source products. Like Linux distributions we may find and need to fix problems with TinyMCE which causes our distribution to vary slightly until those changes can flow back upstream. To avoid any confusion, Ephox distributions of TinyMCE have an extra component to the version number, for example the current TinyMCE release is 3.3.6, so the current Ephox distribution is 3.3.6-170. This makes it clear which base version of TinyMCE is being used, that it’s been modified (even if only to add our naming) and which build from Ephox it is.&lt;/p&gt;
+&lt;p&gt;We’ve also called our distribution “Ephox Enterprise TinyMCE”, this is mostly a marketing thing but again it helps to avoid confusion in case there are fixes in our build that haven’t yet made it back upstream.&lt;/p&gt;
+&lt;h3 id=&#34;questions-comments&#34;&gt;Questions? Comments?&lt;/h3&gt;
+&lt;p&gt;If you have any questions, concerns or comments feel free to post them below or get in touch with me directly at &lt;a href=&#34;mailto:adrian.sutton@ephox.com&#34;&gt;adrian.sutton@ephox.com&lt;/a&gt; or by phone on +44 7 525 806 170 and I’ll do my best to get you an answer.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wanted: Open Source Evangelist/TinyMCE Guru</title>
+      <link>https://www.symphonious.net/2010/03/12/wanted-open-source-evangelisttinymce-guru/</link>
+      <pubDate>Fri, 12 Mar 2010 14:34:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/03/12/wanted-open-source-evangelisttinymce-guru/</guid>
+      <description>&lt;p&gt;From the &lt;a href=&#34;http://www.ephox.com/aboutus/jobs.html&#34;&gt;job description:&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We are seeking a Software Developer who is experienced in creating sophisticated, highly interactive, JavaScript applications. Ideally we desire someone that has experience in TinyMCE or has experience working as part of an open source project. The right person will have the ability to work remotely in a highly collaborative manner with virtual teams.
+I’m pretty excited about this new opening within Ephox. Lots of great stuff to come out of it hopefully, but in particular helping Ephox to start working better with Open Source communities and developing some awesome stuff with JavaScript. While TinyMCE experience is something we’re particularly keen to have “ready to go” if possible, whoever fills this role is going to become a web content editor expert in general from Tiny to CK, Dojo and of course our personal favourite &lt;a href=&#34;http://editlive.com/&#34;&gt;EditLive!&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The position is open regardless of your location in the world, though if you happen to be near Brisbane, Maidenhead or Palo Alto we have nice offices you can come in and work from if you like.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Stop Suffering in Silence</title>
+      <link>https://www.symphonious.net/2009/09/03/stop-suffering-in-silence/</link>
+      <pubDate>Thu, 03 Sep 2009 08:49:32 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/09/03/stop-suffering-in-silence/</guid>
+      <description>&lt;p&gt;I keep seeing otherwise intelligent people&lt;a href=&#34;#footnote1:1251967506123&#34;&gt;1&lt;/a&gt;{#footlink1:1251967506123.footnote} encounter problems with software but never actually report them to anyone who could fix them. For commercial software opening a support ticket takes just a few minutes and usually gets the issue resolved pretty quickly so you can stop wasting time suffering through it or complaining about it. For open source software it’s often a bit more difficult – you need to join the users mailing list and ask questions there, follow up if you don’t get a response and maybe even put together a solid bug report. Still nothing ominous.&lt;/p&gt;
+&lt;p&gt;Of course, the opposite effect happens too. Once someone finds they can report an issue and get it fixed for them, they often go a bit crazy reporting things – even before they’ve done a bit of investigation to confirm they’ve place the blame on the right bit of software&lt;a href=&#34;#footnote2:1251967610948&#34;&gt;2&lt;/a&gt;{#footlink2:1251967610948.footnote}.&lt;/p&gt;
+&lt;p&gt;I’ve been watching both these things happen within Ephox lately and it’s amazing how many things you can get solved quickly when you do get the right balance between reporting too soon and reporting too late (or not at all). It’s a skill I think we need to work to improve.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1251967506123&#34; href=&#34;#footlink1:1251967506123&#34;&gt;1&lt;/a&gt; &amp;#8211; Myself included sometimes.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1251967506123&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote2:1251967610948&#34; href=&#34;#footlink2:1251967610948&#34;&gt;2&lt;/a&gt; &amp;#8211; I’m sure there should be a good quip about the bug being in your code rather than the library/compiler/OS/etc but I can’t find one.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1251967610948&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Communities and Git</title>
+      <link>https://www.symphonious.net/2009/05/05/communities-and-git/</link>
+      <pubDate>Tue, 05 May 2009 18:38:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/05/communities-and-git/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Group&#34; style=&#34; float: right;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/groupevent-coloured2_43793.png&#34; /&gt;The conversation that has sprung up around how the use of distributed version control, Github in particular, affects community is a refreshing change in the blogosphere&lt;a id=&#34;footlink1:1241547946232&#34; class=&#34;footnote&#34; name=&#34;footlink1:1241547946232&#34; href=&#34;#footnote1:1241547946232&#34;&gt;1&lt;/a&gt;. It’s people collectively thinking things through rather than just reacting in uproar or following the latest meme.&lt;/p&gt;
+&lt;p&gt;The latest installment is from Ben Hyde, &lt;a href=&#34;http://enthusiasm.cozy.org/archives/2009/05/git-balene-for-knowledge&#34;&gt;&lt;em&gt;git: Balene for Knowledge&lt;/em&gt;&lt;/a&gt;&lt;a id=&#34;footlink2:1241548025976&#34; class=&#34;footnote&#34; name=&#34;footlink2:1241548025976&#34; href=&#34;#footnote2:1241548025976&#34;&gt;2&lt;/a&gt;. It’s definitely worth reading in its entirety, but let me pull out a couple of key points:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[Source control] provides a locus around which the work can rendezvous. It a campfire, and the community gathers around it. I accept that. But let’s be clear, it isn’t the only campfire. Other examples: the irc channel, the email, the bug tracking, the release process, the distribution system, the license, the social networks, etc. etc.
+and:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The thing that blew me away about git was that it helps to address this problem. It increases the probability that users will reveal their knowledge. It helps to create a cultural norm toward that behavior. To me this is far more important than the risk that their forking would quench the community campfire.
+The thing that really strikes me about these two comments – GitHub doesn’t just provide forks with a git branch to work on, it also provides a wiki and issue tracker. It does keep track of the network and provide tools to help feed changes back and they do work well, but it unconditionally forks more than just the source control.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So perhaps one improvement GitHub could make is to enable a project to be forked &lt;em&gt;without&lt;/em&gt; creating the wiki, issue tracker etc. Not only would that make it clearer that this was just an experimental or temporary fork rather than an alternate, long term project, it would further reduce the barrier to people getting involved. Right now, creating a fork means creating a whole open source project and it feels like you should be managing it as a project which feels like hard work. If you only forked the source control, it would just be a place to code out in the open so that you can get what you need from the project but also make it easily available to everyone else.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1241547946232&#34; name=&#34;footnote1:1241547946232&#34; href=&#34;#footlink1:1241547946232&#34;&gt;1&lt;/a&gt; &amp;#8211; wow that really feels like a blast from the past…&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1241547946232&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote2:1241548025976&#34; name=&#34;footnote2:1241548025976&#34; href=&#34;#footlink2:1241548025976&#34;&gt;2&lt;/a&gt; &amp;#8211; in response to J Aaron Farr’s &lt;a href=&#34;http://cubiclemuses.com/cm/articles/2009/04/28/a-community-of-rockstars/&#34;&gt;&lt;em&gt;A Community of Rockstars&lt;/em&gt;&lt;/a&gt; which amusingly is part of the latest uproar. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1241548025976&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Fixing VPN On A NetGear FVS124G | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Symptoms
+
+You have a NetGear FVS124G router providing VPN.
+You use IPSecuritas to let Mac users log into that VPN.
+VPN has worked in the past.
+VPN is no longer working and you haven&rsquo;t changed any settings (in our case there was a power outage and the modem configuration didn&rsquo;t come back as expected initially then was fixed so all the settings were the same as they used to be).
+In the IPSecuritas log you get a message stating &ldquo;inappropriate sadb message passed.&rdquo; and  Phase 1 never actually connects (thus Phase 2 times out because of a lack of Phase 1 connection).
+
+Solution
+
+Log into the admin interface of the NetGear router and go to Management-&gt;Settings Backup.
+Click &ldquo;Back Up&rdquo; and save the backed up settings file to your local hard drive.
+Under &ldquo;Restore saved settings from file&rdquo; click &ldquo;Choose file…&rdquo; and select the file you just downloaded.
+Click Restore.
+
+If you&rsquo;re having the same problem I was, your VPN will now work.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/04/16/fixing-vpn-on-a-netgear-fvs124g/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/04/16/fixing-vpn-on-a-netgear-fvs124g/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Fixing VPN On A NetGear FVS124G">
+	<meta property="og:description" content="Symptoms You have a NetGear FVS124G router providing VPN. You use IPSecuritas to let Mac users log into that VPN. VPN has worked in the past. VPN is no longer working and you haven’t changed any settings (in our case there was a power outage and the modem configuration didn’t come back as expected initially then was fixed so all the settings were the same as they used to be). In the IPSecuritas log you get a message stating “inappropriate sadb message passed.” and Phase 1 never actually connects (thus Phase 2 times out because of a lack of Phase 1 connection). Solution Log into the admin interface of the NetGear router and go to Management-&gt;Settings Backup. Click “Back Up” and save the backed up settings file to your local hard drive. Under “Restore saved settings from file” click “Choose file…” and select the file you just downloaded. Click Restore. If you’re having the same problem I was, your VPN will now work.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-04-15T22:04:40+00:00">
+		<meta property="article:modified_time" content="2008-04-15T22:04:40+00:00">
+
+	<meta itemprop="name" content="Fixing VPN On A NetGear FVS124G">
+	<meta itemprop="description" content="Symptoms You have a NetGear FVS124G router providing VPN. You use IPSecuritas to let Mac users log into that VPN. VPN has worked in the past. VPN is no longer working and you haven’t changed any settings (in our case there was a power outage and the modem configuration didn’t come back as expected initially then was fixed so all the settings were the same as they used to be). In the IPSecuritas log you get a message stating “inappropriate sadb message passed.” and Phase 1 never actually connects (thus Phase 2 times out because of a lack of Phase 1 connection). Solution Log into the admin interface of the NetGear router and go to Management-&gt;Settings Backup. Click “Back Up” and save the backed up settings file to your local hard drive. Under “Restore saved settings from file” click “Choose file…” and select the file you just downloaded. Click Restore. If you’re having the same problem I was, your VPN will now work.">
+	<meta itemprop="datePublished" content="2008-04-15T22:04:40+00:00">
+	<meta itemprop="dateModified" content="2008-04-15T22:04:40+00:00">
+	<meta itemprop="wordCount" content="180">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Fixing VPN On A NetGear FVS124G">
+	<meta name="twitter:description" content="Symptoms You have a NetGear FVS124G router providing VPN. You use IPSecuritas to let Mac users log into that VPN. VPN has worked in the past. VPN is no longer working and you haven’t changed any settings (in our case there was a power outage and the modem configuration didn’t come back as expected initially then was fixed so all the settings were the same as they used to be). In the IPSecuritas log you get a message stating “inappropriate sadb message passed.” and Phase 1 never actually connects (thus Phase 2 times out because of a lack of Phase 1 connection). Solution Log into the admin interface of the NetGear router and go to Management-&gt;Settings Backup. Click “Back Up” and save the backed up settings file to your local hard drive. Under “Restore saved settings from file” click “Choose file…” and select the file you just downloaded. Click Restore. If you’re having the same problem I was, your VPN will now work.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Fixing VPN On A NetGear FVS124G</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Fixing VPN On A NetGear FVS124G</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-04-15T22:04:40Z">April 15, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><h3 id="symptoms">Symptoms</h3>
+<ul>
+<li>You have a NetGear FVS124G router providing VPN.</li>
+<li>You use IPSecuritas to let Mac users log into that VPN.</li>
+<li>VPN has worked in the past.</li>
+<li>VPN is no longer working and you haven&rsquo;t changed any settings (in our case there was a power outage and the modem configuration didn&rsquo;t come back as expected initially then was fixed so all the settings were the same as they used to be).</li>
+<li>In the IPSecuritas log you get a message stating &ldquo;inappropriate sadb message passed.&rdquo; and  Phase 1 never actually connects (thus Phase 2 times out because of a lack of Phase 1 connection).</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<ol>
+<li>Log into the admin interface of the NetGear router and go to Management-&gt;Settings Backup.</li>
+<li>Click &ldquo;Back Up&rdquo; and save the backed up settings file to your local hard drive.</li>
+<li>Under &ldquo;Restore saved settings from file&rdquo; click &ldquo;Choose file…&rdquo; and select the file you just downloaded.</li>
+<li>Click Restore.</li>
+</ol>
+<p>If you&rsquo;re having the same problem I was, your VPN will now work.</p>
+<h3 id="commentary">Commentary</h3>
+<p>This is brain dead behavior and I swear I will never buy anything from NetGear again.</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

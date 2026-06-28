@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Editors on Symphonious</title>
+    <link>https://www.symphonious.net/categories/editors/</link>
+    <description>Recent content in Editors on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Thu, 17 May 2012 10:20:24 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/editors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>So Long EditLive! and Thanks For All The Fish (with rounded corners and drop shadows)</title>
+      <link>https://www.symphonious.net/2012/05/17/so-long-editlive-and-thanks-for-all-the-fish-with-rounded-corners-and-drop-shadows/</link>
+      <pubDate>Thu, 17 May 2012 10:20:24 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/05/17/so-long-editlive-and-thanks-for-all-the-fish-with-rounded-corners-and-drop-shadows/</guid>
+      <description>&lt;p&gt;Since the very early days of my blogging, I&amp;rsquo;ve integrated a copy of EditLive! to make the editing pleasant and more powerful. For many, many years there was simply no way I could bring myself to use anything else. Lately though, Apple have been making Java applets less and less appealing while browsers have been continuously improving their content editable suport and JavaScript editors have gotten better at working around the remaining quirks and smoothing off the rough edges on the editing experience.  The final straw for me though was that the current early access release of EditLive! 8.0, which appears to include a lot of fixes for the latest OS X, breaks backwards compatibility with a number of APIs I use to integrate it into this blog.&lt;/p&gt;
+&lt;p&gt;So the time has finally come to switch to TinyMCE. I still have a custom plugin to fix some of the incredibly poor configuration choices made by default in WordPress (&lt;a href=&#34;http://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/&#34; title=&#34;P tags are important remember&#34;&gt;P tags are important remember!&lt;/a&gt;) but it&amp;rsquo;s significantly less custom code and complexity. There are also a bunch of new features that have built into WordPress which I&amp;rsquo;d never enabled in my EditLive! integration which are nice to have.  The biggest win however is that I can now write blog posts on my iPad, so hopefully I can share a few more links and quick thoughts without having to drag out my laptop.&lt;/p&gt;
+&lt;p&gt;It is sad to retire EditLive! though. I worked to build it almost from scratch for nearly 10 years and for most if not all of that time it was the absolute cream of the crop for in browser editing with features and usability that were simply unmatched. I have some slight consolation that I&amp;rsquo;ve also been able to spend some time contributing to TinyMCE and I know the guys behind it are top notch so I&amp;rsquo;m happy to pass the baton of favourite editor over. I will miss the integrated image editor and its rounded corners and drop shadows…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>contentEditable in Mobile WebKit Update</title>
+      <link>https://www.symphonious.net/2011/06/10/contenteditable-in-mobile-webkit-update/</link>
+      <pubDate>Fri, 10 Jun 2011 18:30:03 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/06/10/contenteditable-in-mobile-webkit-update/</guid>
+      <description>&lt;p&gt;Joyously, it looks like iOS 5 fixes the &lt;a href=&#34;http://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/&#34;&gt;issues with contentEditable not working correctly in Mobile WebKit&lt;/a&gt;. A &lt;a href=&#34;https://github.com/tinymce/tinymce/commit/77d9e5577d6ad13bcb0512608359837f31e1e7b2&#34;&gt;patch has landed in TinyMCE&lt;/a&gt; to enable the editor to work there. Great news.&lt;/p&gt;
+&lt;p&gt;Hopefully the changes to WebKit can flow through to Android as well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Canvas-based Editors</title>
+      <link>https://www.symphonious.net/2010/09/29/canvas-based-editors/</link>
+      <pubDate>Wed, 29 Sep 2010 09:05:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/29/canvas-based-editors/</guid>
+      <description>&lt;p&gt;Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.&lt;/p&gt;
+&lt;p&gt;What disturbs me is that incredibly few people realise just how much work is involved in implementing caret and selection handling correctly, let alone most of the other infrastructure provided by contentEditable. I wound up talking to &lt;a href=&#34;http://twitter.com/novemberborn&#34;&gt;Mark Wubben&lt;/a&gt; who actually does have a pretty good idea – he implemented a DOM based selection system for the &lt;a href=&#34;http://xopus.com/&#34;&gt;Xopus editor&lt;/a&gt;. Needless to say he had quite the war story to tell, but despite doing what sounded like a very impressive bit of work, the selection code is still very broken in a couple of key ways: accessibility and international inputs&lt;a href=&#34;#footnote1:1285748951881&#34;&gt;1&lt;/a&gt;{#footlink1:1285748951881.footnote}.&lt;/p&gt;
+&lt;h3 id=&#34;accessibility&#34;&gt;Accessibility&lt;/h3&gt;
+&lt;p&gt;Accessibility support was my first response to anyone suggesting using canvas as an editor – no-one had considered it. If you play around with a screen reader for a while, you start to realise just how important the selection is to accessibility. Selecting text generally causes it to be read out for example. It’s not just screen readers either, screen magnifiers will move the screen along to keep up with the caret, ensuring the user can see what they’re typing. If the caret is fake, none of these features will work and the editor becomes inaccessible.&lt;/p&gt;
+&lt;h3 id=&#34;international-inputs&#34;&gt;International Inputs&lt;/h3&gt;
+&lt;p&gt;Even I’d forgotten about this one, but it’s likely an even bigger problem to solve than accessibility. The array of input devices, keyboard shortcuts and other ways that people input characters is pretty amazing when you start exploring it. People in English speaking countries don’t tend to notice this because they have quite a small number of characters in use which all fit on the keyboard. Even Western European countries have the vast majority of characters required available with a direct key sequence. However there are far more complex types of inputs around. The simplest of these is the use of “dead keys” such as acute on a US or British keyboard. To type é actually takes multiple keystrokes on a UK Mac keyboard:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Option-e. This is a dead-key so only a placeholder appears in the output (&lt;img src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/acutePlaceholder.png&#34; alt=&#34;Placeholder for acute shown with a yellow background.&#34;&gt;).&lt;/li&gt;
+&lt;li&gt;e. Now the e-acute character actually appears and is inserted into the document content.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Not to pick on Xopus but at least in Firefox on Mac, I can’t type é at all in the editor because it doesn’t correctly support dead-keys&lt;a href=&#34;#footnote2:1285750195458&#34;&gt;2&lt;/a&gt;{#footlink2:1285750195458.footnote}.&lt;/p&gt;
+&lt;p&gt;Asian languages can have even more keystrokes required to type a character and much more complex input methods that to be usable, require changes to the caret, underlining content etc. Plus the methods and UI is different on different OS’s. While users can handle some variation, they shouldn’t have to learn a whole new input method to be able to use your application&lt;a href=&#34;#footnote3:1285750501513&#34;&gt;3&lt;/a&gt;{#footlink3:1285750501513.footnote}.&lt;/p&gt;
+&lt;h3 id=&#34;the-way-forward&#34;&gt;The Way Forward&lt;/h3&gt;
+&lt;p&gt;Instead of trying to work around the limitations in contentEditable we need to be pushing browser vendors to fix it and make it usable. Where the current APIs aren’t good enough, standardise better ones – we’re dealing with multiple incompatible APIs already so the backwards compatibility problems are limited. This needs to be a focus so that we don’t wind up in a world where online editors only work for fully-abled, English speaking users. Most if not all of what’s required is already there, it just needs some love and care to remove the bugs and better handle corner-cases.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1285748951881&#34; id=&#34;footnote1:1285748951881&#34;&gt;1&lt;/a&gt; &amp;#8211; There is some &lt;a href=&#34;http://lists.w3.org/Archives/Public/public-canvas-api/2010JulSep/0040.html&#34;&gt;good discussion of the complexities involved here from the W3C canvas list&lt;/a&gt; as they struggle with the accessibility implications of canvas.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1285748951881&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1285750195458&#34; id=&#34;footnote2:1285750195458&#34;&gt;2&lt;/a&gt; &amp;#8211; and to be completely fair, EditLive! fails to paint the placeholder, though the character does type correctly. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1285750195458&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink3:1285750501513&#34; id=&#34;footnote3:1285750501513&#34;&gt;3&lt;/a&gt; &amp;#8211; So no, &lt;a href=&#34;http://code.google.com/apis/ajaxlanguage/documentation/referenceKeyboard.html&#34;&gt;Google Virtual Keyboard&lt;/a&gt; is not a real solution, however good an idea it is for people using things like internet kiosks with foreign keyboard layouts. Besides, would you like to be stuck typing only with your mouse? &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink3:1285750501513&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>FireFox is Picky About Clipboard HTML, Java is Sloppy</title>
+      <link>https://www.symphonious.net/2010/09/21/firefox-is-picky-about-clipboard-html-java-is-sloppy/</link>
+      <pubDate>Tue, 21 Sep 2010 10:06:38 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/21/firefox-is-picky-about-clipboard-html-java-is-sloppy/</guid>
+      <description>&lt;p&gt;Windows uses a particularly ugly format for putting HTML on the clipboard, called &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/aa767917(VS.85).aspx&#34;&gt;CF_HTML&lt;/a&gt;. Basically, it adds a header to the content with pretty useless information essentially declaring how many bytes in the header (and yes you have to pad the byte counts since they themselves are included in the count).&lt;/p&gt;
+&lt;p&gt;The problem between Java and Firefox is that Java always sets the ‘StartHTML’ and ‘EndHTML’ fields to -1 to indicate there is no context and Firefox will refuse to paste HTML from the clipboard if StartHTML or EndHTML is set to -1. As such, if you copy HTML from Java it will be impossible to paste into Firefox. It works perfectly with Word and IE.&lt;/p&gt;
+&lt;p&gt;I’m not 100% clear on whether the clipboard data Java is generating is valid but I consider it a bug in both Java and Firefox – Java for not being strict about what it outputs and Firefox for being too strict about what it accepts. Bug reports shall be made&lt;a href=&#34;#footnote1:1285065920040&#34;&gt;1&lt;/a&gt;{#footlink1:1285065920040.footnote}.&lt;/p&gt;
+&lt;p&gt;On the Java side, the problem is in sun.awt.windows.WDataTrasferer.HTMLSupport.convertToHTMLFormat which sadly is Sun-specific, private and loaded from the bootclasspath so a little difficult to work around. There is however a &lt;a href=&#34;http://www.peterbuettner.de/develop/javasnippets/clipHtml/index.html&#34;&gt;nasty, but effective, hack from Peter Buettner&lt;/a&gt; which does indeed get around the problem. I’ve chosen to avoid the need to copy/paste HTML in this particular application but the approach is worth saving a reference to in case it’s needed later.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1285065920040&#34; id=&#34;footnote1:1285065920040&#34;&gt;1&lt;/a&gt; &amp;#8211; &lt;a href=&#34;https://bugzilla.mozilla.org/show_bug.cgi?id=598289&#34;&gt;Bug 598289&lt;/a&gt; with Mozilla and there’s a &lt;a href=&#34;https://www.symphonious.net/firefoxPasteBug.zip&#34;&gt;simple test case available&lt;/a&gt;. The bug report has also been filed with Oracle and is &lt;a href=&#34;http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6986348&#34;&gt;now available in the bug parade&lt;/a&gt;. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1285065920040&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Importance and Practicalities of P Tags</title>
+      <link>https://www.symphonious.net/2010/09/13/the-importance-and-practicalities-of-p-tags/</link>
+      <pubDate>Mon, 13 Sep 2010 14:56:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/13/the-importance-and-practicalities-of-p-tags/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_1786812506017956051.png&#34; height=&#34;113&#34; width=&#34;84&#34; style=&#34; float: right;&#34; /&gt;The issue of P tags vs BR tags comes up very often and since my response to it has become a series of 5 articles, this post is here to provide a convenient index to point to in future.&lt;/p&gt;
+&lt;h4 id=&#34;general-primer&#34;&gt;General Primer&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/&#34;&gt;Why P Tags are Your Friends&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.symphonious.net/2010/09/08/p-tags-in-word/&#34;&gt;P Tags in Word&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;solutions-for-specific-situations&#34;&gt;Solutions for Specific Situations&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.symphonious.net/2010/09/09/p-tags-and-single-line-fields/&#34;&gt;P Tags and Single Line Fields&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.symphonious.net/2010/09/10/p-tags-and-flash/&#34;&gt;P tags and Flash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.symphonious.net/2010/09/02/the-email-and-p-myth/&#34;&gt;The Email and P Myth&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>contentEditable in Mobile WebKit</title>
+      <link>https://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/</link>
+      <pubDate>Mon, 13 Sep 2010 13:12:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/</guid>
+      <description>&lt;h3 id=&#34;what-is-contenteditable&#34;&gt;What Is contentEditable?&lt;/h3&gt;
+&lt;p&gt;JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly&lt;a href=&#34;#footnote1:1278939007857&#34;&gt;1&lt;/a&gt;{#footlink1:1278939007857.footnote}:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Selection – allowing the user to position a text caret in the content and select various parts of it.&lt;/li&gt;
+&lt;li&gt;Content entry and deletion – allowing the user to type basic text and to delete selected content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.&lt;/p&gt;
+&lt;h3 id=&#34;the-problem&#34;&gt;The Problem&lt;/h3&gt;
+&lt;p&gt;On mobile WebKit, for both iOS and Android, the basics of contentEditable support aren’t working correctly. The problem is two fold:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;While the user can position a text caret and change the selection, the actual caret (the blinking vertical line), never renders so users don’t know where their typing will appear.&lt;/li&gt;
+&lt;li&gt;The on-screen keyboard doesn’t appear when the caret is placed in an editable section. On devices without a real keyboard it’s then impossible to type.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;WebKit is actually surprisingly close to getting this working, with a lot of the underpinning functionality appearing to work but these two issues prevent editors from being usable&lt;a href=&#34;#footnote2:1278940183669&#34;&gt;2&lt;/a&gt;{#footlink2:1278940183669.footnote}.&lt;/p&gt;
+&lt;h3 id=&#34;why-does-it-matter&#34;&gt;Why Does It Matter?&lt;/h3&gt;
+&lt;p&gt;While geeks may feel at home writing HTML code by hand or using a markup language like markdown or textile, non-technical users find it significantly easier to use a WYSIWYG editor. Currently, it’s not possible to offer such an editor on mobile devices due to the lack of contentEditable support.&lt;/p&gt;
+&lt;p&gt;Even worse is that many sites are already using a WYSIWYG editor which then prevents users on a mobile devices from contributing content – even when the rest of the site works perfectly. With mobile browsers improving so rapidly, most sites now work without needing special adjustments so the lack of contentEditable support is one of the few major incompatibilities.&lt;/p&gt;
+&lt;h3 id=&#34;how-might-it-be-fixed&#34;&gt;How Might it be Fixed?&lt;/h3&gt;
+&lt;p&gt;To be honest, I don’t know and don’t have the experience with the code involved to find the source of the problem and fix it. However, with both the source to WebKit and Android being open, hopefully someone does have the experience knowledge and a bit of time to solve this.&lt;/p&gt;
+&lt;p&gt;With WebKit being the browser engine of choice on so many devices, the fix may even flow around to a bunch of mobile OS’s.&lt;/p&gt;
+&lt;h3 id=&#34;relevant-bug-reports&#34;&gt;Relevant Bug Reports&lt;/h3&gt;
+&lt;h4 id=&#34;android&#34;&gt;Android&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=9515&#34;&gt;9515 – No onscreen keyboard when inside a contentEditable area&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=9513&#34;&gt;9513 – Unable to select text in contentEditable field&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=9512&#34;&gt;9512 – contentEditable field shows no caret&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;For some background see also: &lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=8253&#34;&gt;8253 – isContentEditable returns true even if the browser doesn’t really support it&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;iphone&#34;&gt;iPhone&lt;/h4&gt;
+&lt;p&gt;Apple don’t provide a public bug list, but this issue is logged as Radar #8399288. Apple do use the number of bug reports for an issue to adjust priority so if this issue is important to you, please do log an issue and cite Radar #8399288.&lt;/p&gt;
+&lt;h4 id=&#34;others&#34;&gt;Others&lt;/h4&gt;
+&lt;p&gt;I don’t currently have bug reports against other systems but would appreciate pointers to any relevant bugs for other systems (whether they use WebKit or not) so they can be tracked.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1278939007857&#34; href=&#34;#footlink1:1278939007857&#34;&gt;1&lt;/a&gt; &amp;#8211; The other major component is the execCommand function which provides built-in implementations of a number of common commands like bold, italic, etc. While it’s certainly useful to have these, they can generally be replaced by pure-JavaScript implementations without sacrificing quality or performance. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1278939007857&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1278940183669&#34; id=&#34;footnote2:1278940183669&#34;&gt;2&lt;/a&gt; &amp;#8211; I’m unaware of any mobile browser that supports contentEditable well enough to make an editor feasible. In fact, WebKit appears to be the closest to that milestone. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1278940183669&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>P Tags and Flash</title>
+      <link>https://www.symphonious.net/2010/09/10/p-tags-and-flash/</link>
+      <pubDate>Fri, 10 Sep 2010 13:34:43 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/10/p-tags-and-flash/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_1786812506017956051.png&#34; width=&#34;84&#34; height=&#34;113&#34; style=&#34; float: right;&#34; /&gt;One of the most difficult situations to work with is when your output needs to be rendered using Flash. The HTML support in Flash is absolutely horrendous – worse even than in most email clients. Contrary to popular belief, &lt;a href=&#34;http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&amp;amp;file=00000930.html&#34;&gt;Flash&lt;/a&gt; &lt;em&gt;&lt;a href=&#34;http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&amp;amp;file=00000930.html&#34;&gt;does&lt;/a&gt;&lt;/em&gt; &lt;a href=&#34;http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&amp;amp;file=00000930.html&#34;&gt;support P tags&lt;/a&gt;. You will however need to ensure the text field is set to multiline. The BR tag is also only supported in multiline fields. The problem most people hit is that Flash doesn’t support the margin-top and margin-bottom attributes so you can’t get rid of the blank line between paragraphs.&lt;/p&gt;
+&lt;p&gt;The list of HTML tags supported by flash is &lt;em&gt;very&lt;/em&gt; short, so you will need to disable most of the editor functionality, however since flash does support things like bullet lists, for the most intuitive editing experience, it’s best to use P tags to break up the paragraphs rather than BRs.&lt;/p&gt;
+&lt;p&gt;Instead of avoiding P tags to avoid the extra white space, use a two part approach. In the editor, use P tags for paragraphs, and include the CSS:&lt;/p&gt;
+&lt;pre&gt;p { margin-top: 0; margin-bottom: 0; }
+&lt;/pre&gt;
+&lt;p&gt;Then before passing the HTML into Flash, filter it to replace &lt;p&gt; with &lt;span&gt;&lt;a href=&#34;#footnote1:1283791519502&#34;&gt;1&lt;/a&gt;{#footlink1:1283791519502.footnote}. Store the original content, with the P tags, in the database so that they are still present when the user goes back to edit existing content. You will need to disable any formatting that applies to the paragraph element – most notably alignment. There is no way to support alignment without a block tag and P is the only available block tag within Flash. If you need alignment support, you will have to use P tags and put up with the extra white space. Lists will still work correctly&lt;a href=&#34;#footnote2:1283791760407&#34;&gt;2&lt;/a&gt;{#footlink2:1283791760407.footnote} because the editor is working with the P tags, and the Flash renderer&lt;/p&gt;
+&lt;p&gt;In any case for Flash you will need to disable a lot of functionality to ensure only the supported elements are inserted. Essentially, bold, italic, underline, font face, font size and font color, images and hyperlinks. There are a few other CSS properties supported, but still very limited.&lt;/p&gt;
+&lt;p&gt;The limitations in Flash do provide significant challenges to providing a powerful and intuitive HTML editor, but the user experience will almost always be better if the editor works &lt;em&gt;with&lt;/em&gt; P tags, and then they are replaced before rendering, using CSS within the editor to ensure consistent rendering. In all cases, it is vitally important to heavily restrict the functionality that is available in the editor. If at all possible, avoiding the need to render HTML within Flash is usually the best option, but not always feasible.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1283791519502&#34; id=&#34;footnote1:1283791519502&#34;&gt;1&lt;/a&gt; &amp;#8211; Flash 9 doesn’t support the DIV tag, otherwise that would be the ideal alternative. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1283791519502&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1283791760407&#34; id=&#34;footnote2:1283791760407&#34;&gt;2&lt;/a&gt; &amp;#8211; tables are not supported by Flash anyway&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1283791760407&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>P Tags and Single Line Fields</title>
+      <link>https://www.symphonious.net/2010/09/09/p-tags-and-single-line-fields/</link>
+      <pubDate>Thu, 09 Sep 2010 16:03:24 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/09/p-tags-and-single-line-fields/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;&#34; width=&#34;84&#34; height=&#34;113&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_1786812506017956051.png&#34; style=&#34; float: right;&#34; /&gt;One of the common reasons people want to avoid P tags in content is because the field is designed to hold just a single paragraph, so having multiple P tags inside the content would break the template layout when it’s rendered. Usually the template renders the content as something like:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p&amp;#62;&amp;#60;%= fieldContent %&amp;#62;&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;In that case, where the output is the only thing within the paragraph, the best solution is to leave the paragraph tags in editor content and remove them from the rendering template. That gives the editor the context it needs to work well and avoids a lot of potential problems with rendering the content. If however, you’re including some extra content in the same paragraph then the situation is more difficult, e.g. your rendering template is more like:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p&amp;#62;Summary: &amp;#60;%= fieldContent%&amp;#62;&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;In this case, you need to include the P tags within the rendering template and need to ensure that any functionality in the editor which requires inserting a block tag is disabled. Many people think that just switching to insert BR on enter will achieve that, but it’s quite a long way short. For example, if the user creates a list, the template would output:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p&amp;#62;Summary: &amp;#60;ol&amp;#62;&amp;#60;li&amp;#62;Content&amp;#60;/li&amp;#62;&amp;#60;/ol&amp;#62;&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;which is invalid. Similarly since alignment must be on a block tag, it would create:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p&amp;#62;Summary: &amp;#60;div style=”text-align: center;”&amp;#62;Content&amp;#60;/div&amp;#62;&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;which is also invalid. Headings, tables, margins, blockquotes and many other functions will cause these problems. Instead of trying to disable the problematic things, it’s much simpler to only enable the inline formatting options that you need – it should be very limited since you’re only editing a small snippet of content:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bold&lt;/li&gt;
+&lt;li&gt;Italic&lt;/li&gt;
+&lt;li&gt;Underline&lt;/li&gt;
+&lt;li&gt;Strike-through&lt;/li&gt;
+&lt;li&gt;Font face&lt;/li&gt;
+&lt;li&gt;Font size&lt;/li&gt;
+&lt;li&gt;Font color&lt;/li&gt;
+&lt;li&gt;Background color&lt;/li&gt;
+&lt;li&gt;Superscript&lt;/li&gt;
+&lt;li&gt;Subscript&lt;/li&gt;
+&lt;li&gt;Images&lt;/li&gt;
+&lt;li&gt;Hyperlinks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Depending on your editor, there may be a couple of other functions that can work, but most things will need to be disabled. Notably, all these functions work regardless of whether there’s a P tag present or not, because they work “inline”, directly on the text.&lt;/p&gt;
+&lt;p&gt;Once you’ve restricted yourself to these functions, it’s usually ok to switch the enter key to insert a BR instead of a P, but carefully consider whether having line breaks in the content makes sense with your template anyway. If you want users to be able to insert multiple paragraphs, you should design your template to let them use P tags rather than using BR as a substitute. Consider using a plugin to disable the enter key altogether since the field is designed for a single line response.&lt;/p&gt;
+&lt;p&gt;Finally, using a plugin or validation when the user submits, check that the content has only one paragraph and isn’t too long to fit within your template. With many editors it will be better to work with the content inside a P tag within the editor and then use JavaScript or server-side filtering to remove them when saving the content.&lt;/p&gt;
+&lt;p&gt;The bottom line is that when restricting content to a single paragraph, you should ensure that all functionality which works at the paragraph level is disabled in the editor as it cannot be made to function correctly. You should also carefully consider whether users should be allowed to insert line breaks in the content and if they are, whether these are really paragraphs and users would be better served with a slight change to the rendering template, allowing them to use the full functionality of the editor.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>P Tags in Word</title>
+      <link>https://www.symphonious.net/2010/09/08/p-tags-in-word/</link>
+      <pubDate>Wed, 08 Sep 2010 13:53:04 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/08/p-tags-in-word/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;&#34; width=&#34;84&#34; height=&#34;113&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_1786812506017956051.png&#34; style=&#34; float: right;&#34; /&gt;One thing that many people don’t realise, is that the distinction between paragraphs and line breaks isn’t unique to HTML. In fact, it’s a distinction that people have been working with quite happily for a very long time – Microsoft Word has supported the two concepts right from it’s very first version. With the more recent versions of Word, the default paragraph spacing is zero, so line breaks and paragraphs look the same, even though there is an important semantic difference. You can still see the difference if you show the non-printing characters:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/wordParagraphExample_3354597428978381461.png&#34; alt=&#34;Example from word showing a paragraph and line ending.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The first line is a paragraph, note that it ends with the invisible paragraph marker character (¶). The second line ends with a line break character instead (¬) so the end of the line is &lt;em&gt;not&lt;/em&gt; the end of the paragraph. There are actually only two paragraphs in this document. You can see this in action when we position the caret at the end of the text and apply a heading style.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/wordApplyingHeading_6928726641640170600.png&#34; alt=&#34;Example of Word applying a heading style to a complete paragraph.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The heading style is a paragraph level style, so it applies to the entire paragraph, even though there’s a line break. In fact, if you save that original document as HTML, you get the structure:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p&amp;#62;Paragraph 1&amp;#60;/p&amp;#62;
+&amp;#60;p&amp;#62;First line of paragraph 2&amp;#60;br&amp;#62;
+Second line of paragraph 2&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;Just like any good HTML editor would create. You can try this yourself in Word, typing enter will create a new paragraph, typing shift-enter will instead insert a line break. The same keystrokes apply to most HTML editors as well.&lt;/p&gt;
+&lt;h2 id=&#34;rendering-differences&#34;&gt;Rendering Differences&lt;/h2&gt;
+&lt;p&gt;When copying and pasting content from Word into a HTML editor, it’s possible that there will be extra space added between each paragraph. This is a result of having different settings for what Word calls paragraph spacing (called margin-top and margin-bottom in HTML/CSS).&lt;/p&gt;
+&lt;p&gt;With the more recent versions of Word (last 10 years worth on Windows, last 5 years or so on Mac) the default is to have no paragraph spacing which effectively makes a paragraph marker and a line break (P and BR) look the same, simply moving to the line immediately below&lt;a href=&#34;#footnote1:1287657038154&#34;&gt;1&lt;/a&gt;{#footlink1:1287657038154.footnote}. In any case, in browsers the default is to apply a 12pt paragraph spacing through the CSS margin-top and margin-bottom attributes which are set in the browser&amp;rsquo;s default stylesheet.&lt;/p&gt;
+&lt;p&gt;So to get the same rendering as Word, you should keep using paragraphs but add the CSS:&lt;/p&gt;
+&lt;p&gt;p { margin-top: 0; margin-bottom: 0; }&lt;/p&gt;
+&lt;p&gt;Make sure you add it both to the rendered page and to the styles used by the editor. There is more detail on this and other ways to make HTML behave more like Word in the Ephox article, &lt;a href=&#34;http://liveworks.ephox.com/hints-tips/making-editlive-content-behave-more-like-word&#34;&gt;Making EditLive! Content Behave More Like Word&lt;/a&gt;, which is applicable to all editors.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1287657038154&#34; id=&#34;footnote1:1287657038154&#34;&gt;1&lt;/a&gt; &amp;#8211; I&#39;ve never quite understood why they made this change as it has led to users inserting a new paragraph by pressing enter twice which effectively adds an empty paragraph to get the paragraph spacing they want. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1287657038154&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why P Tags are Your Friends</title>
+      <link>https://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/</link>
+      <pubDate>Tue, 07 Sep 2010 13:31:19 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_387764802665706626.png&#34; style=&#34; float: right;&#34; /&gt;A few days ago I talked about &lt;a href=&#34;http://www.symphonious.net/2010/09/02/the-email-and-p-myth/&#34;&gt;the Email and P Myth&lt;/a&gt;, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.&lt;/p&gt;
+&lt;p&gt;Take for example, a simple function like alignment. In Word and any other sensible editor, when you click the right align button, the current paragraph becomes aligned right. Which pretty clearly highlights the problem – if you don’t have paragraphs, what should become aligned? Typically what happens is the entire document, being one paragraph, gets aligned right and user’s unsurprisingly complain. So why not just change the alignment of the current line? Think about it in HTML terms, if you have:&lt;/p&gt;
+&lt;pre&gt;Line 1&amp;#60;br&amp;#62;
+Line 2
+&lt;/pre&gt;
+&lt;p&gt;Where do you apply the text-align style exactly? You can’t apply text-align to inline elements so:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;span style=”text-align: right;”&amp;#62;Line 1&amp;#60;/span&amp;#62;&amp;#60;br&amp;#62;
+Line 2
+&lt;/pre&gt;
+&lt;p&gt;doesn’t work. Further, we’ve been told that inserting P tags isn’t allowed, so we can’t just make it:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p style=”text-align: right;”&amp;#62;Line 1&amp;#60;/p&amp;#62;
+Line 2
+&lt;/pre&gt;
+&lt;p&gt;because that would introduce “extra whitespace”&lt;a href=&#34;#footnote1:1283780342216&#34;&gt;1&lt;/a&gt;{#footlink1:1283780342216.footnote}. So the only option is to insert a DIV tag which makes the HTML structure quite complex. DIVs aren’t just a meaningless element, they add structure to the document and the editor can’t tell which DIVs are important structure and which are just pretending to be paragraphs&lt;a href=&#34;#footnote2:1283780468469&#34;&gt;2&lt;/a&gt;{#footlink2:1283780468469.footnote}.&lt;/p&gt;
+&lt;p&gt;This problem crops up in a huge number of different places – applying headings, style classes, lists, indenting and more. All these special cases need to be handled, adding to the download size for the editor and reducing performance – not to mention taking up a huge amount of development time that could have been put into something more useful.&lt;/p&gt;
+&lt;p&gt;WYSIWYG editors do such a good job of hiding the way that HTML and CSS work, that people often forget that in the end we’re still trying to generate high quality, standards-compliant HTML output. We’re limited by what those standards and browsers can actually do, so removing important concepts like paragraphs makes it incredibly difficult to create an editor that works intuitively.&lt;/p&gt;
+&lt;p&gt;Ultimately, it’s not that we developers don’t want to support your use case, it’s just that the restrictions you’re asking us to abide by dramatically reduce our ability to deliver a high quality authoring experience.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1283780342216&#34; id=&#34;footnote1:1283780342216&#34;&gt;1&lt;/a&gt; &amp;#8211; which can and should be removed using CSS in the first place &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1283780342216&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1283780468469&#34; id=&#34;footnote2:1283780468469&#34;&gt;2&lt;/a&gt; &amp;#8211; remembering that what was once an unimportant DIV may become important at some point because of a change to scripts or CSS that the editor isn’t aware of &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1283780468469&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

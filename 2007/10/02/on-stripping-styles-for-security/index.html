@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>On Stripping Styles For Security | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A while back people discovered that many RSS readers, and all online RSS aggregators didn&rsquo;t sandbox content from different sites and malicious HTML could cause cross site scripting (XSS) attacks and general nastiness. As a result most feed readers filter HTML through a seriously restrictive white list, including removing all CSS information. I&rsquo;ve reached the point where I&rsquo;ve simply had enough of this. CSS is a vital part of the internet and if feeds are going to be useful, we need them to work with CSS properly. So let&rsquo;s take a look at what&rsquo;s really going wrong:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/10/02/on-stripping-styles-for-security/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/10/02/on-stripping-styles-for-security/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="On Stripping Styles For Security">
+	<meta property="og:description" content="A while back people discovered that many RSS readers, and all online RSS aggregators didn’t sandbox content from different sites and malicious HTML could cause cross site scripting (XSS) attacks and general nastiness. As a result most feed readers filter HTML through a seriously restrictive white list, including removing all CSS information. I’ve reached the point where I’ve simply had enough of this. CSS is a vital part of the internet and if feeds are going to be useful, we need them to work with CSS properly. So let’s take a look at what’s really going wrong:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-10-02T10:16:09+00:00">
+		<meta property="article:modified_time" content="2007-10-02T10:16:09+00:00">
+
+	<meta itemprop="name" content="On Stripping Styles For Security">
+	<meta itemprop="description" content="A while back people discovered that many RSS readers, and all online RSS aggregators didn’t sandbox content from different sites and malicious HTML could cause cross site scripting (XSS) attacks and general nastiness. As a result most feed readers filter HTML through a seriously restrictive white list, including removing all CSS information. I’ve reached the point where I’ve simply had enough of this. CSS is a vital part of the internet and if feeds are going to be useful, we need them to work with CSS properly. So let’s take a look at what’s really going wrong:">
+	<meta itemprop="datePublished" content="2007-10-02T10:16:09+00:00">
+	<meta itemprop="dateModified" content="2007-10-02T10:16:09+00:00">
+	<meta itemprop="wordCount" content="902">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="On Stripping Styles For Security">
+	<meta name="twitter:description" content="A while back people discovered that many RSS readers, and all online RSS aggregators didn’t sandbox content from different sites and malicious HTML could cause cross site scripting (XSS) attacks and general nastiness. As a result most feed readers filter HTML through a seriously restrictive white list, including removing all CSS information. I’ve reached the point where I’ve simply had enough of this. CSS is a vital part of the internet and if feeds are going to be useful, we need them to work with CSS properly. So let’s take a look at what’s really going wrong:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">On Stripping Styles For Security</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">On Stripping Styles For Security</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-10-02T10:16:09Z">October 2, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>A while back people discovered that many RSS readers, and all online RSS aggregators didn&rsquo;t sandbox content from different sites and malicious HTML could cause cross site scripting (XSS) attacks and general nastiness. As a result most feed readers filter HTML through a seriously restrictive white list, including removing all CSS information. I&rsquo;ve reached the point where I&rsquo;ve simply had enough of this. CSS is a vital part of the internet and if feeds are going to be useful, we need them to work with CSS properly. So let&rsquo;s take a look at what&rsquo;s really going wrong:</p>
+<h3 id="taking-the160easy-option-instead-of160the160right-option">Taking The Easy Option Instead Of The Right Option</h3>
+<p>Filtering down to the most basic HTML standards is easy, but it doesn&rsquo;t deliver the experience that end users should be expecting. There&rsquo;s no reason you can&rsquo;t support the vast majority of the HTML standard and still protect your users from XSS attacks. You do have to invest a lot more time into fully parsing the HTML into a model that only allows valid options, dropping anything invalid, not recognized or unsafe and then serialize back out. That takes a lot more work than just applying string parsing to strip things out, but it is far less likely to result in data loss (formatting is data too).</p>
+<h3 id="put-security-in-the-right160place">Put Security In The Right Place</h3>
+<p>For people writing browser based readers or combining feeds into a browser sanitizing the HTML is really the only option they can take. All those rich client feed readers have a second, much better solution – isolate each entry. Let&rsquo;s face it, every day we browse to a whole heap of websites that we have no knowledge about and those sites are allowed to run any JavaScript they like – yet that&rsquo;s not a major issue because browsers sandbox content with a range of rules. Why is it that feed readers don&rsquo;t do this?</p>
+<p>For instance, NetNewsWire can allow JavaScript to execute in any feed entry without any security risk because it only shows one entry at a time<a id="footlink1-1191318517984" href="#footnote1-1191318517984" name="footlink1-1191318517984" class="footnote">1</a>. The entry is sandboxed so viewing it in the feed reader is just like viewing it in your browser<a id="footlink2-1191318551953" href="#footnote2-1191318551953" name="footlink2-1191318551953" class="footnote">2</a>. Even if you want to present a combined view, why aren&rsquo;t these readers making the effort to sandbox each entry into the area of that view they are allowed to have effect on? Again, it&rsquo;s more work than just creating a layout in HTML and throwing it into a browser view but it gives users full functionality without the security risks.</p>
+<h4 id="what-about-browser-bugs">What About Browser Bugs?</h4>
+<p>If you separate out the content into separate browser views there&rsquo;s still the possibility that a browser bug will allow security flaws. Of course, if that&rsquo;s the case your feed reader is only a small part of the problem – any website you visit with your browser could also cause you issues. If your feed reader sanitizes HTML it would only take a little bit of social engineering to make you open the entry in your browser where the exploit would occur. The simplest way to achieve this is to design the entry content to make a lot more sense when viewed with CSS styles (or just add a note to the top to say that).</p>
+<h3 id="why-do-you-need-formatting-anyway">Why Do You Need Formatting Anyway</h3>
+<p>Formatting <em>is</em> data. In many cases the way content looks is just as important as what the content says. The specific example that&rsquo;s driving me crazy at the moment is the recent changes feed from our internal wiki. In NetNewsWire it&rsquo;s the most fantastic way to follow a wiki I&rsquo;ve ever come across – each change turns up in the feed reader with the complete page content and the changes highlighted either green or red so you can quickly see what changed <em>in context</em>. The markup is actually nice and semantic – the changes are marked up using ins and del tags – but the default rendering of these tags is next to useless as it doesn&rsquo;t stand out from the rest of the content enough. So for those poor people using FeedBurner (and any other reader that strips the background-color style on the ins and del tags) the feed is nearly useless because it&rsquo;s too hard to see what changed. The formatting of the content is critical to being able to extract the information – falling back to just the semantic information renders the content almost useless.</p>
+<p>The great irony in this situation is that font tags would have worked perfectly even though they don&rsquo;t include the right semantic information and make the feed content far less accessible.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>There has been a huge push in recent years to move away from the old habits of early HTML and to leverage CSS for presentation – the fact that it doesn&rsquo;t work in feed readers is a major pain for people trying to do the right thing. It&rsquo;s good that we identified a security threat and dealt with it quickly – but it&rsquo;s not acceptable to stop there. We need to work to get the functionality that we used to have back without reintroducing the security risks. It&rsquo;s not simple, but it is important.</p>
+<p>Let&rsquo;s stop neutering the web.</p>
+<p> </p>
+<p class="footnote">
+  <a id="footnote1-1191318517984" href="#footlink1-1191318517984" name="footnote1-1191318517984">1</a> &#8211; at least with the way I&#160;configure it. I'm not sure if it has a combined view that throws everything into one browser instance<a href="#footlink1-1191318517984" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote2-1191318551953" href="#footlink2-1191318551953" name="footnote2-1191318551953">2</a> &#8211; very much like it given that NetNewsWire uses WebKit for it's rendering<a href="#footlink2-1191318551953" class="footnotereturn">↩</a>
+</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

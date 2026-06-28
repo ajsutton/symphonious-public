@@ -1,0 +1,86 @@
+--- original/secure-admin.php	2007-01-11 18:31:00.000000000 +1000
++++ fixed/secure-admin.php	2007-04-11 17:13:22.000000000 +1000
+@@ -1,18 +1,18 @@
+ <?php
+ /*
+ Plugin Name: Secure Admin
+-Plugin URI: http://haris.tv/2007/01/11/wordpress-ssl-plugin-secure-admin-patched-and-working/
++Plugin URI: http://www.symphonious.net/2007/04/11/wordpress-secure-admin/
+ Description: Access the admin backend over SSL.
+-Author: Ryan Boren (Patched by Haris)
+-Version: 0.2 (24)
+-Author URI: http://haris.tv
++Author: Ryan Boren (Patched by Haris - http://haris.tv/2007/01/11/wordpress-ssl-plugin-secure-admin-patched-and-working/) (Further patched by Adrian Sutton)
++Version: 0.2 (24) (1)
++Author URI: http://www.symphonious.net/
++Original URI: http://haris.tv/
+ Original URI: http://boren.nu
+ 
+ Patched
+ $Id: secure-admin.php 24 2007-01-11 18:31:19Z haristv $
+ http://haris.tv
+ */ 
+-
+ // added missing wpdecrypt function - haristv edit
+ function wp_decrypt($decryptMe) {
+ 	$decryptMe = urldecode($decryptMe);
+@@ -299,33 +299,6 @@
+ 	return compact('cookiepath', 'sitecookiepath', 'cookiehash'); 
+ }
+ 
+-function sa_ob_handler($buffer) {
+-	$admin_url = get_option('siteurl') . '/wp-admin';
+-	$login_url = get_option('siteurl') . '/wp-login.php';
+-	$comment_url = get_option('siteurl') . '/wp-comments-post.php';
+-	$secure_admin_url = preg_replace('/^https?/', 'https', $admin_url);
+-	$secure_login_url = preg_replace('/^https?/', 'https', $login_url);
+-	$secure_comment_url = preg_replace('/^https?/', 'https', $comment_url);
+-
+-	$replace_this = array($admin_url, $login_url, $comment_url);
+-	$with_this = array($secure_admin_url, $secure_login_url, $secure_comment_url);
+-	if ( is_admin() ) {
+-		$includes_url = get_option('siteurl') . '/wp-includes';
+-		$secure_includes_url = preg_replace('/^https?/', 'https', $includes_url);
+-		$replace_this[] = $includes_url;
+-		$with_this[] = $secure_includes_url;
+-	}
+-
+-	if ( is_preview() && ( 'on' == $_SERVER['HTTPS'] ) ) {
+-		$site_url = get_option('siteurl');
+-		$secure_site_url = preg_replace('/^https?/', 'https', $site_url);
+-		$replace_this[] = $site_url;
+-		$with_this[] = $secure_site_url;
+-	}
+-
+-	return (str_replace($replace_this, $with_this, $buffer));
+-}
+-
+ function sa_post_link($link) {
+ 	global $pagenow;
+ 
+@@ -334,11 +307,15 @@
+ 	return $link;
+ }
+ 
+-function sa_register_ob_handler() {
+-	ob_start('sa_ob_handler');	
++function sa_filter_url($link = '') {
++	global $pagenow;
++	if (('on' == $_SERVER['HTTPS']) && ('wp-comments-post.php' != $pagenow)) {
++		$link = preg_replace('/^https?/', 'https', $link);
++	}
++	return $link;
+ }
+ 
+-add_action('init', 'sa_register_ob_handler');
++add_filter('option_siteurl', 'sa_filter_url');
+ add_filter('preview_post_link', 'sa_post_link');
+ add_filter('preview_page_link', 'sa_post_link');
+ 
+@@ -348,4 +325,4 @@
+ 	return 'http';
+ }
+ 
+-?>
+\ No newline at end of file
++?>

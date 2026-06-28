@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Don’t Blame The Committer | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Recently there was a security flaw introduced by a security patch for IE, this obviously is a really bad thing and something the IE team1 have received a lot of criticism about for some time. Obviously, the IE team took it seriously and tried to find ways to make sure it didn&rsquo;t happen again. One thing that really bothered me though was a statement in the IEBlog:
+
+In parallel with making the right fix, we have been working through how we prevent similar mistakes from happening again. For instance, we have code-reviewed the past ten months of code check-ins from the developer responsible for this issue.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/08/25/dont-blame-the-committer/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/08/25/dont-blame-the-committer/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Don’t Blame The Committer">
+	<meta property="og:description" content="Recently there was a security flaw introduced by a security patch for IE, this obviously is a really bad thing and something the IE team1 have received a lot of criticism about for some time. Obviously, the IE team took it seriously and tried to find ways to make sure it didn’t happen again. One thing that really bothered me though was a statement in the IEBlog:
+In parallel with making the right fix, we have been working through how we prevent similar mistakes from happening again. For instance, we have code-reviewed the past ten months of code check-ins from the developer responsible for this issue.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-08-25T11:11:14+00:00">
+		<meta property="article:modified_time" content="2006-08-25T11:11:14+00:00">
+
+	<meta itemprop="name" content="Don’t Blame The Committer">
+	<meta itemprop="description" content="Recently there was a security flaw introduced by a security patch for IE, this obviously is a really bad thing and something the IE team1 have received a lot of criticism about for some time. Obviously, the IE team took it seriously and tried to find ways to make sure it didn’t happen again. One thing that really bothered me though was a statement in the IEBlog:
+In parallel with making the right fix, we have been working through how we prevent similar mistakes from happening again. For instance, we have code-reviewed the past ten months of code check-ins from the developer responsible for this issue.">
+	<meta itemprop="datePublished" content="2006-08-25T11:11:14+00:00">
+	<meta itemprop="dateModified" content="2006-08-25T11:11:14+00:00">
+	<meta itemprop="wordCount" content="332">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Don’t Blame The Committer">
+	<meta name="twitter:description" content="Recently there was a security flaw introduced by a security patch for IE, this obviously is a really bad thing and something the IE team1 have received a lot of criticism about for some time. Obviously, the IE team took it seriously and tried to find ways to make sure it didn’t happen again. One thing that really bothered me though was a statement in the IEBlog:
+In parallel with making the right fix, we have been working through how we prevent similar mistakes from happening again. For instance, we have code-reviewed the past ten months of code check-ins from the developer responsible for this issue.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Don’t Blame The Committer</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Don’t Blame The Committer</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-08-25T11:11:14Z">August 25, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Recently there was a security flaw introduced by a security patch for IE, this obviously is a really bad thing and something the IE team<a name="footlink1-1156503148031" class="footnote" id="footlink1-1156503148031" href="#footnote1-1156503148031">1</a> have received a lot of criticism about for some time. Obviously, the IE team took it seriously and tried to find ways to make sure it didn&rsquo;t happen again. One thing that really bothered me though was <a href="http://blogs.msdn.com/ie/archive/2006/08/22/711402.aspx">a statement in the IEBlog</a>:</p>
+<blockquote>
+<p>In parallel with making the right fix, we have been working through how we prevent similar mistakes from happening again. For instance, we have code-reviewed the past ten months of code check-ins from the developer responsible for this issue.</p>
+</blockquote>
+<p>I can&rsquo;t really imagine anything more demoralizing than having the past 10 months of your work reviewed because you made one mistake. It just says to me that the team considers that programmer incompetent all of a sudden<a name="footlink2:1156503853437" class="footnote" id="footlink2:1156503853437" href="#footnote2:1156503853437">2</a>, rather than seeing the bug as the teams mistake and focussing on how to improve the way the team works to make sure it doesn&rsquo;t happen again.</p>
+<p>Maybe I&rsquo;m just spoilt because I get to work with a really fantastic team that treats issues as a team problem and works together to fix it instead of finding a scapegoat. I just don&rsquo;t see how you expect people to do great work when you demoralize them like that – developers do better work when they enjoy their work.</p>
+<p>Now, I&rsquo;m sure the team didn&rsquo;t mean for it to come out like this, and maybe inside the team the perception is completely different – this is just a one-line example of the measures they&rsquo;ve taken, possibly just made up or exaggerated to try to make people feel safer. I certainly hope so, because otherwise there&rsquo;s someone on that team that probably feels like crap right now and isn&rsquo;t concentrating on their work like they should be.</p>
+<p class="footnote">
+  <a name="footnote1-1156503148031" id="footnote1-1156503148031" href="#footlink1-1156503148031">1</a> &#8211; and Microsoft in general<a class="footnotereturn" href="#footlink1-1156503148031">&#8617;</a>
+</p>
+<p class="footnote">
+  <a name="footnote2:1156503853437" id="footnote2:1156503853437" href="#footlink2:1156503853437">2</a> &#8211; despite the fact that they were considered competent enough to work on a critical security fix<a class="footnotereturn" href="#footlink2:1156503853437">&#8617;</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

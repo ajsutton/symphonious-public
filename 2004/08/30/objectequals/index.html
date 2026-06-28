@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Object.equals() | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Andrae Muys provides some excellent advice on implementing Object.equals() however I do have to correct one thing.  Andrae presents the code:
+
+class A {
+  int n1;
+  public boolean equals(Object o) {
+    if (!(o instanceof A)) {
+      return false;
+    } else {
+      A rhs = (A)o;
+      return this.n1 == rhs.n1;
+    }
+  }
+}
+
+and suggests that it is incorrect.  It is not.  This is absolutely, 100% the correct way to implement equals for that class.  The alternative he presents on the other hand is incorrect:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/08/30/objectequals/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/08/30/objectequals/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Object.equals()">
+	<meta property="og:description" content="Andrae Muys provides some excellent advice on implementing Object.equals() however I do have to correct one thing. Andrae presents the code:
+class A { int n1; public boolean equals(Object o) { if (!(o instanceof A)) { return false; } else { A rhs = (A)o; return this.n1 == rhs.n1; } } } and suggests that it is incorrect. It is not. This is absolutely, 100% the correct way to implement equals for that class. The alternative he presents on the other hand is incorrect:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-08-30T07:33:41+00:00">
+		<meta property="article:modified_time" content="2004-08-30T07:33:41+00:00">
+
+	<meta itemprop="name" content="Object.equals()">
+	<meta itemprop="description" content="Andrae Muys provides some excellent advice on implementing Object.equals() however I do have to correct one thing. Andrae presents the code:
+class A { int n1; public boolean equals(Object o) { if (!(o instanceof A)) { return false; } else { A rhs = (A)o; return this.n1 == rhs.n1; } } } and suggests that it is incorrect. It is not. This is absolutely, 100% the correct way to implement equals for that class. The alternative he presents on the other hand is incorrect:">
+	<meta itemprop="datePublished" content="2004-08-30T07:33:41+00:00">
+	<meta itemprop="dateModified" content="2004-08-30T07:33:41+00:00">
+	<meta itemprop="wordCount" content="793">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Object.equals()">
+	<meta name="twitter:description" content="Andrae Muys provides some excellent advice on implementing Object.equals() however I do have to correct one thing. Andrae presents the code:
+class A { int n1; public boolean equals(Object o) { if (!(o instanceof A)) { return false; } else { A rhs = (A)o; return this.n1 == rhs.n1; } } } and suggests that it is incorrect. It is not. This is absolutely, 100% the correct way to implement equals for that class. The alternative he presents on the other hand is incorrect:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Object.equals()</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Object.equals()</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-08-30T07:33:41Z">August 30, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Andrae Muys provides some <a href="http://etymon.blogspot.com/2004/08/objectequals.html">excellent advice</a> on implementing <code>Object.equals()</code> however I do have to correct one thing.  Andrae presents the code:</p>
+
+<pre><code>class A {
+  int n1;
+  public boolean equals(Object o) {
+    if (!(o instanceof A)) {
+      return false;
+    } else {
+      A rhs = (A)o;
+      return this.n1 == rhs.n1;
+    }
+  }
+}</code></pre>
+
+<p>and suggests that it is incorrect.  It is not.  This is absolutely, 100% the correct way to implement equals for that class.  The alternative he presents on the other hand is incorrect:</p>
+
+<pre><code>class A {
+  int n1;
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    } else if (o == null || !getClass().equals(o.getClass())) {
+      return false;
+    } else {
+      A rhs = (A)o;
+      return this.n1 == rhs.n1;
+    }
+  }
+}</code></pre>
+
+<p>The problem with this second form only appears when a subclass is used:</p>
+
+<pre><code>class C extends A {
+  public getValue() {
+    return n1;
+  }
+}</code></pre>
+
+<p>With the first implementation, <code>equals</code> returns the correct value regardless of whether the object is an instance of C or A, but the second will not compare A and C correctly even though C has not changed the semantics of equality in any way.  Andrae presents the following class to justify his assertion of the first way being wrong:</p>
+
+<pre><code>class B extends A { 
+  int n2;
+  public boolean equals(Object o) {
+    if (!(o instanceof B)) {
+      return false;
+    } else {
+      B rhs = (B)o;
+      return this.n1 == rhs.n1 && this.n2 == rhs.n2;
+    }
+  }
+}</code></pre>
+
+<p>There is a bug here but it is in class B and not in class A.  Class B is incorrectly assuming that it knows how to compare class A&#8217;s data, and more importantly class B is changing the behavior of A in a way that is not compatible with the original model.  Essentially, class A defines equality as having the same n1 values and class B is in the wrong for changing that.</p>
+
+<p>The golden rule here is that when you extend a class you are responsible for maintaining compatibility with the parent class.  You should never extend a class and change the behavior of a method such that it no longer meets the contract of the original.  This does <i>not</i> mean you can&#8217;t change the behavior, merely that it must be match the documented behavior &#8211; ie: it should do what the JavaDocs say the method does but not necessarily what the code actually does.</p>
+
+<p>To give an example, consider the common example of a payroll system&#8217;s employee class:</p>
+
+<pre><code>public class Employee {
+
+  /** The salary (in cents per year) for this employee. */
+  private int salary;
+
+  // Getter/setter for salary as appropriate and an appropriate constructor.
+
+  /** Calculates the amount due to the employee for the current pay cycle.
+    *
+    * @return the amount (in cents) due to the employee for the current pay cycle.
+    */
+  public int calculatePayDue() {
+    return salary / 52;
+  }
+}</code></pre>
+
+<p>It would be valid to extend the employee class as follows:</p>
+
+<pre><code>public class SalesPerson extends Employee {
+
+    /** The amount of commission (in cents) due to this employee for the current
+      * pay period.
+      */
+    private int commission;
+
+    // Getters and setters as appropriate and an appropriate constructor.
+    
+    /** @see A.calculatePayDue() */
+    public int calculatePayDue() {
+        return super.calculatePayDue() + commission;
+    }
+}</code></pre>
+
+<p>The subclass changes the behavior of <code>calculatePayDue</code> but it still meets the original contract for the method, so it is correct.  Similarly, Andrae&#8217;s <code>class A</code> meets the original contract for <code>Object.equals</code> and is thus correct, it is the implementation of <code>equals</code> in Andrae&#8217;s <code>class B</code> that breaks that contract and is thus incorrect.</p>
+
+<p>There are two important lessons to learn from this (on top of the numerous important lessons to learn from Andrae&#8217;s post):</p>
+
+<ol>
+<li>The JavaDoc is more important than the code.  It is the JavaDoc that defines the contract for the method in Java and if the code doesn&#8217;t match the JavaDoc, the code is incorrect &#8211; though it may be more desirable to fix that by changing the JavaDoc if it&#8217;s a private method.</li>
+<li>You should never extend a class in a way that breaks the contract of the super class.  You should be able to run the unit tests for class A over class B and have most of them pass.</li>
+</ol>
+
+<p>To clarify that second point, some of the tests for class A will fail because they actually test the behavior of A instead of the contract for A.  The way to avoid this is to separate out the contract into an interface, you would then expect all the tests for class A&#8217;s implementation of the interface to also pass when an instance of class B was used (regardless of whether or not B extended from A or just implemented the same interface).</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

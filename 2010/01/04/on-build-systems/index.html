@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>On Build Systems | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.
+The Projects
+Which build tool suits best clearly depends on the type of project you’re working with. I’m currently playing with three quite different projects:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/01/04/on-build-systems/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/01/04/on-build-systems/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="On Build Systems">
+	<meta property="og:description" content="Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.
+The Projects Which build tool suits best clearly depends on the type of project you’re working with. I’m currently playing with three quite different projects:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-01-04T12:37:14+00:00">
+		<meta property="article:modified_time" content="2010-01-04T12:37:14+00:00">
+
+	<meta itemprop="name" content="On Build Systems">
+	<meta itemprop="description" content="Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.
+The Projects Which build tool suits best clearly depends on the type of project you’re working with. I’m currently playing with three quite different projects:">
+	<meta itemprop="datePublished" content="2010-01-04T12:37:14+00:00">
+	<meta itemprop="dateModified" content="2010-01-04T12:37:14+00:00">
+	<meta itemprop="wordCount" content="1955">
+	<meta itemprop="keywords" content="Build Systems,Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="On Build Systems">
+	<meta name="twitter:description" content="Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.
+The Projects Which build tool suits best clearly depends on the type of project you’re working with. I’m currently playing with three quite different projects:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">On Build Systems</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">On Build Systems</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-01-04T12:37:14Z">January 4, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.</p>
+<h3 id="the-projects">The Projects</h3>
+<p>Which build tool suits best clearly depends on the type of project you’re working with. I’m currently playing with three quite different projects:</p>
+<ol>
+<li>EditLive! – a big, old code base with a few dependencies and a quite complex ant-based build process. While the primary code base is Java, the distribution includes a bunch of JavaScript and other ancillary files, documentation and is packaged up in three or four different distribution packages.</li>
+<li>“EPipes” – a brand new, very simple Java library with no dependencies (other than JUnit). Ant and Maven build scripts at the moment.</li>
+<li>“E2” – a newish internal web app with quite a few dependencies (including a complex transitive dependency tree), a few sub-projects and the need to include EditLive!</li>
+</ol>
+<p>One important thing to note here is that I’m not trying to solve deployment as part of the build script – I’m only interesting in building the software ready to be deployed where it’s required and no server management etc<a href="#footnote1:1262603535788">1</a>{#footlink1:1262603535788.footnote}.</p>
+<h3 id="the-problems">The Problems</h3>
+<h4 id="complexity">Complexity</h4>
+<p>Simple projects have nice simple build scripts, but as you add multiple output formats and various other filtering steps into the build process the build scripts grow in complexity and become hard to understand. The build script becomes a software project in its own right and chews up large amounts of engineering time.</p>
+<h4 id="sub-modules-and-internal-dependencies">Sub-modules and Internal Dependencies</h4>
+<p>Breaking code up into separate modules is one of the most powerful ways to reduce complexity and increase maintainability, but if those modules are all just thrown into the same project and built together, it’s very common for interdependencies to leak through the code because there’s nothing to enforce the separation. What you want to be able to do is break the project up into separate sub-projects which are built in isolation so that the build fails if you add unwanted dependencies.</p>
+<p>However, that means that instead of building one project, you’re now building multiple projects to get the final output and duplication gets introduced into the build system. In most cases you also want to be able to make changes across the modules without doing a full release or even committing. For example, you may want to add a new configuration option to one of your sub-modules that the main code base requires. Ideally you should be able to try that approach out in your own sandbox without having to commit, build and release the sub-module first.</p>
+<p>Internal dependencies are a slight variant on this – they are at least conceptually developed by a different team, so you don’t need to make concurrent changes, but you do need to depend on versions that potentially aren’t publicly released yet. The real challenge here is that they may use a different build system and may not be available in or meet the assumptions of any particular dependency management scheme. Including EditLive! usually presents this kind of challenge.</p>
+<h4 id="transitive-dependencies">Transitive Dependencies</h4>
+<p>When you depend on a library it usually requires a bunch of other libraries in turn. It’s usually pretty easy to grab all of the required library and shove them in at the start, but when you later go to upgrade that library or remove the dependency on it, you need to know which libraries it pulled in and whether or not they are still required, which versions are required etc.</p>
+<h4 id="build-reliability">Build Reliability</h4>
+<p>We write all kinds of automated tests for our code to ensure it works correctly, but most of the time our build scripts are completely untested. As complexity increases the chances of errors in the build scripts increases pretty dramatically. The challenge is that the build script is what runs the tests, so who tests the tester?</p>
+<h4 id="spin-up">Spin-Up</h4>
+<p>Creating a new project or a new sub-project takes too long or it doesn’t get started with the right set of quality controls (e.g. it’s not running checkstyle yet, or not checking code coverage etc).</p>
+<h4 id="repeatability">Repeatability</h4>
+<p>The single most important aspect of a build system is that it is 100% repeatable. An interesting exception at Ephox is that we never do two builds with the same version number. It was originally a poor-mans repeatability – if you want consistency only conduct the test once. We’ve kept it around even though we have a very reliable build system because a) it’s a bit of a safety blanket and b) code signing certificates have an expiry date that we can’t avoid, so the jar signature might be valid on one build and invalid on the other even though we do everything exactly the same.</p>
+<h3 id="false-problems">False Problems</h3>
+<p>There are a few false problems that people bring up a lot when discussing build systems. Usually these are actually contributing factors rather than actual problems, sometimes they’re just personal preference showing through.</p>
+<h4 id="xml-is-not-a-programming-language">XML is not a Programming Language</h4>
+<p>This has to the most common false problem. It’s pretty clear that there are XML dialects which <em>are</em> in fact programming languages but that’s not really what the complaint is about. The real point here is that the build script is either too complex or too verbose. It might also be a complaint about productivity when editing the build script. It’s important to dig into these particular complaints because understanding what the real problem is leads to finding the right solution. If productivity is the problem, better editing tools are often the best solution. Often ant’s use of XML is being confused with the declarative intent of ant. In other words, with ant you’re build script <em>isn’t</em> a programming language and isn’t trying to be – you’re just trying to use it wrong (and perhaps the tool isn’t the right choice for you).</p>
+<h4 id="downloading-the-internet">Downloading the Internet</h4>
+<p>This is commonly levelled at maven since it uses it’s own dependency management system to reduce the initial size of it’s download. Complaining that maven is so complex it has to download extra modules just to run clean is a red-herring – it could just as easily have included those modules with the initial download and been just as complex without needing to download anything. Ant for instance is “so complex” it requires you to program your own clean.</p>
+<p>That said, accessing the internet can be a real problem in various ways. Does the build work the same way on the internal intranet as it does when working from home? What happens if the internet connection is unreliable? Does downloading stuff mean that the build isn’t reproducible? Once you identify the real problems, most build tools provide solutions to them in various ways. For example, all of those problems apply to maven by default, but can actually be solved<a href="#footnote2:1262606067896">2</a>{#footlink2:1262606067896.footnote}.</p>
+<h4 id="the-build-is-too-slow">The Build is Too Slow</h4>
+<p>This can be a real problem if your build tool happens to be the bottle-neck but that’s fairly unlikely. More likely is that your unit tests are too slow, or that it’s too hard to make the build run in a distribution fashion, or that the complexity has introduced bugs into the build script and it’s doing work that’s either not needed or has already been done once before.</p>
+<h4 id="my-build-is-a-unique-and-special-snowflake">My Build is a Unique and Special Snowflake</h4>
+<p>It’s easy to believe that your software project is somehow special and there’s no other software that’s built like it out there. More likely though, it’s a pretty close variant on a theme rather than something completely unique to itself. Down this path lies building your own build tool – from scratch at the extreme. A custom built build tool can be the right choice, but it’s no cakewalk. I just look at the pain many newly open-sourced projects have had because they have an unusual build process. Huge amounts of time are spent teaching people how to set up the build environment and compile the project before they can start contributing. That cost is encountered with every new team member even if you never open-source your code. Plus, now instead of one project to build, now you have two and it’s unlikely to reduce the complexity.</p>
+<p>So dig into this false problem further and really understand it:</p>
+<ul>
+<li>Are you mixing in deployment stuff into the build and would that be better split out?</li>
+<li>Is there something about your project you could or should change to make it easier to build?</li>
+<li>Can you build custom modules for your build system rather than trying to do everything in the build script? For example, build an ant task or a maven plugin to perform particularly custom tasks.</li>
+<li>Would you be better running an external script as part of the build rather than replacing the whole build process?</li>
+</ul>
+<p>The key theme here is to identify the parts of your project that follow common patterns and the parts that are more unusual then leverage existing tools for the common parts. Depending on how much is common and how much is unusual will affect which tools is right, but you can usually avoid having to write a completely custom build system.</p>
+<h3 id="the-options-i-see-so-far">The Options I See So Far</h3>
+<p>There are a lot of build tools out there these days, but here are the ones I’ve found so far that are worth investigating:</p>
+<ul>
+<li><a href="http://ant.apache.org/">ant</a> All our systems are built around it so far but we need to find better ways of using it to solve the problems we’re seeing.</li>
+<li><a href="http://maven.apache.org/">Maven</a> The other Java build system. Maven has a real love it or hate it thing so it’s hard to know. I see huge potential with Maven and have huge concerns as well. I can’t put much faith in what I’ve read against Maven though because the articles always seem to lack:
+<ul>
+<li>A sense of rationality. Huge diatribes are easy to find, careful analysis is much less common.</li>
+<li>Using a private maven repository. This is a must for Maven but is usually just mentioned off-hand as a solution that was put in the too hard basket rather than really tried.</li>
+<li>Building custom plugins for custom parts of the build. People who complain maven “just can’t do” something haven’t looked at building a plugin for it, or calling out to an external script etc.</li>
+</ul>
+</li>
+<li><a href="http://rake.rubyforge.org/">Rake</a> Except Rake doesn’t seem to really know anything about building Java projects so it would have to be combined with another library, possibly <a href="http://raven.rubyforge.org/">Raven</a>, but I need to do more looking into how best to use rake with Java projects and Rake in general.</li>
+</ul>
+<p>Anything else that would be worth looking into would be good to know as well. I’m deliberately ignoring make since the build process needs to run cross-platform and while that’s possible in make, it’s a pretty big challenge.</p>
+<p class="footnote">
+  <a href="#footlink1:1262603535788" id="footnote1:1262603535788">1</a> &#8211; I tend to be of the view that your build and deployment systems should be separate even if they do wind up using the same tools. That way you separate the configuration from your actual code since the deployment step does the configuration rather than it being baked into what gets built. It’s also a pretty good split-point to help reduce complexity and lets you pick a deployment tool that best fits rather than having to use the same tool for both. <a class="footnotereturn" href="#footlink1:1262603535788">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1262606067896" id="footnote2:1262606067896">2</a> &#8211; whether the effort required to solve them is worth it or not depends on the particulars of the project and potentially how many projects that effort can be amortised over; it usually needs to be done per company rather than per project. <a class="footnotereturn" href="#footlink2:1262606067896">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

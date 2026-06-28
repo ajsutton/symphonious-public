@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Testing@LMAX – Making Test Output Useful | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened and why. So just like production code, you should use a logging framework within your DSL, use meaningful log levels and think about what info you&rsquo;d need in the logs if something went wrong (and what you don&rsquo;t). There&rsquo;s also a few things we&rsquo;ve found very useful specifically in our test logging.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2016/02/29/testinglmax-making-test-output-useful/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2016/02/29/testinglmax-making-test-output-useful/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Testing@LMAX – Making Test Output Useful">
+	<meta property="og:description" content="Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened and why. So just like production code, you should use a logging framework within your DSL, use meaningful log levels and think about what info you’d need in the logs if something went wrong (and what you don’t). There’s also a few things we’ve found very useful specifically in our test logging.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-02-28T23:14:18+00:00">
+		<meta property="article:modified_time" content="2016-02-28T23:14:18+00:00">
+
+	<meta itemprop="name" content="Testing@LMAX – Making Test Output Useful">
+	<meta itemprop="description" content="Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened and why. So just like production code, you should use a logging framework within your DSL, use meaningful log levels and think about what info you’d need in the logs if something went wrong (and what you don’t). There’s also a few things we’ve found very useful specifically in our test logging.">
+	<meta itemprop="datePublished" content="2016-02-28T23:14:18+00:00">
+	<meta itemprop="dateModified" content="2016-02-28T23:14:18+00:00">
+	<meta itemprop="wordCount" content="581">
+	<meta itemprop="keywords" content="Code and Geek Stuff,LMAX,Testing">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Testing@LMAX – Making Test Output Useful">
+	<meta name="twitter:description" content="Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened and why. So just like production code, you should use a logging framework within your DSL, use meaningful log levels and think about what info you’d need in the logs if something went wrong (and what you don’t). There’s also a few things we’ve found very useful specifically in our test logging.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Testing@LMAX – Making Test Output Useful</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Testing@LMAX – Making Test Output Useful</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2016-02-28T23:14:18Z">February 28, 2016</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened and why. So just like production code, you should use a logging framework within your DSL, use meaningful log levels and think about what info you&rsquo;d need in the logs if something went wrong (and what you don&rsquo;t). There&rsquo;s also a few things we&rsquo;ve found very useful specifically in our test logging.</p>
+<h3 id="log-alias-to-real-name-mappings">Log Alias to Real Name Mappings</h3>
+<p>Since <a href="https://www.symphonious.net/2015/06/08/testinglmax-aliases/">the DSL uses aliases</a>, if we want to poke around in the exchange manually to understand why a test failed, we need to know the real names to use. So whenever we create a real name for an alias we log some information about it. For example when creating an instrument:</p>
+<pre>21:28:53,916 WARN  …rdersWithSuppliedInstructionIds [AdminAPI] Created instrument 'instrument' (actual name: 'instrument-54369ih64k63', externalId: 180423, internalId: 180422) on tradeReportingGroup 1003</pre>
+<p>All the key information we need is in that log statement – the alias, real name plus unique identifiers (externalId and internalId).</p>
+<h3 id="name-your-threads">Name Your Threads</h3>
+<p>We use a custom JUnit test runner (via the @RunWith annotation) so we can run tests within a test suite in parallel. With tests running in parallel all their output gets mixed up and becomes hard to read.  Recently we started setting the test thread names to the name of the test case. </p>
+<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;"><span style="color: #008000; font-weight: bold;">private</span> <span style="color: #b00040;">void</span> <span style="color: #0000ff;">executeTest</span><span style="color: #666666;">(</span>
+  <span style="color: #008000; font-weight: bold;">final</span> FrameworkMethod method<span style="color: #666666;">,</span> 
+  <span style="color: #008000; font-weight: bold;">final</span> Description description<span style="color: #666666;">)</span> <span style="color: #666666;">{</span>
+    Thread<span style="color: #666666;">.</span><span style="color: #7d9029;">currentThread</span><span style="color: #666666;">().</span><span style="color: #7d9029;">setName</span><span style="color: #666666;">(</span>
+      getThreadName<span style="color: #666666;">(</span>description<span style="color: #666666;">.</span><span style="color: #7d9029;">getMethodName</span><span style="color: #666666;">()));</span>
+    methodBlock<span style="color: #666666;">(</span>method<span style="color: #666666;">).</span><span style="color: #7d9029;">evaluate</span><span style="color: #666666;">();</span>
+<span style="color: #666666;">}</span>
+</pre>
+</div>
+<p>We actually trim the method name to 30 characters (cutting off the <em>start</em> rather than the end which tends to work better with the way we name tests) so we get output like:</p>
+<pre>21:28:47,356 INFO  …tityAndPriceAndNoStopLossOffset [TestContext] Created PartyCode XMCS (alias: marketMaker)<br /><br />21:28:47,356 INFO  …erWithZeroSuppliedInstructionId [TestContext] Created PartyCode U6HK (alias: marketMaker)<br /><br />21:28:47,356 INFO  …ctionIdIfFirstOrderHasCompleted [TestContext] Created PartyCode 3DS6 (alias: marketMaker)<br /><br />21:28:47,356 INFO  …StopLossOffsetAndAStopLossPrice [TestContext] Created PartyCode XFY8 (alias: marketMaker)</pre>
+<p>There are a few cases where we spawn additional threads within a test (typically to pull data from long poll or other push event channels). In those cases we generally pass the thread name down with an additional prefix (e.g. LongPoll-…StopLossOffsetAndAStopLossPrice) so we can still associate that output with the right test.</p>
+<h3 id="time-traveller-names">Time Traveller Names</h3>
+<p>The way <a href="https://www.symphonious.net/2014/04/01/testinglmax-time-travel-and-the-tardis/">we allow time travelling tests to run in parallel</a> is reasonably complex – only one thread ever actually executes the time travel and there&rsquo;s a bunch of cross-thread coordination – so our thread names aren&rsquo;t as useful in that little area of code. As such we give each test we&rsquo;re currently running a time traveller name so we get log output from the Tardis like:</p>
+<pre>The Doctor asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Clara asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Captain Jack asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Rory asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Missy asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Amy asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />River asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Rose asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)<br />Time travelling to: mondayOpen (Mon Mar 14 07:00:00 UTC 2016)</pre>
+<p>We may have gotten a little carried away with the Doctor Who theme but having a name for each time traveller makes it far easier to understand what each test is waiting for.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

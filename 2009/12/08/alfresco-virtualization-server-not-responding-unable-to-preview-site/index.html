@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Alfresco Virtualization Server Not Responding – Unable to Preview Site | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more1{#footlink1:1260264856408.footnote} of these problems:
+
+
+When you click “Preview Website” you get an unable to connect message.
+
+You need to start the virtualization server that provides the previews or configure it’s IP correctly.
+
+
+
+When you click “Preview Website” you get a blank page and the browser is “connecting” forever.
+
+You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered.
+
+
+
+When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/12/08/alfresco-virtualization-server-not-responding-unable-to-preview-site/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/12/08/alfresco-virtualization-server-not-responding-unable-to-preview-site/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Alfresco Virtualization Server Not Responding – Unable to Preview Site">
+	<meta property="og:description" content="If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more1{#footlink1:1260264856408.footnote} of these problems:
+When you click “Preview Website” you get an unable to connect message.
+You need to start the virtualization server that provides the previews or configure it’s IP correctly. When you click “Preview Website” you get a blank page and the browser is “connecting” forever.
+You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered. When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-12-08T09:48:21+00:00">
+		<meta property="article:modified_time" content="2009-12-08T09:48:21+00:00">
+
+	<meta itemprop="name" content="Alfresco Virtualization Server Not Responding – Unable to Preview Site">
+	<meta itemprop="description" content="If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more1{#footlink1:1260264856408.footnote} of these problems:
+When you click “Preview Website” you get an unable to connect message.
+You need to start the virtualization server that provides the previews or configure it’s IP correctly. When you click “Preview Website” you get a blank page and the browser is “connecting” forever.
+You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered. When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.">
+	<meta itemprop="datePublished" content="2009-12-08T09:48:21+00:00">
+	<meta itemprop="dateModified" content="2009-12-08T09:48:21+00:00">
+	<meta itemprop="wordCount" content="492">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Content Management">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Alfresco Virtualization Server Not Responding – Unable to Preview Site">
+	<meta name="twitter:description" content="If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more1{#footlink1:1260264856408.footnote} of these problems:
+When you click “Preview Website” you get an unable to connect message.
+You need to start the virtualization server that provides the previews or configure it’s IP correctly. When you click “Preview Website” you get a blank page and the browser is “connecting” forever.
+You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered. When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Alfresco Virtualization Server Not Responding – Unable to Preview Site</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Alfresco Virtualization Server Not Responding – Unable to Preview Site</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-12-08T09:48:21Z">December 8, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more<a href="#footnote1:1260264856408">1</a>{#footlink1:1260264856408.footnote} of these problems:</p>
+<ol>
+<li>
+<p>When you click “Preview Website” you get an unable to connect message.</p>
+<ul>
+<li>You need to start the virtualization server that provides the previews or configure it’s IP correctly.</li>
+</ul>
+</li>
+<li>
+<p>When you click “Preview Website” you get a blank page and the browser is “connecting” forever.</p>
+<ul>
+<li>You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered.</li>
+</ul>
+</li>
+<li>
+<p>When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.</p>
+<ul>
+<li>You started the virtualization server too soon after starting Alfresco. Restart it.</li>
+</ul>
+</li>
+<li>
+<p>When you try to deploy the server it fails to connect.</p>
+<ul>
+<li>You need to download and install the deployment server.</li>
+</ul>
+</li>
+<li>
+<p>You’re trying to follow the getting started example, but when you get to creating content from the Press Release Form, it just gives you an error: Cannot resolve the name &lsquo;pr:company_footer_choices&rsquo;.</p>
+<ul>
+<li>You need to get the virtualization server working. Also make sure you have done the bulk import step and can preview the site.</li>
+</ul>
+</li>
+</ol>
+<h3 id="starting-the-virtualization-server">Starting the Virtualization Server</h3>
+<p>There should be a ‘virtual_alf.sh’<a href="#footnote2:1260265148233">2</a>{#footlink2:1260265148233.footnote} script in the Alfresco install directory. Run ‘./virtual_alf.sh start’ There’s also a virtual_start.sh but you’ll probably need to edit it to replace the @@ALF_DIRECTORY@@ placeholder that the installer didn’t replace.</p>
+<h3 id="setting-the-admin-password">Setting the Admin Password</h3>
+<p>At the end of the file ‘virtual-tomcat/conf/alfresco-virtserver.properties’ within your Alfresco install directory, there’s a property ‘alfresco.server.password’ this needs to be set to the admin password for your Alfresco instance. Keep this in sync anytime you change the admin password or your site previews will stop working.</p>
+<p>Also note that the user/password you add here will be used for all previews so it bypasses any security you might have. Don’t deploy this on a publicly available site unless you have nothing to hide.</p>
+<h3 id="installing-the-deployment-server">Installing the Deployment Server</h3>
+<p>No, it doesn’t seem to come with Alfresco by default – the documentation suggests there’s a way to enable it but I haven’t found it. Much easier to just download the component separately (from the main download page, go to “Custom Installs”, look under the WCM section and pick the obviously named package that works best for your platform. Install it by unzip/untarring in a directory and run it with the deploy_start.sh script.</p>
+<p>There is configuration in the ‘deployment.properties’ file which most importantly controls where it deploys to. You probably want to deploy to a Tomcat server’s webapps directory or similar. The default config will however work for testing and put the deployed content into the ‘target’ directory.</p>
+<h3 id="why-isnt-this-in-the-install-guide">Why Isn’t This in the Install Guide?</h3>
+<p>I have no idea. It would seem like something you would want to know about while installing.</p>
+<p class="footnote">
+  <a href="#footlink1:1260264856408" id="footnote1:1260264856408">1</a> &#8211; probably all of them actually<a class="footnotereturn" href="#footlink1:1260264856408">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1260265148233" id="footnote2:1260265148233">2</a> &#8211; .bat on Windows <a class="footnotereturn" href="#footlink2:1260265148233">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

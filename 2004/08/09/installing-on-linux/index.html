@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Installing On Linux | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A while back Kyle Rankin questioned why people would use InstallShield under Linux. He suggests people use the standard package management schemes that the various distributions provide and he&rsquo;s dead right. You should make things consistent for the user because it&rsquo;s consistency that makes a user interface easy to learn and makes it more productive (once you&rsquo;ve learnt it once you can use it in a whole heap of places at once without taking the time to think of the right way to do it). There is however a problem with this. There are just way too many linux distributions. Even taking into account the fact that there&rsquo;s a lot of overlap in package management tools, it&rsquo;s a big ask to expect a company to provide different packages for all of the different systems. Given that, they now have two choices:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/08/09/installing-on-linux/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/08/09/installing-on-linux/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Installing On Linux">
+	<meta property="og:description" content="A while back Kyle Rankin questioned why people would use InstallShield under Linux. He suggests people use the standard package management schemes that the various distributions provide and he’s dead right. You should make things consistent for the user because it’s consistency that makes a user interface easy to learn and makes it more productive (once you’ve learnt it once you can use it in a whole heap of places at once without taking the time to think of the right way to do it). There is however a problem with this. There are just way too many linux distributions. Even taking into account the fact that there’s a lot of overlap in package management tools, it’s a big ask to expect a company to provide different packages for all of the different systems. Given that, they now have two choices:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-08-09T08:15:07+00:00">
+		<meta property="article:modified_time" content="2004-08-09T08:15:07+00:00">
+
+	<meta itemprop="name" content="Installing On Linux">
+	<meta itemprop="description" content="A while back Kyle Rankin questioned why people would use InstallShield under Linux. He suggests people use the standard package management schemes that the various distributions provide and he’s dead right. You should make things consistent for the user because it’s consistency that makes a user interface easy to learn and makes it more productive (once you’ve learnt it once you can use it in a whole heap of places at once without taking the time to think of the right way to do it). There is however a problem with this. There are just way too many linux distributions. Even taking into account the fact that there’s a lot of overlap in package management tools, it’s a big ask to expect a company to provide different packages for all of the different systems. Given that, they now have two choices:">
+	<meta itemprop="datePublished" content="2004-08-09T08:15:07+00:00">
+	<meta itemprop="dateModified" content="2004-08-09T08:15:07+00:00">
+	<meta itemprop="wordCount" content="380">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Installing On Linux">
+	<meta name="twitter:description" content="A while back Kyle Rankin questioned why people would use InstallShield under Linux. He suggests people use the standard package management schemes that the various distributions provide and he’s dead right. You should make things consistent for the user because it’s consistency that makes a user interface easy to learn and makes it more productive (once you’ve learnt it once you can use it in a whole heap of places at once without taking the time to think of the right way to do it). There is however a problem with this. There are just way too many linux distributions. Even taking into account the fact that there’s a lot of overlap in package management tools, it’s a big ask to expect a company to provide different packages for all of the different systems. Given that, they now have two choices:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Installing On Linux</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Installing On Linux</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-08-09T08:15:07Z">August 9, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>A while back Kyle Rankin <a href="http://www.oreillynet.com/pub/wlg/5370">questioned</a> why people would use InstallShield under Linux. He suggests people use the standard package management schemes that the various distributions provide and he&rsquo;s dead right. You should make things consistent for the user because it&rsquo;s consistency that makes a user interface easy to learn and makes it more productive (once you&rsquo;ve learnt it once you can use it in a whole heap of places at once without taking the time to think of the right way to do it). There is however a problem with this. There are just <a href="http://www.distrowatch.com/">way too many linux distributions</a>. Even taking into account the fact that there&rsquo;s a lot of overlap in package management tools, it&rsquo;s a big ask to expect a company to provide different packages for all of the different systems. Given that, they now have two choices:</p>
+<ol>
+<li>Provide one installer that works on all Linux distributions (or as many as possible).</li>
+<li>Provide packages for just the most commonly used systems (ie: provide an rpm and maybe a deb). While some people may disagree I think it&rsquo;s a cardinal sin to write an application that runs across multiple platforms and then use an installer that only works on a few platforms. I have a whole pile of CDs from JavaOne that I was interested in but couldn&rsquo;t install on my Mac even though I</li>
+</ol>
+<p><em>know</em> at least some of them would have run perfectly well if I could have installed them. Even Sun&rsquo;s Java technology promo CD doesn&rsquo;t work on Mac. Since we don&rsquo;t want to annoy users by having our installer turn them away and also because we want to maximize our potential purchasing audience, the best option is to provide a single installation package that runs on as many distributions as possible. Hence the popularity of InstallShield – it&rsquo;s providing a suboptimal but none the less effective work around to one of the big problems in the Linux world – platform incompatibilities. It would be far better however if the linux distributions managed to work together on a standard package format but that would then limit choice and for better or worse, Linux favors having lots of choices over making things simple. I guess this is just part of the price you pay for choice.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

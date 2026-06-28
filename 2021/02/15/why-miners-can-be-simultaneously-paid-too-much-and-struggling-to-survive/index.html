@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Note: This post is deliberately high level. It doesn&rsquo;t attempt to be an economic proof or go into the gory details of exactly how the difficulty adjustment works. The aim is just to see the high level effects of how the system pans out without getting lost in the nitty gritty details of what is ultimately a very complex system.
+Pretty much every time the word “miner” is mentioned in an Ethereum discussion someone will claim that miners are paid too much and miners will respond saying they&rsquo;re struggling to survive. Turns out, both can be simultaneously true and in fact it&rsquo;s pretty much the expected case.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2021/02/15/why-miners-can-be-simultaneously-paid-too-much-and-struggling-to-survive/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2021/02/15/why-miners-can-be-simultaneously-paid-too-much-and-struggling-to-survive/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive">
+	<meta property="og:description" content="Note: This post is deliberately high level. It doesn’t attempt to be an economic proof or go into the gory details of exactly how the difficulty adjustment works. The aim is just to see the high level effects of how the system pans out without getting lost in the nitty gritty details of what is ultimately a very complex system.
+Pretty much every time the word “miner” is mentioned in an Ethereum discussion someone will claim that miners are paid too much and miners will respond saying they’re struggling to survive. Turns out, both can be simultaneously true and in fact it’s pretty much the expected case.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-02-15T07:48:40+00:00">
+		<meta property="article:modified_time" content="2021-02-15T07:48:40+00:00">
+
+	<meta itemprop="name" content="Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive">
+	<meta itemprop="description" content="Note: This post is deliberately high level. It doesn’t attempt to be an economic proof or go into the gory details of exactly how the difficulty adjustment works. The aim is just to see the high level effects of how the system pans out without getting lost in the nitty gritty details of what is ultimately a very complex system.
+Pretty much every time the word “miner” is mentioned in an Ethereum discussion someone will claim that miners are paid too much and miners will respond saying they’re struggling to survive. Turns out, both can be simultaneously true and in fact it’s pretty much the expected case.">
+	<meta itemprop="datePublished" content="2021-02-15T07:48:40+00:00">
+	<meta itemprop="dateModified" content="2021-02-15T07:48:40+00:00">
+	<meta itemprop="wordCount" content="1197">
+	<meta itemprop="keywords" content="Blockchain,Code and Geek Stuff,Ethereum">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive">
+	<meta name="twitter:description" content="Note: This post is deliberately high level. It doesn’t attempt to be an economic proof or go into the gory details of exactly how the difficulty adjustment works. The aim is just to see the high level effects of how the system pans out without getting lost in the nitty gritty details of what is ultimately a very complex system.
+Pretty much every time the word “miner” is mentioned in an Ethereum discussion someone will claim that miners are paid too much and miners will respond saying they’re struggling to survive. Turns out, both can be simultaneously true and in fact it’s pretty much the expected case.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-02-15T07:48:40Z">February 15, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><em>Note: This post is deliberately high level. It doesn&rsquo;t attempt to be an economic proof or go into the gory details of exactly how the difficulty adjustment works. The aim is just to see the high level effects of how the system pans out without getting lost in the nitty gritty details of what is ultimately a very complex system.</em></p>
+<p>Pretty much every time the word “miner” is mentioned in an Ethereum discussion someone will claim that miners are paid too much and miners will respond saying they&rsquo;re struggling to survive. Turns out, both can be simultaneously true and in fact it&rsquo;s pretty much the expected case.</p>
+<p>The reason lies ultimately in the way the difficulty automatically adjusts. Without going into too much detail, Ethereum maintains a (very) roughly consistent block time by making it easier or harder to find the next block depending on whether the latest block was found too quickly or too slowly.</p>
+<p>The other side of that equation is the total hash power. When there is a lot of hash power being used to find the next block, it will generally be found faster and when there&rsquo;s less it will be found slower. Net result, as there&rsquo;s more hash power, it gets harder to find the next block.</p>
+<h4 id="why-miners-are-always-struggling">Why Miners Are Always Struggling</h4>
+<p>So even when a miner has a consistent amount of mining power, when the total hash power increases the rate that they find blocks (ie the rate they get paid) will reduce. Similarly if the total hash power decreases, the rate they find blocks and get paid will increase. When mining is profitable, more people will start mining to get a share of those sweet, sweet block rewards. That increases the total hash power and each individual miner winds up earning less.</p>
+<p>That process will continue until there&rsquo;s about the same amount of hash power being added by people investing in mining as there is hash power being turned off because it&rsquo;s just not worth it. That balance appears to be just a little bit above break even, so individual miners will always wind up only just making a profit.</p>
+<h4 id="why-miners-are-paid-too-much">Why Miners Are Paid Too Much</h4>
+<p>Since the difficulty adjustments are aiming to have, on average, blocks a consistent distance apart each day about the same number of blocks are created regardless of how much hash power is thrown at the problem. So roughly the same amount of new ETH is created and paid out as block rewards each day. While this ETH is created out of nowhere it is effectively paid for by all ETH holders because increased issuance puts downward pressure on prices.</p>
+<p>There&rsquo;s only so much hash power required to keep the Ethereum chain secure. People will argue about how much that is but the exact number isn&rsquo;t important here. So if the total hash power is more than that threshold we could in theory reduce the total amount paid to miners. That wound result in miners earning less both individually and in aggregate which will make some of them unprofitable and they&rsquo;ll stop mining. That will then reduce the hash rate (which is what we wanted because we didn&rsquo;t need that much) and each individual miner will become more profitable again. Once the equilibrium is found again there&rsquo;ll be less paid out in total to miners but each individual miner will wind up earning about as much as they did before the change. The opposite process can be used if more hash power is required – increasing the block reward would temporarily make individual miners more profitable, but that would incentivise the addition of more hash power until miners are individually about as profitable as they were before.</p>
+<p>Transaction fees and the price of ETH in various fiat currencies are other variables that affect how much miners are paid. They can add a lot of variability, but the process is still essentially the same. Having higher transaction fees or a higher price of ETH is just like increasing the block reward, just much less controllable or predictable.</p>
+<p>Since it&rsquo;s hard to determine exactly how much hash power is required to secure the chain, and it&rsquo;s better to err on the side of more hash power, the typical case is that miners will be overpaid. We could theoretically pay less and still have a secure chain but the variability in the price of ETH and uncertainty in exactly how much hash power is enough means reducing the total payments to miners is too difficult and we just accept some amount of over payment.</p>
+<h4 id="resolving-the-oxymoron">Resolving The Oxymoron</h4>
+<p>Hopefully you&rsquo;ve seen the key distinction here that makes it logical that miners are both paid too much and are struggling to survive. They&rsquo;re paid too much <em>in aggregate</em> and struggling to survive <em>individually</em>.</p>
+<p>Miners quite understandably are very focussed on their <em>individual</em> profitability, but as we&rsquo;ve seen it doesn&rsquo;t matter how much is paid in total to miners, the hash rate will just adjust back to the equilibrium where they&rsquo;re struggling to survive again. To change that we&rsquo;d have to continuously increase block rewards, trying to stay ahead of the new hash power that would attract. But even if we could stay ahead, the massive inflation would destroy the price of ETH so the cost of electricity and mining equipment relative to ETH would spike and miners may well end up worse off overall.</p>
+<p>ETH holders on the other hand are concerned about the amount paid to miners <em>in aggregate</em> and whether that&rsquo;s buying us too little, the right amount or too much hash power. That doesn&rsquo;t mean they don&rsquo;t care about individual miners, just that as explained above, paying more in total won&rsquo;t make individual miners more profitable in the long run anyway.</p>
+<h4 id="the-complication-of-lag-and-averages">The Complication of Lag and Averages</h4>
+<p>In all this, there&rsquo;s a lot of mentions of “on average” or “eventually”. That&rsquo;s because while there are clear economic functions at play, there is also a lot of probability and lag in finding the new equilibrium. It takes time for people to decide to invest in mining and to order the components required, so if the block reward doubled tomorrow, the hash rate wouldn&rsquo;t suddenly double. For a while miners would in fact make a lot more money but it would gradually reduce as the new hash power came online until the equilibrium is found. Similarly, if the block reward is halved the hash power doesn&rsquo;t suddenly drop – miners wind up earning less for a while until the equilibrium is found again.</p>
+<p>Throw in the variability from changing ETH prices and transaction fees and it can take even longer to find that equilibrium because the uncertainty causes people to put off new investment to see if high prices last or continue mining while unprofitable hoping the price or transaction fees will come back up.</p>
+<p>While that lag does affect some details and needs to be factored into various decisions, it doesn&rsquo;t change the fundamental economics. The equilibrium will wind up being found, even if it takes a long time and miners will be back to that average amount of individual income – likely just managing to be profitable.</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

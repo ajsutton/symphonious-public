@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Weak Subjectivity Checkpoints Have Failed | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Let&rsquo;s just admit it, weak subjectivity checkpoints have failed…">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2022/05/17/weak-subjectivity-checkpoints-have-failed/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2022/05/17/weak-subjectivity-checkpoints-have-failed/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Weak Subjectivity Checkpoints Have Failed">
+	<meta property="og:description" content="Let’s just admit it, weak subjectivity checkpoints have failed…">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2022-05-17T21:12:00+10:00">
+		<meta property="article:modified_time" content="2022-05-17T21:12:00+10:00">
+
+	<meta itemprop="name" content="Weak Subjectivity Checkpoints Have Failed">
+	<meta itemprop="description" content="Let’s just admit it, weak subjectivity checkpoints have failed…">
+	<meta itemprop="datePublished" content="2022-05-17T21:12:00+10:00">
+	<meta itemprop="dateModified" content="2022-05-17T21:12:00+10:00">
+	<meta itemprop="wordCount" content="679">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Weak Subjectivity Checkpoints Have Failed">
+	<meta name="twitter:description" content="Let’s just admit it, weak subjectivity checkpoints have failed…">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Weak Subjectivity Checkpoints Have Failed</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Weak Subjectivity Checkpoints Have Failed</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-05-17T21:12:00+10:00">May 17, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Let&rsquo;s just admit it, weak subjectivity checkpoints have failed…</p>
+<p>The beacon chain brings to Ethereum the concept of <a href="https://www.symphonious.net/2019/11/27/exploring-ethereum-2-weak-subjectivity-period/">weak subjectivity</a>, so prior to the launch of the beacon chain MainNet it was seen as important to have a solution agreed that would allow users starting a new node to verify the chain they sync&rsquo;d was in fact the canonical chain.</p>
+<p>This was before anyone client had implemented checkpoint sync so the proposal was that the epoch and block root from a point close enough to the chain head that it was within the weak subjectivity period but far enough back that it wouldn&rsquo;t need to change often (e.g update only every 256 epochs). Since it&rsquo;s small and doesn&rsquo;t change often people could easily publish it via all kinds of methods - block explorers could show it, twitter bots could post it, it could even be printed in newspapers. Thus it would be easy for users to find it and they&rsquo;d have lots of different sources to verify against.</p>
+<p>Clients would then sync from genesis and when they got to the epoch in the weak subjectivity checkpoint, they&rsquo;d check that the block root matches the block they have, thus confirming they sync&rsquo;d the right chain. If it didn&rsquo;t match the client would crash and the user would have to either correct the weak subjectivity checkpoint they were providing or delete the current sync and try again, hoping the client wound up on the right chain this time.</p>
+<p>Of course, that&rsquo;s the first major problem with weak subjectivity checkpoints - you can waste days syncing before realising you&rsquo;re on the wrong chain. Then once you discover that you have to start again but don&rsquo;t really have anything you can do to avoid the problem happening again.</p>
+<p>Somewhat surprisingly though, that&rsquo;s not the biggest problem with weak subjectivity checkpoints. The biggest problem is that they&rsquo;re actually extremely hard to find. For a while beaconscan provided an endpoint that would give back the current weak subjectivity checkpoint - no explanation of what it was or how to use it, but at least you could get the value. It appears they silently removed it at some point though. I don&rsquo;t recall seeing weak subjectivity checkpoints published anywhere else.</p>
+<p>In fact, I&rsquo;m actually having trouble turning up a clear reference of how to calculate the weak subjectivity checkpoint.  There is <a href="https://github.com/ethereum/consensus-specs/blob/4c1156d504279069799924dbbc79cf13d9454ae3/specs/phase0/weak-subjectivity.md#weak-subjectivity-sync-procedure">this doc in the specs</a> which says how to calculate the weak subjectivity period, which amusingly basically has a TODO how to distribute the checkpoints. There&rsquo;s also <a href="https://notes.ethereum.org/@adiasg/weak-subjectvity-eth2">this doc from Aditya</a> which gives a lot more detail on weak subjectivity periods. I had thought there was some spec for ensuring everyone selected the same epoch to use for the weak subjectivity checkpoint and I thought it was a simple &ldquo;every X epochs&rdquo; but I can&rsquo;t actually find that documented anywhere.</p>
+<p>We <em>could</em> fix this - a clearer and/or simpler spec on how to get the weak subjectivity checkpoint <em>could</em> be created (and there is a suggestion of <a href="https://github.com/ethereum/beacon-APIs/pull/199/">adding it to the standard REST API</a>), we <em>could</em> put pressure on providers to publish those checkpoints and setup twitter bots etc so it was available. Even then, we&rsquo;d still have a truly lousy user experience with slow sync times that get longer as more blocks are piled on to the beacon chain and that can only retrospectively tell you that you&rsquo;ve been wasting your time.</p>
+<p>So let&rsquo;s just admit it, weak subjectivity checkpoints have failed. The future is in using checkpoint sync to start from the current finalized state. That minimises sync time and users can realistically take advantage of it today. It&rsquo;s not perfect, we need more places to provide that state and better ways of validating that the state is in fact the right one, but it&rsquo;s already more accessible than weak subjectivity checkpoints and has infinitely more users actually using it (ie more than zero). If we can move on from the idea of weak subjectivity checkpoints, we can focus on getting the most out of checkpoint sync in terms of usability and security.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

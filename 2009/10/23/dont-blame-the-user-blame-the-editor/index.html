@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Don’t Blame The User, Blame The Editor | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I swear, some days you just want to reach into the screen and strangle the blogger on the other end. Jeff Atwood complains that his users commonly fail to read all the helpful hints on how to use their overly complicated, what you see isn’t what you get editor on Stack Overflow:
+
+The ask question page is already dangerously close to cluttered with helpful tips, but apparently these helpful buttons, links, and text are all but invisible to a large segment of the user population. Sure, you could argue that Super User tends to attract less sophisticated users, but I see the exact same problem with programmers on Stack Overflow. As new users, a significant percentage of them can&rsquo;t figure out how to format code, even though there&rsquo;s not only a toolbar button that does it for you, but help text on the right explicitly describing how to do it manually. (Just indent 4 spaces. Spoiler alert!)
+So essentially, users don’t find the editor intuitive and the solution they’ve gone with up until now is to add more and more help text to try and teach the user how to use the unintuitive editor. It’s not working. The obvious solution is to escalate the arms race:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/10/23/dont-blame-the-user-blame-the-editor/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/10/23/dont-blame-the-user-blame-the-editor/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Don’t Blame The User, Blame The Editor">
+	<meta property="og:description" content="I swear, some days you just want to reach into the screen and strangle the blogger on the other end. Jeff Atwood complains that his users commonly fail to read all the helpful hints on how to use their overly complicated, what you see isn’t what you get editor on Stack Overflow:
+The ask question page is already dangerously close to cluttered with helpful tips, but apparently these helpful buttons, links, and text are all but invisible to a large segment of the user population. Sure, you could argue that Super User tends to attract less sophisticated users, but I see the exact same problem with programmers on Stack Overflow. As new users, a significant percentage of them can’t figure out how to format code, even though there’s not only a toolbar button that does it for you, but help text on the right explicitly describing how to do it manually. (Just indent 4 spaces. Spoiler alert!) So essentially, users don’t find the editor intuitive and the solution they’ve gone with up until now is to add more and more help text to try and teach the user how to use the unintuitive editor. It’s not working. The obvious solution is to escalate the arms race:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-10-23T09:50:05+00:00">
+		<meta property="article:modified_time" content="2009-10-23T09:50:05+00:00">
+
+	<meta itemprop="name" content="Don’t Blame The User, Blame The Editor">
+	<meta itemprop="description" content="I swear, some days you just want to reach into the screen and strangle the blogger on the other end. Jeff Atwood complains that his users commonly fail to read all the helpful hints on how to use their overly complicated, what you see isn’t what you get editor on Stack Overflow:
+The ask question page is already dangerously close to cluttered with helpful tips, but apparently these helpful buttons, links, and text are all but invisible to a large segment of the user population. Sure, you could argue that Super User tends to attract less sophisticated users, but I see the exact same problem with programmers on Stack Overflow. As new users, a significant percentage of them can’t figure out how to format code, even though there’s not only a toolbar button that does it for you, but help text on the right explicitly describing how to do it manually. (Just indent 4 spaces. Spoiler alert!) So essentially, users don’t find the editor intuitive and the solution they’ve gone with up until now is to add more and more help text to try and teach the user how to use the unintuitive editor. It’s not working. The obvious solution is to escalate the arms race:">
+	<meta itemprop="datePublished" content="2009-10-23T09:50:05+00:00">
+	<meta itemprop="dateModified" content="2009-10-23T09:50:05+00:00">
+	<meta itemprop="wordCount" content="359">
+	<meta itemprop="keywords" content="Editors,Rants">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Don’t Blame The User, Blame The Editor">
+	<meta name="twitter:description" content="I swear, some days you just want to reach into the screen and strangle the blogger on the other end. Jeff Atwood complains that his users commonly fail to read all the helpful hints on how to use their overly complicated, what you see isn’t what you get editor on Stack Overflow:
+The ask question page is already dangerously close to cluttered with helpful tips, but apparently these helpful buttons, links, and text are all but invisible to a large segment of the user population. Sure, you could argue that Super User tends to attract less sophisticated users, but I see the exact same problem with programmers on Stack Overflow. As new users, a significant percentage of them can’t figure out how to format code, even though there’s not only a toolbar button that does it for you, but help text on the right explicitly describing how to do it manually. (Just indent 4 spaces. Spoiler alert!) So essentially, users don’t find the editor intuitive and the solution they’ve gone with up until now is to add more and more help text to try and teach the user how to use the unintuitive editor. It’s not working. The obvious solution is to escalate the arms race:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Don’t Blame The User, Blame The Editor</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Don’t Blame The User, Blame The Editor</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-10-23T09:50:05Z">October 23, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I swear, some days you just want to reach into the screen and strangle the blogger on the other end. <a href="http://www.codinghorror.com/blog/archives/001306.html">Jeff Atwood complains that his users commonly fail to read all the helpful hints on how to use their overly complicated, what you see isn’t what you get editor on Stack Overflow</a>:</p>
+<blockquote>
+<p>The ask question page is already dangerously close to cluttered with helpful tips, but apparently these helpful buttons, links, and text are all but invisible to a large segment of the user population. Sure, you could argue that <a href="http://superuser.com/">Super User</a> tends to attract less sophisticated users, but I see the exact same problem with programmers on <a href="http://stackoverflow.com/">Stack Overflow</a>. As new users, a significant percentage of them can&rsquo;t figure out how to format code, even though there&rsquo;s not only a toolbar button that does it for you, but help text on the right explicitly describing how to do it manually. (Just indent 4 spaces. Spoiler alert!)
+So essentially, users don’t find the editor intuitive and the solution they’ve gone with up until now is to add more and more help text to try and teach the user how to use the unintuitive editor. It’s not working. The obvious solution is to escalate the arms race:</p>
+</blockquote>
+<blockquote>
+<p>More and more, I&rsquo;m thinking we need to put the formatting help — for new users only — <strong>directly in their line of sight</strong>. That is, pre-populate the question entry area with some example formatting that is typical of the average question. Nothing complicated. But at least then it&rsquo;d be in the one — and apparently the <em>only</em> one — place myopic users are willing to look. Right in front of their freakin&rsquo; faces.
+Thankfully the comments are full of people suggesting the right answer – fix the editor so you don’t <em>need</em> instructions to use it. You can always provide a source view for geeks who like to type in markup, but make the default something that just works.</p>
+</blockquote>
+<p>If the mark of a poor tradesman is that they always blames their tools, the mark of a bad UI designer is that they always blame the users. It’s not them, it’s you.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

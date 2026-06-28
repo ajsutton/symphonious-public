@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>A REST API for Ethereum Execution Clients | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The JSON-RPC API that Ethereum execution clients expose is genuinely awful to
+work with. Every call is a POST with a jsonrpc envelope, a method string
+and a positional params array. Numbers come back as hex strings — block
+numbers, balances, gas, timestamps, all of it — so even after you&rsquo;ve wrestled
+the request together you&rsquo;re piping the response through something to turn
+0x1bc16d674ec80000 back into a number a human can read. It does just about
+everything it can to be hostile to a quick curl.
+Tools like Foundry&rsquo;s cast make it usable,
+and I reach for them constantly, but they&rsquo;re still fiddly for ad-hoc poking and
+they don&rsquo;t help at all when something other than your terminal wants to talk to
+the client. What really bugs me is that we designed such a bad API in the first
+place and then built a layer of tooling to paper over it.
+So, naturally, I built another layer to paper over it.
+exec-rest-api is a proxy that sits
+in front of any execution client and exposes a sensible REST API, translating
+your requests into the JSON-RPC calls the client actually wants.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2026/05/30/a-rest-api-for-ethereum-execution-clients/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2026/05/30/a-rest-api-for-ethereum-execution-clients/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="A REST API for Ethereum Execution Clients">
+	<meta property="og:description" content="The JSON-RPC API that Ethereum execution clients expose is genuinely awful to work with. Every call is a POST with a jsonrpc envelope, a method string and a positional params array. Numbers come back as hex strings — block numbers, balances, gas, timestamps, all of it — so even after you’ve wrestled the request together you’re piping the response through something to turn 0x1bc16d674ec80000 back into a number a human can read. It does just about everything it can to be hostile to a quick curl.
+Tools like Foundry’s cast make it usable, and I reach for them constantly, but they’re still fiddly for ad-hoc poking and they don’t help at all when something other than your terminal wants to talk to the client. What really bugs me is that we designed such a bad API in the first place and then built a layer of tooling to paper over it.
+So, naturally, I built another layer to paper over it. exec-rest-api is a proxy that sits in front of any execution client and exposes a sensible REST API, translating your requests into the JSON-RPC calls the client actually wants.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-05-30T16:30:00+10:00">
+		<meta property="article:modified_time" content="2026-05-30T16:30:00+10:00">
+
+	<meta itemprop="name" content="A REST API for Ethereum Execution Clients">
+	<meta itemprop="description" content="The JSON-RPC API that Ethereum execution clients expose is genuinely awful to work with. Every call is a POST with a jsonrpc envelope, a method string and a positional params array. Numbers come back as hex strings — block numbers, balances, gas, timestamps, all of it — so even after you’ve wrestled the request together you’re piping the response through something to turn 0x1bc16d674ec80000 back into a number a human can read. It does just about everything it can to be hostile to a quick curl.
+Tools like Foundry’s cast make it usable, and I reach for them constantly, but they’re still fiddly for ad-hoc poking and they don’t help at all when something other than your terminal wants to talk to the client. What really bugs me is that we designed such a bad API in the first place and then built a layer of tooling to paper over it.
+So, naturally, I built another layer to paper over it. exec-rest-api is a proxy that sits in front of any execution client and exposes a sensible REST API, translating your requests into the JSON-RPC calls the client actually wants.">
+	<meta itemprop="datePublished" content="2026-05-30T16:30:00+10:00">
+	<meta itemprop="dateModified" content="2026-05-30T16:30:00+10:00">
+	<meta itemprop="wordCount" content="816">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="A REST API for Ethereum Execution Clients">
+	<meta name="twitter:description" content="The JSON-RPC API that Ethereum execution clients expose is genuinely awful to work with. Every call is a POST with a jsonrpc envelope, a method string and a positional params array. Numbers come back as hex strings — block numbers, balances, gas, timestamps, all of it — so even after you’ve wrestled the request together you’re piping the response through something to turn 0x1bc16d674ec80000 back into a number a human can read. It does just about everything it can to be hostile to a quick curl.
+Tools like Foundry’s cast make it usable, and I reach for them constantly, but they’re still fiddly for ad-hoc poking and they don’t help at all when something other than your terminal wants to talk to the client. What really bugs me is that we designed such a bad API in the first place and then built a layer of tooling to paper over it.
+So, naturally, I built another layer to paper over it. exec-rest-api is a proxy that sits in front of any execution client and exposes a sensible REST API, translating your requests into the JSON-RPC calls the client actually wants.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">A REST API for Ethereum Execution Clients</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">A REST API for Ethereum Execution Clients</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-05-30T16:30:00+10:00">May 30, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The JSON-RPC API that Ethereum execution clients expose is genuinely awful to
+work with. Every call is a <code>POST</code> with a <code>jsonrpc</code> envelope, a <code>method</code> string
+and a positional <code>params</code> array. Numbers come back as hex strings — block
+numbers, balances, gas, timestamps, all of it — so even after you&rsquo;ve wrestled
+the request together you&rsquo;re piping the response through something to turn
+<code>0x1bc16d674ec80000</code> back into a number a human can read. It does just about
+everything it can to be hostile to a quick <code>curl</code>.</p>
+<p>Tools like <a href="https://book.getfoundry.sh/cast/">Foundry&rsquo;s <code>cast</code></a> make it usable,
+and I reach for them constantly, but they&rsquo;re still fiddly for ad-hoc poking and
+they don&rsquo;t help at all when something other than your terminal wants to talk to
+the client. What really bugs me is that we designed such a bad API in the first
+place and then built a layer of tooling to paper over it.</p>
+<p>So, naturally, I built another layer to paper over it.
+<a href="https://github.com/ajsutton/exec-rest-api">exec-rest-api</a> is a proxy that sits
+in front of any execution client and exposes a sensible REST API, translating
+your requests into the JSON-RPC calls the client actually wants.</p>
+<h2 id="the-awful-api">The Awful API</h2>
+<p>Here&rsquo;s what asking for the current chain ID looks like today:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --data <span style="color:#e6db74">&#39;{&#34;jsonrpc&#34;:&#34;2.0&#34;,&#34;method&#34;:&#34;eth_chainId&#34;,&#34;params&#34;:[],&#34;id&#34;:1}&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  http://localhost:8545
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#34;jsonrpc&#34;:&#34;2.0&#34;,&#34;id&#34;:1,&#34;result&#34;:&#34;0x1&#34;}</span>
+</span></span></code></pre></div><p>A <code>POST</code> with a hand-written envelope, to ask a question that has no parameters,
+and the answer is <code>0x1</code> rather than <code>1</code>. Want the block number too? That&rsquo;s a
+second round of envelope-writing and another hex value to decode. None of this
+is hard, exactly, it&rsquo;s just tedious in a way that adds up every single time.</p>
+<p>The same thing through the proxy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://127.0.0.1:8080/chain
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#34;chainId&#34;: 1, &#34;networkId&#34;: &#34;1&#34;, &#34;client&#34;: &#34;Geth/v1.13.5...&#34;, ...}</span>
+</span></span></code></pre></div><p>A plain <code>GET</code>, no envelope, decimal numbers, and a bit of extra context thrown
+in for free. That&rsquo;s the whole idea.</p>
+<h2 id="what-it-does">What It Does</h2>
+<p>The API is organised the way you&rsquo;d actually think about the chain rather than
+the way the RPC methods are named. There are resources for <code>/chain</code>, <code>/blocks</code>,
+<code>/accounts</code>, <code>/transactions</code>, <code>/logs</code>, <code>/traces</code> and <code>/gas</code>, plus a
+<code>/utils/keccak256</code> helper for the inevitable moment you need to hash something.
+Behind each of those it&rsquo;s still making the <code>eth_getBlockByNumber</code> and
+<code>eth_getBalance</code> and friends that the client understands — you just don&rsquo;t have
+to think about it.</p>
+<p>Hex quantity notation is stripped out everywhere, so numbers are numbers. Errors
+come back as <a href="https://www.rfc-editor.org/rfc/rfc9457">RFC 9457</a> problem details
+instead of the JSON-RPC error shape, and anything that returns a list uses
+<a href="https://www.rfc-editor.org/rfc/rfc8288">RFC 8288</a> cursor pagination rather than
+making you guess at ranges. If you do need the raw bytes — a block or
+transaction as RLP — content negotiation will give you that instead.</p>
+<p>There&rsquo;s a <code>/health</code> resource that&rsquo;s genuinely useful for orchestration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://127.0.0.1:8080/health/ready
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#34;ready&#34;: true, &#34;upstreamReachable&#34;: true, &#34;syncing&#34;: false, ...}</span>
+</span></span></code></pre></div><p>That single call rolls up &ldquo;is the upstream reachable&rdquo; and &ldquo;is it still syncing&rdquo;
+into one readiness check, which is exactly the thing you otherwise end up
+scripting by hand around <code>eth_syncing</code>.</p>
+<p>For the cases where polling is the wrong model, there are Server-Sent Events
+streams at <code>/streams/blocks</code>, <code>/streams/logs</code>, <code>/streams/pending-transactions</code>
+and <code>/streams/sync-status</code>. SSE is a much friendlier thing to consume from a
+script or a small service than the WebSocket subscription dance, and it works
+with <code>curl</code> directly. There&rsquo;s also a Prometheus <code>/metrics</code> endpoint and
+request-tracing headers — <code>X-Request-ID</code>, <code>X-Upstream-Method</code>, <code>X-Block-Height</code>
+— so when something looks wrong you can see exactly which JSON-RPC call your
+request turned into.</p>
+<h2 id="running-it">Running It</h2>
+<p>The thing I cared most about was that it be trivial to start, because the whole
+point is ad-hoc use. If you&rsquo;ve got <code>pipx</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pipx install exec-rest-api
+</span></span><span style="display:flex;"><span>exec-rest-api --upstream-http http://localhost:8545
+</span></span></code></pre></div><p>There&rsquo;s a plain <code>pip install</code> too, or a single-file <code>.pyz</code> you can download from
+the releases and run directly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./exec-rest-api.pyz --upstream-http http://localhost:8545
+</span></span></code></pre></div><p>Or Docker, if you&rsquo;d rather not install anything:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --rm -p 8080:8080 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  ghcr.io/ajsutton/exec-rest-api:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --upstream-http http://host.docker.internal:8545
+</span></span></code></pre></div><p>It works with any execution client — it&rsquo;s only ever speaking standard JSON-RPC
+upstream — so point it at Geth, Nethermind, Besu, Reth, whatever you&rsquo;re running.
+The same low ceremony means it&rsquo;s just as happy left running as a long-lived
+proxy in front of a node as it is spun up for thirty seconds to answer one
+question.</p>
+<p>Is this likely to get any real use? Probably not. The current JSON-RPC is really
+very entrenched at this point but I do like how easy it is so solve and at least
+my home node can now expose a nice API. You&rsquo;ll also note that it differs from
+the Ethereum consensus client REST API in some conventions because if I&rsquo;m being
+overly opinionated about APIs I may as well run with it and do it the way I
+think the Consensus API should have been done. It didn&rsquo;t do something as awful
+as use hex for numbers, but putting version numbers in URLs is almost as bad&hellip;</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

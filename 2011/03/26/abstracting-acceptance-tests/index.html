@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Abstracting Acceptance Tests | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”1{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2011/03/26/abstracting-acceptance-tests/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2011/03/26/abstracting-acceptance-tests/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Abstracting Acceptance Tests">
+	<meta property="og:description" content="For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”1{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2011-03-26T21:38:37+00:00">
+		<meta property="article:modified_time" content="2011-03-26T21:38:37+00:00">
+
+	<meta itemprop="name" content="Abstracting Acceptance Tests">
+	<meta itemprop="description" content="For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”1{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.">
+	<meta itemprop="datePublished" content="2011-03-26T21:38:37+00:00">
+	<meta itemprop="dateModified" content="2011-03-26T21:38:37+00:00">
+	<meta itemprop="wordCount" content="625">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Abstracting Acceptance Tests">
+	<meta name="twitter:description" content="For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”1{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Abstracting Acceptance Tests</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Abstracting Acceptance Tests</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-03-26T21:38:37Z">March 26, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”<a href="#footnote1:1301173295622">1</a>{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.</p>
+<p>At LMAX that issue has been quite well handled by building a custom DSL for writing the acceptance tests so the acceptance tests are described at a very high level and then the details are handled in one place within the DSL – where they can be easily adjusted if the UI needs to be changed. It’s certainly not a new idea, but it’s executed better at LMAX than I’ve seen anywhere else. They regularly have not just testers but also business analysts writing acceptance tests ahead of the new functionality being developed.</p>
+<p>One of the key reasons for the success of the DSL at LMAX is getting the level of abstraction right – much higher than most acceptance test examples use. The typical example of a login acceptance test would be something like:</p>
+<ol>
+<li>Open the application</li>
+<li>Enter “fred” in the field “username”</li>
+<li>Enter “mypass” in the field “password”</li>
+<li>Click the “login” button</li>
+<li>Assert that the application welcome screen is shown</li>
+</ol>
+<p>However the LMAX DSL would abstract all of that away as just:</p>
+<ol>
+<li>Login as “fred”</li>
+</ol>
+<p>The DSL knows what web page to load to login (and how to log out if it’s already logged in), what fields to fill out and has default values for the password and other fields on the login form. You can specify them directly if required, but the DSL takes care of as much as possible.</p>
+<p>The second thing I’ve found very clever with the DSL is the way it helps to ensure tests run in an isolated environment as much as possible – even when running in parallel with other tests. There is very heavy use of aliases instead of actual values. So telling the DSL to login as “fred” will actually result in logging in as something like “fred-938797” – the real username being stored under the alias “fred” when the user was setup by the DSL. That way you have can thousands of tests all logging in as “user” and still be isolated from each other.</p>
+<p>Interestingly, the LMAX DSL isn’t particularly English-like at all – it’s much closer to Java than English. It aims to be simple enough to understand by smart people who are working with the acceptance tests, but not necessarily the code, regularly. Sometimes developers can assume that non-developers are only capable of reading actual English text and invest too much time in making the DSL readable rather than functional, effective and efficient at expressing the requirements.</p>
+<p>There is still a very obvious cost to building and maintaining such a large body of acceptance: some stories can require as much time writing acceptance tests as they do building the actual functionality and there is a lot of time and money invested in having enough hardware to run all those slow acceptance tests. Even so, I’ve seen a huge payoff for that effort even in the short time I’ve worked there. The acceptance tests give people the confidence to try things out and go ahead an refactor code that needs it – even it the changes also require large-scale changes to the unit tests.</p>
+<p class="footnote">
+  <a href="#footlink1:1301173295622" id="footnote1:1301173295622">1</a> &#8211; strictly speaking I believe it’s a multi-lateral trading facility. Don't ask me what the exact difference is. <a class="footnotereturn" href="#footlink1:1301173295622">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

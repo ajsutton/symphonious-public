@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wikis on Symphonious</title>
+    <link>https://www.symphonious.net/categories/wikis/</link>
+    <description>Recent content in Wikis on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 23 Jun 2008 20:33:43 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/wikis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Aim Higher</title>
+      <link>https://www.symphonious.net/2008/06/24/aim-higher/</link>
+      <pubDate>Mon, 23 Jun 2008 20:33:43 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/24/aim-higher/</guid>
+      <description>&lt;p&gt;Someone came up with a cool idea to add a &lt;a href=&#34;http://universaleditbutton.org/Universal_Edit_Button&#34;&gt;universal edit button&lt;/a&gt; to make editing wikis easier. It adds a button like for RSS feeds that redirects the browser to the edit page. It’s clever but it aims &lt;em&gt;way&lt;/em&gt; too low. If you can get browsers to add an editing button you have an opportunity to either point to an online form &lt;em&gt;or&lt;/em&gt; a standalone application that could also edit the page. In other words, Atom Publishing Protocol auto-detection.&lt;/p&gt;
+&lt;p&gt;It would be a great shame if such a spec were limited to just redirecting to a HTML page or if it were thought of as a useful feature for wikis instead of a useful feature for the internet everywhere. Let’s face it, nearly every page on the internet can be edited by &lt;em&gt;someone&lt;/em&gt; and I’m sure they’d appreciate it being easier to get there. Just look at the number of content management systems that provide some form of inline editing (heck RedDot renamed their company after the red dots that you clicked on inline to edit a section).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Working In The Open</title>
+      <link>https://www.symphonious.net/2008/06/19/working-in-the-open/</link>
+      <pubDate>Wed, 18 Jun 2008 14:13:56 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/19/working-in-the-open/</guid>
+      <description>&lt;p&gt;Kevin Gamble has an excellent post &lt;a href=&#34;http://blog.k1v1n.com/2008/06/enterprise-20-working-in-open.html&#34;&gt;Enterprise 2.0– working in the open&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A week doesn&amp;rsquo;t go by where I don&amp;rsquo;t hear from some administrative group who wants to work in a wiki, but wants their work to be private. When this happens I almost always tell them, &amp;ldquo;Then a wiki isn&amp;rsquo;t for you. If you want to collaborate with a small group where no one else can see it use Google Docs.&amp;rdquo;
+It’s amazingly common for people to want to work in a private little sandbox until they have everything perfect and then reveal it to the world. The trouble is, this almost entirely eliminates the opportunities for collaboration because people can’t see the content until it’s completed. What’s the value in reviewing and adding to a document that the author already thinks is done?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you really want to collaborate you need more than just new tools, you need new attitudes. You need to put aside the fear of being wrong or looking incompetent by publishing too early and have some confidence in yourself and your colleagues to find and highlight the good content and strip away the bad. It’s not an easy change to make because it requires trust and understanding between you and your colleagues, but it’s the only way to work better together.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wiki Advice Round Up</title>
+      <link>https://www.symphonious.net/2007/09/24/wiki-advice-round-up/</link>
+      <pubDate>Mon, 24 Sep 2007 07:17:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/09/24/wiki-advice-round-up/</guid>
+      <description>&lt;p&gt; My open tabs in NetNewsWire have exploded in the last couple of days with really good articles about driving wiki adoption and generally making wiki&amp;rsquo;s work. First up &lt;a href=&#34;http://internetducttape.com/2007/09/12/wiki-mistakes-building-wikis-that-dont-suck/&#34;&gt;Making Wikis Work&lt;/a&gt; is a pretty good overview of all that is wrong with wikis. It&amp;rsquo;s odd to think that a technology as young as wikis has legacy cruft but they do.&lt;/p&gt;
+&lt;p&gt;In particular, WikiWords are no longer required or a good idea, use an editor that makes creating links easy or use a simple shortcut for creating links (the square bracket notation was easy for most people to learn, but you need to provide a completely GUI alternative as well).&lt;/p&gt;
+&lt;p&gt;Wiki syntax is the other big bit of legacy cruft – it&amp;rsquo;s probably the biggest barrier to wiki adoption now and wiki creators are all scrambling to add WYSIWYG editors instead but many are struggling to make it all work because wiki markup is so non-standard. &lt;a href=&#34;http://www.symphonious.net/2007/01/27/need-a-standard-wiki-syntax-try-html/&#34;&gt;Should have used HTML instead&lt;/a&gt;…&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s some good suggestions in there for how to create a good wiki too. Not too sure that everyone would agree that hierarchy is the best way to organize things, but you certainly need to include good organization tools which most wikis lack.&lt;/p&gt;
+&lt;p&gt;Next up, &lt;a href=&#34;http://blogs.atlassian.com/news/2007/09/fear_of_looking.html&#34;&gt;Steward Mader nails one of the big problems with getting people to try out wikis&lt;/a&gt; – fear. It&amp;rsquo;s natural for people to fear new things and to fear criticism or looking stupid. Wiki&amp;rsquo;s have always tried to reduce barriers to entry for contributing but they still struggle with people&amp;rsquo;s fear of looking stupid. I think Stewart is too dismissive of this – we&amp;rsquo;ve got to find something that makes people feel safe while they get started and build up their confidence. It&amp;rsquo;s social not technical though so the solution isn&amp;rsquo;t going to be simple.&lt;/p&gt;
+&lt;p&gt;Nat Torkington talks about &lt;a href=&#34;http://radar.oreilly.com/archives/2007/09/mailing_list_fa.html&#34;&gt;O&amp;rsquo;Reilly&amp;rsquo;s problem with ever growing mailing lists&lt;/a&gt; – Ephox has the same problem in both directions, extra people and extra content constantly being added to mailing lists. Our engineering alias has grown to include half the company so noone uses it anymore, they just type in all the actual engineers directly. Wikis are often a great solution to this if you can get people to use them – instead of pushing every message out to everyone you let people self organize around the conversations that interest them. Of course, you have to get people to actually use the wiki and pay attention to what&amp;rsquo;s going on there and it doesn&amp;rsquo;t resolve O&amp;rsquo;Reilly&amp;rsquo;s problems with NDAs etc. It does create a much more useful archive of information if the conversations are actually creating information (rather than just discussing and inspiring ideas). Probably not the solution for O&amp;rsquo;Reilly but wikis certainly can reduce the email load in a company and allow people to be more productive and actually get the information they need. Email tends to include a lot of people that don&amp;rsquo;t need to be involved and miss a lot that do, plus anyone who needs to know later has to start the discussion all over again.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://thoughtsilt.blogspot.com/2007/09/guess-what-i-changed-for-500.html&#34;&gt;Rahul complains about Google Docs rather primitive diffing capabilities&lt;/a&gt;. Being able to see what&amp;rsquo;s changed is another of the really obvious features that is rarely done well. Our internal wiki has some pretty awesome diff capabilities now but it still needs more work as quite a few types of changes confuse it. I&amp;rsquo;ll have to investigate how track changes could be used to improve it.&lt;/p&gt;
+&lt;p&gt;HiveTalk discusses &lt;a href=&#34;http://hivetalk.info/2007/08/02/how-to-hold-meetings-on-a-wiki/&#34;&gt;how to hold meetings on a wiki&lt;/a&gt;. Good advice here but I&amp;rsquo;m hesitant to call it a meeting, mostly because noone likes meetings. I&amp;rsquo;d just call it a discussion. The idea of having a deadline is really important as is following up on actionable items. Of course because this is asynchronous people who don&amp;rsquo;t have good time management skills (most people) will tend to put it off in favor of doing something that feels more urgent so you need to be cautious of that and pester people if you really need their contributions. Often the best way to teach people to get involved is to go ahead and make decisions without them (doing the best you can) and let them live with it – depends how important the decisions and the person involved are as to whether you can get away with this though. Probably best to start with something like where the company picnic will be instead of business critical decisions.&lt;/p&gt;
+&lt;p&gt;Lots of good stuff in there – hopefully I&amp;rsquo;ll get a chance to look at them in some more depth because there&amp;rsquo;s a lot of overlap with the stuff I&amp;rsquo;m thinking about at the moment.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wikis For Non-Technical Users</title>
+      <link>https://www.symphonious.net/2007/05/18/wikis-for-non-technical-users/</link>
+      <pubDate>Thu, 17 May 2007 18:08:39 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/18/wikis-for-non-technical-users/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been doing a lot of thinking lately about how to make wikis accessible to the common man – in other words, how do we get wikis to spread out of the technical departments and make it not just usable by non-technical people but make them actually want to use it and advocate it. Certainly there&amp;rsquo;s been a lot of movement in this area and a lot of good progress made, but I suspect there&amp;rsquo;s a lot more than can be done.&lt;/p&gt;
+&lt;p&gt;Certainly at Ephox, we seen the operations, sales and marketing people make heavy use of our internal wiki – I tend to attribute that to a couple of reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;We configured the wiki to use HTML. While the technical people don&amp;rsquo;t tend to leverage this that much, the sales, marketing and operations people regularly build well laid out pages with tables and columns etc. There&amp;rsquo;s summary boxes for quick overviews and graphics to highlight points etc. Some of it could be done with wiki markup but most couldn&amp;rsquo;t. Many people think this increased flexibility in presentation distracts people from the content, in fact it&amp;rsquo;s quite the opposite. It provides ways to highlight information, to design the page so it&amp;rsquo;s most useful for readers and to make navigation much easier.&lt;/li&gt;
+&lt;li&gt;We have a great WYSIWYG editor so people didn&amp;rsquo;t have to learn any kind of markup. You can still switch to code view to tweak things by hand if you want, and people do, but by default you can just get to writing your content and laying it out how you want without having to think about the rules of HTML or wiki markup.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I think it&amp;rsquo;s the combination of the two of those things that made a real difference to us. HTML by itself would be too hard to edit. A WYSIWYG editor for wiki markup distracts from the content without providing the flexibility to really lay out the content in a way that helps the reader. A lot of wikis these days seem to be falling into this second trap – their users complained about having to learn wiki markup so they added an editor. Unfortunately, the editor really doesn&amp;rsquo;t do a lot more than let you type plain paragraphs and headings and insert images more easily. The lack of powerful table support (including nested tables) hugely reduces the ability for users to structure a page the way they want. Using tables for layout may not be exactly up to speed with modern CSS techniques but it&amp;rsquo;s something that people understand and have been doing in Word for ages so it works.&lt;/p&gt;
+&lt;p&gt;The trouble is, that&amp;rsquo;s just one use case in a company that is kind of technical anyway. I know of at least one company that failed to get adoption because of wiki markup but that&amp;rsquo;s still not a great sample size. I&amp;rsquo;m really keen to hear other people&amp;rsquo;s experiences with what made a difference to wiki adoption in all kinds of companies or particularly what caused the wiki to fail. If you&amp;rsquo;ve got some experience with getting non-technical users to adopt wikis I&amp;rsquo;d love to hear from you either in the comments below or my email and phone number are just over there on the right.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

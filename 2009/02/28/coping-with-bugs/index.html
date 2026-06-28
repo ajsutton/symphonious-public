@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Coping with Bugs | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A little while back Charles Nutter posted about his progress at getting the JRuby bug list under control:
+
+Roughly around September, we crossed an important threshold: 500 open bugs. They dated as far back as 2006 (we moved to Codehaus in 2006), and across the entire release sequence of JRuby; there were even some bug reports against pre-1.0 versions. From September until about mid-January, we worked to keep the number of open bugs below 500. Sometimes it would peek above, but we were generally successful.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/02/28/coping-with-bugs/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/02/28/coping-with-bugs/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Coping with Bugs">
+	<meta property="og:description" content="A little while back Charles Nutter posted about his progress at getting the JRuby bug list under control:
+Roughly around September, we crossed an important threshold: 500 open bugs. They dated as far back as 2006 (we moved to Codehaus in 2006), and across the entire release sequence of JRuby; there were even some bug reports against pre-1.0 versions. From September until about mid-January, we worked to keep the number of open bugs below 500. Sometimes it would peek above, but we were generally successful.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-02-27T14:09:40+00:00">
+		<meta property="article:modified_time" content="2009-02-27T14:09:40+00:00">
+
+	<meta itemprop="name" content="Coping with Bugs">
+	<meta itemprop="description" content="A little while back Charles Nutter posted about his progress at getting the JRuby bug list under control:
+Roughly around September, we crossed an important threshold: 500 open bugs. They dated as far back as 2006 (we moved to Codehaus in 2006), and across the entire release sequence of JRuby; there were even some bug reports against pre-1.0 versions. From September until about mid-January, we worked to keep the number of open bugs below 500. Sometimes it would peek above, but we were generally successful.">
+	<meta itemprop="datePublished" content="2009-02-27T14:09:40+00:00">
+	<meta itemprop="dateModified" content="2009-02-27T14:09:40+00:00">
+	<meta itemprop="wordCount" content="588">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Product Management">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Coping with Bugs">
+	<meta name="twitter:description" content="A little while back Charles Nutter posted about his progress at getting the JRuby bug list under control:
+Roughly around September, we crossed an important threshold: 500 open bugs. They dated as far back as 2006 (we moved to Codehaus in 2006), and across the entire release sequence of JRuby; there were even some bug reports against pre-1.0 versions. From September until about mid-January, we worked to keep the number of open bugs below 500. Sometimes it would peek above, but we were generally successful.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Coping with Bugs</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Coping with Bugs</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-02-27T14:09:40Z">February 27, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>A little while back <a href="http://blog.headius.com/2009/02/jruby-12-coping-with-bugs.html">Charles Nutter posted about his progress at getting the JRuby bug list under control</a>:</p>
+<blockquote>
+<p>Roughly around September, we crossed an important threshold: 500 open bugs. They dated as far back as 2006 (we moved to Codehaus in 2006), and across the entire release sequence of JRuby; there were even some bug reports against pre-1.0 versions. From September until about mid-January, we worked to keep the number of open bugs below 500. Sometimes it would peek above, but we were generally successful.</p>
+<p>About mid-January, I figured it was time to really bite the bullet, and I started walking from the oldest bug forward. It has been a long slog, but I&rsquo;m making great progress.</p>
+</blockquote>
+<p>Finding the right balance between new features and bug fixes is always really hard. The more experience I get the more I think it’s important to keep the known bug count low. There’s a surprisingly large cost to having bugs sit around unfixed in a bug reporter tool. Even if no one else finds the bug and calls support, each time you try and sort through the bug list to find something, to prioritize bugs or work on stuff you also have to trawl past that bug. As the number of bugs increases it gets more and more likely that they’ll get in the way and the more time you waste because of it.</p>
+<p>It gets worse though. Having a lot of known bugs leads to a culture of not fixing bugs because it’s just one more bug so add it to the list.  Getting the count down is always too big a job so it keeps getting put off and the probably just keeps getting worse. If your competitive advantage is based on making users more productive or being easy to use, that’s a pretty disastrous situation because even small bugs dramatically affect the usability and productivity of software.</p>
+<p>The right balance between features and bugs is going to be different for each time and each product. I think the key to finding the right balance lies in keeping the number of known issues relatively constant. If the bug count is increasing on average you’re eventually going to get too many bugs to handle and have to go on a fixing spree. A decreasing bug count certainly isn’t a bad sign, but if features aren’t being added fast enough to meet client demands you do still have a problem.</p>
+<p>There’s not really a lot of flexibility in trying to keep the bug count stable though. If you’re under pressure to add features faster – how do you manage that without ignoring bugs? Short term there isn’t much you can do. Longer term the key is to reduce the number of bugs you’re adding. After all, if you add fewer bugs you don’t have to spend as much time fixing them and you can focus on features.</p>
+<p>What I’m finding useful is the charts plugin for JIRA. I’ve added a couple of simple graphs to my dashboard. One shows the total number of open bugs over time and the other shows the number of bugs opens vs the number closed each month. Together they give a pretty clear indication of the quality trends for the product. It’s not perfect because the levels of testing and deployment isn’t constant throughout the life of a product so the influx of bugs and the amount of time spent on fixing obviously varies but looking at the month long view gives a surprisingly consistent view.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Improving The Applet Startup Experience | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="We&rsquo;ve been looking at ways to improve the experience for end users when applets first start up. It&rsquo;s unfortunate that the worst experience with applets is always the first one since that&rsquo;s when the JVM has to start up and the applet has to download. Once all that happens subsequent usage of applets tends to be lightning fast – particularly with the latest JVMs.
+Sadly, that awful Java coffee cup graphic just doesn&rsquo;t make users happy while they wait for the applet to download. Equally sadly, there&rsquo;s no good option to get rid of it. You can specify an image of your own to load, but then it replaces the progress bar and it can&rsquo;t be dynamically resized to fit the applet. Heck you can&rsquo;t even center it. Worse yet, by the time the graphic downloads and displays the applet is just about ready so the user winds up seeing an empty box for a while then a brief flash of the image and then the applet&rsquo;s ready.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/03/14/improving-the-applet-startup-experience/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/03/14/improving-the-applet-startup-experience/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Improving The Applet Startup Experience">
+	<meta property="og:description" content="We’ve been looking at ways to improve the experience for end users when applets first start up. It’s unfortunate that the worst experience with applets is always the first one since that’s when the JVM has to start up and the applet has to download. Once all that happens subsequent usage of applets tends to be lightning fast – particularly with the latest JVMs.
+Sadly, that awful Java coffee cup graphic just doesn’t make users happy while they wait for the applet to download. Equally sadly, there’s no good option to get rid of it. You can specify an image of your own to load, but then it replaces the progress bar and it can’t be dynamically resized to fit the applet. Heck you can’t even center it. Worse yet, by the time the graphic downloads and displays the applet is just about ready so the user winds up seeing an empty box for a while then a brief flash of the image and then the applet’s ready.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-03-14T08:27:20+00:00">
+		<meta property="article:modified_time" content="2007-03-14T08:27:20+00:00">
+
+	<meta itemprop="name" content="Improving The Applet Startup Experience">
+	<meta itemprop="description" content="We’ve been looking at ways to improve the experience for end users when applets first start up. It’s unfortunate that the worst experience with applets is always the first one since that’s when the JVM has to start up and the applet has to download. Once all that happens subsequent usage of applets tends to be lightning fast – particularly with the latest JVMs.
+Sadly, that awful Java coffee cup graphic just doesn’t make users happy while they wait for the applet to download. Equally sadly, there’s no good option to get rid of it. You can specify an image of your own to load, but then it replaces the progress bar and it can’t be dynamically resized to fit the applet. Heck you can’t even center it. Worse yet, by the time the graphic downloads and displays the applet is just about ready so the user winds up seeing an empty box for a while then a brief flash of the image and then the applet’s ready.">
+	<meta itemprop="datePublished" content="2007-03-14T08:27:20+00:00">
+	<meta itemprop="dateModified" content="2007-03-14T08:27:20+00:00">
+	<meta itemprop="wordCount" content="386">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Rants">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Improving The Applet Startup Experience">
+	<meta name="twitter:description" content="We’ve been looking at ways to improve the experience for end users when applets first start up. It’s unfortunate that the worst experience with applets is always the first one since that’s when the JVM has to start up and the applet has to download. Once all that happens subsequent usage of applets tends to be lightning fast – particularly with the latest JVMs.
+Sadly, that awful Java coffee cup graphic just doesn’t make users happy while they wait for the applet to download. Equally sadly, there’s no good option to get rid of it. You can specify an image of your own to load, but then it replaces the progress bar and it can’t be dynamically resized to fit the applet. Heck you can’t even center it. Worse yet, by the time the graphic downloads and displays the applet is just about ready so the user winds up seeing an empty box for a while then a brief flash of the image and then the applet’s ready.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Improving The Applet Startup Experience</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Improving The Applet Startup Experience</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-03-14T08:27:20Z">March 14, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>We&rsquo;ve been looking at ways to improve the experience for end users when applets first start up. It&rsquo;s unfortunate that the worst experience with applets is always the first one since that&rsquo;s when the JVM has to start up and the applet has to download. Once all that happens subsequent usage of applets tends to be lightning fast – particularly with the latest JVMs.</p>
+<p>Sadly, that awful Java coffee cup graphic just doesn&rsquo;t make users happy while they wait for the applet to download. Equally sadly, there&rsquo;s no good option to get rid of it. You can specify an image of your own to load, but then it replaces the progress bar and it can&rsquo;t be dynamically resized to fit the applet. Heck you can&rsquo;t even center it. Worse yet, by the time the graphic downloads and displays the applet is just about ready so the user winds up seeing an empty box for a while then a brief flash of the image and then the applet&rsquo;s ready.</p>
+<p>You can&rsquo;t overlay a DIV on top of the applet because most browsers will render the applet on top regardless and there&rsquo;s no way to show the applet&rsquo;s download progress from a DIV anyway.</p>
+<p>The only vaguely plausible option is a light-weight bootstrap applet that displays while the real applet is loading, but that suffers from the same problems as the image in that it takes too long to download and be ready to display – you&rsquo;d be better off just loading the applet. Plus it breaks LiveConnect functionality because all of a sudden the public methods on your applet are hidden behind the loader applet. You could delegate through but you&rsquo;d have to do it via reflection or the class loader will demand the main applet be available before if will load your loader class.</p>
+<p>Java 1.4 was a little better in that you could have the progress bar showing with your own custom image in the top left hand corner and you could customize the background color of the rest of the applet. Still ugly but at least workable. With Java 1.5 and above the option to display the progress bar is gone, the default animation is distracting and ugly and the Java 6 animation is going to become even worse with the next update.</p>
+<p>Sigh…</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

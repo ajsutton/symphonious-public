@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exploring Eth2: Cost of Adding Validators | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Yesterday I spun up two new nodes on Prater, and sent deposits for 5000 validators to run on each. Due to the restrictions on how many new validators can activate per epoch (currently 4 for Prater), the number of active validators are currently gradually increasing giving a really nice insight into the cost of adding new validators.
+This is most clearly seen by graphing the number of active validators and CPU usage on a single chart.  Here the green is CPU usage and the yellow the number of active validators.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2022/04/06/exploring-eth2-cost-of-adding-validators/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2022/04/06/exploring-eth2-cost-of-adding-validators/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exploring Eth2: Cost of Adding Validators">
+	<meta property="og:description" content="Yesterday I spun up two new nodes on Prater, and sent deposits for 5000 validators to run on each. Due to the restrictions on how many new validators can activate per epoch (currently 4 for Prater), the number of active validators are currently gradually increasing giving a really nice insight into the cost of adding new validators.
+This is most clearly seen by graphing the number of active validators and CPU usage on a single chart. Here the green is CPU usage and the yellow the number of active validators.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2022-04-06T01:32:36+00:00">
+		<meta property="article:modified_time" content="2022-04-06T01:32:36+00:00">
+
+	<meta itemprop="name" content="Exploring Eth2: Cost of Adding Validators">
+	<meta itemprop="description" content="Yesterday I spun up two new nodes on Prater, and sent deposits for 5000 validators to run on each. Due to the restrictions on how many new validators can activate per epoch (currently 4 for Prater), the number of active validators are currently gradually increasing giving a really nice insight into the cost of adding new validators.
+This is most clearly seen by graphing the number of active validators and CPU usage on a single chart. Here the green is CPU usage and the yellow the number of active validators.">
+	<meta itemprop="datePublished" content="2022-04-06T01:32:36+00:00">
+	<meta itemprop="dateModified" content="2022-04-06T01:32:36+00:00">
+	<meta itemprop="wordCount" content="693">
+	<meta itemprop="keywords" content="Blockchain,Code and Geek Stuff,Ethereum">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exploring Eth2: Cost of Adding Validators">
+	<meta name="twitter:description" content="Yesterday I spun up two new nodes on Prater, and sent deposits for 5000 validators to run on each. Due to the restrictions on how many new validators can activate per epoch (currently 4 for Prater), the number of active validators are currently gradually increasing giving a really nice insight into the cost of adding new validators.
+This is most clearly seen by graphing the number of active validators and CPU usage on a single chart. Here the green is CPU usage and the yellow the number of active validators.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Eth2: Cost of Adding Validators</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exploring Eth2: Cost of Adding Validators</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-04-06T01:32:36Z">April 6, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Yesterday I spun up two new nodes on Prater, and sent deposits for 5000 validators to run on each. Due to the restrictions on how many new validators can activate per epoch (currently 4 for Prater), the number of active validators are currently gradually increasing giving a really nice insight into the cost of adding new validators.</p>
+<p>This is most clearly seen by graphing the number of active validators and CPU usage on a single chart.  Here the green is CPU usage and the yellow the number of active validators.</p>
+<p><img loading="lazy" class="alignnone wp-image-2362 size-large" src="https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-1024x600.png" alt="CPU vs active validator count graph" width="565" height="331" srcset="https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-1024x600.png 1024w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-300x176.png 300w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-768x450.png 768w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators.png 1095w" sizes="(max-width: 565px) 100vw, 565px" /><img /><img /></p>
+<p>Once validators start activating we see CPU usage increase which is what we&rsquo;d intuitively expect and for the first 60-70 validators there&rsquo;s a clear correlation between adding validators and increasing CPU usage. However beyond about 70 validators the CPU usage flattens out even while the active validator count keeps increasing – why?</p>
+<p>The answer lies in the way attestations are handled. To allow the beacon chain to scale to hundreds of thousands of validators, validators are assigned to separate committees. This sets not only which slot of the epoch they attest in (thus each slot only has 1/32 of the total validators attesting) but also which committee within that slot they are grouped into. There are a maximum of 64 committees per slot and each committee publishes their unaggregated attestations into a separate gossip topic. Then a subset of the validators in the committee are assigned to collect up those unaggregated attestations and publish an aggregated attestation which combines them.</p>
+<p>Nodes with no active validators have no reason to subscribe to the gossip topics for unaggregated attestations so only process the aggregates. As validators activate though, each one is required to randomly select an attestation gossip topic to subscribe to long term and if they&rsquo;re a validator need to subscribe to the topic they are aggregating for a period so they can collect and aggregate the individual attestations.</p>
+<p>So for the first 64 validators the node winds up subscribing to an additional attestation gossip topic and processing 1/32 * total_validators individual attestations every slot. For prater that&rsquo;s nearly 9,000 additional attestations per slot, for each active validator. No surprise then that CPU usage increases as we have to validate all of those attestations.</p>
+<p>We see roughly the same correlation in the rate of gossip messages we receive. Here we&rsquo;ve added gossip messages per second to the graph shown in blue.</p>
+<img loading="lazy" class="alignnone size-large wp-image-2363" src="https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-1024x585.png" alt="CPU Usage vs Active Validator Count vs Gossip Messages/sec" width="565" height="323" srcset="https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-1024x585.png 1024w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-300x171.png 300w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-768x439.png 768w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip.png 1139w" sizes="(max-width: 565px) 100vw, 565px" /> 
+<p>There&rsquo;s a somewhat unexpected dip in gossip messages as the number of validators are ramping up – I think that&rsquo;s actually a point where I restarted the node to apply some updates, somewhat ruining my pretty pictures…</p>
+<p>Even so, we can see the very clear growth in gossip messages as the first validators activate, along with the increased CPU. Once we get to 64 validators activated both the CPU usage and gossip message rate levels off even as the validators continue to grow. At that point, we&rsquo;re already subscribed to every gossip topic and processing every individual attestation. Adding more validators after that doesn&rsquo;t take very much – they need to calculate their duties and produce one attestation per epoch, plus sometimes creating a block but that&rsquo;s very cheap compared to validating all that attestation gossip.</p>
+<p>So the first 64 validators you add to a node are quite expensive in terms of CPU usage and network traffic, but if you can run 64 validators well, then you can likely run thousands of validators well because you&rsquo;re already processing the bulk of the attestations.</p>
+<p>Of course, as the total number of validators continues to increase, nodes that are subscribed to all attestation gossip topics will have to process more and more attestations – they don&rsquo;t get the benefit of the aggregation which is such a key part of the beacon chain scaling. For now it&rsquo;s still quite manageable and there&rsquo;s a fair bit of headroom left, but eventually large staking providers may need to start being smarter about how they manage attestation gossip requirements by spreading the duties across their fleet of nodes rather than having each node work independently. There&rsquo;s a few ways that could work but that&rsquo;s a story for another day…</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaOne on Symphonious</title>
+    <link>https://www.symphonious.net/categories/javaone/</link>
+    <description>Recent content in JavaOne on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Fri, 11 May 2007 01:51:35 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/javaone/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Benefits Of Open Sourcing Java For Developers</title>
+      <link>https://www.symphonious.net/2007/05/11/the-benefits-of-open-sourcing-java-for-developers/</link>
+      <pubDate>Fri, 11 May 2007 01:51:35 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/11/the-benefits-of-open-sourcing-java-for-developers/</guid>
+      <description>&lt;p&gt;There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there&amp;rsquo;s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what&amp;rsquo;s the benefit?&lt;/p&gt;
+&lt;p&gt;A reporter came up to me after the session (apparently I&amp;rsquo;d made some good comments) and asked about what benefits I saw. Her first question was about how useful having the source code would be. The trouble is, the source code for the standard Java class library has been available for as long as I can remember and open sourcing Java doesn&amp;rsquo;t change the legality of copying and pasting code (unless your product is GPL) so there&amp;rsquo;s no real advantage in source access. There are a few sun.* classes that now have source code available and didn&amp;rsquo;t previously which can be useful but not overly so.&lt;/p&gt;
+&lt;p&gt;The other advantage is that was mentioned by the panel is that you can fix bugs for clients *now* instead of having to wait for the next release of Java. Of course, for the average developer this isn&amp;rsquo;t really an option either because it would involve deploying the fixed JVM to all their customers. It might be feasible for people running controlled servers that just run their apps but it&amp;rsquo;s unlikely to be practical very often. You could however add a workaround to your application for now and contribute a fix back to the JDK for the future which is likely to happen a fair bit.&lt;/p&gt;
+&lt;p&gt;One interesting aspect of contributing fixes back is that in a lot of ways, there is an incentive for companies not to contribute the fix back – they now have one less bug than their competitors. If the fix requires significant maintenance contributing it back is a pretty clear win, but many work arounds don&amp;rsquo;t have any real need for maintenance. They might be in areas of code that are very infrequently changed, they might be modular enough to be quite separate etc.  Ephox products have a lot of work around for bugs in various browsers, JREs and OSs, many of which receive so little attention and maintenance that we can be surprised to find them years later, still working perfectly and still working around an unfixed bug (we do report these to Sun, but few people run into them so they tend to be low priority). The other consideration is that even if future versions of the JRE include the fix, you still can&amp;rsquo;t remove the work around because the older JVMs are still in use by various clients, so you pay the maintenance price anyway.&lt;/p&gt;
+&lt;p&gt;There are other business considerations involved with the decision to contribute to the JDK as well – you have to sign the copyright on the code over to Sun which can be a sticking point with a lot of companies. After all, why should Sun get to sell the code that you paid to have developed? (And Sun does still sell the code, they have a bunch of different licenses for the Java code including commercial ones, not just the GPL). You also have to go to the expense of reviewing the various legal agreements for contributors and going through the patch review process etc. It&amp;rsquo;s not just a simple matter of putting the patch on your blog and it being magically part of the JDK.&lt;/p&gt;
+&lt;p&gt;It will be really important for the OpenJDK team to work hard to limit these barriers to contribution if they want to attract contributions. I&amp;rsquo;m certain it&amp;rsquo;s something that they&amp;rsquo;re already thinking about, but how it pans out with the lawyers will be interesting to see.&lt;/p&gt;
+&lt;p&gt;The other potential benefit that an open source JVM may provide is the ability to port it to other OSs and architectures. People are already suggesting that this will mean OS X will always have up to date Java just by recompiling. Unfortunately, it&amp;rsquo;s just not that simple, you first have to port the JITC to output PPC code instead of x86 which is a huge job, then you have to rewrite the AWT toolkit implementation to work with Quartz. Then you have to write a plugin that works with OS X browsers and deal with all the Cocoa vs Java threading issues. Then you have a working JVM, but still no native L&amp;amp;F, no tie ins to the OS (Apple provide some reasonably simple but very powerful features like being able to put the menubar at the top of the screen and handle dropping files onto the application etc). It&amp;rsquo;s good that it&amp;rsquo;s possible to port, but it won&amp;rsquo;t happen soon and it won&amp;rsquo;t be easy. Judging by the number of Apple laptops here at JavaOne there may just be enough interest to get it done though. BSD is also a likely candidate for a porting project and that should be a lot simpler.&lt;/p&gt;
+&lt;p&gt;Beyond that, Java developers aren&amp;rsquo;t going to see much difference except possibly that they have to stop making assumptions that if it works with Sun&amp;rsquo;s JRE it will work anywhere. Of course, that&amp;rsquo;s never been true anyway, particularly from a performance perspective, as people who have brought apps over to OS X have found out. It&amp;rsquo;s a huge change for the Java community, but one that only a very, very small subset of the community is going to be affected by.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extreme GUI Makeover</title>
+      <link>https://www.symphonious.net/2007/05/11/extreme-gui-makeover/</link>
+      <pubDate>Thu, 10 May 2007 16:11:52 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/11/extreme-gui-makeover/</guid>
+      <description>&lt;p&gt;The session was a lot more fluff than useful stuff and often went for showy graphics instead of actual usability which is a shame. There were some good ideas though.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a modern L&amp;amp;F – they suggested Nimbus. Gosh it&amp;rsquo;s ugly and gray. I suggest using the system native L&amp;amp;F (except on Linux and Solaris then anything is an improvement)&lt;/li&gt;
+&lt;li&gt;Add a splash screen, can do this with the -splash argument in Java 6.
+&lt;ul&gt;
+&lt;li&gt;Supports alpha transparency so can be non-rectangular&lt;/li&gt;
+&lt;li&gt;Should provide a progress bar.
+&lt;ul&gt;
+&lt;li&gt;They used a sepia image fading into color to show progress which looked cool but didn&amp;rsquo;t really show progress at all effectively.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Validating Data
+&lt;ul&gt;
+&lt;li&gt;Give feedback immediately.&lt;/li&gt;
+&lt;li&gt;JGoodies can provide a small icon in the corner of the component. You can do this yourself by painting the icon in the layered pane&amp;rsquo;s popup layer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Custom Components
+&lt;ul&gt;
+&lt;li&gt;You can improve GUIs by creating custom components.&lt;/li&gt;
+&lt;li&gt;This is where they messed up usability in some places. Make sure your custom components are significantly easier to use than the standard components otherwise it&amp;rsquo;s better to go with what the user is used to. Also need to consider accessibility which they didn&amp;rsquo;t mention at all.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Improve interactivity by updating search results immediately as the user changes values.&lt;/li&gt;
+&lt;li&gt;Use cyclic gradients for improved performance, even if you don&amp;rsquo;t need the cyclic property (just paint one iteration).&lt;/li&gt;
+&lt;li&gt;Measure text with:
+&lt;ul&gt;
+&lt;li&gt;g2.getFotnMetrics() then stringWidth and getAscent&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;JList has a setLayoutOrientation method which lets you use it as a multicolumn list.&lt;/li&gt;
+&lt;li&gt;You can span text across all the cells in a row by clipping the text with a JViewPort to show just the section inside the cell currently being painted.&lt;/li&gt;
+&lt;li&gt;You can animate the changes made when sorting by painting the animation in the glass pane over where the table is.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Being Productive With Swing</title>
+      <link>https://www.symphonious.net/2007/05/11/being-productive-with-swing/</link>
+      <pubDate>Thu, 10 May 2007 15:58:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/11/being-productive-with-swing/</guid>
+      <description>&lt;p&gt;These are my notes from the technical session, &amp;ldquo;Being Productive With Swing&amp;rdquo; by Ben Galbraith. The session focussed a lot on Ben&amp;rsquo;s library that he&amp;rsquo;s creating which was a shame but there are some ideas that are worth taking away.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are &amp;ldquo;stepping up the wow&amp;rdquo; to compete with AJAX and Swing traditionally hasn&amp;rsquo;t had this – JavaFX is likely to bring this to Swing. However, for most business applications &amp;ldquo;wow&amp;rdquo; isn&amp;rsquo;t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.&lt;/p&gt;
+&lt;p&gt;JFace has some really nice abstractions which make it productive, but is hard to learn.&lt;/p&gt;
+&lt;p&gt;Cocoa has great data binding via Core Data and excellent tooling support which makes it very productive, but it&amp;rsquo;s Mac only.&lt;/p&gt;
+&lt;p&gt;For business application development, productivity is king. How quick is it to make, how easy to reuse, how cheap to maintain? Swing&amp;rsquo;s not too far from being productive but isn&amp;rsquo;t there yet. JSR296 (swing application framework) doesn&amp;rsquo;t help with productivity much because it&amp;rsquo;s really just targeted at getting started with an app, not the actual form design. JSR295 Beans Binding is a key improvement.&lt;/p&gt;
+&lt;p&gt;What&amp;rsquo;s missing from Swing? It needs to be a framework instead of just a GUI toolkit. What&amp;rsquo;s a form? How does validation work etc .&lt;/p&gt;
+&lt;h3 id=&#34;template-pattern&#34;&gt;Template Pattern&lt;/h3&gt;
+&lt;p&gt;There are too many ways to create a GUI which makes understanding and reuse difficult. He&amp;rsquo;s created a system to enforce a standard template. The aim is to split the code up and provide as many behavioral contracts as possible to enable reuse. (To me it looks like too much up front engineering – most of the time you don&amp;rsquo;t want to reuse GUIs, they&amp;rsquo;re task specific so what&amp;rsquo;s the point of designing every GUI for reuse?)&lt;/p&gt;
+&lt;h3 id=&#34;gui160builders&#34;&gt;GUI Builders&lt;/h3&gt;
+&lt;p&gt;GUIs used to be hand coded because tools weren&amp;rsquo;t good enough. Ben suggests that modern GUI tools have solved that problem and there&amp;rsquo;s no good reason to use a GUI builder and he believes he&amp;rsquo;s vastly more productive using a GUI builder. Often though, people aren&amp;rsquo;t happy about having machine generated code that they then have to maintain. The key is to keep the machine generated code completely separate:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind behaviors to components by name&lt;/li&gt;
+&lt;li&gt;Let the builder own all the code it develops&lt;/li&gt;
+&lt;li&gt;Supplement the GUI builder at runtime as needed by manually creating just the parts that are dynamic.&lt;/li&gt;
+&lt;li&gt;Use an abstract GUI builder plugin system.
+&lt;ul&gt;
+&lt;li&gt;Support any GUI builder&lt;/li&gt;
+&lt;li&gt;Support custom frameworks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ben then went into a particular function he&amp;rsquo;s developed that helps retrieve a component by name easily. Basic idea was taken from prototype.&lt;/p&gt;
+&lt;p&gt;The issues I see with this that Ben didn&amp;rsquo;t address:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How do you change GUI builders and preserve the work you&amp;rsquo;ve done? What if the GUI builder you currently use is discontinued?&lt;/li&gt;
+&lt;li&gt;Ben suggests you can work with a team that uses a range of different GUI builders and it&amp;rsquo;ll still work. Sounds like a nightmare to me.&lt;/li&gt;
+&lt;li&gt;What do you do if you don&amp;rsquo;t have access to the GUI builder that was used? How do you maintain the code?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;binding&#34;&gt;Binding&lt;/h3&gt;
+&lt;p&gt;JSR295 is very exciting. Binding is important to avoid all the code required to copy data between the GUI and the model. This code is often error prone and duplicated, particularly when parsing is required (ints, dates etc)&lt;/p&gt;
+&lt;p&gt;Opensource binding systems have been available for a while and JSR295 won&amp;rsquo;t be available for some time.&lt;/p&gt;
+&lt;p&gt;The problem with binding in Java is that most systems try to make the binding bi-directional (automatically respond to changes made in either the GUI or the model). Java doesn&amp;rsquo;t have a way to watch a variable for changes so you have to implement property change notifications which is tedious and error prone. While AOP could be used here, it&amp;rsquo;s not widely accepted and you can&amp;rsquo;t assume that you can just store the current value, make the change and send the notification – some variables need special change handling.&lt;/p&gt;
+&lt;p&gt;In most apps, there isn&amp;rsquo;t a need for bidirectional binding, it&amp;rsquo;s okay to just provide a method that tells the binding framework when changes have been made to the model (swing already has property change notifications built in so it can use them).&lt;/p&gt;
+&lt;h3 id=&#34;simple-configuration&#34;&gt;Simple Configuration&lt;/h3&gt;
+&lt;p&gt;It&amp;rsquo;s a pain to apply common attributes like padding, bolding etc to components. Ben implemented CSS for Swing to work around this. To me CSS doesn&amp;rsquo;t apply particularly well to Swing – it&amp;rsquo;s a DSL for styling HTML, not swing. It would be better to create a DSL specifically for styling swing if you wanted to go that route, but if you&amp;rsquo;re using a GUI builder you should just use the GUI builder to do this so that it owns all the code and you can see what it actually looks like in the GUI builder. Otherwise, write the GUI by hand and just use utility functions to set up components with the default settings you need.&lt;/p&gt;
+&lt;p&gt;Ben&amp;rsquo;s framework is available from &lt;a href=&#34;http://code.google.com/p/swing-clarity/&#34;&gt;http://code.google.com/p/swing-clarity/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JSR296 Swing Application Framework</title>
+      <link>https://www.symphonious.net/2007/05/10/jsr296-swing-application-framework/</link>
+      <pubDate>Thu, 10 May 2007 06:21:50 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/10/jsr296-swing-application-framework/</guid>
+      <description>&lt;p&gt;These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I&amp;rsquo;ve seen at JavaOne so far. It&amp;rsquo;s not trying to be overly fancy but it solves a clear need in a very simple way.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://weblogs.java.net/blog/malcolmdavis/archive/2007/05/javaone_blog_4.html&#34;&gt;Malcolm Davis also commented on it&lt;/a&gt; but wasn&amp;rsquo;t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that&amp;rsquo;s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Help&lt;/li&gt;
+&lt;li&gt;Preference Screen&lt;/li&gt;
+&lt;li&gt;Update&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The thing is, all these three things are really simple to plug in as &lt;em&gt;separate&lt;/em&gt; modules. There&amp;rsquo;s no need to bundle them into every single application because not all apps provide or need help, preferences or automatic updates. Also, Help is already provided (poorly) by JavaHelp and updates are already handled by Java WebStart. So all we really need is a Swing based preferences library (that hopefully looks nothing like the Eclipse preferences which are pretty awful).&lt;/p&gt;
+&lt;p&gt;Anyway, the notes I took are below.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;From the very first release of swing, people have been asking for a framework to make writing Swing applications easier. It&amp;rsquo;s finally happening.&lt;br&gt;
+JSR295 beans binding is also a part of the solution in that it simplifies the wiring together of the application logic and the GUI.&lt;br&gt;
+The swing application framework is intended to be a very lightweight framework for small to medium applications. It has no module system, GUI markup, docking etc. It should be as simple as possible and no simpler. The NetBeans and Eclipse frameworks provide these things and may be more suitable for large applications but are too big for small applications.&lt;/p&gt;
+&lt;p&gt;Key aspects of the swing application framework:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Life Cycle&lt;/li&gt;
+&lt;li&gt;Resource Management&lt;/li&gt;
+&lt;li&gt;Actions &lt;/li&gt;
+&lt;li&gt;Tasks (for asynchronous work in background threads)&lt;/li&gt;
+&lt;li&gt;Session State&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The framework is centered around two singletons, Application and ApplicationContext. They function in a similar manner to Applet and AppletContext. To use the framework, you create a subclass of Application and implement the startup method. Then, in the main method, call Application.launch. You use the ApplicationContext class to register tasks, retrieve resources etc. For applications that only use a single frame, the SingleFrameApplication provides some extra functionality like exiting when the frame is closed.&lt;/p&gt;
+&lt;h3 id=&#34;life160cycle&#34;&gt;Life Cycle&lt;/h3&gt;
+&lt;p&gt;The Application class defines the lifecycle of the application. You can control aspects of the life cycle by overriding on of the methods in Application: launch, init, startup, ready, exit, shutdown. You can also use exitListeners to veto the shutdown if needed (eg: prompting the user to save). It looks like most of the methods are called on the event dispatch thread but check the JavaDoc to be sure.&lt;/p&gt;
+&lt;h3 id=&#34;resource-management&#34;&gt;Resource Management&lt;/h3&gt;
+&lt;p&gt;Resources are designed with the existing ResourceBundle system. There are some utilities to make the more useful, for example the ability to easily store and retrieve Colors and other resources. Locale specific bundles can be used as normal, but also platform specific bundles.&lt;/p&gt;
+&lt;p&gt;ResourceMaps are the interface to the resources and are just like a normal Map but include parent chaining. They also support string to type conversion (eg: Color) and the conversions supported are extensible.&lt;br&gt;
+The resources go in a resources subpackage. Eg: com.myapp.MyApplication has resources in com.myapp.resources&lt;/p&gt;
+&lt;p&gt;The framework can also handle resource injection by applying resources to components with a specified name. You can also use the @Resource annotation to have resources injected into a component stored in a class field. The name looked up in the resources is then the same as the name of the variable. So if there&amp;rsquo;s a button called &amp;ldquo;myButton&amp;rdquo; it&amp;rsquo;s resources would look like:&lt;br&gt;
+myButton.text=Foo&lt;/p&gt;
+&lt;h4 id=&#34;advantages-of-resource-injection&#34;&gt;Advantages of resource injection:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Localization happens by default&lt;/li&gt;
+&lt;li&gt;No need to explicitly set resources – saves a lot of code.&lt;/li&gt;
+&lt;li&gt;All GUI resources are stored in one place instead of scattered throughout the java code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It&amp;rsquo;s not meant to be a styles mechanism or general GUI markup just a simple way to specify properties to set.&lt;br&gt;
+Note that injecting private fields with the @Resource annotation requires privileges (which it will have once this becomes part of the JRE).&lt;/p&gt;
+&lt;h3 id=&#34;actions&#34;&gt;Actions&lt;/h3&gt;
+&lt;p&gt;The actions used are the standard Swing Actions. However they suffer from a few problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Not localized&lt;/li&gt;
+&lt;li&gt;Creating them is a pain.&lt;/li&gt;
+&lt;li&gt;Asynchronous work is hard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To solve this, there is a new @Action annotation. You mark a method with it and an action is automatically created that calls the method on actionPerformed. You can retrieve the action with the getAction method on ApplicationContext. For example:&lt;/p&gt;
+&lt;pre&gt;@Action public void doStuff(ActionEvent e) {}
+&lt;/pre&gt;
+&lt;p&gt;The ActionEvent argument is now optional and there are ways to specify what arguments are passed through to the method. The resource management system then injects the localized resources into the action based on it&amp;rsquo;s name.&lt;/p&gt;
+&lt;p&gt;You can also bind the action&amp;rsquo;s enabled state to a variable:&lt;/p&gt;
+&lt;pre&gt;@Action(enabledProperty = &#34;changesPending&#34;) public void doStuff() {}
+&lt;/pre&gt;
+&lt;p&gt;the action will then enable and disable whenever the changesPending variable is changed (through beans binding).&lt;br&gt;
+Actions have problems when used in toolbar buttons and menu items – the menu items need text, the toolbars shouldn&amp;rsquo;t have it. You can achieve this by overriding the text for the action in the toolbar button by specifying toolbarButtonName.text=${null}&lt;/p&gt;
+&lt;h3 id=&#34;tasks&#34;&gt;Tasks&lt;/h3&gt;
+&lt;p&gt;Tasks are a simple mechanism to avoid blocking the event dispatch thread by spawning background threads. When using these background threads though, you need some way to manage them – display progress, start, stop and send messages.&lt;br&gt;
+SwingWorker already does most of this but Tasks takes it a step further.&lt;br&gt;
+Tasks use the Java concurrency library so it&amp;rsquo;s Java 1.5 only (probably possible to backport to 1.4)&lt;br&gt;
+The first enhancement to SwingWorker is the addition of multiple &amp;ldquo;done&amp;rdquo; type methods that handle different ways that the task completed – cancelled, error or successful completion. This is error prone with SwingWorker.&lt;br&gt;
+Tasks also provide a means to block the GUI without freezing it by displaying a modal progress dialog. Use the block and unblock methods to use it. There are also a series of properties to control the scope of blocking.&lt;/p&gt;
+&lt;p&gt;For managing the tasks, there is a TaskService which can be configured to execute tasks serially, in parallel with thread pools etc. It&amp;rsquo;s possible to create multiple task service instances for different types of operations (network, database etc). You can specify this via the Action annotation:&lt;/p&gt;
+&lt;pre&gt;@Action(taskService=&#34;database&#34;)
+&lt;/pre&gt;
+&lt;p&gt;The ApplicationContext provides access to the instances of TaskServices.&lt;/p&gt;
+&lt;p&gt;Finally, there&amp;rsquo;s a TaskMonitor class that provides a summary of the running tasks which is good for status bar implementations.&lt;/p&gt;
+&lt;h3 id=&#34;session-state&#34;&gt;Session State&lt;/h3&gt;
+&lt;p&gt;Very simple. It stores which windows are where on screen and JTable column sizings so they can be restored to those locations when the application is restarted. Most apps don&amp;rsquo;t manage this themselves because they either don&amp;rsquo;t know where to store the state, are unsigned and can&amp;rsquo;t store it or they don&amp;rsquo;t have a way to safely restore the state. The storage is available via the ApplicationContext.getSessionStorage method.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Desktop Java</title>
+      <link>https://www.symphonious.net/2007/05/09/desktop-java/</link>
+      <pubDate>Tue, 08 May 2007 19:20:24 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/09/desktop-java/</guid>
+      <description>&lt;p&gt;Just finished up in the Desktop Java overview session. Good information in there. The summary glosses over some stuff but I think it covers all the important information. The entire session is an overview so it&amp;rsquo;s really just identifying things that you should look to learn about elsewhere. It looks like some good stuff for Ephox and our user is coming down the pipeline.&lt;/p&gt;
+&lt;p&gt;Main points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java on the desktop used to be focussed at the enterprise desktop, now it will focus on becoming far more consumer oriented.&lt;/li&gt;
+&lt;li&gt;JavaFX is cool.&lt;/li&gt;
+&lt;li&gt;Java 6 Update in 1st half of 2008 to include:
+&lt;ul&gt;
+&lt;li&gt;JRE Detection improvements (funky scripts to get the right JRE installed, seems to bounce off sun.com)&lt;/li&gt;
+&lt;li&gt;Install process improvements (Kernel)
+&lt;ul&gt;
+&lt;li&gt;Installs just the absolute minimum components of the JRE and then downloads most common components in the background. Installs less used components on demand. Could be great, but could also cause interruptions to users as they work when new components are needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Quick Starter. Loads Java files into the disk cache at startup or browser startup and tries to keep them there. Not a full JRE running but will probably be as annoying as all those other task bar icons that are wasting resources trying to do the same thing. No wonder computers take so long to load these days.&lt;/li&gt;
+&lt;li&gt;Windows Graphics Acceleration
+&lt;ul&gt;
+&lt;li&gt;DirectX 9 based pipeline.&lt;/li&gt;
+&lt;li&gt;On by default so actually useful unlike the OpenGL pipeline which is off because of some driver incompatibilities.&lt;/li&gt;
+&lt;li&gt;High performance for all of Swing and Graphics2D.&lt;/li&gt;
+&lt;li&gt;Nimbus. New cross platform look and feel that&amp;rsquo;s meant to actually look good. Screen shots look pretty awful (gray is not a good choice of color scheme people!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Looking at media improvements in the future.
+&lt;ul&gt;
+&lt;li&gt;Looks like they want to use native libraries (QuickTime, Windows Media etc) instead of a Java based solution. Seems to be a common trend so hopefully they&amp;rsquo;ll get it working seamlessly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Animation improvements
+&lt;ul&gt;
+&lt;li&gt;Easy to apply animations and effects.&lt;/li&gt;
+&lt;li&gt;Better timing facilities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;More components
+&lt;ul&gt;
+&lt;li&gt;Date picker.&lt;/li&gt;
+&lt;li&gt;Native file chooser&lt;/li&gt;
+&lt;li&gt;Ability to mix heavyweight and lightweight components.&lt;/li&gt;
+&lt;li&gt;Non-rectangular top level components&lt;/li&gt;
+&lt;li&gt;Translucent windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Applications framework
+&lt;ul&gt;
+&lt;li&gt;JSR 296&lt;/li&gt;
+&lt;li&gt;Makes it easier to get standalone Swing apps started.&lt;/li&gt;
+&lt;li&gt;Basically just removing boiler plate code, but I suspect it includes more than was shown in the talk.&lt;/li&gt;
+&lt;li&gt;Much, much simpler than something like the NetBeans or Eclipse platforms.&lt;/li&gt;
+&lt;li&gt;Intended to be useful for small to medium size apps instead of the huge apps that NetBeans/Eclipse platforms are good for.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Beans Binding (JSR 295)
+&lt;ul&gt;
+&lt;li&gt;new way to bind GUI components to data.&lt;/li&gt;
+&lt;li&gt;Should remove need to know everything about Swing models.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://beansbinding.dev.java.net&#34;&gt;http://beansbinding.dev.java.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tip for JavaOne Alumni</title>
+      <link>https://www.symphonious.net/2007/05/09/tip-for-javaone-alumni/</link>
+      <pubDate>Tue, 08 May 2007 19:05:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/09/tip-for-javaone-alumni/</guid>
+      <description>&lt;p&gt;Wake up earlier tomorrow. When I got here (about 7:30am) they actively grabbed me to give me the &amp;ldquo;special present&amp;rdquo; (4 port USB hub), I couldn&amp;rsquo;t have avoided it if I&amp;rsquo;d tried. Now however there are constantly long lines of people lining up to get their present and every so often they&amp;rsquo;re turned away because they&amp;rsquo;re &amp;ldquo;temporarily out of stock, but don&amp;rsquo;t worry you&amp;rsquo;ll all get one&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;You don&amp;rsquo;t have to wake up very early to beat the geek rush, and it does pay off really well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Off To JavaOne</title>
+      <link>https://www.symphonious.net/2007/05/06/off-to-javaone/</link>
+      <pubDate>Sat, 05 May 2007 22:05:32 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/06/off-to-javaone/</guid>
+      <description>&lt;p&gt;I fly out tomorrow to the US for JavaOne and after that a week working with the team in our US office. I&amp;rsquo;ll be arriving Monday afternoon US time and fly out Friday the 18th. Being based in Australia (and worse, Brisbane) I don&amp;rsquo;t get a lot of opportunities to meet tech people so I&amp;rsquo;m pretty keen to take the opportunity to talk with as many people as I can. So if you&amp;rsquo;ll be around San Francisco in the next couple of weeks give me a yell. You can &lt;a href=&#34;mailto:adrian@symphonious.net&#34;&gt;email&lt;/a&gt; or phone on +1 (650) 292 9659 x717.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve also been trying to find out what all the fuss is about Twitter without seeing any benefit so far. I&amp;rsquo;ll give it one last shot at JavaOne so feel free to add &lt;a href=&#34;http://twitter.com/ajsutton&#34;&gt;ajsutton&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Compatibility Matters</title>
+      <link>https://www.symphonious.net/2005/07/03/compatibility-matters/</link>
+      <pubDate>Sun, 03 Jul 2005 11:16:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2005/07/03/compatibility-matters/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://danesecooper.blogs.com/divablog/2005/06/java_wants_you_.html&#34;&gt;Compatibility Matters&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Funny, funny, funny.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>When Marketing Goes Wrong</title>
+      <link>https://www.symphonious.net/2004/08/29/when-marketing-goes-wrong/</link>
+      <pubDate>Sun, 29 Aug 2004 04:43:37 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/08/29/when-marketing-goes-wrong/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m currently wearing one of the shirts that James Gosling hurled into the crowd by various means which depicts Duke aiming a rocket launcher at a weird looking demon with four arms labeled complexity. Earlier today I was accosted by a very young man who asked what that was on my shirt. When I pointed to Duke and said “this guy&amp;rsquo;s called Duke” the response was: “he&amp;rsquo;s crap. I like this guy &amp;lsquo;cause he has four arms”. I&amp;rsquo;m not sure that&amp;rsquo;s the reaction the designer was after….&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wireless Blues</title>
+      <link>https://www.symphonious.net/2004/07/07/wireless-blues/</link>
+      <pubDate>Wed, 07 Jul 2004 05:25:48 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/07/07/wireless-blues/</guid>
+      <description>&lt;p&gt;So I&amp;rsquo;m on my way home from JavaOne and thought I&amp;rsquo;d take the final opportunity to use my T-Mobile wifi account. The coverage in SF airport was great until the whole network suddenly disappeared. So much for that. Now I&amp;rsquo;m in LA airport and the coverage is awful. My flight leaves from one end of the terminal and the wireless access is at the other end. Oh well, I have another 45 mins to kill before boarding so I can sit here and rant a while longer yet….&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

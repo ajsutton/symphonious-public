@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Email on Symphonious</title>
+    <link>https://www.symphonious.net/categories/email/</link>
+    <description>Recent content in Email on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sun, 27 Mar 2022 07:26:33 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/email/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating Email from Google Workspace to Outlook.com</title>
+      <link>https://www.symphonious.net/2022/03/27/migrating-email-from-google-workspace-to-outlook-com/</link>
+      <pubDate>Sun, 27 Mar 2022 07:26:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2022/03/27/migrating-email-from-google-workspace-to-outlook-com/</guid>
+      <description>&lt;p&gt;For many years I&amp;rsquo;ve been using the free tier of Google Workspace (previously Google Apps for Your Domain) to host my email. While I almost never use the actual web interface itself having google handle the IMAP hosting and spam filtering was an awful lot easier than hosting it myself. Of course Google are now ending their free tier and requiring all users to pay – fair enough, but the cost per user is just too much for me to justify it.&lt;/p&gt;
+&lt;p&gt;It turns out though that as part of my Office 365 subscription to get access to office apps, we also get Outlook.com premium which provides quite suitable email hosting for what I need. While it can, at least theoretically, use a custom domain directly, that domain has to be hosted with GoDaddy and the transfer process seemed hard to do without downtime and migration issues. The family would not be forgiving of that. So instead, since my domains are already hosted with CloudFlare we&amp;rsquo;ll just use their email forwarding so emails for our domain get forwarded to Outlook.com and Outlook.com happily lets us send with the custom domain as the From address so it all works out. Switching over will just mean setting up the right forwards in CloudFlare and pressing the button to switch the MX records from Google to CloudFlare.&lt;/p&gt;
+&lt;p&gt;Except there&amp;rsquo;s a whole heap of email in Google&amp;rsquo;s IMAP store that needs to be moved over to Outlook&amp;rsquo;s IMAP store. That &lt;em&gt;could&lt;/em&gt; be done by simply adding both accounts to an email application and dragging the emails over. For small numbers of emails that works pretty well, but it&amp;rsquo;s pretty easy for things to get interrupted part way through and some emails are copied over and others aren&amp;rsquo;t and then it&amp;rsquo;s hard to restart the copy without getting duplicates etc. Pretty quickly it becomes unworkable for a large number of emails.&lt;/p&gt;
+&lt;p&gt;Instead, I&amp;rsquo;ve setup isync (actual command name mbsync) to do the transfer. It appears to be very good at resuming after an interruption and just picking up where it left off copying folders and emails. It even gets things like the read/unread status right. The configuration isn&amp;rsquo;t entirely straight forward so for anyone else doing this migration, my config is below.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s setup with two users but more can be added by following the same pattern. You can either just run &lt;code&gt;mbsync -a&lt;/code&gt; to migrate all email for all users or &lt;code&gt;mbsync user1&lt;/code&gt; to migrate just email for user1 and similarly for user2. Migrating them all in one command does them both sequentially so generally it will be faster to migrate each user separately.&lt;/p&gt;
+&lt;p&gt;Often, mbsync will exit for a variety of reasons (gmail suddenly closing the connection, outlook.com enforcing request limits etc) so I run it with a simple bash for loop:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; true; &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; mbsync adrian; echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Disconnected, reconnecting after delay...&amp;#34;&lt;/span&gt;; sleep 30; &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that it will loop forever so you&amp;rsquo;ll want to check it from time to time and when it&amp;rsquo;s reporting that nothing needed to be copied just ctrl-C it to exit.&lt;/p&gt;
+&lt;p&gt;IMAP is not a particularly efficient protocol and rate limiting winds up being applied so this is definitely not a fast process, but you can just set it off and leave it run in the background until it&amp;rsquo;s done. &lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;IMAPAccount gmail-user1
+Host imap.gmail.com
+User 
+# Simplest approach is to enable 2FA and generate an app specific password to use here.
+# Revoke the app specific password again once the transfer is complete
+Pass 
+Timeout 120
+AuthMechs LOGIN
+SSLType IMAPS
+
+
+IMAPStore user1-source
+Account gmail-user1
+
+IMAPAccount outlook-user1
+Host imap-mail.outlook.com
+User 
+# Simplest approach is to enable 2FA and generate an app specific password to use here.
+# Revoke the app specific password again once the transfer is complete
+Pass 
+SSLType IMAPS
+Timeout 120
+
+IMAPStore user1-target
+Account outlook-user1
+
+IMAPAccount gmail-user2
+Host imap.gmail.com
+User 
+Pass 
+Timeout 120
+AuthMechs LOGIN
+SSLType IMAPS
+
+IMAPStore user2-source
+Account gmail-user2
+
+IMAPAccount outlook-user2
+Host imap-mail.outlook.com
+User 
+Pass 
+SSLType IMAPS
+
+IMAPStore user2-target
+Account outlook-user2
+
+Channel user1-main
+Far :user1-source:
+Near :user1-target:
+Patterns * ![Gmail]* !Archive
+Create Near
+Expunge Near
+CopyArrivalDate yes
+Sync Pull
+SyncState *
+SyncState ~/.mail/imap-transfer/user1/
+
+Channel user1-sent
+Far :user1-source:&amp;#34;[Gmail]/Sent Mail&amp;#34;
+Near :user1-target:&amp;#34;Sent&amp;#34;
+Create Near
+Expunge Near
+Sync Pull
+CopyArrivalDate yes
+SyncState *
+SyncState ~/.mail/imap-transfer/user1/
+
+Channel user1-trash
+Far :user1-source:&amp;#34;[Gmail]/Trash&amp;#34;
+Near :user1-target:&amp;#34;Deleted&amp;#34;
+Create Near
+Expunge Near
+Sync Pull
+CopyArrivalDate yes
+SyncState *
+SyncState ~/.mail/imap-transfer/user1/
+
+Group user1
+Channel user1-main
+Channel user1-sent
+Channel user1-trash
+
+
+
+Channel user2-main
+Far :user2-source:
+Near :user2-target:
+Patterns * ![Gmail]* !Archive
+Create Near
+Expunge Near
+CopyArrivalDate yes
+Sync Pull
+SyncState *
+SyncState ~/.mail/imap-transfer/user2/
+
+Channel user2-sent
+Far :user2-source:&amp;#34;[Gmail]/Sent Mail&amp;#34;
+Near :user2-target:&amp;#34;Sent&amp;#34;
+Create Near
+Expunge Near
+Sync Pull
+CopyArrivalDate yes
+SyncState *
+SyncState ~/.mail/imap-transfer/user2/
+
+Channel user2-trash
+Far :user2-source:&amp;#34;[Gmail]/Trash&amp;#34;
+Near :user2-target:&amp;#34;Deleted&amp;#34;
+Create Near
+Expunge Near
+Sync Pull
+CopyArrivalDate yes
+SyncState *
+SyncState ~/.mail/imap-transfer/user2/
+
+Group user2
+Channel user2-main
+Channel user2-sent
+Channel user2-trash
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Why P Tags are Your Friends</title>
+      <link>https://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/</link>
+      <pubDate>Tue, 07 Sep 2010 13:31:19 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_387764802665706626.png&#34; style=&#34; float: right;&#34; /&gt;A few days ago I talked about &lt;a href=&#34;http://www.symphonious.net/2010/09/02/the-email-and-p-myth/&#34;&gt;the Email and P Myth&lt;/a&gt;, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.&lt;/p&gt;
+&lt;p&gt;Take for example, a simple function like alignment. In Word and any other sensible editor, when you click the right align button, the current paragraph becomes aligned right. Which pretty clearly highlights the problem – if you don’t have paragraphs, what should become aligned? Typically what happens is the entire document, being one paragraph, gets aligned right and user’s unsurprisingly complain. So why not just change the alignment of the current line? Think about it in HTML terms, if you have:&lt;/p&gt;
+&lt;pre&gt;Line 1&amp;#60;br&amp;#62;
+Line 2
+&lt;/pre&gt;
+&lt;p&gt;Where do you apply the text-align style exactly? You can’t apply text-align to inline elements so:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;span style=”text-align: right;”&amp;#62;Line 1&amp;#60;/span&amp;#62;&amp;#60;br&amp;#62;
+Line 2
+&lt;/pre&gt;
+&lt;p&gt;doesn’t work. Further, we’ve been told that inserting P tags isn’t allowed, so we can’t just make it:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p style=”text-align: right;”&amp;#62;Line 1&amp;#60;/p&amp;#62;
+Line 2
+&lt;/pre&gt;
+&lt;p&gt;because that would introduce “extra whitespace”&lt;a href=&#34;#footnote1:1283780342216&#34;&gt;1&lt;/a&gt;{#footlink1:1283780342216.footnote}. So the only option is to insert a DIV tag which makes the HTML structure quite complex. DIVs aren’t just a meaningless element, they add structure to the document and the editor can’t tell which DIVs are important structure and which are just pretending to be paragraphs&lt;a href=&#34;#footnote2:1283780468469&#34;&gt;2&lt;/a&gt;{#footlink2:1283780468469.footnote}.&lt;/p&gt;
+&lt;p&gt;This problem crops up in a huge number of different places – applying headings, style classes, lists, indenting and more. All these special cases need to be handled, adding to the download size for the editor and reducing performance – not to mention taking up a huge amount of development time that could have been put into something more useful.&lt;/p&gt;
+&lt;p&gt;WYSIWYG editors do such a good job of hiding the way that HTML and CSS work, that people often forget that in the end we’re still trying to generate high quality, standards-compliant HTML output. We’re limited by what those standards and browsers can actually do, so removing important concepts like paragraphs makes it incredibly difficult to create an editor that works intuitively.&lt;/p&gt;
+&lt;p&gt;Ultimately, it’s not that we developers don’t want to support your use case, it’s just that the restrictions you’re asking us to abide by dramatically reduce our ability to deliver a high quality authoring experience.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1283780342216&#34; id=&#34;footnote1:1283780342216&#34;&gt;1&lt;/a&gt; &amp;#8211; which can and should be removed using CSS in the first place &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1283780342216&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1283780468469&#34; id=&#34;footnote2:1283780468469&#34;&gt;2&lt;/a&gt; &amp;#8211; remembering that what was once an unimportant DIV may become important at some point because of a change to scripts or CSS that the editor isn’t aware of &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1283780468469&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Email and P Myth</title>
+      <link>https://www.symphonious.net/2010/09/02/the-email-and-p-myth/</link>
+      <pubDate>Thu, 02 Sep 2010 13:46:20 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/02/the-email-and-p-myth/</guid>
+      <description>&lt;p&gt;One of the greatest frustrations for anyone who develops an HTML editor is the constant supply of people who are convinced they want to use BR tags instead of P tags. Most of these are just people who don’t want “double spacing” and they’re happy once you give them the magical CSS incantation:&lt;/p&gt;
+&lt;pre&gt;p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+&lt;/pre&gt;
+&lt;p&gt;The other group however are people writing HTML emails who insist that P tags are completely incompatible with some email clients and cause rendering problems. At one point it seems that Yahoo! Mail really did strip them entirely but now it just applies a different default CSS styling (ironically, the magical CSS above that removes the extra spacing). So if you naively use P without specifying the padding you want, some clients will display a blank line between paragraphs, others, notably Yahoo!, will push all the lines immediately under each other. The solution is of course the opposite magical CSS incantation:&lt;/p&gt;
+&lt;pre&gt;p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+&lt;/pre&gt;
+&lt;p&gt;Solved right? Nope. This runs straight into the &lt;em&gt;where the heck do I define styles?&lt;/em&gt; problem. In HTML, it should be:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;html&amp;#62;
+&amp;#60;head&amp;#62;
+&amp;#60;style&amp;#62;
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+&amp;#60;/style&amp;#62;
+&amp;#60;/head&amp;#62;
+&amp;#60;body&amp;#62;
+…
+&amp;#60;/body&amp;#62;
+&amp;#60;/html&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;However while this works in some clients, it has no effect in most. Instead, the common wisdom is to move the style tag into the body tag:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;html&amp;#62;
+&amp;#60;head&amp;#62;
+&amp;#60;/head&amp;#62;
+&amp;#60;body&amp;#62;
+&amp;#60;style&amp;#62;
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+&amp;#60;/style&amp;#62;
+…
+&amp;#60;/body&amp;#62;
+&amp;#60;/html&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;Which works almost everywhere. Enter GMail. GMail &lt;em&gt;never&lt;/em&gt; respects the style tag, only inline styles. So now you need to write your paragraphs as:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p style=”margin-top: 0; margin-bottom: 1em;”&amp;#62;…&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;Thankfully you can use the margin shorthand if you know what you want the left and right margins to be as well:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p style=”margin: 0 0 1em 0;”&amp;#62;…&amp;#60;/p&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;I would strongly recommend using embedded styles while editing and then just use post processing to inline all the styles – &lt;a href=&#34;http://premailer.dialect.ca&#34;&gt;Premailer&lt;/a&gt; can do that for you.&lt;/p&gt;
+&lt;p&gt;As far as I can tell, there is no need to avoid P tags in email anymore and sampling a number of emails from various clients that happened to be in my inbox, they turned out to appear in emails from a few different clients though that’s far from scientific and it was still intermingled with a lot of &lt;br&gt; and &lt;div&gt;&lt;br&gt;&lt;/div&gt; hacks. I would be very keen to hear from anyone who knows of an email client that cannot be made to render P tags correctly.&lt;/p&gt;
+&lt;p&gt;With a bit of luck we may be able to start moving away from the horrific abuses of &lt;br&gt; tags…&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

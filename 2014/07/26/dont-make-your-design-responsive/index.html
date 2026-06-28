@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Don’t Make Your Design Responsive | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Every web based product is adding “responsive design” to their feature lists. Unfortunately in many cases that responsive design is actually making their product much harder to use on a variety of screen sizes instead of easier.
+The problem is that common CSS libraries and grid systems, including the extremely popular bootstrap, imply that a design can be made responsive using fixed cut-off points and the design just automatically adjusts. In reality making a design responsive requires tailoring the cut off points so that the design adjusts at the points where it stops working well.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2014/07/26/dont-make-your-design-responsive/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2014/07/26/dont-make-your-design-responsive/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Don’t Make Your Design Responsive">
+	<meta property="og:description" content="Every web based product is adding “responsive design” to their feature lists. Unfortunately in many cases that responsive design is actually making their product much harder to use on a variety of screen sizes instead of easier.
+The problem is that common CSS libraries and grid systems, including the extremely popular bootstrap, imply that a design can be made responsive using fixed cut-off points and the design just automatically adjusts. In reality making a design responsive requires tailoring the cut off points so that the design adjusts at the points where it stops working well.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2014-07-26T11:50:05+00:00">
+		<meta property="article:modified_time" content="2014-07-26T11:50:05+00:00">
+
+	<meta itemprop="name" content="Don’t Make Your Design Responsive">
+	<meta itemprop="description" content="Every web based product is adding “responsive design” to their feature lists. Unfortunately in many cases that responsive design is actually making their product much harder to use on a variety of screen sizes instead of easier.
+The problem is that common CSS libraries and grid systems, including the extremely popular bootstrap, imply that a design can be made responsive using fixed cut-off points and the design just automatically adjusts. In reality making a design responsive requires tailoring the cut off points so that the design adjusts at the points where it stops working well.">
+	<meta itemprop="datePublished" content="2014-07-26T11:50:05+00:00">
+	<meta itemprop="dateModified" content="2014-07-26T11:50:05+00:00">
+	<meta itemprop="wordCount" content="565">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Don’t Make Your Design Responsive">
+	<meta name="twitter:description" content="Every web based product is adding “responsive design” to their feature lists. Unfortunately in many cases that responsive design is actually making their product much harder to use on a variety of screen sizes instead of easier.
+The problem is that common CSS libraries and grid systems, including the extremely popular bootstrap, imply that a design can be made responsive using fixed cut-off points and the design just automatically adjusts. In reality making a design responsive requires tailoring the cut off points so that the design adjusts at the points where it stops working well.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Don’t Make Your Design Responsive</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Don’t Make Your Design Responsive</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2014-07-26T11:50:05Z">July 26, 2014</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Every web based product is adding “responsive design” to their feature lists. Unfortunately in many cases that responsive design is actually making their product much harder to use on a variety of screen sizes instead of easier.</p>
+<p>The problem is that common CSS libraries and grid systems, including the extremely popular bootstrap, imply that a design can be made responsive using fixed cut-off points and the design just automatically adjusts. In reality making a design responsive requires tailoring the cut off points so that the design adjusts at the points where it stops working well.</p>
+<p>For example, let&rsquo;s look at the bootstrap documentation and in particular the top menu it uses. The bootstrap documentation gets it right, we can shrink the window down right to the point where the menus only just fit and they stick to the full size design:</p>
+<div id="attachment_1936" style="width: 575px" class="wp-caption alignnone">
+  <a href="/wp-content/uploads/2014/07/menu-expanded.png"><img aria-describedby="caption-attachment-1936" loading="lazy" class="wp-image-1936 size-large" src="/wp-content/uploads/2014/07/menu-expanded-1024x421.png" alt="Menu remains full-size for as long as it can fit." width="565" height="232" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-expanded-1024x421.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-expanded-300x123.png 300w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-expanded.png 1774w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <p id="caption-attachment-1936" class="wp-caption-text">
+    Menu remains full-size for as long as it can fit.
+  </p>
+</div>
+<p>If we shrink the window further the menus wouldn&rsquo;t fit anymore so they correctly switch to the hamburger style:</p>
+<div id="attachment_1937" style="width: 575px" class="wp-caption alignnone">
+  <a href="/wp-content/uploads/2014/07/menu-collapsed.png"><img aria-describedby="caption-attachment-1937" loading="lazy" class="size-large wp-image-1937" src="/wp-content/uploads/2014/07/menu-collapsed-1024x427.png" alt="Menu collapses once it would no longer fit." width="565" height="235" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-collapsed-1024x427.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-collapsed-300x125.png 300w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-collapsed.png 1750w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <p id="caption-attachment-1937" class="wp-caption-text">
+    Menu collapses once it would no longer fit.
+  </p>
+</div>
+<p>That&rsquo;s the <em>right</em> way to do it. The cutoff points have been specifically tailored for the content. There are other stylistic changes as well as these structural ones – the designer believes that centred text works better for headings on smaller screens for example. That&rsquo;s fine, they&rsquo;re fairly arbitrary design decisions based on what the designer believes looks best. I&rsquo;m focussed on structural issues.</p>
+<p>To see what happens if we ignore let&rsquo;s pretend that we add a new menu item:</p>
+<div id="attachment_1939" style="width: 575px" class="wp-caption alignnone">
+  <a href="/wp-content/uploads/2014/07/menu-new-item-fitting.png"><img aria-describedby="caption-attachment-1939" loading="lazy" class="wp-image-1939 size-large" src="/wp-content/uploads/2014/07/menu-new-item-fitting-1024x337.png" alt="Our &quot;New Item&quot; shown correctly when the window is wide enough." width="565" height="185" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-fitting-1024x337.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-fitting-300x98.png 300w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <p id="caption-attachment-1939" class="wp-caption-text">
+    Our &#8220;New Item&#8221; shown correctly when the window is wide enough.
+  </p>
+</div>
+<p>But now when we shrink the window down, the breakpoint is in the wrong place:</p>
+<div id="attachment_1940" style="width: 575px" class="wp-caption alignnone">
+  <a href="/wp-content/uploads/2014/07/menu-new-item-too-small.png"><img aria-describedby="caption-attachment-1940" loading="lazy" class="size-large wp-image-1940" src="/wp-content/uploads/2014/07/menu-new-item-too-small-1024x367.png" alt="The &quot;New Item&quot; menu no longer fits but causes incorrect wrapping because the break point is wrong." width="565" height="202" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-too-small-1024x367.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-too-small-300x107.png 300w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-too-small.png 2032w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <p id="caption-attachment-1940" class="wp-caption-text">
+    The &#8220;New Item&#8221; menu no longer fits but causes incorrect wrapping because the break point is wrong.
+  </p>
+</div>
+<p>Now the design breaks as we shrink the window because the break point hasn&rsquo;t been specifically tailored to the content. This is the type of error that regularly happens when people think that a responsive grid system can automatically make their site responsive. The repercussions in this case aren&rsquo;t particularly bad, but it can be significantly worse.</p>
+<p>Recently Jenkins released a rewrite of their UI moving it to using bootstrap which has unfortunately gotten responsive design completely wrong (and sadly I&rsquo;m yet to see anything it&rsquo;s actually improved). Browser widths that used to work perfectly well with the desktop only site are now treated as mobile browsers and content wraps into a long column. What&rsquo;s worse, the most useless content, the sidebar, is what&rsquo;s shown at the top with the main content pushed way down the page. At other widths the design doesn&rsquo;t fit but doesn&rsquo;t wrap leaving some links completely inaccessible.</p>
+<p>It would be <em>much</em> better if people stopped jumping on the responsive design bandwagon and just designed their site to work for desktop browsers unless they are prepared to fully invest and do responsive design right. Mobile browsers are designed to work well with sites designed for desktop and have lots of tools and techniques for coping with them. As you add responsive design and other adjustments designed for mobile you take responsibility for making the design work well everywhere from the browser onto yourself.  Using predefined breakpoints from a CSS library is unlikely to give the result you intend. It would be nice if CSS libraries stopped claiming that it will.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

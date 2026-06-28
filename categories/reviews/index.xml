@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reviews on Symphonious</title>
+    <link>https://www.symphonious.net/categories/reviews/</link>
+    <description>Recent content in Reviews on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 25 Sep 2006 10:19:52 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/reviews/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Yojimbo – The App The Could Have, But Didn’t</title>
+      <link>https://www.symphonious.net/2006/09/25/yojimbo-the-app-the-could-have-but-didnt/</link>
+      <pubDate>Mon, 25 Sep 2006 10:19:52 +0000</pubDate>
+      <guid>https://www.symphonious.net/2006/09/25/yojimbo-the-app-the-could-have-but-didnt/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been playing with &lt;a href=&#34;http://barebonessoftware.com/products/yojimbo/index.shtml&#34;&gt;Yojimbo&lt;/a&gt; for the past week or so and it shows a lot of promise but just doesn&amp;rsquo;t quite make it across the line to something that would be useful. Essentially Yojimbo allows you to store stuff in a central location. You can add text files, web archives, PDF files, bookmarks, serial numbers and passwords. You can categorize them, label them and most importantly search them. It sounds promising and I&amp;rsquo;m sure that at some point it will be pretty awesome, but overall I found it disappointing. There were a few limitations that make it far less useful for me than it should be.&lt;/p&gt;
+&lt;p&gt;Firstly, the notes are almost plain text – it has about the level of rich text support as TextEdit – no tables, no lists and worst of all, no easy access to anything. All of my notes wound up being plain text just because it was too difficult to apply formatting. The biggest missing feature here is lists – 99% of what I want to put into Yojimbo are lists of things and it doesn&amp;rsquo;t give me an easy way to do it.&lt;/p&gt;
+&lt;p&gt;The web archives were really cool, a quick AppleScript and I could create a web archive of the page I&amp;rsquo;m viewing in Camino. There are just two problems – they only display in the built-in panel or Safari and I couldn&amp;rsquo;t find a way to get the original URL back out of it. It&amp;rsquo;s rather difficult to blog about something interesting if you can&amp;rsquo;t quickly and easily get the original URL back. Only opening in Safari isn&amp;rsquo;t a major issue, but it&amp;rsquo;s annoying that they didn&amp;rsquo;t respect my preferred browser setting.&lt;/p&gt;
+&lt;p&gt;Bookmarks are just that, with no extra functionality over what a browser has built in. They do open in your default browser correctly but since they don&amp;rsquo;t have a web archive attached they still aren&amp;rsquo;t great for searching.&lt;/p&gt;
+&lt;p&gt;PDF support is similar, it works and there&amp;rsquo;s nothing special about it. The major disappointing factor for general files is that there&amp;rsquo;s no way to edit them in an external editor and have the changes reflected in Yojimbo. The whole application is one great big data silo. I would have liked to keep track of some play scripts I&amp;rsquo;m working on in Final Draft with Yojimbo but every time I edit it I have to delete the old version from Yojimbo and readd a new one. I have very few documents that never change so Yojimbo&amp;rsquo;s file support is wasted.&lt;/p&gt;
+&lt;p&gt;The most disapointing part of Yojimbo though was it&amp;rsquo;s exceptionally primitive AppleScript library. Given that it&amp;rsquo;s an application that is meant to be a central hub of information, I can&amp;rsquo;t believe how primitive the AppleScript API is. Essentially, you can create a new item of whatever type and in theory retrieve them again, though I just got an internal script error whenever I tried that. My AppleScript is pretty primitive so I&amp;rsquo;ve probably just messed up the script. Even so, where is the API to set which collections an item is in? How about searching through the database quickly and easily?&lt;/p&gt;
+&lt;p&gt;Finally, the syncing requires .Mac. Now, I know that&amp;rsquo;s because it uses SyncServices and Apple in their infinite wisdom have decided that should only work with .Mac accounts, but it&amp;rsquo;s lousy none the less and it&amp;rsquo;s BareBone&amp;rsquo;s decision to use a crippled Sync foundation, so it&amp;rsquo;s them that gets the blame for the lack of openness. Even if the non .Mac syncing was more primitive, some attempt should at least be made to avoid the need for an expensive .Mac account.&lt;/p&gt;
+&lt;p&gt;Overall, Yojimbo is the app that should have revolutionized the way I manage my digital odds and ends, but all the features it has are just the bare minimum to tick the box without providing enough functionality to actually be useful. BareBones seem to have gone for delivering a large number of features in the shortest possible time and wound up with a product that can do lots of stuff, but is good at none of it. I&amp;rsquo;ll be going back to good old file system folders and dashboard sticky notes.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

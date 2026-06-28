@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Pain vs Pay-Off | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Doug’s discovered a way to improve the effectiveness of simian to avoid adding more duplication to a code base:
+
+The solution is very simple. The simian-report is a an xml file, so I wrote a SAX2 DefaultHandler that was able to parse the number of duplications at the different threshold levels. Putting this into a trivial ant task then gave us a task to help make things no worse even at levels below what the simian-check was doing! Within the first week, the new legacy-check was breaking the build (where the simian-check would never have) and focusing the teams attention on how to make things better.
+The solution is simple and really cool. I have no doubt that it will have a big impact on the amount of duplication and the overall quality of our code. The trouble is, Simian’s normal reporting is really, really lousy and Doug’s extra check highlights just how useless Simian is at telling you where the duplication is instead of just detecting that there is duplication.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/05/28/pain-vs-pay-off/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/05/28/pain-vs-pay-off/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Pain vs Pay-Off">
+	<meta property="og:description" content="Doug’s discovered a way to improve the effectiveness of simian to avoid adding more duplication to a code base:
+The solution is very simple. The simian-report is a an xml file, so I wrote a SAX2 DefaultHandler that was able to parse the number of duplications at the different threshold levels. Putting this into a trivial ant task then gave us a task to help make things no worse even at levels below what the simian-check was doing! Within the first week, the new legacy-check was breaking the build (where the simian-check would never have) and focusing the teams attention on how to make things better. The solution is simple and really cool. I have no doubt that it will have a big impact on the amount of duplication and the overall quality of our code. The trouble is, Simian’s normal reporting is really, really lousy and Doug’s extra check highlights just how useless Simian is at telling you where the duplication is instead of just detecting that there is duplication.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-05-28T09:22:46+00:00">
+		<meta property="article:modified_time" content="2008-05-28T09:22:46+00:00">
+
+	<meta itemprop="name" content="Pain vs Pay-Off">
+	<meta itemprop="description" content="Doug’s discovered a way to improve the effectiveness of simian to avoid adding more duplication to a code base:
+The solution is very simple. The simian-report is a an xml file, so I wrote a SAX2 DefaultHandler that was able to parse the number of duplications at the different threshold levels. Putting this into a trivial ant task then gave us a task to help make things no worse even at levels below what the simian-check was doing! Within the first week, the new legacy-check was breaking the build (where the simian-check would never have) and focusing the teams attention on how to make things better. The solution is simple and really cool. I have no doubt that it will have a big impact on the amount of duplication and the overall quality of our code. The trouble is, Simian’s normal reporting is really, really lousy and Doug’s extra check highlights just how useless Simian is at telling you where the duplication is instead of just detecting that there is duplication.">
+	<meta itemprop="datePublished" content="2008-05-28T09:22:46+00:00">
+	<meta itemprop="dateModified" content="2008-05-28T09:22:46+00:00">
+	<meta itemprop="wordCount" content="517">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Ephox">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Pain vs Pay-Off">
+	<meta name="twitter:description" content="Doug’s discovered a way to improve the effectiveness of simian to avoid adding more duplication to a code base:
+The solution is very simple. The simian-report is a an xml file, so I wrote a SAX2 DefaultHandler that was able to parse the number of duplications at the different threshold levels. Putting this into a trivial ant task then gave us a task to help make things no worse even at levels below what the simian-check was doing! Within the first week, the new legacy-check was breaking the build (where the simian-check would never have) and focusing the teams attention on how to make things better. The solution is simple and really cool. I have no doubt that it will have a big impact on the amount of duplication and the overall quality of our code. The trouble is, Simian’s normal reporting is really, really lousy and Doug’s extra check highlights just how useless Simian is at telling you where the duplication is instead of just detecting that there is duplication.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Pain vs Pay-Off</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Pain vs Pay-Off</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-05-28T09:22:46Z">May 28, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Doug’s <a href="http://www.trontos.com/dsouth/blog/2008/05/better-than-simian-check.html">discovered a way to improve the effectiveness of simian</a> to avoid adding more duplication to a code base:</p>
+<blockquote>
+<p>The solution is very simple. The simian-report is a an xml file, so I wrote a SAX2 DefaultHandler that was able to parse the number of duplications at the different threshold levels. Putting this into a trivial ant task then gave us a task to help make things no worse even at levels below what the simian-check was doing! Within the first week, the new legacy-check was breaking the build (where the simian-check would never have) and focusing the teams attention on how to make things better.
+The solution is simple and really cool. I have no doubt that it will have a big impact on the amount of duplication and the overall quality of our code. The trouble is, Simian’s normal reporting is really, really lousy and Doug’s extra check highlights just how useless Simian is at telling you <em>where</em> the duplication is instead of just detecting that there is duplication.</p>
+</blockquote>
+<p>I discovered this new check when the build broke after a simple commit I made that fixed an annoying bug and removed some duplication. Unfortunately, it happened to change the distribution of duplication so that it triggered a simian-legacy failure. I can, after the use of a few choice words, handle failures like that because it shows I could have and probably should have done more to improve the code around the change I made. Someone’s got to go in a clean things up – it might as well be me.</p>
+<p>That’s when I encountered Simian’s report. It’s one great big long HTML page listing pretty much every bit of duplication it found broken down into sections of numbers of lines duplicated and it has a pretty useless index at the top. Over VPN it took 15 minutes to download and render. It hung Safari and FireFox for about 5 minutes trying to render it locally. Once it loads you have to sort through the thousands of duplication matches it’s found (matching as little as 2 lines duplicated and with quite liberal settings on what constitutes a match – again, a good thing) to try and find the one new duplication that caused the build failure.</p>
+<p>Eventually I discovered the easiest way was divide and conquer. Simian can run even if the code doesn’t compile, so I rolled back each file individually until Simian passed again. Then I patched my changes back in, searched the report for that file name and eliminated as much of the duplication involving that file as I could and reran Simian.</p>
+<p>I’m still in two minds as to whether or not the new check is worth the pain it causes. I really like the idea of it, I just really wish there was an Eclipse plugin for Simian that highlighted duplication right there in the code, or at least a HTML report that showed the actual code marked up with duplication. Then again, if you just have to guess at what duplication to remove the code base will get better faster…</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Identity on Symphonious</title>
+    <link>https://www.symphonious.net/categories/identity/</link>
+    <description>Recent content in Identity on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 24 Nov 2008 16:36:14 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/identity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Personally Identifiable</title>
+      <link>https://www.symphonious.net/2008/11/25/personally-identifiable/</link>
+      <pubDate>Mon, 24 Nov 2008 16:36:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/11/25/personally-identifiable/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://waxy.org/2008/11/the_faces_of_mechanical_turk/&#34;&gt;Andy Baio did an experiment with Mechanical Turk&lt;/a&gt; which is somewhat interesting on it’s own, but what really caught my eye was:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Upload a photo of yourself…&lt;/p&gt;
+&lt;p&gt;DON&amp;rsquo;T provide any identifiable information, like your name or email, since that&amp;rsquo;s a violation of MTurk policy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When did technology take over so much that our face, the single most important aspect our brains use in identifying people, become not personally identifiable information?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gravitars</title>
+      <link>https://www.symphonious.net/2008/06/06/gravitars/</link>
+      <pubDate>Fri, 06 Jun 2008 07:47:12 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/06/gravitars/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;&#34; width=&#34;130&#34; height=&#34;138&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2008/06/zoot-trimmed26133.jpg&#34; align=&#34;left&#34; /&gt;I have a very simple benchmark for judging how much emphasis a site puts on people instead of technology – I look at how it identifies those people. Sites that don’t have anything to do with people treat everyone the same and don’t have a name for their users at all. The next step up is sites that let you log in some how and then refer to you by your username or email address. At least you exist, but in a very abstract, computer oriented way. Getting in to the area of treating you like a real person is where the site refers to you by your real name (or the pseudonym you put in the real name box). That’s a really big step towards having people form connections. Where it really makes a giant leap forward though is when you have photos to identify people.&lt;/p&gt;
+&lt;p&gt;Using any image consistently to identify a user makes such a huge difference to how people relate to each other because the human brain is so used to identifying people by the way they look. It takes another giant leap forward when people use an actual picture of themselves instead of some random muppet (even if he is cool and plays saxophone like I do - I even have a case and stand just like that). Your brain isn’t just tuned to recognizing visuals, it’s tuned to recognize faces. There’s not a lot developers can do to get users to upload a picture of themselves if they don’t want to but it would probably be worth trying to explain the benefits rather than just providing an image upload box.&lt;/p&gt;
+&lt;p&gt;All this brings me to Atomic’s &lt;a href=&#34;http://www.gravatar.com/&#34;&gt;Gravitar service&lt;/a&gt; which is a pretty cool idea. The basic concept is that you upload your avitar (shame they didn’t call it picture to encourage real faces…) to their site and then everywhere else you comment can just retrieve it from there. It’s like OpenID for your face. Here’s part of &lt;a href=&#34;http://en.gravatar.com/site/about&#34;&gt;their description&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Gravatar aims to put a face behind the name. This is the beginning of trust. In the future, Gravatar will be a way to establish trust between producers and consumers on the internet. It will be the next best thing to meeting in person.
+Here’s the problem with faces – your brain is tuned to match them with that person and assigns a level of trust based on how you recognize the face as. Yes, that instinct can and should be overridden when your surfing around on the public internet, but it’s very naive of the Gravatar folk to start talking about your avitar as providing trust. It got even worse when I went to sign up for the service.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The sign up looks simple, you enter your email address to start it all. Unfortunately, when I entered mine it said it was already in use. The problem is, I haven’t signed up for Gravatar before – &lt;em&gt;the identity they’ve got listed is a fraud&lt;/em&gt;. If you’ve seen my comments around the internet accompanied by an offensive image, now you know why.&lt;/p&gt;
+&lt;p&gt;The reality of course is more likely that they just abused the privacy policy of wordpress.com and imported all those accounts. Since you can’t use Akismet without signing up for a WordPress blog that’s probably the chain of events that occurred. I’m sure in the normal case they send you an email that you have to click as well to verify that you have access to the email address, but email isn’t exactly a secure communication channel.&lt;/p&gt;
+&lt;p&gt;The reality is, it’s foolish to assume that anyone on the big, wild internet is who they claim to be because sooner or later it will be a phony and attempts to establish identity that don’t involve some serious encryption and all that jazz are always going to be flawed.&lt;/p&gt;
+&lt;p&gt;But hey, who can argue with cool pictures when you post comments? I certainly can’t resist shiny stuff, and I’d rather it be me that signs up than someone pretending to be me.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

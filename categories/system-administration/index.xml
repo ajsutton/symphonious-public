@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Administration on Symphonious</title>
+    <link>https://www.symphonious.net/categories/system-administration/</link>
+    <description>Recent content in System Administration on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Wed, 14 Aug 2013 04:06:57 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/system-administration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automation and Selecting Web Hosts</title>
+      <link>https://www.symphonious.net/2013/08/14/automation-and-selecting-web-hosts/</link>
+      <pubDate>Wed, 14 Aug 2013 04:06:57 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/08/14/automation-and-selecting-web-hosts/</guid>
+      <description>&lt;p&gt;One of the biggest challenges with selecting a web host is that it&amp;rsquo;s very difficult to determine the quality of a provider without actually setting everything up and seeing how it goes for a while. Generally that means that you either wind up avoiding the very low cost providers out of fear they won&amp;rsquo;t be reliable and possibly paying too much, or spending a lot of time and effort setting up with a provider only to then discover they&amp;rsquo;re unreliable or the performance isn&amp;rsquo;t as good as you expected.&lt;/p&gt;
+&lt;p&gt;Virtual private servers are a particular problem because hosting providers advertise specs like CPU cores and RAM, but don&amp;rsquo;t advertise whether those CPUs are oversubscribed or what the contention on disk access is.&lt;/p&gt;
+&lt;p&gt;Fortunately, now that tools like puppet and chef have appeared and matured, its quite easy to automate the setup and configuration of a server so you can easily switch hosts if needed. Even more so with web hosting companies more and more becoming cloud providers – the difference primarily being per-hour pricing.&lt;/p&gt;
+&lt;p&gt;Which is a round about way of saying – welcome to the new symphonious, completely re-homed and rebuilt using automated scripts. Hopefully you didn&amp;rsquo;t notice the difference. The move saves me about $20/month and because the entire build was automated if I have issues here or find a better deal elsewhere I can now move effortlessly.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Default to Development Settings</title>
+      <link>https://www.symphonious.net/2012/05/28/default-to-development-settings/</link>
+      <pubDate>Mon, 28 May 2012 05:55:00 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/05/28/default-to-development-settings/</guid>
+      <description>&lt;p&gt;Most systems have multiple configuration profiles – one for production, one for development and often other profiles for staging, testing etc.  Minimising differences between these configurations is critical but there are inevitably some things that just have to be different. This then leaves the question, what should the default settings be?&lt;/p&gt;
+&lt;p&gt;There are three main options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Default to production values&lt;/li&gt;
+&lt;li&gt;Default to development values&lt;/li&gt;
+&lt;li&gt;Refuse to start unless an environment has been explicitly chosen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My preference is to default to development values. Why?&lt;/p&gt;
+&lt;p&gt;Development values should be “safe” in terms of any external integrations. So a developer isn&amp;rsquo;t going to accidentally start sending real buy or sell instructions to your stock broker.&lt;/p&gt;
+&lt;p&gt;There are more developers than production systems. If you default to production systems, every developer needs to remember to switch to development mode whenever they setup a new checkout. Defaulting to development mode means it just works for the most common case.&lt;/p&gt;
+&lt;p&gt;Checking authentication credentials for external systems into your source control system is generally considered a bad security practice, so the default values are unlikely to actually work in production anyway.&lt;/p&gt;
+&lt;p&gt;The down side with defaulting to development is it&amp;rsquo;s possible to accidentally deploy to production with development values causing an outage. This can be pretty easily prevented with automated deployments or using tools like RPM where files can be marked as config and thus avoid overwriting them when doing updates.&lt;/p&gt;
+&lt;p&gt;Refusing to start is the worst of all worlds – every developer has to specify a configuration mode &lt;em&gt;and&lt;/em&gt; you still risk production outages by not specifying a mode.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Amazon EC2 As A Webhost Redux</title>
+      <link>https://www.symphonious.net/2009/07/09/amazon-ec2-as-a-webhost-redux/</link>
+      <pubDate>Thu, 09 Jul 2009 11:44:07 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/07/09/amazon-ec2-as-a-webhost-redux/</guid>
+      <description>&lt;p&gt;Back in 2007 &lt;a href=&#34;http://www.symphonious.net/2007/07/24/amazon-sc2-as-a-webhost/&#34;&gt;I looked at EC2 for a web server&lt;/a&gt; and while &lt;a href=&#34;http://www.symphonious.net/2007/08/03/hosting-on-amazon-ec2/&#34;&gt;it wound up being feasible&lt;/a&gt; it had a number of drawbacks:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Those familiar with EC2 won&amp;rsquo;t be surprised to hear that we won&amp;rsquo;t be going with the service for three reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It&amp;rsquo;s at least as expensive as the dedicated server we&amp;rsquo;d need.&lt;/li&gt;
+&lt;li&gt;The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem)&lt;/li&gt;
+&lt;li&gt;The server gets a new IP address every time it reboots.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.&lt;/p&gt;
+&lt;p&gt;Remember that EC2’s original point in life was scalability, not running one single instance for a really long time. They’ve done tons of upgrades to their infrastructure over the last couple of years as well which normally would mean down time and migrations. You can imagine my surprise when I checked how long it’s been since the instance rebooted:&lt;/p&gt;
+&lt;pre class=&#34;code&#34;&gt;&lt;span class=&#34;java_plain&#34;&gt;e2wiki&lt;/span&gt;&lt;span class=&#34;java_operator&#34;&gt;:~&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt;# uptime&lt;/span&gt;
+&lt;span class=&#34;java_plain&#34;&gt; &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;04&lt;/span&gt;&lt;span class=&#34;java_operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;28&lt;/span&gt;&lt;span class=&#34;java_operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;45&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; up &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;499&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; days&lt;/span&gt;&lt;span class=&#34;java_separator&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;java_operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;java_separator&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; user&lt;/span&gt;&lt;span class=&#34;java_separator&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt;  load average&lt;/span&gt;&lt;span class=&#34;java_operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;0.33&lt;/span&gt;&lt;span class=&#34;java_separator&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;0.10&lt;/span&gt;&lt;span class=&#34;java_separator&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;java_plain&#34;&gt; &lt;/span&gt;&lt;span class=&#34;java_literal&#34;&gt;0.03&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Just shy of 500 days since a reboot for any reason. I can’t say that about any other hosting service I’ve ever used so even if EC2 is more expensive, it’s seriously reliable.&lt;/p&gt;
+&lt;p&gt;Now we just need to fix the memory leak in the app we’re running on that server – it up and dies a couple of times a week. That said, the script that automatically restarts it is so effective that the external monitoring tools don’t even notice so it’s probably not worth the effort.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I Hate Deployment</title>
+      <link>https://www.symphonious.net/2009/05/29/i-hate-deployment/</link>
+      <pubDate>Fri, 29 May 2009 16:50:00 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/29/i-hate-deployment/</guid>
+      <description>&lt;p&gt;Deployment ruins everything. So many cool technologies that let you develop more rapidly and do awesomely cool stuff fall down at the last hurdle of deployment. Sometimes it’s because they haven’t thought it through properly so it’s just plain too hard, but often it’s just that it’s too hard to convince people that it won’t be another headache for them.&lt;/p&gt;
+&lt;p&gt;The latest in my deployment-caused frustrations is CouchDB. I have a few use cases that I think CouchDB would be perfect for and it would save me heaps of development effort and headaches. The trouble is, while &lt;a href=&#34;http://jacobian.org/writing/of-the-web/&#34;&gt;CouchDB may be of the web&lt;/a&gt;, it really isn’t of the enterprise IT architecture.&lt;/p&gt;
+&lt;p&gt;That’s not to say it wouldn’t fit in perfectly well. It’s not to say there’s anything wrong with CouchDB. It doesn’t even mean that it would be hard to deploy or hard to maintain or anything to do with CouchDB at all. It’s just not part of the enterprise plan for “stuff we put on our servers”. Database stuff goes in Oracle or DB2 and we really don’t need a second database instance running. The fact that CouchDB is an entirely different type of database and has completely different strengths and weaknesses making it perfect for this particular use case doesn’t get a hearing.&lt;/p&gt;
+&lt;p&gt;When you have big enterprise as your clients, the cool toys always seem just out of reach&lt;a href=&#34;#footnote1:1243615744754&#34;&gt;1&lt;/a&gt;{#footlink1:1243615744754.footnote}.&lt;/p&gt;
+&lt;p&gt;I’d wish that I worked in an environment that was more relaxed and we could deploy tons of different systems based on what was the best fit for this particular job, except that I have that problem within Ephox and it’s not so much fun either.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1243615744754&#34; id=&#34;footnote1:1243615744754&#34;&gt;1&lt;/a&gt; &amp;#8211; like Java versions above 1.4…&lt;a href=&#34;#footlink1:1243615744754&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>200 Means OK!</title>
+      <link>https://www.symphonious.net/2008/11/21/200-means-ok/</link>
+      <pubDate>Thu, 20 Nov 2008 15:39:11 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/11/21/200-means-ok/</guid>
+      <description>&lt;p&gt;While many web visionaries are busy advocating the correct use of ETags and URIs etc etc, I just wish people could get the very basics of HTTP right.  I’m not even talking about mime-types here, just status codes would be a really good place to start.&lt;/p&gt;
+&lt;p&gt;If you’re returning the page as requested, use 200.&lt;/p&gt;
+&lt;p&gt;If you’re returning a server error, use 500.&lt;/p&gt;
+&lt;p&gt;If the requested page doesn’t exist, use 404.&lt;/p&gt;
+&lt;p&gt;If you can follow even just those three rules, you’ll make life so much easier for user agents. Anything about that is great too, but whatever you do, please get these basics right.&lt;/p&gt;
+&lt;p&gt;Epic fail to IIS and IBM Portal on these points.  Something is seriously wrong with the internet…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I Love mod_proxy</title>
+      <link>https://www.symphonious.net/2008/11/01/i-love-mod_proxy/</link>
+      <pubDate>Sat, 01 Nov 2008 08:48:50 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/11/01/i-love-mod_proxy/</guid>
+      <description>&lt;p&gt;After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about.  When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.&lt;/p&gt;
+&lt;p&gt;My latest use for it was to add name based virtual host support to two completely separate virtual machines.  One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc.  The firewall however can only forward connections on a given port to one VM.&lt;/p&gt;
+&lt;p&gt;The solution then is to forward the traffic to Apache and configure mod_proxy within name based virtual hosts. Effectively Apache is acting as an intelligent HTTP router and I can add any number of VMs by adding a new CNAME and virtual host entry.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Exporting and Importing a Portal WCM Library</title>
+      <link>https://www.symphonious.net/2008/08/18/exporting-and-importing-a-portal-wcm-library/</link>
+      <pubDate>Mon, 18 Aug 2008 09:38:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/08/18/exporting-and-importing-a-portal-wcm-library/</guid>
+      <description>&lt;p&gt;I’m going to need this soon and I’ll never find the link again in the IBM forums so I’m putting it here.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://publib.boulder.ibm.com/infocenter/wpdoc/v6r0/index.jsp?topic=/com.ibm.wp.ent.doc/wcm/wcm_config_wcmlibrary_export.html&#34;&gt;Exporting and Importing a Web Content Library&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It should let you move web content (minus drafts and previous versions unfortunately) from one IWWCM server to another.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ant SCP/SSH Task Hangs Or Never Disconnects</title>
+      <link>https://www.symphonious.net/2007/10/23/ant-scpssh-task-hangs-or-never-disconnects/</link>
+      <pubDate>Tue, 23 Oct 2007 02:56:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/10/23/ant-scpssh-task-hangs-or-never-disconnects/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;re using the scp or ssh tasks with ant, you may run into a problem where part way during the upload or never disconnecting after the command completes for the ssh task. There are a couple of possible causes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The scp problem is almost certainly caused by using ant 1.7.0 or below and jsch 0.1.30 or above. You could upgrade to the latest nightly of ant&lt;a id=&#34;footlink1-1193107782712&#34; class=&#34;footnote&#34; name=&#34;footlink1-1193107782712&#34; href=&#34;#footnote1-1193107782712&#34;&gt;1&lt;/a&gt; but it&amp;rsquo;s probably easier to just drop back to jsch 0.1.29 which is what ant was developed against and works nicely. &lt;a href=&#34;http://issues.apache.org/bugzilla/show_bug.cgi?id=41090&#34;&gt;Bug 41090&lt;/a&gt; contains the gory details.&lt;/li&gt;
+&lt;li&gt;If the command you&amp;rsquo;re executing with the ssh task starts a background service or otherwise leaves a process running, that may be the cause of the problem. You can add &amp;lsquo;shopt -s huponexit&amp;rsquo; to your /etc/profile, .bashrc or somewhere like that. I must admit, I&amp;rsquo;m somewhat vague on the exact details of what that does but the basic idea seems to be to signal any background processes that bash is exiting and then not wait for them to complete (which allows your ssh connection to close). If you&amp;rsquo;re starting a server they&amp;rsquo;ll probably ignore the hup signal it sends and if not, use the nohup command.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Hopefully that will be the last I&amp;rsquo;ll see of that issue.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1-1193107782712&#34; href=&#34;#footlink1-1193107782712&#34; name=&#34;footnote1-1193107782712&#34;&gt;1&lt;/a&gt; &amp;#8211; which seems to mean compiling from source at the moment, since the nightly build directory the Ant website links to is empty&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1-1193107782712&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tomcat Startup Issues</title>
+      <link>https://www.symphonious.net/2007/08/21/tomcat-startup-issues/</link>
+      <pubDate>Tue, 21 Aug 2007 07:17:15 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/08/21/tomcat-startup-issues/</guid>
+      <description>&lt;p&gt;I was so close to having everything working… EC2, S3, automatically pulling down the latest build and deploying it, Tomcat 5.5 with the native APR libraries, SSL support and using iptables to forward ports 80 and 443 directly over to Tomcat. Everything ready to go. Except Tomcat isn&amp;rsquo;t so keen on starting.&lt;/p&gt;
+&lt;p&gt;It usually starts, though it can take over half an hour to do so and on a couple of occasions it&amp;rsquo;s just flat out sat there and done nothing for multiple hours on end. At startup it outputs the log message:&lt;/p&gt;
+&lt;p&gt;Aug 20, 2007 3:08:56 PM org.apache.coyote.http11.Http11AprProtocol init&lt;br&gt;
+INFO: Initializing Coyote HTTP/1.1 on http-8080&lt;/p&gt;
+&lt;p&gt;and then nothing until all of a sudden 5-45 minutes later it suddenly comes back to life, finishes starting up and works perfectly. There&amp;rsquo;s no CPU usage while it&amp;rsquo;s out, it&amp;rsquo;s just sitting there waiting for something to happen (network lookup??).&lt;/p&gt;
+&lt;p&gt;Sigh. I&amp;rsquo;m sure the world is out to get me….&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hosting on Amazon EC2</title>
+      <link>https://www.symphonious.net/2007/08/03/hosting-on-amazon-ec2/</link>
+      <pubDate>Fri, 03 Aug 2007 05:10:19 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/08/03/hosting-on-amazon-ec2/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve done a fair bit more investigation into &lt;a href=&#34;http://www.symphonious.net/2007/07/24/amazon-sc2-as-a-webhost/&#34;&gt;using EC2 for web hosting&lt;/a&gt; and it seems to be something that people do with a fair bit of success. In addition to Geert who commented on my last post and who&amp;rsquo;s site &lt;a href=&#34;http://rifers.org/&#34;&gt;rifers.org&lt;/a&gt; is hosted directly on EC2, there&amp;rsquo;s also &lt;a href=&#34;http://www.hanzoweb.com&#34;&gt;hanzoweb.com&lt;/a&gt; and &lt;a href=&#34;http://www.gumiyo.com&#34;&gt;www.gumiyo.com&lt;/a&gt; all of which just have their DNS pointing at an EC2 instance.&lt;/p&gt;
+&lt;p&gt;I still wish Amazon had a preconfigured solution that acted as the web front end and load balancer with a static IP, but it appears that it&amp;rsquo;s quite feasible to just point your DNS at EC2 and your server seems to stay put.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve also done a bunch of development against S3 with some pretty fantastic results. With a little bit of simple caching it&amp;rsquo;s actually feasible to run the server here in Australia and store the data on S3 without too much pain. Having very simple APIs is nice because it allows you to build a mock S3 quite easily to use for testing without having to jump through a lot of hoops.&lt;/p&gt;
+&lt;p&gt;Overall, I&amp;rsquo;m very impressed – building a web app entirely on S3 is not only feasible, it&amp;rsquo;s fairly simple and can actually speed up development. There&amp;rsquo;s even a couple of personal projects of mine that S3 may be a good fit for.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

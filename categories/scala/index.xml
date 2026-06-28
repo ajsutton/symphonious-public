@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on Symphonious</title>
+    <link>https://www.symphonious.net/categories/scala/</link>
+    <description>Recent content in Scala on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 19 Oct 2009 14:19:03 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Scala in .NET</title>
+      <link>https://www.symphonious.net/2009/10/19/using-scala-in-net/</link>
+      <pubDate>Mon, 19 Oct 2009 14:19:03 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/10/19/using-scala-in-net/</guid>
+      <description>&lt;p&gt;Having become quite interested in &lt;a href=&#34;http://www.symphonious.net/2009/09/25/the-new-cross-platform/&#34;&gt;languages that support deployment on both Java and .NET&lt;/a&gt;, then &lt;a href=&#34;http://www.symphonious.net/2009/10/15/getting-into-scala/&#34;&gt;diving into Scala&lt;/a&gt; to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.&lt;/p&gt;
+&lt;h3 id=&#34;simple-net-exe&#34;&gt;Simple .NET Exe&lt;/h3&gt;
+&lt;p&gt;First things first, let’s write some Scala then compile it to a .exe file that uses .NET. Our scala class is the simple Hello World:&lt;/p&gt;
+&lt;pre&gt;import System.Console
+object test extends Application {
+  def main(args: Array[String]) = Console.println(“Hello .NET World!”)
+}
+&lt;/pre&gt;
+&lt;p&gt;Note that I put this in a file called test.scala as part of my fiddling to make this work – I don’t think that should be required but it certainly doesn’t hurt.&lt;/p&gt;
+&lt;p&gt;Compilation to .NET requires two steps. Both are best performed by opening the “SDK Command Prompt”&lt;a href=&#34;#footnote1:1255960347063&#34;&gt;1&lt;/a&gt;{#footlink1:1255960347063.footnote}. This looks very much like the normal Command Prompt but it defines a bunch of important environment variables so that all the .NET tools are on your path and working correctly.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;If you haven’t already, &lt;a href=&#34;http://www.scala-lang.org/node/168&#34;&gt;as the Scala docs say&lt;/a&gt;, copy the mscorlib.dll file from the .NET SDK (I had to use find to locate it then picked one of the results at random) to the %SCALA_HOME%\share\scala\lib directory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Again, if you haven’t already, install the scala-msil support by running:
+&lt;pre&gt;sbaz install scala-msil
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then compile to the MSIL intermediary format with scalac-net&lt;a href=&#34;#footnote2:1255960467317&#34;&gt;2&lt;/a&gt;{#footlink2:1255960467317.footnote}:
+&lt;pre&gt;scalac-net test.scala
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now you should have a test.msil file alongside the test.scala file. The next step is to convert the file to an actual EXE file with the ilasm tool&lt;a href=&#34;#footnote3:1255960786099&#34;&gt;3&lt;/a&gt;{#footlink3:1255960786099.footnote}:&lt;/p&gt;
+&lt;pre&gt;ilasm test.msil
+&lt;/pre&gt;
+&lt;p&gt;Now you should have test.exe alongside your test.msil and test.scala files. Before you run it though, you’ll need to find the predef.dll and scalaruntime.dll files in the Scala distribution and copy them to the current directory&lt;a href=&#34;#footnote4:1255960886737&#34;&gt;4&lt;/a&gt;{#footlink4:1255960886737.footnote}.&lt;/p&gt;
+&lt;p&gt;Finally, you can now run test.exe and see “Hello .NET World!” printed.&lt;/p&gt;
+&lt;h3 id=&#34;creating-dlls-for-visual-studio-projects&#34;&gt;Creating DLLs for Visual Studio Projects&lt;/h3&gt;
+&lt;p&gt;The same tool setup can be used to create DLLs for use with Visual Studio projects. I created a C# web application project in Visual Studio, then modified my test scala class slightly:&lt;/p&gt;
+&lt;pre&gt;import System.Console
+class test extends Application {
+  def getStuff) = “Hello .NET World!”
+}
+&lt;/pre&gt;
+&lt;p&gt;Then recompile it with scalac-net as before. Since we want a DLL instead of an EXE file we add a /dll parameter to the ilasm invocation:&lt;/p&gt;
+&lt;pre&gt;ilasm /dll test.msil
+&lt;/pre&gt;
+&lt;p&gt;Now we’ve got a DLL ready to go. I copied the three DLLs, test.dll, predef.dll and scalaruntime.dll into my Visual Studio project to make them easy to access. Then:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Right click on the project in Visual Studio&lt;/li&gt;
+&lt;li&gt;Select “Add Reference…”&lt;/li&gt;
+&lt;li&gt;Click the “Browse” tab&lt;/li&gt;
+&lt;li&gt;Select the three DLLs you copied in.&lt;/li&gt;
+&lt;li&gt;Click “OK”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can now access your Scala class from C# quite easily. I edited Default.aspx and added:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;%= new test().getStuff() %&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;Code completion even worked. Running the project correctly shows “Hello .NET World!”.&lt;/p&gt;
+&lt;h3 id=&#34;stuff-yet-to-discover&#34;&gt;Stuff Yet To Discover&lt;/h3&gt;
+&lt;p&gt;There’s a lot of stuff I don’t know about yet, largely because I’m starting from pretty much no knowledge of .NET programming, but also a few Scala related things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unlike Ruby and Python, Scala doesn’t have a class library that’s designed to stand alone – it somewhat assumes the Java libraries will be there. Things like IO are left to the Java classes so they’d need to be abstracted away with separate Java and .NET implementations. It remains to be seen how limiting that could be.
+&lt;ul&gt;
+&lt;li&gt;Worse, I’ve seen some blog posts mention that not all of the Scala library is actually available on .NET. The XML libraries directly reference a bunch of Java IO stuff for example.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You can combine multiple classes in one DLL. When I still had test as an object, I got ‘test’ and ‘test$’ put into the DLL. When I have multiple .scala files to compile I’m not sure at what point or how they all get combined into one DLL. I’m guessing somewhere along the line putting all the files as arguments should do the trick. Otherwise it will get pretty unwieldy.&lt;/li&gt;
+&lt;li&gt;I’ve got no idea what actual deployment of this stuff is like. Last time I touched .NET that was a complete nightmare even without Scala. Hopefully if the project references all the Scala DLL files they will get bundled up in whatever way Visual Studio would normally do when preparing to distribute.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1255960347063&#34; id=&#34;footnote1:1255960347063&#34;&gt;1&lt;/a&gt; &amp;#8211; I believe this was installed along with the .NET SDK 2.0 package I grabbed &amp;#8211; I didn’t notice it being installed with just Visual Studio but I could be wrong. &lt;a href=&#34;#footlink1:1255960347063&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1255960467317&#34; id=&#34;footnote2:1255960467317&#34;&gt;2&lt;/a&gt; &amp;#8211; scalac-net seems to be a handy little wrapper around scalac that sets -target=msil and adds the right DLLs to the classpath. &lt;a href=&#34;#footlink2:1255960467317&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink3:1255960786099&#34; id=&#34;footnote3:1255960786099&#34;&gt;3&lt;/a&gt; &amp;#8211; this is the part that really requires the SDK Command Prompt and the environment variables it sets up.&lt;a href=&#34;#footlink3:1255960786099&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink4:1255960886737&#34; id=&#34;footnote4:1255960886737&#34;&gt;4&lt;/a&gt; &amp;#8211; I think under Windows DLL loading rules they can actually be anywhere on the PATH. &lt;a href=&#34;#footlink4:1255960886737&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting Into Scala</title>
+      <link>https://www.symphonious.net/2009/10/15/getting-into-scala/</link>
+      <pubDate>Thu, 15 Oct 2009 15:23:16 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/10/15/getting-into-scala/</guid>
+      <description>&lt;p&gt;When I was in Australia visiting &lt;a href=&#34;http://www.symphonious.net/2009/10/01/a-great-team/&#34;&gt;Ephox’s awesome engineering team&lt;/a&gt; recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to &lt;a href=&#34;http://www.symphonious.net/2009/09/25/the-new-cross-platform/&#34;&gt;the new cross platform problem&lt;/a&gt;&lt;a href=&#34;#footnote1:1255615173985&#34;&gt;1&lt;/a&gt;{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely&lt;a href=&#34;#footnote2:1255615348893&#34;&gt;2&lt;/a&gt;{#footlink2:1255615348893.footnote}.&lt;/p&gt;
+&lt;p&gt;So I read through the &lt;a href=&#34;http://programming-scala.labs.oreilly.com/&#34;&gt;O’Reilly Programming Scala&lt;/a&gt; book on the plane ride home&lt;a href=&#34;#footnote3:1255615446418&#34;&gt;3&lt;/a&gt;{#footlink3:1255615446418.footnote}, then jumped in and built a small but real-world project with Scala and integrated it into a Java servlet project. I think it’s given me a pretty good grounding in what Scala can do, the benefits it brings and the general state of play.&lt;/p&gt;
+&lt;h3 id=&#34;the-language&#34;&gt;The Language&lt;/h3&gt;
+&lt;p&gt;The Scala language is fantastic. Easy to learn if you have a solid programming background and just a smidgeon of functional programming knowledge&lt;a href=&#34;#footnote4:1255615598614&#34;&gt;4&lt;/a&gt;{#footlink4:1255615598614.footnote}. I’ve always been on the fence between compile time and runtime typing, but I think Scala strikes the perfect balance. It’s strictly typed at compile time, but uses a lot of inference so you don’t have to constantly declare types. I quickly came to find that there are two places where it’s incredibly handy to always specify types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Parameters. Scala requires it anyway, but it is vital documentation for anyone who wants to call that method.&lt;/li&gt;
+&lt;li&gt;Return types. Not usually required by Scala, but by being explicit you can catch quite a lot of weird errors that crop up and isolate them to the right method. If you leave the return type as inferred, the compile error you get usually comes out on the caller of a method and can be somewhat confusing. The most common error here is effectively not returning something or returning two different types by accident (usually because you expected a different return type from a method you called). This isn’t hard and fast – short, simple methods are usually best left inferred.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Having closures is definitely handy, but the benefit isn’t really in closures themselves. What really makes a difference is the libraries designed to be used with closures&lt;a href=&#34;#footnote5:1255616107622&#34;&gt;5&lt;/a&gt;{#footlink5:1255616107622.footnote}, and the functional programming style that comes naturally in Scala. Looking back at the code I’ve written, the structure really looks like something that would make sense as a mathematical equation – each method does one thing, consistently and without side-effects. More importantly though, the breakdown of methods that results winds up being quite logical and helps reusability a lot. I find that getting the split points for methods right in Java is much harder and requires more conscious thought.&lt;/p&gt;
+&lt;p&gt;Traits – wow do I ever love these things. The first key benefit I found for them was unit testing. In Java, one class would tend to be responsible for loading and processing it’s data. In Scala, traits make it so easy for the class to declare an abstract variable for the data and just provide the processing. Traits then step in to provide the loading part and provide a concrete implementation of the variable. It becomes obvious to have a &lt;em&gt;LoadFromDatabase&lt;/em&gt; trait, a &lt;em&gt;HardCodedString&lt;/em&gt; trait or a &lt;em&gt;LoadFromFile&lt;/em&gt; trait – now where the data comes from is clearly separated. In tests you just use a HardCodedString trait and there’s no need for Mocks or Stubs.&lt;/p&gt;
+&lt;p&gt;Interestingly, there is a wonderful synergy between traits and JNDI. Traits can’t accept constructor arguments and even if they could it’s ideal to just declare that you want a &lt;em&gt;new Widget() with DatabaseLoading&lt;/em&gt; and have it just work. JNDI gives you that ability – the DatabaseLoading trait just grabs the datasource from JNDI and there’s no need to tunnel parameters through to it like you would otherwise.&lt;/p&gt;
+&lt;p&gt;I’m also a big fan of the uniform access principle that Scala uses. Essentially, from the caller’s perspective, there is no visible difference between accessing a public variable and accessing a public method. So you can have a base class that declares an abstract variable, then implement it with a concrete method in a subclass and visa-versa. It’s an incredibly simple concept that gives a lot of flexibility and avoids a ton of boilerplate code.&lt;/p&gt;
+&lt;h3 id=&#34;the-tools&#34;&gt;The Tools&lt;/h3&gt;
+&lt;p&gt;This is the weak point of Scala, but it shows some promise.&lt;/p&gt;
+&lt;h4 id=&#34;testing-libraries&#34;&gt;Testing Libraries&lt;/h4&gt;
+&lt;p&gt;There are actually quite a few testing libraries in Scala – all of them somewhat difficult to get working inside an IDE or Ant build, but all quite solid and stable if you use their test runners. The xUnit equivalent is &lt;a href=&#34;http://www.scalatest.org/&#34;&gt;ScalaTest&lt;/a&gt;, I never got it working with Ant or Eclipse so gave up and moved on to &lt;a href=&#34;http://code.google.com/p/specs/&#34;&gt;Specs&lt;/a&gt;. I love it&lt;a href=&#34;#footnote6:1255617559659&#34;&gt;6&lt;/a&gt;{#footlink6:1255617559659.footnote}. The Aussie dev team recently switched from CamelCase test method names to using underscores&lt;a href=&#34;#footnote7:1255617589258&#34;&gt;7&lt;/a&gt;{#footlink7:1255617589258.footnote} for readability, but Specs takes that a few steps further by letting you use strings. For example:&lt;/p&gt;
+&lt;pre&gt;“Administrator users” should {
+    “have a password at least 8 characters long” in { …code goes here… }
+    “be in the admin group” in { …code goes here… }
+}
+&lt;/pre&gt;
+&lt;p&gt;The test output is really easy to read using the Specs runner, but it gets much less readable when using JUnit to run the tests via ant. You can avoid the outer ‘should’ block which helps readability in JUnit but it’s still not great. Fortunately, IntelliJ has support for Specs directly and lays things out pretty well, plus the normal runner isn’t bad.&lt;/p&gt;
+&lt;h4 id=&#34;standard-toolchain&#34;&gt;Standard Toolchain&lt;/h4&gt;
+&lt;p&gt;The Scala distribution comes with a good set of tools. A scala command for executing scripts and scalac for compiling classes are the main two. Both work really nicely and the scala tool is particular good for experimenting with things – especially when you’re trying to learn the type inference system.&lt;/p&gt;
+&lt;p&gt;The single biggest drawback is that scalac can’t compile Java code, so you can either have Scala code depending on Java code or Java code depending on Scala code, but can’t do both easily. This isn’t all bad, as it really encourages you to break the project down into independent libraries and reduce coupling but it would be nice to more easily mix languages.&lt;/p&gt;
+&lt;h4 id=&#34;ides&#34;&gt;IDEs&lt;/h4&gt;
+&lt;p&gt;Wow, these are terrible. The Eclipse plugin is incredibly buggy and is practically unusable. NetBeans seemed to work well but is very short on features. IntelliJ has a good set of features but has overall stability issues since you need to use an early access build of the IDE – the plugin itself seems quite stable. IntelliJ also has some support for Specs and ScalaTest rather than having to run them through JUnit which is quite nice, but it didn’t seem able to just find all the tests in my project and run them – it was limited to one package at a time. Getting Scala working in IntelliJ is an absolute nightmare and you’ll spend forever searching Google for answers. There are magic libraries you need to put in place and very cryptic error messages if you don’t have them – at least it’s a once off. Once the Scala plugin works with a released version of IntelliJ I think that will be the winner, otherwise I may have to deal with NetBeans&lt;a href=&#34;#footnote8:1255618541437&#34;&gt;8&lt;/a&gt;{#footlink8:1255618541437.footnote}.&lt;/p&gt;
+&lt;h4 id=&#34;java-libraries&#34;&gt;Java Libraries&lt;/h4&gt;
+&lt;p&gt;They work really nicely, except that Scala doesn’t use the normal java.util Collections framework. Scala has it’s own collections framework with equivalents and they are dramatically better but it does make it difficult to inter-operate with Java libraries that use Java Collections. Fortunately, Scala provides wrappers for the Java Collection types to make them act like Scala collections, but it doesn’t have wrappers for going the other way. It’s definitely not the end of the world, but does make you think a bit more about where the Java to Scala leap should be – sometimes writing a few key classes in Java can make things dramatically easier. Judicious use of implicit conversions, a scary but powerful feature of Scala, can be a big help too.&lt;/p&gt;
+&lt;p&gt;I do like the ability to specify values in Scala as @BeanProperty and have the compiler automatically generate JavaBean compliant getters and setters (or just getters if it’s a read-only value as is common in Scala).&lt;/p&gt;
+&lt;p&gt;There can also be problems with tools that manipulate bytecode since the bytecode Scala generates is compliant with the JVM specs, but often quite different to what javac would product.&lt;/p&gt;
+&lt;h3 id=&#34;the-performance&#34;&gt;The Performance&lt;/h3&gt;
+&lt;p&gt;I can’t tell the difference between Java code and Scala code. That’s roughly what other people are saying too. There are an awful lot of classes that come out of Scala code because of all the closures and traits and the like so it’s not going to work if you are tight on space such as in applets. Server side where processes are long-running and JAR size isn’t a critical concern, it will work perfectly. I would guess&lt;a href=&#34;#footnote9:1255619251560&#34;&gt;9&lt;/a&gt;{#footlink9:1255619251560.footnote}, that there are a very large number of short-lived objects being created and discarded with Scala due to the use of implicit conversions and all those closures, but garbage collectors are so heavily optimised for that use case that I can’t see any evidence that it makes a difference and the performance testing I’ve read about bears that out.&lt;/p&gt;
+&lt;p&gt;The Scala compiler implements tail-recursive optimisation and even supports an annotation so that you can mark a method as tail-recursive and get a compile error if it’s not.&lt;/p&gt;
+&lt;p&gt;In terms of scalability – Scala advocates claim that functional programming and immutable data structures that are heavily used in Scala are a key tool, if not the solution, for scalability. I don’t know and don’t really care – the applications I’m likely to write will fit nicely into the “scale by handling many requests at once” model rather than having to break up the work of each individual request over multiple threads. The problem will come in the database or web server level, not my application code. I’m watching &lt;a href=&#34;http://www.tbray.org/ongoing/When/200x/2009/09/27/Concur-dot-next&#34;&gt;Tim Bray’s Concur.next series&lt;/a&gt; with interest though.&lt;/p&gt;
+&lt;h3 id=&#34;overall&#34;&gt;Overall&lt;/h3&gt;
+&lt;p&gt;Scala is very much a tool I’m glad to now have in my toolkit. It’s not yet ready for prime time purely because of the poor IDE support, but it is excruciatingly close. I can see me advocating it’s use in Ephox quite heavily if it deploys to .NET smoothly as the cross-deployment is a massive benefit and would be worth the pain of sorting out the tooling, but it would be hard to justify if that isn’t viable yet – especially given the potential for Ruby or Python to work on both J2EE and .NET.&lt;/p&gt;
+&lt;p&gt;I don’t think it will be long before the Scala toolsets catch up and it becomes an extremely compelling option for Java server-side development.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1255615173985&#34; id=&#34;footnote1:1255615173985&#34;&gt;1&lt;/a&gt; &amp;#8211; it remains to be seen how stable/useful the .NET version of Scala is &amp;#8211; I’ve been focussed on the Java side of things for now &lt;a href=&#34;#footlink1:1255615173985&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1255615348893&#34; id=&#34;footnote2:1255615348893&#34;&gt;2&lt;/a&gt; &amp;#8211; this adds to the scepticism around the .NET version until I find time to really test it out though &lt;a href=&#34;#footlink2:1255615348893&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote3:1255615446418&#34; href=&#34;#footlink3:1255615446418&#34;&gt;3&lt;/a&gt; &amp;#8211; yay for power points in cattle-class &lt;a href=&#34;#footlink3:1255615446418&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote4:1255615598614&#34; href=&#34;#footlink4:1255615598614&#34;&gt;4&lt;/a&gt; &amp;#8211; a few months of Haskell in uni counts if you paid attention. In fact, Haskell is a particularly useful background to have as it is a very pure functional language and uses a similar static typing with inference system as Scala does. &lt;a href=&#34;#footlink4:1255615598614&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote5:1255616107622&#34; href=&#34;#footlink5:1255616107622&#34;&gt;5&lt;/a&gt; &amp;#8211; thus I question how useful closures would be in Java &lt;a href=&#34;#footlink5:1255616107622&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote6:1255617559659&#34; href=&#34;#footlink6:1255617559659&#34;&gt;6&lt;/a&gt; &amp;#8211; Actually, I think ScalaTest can do the same style of tests but I got Specs working first. &lt;a href=&#34;#footlink6:1255617559659&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote7:1255617589258&#34; href=&#34;#footlink7:1255617589258&#34;&gt;7&lt;/a&gt; &amp;#8211; sacrilege! &lt;a href=&#34;#footlink7:1255617589258&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote8:1255618541437&#34; href=&#34;#footlink8:1255618541437&#34;&gt;8&lt;/a&gt; &amp;#8211; I love the concept of it’s ant based build system, yet somehow the implementation drives me nuts every time I try to use it &lt;a href=&#34;#footlink8:1255618541437&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote9:1255619251560&#34; href=&#34;#footlink9:1255619251560&#34;&gt;9&lt;/a&gt; &amp;#8211; I’m too lazy to profile this at the moment &lt;a href=&#34;#footlink9:1255619251560&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

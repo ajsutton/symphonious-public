@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community on Symphonious</title>
+    <link>https://www.symphonious.net/categories/community/</link>
+    <description>Recent content in Community on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 06 Sep 2010 13:00:14 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/community/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Big Forking Problem</title>
+      <link>https://www.symphonious.net/2010/09/06/a-big-forking-problem/</link>
+      <pubDate>Mon, 06 Sep 2010 13:00:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/06/a-big-forking-problem/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/groupevent-coloured2_43793.png&#34; style=&#34; float: right;&#34; /&gt;Back when git and GitHub were relatively new to the mainstream, there was a &lt;a href=&#34;http://www.symphonious.net/2009/05/05/communities-and-git/&#34;&gt;big discussion about how it promoted forking and was potentially bad for community building&lt;/a&gt;. Since then GitHub has well and truly proven that it can successfully support significant community and very successful projects. Looking around GitHub though, it’s clear that not every project successfully builds community there and the tendency to fork can still become a problem.&lt;/p&gt;
+&lt;p&gt;The big difference that I see between projects thriving with GitHub and those where forking looks like more of a problem is that thriving projects have a “&lt;a href=&#34;http://enthusiasm.cozy.org/archives/2009/05/git-balene-for-knowledge&#34;&gt;campfire&lt;/a&gt;” other than the source code for people to gather around. Often that’s a mailing list, other times it’s IRC and various other technologies but there’s always one common place where the community can build. GitHub by itself is unlikely to build up such a community because there isn’t a really good way to engage everyone in conversation. As such, you get a lot of forks and people making improvements, but not really working together and often the various forks never get folded back into the original.&lt;/p&gt;
+&lt;p&gt;The good news is that despite all the forks often remaining off on their own, it doesn’t seem to be detrimental to the original project. People find the main GitHub repository through other means, mostly links on the web, so there doesn’t seem to be confusion over which fork is the “main” one. On the other hand, most of those forks represent a wasted effort which could have pushed the project forward if only there had been some communication.&lt;/p&gt;
+&lt;p&gt;Finally, it’s interesting that the GitHub model of anyone creating a fork is &lt;em&gt;far&lt;/em&gt; more successful for projects which don’t need a contributor agreement to be signed. In that case, any fork that looks promising can be pulled in without needing extra permissions, so even without the extra communication channel the effort can be utilised. With a contributor agreement, you have to reach out and get the author to sign, which is a significant barrier.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What People Want</title>
+      <link>https://www.symphonious.net/2008/09/04/what-people-want/</link>
+      <pubDate>Thu, 04 Sep 2008 13:07:42 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/09/04/what-people-want/</guid>
+      <description>&lt;p&gt;Ephox provides a bunch of different sites with feeds to help people keep up to date about what’s happening with our software and the company.  For example, &lt;a href=&#34;http://liveworks.ephox.com/&#34;&gt;LiveWorks!&lt;/a&gt; helps you learn more about our products and get the most out of them, the &lt;a href=&#34;http://releases.ephox.com/&#34;&gt;releases blog&lt;/a&gt; keeps you up to date with the latest stuff and the &lt;a href=&#34;http://blog.ephox.com/&#34;&gt;official Ephox blog&lt;/a&gt; has all the company news. Then of course there’s a range of blogs by Ephox employees like this one and they’re all gathered up at &lt;a href=&#34;http://people.ephox.com/&#34;&gt;People@Ephox&lt;/a&gt;. So guess which feed is the most popular by far?&lt;/p&gt;
+&lt;p&gt;Yep, People@Ephox. Now, People@Ephox obviously includes the posts from all our official blogs so you get the hints and tips from LiveWorks!, the release notifications and the official company news but the majority of posts that come through are from employee’s blogs discussing random stuff from Guitar Hero, to rebuilding PCs, touring around the Australian outback and even sometimes talking about work. Add to that the fairly significant number of visits to the actual People@Ephox site as well and it’s even more impressive.&lt;/p&gt;
+&lt;p&gt;Personally, I think that’s fantastic. To be honest, when I put together People@Ephox, I didn’t really expect it to be that popular – almost just checking off the “hip company that cares about it’s users” list. We do genuinely care about our users and I’m always looking for ways to stay in touch with them and make sure they’re getting the most out of our products but I would have thought the majority of people these days would only be interested in the more official sites. &lt;em&gt;I&lt;/em&gt; tend to subscribe to employee’s blogs for companies that I deal with, but everyone keeps telling me how unusual I am. At least in this case they’re not entirely right (though in many others they definitely are).&lt;/p&gt;
+&lt;p&gt;Companies spend a huge amount of time building up contact lists and trying to get clients to opt-in to receive newsletters and whatever else and while they certainly go out to far more people than People@Ephox does, there’s a really important difference.  People@Ephox really hasn’t done anything to make it easy to opt-in to. There’s no email subscriptions, no fancy Web 2.0 buttons to subscribe in a million different web based readers, not even the marketing department obligatory call to action, just an RSS feed, and people subscribe.  I’ll bet (hope) they’re far more interested in the content too.&lt;/p&gt;
+&lt;p&gt;So to all of our clients, partners and users who come to read this – thanks for taking an interest. I’d love to stay up to date with you and your companies too so please do post the URL to your blog in the comments whether it’s official or unofficial and even if it never mentions anything to do with EditLive!&lt;/p&gt;
+&lt;p&gt;UPDATE: Since it’s so easy to do, now you can subscribe via email. Just &lt;a href=&#34;http://people.ephox.com/&#34;&gt;visit the site&lt;/a&gt;, put your email address in the box, solve the captcha and click the link in the email you get. Don’t forget to thank the spammers for making the internet such a pain…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Build vs Join</title>
+      <link>https://www.symphonious.net/2008/07/28/build-vs-join/</link>
+      <pubDate>Mon, 28 Jul 2008 13:56:56 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/07/28/build-vs-join/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.k1v1n.com/2008/07/wasting-millions-trying-to-build-your.html&#34;&gt;Kevin Gamble&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I know I must sound like a broken record on this point, but the message just isn&amp;rsquo;t sinking in. What&amp;rsquo;s it going to take for people to &amp;ldquo;get&amp;rdquo; this? A million dollars or 10 million dollars. It doesn&amp;rsquo;t matter. The people are not coming. You have to go to them. It&amp;rsquo;s pretty simple actually.
+The thing is, corporate thinking is all about owning stuff. So the natural tendency is to want a community that you “own” and thus you have to build a new community and get people to come. It’s nice to see some studies highlighting how rarely that actually works though.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now this isn’t to say that you should tear down all your web properties and start using FaceBook pages instead – it just means that you have to go over to FaceBook or where ever your users hang out and interact with them there. You can still publish useful content on your own site and link to it as appropriate, just don’t expect your site to become the hub of the community.&lt;/p&gt;
+&lt;p&gt;I find the third key problem from &lt;a href=&#34;http://blogs.wsj.com/biztech/2008/07/16/why-most-online-communities-fail/&#34;&gt;the Wall Street Journal article Kevin references&lt;/a&gt; resonates a lot with me:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The third problem with online communities is how businesses go about measuring the success of their communities. Businesses say that their primary objectives are generating word-of-mouth marketing and increasing customer loyalty. Yet the metric that businesses use most often to measure success is the number of visits to the site.
+The thing about word of mouth is that it quite often is just that – words from people’s mouths. It’s not called spreading news by links to web pages or by visiting sites – it’s word of mouth and that’s incredibly hard to track. Unless you’re insanely caught up in the blogging craze you have to realize that people are more likely to recommend your products by speaking with others, or via email or IM than they are to actually publish a web page that links to yours and recommend people go join up to your community. Most companies focus on something other than creating a community site and it’s that original product that gets recommended, even if it’s because of the community site.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For example, &lt;a href=&#34;http://liveworks.ephox.com/&#34;&gt;LiveWorks!&lt;/a&gt; receives very little traffic when compared to &lt;a href=&#34;http://www.ephox.com/&#34;&gt;the main Ephox website&lt;/a&gt;, but it’s still very high up the list of referring sites but more importantly when you talk to people and say that there’s a ton of information and early access to our products on LiveWorks! they think that’s fantastic and are far more likely to recommend our editors – which live on ephox.com.&lt;/p&gt;
+&lt;p&gt;Of course, LiveWorks! doesn’t really try to be a community site – it allows comments and provides a mailing list/forum but really it’s a great big collection of useful content about our product. You can’t create an account or a profile there even though we’ve talked about doing something like that. This kind of research makes me realize why that’s never seemed like an absolute must-do idea for me.&lt;/p&gt;
+&lt;p&gt;Now the question is, where is the community around our products and how do we best go out and join it?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mailing Lists For Ning</title>
+      <link>https://www.symphonious.net/2008/01/15/mailing-lists-for-ning/</link>
+      <pubDate>Tue, 15 Jan 2008 02:50:34 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/01/15/mailing-lists-for-ning/</guid>
+      <description>&lt;p&gt;So if I build a social network on Ning I can add forums which are kind of cool except that noone actually knows that new stuff has been posted and don&amp;rsquo;t bother checking back in. It doesn&amp;rsquo;t seem to matter what options you provide – RSS feeds, offers to email notifications of new threads etc – people drift away from forums very quickly once their question has been answered. On the other hand, mailing lists tend to be harder to get people to use in the first place because you have to subscribe, but then they tend to stick around longer because they&amp;rsquo;ve already subscribed. If in that time you manage to teach them a few things they didn&amp;rsquo;t know they needed to know they hang around permanently and the community grows.&lt;/p&gt;
+&lt;p&gt;Coming back to Ning, it has lots of cool features and user management etc etc etc, but it doesn&amp;rsquo;t seem to have any kind of mailing list at all. Ideally I&amp;rsquo;d like the forums to also have a mailing list option but if not, is it possible to just have a mailing list so people can join a group and they&amp;rsquo;re automatically added to the mailing list? I can even host the mailing list software myself but it would need to be kept in sync.&lt;/p&gt;
+&lt;p&gt;It goes without saying that whatever solution I come up with would be clearly labelled as subscribing to a mailing list etc etc etc – it&amp;rsquo;s not an attempt to fool people into opting into e-mail. All done in good faith and with all the nasty little details to be thought out in full before implementation, but right now I&amp;rsquo;m brainstorming.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Off To Lotusphere (and London) I Go</title>
+      <link>https://www.symphonious.net/2008/01/04/off-to-lotusphere-and-london-i-go/</link>
+      <pubDate>Fri, 04 Jan 2008 05:05:03 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/01/04/off-to-lotusphere-and-london-i-go/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m setting off on a fairly major trip, firstly to Lotusphere in Orlando (20-24 Jan) where I&amp;rsquo;ll be facilitating a BOF session (BOF112) titled &amp;ldquo;Mashup Web 2.0 with Web Content Management&amp;rdquo;. Sadly it&amp;rsquo;s been scheduled for 7am Thursday, 24 Jan which seems like a rather silly time to expect people to be up, out of bed and ready for intelligent discussion. So if you&amp;rsquo;re around I&amp;rsquo;d really appreciate you getting out of bed early and coming along to make sure it&amp;rsquo;s not an empty room. Ephox will have a booth on the show room floor and cosponsor a couple of parties as well (&lt;a href=&#34;http://liveworks.ephox.com/2008/01/04/ephox-at-lotusphere/&#34;&gt;details here&lt;/a&gt;). I&amp;rsquo;m really looking forward to actually getting to meet some of our clients and partners – they don&amp;rsquo;t tend to drop by Australia very often and pretty much never come as far north as Brisbane.&lt;/p&gt;
+&lt;p&gt;From there it&amp;rsquo;s back over to Lake Tahoe for a fancy corporate retreat and a whole lot of major planning which should be fun.&lt;/p&gt;
+&lt;p&gt;Finally, I&amp;rsquo;ll be spending February in London to help kick our European sales along, so if people are around I&amp;rsquo;d love to catch up and meet some new people.&lt;/p&gt;
+&lt;p&gt;Since I&amp;rsquo;ll be doing a fair bit more travel in the future, I&amp;rsquo;ve joined up with Dopplr to help keep track of it and succumbed to the horrors of widgets in my sidebar to display my upcoming trips. If you&amp;rsquo;re using Dopplr I&amp;rsquo;m registered under &lt;a href=&#34;mailto:adrian@symphonious.net&#34;&gt;adrian@symphonious.net&lt;/a&gt; (screen name ajsutton) so feel free to follow &lt;a href=&#34;http://www.dopplr.com/traveller/ajsutton&#34;&gt;my trips&lt;/a&gt; and let me know if we&amp;rsquo;re passing by. I&amp;rsquo;m really looking forward to meeting new people now that I&amp;rsquo;m getting around the world some more so don&amp;rsquo;t be shy.&lt;/p&gt;
+&lt;p&gt;PS: Apologies to the Planet Ephox subscribers who have now had three posts about Lotusphere in rather quick succession.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What’s The Point Of Social Networks?</title>
+      <link>https://www.symphonious.net/2007/09/25/whats-the-point-of-social-networks/</link>
+      <pubDate>Mon, 24 Sep 2007 22:22:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/09/25/whats-the-point-of-social-networks/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s a common question – what&amp;rsquo;s the point of social networks? The most common answer is basically none. Most social networks provide yet another way to get in touch and keep in touch with people which is great but lets face it, there are about a billion different ways to communicate and leaving messages on someone&amp;rsquo;s wall only looks good compared to sending smoke signals. Some people might argue that it lets you map out and visualize your social network but seriously I know who my friends are, why don&amp;rsquo;t you? The address book has been around a long time and it still works seriously well.&lt;/p&gt;
+&lt;p&gt;I think the best way to highlight how seriously useless plain social networks are is to look at the &lt;a href=&#34;http://www.facebookobserver.com/facebook-applications/10-best-facebook-applications-for-business-professionals/&#34;&gt;10 Best Facebook Applications For Business Professionals&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Conference Calls&lt;/li&gt;
+&lt;li&gt;Voicemail&lt;/li&gt;
+&lt;li&gt;Asking Questions&lt;/li&gt;
+&lt;li&gt;Posting Video Messages&lt;/li&gt;
+&lt;li&gt;Introductions&lt;/li&gt;
+&lt;li&gt;Business Cards&lt;/li&gt;
+&lt;li&gt;Phonebook&lt;/li&gt;
+&lt;li&gt;Recommendations&lt;/li&gt;
+&lt;li&gt;Defining other people with a tag cloud&lt;/li&gt;
+&lt;li&gt;Business directory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Anyone see anything new in there? Anything remotely likely to change the face of business? Nope. Gimmicks galore and sure you can make yourself look all hip and web 2.0. Yes it&amp;rsquo;s very important to reach out, connect with your clients and be part of the discussion but social networks aren&amp;rsquo;t suddenly making it possible to do that, they add the burden of yet another way you have to do it and most of them put up all kinds of walls to make it difficult to do so.&lt;/p&gt;
+&lt;p&gt;Now that&amp;rsquo;s not to say that the idea of social software is bad – just the idea of social software with no point. What if instead of just building up communities for the heck of it, we built up communities to achieve a common goal or a series of goals? In other words, what if there was a point to it all? That&amp;rsquo;s what &lt;a href=&#34;http://www.livemocha.com/&#34;&gt;LiveMocha&lt;/a&gt; is doing by building a social network of people who want to learn a foreign language. &lt;a href=&#34;http://feeds.feedburner.com/~r/Siliconbeat/~3/160557468/&#34;&gt;Dan Kaplan put me onto LiveMocha&lt;/a&gt; and he nails the key cognitive change between what we&amp;rsquo;ll look back on as the hype of social networking and what actually stands the test of time:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The key is that, unlike so many of the wannabes in the social network game, LiveMocha’s social network is not the central focus of the site but simply a feature.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Social networks are not the point, social networks are the tool and it&amp;rsquo;s about time we started realizing that and start putting it to work. There are two ways for this to unfold, either we&amp;rsquo;ll start seeing really useful Facebook applications being built – I imagine it would have been possible for LiveMocha to be done as a Facebook application, or the explosion of different social networks will expand to the point where users simply demand openness and the ability to move their social network around.&lt;/p&gt;
+&lt;p&gt;Either way the time is coming where the social network will be a feature and a tool, not the entire system. Frankly, I can&amp;rsquo;t wait.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Openness Really Does Pay</title>
+      <link>https://www.symphonious.net/2007/09/20/openness-really-does-pay/</link>
+      <pubDate>Thu, 20 Sep 2007 10:31:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/09/20/openness-really-does-pay/</guid>
+      <description>&lt;p&gt;I got some really positive feedback on the various community/openness projects that I&amp;rsquo;ve been spearheading within Ephox from one of our OEMs today. Apparently they&amp;rsquo;ve discovered our &lt;a href=&#34;http://liveworks.ephox.com/editlive-early-access/&#34;&gt;early access program&lt;/a&gt; and are already trying out our brand new &lt;a href=&#34;http://liveworks.ephox.com/2007/09/10/introducing-express-edit/&#34;&gt;Express Edit&lt;/a&gt; functionality&lt;a id=&#34;footlink1-1190272036229&#34; class=&#34;footnote&#34; href=&#34;#footnote1-1190272036229&#34; name=&#34;footlink1-1190272036229&#34;&gt;1&lt;/a&gt;.  It&amp;rsquo;s really nice to actually hear from clients that these elements are useful as we haven&amp;rsquo;t really managed to build up a community, even if we are seeing gradually increasing traffic. For a while now we&amp;rsquo;ve had potential new employees commenting on Planet Ephox which is great, but we haven&amp;rsquo;t really heard from clients taking advantage of it, even if we&amp;rsquo;ve seen some of the indirect effects via analytics and support cases.&lt;/p&gt;
+&lt;p&gt;Now getting great feedback from one client is satisfying but it&amp;rsquo;s not the end game – of course we want to impress all our clients like this by whatever means it takes. What I find most exciting about this is that it demonstrates to the sales and marketing teams that our openness and even our engineering practices&lt;a id=&#34;footlink2-1190283842000&#34; class=&#34;footnote&#34; href=&#34;#footnote2-1190283842000&#34; name=&#34;footlink2-1190283842000&#34;&gt;2&lt;/a&gt; are actually valuable to clients, particularly OEMs where the relationship is more important and long term. The business users and product managers probably don&amp;rsquo;t care about automated tests and early access, but the engineers that have to actually integrate our product do. If we can provide them with tools like the hints and tips on &lt;a href=&#34;http://liveworks.ephox.com/&#34;&gt;LiveWorks!&lt;/a&gt; or early access to new features, they can better integrate our products and get the most out of them for the actual end users. In the end, that&amp;rsquo;s what everyone should be working towards and we can and will help out on multiple levels.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1-1190272036229&#34; name=&#34;footnote1-1190272036229&#34; href=&#34;#footlink1-1190272036229&#34;&gt;1&lt;/a&gt; &amp;#8211; Don&#39;t forget to let us know how it goes and how we could improve it btw&amp;#8230;.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1-1190272036229&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote2-1190283842000&#34; name=&#34;footnote2-1190283842000&#34; href=&#34;#footlink2-1190283842000&#34;&gt;2&lt;/a&gt; &amp;#8211; continuous integration, TDD&amp;#160;and all the other things we do to ensure quality&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2-1190283842000&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My New Favorite Comment</title>
+      <link>https://www.symphonious.net/2007/05/09/my-new-favorite-comment/</link>
+      <pubDate>Tue, 08 May 2007 14:54:38 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/09/my-new-favorite-comment/</guid>
+      <description>&lt;p&gt;One of our board members left &lt;a href=&#34;http://hamstaa.hbhau.net/2007/05/02/change-brings-opportunity/#comment-6&#34;&gt;a comment&lt;/a&gt; on &lt;a href=&#34;http://hamstaa.hbhau.net/&#34;&gt;Brett&amp;rsquo;s blog&lt;/a&gt; this morning and I love the way it meshes with my thinking that employee blogs is a crucial tool for senior management to keep up with the directions, understanding and thoughts of the rank and file:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Well, my friend I gotta say that whilst reading board papers a link to a blog is a welcome relief. I get the feedback I crave and welcome and also get a general sense of what is on the minds of your team.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I can set up blogs for Ephox employees in about 5 minutes, complete with an awesome editor :) – who&amp;rsquo;s next?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Last Click Is The Easy Bit</title>
+      <link>https://www.symphonious.net/2007/05/07/the-last-click-is-the-easy-bit/</link>
+      <pubDate>Mon, 07 May 2007 06:27:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/05/07/the-last-click-is-the-easy-bit/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m sitting here in Auckland airport transitioning through to San Francisco and there&amp;rsquo;s an interesting synergy to the stuff that&amp;rsquo;s coming through. First of all, I see that my rash of Twitter subscriptions (&lt;a href=&#34;http://twitter.com/ajsutton&#34;&gt;my twitter page&lt;/a&gt;) and my mentioning twitter in my last post has caused a few people to add me to Twitter and check out my blog.&lt;/p&gt;
+&lt;p&gt;In turn, at least one of them read a post mentioning &lt;a href=&#34;http://people.ephox.com/&#34;&gt;Planet Ephox&lt;/a&gt; and posted it to their delicious account. That in turn prompted someone else to invite me to CommunityOne (a lead-up event to JavaOne which I&amp;rsquo;ll try to get to if I can – my flight arrives about 1pm so I&amp;rsquo;ll miss half of it). What&amp;rsquo;s most interesting there is that these extra contacts, invites and awareness of Ephox are completely impossible to track. Even if you had a sophisticated cookie system across all the sites involved, you really need to know what the people are thinking to see if you&amp;rsquo;re having any effect or whether they see good things or bad things etc. If and when you get to the point that someone makes a purchase, there is likely to be a huge range of influencing factors that caused them to get there.&lt;/p&gt;
+&lt;p&gt;It interested me then that Robert Scoble pointed out the Fear of Google, and among it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Google is changing expectations of advertisers. One advertising agency exec told me she’s seeing that more and more advertisers are only willing to pay for “the last click” — she works for an airline, for instance, who wants to see ROI reports on all ads now, so it’s getting harder and harder to do creative advertising (which is where advertising agencies add their value and get their fees) in exchange for “boring” text ads. Online “pay per action” ads are training advertisers that they should be able to track everything about advertising and how well it’s working for them. Of course, as we were talking about this on the bus we rolled by a Coca Cola umbrella. I wonder how well THAT is converting!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The Coca Cola unbrella is a great example too – the aim being to make people ask for a Coke instead of any other type of Cola just because the term seems so much more common. The same thing applies to every other brand – the more people hear about your products and your company the more they&amp;rsquo;ll think of you when they&amp;rsquo;re talking to someone with a problem that your products might solve. They don&amp;rsquo;t even have to actually recommend you – they may never have seen your products, but they mention you and get them looking into your products so you have a chance.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s one of the big reasons I want to see more people at Ephox blogging (we already have most of the engineering team, product management and the CEO blogging, next I want to get the sales team on board). That&amp;rsquo;s why we created Planet Ephox and it&amp;rsquo;s why we&amp;rsquo;re starting to build a community around LiveWorks! It gets the brand out there – it&amp;rsquo;s completely untrackable but that&amp;rsquo;s ok, every so often you see chains of communication flowing in, through and around these ventures that bring good things to your business.&lt;/p&gt;
+&lt;p&gt;Stats and quantified results are great, but marketing is all about people and they are multifaceted, complex and thus extremely difficult to track accurately. Google stats appear accurate, but they&amp;rsquo;re not and that&amp;rsquo;s deceptive. You need to look at the bigger picture.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

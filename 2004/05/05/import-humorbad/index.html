@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>import humor.bad.*; | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I may have missed the mark on my attempt at an over the top, yet at least vaguely humorous reaction to Marc&rsquo;s comments about explicit or implicit imports in Java. The golden rule of coding styles should apply: do what the rest of the team is doing. Having said that, I have to point out a couple of things in response to Marc&rsquo;s update:
+
+Code get&rsquo;s read (at least) 100 times more then it gets written. (Forgot where I catched this quote) So the bit of time *you* win in typing is asking for a tough pay-back on wasted time on reading/interpretation. Please abondon the idea that you are doing someone a favor. Code gets read 100 times more than it gets written, but imports should never be handled by humans at all. Seriously, when I read Java code I never look at the import statements. Why would I? My IDE can read them, parse them and use that information far more efficiently and accurately than I ever could. It doesn&rsquo;t care if explicit or implicit imports are used, it doesn&rsquo;t care if it&rsquo;s seen that particular package before or not. When I want to know what package a particular class is in I just hover the mouse cursor over it&rsquo;s name and my IDE tells me the full package name. If I want to see the source of that class I control-alt-click the name of the class or usually the name of the method I&rsquo;m interested in. The use of implicit or explicit import statements only affects readability of those people who don&rsquo;t have a decent IDE and those people are sacrificing so much in productivity that the type of imports used are the least of their worries. For the record, both emacs and vi can be configured to use ctags and get an understanding of the contents of your project&rsquo;s source code, so you don&rsquo;t necessarily have to abandon those if you find their keyboard shortcuts make you more productive. Emacs users however will probably find that most IDEs support emacs key bindings anyway.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/05/05/import-humorbad/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/05/05/import-humorbad/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="import humor.bad.*;">
+	<meta property="og:description" content="I may have missed the mark on my attempt at an over the top, yet at least vaguely humorous reaction to Marc’s comments about explicit or implicit imports in Java. The golden rule of coding styles should apply: do what the rest of the team is doing. Having said that, I have to point out a couple of things in response to Marc’s update:
+Code get’s read (at least) 100 times more then it gets written. (Forgot where I catched this quote) So the bit of time *you* win in typing is asking for a tough pay-back on wasted time on reading/interpretation. Please abondon the idea that you are doing someone a favor. Code gets read 100 times more than it gets written, but imports should never be handled by humans at all. Seriously, when I read Java code I never look at the import statements. Why would I? My IDE can read them, parse them and use that information far more efficiently and accurately than I ever could. It doesn’t care if explicit or implicit imports are used, it doesn’t care if it’s seen that particular package before or not. When I want to know what package a particular class is in I just hover the mouse cursor over it’s name and my IDE tells me the full package name. If I want to see the source of that class I control-alt-click the name of the class or usually the name of the method I’m interested in. The use of implicit or explicit import statements only affects readability of those people who don’t have a decent IDE and those people are sacrificing so much in productivity that the type of imports used are the least of their worries. For the record, both emacs and vi can be configured to use ctags and get an understanding of the contents of your project’s source code, so you don’t necessarily have to abandon those if you find their keyboard shortcuts make you more productive. Emacs users however will probably find that most IDEs support emacs key bindings anyway.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-05-05T06:07:13+00:00">
+		<meta property="article:modified_time" content="2004-05-05T06:07:13+00:00">
+
+	<meta itemprop="name" content="import humor.bad.*;">
+	<meta itemprop="description" content="I may have missed the mark on my attempt at an over the top, yet at least vaguely humorous reaction to Marc’s comments about explicit or implicit imports in Java. The golden rule of coding styles should apply: do what the rest of the team is doing. Having said that, I have to point out a couple of things in response to Marc’s update:
+Code get’s read (at least) 100 times more then it gets written. (Forgot where I catched this quote) So the bit of time *you* win in typing is asking for a tough pay-back on wasted time on reading/interpretation. Please abondon the idea that you are doing someone a favor. Code gets read 100 times more than it gets written, but imports should never be handled by humans at all. Seriously, when I read Java code I never look at the import statements. Why would I? My IDE can read them, parse them and use that information far more efficiently and accurately than I ever could. It doesn’t care if explicit or implicit imports are used, it doesn’t care if it’s seen that particular package before or not. When I want to know what package a particular class is in I just hover the mouse cursor over it’s name and my IDE tells me the full package name. If I want to see the source of that class I control-alt-click the name of the class or usually the name of the method I’m interested in. The use of implicit or explicit import statements only affects readability of those people who don’t have a decent IDE and those people are sacrificing so much in productivity that the type of imports used are the least of their worries. For the record, both emacs and vi can be configured to use ctags and get an understanding of the contents of your project’s source code, so you don’t necessarily have to abandon those if you find their keyboard shortcuts make you more productive. Emacs users however will probably find that most IDEs support emacs key bindings anyway.">
+	<meta itemprop="datePublished" content="2004-05-05T06:07:13+00:00">
+	<meta itemprop="dateModified" content="2004-05-05T06:07:13+00:00">
+	<meta itemprop="wordCount" content="596">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="import humor.bad.*;">
+	<meta name="twitter:description" content="I may have missed the mark on my attempt at an over the top, yet at least vaguely humorous reaction to Marc’s comments about explicit or implicit imports in Java. The golden rule of coding styles should apply: do what the rest of the team is doing. Having said that, I have to point out a couple of things in response to Marc’s update:
+Code get’s read (at least) 100 times more then it gets written. (Forgot where I catched this quote) So the bit of time *you* win in typing is asking for a tough pay-back on wasted time on reading/interpretation. Please abondon the idea that you are doing someone a favor. Code gets read 100 times more than it gets written, but imports should never be handled by humans at all. Seriously, when I read Java code I never look at the import statements. Why would I? My IDE can read them, parse them and use that information far more efficiently and accurately than I ever could. It doesn’t care if explicit or implicit imports are used, it doesn’t care if it’s seen that particular package before or not. When I want to know what package a particular class is in I just hover the mouse cursor over it’s name and my IDE tells me the full package name. If I want to see the source of that class I control-alt-click the name of the class or usually the name of the method I’m interested in. The use of implicit or explicit import statements only affects readability of those people who don’t have a decent IDE and those people are sacrificing so much in productivity that the type of imports used are the least of their worries. For the record, both emacs and vi can be configured to use ctags and get an understanding of the contents of your project’s source code, so you don’t necessarily have to abandon those if you find their keyboard shortcuts make you more productive. Emacs users however will probably find that most IDEs support emacs key bindings anyway.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">import humor.bad.*;</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">import humor.bad.*;</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-05-05T06:07:13Z">May 5, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I may have missed the mark on my attempt at an over the top, yet at least vaguely humorous <a href="http://www.intencha.com/adrian/000115.php">reaction</a> to <a href="http://blogs.cocoondev.org/mpo/archives/001895.html">Marc&rsquo;s comments</a> about explicit or implicit imports in Java. The golden rule of coding styles should apply: do what the rest of the team is doing. Having said that, I have to point out a couple of things in response to Marc&rsquo;s update:</p>
+<blockquote>
+<p>Code get&rsquo;s read (at least) 100 times more then it gets written. (Forgot where I catched this quote) So the bit of time *you* win in typing is asking for a tough pay-back on wasted time on reading/interpretation. Please abondon the idea that you are doing someone a favor. Code gets read 100 times more than it gets written, but imports should never be handled by humans at all. Seriously, when I read Java code I <em>never</em> look at the import statements. Why would I? My IDE can read them, parse them and use that information far more efficiently and accurately than I ever could. It doesn&rsquo;t care if explicit or implicit imports are used, it doesn&rsquo;t care if it&rsquo;s seen that particular package before or not. When I want to know what package a particular class is in I just hover the mouse cursor over it&rsquo;s name and my IDE tells me the full package name. If I want to see the source of that class I control-alt-click the name of the class or usually the name of the method I&rsquo;m interested in. The use of implicit or explicit import statements only affects readability of those people who don&rsquo;t have a decent IDE and those people are sacrificing so much in productivity that the type of imports used are the least of their worries. For the record, both emacs and vi can be configured to use ctags and get an understanding of the contents of your project&rsquo;s source code, so you don&rsquo;t necessarily have to abandon those if you find their keyboard shortcuts make you more productive. Emacs users however will probably find that most IDEs support emacs key bindings anyway.</p>
+</blockquote>
+<blockquote>
+<p>When working in teams, you don&rsquo;t want to be CTRL-O&rsquo;ing in different styles to limit the amount of noise on cvs-diff lists. This is only true if you don&rsquo;t reformat the code into a standardized format before committing. You&rsquo;ll actually find that if you run something like Jalopy over code as part of the CVS check-in process that diffs become more useful because the layout parts of the code are all standardised so the differences you see are actual changes to what the code does or how it does it. It&rsquo;s not the way everyone likes to work and that&rsquo;s fine, as I said above – do what the rest of the team does – but it is a viable option where you&rsquo;re part of a team who are fairly firmly entrenched in using a two differing styles. Making a programmer change his coding style does reduce his productivity, depending on the programmer and how long he&rsquo;s been using the current style will depend on how much of a productivity hit they incur. And just to reiterate, the reason I prefer .* imports is because it reduces the number of interruptions while coding and the impact on readability is nil. If I were working with a very stubborn programmer who insisted on reading the import statements himself, apart from considering finding someone who makes better use of their time to work with, I&rsquo;d switch to explicit imports without batting an eyelid. Okay, maybe just one eyelid, but definitely not two…</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

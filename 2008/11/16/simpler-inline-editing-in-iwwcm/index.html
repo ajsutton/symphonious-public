@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Simpler Inline Editing In IWWCM | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="IWWCM has a component specifically to provide “inline editing” – in other words, adding links to content items so you can quickly edit, accept, reject or delete if you’re logged in as a user who has permission to do such things.  I have two problems with this approach:
+
+You have to be logged in to see the links.
+The links affect the way the page looks so you don’t see the site the same way as normal visitors.
+
+Within a portal environment or even an intranet, neither of those problems really apply, but when you’re publishing out a public website they can be an issue.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/11/16/simpler-inline-editing-in-iwwcm/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/11/16/simpler-inline-editing-in-iwwcm/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Simpler Inline Editing In IWWCM">
+	<meta property="og:description" content="IWWCM has a component specifically to provide “inline editing” – in other words, adding links to content items so you can quickly edit, accept, reject or delete if you’re logged in as a user who has permission to do such things. I have two problems with this approach:
+You have to be logged in to see the links. The links affect the way the page looks so you don’t see the site the same way as normal visitors. Within a portal environment or even an intranet, neither of those problems really apply, but when you’re publishing out a public website they can be an issue.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-11-15T16:26:41+00:00">
+		<meta property="article:modified_time" content="2008-11-15T16:26:41+00:00">
+
+	<meta itemprop="name" content="Simpler Inline Editing In IWWCM">
+	<meta itemprop="description" content="IWWCM has a component specifically to provide “inline editing” – in other words, adding links to content items so you can quickly edit, accept, reject or delete if you’re logged in as a user who has permission to do such things. I have two problems with this approach:
+You have to be logged in to see the links. The links affect the way the page looks so you don’t see the site the same way as normal visitors. Within a portal environment or even an intranet, neither of those problems really apply, but when you’re publishing out a public website they can be an issue.">
+	<meta itemprop="datePublished" content="2008-11-15T16:26:41+00:00">
+	<meta itemprop="dateModified" content="2008-11-15T16:26:41+00:00">
+	<meta itemprop="wordCount" content="345">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Simpler Inline Editing In IWWCM">
+	<meta name="twitter:description" content="IWWCM has a component specifically to provide “inline editing” – in other words, adding links to content items so you can quickly edit, accept, reject or delete if you’re logged in as a user who has permission to do such things. I have two problems with this approach:
+You have to be logged in to see the links. The links affect the way the page looks so you don’t see the site the same way as normal visitors. Within a portal environment or even an intranet, neither of those problems really apply, but when you’re publishing out a public website they can be an issue.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Simpler Inline Editing In IWWCM</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Simpler Inline Editing In IWWCM</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-11-15T16:26:41Z">November 15, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>IWWCM has a component specifically to provide “inline editing” – in other words, adding links to content items so you can quickly edit, accept, reject or delete if you’re logged in as a user who has permission to do such things.  I have two problems with this approach:</p>
+<ol>
+<li>You have to be logged in to see the links.</li>
+<li>The links affect the way the page looks so you don’t see the site the same way as normal visitors.</li>
+</ol>
+<p>Within a portal environment or even an intranet, neither of those problems really apply, but when you’re publishing out a public website they can be an issue.</p>
+<p>Fortunately, there’s nothing particularly special about the authoring component that provides these functions – it’s just a thin veneer over IWWCM remote access, which in turn is really just a defined set of URLs that you call to get stuff to happen. Thus, you can implement your own inline editing solution by generating those URLs wherever you want them.</p>
+<p>The tricky part is that the URLs have to include the document ID which is only available via WCM tags within an authoring component. With a little bit of custom code using the WCM API you can find the right ID and generate the URL you need:</p>
+<pre class="code"><span class="java_operator">&#60;%</span><span class="java_plain">@ page </span><span class="java_keyword">import</span><span class="java_operator">=</span><span class="java_literal">"java.io.*"</span><span class="java_plain"> </span><span class="java_operator">%&#62;</span>
+<span class="java_operator">&#60;%</span><span class="java_plain">@ page </span><span class="java_keyword">import</span><span class="java_operator">=</span><span class="java_literal">"java.util.*"</span><span class="java_plain"> </span><span class="java_operator">%&#62;</span>
+<span class="java_operator">&#60;%</span><span class="java_plain">@ page </span><span class="java_keyword">import</span><span class="java_operator">=</span><span class="java_literal">"javax.servlet.*"</span><span class="java_plain"> </span><span class="java_operator">%&#62;</span>
+<span class="java_operator">&#60;%</span><span class="java_plain">@ page </span><span class="java_keyword">import</span><span class="java_operator">=</span><span class="java_literal">"com.ibm.workplace.wcm.api.*"</span><span class="java_plain"> </span><span class="java_operator">%&#62;</span>
+<span class="java_operator">&#60;%</span><span class="java_plain">@ page </span><span class="java_keyword">import</span><span class="java_operator">=</span><span class="java_literal">"com.ibm.workplace.wcm.api.exceptions.*"</span><span class="java_plain"> </span><span class="java_operator">%&#62;</span>
+<span class="java_operator">&#60;%!</span>
+<span class="java_type">String</span><span class="java_plain"> getContentId</span><span class="java_separator">(</span><span class="java_type">String</span><span class="java_plain"> path</span><span class="java_separator">)</span><span class="java_plain"> </span><span class="java_separator">{</span>
+<span class="java_plain">  </span><span class="java_keyword">try</span><span class="java_plain"> </span><span class="java_separator">{</span>
+<span class="java_plain">    </span><span class="java_type">Workspace</span><span class="java_plain"> ws </span><span class="java_operator">=</span><span class="java_plain"> WCM_API</span><span class="java_separator">.</span><span class="java_plain">getRepository</span><span class="java_separator">().</span><span class="java_plain">getAnonymousWorkspace</span><span class="java_separator">();</span>
+<span class="java_plain">    path </span><span class="java_operator">=</span><span class="java_plain"> path</span><span class="java_separator">.</span><span class="java_plain">substring</span><span class="java_separator">(</span><span class="java_literal">1</span><span class="java_separator">);</span>
+<span class="java_plain">    </span><span class="java_type">int</span><span class="java_plain"> delimEntry </span><span class="java_operator">=</span><span class="java_plain"> path</span><span class="java_separator">.</span><span class="java_plain">indexOf</span><span class="java_separator">(</span><span class="java_literal">"/"</span><span class="java_separator">);</span>
+<span class="java_plain">    </span><span class="java_type">String</span><span class="java_plain"> libName </span><span class="java_operator">=</span><span class="java_plain"> path</span><span class="java_separator">.</span><span class="java_plain">substring</span><span class="java_separator">(</span><span class="java_literal"></span><span class="java_separator">,</span><span class="java_plain"> delimEntry</span><span class="java_separator">);</span>
+<span class="java_plain">    ws</span><span class="java_separator">.</span><span class="java_plain">setCurrentDocumentLibrary</span><span class="java_separator">(</span><span class="java_plain">ws</span><span class="java_separator">.</span><span class="java_plain">getDocumentLibrary</span><span class="java_separator">(</span><span class="java_plain">libName</span><span class="java_separator">));</span>
+<span class="java_plain">    </span><span class="java_type">DocumentIdIterator</span><span class="java_plain"> contentIdIterator </span><span class="java_operator">=</span><span class="java_plain"> ws</span><span class="java_separator">.</span><span class="java_plain">findContentByPath</span><span class="java_separator">(</span><span class="java_plain">path</span><span class="java_separator">);</span>
+<span class="java_plain">    </span><span class="java_keyword">if</span><span class="java_plain"> </span><span class="java_separator">(</span><span class="java_plain">contentIdIterator</span><span class="java_separator">.</span><span class="java_plain">hasNext</span><span class="java_separator">())</span><span class="java_plain"> </span><span class="java_separator">{</span>
+<span class="java_plain">      </span><span class="java_keyword">return</span><span class="java_plain"> contentIdIterator</span><span class="java_separator">.</span><span class="java_plain">next</span><span class="java_separator">().</span><span class="java_plain">toString</span><span class="java_separator">();</span>
+<span class="java_plain">    </span><span class="java_separator">}</span>
+<span class="java_plain">  </span><span class="java_separator">}</span><span class="java_plain"> </span><span class="java_keyword">catch</span><span class="java_plain"> </span><span class="java_separator">(</span><span class="java_type">Throwable</span><span class="java_plain"> t</span><span class="java_separator">)</span><span class="java_plain"> </span><span class="java_separator">{</span>
+<span class="java_plain">    t</span><span class="java_separator">.</span><span class="java_plain">printStackTrace</span><span class="java_separator">();</span>
+<span class="java_plain">  </span><span class="java_separator">}</span>
+<span class="java_plain">  </span><span class="java_keyword">return</span><span class="java_plain"> </span><span class="java_literal">""</span><span class="java_separator">;</span>
+<span class="java_separator">}</span>
+<span class="java_operator">%&#62;</span>
+<span class="java_operator">&#60;</span><span class="java_plain">script type</span><span class="java_operator">=</span><span class="java_literal">"text/javascript"</span><span class="java_operator">&#62;</span>
+<span class="java_plain">function doKeyDown</span><span class="java_separator">(</span><span class="java_plain">event</span><span class="java_separator">)</span><span class="java_plain"> </span><span class="java_separator">{</span>
+<span class="java_plain">  </span><span class="java_keyword">if</span><span class="java_plain"> </span><span class="java_separator">(</span><span class="java_plain">event</span><span class="java_separator">.</span><span class="java_plain">ctrlKey</span><span class="java_operator">==</span><span class="java_literal">1</span><span class="java_plain"> </span><span class="java_operator">&#38;&#38;</span><span class="java_plain"> event</span><span class="java_separator">.</span><span class="java_plain">altKey</span><span class="java_operator">==</span><span class="java_literal">1</span><span class="java_plain"> </span><span class="java_operator">&#38;&#38;</span><span class="java_plain"> event</span><span class="java_separator">.</span><span class="java_plain">keyCode</span><span class="java_operator">==</span><span class="java_literal">69</span><span class="java_separator">)</span><span class="java_plain"> </span><span class="java_separator">{</span>
+<span class="java_plain">    window</span><span class="java_separator">.</span><span class="java_plain">open</span><span class="java_separator">(</span><span class="java_literal">  "/wps/myportal/wcmAuthoring?wcmAuthoringAction=edit&#38;docid=&#60;%= 
+    getContentId(request.getPathInfo()) %&#62;"</span><span class="java_separator">,</span><span class="java_literal">  "lwedit"</span><span class="java_separator">);</span>
+<span class="java_plain">  </span><span class="java_separator">}</span>
+<span class="java_separator">}</span>
+<span class="java_operator">&#60;/</span><span class="java_plain">script</span><span class="java_operator">&#62;</span>
+</pre>
+<p>Now you have a magical bit of JavaScript that will popup the edit window whenever you type control-alt-E. If you’re not logged in it will prompt you to authenticate first, then take you to the edit page.</p>
+<p>PS: The code is rubbish, but it proves out the idea nicely.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Symphonious</title>
+    <link>https://www.symphonious.net/categories/linux/</link>
+    <description>Recent content in Linux on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sun, 12 Mar 2017 14:42:04 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Replacing Symlinks with Hardlinks</title>
+      <link>https://www.symphonious.net/2017/03/13/replacing-symlinks-with-hardlinks/</link>
+      <pubDate>Sun, 12 Mar 2017 14:42:04 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/03/13/replacing-symlinks-with-hardlinks/</guid>
+      <description>&lt;p&gt;Symlinks have been causing me grief lately.  Our build tool, buck, loves creating symlinks but publishes corrupt cache artefacts for any build rule that includes a symlink amongst it&amp;rsquo;s output.&lt;/p&gt;
+&lt;p&gt;We also wind up calling out to npm to manage JavaScript dependencies and it has an annoying (for us) habit of resolving symlinks when processing files and then failing to find required libraries because the node_modules folder was back where the symlink was, not with the original file. Mostly this problem is caused by buck creating so many symlinks.&lt;/p&gt;
+&lt;p&gt;So it&amp;rsquo;s useful to be able to get rid of symlinks which can be done with the handy -L or –dereference option to cp. Then instead of copying the symlink you copy the file it points to. Avoids all the problems with buck and npm but wastes lots of disk space and means that changes to the original file are no longer reflected in the new copy (so watching files doesn&amp;rsquo;t work).&lt;/p&gt;
+&lt;p&gt;Assuming our checkout is on a single file system (which seems reasonable) we can get the best of both worlds by using hard links.  cp has a handy option for that too -l or –link. But since buck gave us a symlink to start with it just gives us a hard link to the symlink that points to the original file.&lt;/p&gt;
+&lt;p&gt;So combining the two options, cp -Ll, should be exactly what we want. And if you&amp;rsquo;re using coreutils 8.25 or above it is. cp will dereference the symlink and create a hard link to the original file. If you&amp;rsquo;re using coreutils &lt;em&gt;prior&lt;/em&gt; to 8.25 cp will just copy the symlink. Hitting a bug in coreutils is pretty much the definition of the world being out to get you.&lt;/p&gt;
+&lt;p&gt;Fortunately, we can work around the issue with a bit of find magic:&lt;/p&gt;
+&lt;pre&gt;find ${DIR} -type l -exec bash -c &#39;ln -f &#34;$(readlink -m &#34;$0&#34;)&#34; &#34;$0&#34;&#39; {} \;&lt;/pre&gt;
+&lt;p&gt;‘find -type l&amp;rsquo; will find all symlinks.  For each of those we execute some bash, reading from inside out, to deference the symlink with readlink -m then use ln to create a hard link with the -f option to force it to overwrite the existing symlink.&lt;/p&gt;
+&lt;p&gt;Good times…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fun with Nvidia Drivers and Fedora Upgrades</title>
+      <link>https://www.symphonious.net/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/</link>
+      <pubDate>Tue, 06 Dec 2016 21:02:34 +0000</pubDate>
+      <guid>https://www.symphonious.net/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/</guid>
+      <description>&lt;p&gt;After any major Fedora upgrade my system loses the proprietary nvidia drivers that make X actually work (I&amp;rsquo;ve never successfully gotten the nouveau drivers to handle my card and multi-monitor setup) so the system reboots and simply presents an “oops, something went wrong” screen.&lt;/p&gt;
+&lt;p&gt;The issue seems to be that the nvidia driver doesn&amp;rsquo;t recompile for the new kernel, despite the fact that I&amp;rsquo;m using akmod packages which should in theory automatically recompile for new kernels.&lt;/p&gt;
+&lt;p&gt;The tell-tale sign is:&lt;/p&gt;
+&lt;pre&gt;[   161.484] (II) LoadModule: &#34;nv&#34;
+[   161.484] (WW) Warning, couldn&#39;t open module nv
+[   161.484] (II) UnloadModule: &#34;nv&#34;
+[   161.484] (II) Unloading nv
+[   161.484] (EE) Failed to load module &#34;nv&#34; (module does not exist, 0)
+&lt;/pre&gt;
+&lt;p&gt;in the Xorg logs.&lt;/p&gt;
+&lt;p&gt;Some digging reveals that the akmod recompilation process &lt;em&gt;should&lt;/em&gt; be triggered by /etc/kernel/postinst.d/akmodsposttrans but for whatever reason that didn&amp;rsquo;t run.&lt;/p&gt;
+&lt;p&gt;The key piece of that script was running akmods similar to:&lt;/p&gt;
+&lt;pre&gt;/usr/sbin/akmods --from-kernel-posttrans --kernels 4.8.11-300.fc25.x86_64&lt;/pre&gt;
+&lt;p&gt;The last argument is the current kernel version, which should match the directory name in /lib/modules/ – there will likely be a few options, either run the command for each of them or pick the latest which is likely to be the one missing the nvidia drivers.&lt;/p&gt;
+&lt;p&gt;Run that script, reboot and everything came back just fine, though there is likely a better way to do it…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Display Port Monitor Wakes Up a Few Seconds After Being Suspending on Linux</title>
+      <link>https://www.symphonious.net/2015/08/09/display-port-monitor-wakes-up-a-few-seconds-after-being-suspending-on-linux/</link>
+      <pubDate>Sat, 08 Aug 2015 21:41:18 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/08/09/display-port-monitor-wakes-up-a-few-seconds-after-being-suspending-on-linux/</guid>
+      <description>&lt;p&gt;I have a dual monitor setup with Linux where one display is connected via DisplayPort and the other via DVI, both from an Nvidia graphics card. When the screen is locked both displays go black, the DVI monitor says it&amp;rsquo;s entering power save mode and the DisplayPort monitor says “No input” at which point both monitors turn back on displaying the unlock screen.&lt;/p&gt;
+&lt;p&gt;Playing with xset dpms force standby|suspend|off gave a variety of effects, sometimes the DisplayPort stayed off but the DVI turned back on, sometimes the DisplayPort went black but didn&amp;rsquo;t turn off etc.&lt;/p&gt;
+&lt;p&gt;Ultimately though the solution was to disable the “DP Auto Switch” and “HDMI Auto Switch” setting on the DisplayPort monitor. I imagine on other monitors this is equivalent to auto detecting the input source. Now the default Linux settings do the right thing and turn both monitors off after a while, they stay off until I move the mouse and then both turn back on perfectly.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>I Love mod_proxy | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about.  When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.
+My latest use for it was to add name based virtual host support to two completely separate virtual machines.  One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc.  The firewall however can only forward connections on a given port to one VM.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/11/01/i-love-mod_proxy/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/11/01/i-love-mod_proxy/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="I Love mod_proxy">
+	<meta property="og:description" content="After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about. When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.
+My latest use for it was to add name based virtual host support to two completely separate virtual machines. One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc. The firewall however can only forward connections on a given port to one VM.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-11-01T08:48:50+00:00">
+		<meta property="article:modified_time" content="2008-11-01T08:48:50+00:00">
+
+	<meta itemprop="name" content="I Love mod_proxy">
+	<meta itemprop="description" content="After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about. When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.
+My latest use for it was to add name based virtual host support to two completely separate virtual machines. One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc. The firewall however can only forward connections on a given port to one VM.">
+	<meta itemprop="datePublished" content="2008-11-01T08:48:50+00:00">
+	<meta itemprop="dateModified" content="2008-11-01T08:48:50+00:00">
+	<meta itemprop="wordCount" content="176">
+	<meta itemprop="keywords" content="Apache,Code and Geek Stuff,System Administration">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="I Love mod_proxy">
+	<meta name="twitter:description" content="After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about. When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.
+My latest use for it was to add name based virtual host support to two completely separate virtual machines. One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc. The firewall however can only forward connections on a given port to one VM.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">I Love mod_proxy</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">I Love mod_proxy</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-11-01T08:48:50Z">November 1, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about.  When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.</p>
+<p>My latest use for it was to add name based virtual host support to two completely separate virtual machines.  One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc.  The firewall however can only forward connections on a given port to one VM.</p>
+<p>The solution then is to forward the traffic to Apache and configure mod_proxy within name based virtual hosts. Effectively Apache is acting as an intelligent HTTP router and I can add any number of VMs by adding a new CNAME and virtual host entry.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

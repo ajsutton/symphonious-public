@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JSON Type Definitions | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="In Teku, we&rsquo;ve come up with a new way to both serialize/deserialize objects to JSON and generate OpenAPI documentation from the same declarative source. This significantly reduces the amount of boiler-plate code we have to write and also avoids a lot of bugs where the generated JSON diverged from the OpenAPI.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2022/05/06/json-type-definitions/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2022/05/06/json-type-definitions/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JSON Type Definitions">
+	<meta property="og:description" content="In Teku, we’ve come up with a new way to both serialize/deserialize objects to JSON and generate OpenAPI documentation from the same declarative source. This significantly reduces the amount of boiler-plate code we have to write and also avoids a lot of bugs where the generated JSON diverged from the OpenAPI.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2022-05-06T19:27:00+10:00">
+		<meta property="article:modified_time" content="2022-05-06T19:27:00+10:00">
+
+	<meta itemprop="name" content="JSON Type Definitions">
+	<meta itemprop="description" content="In Teku, we’ve come up with a new way to both serialize/deserialize objects to JSON and generate OpenAPI documentation from the same declarative source. This significantly reduces the amount of boiler-plate code we have to write and also avoids a lot of bugs where the generated JSON diverged from the OpenAPI.">
+	<meta itemprop="datePublished" content="2022-05-06T19:27:00+10:00">
+	<meta itemprop="dateModified" content="2022-05-06T19:27:00+10:00">
+	<meta itemprop="wordCount" content="1458">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JSON Type Definitions">
+	<meta name="twitter:description" content="In Teku, we’ve come up with a new way to both serialize/deserialize objects to JSON and generate OpenAPI documentation from the same declarative source. This significantly reduces the amount of boiler-plate code we have to write and also avoids a lot of bugs where the generated JSON diverged from the OpenAPI.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JSON Type Definitions</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JSON Type Definitions</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-05-06T19:27:00+10:00">May 6, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>In Teku, we&rsquo;ve come up with a new way to both serialize/deserialize objects to JSON and generate OpenAPI documentation from the same declarative source. This significantly reduces the amount of boiler-plate code we have to write and also avoids a lot of bugs where the generated JSON diverged from the OpenAPI.</p>
+<p>Previously, Teku&rsquo;s JSON serialization and deserialization was controlled by a set of custom classes with a bunch of annotations added to define the JSON serialization. The OpenAPI speicfication utilised those, plus a bunch more annotations to generate the OpenAPI.</p>
+<p>As an example of how this works, let&rsquo;s look at the get block root API.  It returns data like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;root&#34;</span>: <span style="color:#e6db74">&#34;0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To generate that with the old system we&rsquo;d need to create two classes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GetBlockRootResponse</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@JsonProperty</span>(<span style="color:#e6db74">&#34;data&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> Root data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@JsonCreator</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">GetBlockRootResponse</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@JsonProperty</span>(<span style="color:#e6db74">&#34;data&#34;</span>) <span style="color:#66d9ef">final</span> Root data) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> data;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Root</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Schema</span>(
+</span></span><span style="display:flex;"><span>      type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;string&#34;</span>, 
+</span></span><span style="display:flex;"><span>      format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;byte&#34;</span>, 
+</span></span><span style="display:flex;"><span>      description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Bytes32 hexadecimal&#34;</span>,
+</span></span><span style="display:flex;"><span>      example <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> Bytes32 root;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@JsonCreator</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Root</span>(<span style="color:#a6e22e">@JsonProperty</span>(<span style="color:#e6db74">&#34;root&#34;</span>) <span style="color:#66d9ef">final</span> Bytes32 root) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> root;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And then to generate the OpenAPI we&rsquo;d need additional annotations on the API handler method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@OpenApi</span>(
+</span></span><span style="display:flex;"><span>    path <span style="color:#f92672">=</span> ROUTE,
+</span></span><span style="display:flex;"><span>    method <span style="color:#f92672">=</span> HttpMethod.<span style="color:#a6e22e">GET</span>,
+</span></span><span style="display:flex;"><span>    summary <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Get block root&#34;</span>,
+</span></span><span style="display:flex;"><span>    tags <span style="color:#f92672">=</span> {TAG_BEACON},
+</span></span><span style="display:flex;"><span>    description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Retrieves hashTreeRoot of BeaconBlock/BeaconBlockHeader&#34;</span>,
+</span></span><span style="display:flex;"><span>    responses <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OpenApiResponse</span>(
+</span></span><span style="display:flex;"><span>        status <span style="color:#f92672">=</span> RES_OK,
+</span></span><span style="display:flex;"><span>        content <span style="color:#f92672">=</span> <span style="color:#a6e22e">@OpenApiContent</span>(from <span style="color:#f92672">=</span> GetBlockRootResponse.<span style="color:#a6e22e">class</span>)),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OpenApiResponse</span>(status <span style="color:#f92672">=</span> RES_BAD_REQUEST),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OpenApiResponse</span>(status <span style="color:#f92672">=</span> RES_NOT_FOUND),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OpenApiResponse</span>(status <span style="color:#f92672">=</span> RES_INTERNAL_ERROR)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle</span>(<span style="color:#a6e22e">@NotNull</span> <span style="color:#66d9ef">final</span> Context ctx) <span style="color:#66d9ef">throws</span> Exception { ... }
+</span></span></code></pre></div><p>There are a number of drawbacks to this approach. Firstly, that&rsquo;s quite a simple format for JSON output but we&rsquo;ve had to define two separate classes to model it in Java. Secondly, the <code>@Schema</code> attestation on the <code>Bytes32 root</code> needs to include quite a few options to correctly define the byte32 object in the OpenAPI which has to be repeated for every Bytes32 field in the API. We can extract the actual string values as constants, but the annotation has to be added correctly each time. And that <code>Bytes32</code> is actually an interface from a third-party library so we still need a custom serializer for it.</p>
+<p>The biggest issue though is that the OpenAPI and the actual JSON serialization is only fairly losely tied together. There&rsquo;s nothing to stop the handler from returning a response code that wasn&rsquo;t listed in the OpenAPI, or even returning data that isn&rsquo;t of type <code>GetBlockRootResponse</code>.</p>
+<p>Fundamentally, trying to use Java classes to define a JSON data structure is just a really poor match. Layering on more annotations and more reflection to also generate the OpenAPI documentation from those classes just makes the problem worse. So we&rsquo;ve come up with an alternative approach based on the idea of type definitions.</p>
+<p>With this approach, we define a <code>SerializableTypeDefinition</code> which specifies how to convert a class - our reguar internal data structure - into JSON, using a declarative approach.  Here&rsquo;s what it looks like for the block root response:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> StringValueTypeDefinition<span style="color:#f92672">&lt;</span>Bytes32<span style="color:#f92672">&gt;</span> BYTES32_TYPE <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    DeserializableTypeDefinition.<span style="color:#a6e22e">string</span>(Bytes32.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">formatter</span>(Bytes32::toHexString)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">parser</span>(Bytes32::fromHexString)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">example</span>(<span style="color:#e6db74">&#34;0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">description</span>(<span style="color:#e6db74">&#34;Bytes32 hexadecimal&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;byte&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> SerializableTypeDefinition<span style="color:#f92672">&lt;</span>Bytes32<span style="color:#f92672">&gt;</span> GET_ROOT_RESPONSE <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      SerializableTypeDefinition.<span style="color:#a6e22e">object</span>(Bytes32.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">withField</span>(
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#34;data&#34;</span>,
+</span></span><span style="display:flex;"><span>              SerializableTypeDefinition.<span style="color:#a6e22e">object</span>(Bytes32.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span>                  .<span style="color:#a6e22e">withField</span>(<span style="color:#e6db74">&#34;root&#34;</span>, BYTES32_TYPE, Function.<span style="color:#a6e22e">identity</span>())
+</span></span><span style="display:flex;"><span>                  .<span style="color:#a6e22e">build</span>(),
+</span></span><span style="display:flex;"><span>              Function.<span style="color:#a6e22e">identity</span>())
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">build</span>();
+</span></span></code></pre></div><p>The first part - <code>BYTES32_TYPE</code> is a reusable definition for serializing a <code>Bytes32</code>. It&rsquo;s represented as a String in the JSON, so we provide a <code>formatter</code> and a <code>parser</code> to convert a <code>Bytes32</code> to a <code>String</code> and back.  The <code>example</code>, <code>description</code> and <code>format</code> provide the additional documentation required for the OpenAPI output.</p>
+<p>The second part - <code>GET_ROOT_RESPONSE</code> defines the two objects involved in the JSON, the outer wrapper which is an object with a single field called <code>data</code>. The <code>data</code> field in turn is a single field object with a <code>root</code> property.  The <code>root</code> field is a bytes32 field so uses that reusable definition. We could extract the <code>data</code> object as a reusable definition too but since it&rsquo;s only used here it&rsquo;s simpler to define it inline.</p>
+<p>The <code>withField</code> call in that definition takes three things - the name of the field, the type of the field and a getter <code>Function</code> which maps from the source value to the value for the field.  In this case those getter functions are both just <code>Function.identity()</code> because the only data we need is the <code>Bytes32</code> root value, so we just pass it through the layers of JSON objects unchanged until it gets used as the value for the <code>root</code> field and actually serialized by the <code>formatter</code> specified in <code>BYTES32_TYPE</code>. In other situations, where we have more complex data structures, the getter function could perform calculations or just be a reference to an actually <code>get*()</code> method in the Java object.</p>
+<p>Those getters provide one of the key benefits of this approach because they decouple the internal Java object holding the data from the external JSON representation. That allows us to refactor the internal representation we use to best suit our code, while maintaining a stable external API. Whereas with the annotation based approach, changing the structure of the object would automatically change the structure of the resulting JSON.</p>
+<p>That same type definition can be used to generate an OpenAPI specification for the JSON. Most of the information required for the OpenAPI is inferred from the way we defined the serialization. We know <code>GET_ROOT_RESPONSE</code> is an object and it has a <code>data</code> field, we know the type of that field etc. We can add an additional description to any of those types to provide more documentation, just like we did for <code>BYTES32_TYPE</code>.</p>
+<p>One final detail here is that the above object type is a <code>SerializableTypeDefinition</code> so it can convert from an internal type to JSON, but it can&rsquo;t parse JSON back to the internal type. We can also create a <code>DeserializableTypeDefintion</code> for objects which then require providing both a getter and a setter for each field (a builder can also be used, allowing for immutable types). Most of the time we only need to serialize though so there&rsquo;s no need to define how to parse the type.</p>
+<p>The final piece is to provide the definition of the actual REST endpoint - equivalent to the <code>@OpenApi</code> annotation in the original version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EndpointMetadata.<span style="color:#a6e22e">get</span>(ROUTE)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">summary</span>(<span style="color:#e6db74">&#34;Get block root&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">tags</span>(TAG_BEACON)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">description</span>(<span style="color:#e6db74">&#34;Retrieves hashTreeRoot of BeaconBlock/BeaconBlockHeader&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">response</span>(SC_OK, <span style="color:#e6db74">&#34;Request successful&#34;</span>, GET_ROOT_RESPONSE)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withBadRequestResponse</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withNotFoundResponse</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withInternalErrorResponse</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">build</span>();
+</span></span></code></pre></div><p>While these simple examples are fairly similar, the type definitions approach results in far less boilerplate code. That&rsquo;s not the main advantage though.</p>
+<p>The type definitions provide an explicit mapping from our internal classes to the serialization we need on the API. There&rsquo;s no need to create custom classes just to define the API, or to spread Jackson annotations all through our internal code. Most importantly there&rsquo;s no risk that renaming a class or field will unexpectedly change the external API.</p>
+<p>The <code>EndpointMetadata</code> and type definitions also build a simple to use model of the types and the expected behaviour of the endpoint. We&rsquo;ve added a very thin wrapper around Javalin (which we were already using) that checks the responses being sent actually match what is declared in the metadata (and thus in the OpenAPI generated from it). Unfortunately those checks are still occurring at runtime, but it means that unit tests will fail if the OpenAPI doesn&rsquo;t match where previously it was very difficult to add tests that check the OpenAPI and responses actually match.</p>
+<p>For Teku, there&rsquo;s another big advantage - we can create type definitions straight off the SSZ schemas we already have for the various types defined in the beacon chain spec. Given the majority of responses from the standard REST API are JSON versions of the SSZ objects, we save a <em>ton</em> of code by not having to redefine the type for JSON.  For example, the endpoint to get a validator from a state defines it&rsquo;s response type as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SerializableTypeDefinition<span style="color:#f92672">&lt;</span>StateValidatorData<span style="color:#f92672">&gt;</span> DATA_TYPE <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    SerializableTypeDefinition.<span style="color:#a6e22e">object</span>(StateValidatorData.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withField</span>(<span style="color:#e6db74">&#34;index&#34;</span>, UINT64_TYPE, StateValidatorData::getIndex)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withField</span>(<span style="color:#e6db74">&#34;balance&#34;</span>, UINT64_TYPE, StateValidatorData::getBalance)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withField</span>(<span style="color:#e6db74">&#34;status&#34;</span>, STATUS_TYPE, StateValidatorData::getStatus)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withField</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;validator&#34;</span>,
+</span></span><span style="display:flex;"><span>            Validator.<span style="color:#a6e22e">SSZ_SCHEMA</span>.<span style="color:#a6e22e">getJsonTypeDefinition</span>(),
+</span></span><span style="display:flex;"><span>            StateValidatorData::getValidator)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">build</span>();
+</span></span></code></pre></div><p>The index, balance and status are additional fields that aren&rsquo;t part of the SSZ definitions so have been added, but the <code>validator</code> field is just a JSON version of the Validator type from the spec. So rather than redefine it, we can just get the SSZ schema and ask it for it&rsquo;s JSON type definition which is automatically created. And the getter (<code>StateValidatorData::getValidator</code>) is just returning the exact <code>Validator</code> instance we got from the <code>BeaconState</code>.</p>
+<p>We initially adopted this new approach for the whole validator key manager API which confirmed it worked well. We&rsquo;re now in the process of converting our existing beacon node API over to the new style. We&rsquo;re also using parts of it to create the JSON we send to the execution layer calls and plan to use more. Eventually we&rsquo;ll replace all our Jackson annotation based JSON handling over to use type definitions.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Test Driven Development And The Myth Of Better Code | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Claim: TDD Generates High Quality, Maintainable Code
+Proponents of TDD argue that by writing the tests first, you are forced to focus on how the component will be used and thus will come up with a better design. My experience has actually been the opposite; TDD encourages you to just do whatever needs to be done to make the test pass and not think about design at all. I&rsquo;ve never copied and pasted code so much in my life and the number of times I&rsquo;ve written code that&rsquo;s so messy I feel like I need a shower is getting scary. That&rsquo;s okay though, it&rsquo;s meant to be that way. TDD encourages short-sightedness, short-cuts and general sloppiness and that&rsquo;s a good thing.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/02/27/test-driven-development-and-the-myth-of-better-code/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/02/27/test-driven-development-and-the-myth-of-better-code/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Test Driven Development And The Myth Of Better Code">
+	<meta property="og:description" content="Claim: TDD Generates High Quality, Maintainable Code Proponents of TDD argue that by writing the tests first, you are forced to focus on how the component will be used and thus will come up with a better design. My experience has actually been the opposite; TDD encourages you to just do whatever needs to be done to make the test pass and not think about design at all. I’ve never copied and pasted code so much in my life and the number of times I’ve written code that’s so messy I feel like I need a shower is getting scary. That’s okay though, it’s meant to be that way. TDD encourages short-sightedness, short-cuts and general sloppiness and that’s a good thing.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-02-27T09:44:08+00:00">
+		<meta property="article:modified_time" content="2006-02-27T09:44:08+00:00">
+
+	<meta itemprop="name" content="Test Driven Development And The Myth Of Better Code">
+	<meta itemprop="description" content="Claim: TDD Generates High Quality, Maintainable Code Proponents of TDD argue that by writing the tests first, you are forced to focus on how the component will be used and thus will come up with a better design. My experience has actually been the opposite; TDD encourages you to just do whatever needs to be done to make the test pass and not think about design at all. I’ve never copied and pasted code so much in my life and the number of times I’ve written code that’s so messy I feel like I need a shower is getting scary. That’s okay though, it’s meant to be that way. TDD encourages short-sightedness, short-cuts and general sloppiness and that’s a good thing.">
+	<meta itemprop="datePublished" content="2006-02-27T09:44:08+00:00">
+	<meta itemprop="dateModified" content="2006-02-27T09:44:08+00:00">
+	<meta itemprop="wordCount" content="2070">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Test Driven Development And The Myth Of Better Code">
+	<meta name="twitter:description" content="Claim: TDD Generates High Quality, Maintainable Code Proponents of TDD argue that by writing the tests first, you are forced to focus on how the component will be used and thus will come up with a better design. My experience has actually been the opposite; TDD encourages you to just do whatever needs to be done to make the test pass and not think about design at all. I’ve never copied and pasted code so much in my life and the number of times I’ve written code that’s so messy I feel like I need a shower is getting scary. That’s okay though, it’s meant to be that way. TDD encourages short-sightedness, short-cuts and general sloppiness and that’s a good thing.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Test Driven Development And The Myth Of Better Code</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Test Driven Development And The Myth Of Better Code</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-02-27T09:44:08Z">February 27, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><h3 id="claim160tdd160generates-high160quality-maintainable160code">Claim: TDD Generates High Quality, Maintainable Code</h3>
+<p>Proponents of TDD argue that by writing the tests first, you are forced to focus on how the component will be used and thus will come up with a better design. My experience has actually been the opposite; TDD encourages you to just do whatever needs to be done to make the test pass and not think about design at all. I&rsquo;ve never copied and pasted code so much in my life and the number of times I&rsquo;ve written code that&rsquo;s so messy I feel like I need a shower is getting scary. That&rsquo;s okay though, it&rsquo;s meant to be that way. TDD encourages short-sightedness, short-cuts and general sloppiness and that&rsquo;s a good thing.</p>
+<p>Since the first code we wrote was so bad, any professional developer will feel compelled to invest time in cleaning it up and that&rsquo;s where the refactoring step in TDD comes in. The tests pass and we&rsquo;ve done all the grunt work and head scratching to get the code to work, now we can devote all our energy to making it clean, clear and maintainable. In the traditional approach, the developer tries to get the code to work while at the same time trying to keep it clean and maintainable – there&rsquo;s a constant struggle between wanting to just try this approach quickly to see if it will work and wanting to avoid creating an unmaintainable mess. Often, this struggle results in mediocre code being developed that works and is just good enough for the programmer to get lazy and not clean it up. With the mess that TDD makes, your conscience won&rsquo;t let you sleep at night if you don&rsquo;t take the time to clean it up. The odd thing about refactoring is that the biggest hurdle is starting. Once you start refactoring code you get into it and don&rsquo;t stop until the code is beautiful but before you start it just seems like hard work so having your conscience nagging at you is a definite advantage.</p>
+<p>The other advantage of designing last is that you have complete knowledge of the code before you start designing. You won&rsquo;t suddenly find a corner case that doesn&rsquo;t fit into your plan and you won&rsquo;t have the remnants of failed attempts to make it work hanging around in the code base. To an extent it&rsquo;s true that the design just &ldquo;falls out&rdquo; of the tests – when you write the tests, you think of all the things you&rsquo;d like in the public API and they get encoded in the test cases. The internal design is only minimally influenced by the test cases and so the process of refactoring is really the process of designing the internals of the component. It may be cleaner to convert the input passed into the public APIs to an internal format to work with or there may be opportunities to reuse code. It&rsquo;s important to note here that you shouldn&rsquo;t be limited by the refactoring options provided by your IDE – there are a huge range of ways to refactor code that no IDE will ever provide an automatic method for. With passing tests to back you up, it should be easy to refactor by hand without introducing errors. By focussing exclusively on the design during refactoring, developers are more likely to find the best design and the result is cleaner, more maintainable code; even if the first draft was plain ugly.</p>
+<p>Working with Doug, I&rsquo;ve found that the refactoring process works particularly well when one person writes the code and then flicks the keyboard to their partner to do the refactoring. This ensures that there&rsquo;s a fresh pair of eyes doing the refactoring work and since the &ldquo;hands-off&rdquo; pair takes a higher-level view of the code they are more likely to see opportunities to refactor and clean up the code. It also provides a brief break for the person who had been coding while their partner sets themselves up to attack the refactoring.</p>
+<h3 id="claim160reduces-the-number-of-bugs-by-ensuring-complete-test-coverage">Claim: Reduces The Number Of Bugs By Ensuring Complete Test Coverage</h3>
+<p>Since you write the tests first and only write the minimum code required to make the tests pass you should wind up with pretty much 100% code coverage. Everyone knows that 100% code coverage means that your product is free from bugs don&rsquo;t they? Obviously TDD isn&rsquo;t the panacea that everyone&rsquo;s been looking for. Even if you have 100% code coverage, there&rsquo;s no guarantee that your tests are right or that you didn&rsquo;t miss a corner case. How can you miss a corner case if you&rsquo;ve covered every line? There&rsquo;s a couple of ways.</p>
+<ol>
+<li>Your code coverage tool is counting lines, not paths. Every time there&rsquo;s an if statement in your code there&rsquo;s two paths – one where the if evaluates to true and one where it evaluates to false. Most code coverage tools work on lines and so they only check that you covered the true case and ignore the fact that you should also have a test that <em>doesn&rsquo;t</em> execute the lines of code in the if block. Loops can create an infinite number of possible paths through your code – perhaps your algorithm to calculate pi breaks on the millionth decimal place but works for every other case. Usually it&rsquo;s not worth executing every possible path through your code but you need to execute the major ones and code coverage reports won&rsquo;t always help you identify them. That said, many code coverage tools have a mode to work with blocks instead of lines which can be more accurate in this regard.</li>
+<li>You may have executed the code, but not checked all the possible results. Perhaps the code was executed in the setup phase of a test and so the result wasn&rsquo;t checked. Maybe the method did what you expected and tested for but also did something completely unexpected that you would never have dreamed of writing a check for.</li>
+</ol>
+<p>That said, this isn&rsquo;t a failing of TDD, it&rsquo;s a failing of testing in general. At least with TDD you have some tests and you get into the habit of writing them every time. As an added bonus TDD can make writing tests fun and rewarding. Having to sit down and write tests after you&rsquo;ve gotten the code working is tedious and boring – you never think you&rsquo;ll find any problems, so why bother doing it, and if you do find a problem it just means you&rsquo;ve created more work for yourself.  With TDD writing the tests becomes an intellecual challange – you know the code isn&rsquo;t right but how do get things into the exact scenario that causes it to break? Like all good games, TDD even provides levels – the first test you write is easy, it&rsquo;s guaranteed to break. As you write more tests though you cover all of the obvious problems and starting getting into the esoteric situations that take real skills and strategy to write a test that fails. TDD proponents regularly talk about how seeing the greeen bar showing all tests passing is a feel-good moment and gives confidence but seeing the bar go red is just as big a reward when you&rsquo;re in test writing mode. Then you get to switch modes and try and make the bar green again.</p>
+<p>The testing game works particularly well when paring because you can write your failing test then flick the keyboard over to your pair with a smug look to let them try and make your test pass. Three of us wound up working on a difficult problem one day and it turned into a game of TDD pong – one person would write a test that failed, the second person had to make it pass then the third person wrote another failing test and flicked back to the first person. The challenge was not just about breaking or fixing the code but doing it in the simplest way possible.</p>
+<p>The biggest danger with TDD in this area though is that it encourages you to not code defensively. You write the simplest code that could possibly work. Often this means that you just know the code you&rsquo;re writing is wrong but it&rsquo;s the simplest thing and it does make all the tests pass. Take this as a challenge to find the case that does fail and don&rsquo;t stop until it breaks or you&rsquo;re completely satisfied that it works in all cases. The time you invest into writing that test case will pay off in maintainability because someone else may not have known that the simpler way wouldn&rsquo;t work and now you have a test to make sure noone falls into that trap. More importantly though, you gain a better understanding of the code and how it all works because you&rsquo;ve had to analyze it carefully to find the fail-case or to identify the reason that it always works. Don&rsquo;t let TDD cause you to doubt your intuition though, if you think that the simplest way it could possibly work isn&rsquo;t the right way to do it, then make sure you take the time to either write the failing test case or understand why it will always work. If you don&rsquo;t trust your intuition you&rsquo;ll likely find out too late that you were right – most of the time you will be. The power of TDD isn&rsquo;t that it avoids writing unessecary code (though it does that) but in the fact that the code you right is guaranteed to do what you meant it to. You need to use your experience and intuition to make sure that you know what it&rsquo;s meant to do.</p>
+<h3 id="claim160tdd160provides-confidence-in160your160code">Claim: TDD Provides Confidence In Your Code</h3>
+<p>If you have confidence in your tests you&rsquo;ll have confidence in your code. The trouble is that having confidence in your tests is really quite difficult. Acceptance tests are easier to deal with because you can talk with the client to sort out whether or not there&rsquo;s a problem with the test. With unit tests though there&rsquo;s always this nagging feeling that the test is wrong and the code is right. It can be very difficult to determine why a test was written even fairly recently after you wrote it. Refactoring your tests and ensuring that they are as clean and clear as the rest of your code base helps with this, as does using very descriptive method names for your tests but I&rsquo;m yet to find a good solution for this. Even writing detailed comments about what the test was for doesn&rsquo;t always help as the concepts can be very complex and describing them in English becomes confusing very quickly. I&rsquo;m not yet sure how we&rsquo;ll handle this – perhaps a policy of running the acceptance tests before checking in changes to existing unit test cases would help ensure that the change doesn&rsquo;t have negative impacts.</p>
+<p>The confidence that tests provide shouldn&rsquo;t be abused though – it doesn&rsquo;t allow you to just randomly change things until you get the tests to pass or you&rsquo;ll wind up with a big mess of spaghetti code that even your tests won&rsquo;t save you from. Before you make any change you have to understand why your making the change and what the impacts of the change will be – the tests are just your safety net to catch you when you screw up. If nothing else, understanding the code you write to pass this test may help you write the next test that will break your code. Unless you have that understanding, you won&rsquo;t be able to find all the corner cases that your clients will complain about.</p>
+<h3 id="overall">Overall</h3>
+<p>Overall I think TDD is going to provide huge advantages for us, mostly in code quality. We may see some productivity improvements but I don&rsquo;t expect them to be significant and we have a lot of work to do before we will see them because of the large amount of legacy code we have that is under-tested. It will be interesting to see how long it takes us to get good code coverage of our entire code base. I&rsquo;ll also be interested to see how long it takes us to effectively rewrite the entire application through various incremental improvements and maintenance – this doesn&rsquo;t mean setting out to replace the code but just the general maintenance to avoid code rot gradually updating the entire code base as required.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

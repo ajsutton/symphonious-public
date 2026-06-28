@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Wowsers! Sun’s Updating The Swing Text APIs | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Apparently Sun has finally decided to give some love to the Swing text APIs with the addition of a removeElement method. What the linked article fails to mention is that in the particular example given, you can remove the list item with a simple document.remove(e.getStartOffset(), e.getEndOffset() - e.getStartOffset());
+When you get into trouble with the swing text apis is when there are two elements that start and end at the same point – ie: a list as the only child of a table cell:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/06/19/wowsers-suns-updating-the-swing-text-apis/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/06/19/wowsers-suns-updating-the-swing-text-apis/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Wowsers! Sun’s Updating The Swing Text APIs">
+	<meta property="og:description" content="Apparently Sun has finally decided to give some love to the Swing text APIs with the addition of a removeElement method. What the linked article fails to mention is that in the particular example given, you can remove the list item with a simple document.remove(e.getStartOffset(), e.getEndOffset() - e.getStartOffset());
+When you get into trouble with the swing text apis is when there are two elements that start and end at the same point – ie: a list as the only child of a table cell:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-06-18T22:23:23+00:00">
+		<meta property="article:modified_time" content="2007-06-18T22:23:23+00:00">
+
+	<meta itemprop="name" content="Wowsers! Sun’s Updating The Swing Text APIs">
+	<meta itemprop="description" content="Apparently Sun has finally decided to give some love to the Swing text APIs with the addition of a removeElement method. What the linked article fails to mention is that in the particular example given, you can remove the list item with a simple document.remove(e.getStartOffset(), e.getEndOffset() - e.getStartOffset());
+When you get into trouble with the swing text apis is when there are two elements that start and end at the same point – ie: a list as the only child of a table cell:">
+	<meta itemprop="datePublished" content="2007-06-18T22:23:23+00:00">
+	<meta itemprop="dateModified" content="2007-06-18T22:23:23+00:00">
+	<meta itemprop="wordCount" content="282">
+	<meta itemprop="keywords" content="Editors,Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Wowsers! Sun’s Updating The Swing Text APIs">
+	<meta name="twitter:description" content="Apparently Sun has finally decided to give some love to the Swing text APIs with the addition of a removeElement method. What the linked article fails to mention is that in the particular example given, you can remove the list item with a simple document.remove(e.getStartOffset(), e.getEndOffset() - e.getStartOffset());
+When you get into trouble with the swing text apis is when there are two elements that start and end at the same point – ie: a list as the only child of a table cell:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Wowsers! Sun’s Updating The Swing Text APIs</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Wowsers! Sun’s Updating The Swing Text APIs</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-06-18T22:23:23Z">June 18, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Apparently Sun has finally decided to give some love to the Swing text APIs with <a href="http://weblogs.java.net/blog/g_s_m/archive/2007/06/removing_elemen_1.html">the addition of a removeElement method</a>. What the linked article fails to mention is that in the particular example given, you can remove the list item with a simple document.remove(e.getStartOffset(), e.getEndOffset() - e.getStartOffset());</p>
+<p>When you get into trouble with the swing text apis is when there are two elements that start and end at the same point – ie: a list as the only child of a table cell:</p>
+<pre>&#60;table&#62;
+  &#60;tr&#62;
+    &#60;td&#62;
+      &#60;ul&#62;
+        &#60;li&#62;Remove me!&#60;/li&#62;
+      &#60;/ul&#62;
+    &#60;/td&#62;
+  &#60;/tr&#62;
+&#60;/table&#62;
+</pre>
+<p>If you try the document.remove trick, the entire table will be deleted because the start and end offsets for the list item is the same as for the table (they contain the same text content). Unfortunately, the new removeElement method won&rsquo;t help with this because if you remove the last child element it also removes the parent element so document.removeElement(li) has the exact same effect as document.removeElement(table). The work around for that is of course to insert another element into the table cell first – most likely an empty p or p-implied element which you can do with insertBefore or insertAfter, but not if you want the table cell to be empty because you can&rsquo;t insert the required p-implied and line ending with insertBefore or insertAfter. Instead, you&rsquo;d have to insert an empty p tag and then use document.setParagraphAttributes to convert it to a p-implied after the fact. That or insert some text and then delete it again (but keep the trailing newline that will be inserted automatically). Both those cases will make a mess of your undo buffer because they count as two changes instead of one.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

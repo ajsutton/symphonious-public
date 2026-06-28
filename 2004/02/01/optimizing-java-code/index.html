@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Optimizing Java Code | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Rick Jelliffe proffers his advice on how to write fast Java desktop applications. It&rsquo;s poor advice. He calls his approach “defensive programming”, though I really don&rsquo;t see much that&rsquo;s defensive about it. Defensive programming is about adding in code to handle unexpected cases and recover from errors. Rick&rsquo;s advice is an attempt at optimizing code before you&rsquo;ve even written it and determined that it&rsquo;s not fast enough. It&rsquo;s worth noting that I write Java desktop applications, I don&rsquo;t do much server side work and I certainly don&rsquo;t write small applets, so Rick&rsquo;s complaint that everyone assumes your a server side developer doesn&rsquo;t apply here. It also doesn&rsquo;t apply too much in real life – fast code is fast code. In desktop development you get more “time off” or more code that&rsquo;s not on the critical path because you only need to go as fast as the user. On the server side you need to process pretty much everything as fast as you can because there&rsquo;s always more requests to get started on if there&rsquo;s a hold up with this request.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/02/01/optimizing-java-code/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/02/01/optimizing-java-code/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Optimizing Java Code">
+	<meta property="og:description" content="Rick Jelliffe proffers his advice on how to write fast Java desktop applications. It’s poor advice. He calls his approach “defensive programming”, though I really don’t see much that’s defensive about it. Defensive programming is about adding in code to handle unexpected cases and recover from errors. Rick’s advice is an attempt at optimizing code before you’ve even written it and determined that it’s not fast enough. It’s worth noting that I write Java desktop applications, I don’t do much server side work and I certainly don’t write small applets, so Rick’s complaint that everyone assumes your a server side developer doesn’t apply here. It also doesn’t apply too much in real life – fast code is fast code. In desktop development you get more “time off” or more code that’s not on the critical path because you only need to go as fast as the user. On the server side you need to process pretty much everything as fast as you can because there’s always more requests to get started on if there’s a hold up with this request.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-02-01T08:12:25+00:00">
+		<meta property="article:modified_time" content="2004-02-01T08:12:25+00:00">
+
+	<meta itemprop="name" content="Optimizing Java Code">
+	<meta itemprop="description" content="Rick Jelliffe proffers his advice on how to write fast Java desktop applications. It’s poor advice. He calls his approach “defensive programming”, though I really don’t see much that’s defensive about it. Defensive programming is about adding in code to handle unexpected cases and recover from errors. Rick’s advice is an attempt at optimizing code before you’ve even written it and determined that it’s not fast enough. It’s worth noting that I write Java desktop applications, I don’t do much server side work and I certainly don’t write small applets, so Rick’s complaint that everyone assumes your a server side developer doesn’t apply here. It also doesn’t apply too much in real life – fast code is fast code. In desktop development you get more “time off” or more code that’s not on the critical path because you only need to go as fast as the user. On the server side you need to process pretty much everything as fast as you can because there’s always more requests to get started on if there’s a hold up with this request.">
+	<meta itemprop="datePublished" content="2004-02-01T08:12:25+00:00">
+	<meta itemprop="dateModified" content="2004-02-01T08:12:25+00:00">
+	<meta itemprop="wordCount" content="993">
+	<meta itemprop="keywords" content="Rants">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Optimizing Java Code">
+	<meta name="twitter:description" content="Rick Jelliffe proffers his advice on how to write fast Java desktop applications. It’s poor advice. He calls his approach “defensive programming”, though I really don’t see much that’s defensive about it. Defensive programming is about adding in code to handle unexpected cases and recover from errors. Rick’s advice is an attempt at optimizing code before you’ve even written it and determined that it’s not fast enough. It’s worth noting that I write Java desktop applications, I don’t do much server side work and I certainly don’t write small applets, so Rick’s complaint that everyone assumes your a server side developer doesn’t apply here. It also doesn’t apply too much in real life – fast code is fast code. In desktop development you get more “time off” or more code that’s not on the critical path because you only need to go as fast as the user. On the server side you need to process pretty much everything as fast as you can because there’s always more requests to get started on if there’s a hold up with this request.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Optimizing Java Code</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Optimizing Java Code</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-02-01T08:12:25Z">February 1, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Rick Jelliffe <a href="http://www.oreillynet.com/pub/wlg/4339">proffers his advice</a> on how to write fast Java desktop applications. It&rsquo;s poor advice. He calls his approach “defensive programming”, though I really don&rsquo;t see much that&rsquo;s defensive about it. Defensive programming is about adding in code to handle unexpected cases and recover from errors. Rick&rsquo;s advice is an attempt at optimizing code before you&rsquo;ve even written it and determined that it&rsquo;s not fast enough. It&rsquo;s worth noting that I write Java desktop applications, I don&rsquo;t do much server side work and I certainly don&rsquo;t write small applets, so Rick&rsquo;s complaint that everyone assumes your a server side developer doesn&rsquo;t apply here. It also doesn&rsquo;t apply too much in real life – fast code is fast code. In desktop development you get more “time off” or more code that&rsquo;s not on the critical path because you only need to go as fast as the user. On the server side you need to process pretty much everything as fast as you can because there&rsquo;s always more requests to get started on if there&rsquo;s a hold up with this request.</p>
+<p>Talking about a large DOM-like structure:</p>
+<blockquote>
+<p>the defensive programmer may decide to have a cleanup method at the root object of the data structure to traverse the data structure to some depth, to reduce the chances that new generation objects have references from the old. To give the minor collector a hand. This sounds like a good way to ensure that your operation takes longer than it needs to, simply because you think it may or may not cause memory to be released sooner. It doesn&rsquo;t actually save memory and it&rsquo;s guaranteed to slow down your program. The real memory saving will come when the older generation is garbage collected and the entire DOM tree can be reclaimed. If anything needs to be done here, you probably should look at increasing the size of the young generation so that the whole DOM structure fits in it.</p>
+</blockquote>
+<blockquote>
+<p>The defensive programmer might also decide to explicitly null the references as soon as possible so that the object is not alive if there is a full GC before the end of the method or the object with the reference This advice really doesn&rsquo;t hurt much but it does point to sloppy design. Essentially, you&rsquo;re using null to reduce the scope of the variable. It would be better to design your method to be smaller. What really gets me here, is the abuse of the term defensive. Explicitly setting a variable to null isn&rsquo;t defensive – it&rsquo;s dangerous. If at some later point a colleague adds code to the end of the method and uses that variable, NullPointerException will be thrown. A defensive programmer would *not* null the variable in case later changes cause it to be used.</p>
+</blockquote>
+<blockquote>
+<p>We like minor collections and want them to be as effective as possible, and we want to system.gc() to encourage major collections to occur at times that the user is at rest: for example, when opening the first file and whenever a large file is closed. Sure I&rsquo;d prefer major collections to occur when the user isn&rsquo;t doing anything, but when exactly is that? When I open the first file of an application, I want to use it immediately, not have to wait for garbage collection to finish before I can start using the app. Start up times are the most annoying part of most Java apps and so you shouldn&rsquo;t be doing anything to slow it down – particularly requesting an unnecessary full GC. After a large file is closed is also a bad time, the user is in the middle of using your application and is paying attention to how long things takes – delaying even the closing of a file for a couple of seconds means the user can&rsquo;t move on to the file that was open behind it until it finishes. <em>If</em> you were going to request a full GC, you&rsquo;d do it when there&rsquo;s been no keyboard input for some period of time. A full GC when your application is in the background strips resources from other apps the user might be working on – and since it requires a lot of memory access it can cause slow down across all programs though at least they don&rsquo;t freeze completely.</p>
+</blockquote>
+<blockquote>
+<p>Actually, in many cases you may not be using a profiler at all, for whatever reason. If you are not using a profiler, then defensive programming may reduce the effect of some problems (such as unreleased listeners) that profiling makes obvious. I&rsquo;d suggest using a profiler, it&rsquo;s guaranteed to find any problems rather than blind optimisations (which Rick calls Defensive programming) which may or may not reduce the effects of the problems.</p>
+</blockquote>
+<blockquote>
+<p>This comes from what looks like an excellent presentation at Java One by the wonderfully named Dr. Cliff Clack. Dr. Clack&rsquo;s page 30 says pooling “loses for small objects”, “a wash for medium objects (Hashtables)” and a “win for large objects”. But in Mr. Goetz&rsquo;s article this becomes “object pooling is a performance loss for all but the most heavyweight objects”, which I think is a little too enthusiastic, certainly for single-CPU desktop systems. Rick&rsquo;s right, Mr. Goetz has exaggerated the effects of object pooling, but not to the point where it affects what the advice should be. You should only use object pooling for large objects. I can&rsquo;t see why you&rsquo;d want to perform more work implementing object pooling and risk errors in that code unless you were going to get a noticeable gain from it. It&rsquo;s particularly foolish to use object pooling, if you then go and try to save RAM by explicit nulling and System.gc() calls. In summary, java isn&rsquo;t some special language where new rules of optimisation apply. Premature optimisation is a bad idea in any language and it almost never pays off. Why anyone would think that writing desktop java applications renders that rule invalid is beyond me.</p>
+</blockquote><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

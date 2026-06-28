@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Remember To Turn On Antialiasing | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="If you&rsquo;re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn&rsquo;t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.
+For example, originally the new progress bar I added last week didn&rsquo;t have antialiasing on, but in the tweaks I&rsquo;ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It&rsquo;s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn&rsquo;t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/04/23/remember-to-turn-on-antialiasing/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/04/23/remember-to-turn-on-antialiasing/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Remember To Turn On Antialiasing">
+	<meta property="og:description" content="If you’re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn’t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.
+For example, originally the new progress bar I added last week didn’t have antialiasing on, but in the tweaks I’ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It’s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn’t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-04-23T03:17:22+00:00">
+		<meta property="article:modified_time" content="2007-04-23T03:17:22+00:00">
+
+	<meta itemprop="name" content="Remember To Turn On Antialiasing">
+	<meta itemprop="description" content="If you’re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn’t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.
+For example, originally the new progress bar I added last week didn’t have antialiasing on, but in the tweaks I’ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It’s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn’t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.">
+	<meta itemprop="datePublished" content="2007-04-23T03:17:22+00:00">
+	<meta itemprop="dateModified" content="2007-04-23T03:17:22+00:00">
+	<meta itemprop="wordCount" content="182">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Java,Note to Self">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Remember To Turn On Antialiasing">
+	<meta name="twitter:description" content="If you’re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn’t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.
+For example, originally the new progress bar I added last week didn’t have antialiasing on, but in the tweaks I’ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It’s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn’t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Remember To Turn On Antialiasing</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Remember To Turn On Antialiasing</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-04-23T03:17:22Z">April 23, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>If you&rsquo;re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn&rsquo;t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.</p>
+<p>For example, originally <a href="http://www.symphonious.net/2007/04/20/improving-the-applet-startup-experience-2/">the new progress bar I added last week</a> didn&rsquo;t have antialiasing on, but in the tweaks I&rsquo;ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It&rsquo;s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn&rsquo;t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.</p>
+<p>For the benefit of my memory and those who haven&rsquo;t played with rendering hints much, here&rsquo;s how to enable antialiasing on a Graphics2D object:</p>
+<pre>g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+</pre>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

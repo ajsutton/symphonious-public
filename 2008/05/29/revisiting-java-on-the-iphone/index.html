@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Revisiting Java on the iPhone | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Around the time of the iPhone’s initial release, I wrote:
+
+It&rsquo;s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I&rsquo;ll concede that most of the existing games for mobile phones probably wouldn&rsquo;t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today&rsquo;s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java.
+Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/05/29/revisiting-java-on-the-iphone/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/05/29/revisiting-java-on-the-iphone/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Revisiting Java on the iPhone">
+	<meta property="og:description" content="Around the time of the iPhone’s initial release, I wrote:
+It’s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I’ll concede that most of the existing games for mobile phones probably wouldn’t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today’s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-05-29T09:19:11+00:00">
+		<meta property="article:modified_time" content="2008-05-29T09:19:11+00:00">
+
+	<meta itemprop="name" content="Revisiting Java on the iPhone">
+	<meta itemprop="description" content="Around the time of the iPhone’s initial release, I wrote:
+It’s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I’ll concede that most of the existing games for mobile phones probably wouldn’t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today’s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
+	<meta itemprop="datePublished" content="2008-05-29T09:19:11+00:00">
+	<meta itemprop="dateModified" content="2008-05-29T09:19:11+00:00">
+	<meta itemprop="wordCount" content="552">
+	<meta itemprop="keywords" content="Apple">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Revisiting Java on the iPhone">
+	<meta name="twitter:description" content="Around the time of the iPhone’s initial release, I wrote:
+It’s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I’ll concede that most of the existing games for mobile phones probably wouldn’t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today’s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Revisiting Java on the iPhone</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Revisiting Java on the iPhone</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-05-29T09:19:11Z">May 29, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Around the time of the iPhone’s initial release, <a href="http://www.symphonious.net/2007/01/21/the-killer-java-application/">I wrote</a>:</p>
+<blockquote>
+<p>It&rsquo;s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I&rsquo;ll concede that most of the existing games for mobile phones probably wouldn&rsquo;t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today&rsquo;s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java.
+Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).</p>
+</blockquote>
+<p>There’s two other aspects of that post that are quite interesting in hindsight:</p>
+<blockquote>
+<p>If the iPhone takes off it won&rsquo;t be a problem, similar to how there are a huge range of iPod specific accessories, there will be – if and when Apple make it possible – a huge range of iPhone specific games and add-ons.
+This one is panning out exactly as expected. People will make a lot of money selling games for iPhones – not because they’re essential things to have, but just because they’re there. It should follow roughly the same pattern as the rest of the market for mobile phone stuff where people make a killing selling high volumes of little stuff. That said, the iPhone application store should change the market place a lot – suddenly it will be easy to find the <em>good</em> stuff. It will avoid the scams where they advertise one game for $1 but it really signs you up to a subscription that adds up to $50/month.</p>
+</blockquote>
+<p>Turns out I was also dead wrong about ring tones:</p>
+<blockquote>
+<p>The other part that may be interesting is what happens to the ring tone market as more and more phones use standard MP3s for the ring tone and make it easy to load them onto the phone. The iPhone should nail this and Nokia and Sony-Ericsson are pushing their MP3 player capabilities. Nokia&rsquo;s even going so far as to note how easy it is to get music onto the phone in their Australian marketing.
+Turns out the iPhone has the worst ring tone capabilities of any phone I’ve used in the past 2-3 years mostly because it doesn’t allow you to use any old MP3 you happen to have (and because the volume is <em>way</em> too quiet). The saving grace is that the iPhone happens to have the best default ring tones of any phone I’ve used – but still way too quiet. I’d be quite interested to find out how many ring tone sales Apple is doing through the iTunes Music Store given that it also avoids the subscription scam that most ring tones are sold through.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Disruptor on Symphonious</title>
+    <link>https://www.symphonious.net/categories/disruptor/</link>
+    <description>Recent content in Disruptor on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 26 Sep 2011 20:27:26 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/disruptor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Background Logging with the Disruptor</title>
+      <link>https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/</link>
+      <pubDate>Mon, 26 Sep 2011 20:27:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://vanillajava.blogspot.com/2011/09/exchange-and-gc-less-java.html&#34;&gt;Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation&lt;/a&gt;. He briefly compared it to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;LMAX disruptor&lt;/a&gt; and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.&lt;/p&gt;
+&lt;p&gt;Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This approach has similar principles to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;Disruptor&lt;/a&gt;. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn&amp;rsquo;t busy wait, but it could)&lt;/p&gt;
+&lt;p&gt;Two keys difference are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;there is only one producer/consumer in this case, the disruptor supports multiple consumers.&lt;/li&gt;
+&lt;li&gt;this approach re-uses a much smaller buffer efficiently. If you are using ByteBuffer (as I have in the past) an optimal size might be 32 KB. The disruptor library was designed to exploit large amounts of memory on the assumption it is relative cheap and can use medium sized (MBs) to very large buffers (GBs). e.g. it was design for servers with 144 GB. I am sure it works well on much smaller servers. ;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Actually, there’s nothing about the Disruptor that requires large amounts of memory. If you know that your producers and consumers are going to keep pace with each other well and you don’t have a requirement to replay old events, you can use quite a small ring buffer with the Disruptor. There are a lot of advantages to having a large ring buffer, but it’s by no means a requirement.&lt;/p&gt;
+&lt;p&gt;It’s also worth noting that the Disruptor does not require consumers to busy-spin, you can choose to use a blocking wait strategy, or strategies that combine busy-spin and blocking to handle both spikes and lulls in event rates efficiently.&lt;/p&gt;
+&lt;p&gt;There is also an important advantage to the Disruptor that wasn’t mentioned: it will process events immediately if the consumer is keeping up. If the consumer falls behind however, it can process events in a batch to catch up. This significantly reduces latency while still handling spikes in load efficiently.&lt;/p&gt;
+&lt;h2 id=&#34;the-code&#34;&gt;The Code&lt;/h2&gt;
+&lt;p&gt;First let’s start with the LogEntry class. This is a simple value object that is used as our entries on the ring buffer and passed from the producer thread over to the consumer thread.&lt;/p&gt;
+&lt;p&gt;Peter’s Exchanger based implementation – the use of StringBuilder in the LogEntry class is actually a race condition and not thread safe. Both the publishing side and the consumer side are attempting to modify it and depending on how long it takes the publishing side to write the log message to the StringBuilder, it will potentially be processed and then reset by the consumer side before the publisher is complete. In this implementation I’m instead using a simple String to avoid that problem.&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;import com.lmax.disruptor.EventFactory;
+&lt;p&gt;class LogEntry
+{
+public static final EventFactory&amp;lt;LogEntry&amp;gt; FACTORY = new EventFactory&amp;lt;LogEntry&amp;gt;()
+{
+public LogEntry newInstance()
+{
+return new LogEntry();
+}
+};&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;long time;
+int level;
+String text;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;The one Disruptor-specific addition is that we create an EventFactory instance which the Disruptor uses to pre-populate the ring buffer entries.&lt;/p&gt;
+&lt;p&gt;Next, let’s look at the BackgroundLogger class that sets up the process and acts as the producer.&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
+&lt;p&gt;import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;&lt;/p&gt;
+&lt;p&gt;public class BackgroundLogger
+{
+private static final int ENTRIES = 64;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private final ExecutorService executorService;
+private final Disruptor&amp;amp;lt;LogEntry&amp;amp;gt; disruptor;
+private final RingBuffer&amp;amp;lt;LogEntry&amp;amp;gt; ringBuffer;
+
+BackgroundLogger()
+{
+    executorService = Executors.newCachedThreadPool();
+    disruptor = new Disruptor&amp;amp;lt;LogEntry&amp;amp;gt;(LogEntry.FACTORY, ENTRIES, executorService);
+    disruptor.handleEventsWith(new LogEntryHandler());
+    disruptor.start();
+    ringBuffer = disruptor.getRingBuffer();
+}
+
+public void log(String text)
+{
+    final long sequence = ringBuffer.next();
+    final LogEntry logEntry = ringBuffer.get(sequence);
+
+    logEntry.time = System.currentTimeMillis();
+    logEntry.level = level;
+    logEntry.text = text;
+
+    ringBuffer.publish(sequence);
+}
+
+public void stop()
+{
+    disruptor.shutdown();
+    executorService.shutdownNow();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;In the constructor we create an ExecutorService which the Disruptor will use to execute the consumer threads (a single thread in this case), then the disruptor itself. We pass in the LogEntry.FACTORY instance for it to use to create the entries and a size for the ring buffer.&lt;/p&gt;
+&lt;p&gt;The log method is our producer method. Note the use of two-phase commit. First claim a slot with the ringBuffer.next() method, then copy our values into that slot’s entry and finally publish the slot, ready for the consumer to process. We could have also used the Disruptor.publish method which can make this simpler for many use cases by rolling the two phase commit into call.&lt;/p&gt;
+&lt;p&gt;The producer doesn’t need to do any batching as the Disruptor will do that automatically if the consumer is falling behind, though there are also APIs that allow batching the producer which can improve the performance if it fits into your design (here it’s probably better to publish each log entry as it comes in).&lt;/p&gt;
+&lt;p&gt;The stop method uses the new shutdown method on the Disruptor which takes care of waiting until all consumers have processed all available entries for you, &lt;a href=&#34;http://groups.google.com/group/lmax-disruptor/browse_thread/thread/511cadc6383260aa/35e537304fc6439f?lnk=gst&amp;amp;q=stop+disruptor#35e537304fc6439f&#34;&gt;though the code for doing it yourself is quite straight-forward&lt;/a&gt;. Finally we shut down the executor.&lt;/p&gt;
+&lt;p&gt;Note that we don’t need a flush method since the Disruptor is always consuming log events as quickly as the consumer can.&lt;/p&gt;
+&lt;p&gt;Last of all, the consumer which is almost entirely implementation logic:&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;
+import com.lmax.disruptor.EventHandler;
+&lt;p&gt;public class LogEntryHandler implements EventHandler&amp;lt;LogEntry&amp;gt;
+{&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public LogEntryHandler()
+{
+}
+
+public void onEvent(final LogEntry logEntry, final long sequence, final boolean endOfBatch) throws Exception
+{
+    // Write
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;The consumer’s onEvent method is called for each LogEntry put into the Disruptor. The endOfBatch flag can be used as a signal to flush written content to disk, allowing very large buffer sizes to be used causing writes to disk to be batched when the consumer is running behind, yet also ensure that our valuable log messages get to disk as quickly as possible.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/1243275&#34;&gt;The full code is available as a Gist&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Disruptor Wizard is Dead, Long Live the Disruptor Wizard!</title>
+      <link>https://www.symphonious.net/2011/08/13/the-disruptor-wizard-is-dead-long-live-the-disruptor-wizard/</link>
+      <pubDate>Sat, 13 Aug 2011 21:09:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/08/13/the-disruptor-wizard-is-dead-long-live-the-disruptor-wizard/</guid>
+      <description>&lt;p&gt;As of this morning, the Disruptor Wizard has been merged into the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;core LMAX Disruptor source tree&lt;/a&gt;. The .NET port had included the wizard style syntax for quite some time and it seemed to be generally popular, so why make people grab two jars instead of one?&lt;/p&gt;
+&lt;p&gt;I also updated it to reflect the change in terminology within the Disruptor. Instead of Consumers, there are now EventProcessors and EventHandlers. That better reflects the fact that consumers can actually add additional values to the events. Additionally, the ProducerBarrier has been merged into the ring buffer itself and the ring buffer entries are now called events. Again, that better reflects the fact that the programming model around the disruptor is most often event based.&lt;/p&gt;
+&lt;p&gt;It doesn’t make much difference for the wizard API, except that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The consumeWith method has been changed to handleEventsWith&lt;/li&gt;
+&lt;li&gt;The getProducerBarrier method has been replaced with a start method which returns the ring buffer. This clears up the confusion that the getProducerBarrier function was also used as the trigger to start the event handler threads. Now the method name is explicit about the fact that it will have side-effects.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Martin Fowler on the LMAX Architecture</title>
+      <link>https://www.symphonious.net/2011/07/12/martin-fowler-on-the-lmax-architecture/</link>
+      <pubDate>Tue, 12 Jul 2011 21:01:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/07/12/martin-fowler-on-the-lmax-architecture/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://martinfowler.com/articles/lmax.html&#34;&gt;Martin Fowler has posted an excellent overview of the LMAX architecture&lt;/a&gt; which helps put the use-cases and key considerations that led to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;LMAX disruptor pattern&lt;/a&gt; in context.&lt;/p&gt;
+&lt;p&gt;Good to see some focus being put on the programming model that LMAX uses as well. While convention suggests that to get the best performance you have to make heavy use of concurrency and multithreading, the measurements LMAX did showed that the cost of contention and communication between threads was too great. As such, the programming model at LMAX is largely single-threaded, achieving the best possible performance while avoiding the complexities of multithreaded programming.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>LMAX Disruptor – High Performance, Low Latency and Simple Too</title>
+      <link>https://www.symphonious.net/2011/07/11/lmax-disruptor-high-performance-low-latency-and-simple-too/</link>
+      <pubDate>Mon, 11 Jul 2011 08:24:45 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/07/11/lmax-disruptor-high-performance-low-latency-and-simple-too/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;LMAX disruptor&lt;/a&gt; is an ultra-high performance, low-latency message exchange between threads. It&amp;rsquo;s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the &lt;a href=&#34;http://www.lmaxtrader.co.uk/&#34;&gt;LMAX exchange&lt;/a&gt; run so fast. There is a rapidly growing set of information about what the disruptor is, why it&amp;rsquo;s important and how it works – a good place to start is the &lt;a href=&#34;http://code.google.com/p/disruptor/wiki/BlogsAndArticles&#34;&gt;list of articles&lt;/a&gt; and for the on-going stuff, follow &lt;a href=&#34;http://blogs.lmax.com/&#34;&gt;LMAX Blogs&lt;/a&gt;. For really detailed stuff, there&amp;rsquo;s also the &lt;a href=&#34;http://disruptor.googlecode.com/files/Disruptor-1.0.pdf&#34;&gt;white paper&lt;/a&gt; (PDF).&lt;/p&gt;
+&lt;p&gt;While the disruptor pattern is ultimately very simple to work with, setting up multiple consumers with the dependencies between them can require a bit too much boilerplate code for my liking. To make it quick and easy for 99% of cases, I&amp;rsquo;ve whipped up a &lt;a href=&#34;http://github.com/ajsutton/disruptorWizard&#34;&gt;simple DSL for the disruptor pattern&lt;/a&gt;. For example, to wire up a &amp;ldquo;diamond pattern&amp;rdquo; of consumers:&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2011/07/1P3C-Diamond.png&#34; alt=&#34;Diamond pattern of consumers. C3 depends on both C1 and C2 completing.&#34; width=&#34;400&#34; height=&#34;265&#34; /&gt; 
+&lt;p&gt;(Image blatantly stolen from &lt;a href=&#34;http://mechanitis.blogspot.com/2011/07/dissecting-disruptor-wiring-up.html&#34;&gt;Trisha Gee&amp;rsquo;s excellent series explaining the disruptor pattern&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;In this scenario, consumers C1 and C2 can process entries as soon as the producer (P1) puts them on the ring buffer (in parallel). However, consumer C3 has to wait for &lt;em&gt;both&lt;/em&gt; C1 and C2 to complete before it processes the entries. In real life this might be because we need to both journal the data to disk (C1) and validate the data (C2) before we do the actual business logic (C3).&lt;/p&gt;
+&lt;p&gt;With the raw disruptor syntax, these consumers would be created with the following code:&lt;/p&gt;
+&lt;pre&gt;Executor executor = Executors.newCachedThreadPool();
+BatchHandler handler1 = new MyBatchHandler1();
+BatchHandler handler2 = new MyBatchHandler2();
+BatchHandler handler3 = new MyBatchHandler3()
+
+RingBuffer ringBuffer = new RingBuffer(ENTRY_FACTORY, RING_BUFFER_SIZE);
+ConsumerBarrier consumerBarrier1 = ringBuffer.createConsumerBarrier();
+
+BatchConsumer consumer1 = new BatchConsumer(consumerBarrier1, handler1);
+BatchConsumer consumer2 = new BatchConsumer(consumerBarrier1, handler2);
+
+ConsumerBarrier consumerBarrier2 =
+ringBuffer.createConsumerBarrier(consumer1, consumer2);
+
+BatchConsumer consumer3 = new BatchConsumer(consumerBarrier2, handler3);
+
+executor.execute(consumer1);
+executor.execute(consumer2);
+executor.execute(consumer3);
+
+ProducerBarrier producerBarrier =
+ringBuffer.createProducerBarrier(consumer3);
+&lt;/pre&gt;
+&lt;p&gt;We have to create our actual handlers (the two instances of MyBatchHandler), plus consumer barriers, BatchConsumer instances and actually execute the consumers on their own threads. The DSL can handle pretty much all of that setup work for us with the end result being:&lt;/p&gt;
+&lt;pre&gt;Executor executor = Executors.newCachedThreadPool();
+BatchHandler handler1 = new MyBatchHandler1();
+BatchHandler handler2 = new MyBatchHandler2();
+BatchHandler handler3 = new MyBatchHandler3();
+
+DisruptorWizard dw = new DisruptorWizard(ENTRY_FACTORY, RING_BUFFER_SIZE, executor);
+dw.consumeWith(handler1, handler2).then(handler3);
+
+ProducerBarrier producerBarrier = dw.createProducerBarrier();
+&lt;/pre&gt;
+&lt;p&gt;We can even build parallel chains of consumers in a diamond pattern:&lt;img loading=&#34;lazy&#34; title=&#34;Disruptor Dependency Chains&#34; width=&#34;764&#34; height=&#34;378&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2011/07/disruptorChains-300x225.png&#34; alt=&#34;Two chains of consumers running in parallel with a final consumer dependent on both.&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(Thanks to Trish for using her fancy graphics tablet to create a decent version of this image instead of my original finger painting on an iPad…)&lt;/p&gt;
+&lt;pre&gt;dw.consumeWith(handler1a, handler2a);
+dw.after(handler1a).consumeWith(handler1b);
+dw.after(handler2a).consumeWith(handler2b);
+dw.after(handler1b, handler2b).consumeWith(handler3);
+ProducerBarrier producerBarrier = dw.createProducerBarrier();
+&lt;/pre&gt;
+&lt;p&gt;The DSL is quite new so any feedback on it would be greatly appreciated and of course feel free to &lt;a href=&#34;http://github.com/ajsutton/disruptorWizard&#34;&gt;fork it on GitHub&lt;/a&gt; and improve it.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

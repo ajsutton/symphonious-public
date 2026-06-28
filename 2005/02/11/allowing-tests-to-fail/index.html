@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Allowing Tests To Fail | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The basic idea of unit tests is that you write them once and run them a lot – you don&rsquo;t check in your changes unless all the unit tests pass.  This is a great idea.
+There is one problem with it – it prevents unit tests from being used as a specification of work to be done later.  I don&rsquo;t mean it prevents test driven development where the tests are written then the code is to make them pass is added and then the tests and code are checked in.  I mean where a particularly complex piece of functionality is going to be added and the best way to ensure that all the use cases are covered is to write unit tests for them all and let them act as the specification (note: this doesn&rsquo;t work well if you have a non-technical client, but if you are working on off the shelf software it can be very useful).  You need to plan the set of features to include in a release ahead of time so you wind up with a whole heap of new unit tests which are acting as this specification that at some point in the future you will make pass.  At the moment though, those tests are okay to fail.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2005/02/11/allowing-tests-to-fail/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2005/02/11/allowing-tests-to-fail/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Allowing Tests To Fail">
+	<meta property="og:description" content="The basic idea of unit tests is that you write them once and run them a lot – you don’t check in your changes unless all the unit tests pass. This is a great idea.
+There is one problem with it – it prevents unit tests from being used as a specification of work to be done later. I don’t mean it prevents test driven development where the tests are written then the code is to make them pass is added and then the tests and code are checked in. I mean where a particularly complex piece of functionality is going to be added and the best way to ensure that all the use cases are covered is to write unit tests for them all and let them act as the specification (note: this doesn’t work well if you have a non-technical client, but if you are working on off the shelf software it can be very useful). You need to plan the set of features to include in a release ahead of time so you wind up with a whole heap of new unit tests which are acting as this specification that at some point in the future you will make pass. At the moment though, those tests are okay to fail.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2005-02-10T15:30:04+00:00">
+		<meta property="article:modified_time" content="2005-02-10T15:30:04+00:00">
+
+	<meta itemprop="name" content="Allowing Tests To Fail">
+	<meta itemprop="description" content="The basic idea of unit tests is that you write them once and run them a lot – you don’t check in your changes unless all the unit tests pass. This is a great idea.
+There is one problem with it – it prevents unit tests from being used as a specification of work to be done later. I don’t mean it prevents test driven development where the tests are written then the code is to make them pass is added and then the tests and code are checked in. I mean where a particularly complex piece of functionality is going to be added and the best way to ensure that all the use cases are covered is to write unit tests for them all and let them act as the specification (note: this doesn’t work well if you have a non-technical client, but if you are working on off the shelf software it can be very useful). You need to plan the set of features to include in a release ahead of time so you wind up with a whole heap of new unit tests which are acting as this specification that at some point in the future you will make pass. At the moment though, those tests are okay to fail.">
+	<meta itemprop="datePublished" content="2005-02-10T15:30:04+00:00">
+	<meta itemprop="dateModified" content="2005-02-10T15:30:04+00:00">
+	<meta itemprop="wordCount" content="505">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Allowing Tests To Fail">
+	<meta name="twitter:description" content="The basic idea of unit tests is that you write them once and run them a lot – you don’t check in your changes unless all the unit tests pass. This is a great idea.
+There is one problem with it – it prevents unit tests from being used as a specification of work to be done later. I don’t mean it prevents test driven development where the tests are written then the code is to make them pass is added and then the tests and code are checked in. I mean where a particularly complex piece of functionality is going to be added and the best way to ensure that all the use cases are covered is to write unit tests for them all and let them act as the specification (note: this doesn’t work well if you have a non-technical client, but if you are working on off the shelf software it can be very useful). You need to plan the set of features to include in a release ahead of time so you wind up with a whole heap of new unit tests which are acting as this specification that at some point in the future you will make pass. At the moment though, those tests are okay to fail.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Allowing Tests To Fail</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Allowing Tests To Fail</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-02-10T15:30:04Z">February 10, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The basic idea of unit tests is that you write them once and run them a lot – you don&rsquo;t check in your changes unless all the unit tests pass.  This is a great idea.</p>
+<p>There is one problem with it – it prevents unit tests from being used as a specification of work to be done later.  I don&rsquo;t mean it prevents test driven development where the tests are written then the code is to make them pass is added and then the tests and code are checked in.  I mean where a particularly complex piece of functionality is going to be added and the best way to ensure that all the use cases are covered is to write unit tests for them all and let them act as the specification (note: this doesn&rsquo;t work well if you have a non-technical client, but if you are working on off the shelf software it can be very useful).  You need to plan the set of features to include in a release ahead of time so you wind up with a whole heap of new unit tests which are acting as this specification that at some point in the future you will make pass.  At the moment though, those tests are okay to fail.</p>
+<p>How do we preserve the ability of unit tests to ensure no regressions while still being able to use them as a to do list?</p>
+<p>There are a few options.  The most obvious is to split the tests up into stuff that&rsquo;s done and stuff that&rsquo;s not done and make them separately runnable.  The standard build process only runs the &ldquo;stuff that&rsquo;s done&rdquo; set of tests and the others can be ignored until those features are to be implemented.</p>
+<p>This however has the disadvantage that if some of the to do tests already pass (the functionality is partially present or is fully available from buggy pre-existing code etc) or if over time some of the tests begin passing because of other changes, it would be nice to ensure that progress is not lost inadvertently.</p>
+<p>The solution I&rsquo;m trying out is to create a list of tests that are okay to have fail for whatever reason and a custom ant task that reads that list and the JUnit reports and fails the build if any of the tests that should pass didn&rsquo;t but lets it pass even if some of the to do tests fail.  The ant task then tasks the next step and automatically identifies any to do tests that now pass and removes them from the list of tests that can fail.</p>
+<p>With that setup once a test passes once it is never again allowed to fail.  Every change is then a step forward.  You can even use the number of tests remaining in the to do list as a rough progress meter if the functionality takes a number of steps to implement or has multiple developers working on it.</p>
+<p>It should be interesting to see how this pans out anyway…</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

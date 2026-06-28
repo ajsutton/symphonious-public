@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Internationalising Vue Components | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="As Vue gradually spreads through our JavaScript, it&rsquo;s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it&rsquo;s tied into the mustache templates we&rsquo;ve used to date so we&rsquo;ll need to adapt or change it somehow to work with Vue.
+In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2017/08/29/internationalising-vue-components/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2017/08/29/internationalising-vue-components/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Internationalising Vue Components">
+	<meta property="og:description" content="As Vue gradually spreads through our JavaScript, it’s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it’s tied into the mustache templates we’ve used to date so we’ll need to adapt or change it somehow to work with Vue.
+In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2017-08-29T03:28:18+00:00">
+		<meta property="article:modified_time" content="2017-08-29T03:28:18+00:00">
+
+	<meta itemprop="name" content="Internationalising Vue Components">
+	<meta itemprop="description" content="As Vue gradually spreads through our JavaScript, it’s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it’s tied into the mustache templates we’ve used to date so we’ll need to adapt or change it somehow to work with Vue.
+In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.">
+	<meta itemprop="datePublished" content="2017-08-29T03:28:18+00:00">
+	<meta itemprop="dateModified" content="2017-08-29T03:28:18+00:00">
+	<meta itemprop="wordCount" content="513">
+	<meta itemprop="keywords" content="Code and Geek Stuff,JavaScript,LMAX">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Internationalising Vue Components">
+	<meta name="twitter:description" content="As Vue gradually spreads through our JavaScript, it’s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it’s tied into the mustache templates we’ve used to date so we’ll need to adapt or change it somehow to work with Vue.
+In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Internationalising Vue Components</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Internationalising Vue Components</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2017-08-29T03:28:18Z">August 29, 2017</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>As Vue gradually spreads through our JavaScript, it&rsquo;s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it&rsquo;s tied into the mustache templates we&rsquo;ve used to date so we&rsquo;ll need to adapt or change it somehow to work with Vue.</p>
+<p>In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.</p>
+<p>There are a number of vue translations plugins around all of which tend to take one of two approaches:</p>
+<ol>
+<li>a directive that automatically pulls out the element text (e.g. <a href="https://www.npmjs.com/package/vue-translate">vue-translate</a>)<br>
+<span class="meta tag block any html"><span class="punctuation definition tag begin html">&laquo;/span&gt;<span class="entity name tag block any html">div</span> <span class="entity other attribute-name html">v-trans</span> <span class="entity other attribute-name html">title</span>=<span class="string quoted double html"><span class="punctuation definition string begin html">“</span>hello<span class="punctuation definition string end html">“</span></span><span class="punctuation definition tag end html">&gt;</span></span>hello<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span></li>
+<li>a method you call (e.g. <a href="https://www.npmjs.com/package/vue-i18n-mixin">vue-i18n-mixin</a>)<br>
+&lt;h1 v-text=”t(‘header.title&rsquo;, ‘fr&rsquo;)”&gt;</h1><br>
+<h1>{{ t(‘header.title&rsquo;) }}</h1></li>
+</ol>
+<p>Using a directive is nice and simple but doesn&rsquo;t work if the text is dynamic (any {{data}} values are already resolved in the element text). Explicitly calling a function to perform the translation leads to pretty unwieldy templates.</p>
+<p>What we&rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use <i18n></i18n> instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&rsquo;s not. So a simple example might be:</p>
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;&lt;i18n&gt;</span>Hello world!<span style="color: #007700;">&lt;/i18n&gt;&lt;/p&gt;</span>
+</pre>
+</div>
+<p>To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:</p>
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;</span><span style="color: #557799;">{</span><span style="color: #333333;">{</span><span style="color: #0000cc;">translate</span><span style="color: #333333;">(</span><span style="background-color: #fff0f0;">"Hello world!"</span><span style="color: #333333;">)</span><span style="color: #557799;">}</span>}<span style="color: #007700;">&lt;/p&gt;</span>
+</pre>
+</div>
+<p>Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.</p>
+<p>When the string includes parameters we write them in the same way as a normal Vue template, for example:</p>
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;&lt;i18n&gt;</span>Hello {{name}}!<span style="color: #007700;">&lt;/i18n&gt;&lt;/p&gt;</span>
+</pre>
+</div>
+<p>And our pre-loader translates it in exactly the same way:</p>
+<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;</span><span style="color: #557799;">{</span><span style="color: #333333;">{</span><span style="color: #0000cc;">translate</span><span style="color: #333333;">(</span><span style="background-color: #fff0f0;">"Hello {{name\}\}!"</span><span style="color: #333333;">)</span><span style="color: #557799;">}</span>}<span style="color: #007700;">&lt;/p&gt;</span>
+</pre>
+</div>
+<p>The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.</p>
+<p>At this point, Vue won&rsquo;t replace {{name}} with the actual value of name because it&rsquo;s part of a JavaScript string, not part of the template. The good part of that is that our translation function will now be looking up the string to translate prior to variable substitution.  So it will look for a translation for “Hello {{name}}!” rather than needing translations for every possible name. Once we find the translation, the translate function then uses a regex to find and replace each placeholder with the actual value from the vue instance. </p>
+<p>Notably, this process means that you can&rsquo;t use anything but a simple variable name in placeholders within translated strings (though it can refer to a computed property). This is actually a good thing because we don&rsquo;t want to send a string off to the translators that contains complex JavaScript they won&rsquo;t understand. In fact, we have tests that place additional restrictions on strings to translate to ensure they are easily manageable through the translation process.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

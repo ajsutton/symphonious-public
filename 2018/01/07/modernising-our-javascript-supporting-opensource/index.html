@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Modernising Our JavaScript – Supporting OpenSource | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="At LMAX, we&rsquo;ve been using Vue.js for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent.  For anything new though, we started using Vuetify to give us better UIs much more easily.
+Vuetify is close to reaching it&rsquo;s 1.0 release now and we&rsquo;ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions.  So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2018/01/07/modernising-our-javascript-supporting-opensource/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2018/01/07/modernising-our-javascript-supporting-opensource/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Modernising Our JavaScript – Supporting OpenSource">
+	<meta property="og:description" content="At LMAX, we’ve been using Vue.js for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent. For anything new though, we started using Vuetify to give us better UIs much more easily.
+Vuetify is close to reaching it’s 1.0 release now and we’ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions. So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2018-01-06T22:51:53+00:00">
+		<meta property="article:modified_time" content="2018-01-06T22:51:53+00:00">
+
+	<meta itemprop="name" content="Modernising Our JavaScript – Supporting OpenSource">
+	<meta itemprop="description" content="At LMAX, we’ve been using Vue.js for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent. For anything new though, we started using Vuetify to give us better UIs much more easily.
+Vuetify is close to reaching it’s 1.0 release now and we’ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions. So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.">
+	<meta itemprop="datePublished" content="2018-01-06T22:51:53+00:00">
+	<meta itemprop="dateModified" content="2018-01-06T22:51:53+00:00">
+	<meta itemprop="wordCount" content="411">
+	<meta itemprop="keywords" content="LMAX,OpenSource">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Modernising Our JavaScript – Supporting OpenSource">
+	<meta name="twitter:description" content="At LMAX, we’ve been using Vue.js for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent. For anything new though, we started using Vuetify to give us better UIs much more easily.
+Vuetify is close to reaching it’s 1.0 release now and we’ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions. So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Modernising Our JavaScript – Supporting OpenSource</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Modernising Our JavaScript – Supporting OpenSource</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2018-01-06T22:51:53Z">January 6, 2018</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>At LMAX, we&rsquo;ve been using <a href="https://vuejs.org">Vue.js</a> for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent.  For anything new though, we started using <a href="https://vuetifyjs.com">Vuetify</a> to give us better UIs much more easily.</p>
+<p>Vuetify is close to reaching it&rsquo;s 1.0 release now and we&rsquo;ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions.  So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.</p>
+<p>It&rsquo;s been a resounding success.</p>
+<p>As a project, Vuetify has continued to grow – mostly because of the excellent work John was doing to build the community – giving more stability and now has multiple regular contributors. With the number of supporters also growing John quit his day job and is now focussed on Vuetify full-time. So our primary aim of supporting the viability and longevity of the project has worked out well.</p>
+<p>We&rsquo;ve also had secondary benefits. As part of being a platinum supporter the LMAX logo appears on the Vuetify site and we&rsquo;ve set it up to link to <a href="https://careers.lmax.com/">our jobs site</a>. It&rsquo;s driven quite a lot of traffic that way and I think is actually the top source of traffic to our careers site.</p>
+<p>I believe we also get some guaranteed support time as part of the package, but frankly John is so responsive I&rsquo;m not sure if we&rsquo;d actually notice the difference. We&rsquo;re also keen to contribute code but the project is now moving along so well that stuff gets fixed for us before we get a chance to do it. It&rsquo;s possible some of my colleague who are doing more with Vuetify have contributed some stuff, but every bug I&rsquo;ve found has been fixed almost as soon as I can finish the bug report…</p>
+<p>Overall, it&rsquo;s been a huge success and well worth the money. I&rsquo;d definitely encourage others to become financial backers of projects they depend on.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

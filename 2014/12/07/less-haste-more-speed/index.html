@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Less Haste, More Speed | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Jeffrey Ventrella in The Case for Slow Programming:
+
+Venture-backed software development here in the San Francisco Bay area is on a fever-pitch fast-track. Money dynamics puts unnatural demands on a process that would be best left to the natural circadian rhythms of design evolution. Fast is not always better. In fact, slower sometimes actually means faster – when all is said and done.
+
+Jeffrey&rsquo;s right in suggesting that we sometimes need to go slower to go faster, unfortunately he makes the mistake of believing that committing and releasing in very short cycles is the cause of these problems:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2014/12/07/less-haste-more-speed/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2014/12/07/less-haste-more-speed/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Less Haste, More Speed">
+	<meta property="og:description" content="Jeffrey Ventrella in The Case for Slow Programming:
+Venture-backed software development here in the San Francisco Bay area is on a fever-pitch fast-track. Money dynamics puts unnatural demands on a process that would be best left to the natural circadian rhythms of design evolution. Fast is not always better. In fact, slower sometimes actually means faster – when all is said and done.
+Jeffrey’s right in suggesting that we sometimes need to go slower to go faster, unfortunately he makes the mistake of believing that committing and releasing in very short cycles is the cause of these problems:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2014-12-06T21:54:02+00:00">
+		<meta property="article:modified_time" content="2014-12-06T21:54:02+00:00">
+
+	<meta itemprop="name" content="Less Haste, More Speed">
+	<meta itemprop="description" content="Jeffrey Ventrella in The Case for Slow Programming:
+Venture-backed software development here in the San Francisco Bay area is on a fever-pitch fast-track. Money dynamics puts unnatural demands on a process that would be best left to the natural circadian rhythms of design evolution. Fast is not always better. In fact, slower sometimes actually means faster – when all is said and done.
+Jeffrey’s right in suggesting that we sometimes need to go slower to go faster, unfortunately he makes the mistake of believing that committing and releasing in very short cycles is the cause of these problems:">
+	<meta itemprop="datePublished" content="2014-12-06T21:54:02+00:00">
+	<meta itemprop="dateModified" content="2014-12-06T21:54:02+00:00">
+	<meta itemprop="wordCount" content="626">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Productivity">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Less Haste, More Speed">
+	<meta name="twitter:description" content="Jeffrey Ventrella in The Case for Slow Programming:
+Venture-backed software development here in the San Francisco Bay area is on a fever-pitch fast-track. Money dynamics puts unnatural demands on a process that would be best left to the natural circadian rhythms of design evolution. Fast is not always better. In fact, slower sometimes actually means faster – when all is said and done.
+Jeffrey’s right in suggesting that we sometimes need to go slower to go faster, unfortunately he makes the mistake of believing that committing and releasing in very short cycles is the cause of these problems:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Less Haste, More Speed</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Less Haste, More Speed</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2014-12-06T21:54:02Z">December 6, 2014</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Jeffrey Ventrella in <a href="http://ventrellathing.wordpress.com/2013/06/18/the-case-for-slow-programming/"><em>The Case for Slow Programming</em></a>:</p>
+<blockquote>
+<p>Venture-backed software development here in the San Francisco Bay area is on a fever-pitch fast-track. Money dynamics puts unnatural demands on a process that would be best left to the natural circadian rhythms of design evolution. Fast is not always better. In fact, slower sometimes actually means faster – when all is said and done.</p>
+</blockquote>
+<p>Jeffrey&rsquo;s right in suggesting that we sometimes need to go slower to go faster, unfortunately he makes the mistake of believing that committing and releasing in very short cycles is the cause of these problems:</p>
+<blockquote>
+<p>My programming style is defined by organic arcs of different sizes and timescales, Each arc starts with exploration, trial and error, hacks, and temporary variables. Basically, a good deal of scaffolding. A picture begins to take shape. Later on, I come back and dot my i’s and cross my t’s. The end of each arc is something like implementation-ready code. (“Cleaning my studio” is a necessary part of finishing the cycle). The development arc of my code contribution is synonymous with the emergence of a strategy, a design scheme, an architecture.</p>
+</blockquote>
+<p>This kind of design and development arc is completely independent of how often the developer commits or how often a release is taken. As you speed up your commit and release cycle, you mostly shouldn&rsquo;t change the design and development process of any given change you simply reduce the size of the change. By tackling much smaller problems at a time it&rsquo;s much easier and quicker to go through the full arc of understanding, experimenting, scaffolding, building and tidying.</p>
+<p>Part of making each small change is considering how it fits in with and modifies the overall system design. Bad development teams forget this and wind up with an awful mishmash of designs all cobbled together, but that&rsquo;s a reflection of the team&rsquo;s design ability, not of the process. Good teams gradually adjust the system design as they go, sometimes in subtle ways sometime with more radical changes. Doing so means the system design is optimal for each stage of its life.</p>
+<p><a href="http://ventrellathing.wordpress.com/2013/06/18/the-case-for-slow-programming/#comment-435">Commenter mmlac nails it</a>:</p>
+<blockquote>
+<p>Maybe [the machine-gun committer] IS doing the same as you, just sharing the progress with the team, so people can spot obvious mistakes earlier and see the approaches and stop him in time if they have more experience with the way they are trying to go?</p>
+<p>You are basically advocating waterfall. And the issues you face have nothing to do with the speed of coding and the number of commits.</p>
+</blockquote>
+<p>That&rsquo;s not to say that there isn&rsquo;t value in the saying “Go slower to go faster” but the much better way to phrase it is “Less Haste, More Speed”. It&rsquo;s not about going slow, it&rsquo;s about not rushing and doing a good job. It means taking the time to break down large changes into smaller, simpler incremental changes so you don&rsquo;t have to deliver them all in one go. It means considering what adjustments to the overall system design are required for each change to make it fit in well.</p>
+<p>And it means committing and releasing more often. Regularly investing time to prove things are completely finished and sent off to users instead of building that time up as technical debt because you&rsquo;re attempting to make too big a change at once.</p>
+<p>You don&rsquo;t go faster by simply trying to go faster – you go faster by identifying and eliminating bottlenecks which requires you to do things that individually appear to make you go slower but make the overall system go faster. Committing and releasing regularly (continuous integration and continuous deployment respectively) are solutions to the bottle neck of horrendous merge and release processes that result from not doing them regularly enough.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell Scripting on Symphonious</title>
+    <link>https://www.symphonious.net/categories/shell-scripting/</link>
+    <description>Recent content in Shell Scripting on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Tue, 14 Apr 2015 23:02:25 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/shell-scripting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Printing Only Part of a grep Match</title>
+      <link>https://www.symphonious.net/2015/04/15/printing-only-part-of-a-grep-match/</link>
+      <pubDate>Tue, 14 Apr 2015 23:02:25 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/04/15/printing-only-part-of-a-grep-match/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; class=&#34; size-full wp-image-1991 alignright&#34; src=&#34;https://www.symphonious.net/wp-content/uploads/2015/04/grep_med.png&#34; alt=&#34;&#34; width=&#34;64&#34; height=&#34;64&#34; /&gt;It&amp;rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;grep &lt;span style=&#34;color: #ba2121;&#34;&gt;&#39;^MemTotal:&#39;&lt;/span&gt; /proc/meminfo | &lt;br /&gt;  sed -e &lt;span style=&#34;color: #ba2121;&#34;&gt;&#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Which does the job but duplicates a bunch of the matching regex. If you&amp;rsquo;re using a reasonably recent gnu grep, you can use it&amp;rsquo;s support for perl regex syntax and the \K operator:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;grep -Po &lt;span style=&#34;color: #ba2121;&#34;&gt;&#39;^(MemTotal:\s*)\K[0-9]*&#39;&lt;/span&gt; /proc/meminfo
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The -P is for perl regex, and the o option causes grep to output only what is matched. You can see though that we&amp;rsquo;re actually matching the MemTotal: at the start of the line yet somehow it doesn&amp;rsquo;t wind up in the output.  That&amp;rsquo;s the magic of \K which excludes the token immediately prior to it from the matched text (without rewinding the stream and attempting a different match for that text).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Alexandre Niveau emailed me to point out that in this particular case (and probably most others where I&amp;rsquo;d be tempted to use \K with grep) grep is completely superfluous and we can just use sed with the -n flag:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;sed -n -e &lt;span style=&#34;color: #ba2121;&#34;&gt;&#39;s/^MemTotal:\s*\([0-9]*\).*/\1/p&#39;&lt;/span&gt; /proc/meminfo
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The -n disables automatic printing of lines and the ‘p&amp;rsquo; at the end of the regex prints the matching lines. Definitely good to know – thanks Alexandre.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Combining Output of Multiple Bash Commands Into One Line</title>
+      <link>https://www.symphonious.net/2014/05/13/combining-output-of-multiple-bash-commands-into-one-line/</link>
+      <pubDate>Mon, 12 May 2014 23:55:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/05/13/combining-output-of-multiple-bash-commands-into-one-line/</guid>
+      <description>&lt;p&gt;I wanted to create a CSV file showing the number of JUnit tests in our codebase vs the number of Spock tests over time. I can count the number of tests, along with the revision pretty easily with:&lt;/p&gt;
+&lt;pre&gt;git svn find-rev HEAD&lt;br /&gt;find src/test -name &#39;*Test.java&#39; | wc -l&lt;br /&gt;find src/test -name &#39;*Spec.groovy&#39; | wc -l&lt;/pre&gt;
+&lt;p&gt;But that outputs the results on three separate lines and I really want them on one line with some separator (comma, space or tab). The simplest way to achieve that is:&lt;/p&gt;
+&lt;pre&gt;echo &#34;$(git svn find-rev HEAD), $(find src/test -name &#39;*Test.java&#39; | wc -l), $(find src/test -name &#39;*Spec.groovy&#39; | wc -l)&#34;&lt;/pre&gt;
+&lt;p&gt;It&amp;rsquo;s also very handy to remember that echo has a -n option which omits the trailing new line, so:&lt;/p&gt;
+&lt;pre&gt;echo -n &#39;Revision: &#39; &amp;&amp; git svn find-rev HEAD&lt;/pre&gt;
+&lt;p&gt;outputs:&lt;/p&gt;
+&lt;pre&gt;Revision: 55450&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

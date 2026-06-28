@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Testing@LMAX – Test Isolation | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="One of the most common reasons people avoid writing end-to-end acceptance tests is how difficult it is to make them run fast. Primary amongst this is the time required to start up the entire service and shut it down again. At LMAX with the full exchange consisting of a large number of different services, multiple databases and other components start up is far too slow to be done for each test so our acceptance tests are designed to run against the same server instance and not interfere with each other.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2014/04/12/testinglmax-test-isolation/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2014/04/12/testinglmax-test-isolation/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Testing@LMAX – Test Isolation">
+	<meta property="og:description" content="One of the most common reasons people avoid writing end-to-end acceptance tests is how difficult it is to make them run fast. Primary amongst this is the time required to start up the entire service and shut it down again. At LMAX with the full exchange consisting of a large number of different services, multiple databases and other components start up is far too slow to be done for each test so our acceptance tests are designed to run against the same server instance and not interfere with each other.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2014-04-12T12:36:17+00:00">
+		<meta property="article:modified_time" content="2014-04-12T12:36:17+00:00">
+
+	<meta itemprop="name" content="Testing@LMAX – Test Isolation">
+	<meta itemprop="description" content="One of the most common reasons people avoid writing end-to-end acceptance tests is how difficult it is to make them run fast. Primary amongst this is the time required to start up the entire service and shut it down again. At LMAX with the full exchange consisting of a large number of different services, multiple databases and other components start up is far too slow to be done for each test so our acceptance tests are designed to run against the same server instance and not interfere with each other.">
+	<meta itemprop="datePublished" content="2014-04-12T12:36:17+00:00">
+	<meta itemprop="dateModified" content="2014-04-12T12:36:17+00:00">
+	<meta itemprop="wordCount" content="553">
+	<meta itemprop="keywords" content="Code and Geek Stuff,LMAX,Testing">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Testing@LMAX – Test Isolation">
+	<meta name="twitter:description" content="One of the most common reasons people avoid writing end-to-end acceptance tests is how difficult it is to make them run fast. Primary amongst this is the time required to start up the entire service and shut it down again. At LMAX with the full exchange consisting of a large number of different services, multiple databases and other components start up is far too slow to be done for each test so our acceptance tests are designed to run against the same server instance and not interfere with each other.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Testing@LMAX – Test Isolation</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Testing@LMAX – Test Isolation</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2014-04-12T12:36:17Z">April 12, 2014</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>One of the most common reasons people avoid writing end-to-end acceptance tests is how difficult it is to make them run fast. Primary amongst this is the time required to start up the entire service and shut it down again. At LMAX with the full exchange consisting of a large number of different services, multiple databases and other components start up is far too slow to be done for each test so our acceptance tests are designed to run against the same server instance and not interfere with each other.</p>
+<p>Most functions in the exchange can be isolated by simply creating one or more accounts and instruments that are unique to the particular test. The test simply starts by using the usual administration APIs to create the users and instruments it needs. Just this basic level of isolation allows us to test a huge amount of the exchange&rsquo;s functionality – all of the matching behaviour for example. With the tests completely isolated from each other we can run them in parallel against the same server and dramatically reduce the amount of hardware required to run all the acceptance tests in a reasonable time.</p>
+<p>But there are many functions in an exchange that cut across instruments and accounts – for example the exchange rates used to convert the profit or loss a user earns in one currency back to their account base currency. Initially tests that needed to control exchange rates could only be run sequentially, each one taking over the entire exchange while they ran and significantly increasing the time required for the test run. More recently however we&rsquo;ve made the concept of currency completely generic – tests now simply create a unique currencies they can use and are able to set the exchange rates between those currencies without affecting any other tests. This makes our acceptance tests run significantly faster, but also means new currencies can be supported in the exchange without any code changes – just use the administration UI to create the desired currency.</p>
+<p>We&rsquo;ve applied the same approach of creating a completely generic solution even when there is a known set of values in a range of other areas, giving us better test isolation and often making it easier to respond to unexpected future requirements. Sometimes this adds complexity to the code or administration options which could have been avoided but the increased testability is well worth it.</p>
+<p>The ultimate level of test isolation however is our support for multiple venues running in a single instance of the exchange. This essentially moves the exchange to a multi-tenancy model, a venue encapsulates all aspects of an exchange, allowing us to test back office reports that track how money moves around the exchange, reconciliation reports that cover all trades and many other functions that report on the state of the exchange as a whole.</p>
+<p>With the LMAX Exchange now essentially running in three forms (Professional, Institutional and Interbank) this support for venues is more than just an optimisation for tests – we can co-host different instances of the exchange on the same production hardware, reducing not only the upfront investment required but also the ongoing maintenance costs.</p>
+<p>Overall we&rsquo;ve seen that making features more easily testable (using end-to-end acceptance tests) surprisingly often delivers business benefit making the investment well worth it.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

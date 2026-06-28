@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exploring Ethereum: What happens to transactions in non-canonical blocks? | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="In Ethereum, there are often short forks near the head of the chain because two miners found the PoW solution for new blocks at around the same time. Only one of those chains will ultimately wind up being considered the canonical chain and any blocks from non-canonical chains wind up having no effect on the state. Non-canonical blocks may wind up being added as ommers in future blocks, but everything in this article applies regardless of whether that happens.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2019/11/27/exploring-ethereum-what-happens-to-transactions-in-non-canonical-blocks/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2019/11/27/exploring-ethereum-what-happens-to-transactions-in-non-canonical-blocks/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exploring Ethereum: What happens to transactions in non-canonical blocks?">
+	<meta property="og:description" content="In Ethereum, there are often short forks near the head of the chain because two miners found the PoW solution for new blocks at around the same time. Only one of those chains will ultimately wind up being considered the canonical chain and any blocks from non-canonical chains wind up having no effect on the state. Non-canonical blocks may wind up being added as ommers in future blocks, but everything in this article applies regardless of whether that happens.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2019-11-27T02:07:28+00:00">
+		<meta property="article:modified_time" content="2019-11-27T02:07:28+00:00">
+
+	<meta itemprop="name" content="Exploring Ethereum: What happens to transactions in non-canonical blocks?">
+	<meta itemprop="description" content="In Ethereum, there are often short forks near the head of the chain because two miners found the PoW solution for new blocks at around the same time. Only one of those chains will ultimately wind up being considered the canonical chain and any blocks from non-canonical chains wind up having no effect on the state. Non-canonical blocks may wind up being added as ommers in future blocks, but everything in this article applies regardless of whether that happens.">
+	<meta itemprop="datePublished" content="2019-11-27T02:07:28+00:00">
+	<meta itemprop="dateModified" content="2019-11-27T02:07:28+00:00">
+	<meta itemprop="wordCount" content="381">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exploring Ethereum: What happens to transactions in non-canonical blocks?">
+	<meta name="twitter:description" content="In Ethereum, there are often short forks near the head of the chain because two miners found the PoW solution for new blocks at around the same time. Only one of those chains will ultimately wind up being considered the canonical chain and any blocks from non-canonical chains wind up having no effect on the state. Non-canonical blocks may wind up being added as ommers in future blocks, but everything in this article applies regardless of whether that happens.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Ethereum: What happens to transactions in non-canonical blocks?</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exploring Ethereum: What happens to transactions in non-canonical blocks?</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-27T02:07:28Z">November 27, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>In Ethereum, there are often short forks near the head of the chain because two miners found the PoW solution for new blocks at around the same time. Only one of those chains will ultimately wind up being considered the canonical chain and any blocks from non-canonical chains wind up having no effect on the state. <a href="https://www.symphonious.net/2019/11/01/exploring-ethereum-ommers-vs-non-canoncial-blocks/">Non-canonical blocks <em>may</em> wind up being added as ommers</a> in future blocks, but everything in this article applies regardless of whether that happens.</p>
+<p>If your transaction winds up in a non-canonical block, is it doomed for all time? Fortunately no. Most likely your transaction will still wind up being added to a block on the canonical chain even though it&rsquo;s already wound up in a block on a discarded fork.</p>
+<p>Firstly, your transaction might have been selected for both the non-canonical block and the block that wound up on the canonical chain. Those two blocks are part of different forks so the transaction may be valid on both. In that case, whichever chain gets picked your transaction is included. However, depending on which other transactions were picked and the effect they had on world state, your transaction may have done completely different things on each fork.</p>
+<p>Secondly, it&rsquo;s possible that a node saw the non-canonical block first and treated it as part of the canonical chain (because it was the best block known to it at the time). In that case, the node will have removed your transaction from the pending transaction pool because it was already processed. When the block that actually wound up on the canonical chain turns up, the node will perform a chain re-org to switch to this new block and relegate the original block to a fork. If your transaction isn&rsquo;t in the canonical block, good clients will re-add it to the pending transaction pool so it can be added to a future block.</p>
+<p>If your transaction went into a block that was always seen as non-canonical, then it wouldn&rsquo;t have been removed from the transaction pool in the first place and continues to wait for a chance to get into a canonical block.</p>
+<p>Bottom line, getting included in a non-canonical block does your transaction no harm. It will generally hang around until it makes it onto the canonical chain.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Symphonious</title>
+    <link>https://www.symphonious.net/categories/blogs/</link>
+    <description>Recent content in Blogs on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Wed, 06 May 2009 09:58:30 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Open Clip Art Library</title>
+      <link>https://www.symphonious.net/2009/05/06/open-clip-art-library/</link>
+      <pubDate>Wed, 06 May 2009 09:58:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/06/open-clip-art-library/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://openclipart.org&#34;&gt;&lt;img loading=&#34;lazy&#34; height=&#34;83&#34; width=&#34;555&#34; style=&#34; border: 0;&#34; alt=&#34;Open Clip Art Library&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/image37832.png&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Rob wanted to know where I’ve been getting the clip art images on my recent posts. They’re from the seriously cool, but overly hard to use, &lt;a href=&#34;http://openclipart.org&#34;&gt;Open Clip Art Library&lt;/a&gt;. They have a ton of SVG images so when combined with &lt;a href=&#34;http://www.inkscape.org/&#34;&gt;Inkscape&lt;/a&gt; can be converted to PNG images at any size. I wound up downloading an old archive release of the library which includes PNG versions of all the images and now use OS X to browse and search.&lt;/p&gt;
+&lt;p&gt;I’ve got a copy of each of the PNG images in their own directory which I can use coverflow to flick through, or I can use spotlight to search the full collection which includes text files containing the key words and info for each image. Combining the two I can easily find the image I want and preview a bunch of them. I then use the image editor built into EditLive! to add a drop shadow for that bit of extra polish.&lt;/p&gt;
+&lt;p&gt;The Open Clip Art Library seem to be in a sticky situation of trying to import all these old images into their new system so they can be better searched etc. The search seems to work fairly well, but lists the results as text rather than just letting you quickly see the image which is why the library is so hard to use. I definitely sense an EditLive! plugin in my future…&lt;/p&gt;
+&lt;p&gt;I’m keen to investigate the project some more and see if a little coding work couldn’t solve most of these issues, but getting started in a new code base takes time and I just haven’t had a big enough block of time to dig into it yet. It also seems like the project has only recently become active again which is a good sign.&lt;/p&gt;
+&lt;p&gt;So a big thanks to whoever the team is behind the open clip art library, it’s great stuff and hopefully I can jump in and help out soon.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What People Want</title>
+      <link>https://www.symphonious.net/2008/09/04/what-people-want/</link>
+      <pubDate>Thu, 04 Sep 2008 13:07:42 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/09/04/what-people-want/</guid>
+      <description>&lt;p&gt;Ephox provides a bunch of different sites with feeds to help people keep up to date about what’s happening with our software and the company.  For example, &lt;a href=&#34;http://liveworks.ephox.com/&#34;&gt;LiveWorks!&lt;/a&gt; helps you learn more about our products and get the most out of them, the &lt;a href=&#34;http://releases.ephox.com/&#34;&gt;releases blog&lt;/a&gt; keeps you up to date with the latest stuff and the &lt;a href=&#34;http://blog.ephox.com/&#34;&gt;official Ephox blog&lt;/a&gt; has all the company news. Then of course there’s a range of blogs by Ephox employees like this one and they’re all gathered up at &lt;a href=&#34;http://people.ephox.com/&#34;&gt;People@Ephox&lt;/a&gt;. So guess which feed is the most popular by far?&lt;/p&gt;
+&lt;p&gt;Yep, People@Ephox. Now, People@Ephox obviously includes the posts from all our official blogs so you get the hints and tips from LiveWorks!, the release notifications and the official company news but the majority of posts that come through are from employee’s blogs discussing random stuff from Guitar Hero, to rebuilding PCs, touring around the Australian outback and even sometimes talking about work. Add to that the fairly significant number of visits to the actual People@Ephox site as well and it’s even more impressive.&lt;/p&gt;
+&lt;p&gt;Personally, I think that’s fantastic. To be honest, when I put together People@Ephox, I didn’t really expect it to be that popular – almost just checking off the “hip company that cares about it’s users” list. We do genuinely care about our users and I’m always looking for ways to stay in touch with them and make sure they’re getting the most out of our products but I would have thought the majority of people these days would only be interested in the more official sites. &lt;em&gt;I&lt;/em&gt; tend to subscribe to employee’s blogs for companies that I deal with, but everyone keeps telling me how unusual I am. At least in this case they’re not entirely right (though in many others they definitely are).&lt;/p&gt;
+&lt;p&gt;Companies spend a huge amount of time building up contact lists and trying to get clients to opt-in to receive newsletters and whatever else and while they certainly go out to far more people than People@Ephox does, there’s a really important difference.  People@Ephox really hasn’t done anything to make it easy to opt-in to. There’s no email subscriptions, no fancy Web 2.0 buttons to subscribe in a million different web based readers, not even the marketing department obligatory call to action, just an RSS feed, and people subscribe.  I’ll bet (hope) they’re far more interested in the content too.&lt;/p&gt;
+&lt;p&gt;So to all of our clients, partners and users who come to read this – thanks for taking an interest. I’d love to stay up to date with you and your companies too so please do post the URL to your blog in the comments whether it’s official or unofficial and even if it never mentions anything to do with EditLive!&lt;/p&gt;
+&lt;p&gt;UPDATE: Since it’s so easy to do, now you can subscribe via email. Just &lt;a href=&#34;http://people.ephox.com/&#34;&gt;visit the site&lt;/a&gt;, put your email address in the box, solve the captcha and click the link in the email you get. Don’t forget to thank the spammers for making the internet such a pain…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>More On NewsGator Syncing</title>
+      <link>https://www.symphonious.net/2008/06/22/more-on-newsgator-syncing/</link>
+      <pubDate>Sun, 22 Jun 2008 07:50:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/22/more-on-newsgator-syncing/</guid>
+      <description>&lt;p&gt;Got a couple of good comments on my last post about NewsGator Syncing that I thought were worth following up on. Firstly, Greg Reinacker points to &lt;a href=&#34;http://www.rassoc.com/gregr/weblog/2008/02/14/newsgator-feed-retrieval-intervals/&#34;&gt;the article I had in mind about how NewsGator polls the feeds&lt;/a&gt;, and Andy pointed me to &lt;a href=&#34;http://forum.newsgator.com/Topic36966-4-1.aspx&#34;&gt;this forum posting&lt;/a&gt; about it which shows how to see why feeds aren’t updating.&lt;/p&gt;
+&lt;p&gt;When I go and look at my feeds I find a whole bunch reported as having errors from the source of the feed – obviously why they’re not updating. There’s just one problem, even Andy’s comments are marked as broken:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Comments for Andy&amp;rsquo;s blog All Error from the source of the feed 6/22/2008 12:37
+So Andy, when did you break your comments feed, how do you plan to fix it given that it’s hosted by WordPress.com and what do you think the chances are that it was a temporary error that’s now caused NewsGator to barf and stop pulling down your comment feed?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It gets worse:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Google Blog Search: EditLive All Authentication failed 5/16/2008 1:17:27 AM
+So did Google screw up or did NewsGator? I think you can toss a coin on that one. After going through and pinging all my feeds there’s suddenly 41 new items from those dead feeds dating as far back as February that NewsGator was hiding from me.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think Greg’s posted summed up the problem with the current approach nicely:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Something I’ve been thinking about is some kind of status page or something where someone can type in the name of a feed, and we’ll display status for that feed (including why it’s in the penalty box if it is)…we’ve resisted doing this because it’s just one of those things our users shouldn’t have to worry about.
+&lt;em&gt;User’s shouldn’t have to worry about this!&lt;/em&gt; NewsGator needs to do a much better job at pulling feeds back out of the penalty box or better yet, get rid of the penalty box altogether. There are just way too many feeds out there that are broken in some way and way too many ways that a site might time out because of connection problems between NewsGator and them or a maintenance window or whatever. I just want to read the news when it comes through and I want NewsGator to stop getting in the way and make that happen.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PS: Apologies for the number of comments that have been incorrectly marked as spam, the anti-spam system isn’t working out too well and the feed that notifies me of marginal comments to review was being eaten by NewsGator (they had some down time a while back so it obviously got permanently moved to the penalty box).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An Epiphany</title>
+      <link>https://www.symphonious.net/2008/06/12/an-epiphany/</link>
+      <pubDate>Wed, 11 Jun 2008 15:20:24 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/12/an-epiphany/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m commuting to work these days since Ephox has a sweet office in Windsor and while I&amp;rsquo;m there by myself at the moment its still nice to get out of the house. Anyway the point is I now have 30 to 40 minutes each day walking to the train station, waiting for trains or sitting on the train. In the mornings this is the perfect opportunity to review email and feeds but in the afternoon there aren&amp;rsquo;t many of those so the trip is somewhat boring. Of course this is the perfect use case for audio books an podcasts so I&amp;rsquo;m going to have to try a few out. Previously I haven&amp;rsquo;t bothered with podcasts because the information density is too low. Its so much more efficient to read text instead of listening to someone talk. Its rare that emotion and speaking tone really adds anything to technical discussions. If you have spare time sitting on a train though that&amp;rsquo;s not really a consideration so you may as well cover off that extra content that isn&amp;rsquo;t provided as text.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Writing Has Changed, Have You?</title>
+      <link>https://www.symphonious.net/2008/06/04/writing-has-changed-have-you/</link>
+      <pubDate>Wed, 04 Jun 2008 09:35:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/04/writing-has-changed-have-you/</guid>
+      <description>&lt;p&gt;I come from a family of teachers and despite running for the technological hills myself, still wound up marrying a teacher, so I’m surprisingly familiar with schools, teaching and technology in schools. It also helps that I’ve had a couple of jobs running IT in schools and I’ve always kept an interest in how technology is being used to aid teaching.&lt;/p&gt;
+&lt;p&gt;It should come as no surprise then that I was quite interested in &lt;a href=&#34;http://www.halcyon.com/arborhts/mahlness/2008/06/take-two-giant-steps.html&#34;&gt;Mark Ahlness’ post&lt;/a&gt; about a new WYSIWYG editor being added to the blog software his third grade students have been using. Now firstly, it’s cool that third graders are blogging – it gives them an interesting place to practice writing and by being interesting and novel, hopefully develops an interest in writing. After all, behind most learning there’s fun and passion.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Allowing teachers to teach writing in this new medium is, for me at least, huge. Now, I&amp;rsquo;ve of course got kids who will go nuts over fonts, colors, pictures, links, etc, etc – because they look so cool. Some teachers see this as a nightmare. OMG, the kids are just going to waste their time, etc, etc. Well, get a grip and teach them, I say. To me this is a dream come true – a chance to teach my kids that, as much as content, &lt;a href=&#34;http://k12onlineconference.org/?p=174&#34;&gt;design matters&lt;/a&gt; – to borrow a phrase from &lt;a href=&#34;http://ideasandthoughts.org/&#34;&gt;Dean Shareski&lt;/a&gt;. And content does indeed come first, yes it does.
+This is the point where we all learn from 3rd graders. Design matters and design is as much a part of the actual content as it is part of the site layout. Having an editor that lets users express their meaning rather than just enter text is really important. If you’ve locked your CMS down to the point where content authors can’t do anything but write text, you’ve probably gone too far and you’re now through out visual content – not just formatting. The key is in finding the balance and I’m really glad to see that third graders are getting the opportunity to experiment and find that balance because that’s the only way to learn.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Problem With Good Advice</title>
+      <link>https://www.symphonious.net/2008/05/27/the-problem-with-good-advice/</link>
+      <pubDate>Tue, 27 May 2008 12:27:07 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/05/27/the-problem-with-good-advice/</guid>
+      <description>&lt;p&gt;There are a lot of articles around the place giving generally good advice on how to be a better blogger and get noticed. &lt;a href=&#34;http://girtby.net/archives/2008/5/22/blogging-horror&#34;&gt;Alastair Rankine&lt;/a&gt; highlights one of the key problems with slavishly following this advice – you become boring:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I was initially attracted to Atwood’s blog for its relatively simple premise and smart delivery. With startling regularity over an extended time he managed to deliver bite-sized morsels relating to the stated domain of programming and human factors. He writes well and generally illustrates his point in a clear and easy to digest style. It’s quite engaging.&lt;/p&gt;
+&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;It seems quite apparent that Jeff Atwood has stepped outside his expertise recently, and that this is something he did comparatively rarely in the past. I haven’t gone groveling through his past posts, but from my recollection I’m pretty sure his hit rate used to be better.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What I think has gone wrong is that Jeff, like most bloggers who go pro, is trying to keep to a regular posting schedule even when he’s too busy to do it well or has nothing good to post about. Regular posting scheduled is a universal recommendation on how to blog lists and it’s got a lot of merit. If you blog more often, you’ll get better at it. The more content on your site the more likely searches will lead people to your site. The more you comment in response to other people’s sites the more likely they’ll notice you and respond, including linking back to you.&lt;/p&gt;
+&lt;p&gt;The problem is that life and inspiration don’t work on regular schedules, they fluctuate. If you quit your day job &lt;em&gt;just&lt;/em&gt; to blog you can probably keep life under control enough to post every day but inspiration still isn’t guaranteed. If you’re trying to start a new company or maintain a day job, your life probably fluctuates so that some weeks or even months you just don’t have time to sit down and write a good blog post. Similarly with inspiration, sometimes you’re doing something so interesting great blog topics just keep popping up and sometimes you’re doing stuff that’s fairly mundane and you don’t have anything too interesting to contribute to the conversations going on in the blogosphere. That’s ok, just don’t post anything for a while or simply point to the interesting stuff that’s going on without comment.&lt;/p&gt;
+&lt;p&gt;It’s a fairly common process which probably should be named after Robert Scoble since he seems to go through the process over and over again. For most people it’s a one way process where they get stuck being boring, but Robert seems to have turned it into a cycle:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Blog based on what you know and are passionate about&lt;/li&gt;
+&lt;li&gt;Become popular&lt;/li&gt;
+&lt;li&gt;Feel an obligation to your audience to blog a certain way or blog regularly. Sometimes this is trying to please everyone, sometimes it’s trying to go pro and others it’s just getting caught up in the hype of being a celebrity.&lt;/li&gt;
+&lt;li&gt;Become boring or lose credibility.&lt;/li&gt;
+&lt;li&gt;Reflect, refocus and go back to blogging about what you’re passionate about.&lt;/li&gt;
+&lt;li&gt;Become popular again…&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I think this process is why I read so few blogs from people who make their living from writing/publishing. The interest I have in blogs is to hear from people on the front lines &lt;em&gt;doing&lt;/em&gt; the interesting stuff, not the ones that are just writing about it and it’s really hard to be an A-List blogger and get much else done. When I do read full time bloggers it’s usually because they make good filters for the great torrent of information that flows around the internet, allowing me to read the good stuff and skip the rest.&lt;/p&gt;
+&lt;p&gt;Finally, to provide something constructive, let me point to &lt;a href=&#34;http://planet.intertwingly.net/&#34;&gt;Planet Intertwingly&lt;/a&gt;. Since subscribing to it my list of articles to consider more carefully and/or blog about has started overflowing. Sam Ruby hosts it and it’s full of seriously smart people with a strong tech focus. I’m pretty sure it picks up all the &lt;a href=&#34;http://www.planetapache.org/&#34;&gt;Planet Apache&lt;/a&gt; blogs (also good quality), but I take it as a huge compliment that my name appears in that list anyway.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Another Employee, Another Blog</title>
+      <link>https://www.symphonious.net/2007/10/22/another-employee-another-blog/</link>
+      <pubDate>Sun, 21 Oct 2007 20:16:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/10/22/another-employee-another-blog/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://spyder.wordpress.com/2007/10/21/welcoming-another-ephox-engineer/&#34;&gt;Andy Herron&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tomorrow  is a day I’ve been looking forward to for quite a few years.  &lt;a href=&#34;http://techtangents.wordpress.com/&#34;&gt;Dylan Just&lt;/a&gt;, one of my best mates from uni, is starting at Ephox.  He’s not yet on &lt;a href=&#34;http://people.ephox.com/&#34;&gt;Planet Ephox&lt;/a&gt; but I think we’re fixing that tomorrow morning.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; Indeed that has been fixed. Welcome on board Dylan! Any other Ephox folk who want to start blogging – just let me know!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>More On Styles In Feeds</title>
+      <link>https://www.symphonious.net/2007/10/05/more-on-styles-in-feeds/</link>
+      <pubDate>Fri, 05 Oct 2007 07:25:01 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/10/05/more-on-styles-in-feeds/</guid>
+      <description>&lt;p&gt;Some interesting responses to my complaint about feed readers stripping CSS:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://nick.typepad.com/blog/2007/10/response-on-str.html&#34;&gt;Nick Bradbury – Response: On Stripping Styles For Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://intertwingly.net/blog/2007/10/04/Stripping-Styles&#34;&gt;Sam Ruby - Stripping Styles&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There&amp;rsquo;s a common misperception that my complaint was about &lt;em&gt;all&lt;/em&gt; styles but in fact I was just referring to inline styles on the basis that they are actually part of the content, not just presentation. Sam Ruby points to a feed from Wikipedia that is exactly the use case I had in mind. Many of the comments however want to strip styles to preserve a uniform look in a &amp;ldquo;river of news&amp;rdquo; type of reader, for example Nick&amp;rsquo;s comment:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The real problem isn&amp;rsquo;t security, though: it&amp;rsquo;s presentation (ironically). Leaving styles intact makes sense if you&amp;rsquo;re reading one post at a time, but it makes less sense in a river of news where posts from multiple feeds flow down the page. The purpose of a river of news isn&amp;rsquo;t to retain the presentation of any single post, but instead to provide a common presentation for all posts, making it easy to pick out the ones that interest you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you don&amp;rsquo;t download external stylesheets (which probably aren&amp;rsquo;t referenced by the feed anyway) there&amp;rsquo;s a very good chance that the resulting presentation will be consistent, without stripping out important visual information. Even if you&amp;rsquo;re reading one item at a time rather than a river of news, it&amp;rsquo;s far more efficient for the styles to be consistent so I doubt there&amp;rsquo;s any real call for rendering entries the same way they appear on the site. Consistency is important to everyone, but data loss should be a concern for everyone and right now we&amp;rsquo;re losing a lot of data.&lt;/p&gt;
+&lt;p&gt;Nick also commented that preserving styles while maintaining security isn&amp;rsquo;t too difficult and Sam Ruby and Paul Querna pointed to the &lt;a href=&#34;http://wiki.whatwg.org/wiki/Sanitization_rules&#34;&gt;sanitization rules wiki page&lt;/a&gt;, so the technical challenges seem to be solvable, but there&amp;rsquo;s still one problem: users. The thing is, people too regularly abuse HTML and use inline styles for presentation rather than just visual data either from a lack of understanding or a desire to push their advertising. How do we solve that?&lt;/p&gt;
+&lt;p&gt;The first line of defense is to remember that feeds are opt-in, if people misbehave and push advertising or generally do annoying things in their feed you can easily unsubscribe. Social pressure is always the best solution but it&amp;rsquo;s not 100% effective so we&amp;rsquo;ll probably need some technical measures as well.&lt;/p&gt;
+&lt;p&gt;The second line of defense unfortunately is likely to be user preferences&lt;a id=&#34;footlink1-1191568717678&#34; name=&#34;footlink1-1191568717678&#34; href=&#34;#footnote1-1191568717678&#34; class=&#34;footnote&#34;&gt;1&lt;/a&gt;. It&amp;rsquo;s important that they are available on a per-feed level so that you can disable styles in feeds that do the wrong thing, but preserve the visual data in those that get it right. I wonder if there are a few simple heuristics that could be applied. For example stripping any style that&amp;rsquo;s applied to the entire content would fix the common case of people using inline styles to change the font face or size instead of just adjusting their stylesheet. I&amp;rsquo;m sure there are a few other simple rules that could be identified to prevent the most common abuses of inline styles without having to strip all CSS.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m glad there&amp;rsquo;s some discussion of this beginning as it&amp;rsquo;s the only way we&amp;rsquo;ll find good solutions that let us keep the benefits of feeds that we have and expand on them by leveraging newer technologies.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1-1191568717678&#34; name=&#34;footnote1-1191568717678&#34; href=&#34;#footlink1-1191568717678&#34;&gt;1&lt;/a&gt; &amp;#8211; unfortunately because complicating software by providing more options is never ideal&lt;a href=&#34;#footlink1-1191568717678&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Openness Really Does Pay</title>
+      <link>https://www.symphonious.net/2007/09/20/openness-really-does-pay/</link>
+      <pubDate>Thu, 20 Sep 2007 10:31:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/09/20/openness-really-does-pay/</guid>
+      <description>&lt;p&gt;I got some really positive feedback on the various community/openness projects that I&amp;rsquo;ve been spearheading within Ephox from one of our OEMs today. Apparently they&amp;rsquo;ve discovered our &lt;a href=&#34;http://liveworks.ephox.com/editlive-early-access/&#34;&gt;early access program&lt;/a&gt; and are already trying out our brand new &lt;a href=&#34;http://liveworks.ephox.com/2007/09/10/introducing-express-edit/&#34;&gt;Express Edit&lt;/a&gt; functionality&lt;a id=&#34;footlink1-1190272036229&#34; class=&#34;footnote&#34; href=&#34;#footnote1-1190272036229&#34; name=&#34;footlink1-1190272036229&#34;&gt;1&lt;/a&gt;.  It&amp;rsquo;s really nice to actually hear from clients that these elements are useful as we haven&amp;rsquo;t really managed to build up a community, even if we are seeing gradually increasing traffic. For a while now we&amp;rsquo;ve had potential new employees commenting on Planet Ephox which is great, but we haven&amp;rsquo;t really heard from clients taking advantage of it, even if we&amp;rsquo;ve seen some of the indirect effects via analytics and support cases.&lt;/p&gt;
+&lt;p&gt;Now getting great feedback from one client is satisfying but it&amp;rsquo;s not the end game – of course we want to impress all our clients like this by whatever means it takes. What I find most exciting about this is that it demonstrates to the sales and marketing teams that our openness and even our engineering practices&lt;a id=&#34;footlink2-1190283842000&#34; class=&#34;footnote&#34; href=&#34;#footnote2-1190283842000&#34; name=&#34;footlink2-1190283842000&#34;&gt;2&lt;/a&gt; are actually valuable to clients, particularly OEMs where the relationship is more important and long term. The business users and product managers probably don&amp;rsquo;t care about automated tests and early access, but the engineers that have to actually integrate our product do. If we can provide them with tools like the hints and tips on &lt;a href=&#34;http://liveworks.ephox.com/&#34;&gt;LiveWorks!&lt;/a&gt; or early access to new features, they can better integrate our products and get the most out of them for the actual end users. In the end, that&amp;rsquo;s what everyone should be working towards and we can and will help out on multiple levels.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1-1190272036229&#34; name=&#34;footnote1-1190272036229&#34; href=&#34;#footlink1-1190272036229&#34;&gt;1&lt;/a&gt; &amp;#8211; Don&#39;t forget to let us know how it goes and how we could improve it btw&amp;#8230;.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1-1190272036229&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote2-1190283842000&#34; name=&#34;footnote2-1190283842000&#34; href=&#34;#footlink2-1190283842000&#34;&gt;2&lt;/a&gt; &amp;#8211; continuous integration, TDD&amp;#160;and all the other things we do to ensure quality&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2-1190283842000&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lies, Damned Lies and Analytics</title>
+      <link>https://www.symphonious.net/2007/09/04/lies-damned-lies-and-analytics/</link>
+      <pubDate>Tue, 04 Sep 2007 07:48:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/09/04/lies-damned-lies-and-analytics/</guid>
+      <description>&lt;p&gt;Mindy McAdams gives advice about how students should test their online page designs, the trouble is the statistics she&amp;rsquo;s looking at are lying to her.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can see that although the screen resolutions larger than 1024 x 768 add up to more people (4,512 vs. 3,524), the single most common resolution in use (among people who read this blog, that is) is 1024 x 768. You can also see that the number of people viewing the site at the old standard, 800 x 600, is quite small.&lt;/p&gt;
+&lt;p&gt;Conclusion: It is sensible to design this blog to look good at a resolution of 1024 x 768, and to test it at some higher resolutions to make sure it doesn’t become unusable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is wrong – just because people have a screen resolution of 1024 x 768 doesn&amp;rsquo;t mean they are using all of it for viewing your web page. Once you get to screens that big it&amp;rsquo;s quite common for people not to maximize the browser window, so the actual page rendering area is much smaller than the screen size would suggest. Additionally, you can&amp;rsquo;t assume that people have the stock standard browser install anymore – there are a huge number of browser toolbars that people wind up with (often preinstalled) that take up screen space, not to mention people who read the blog in a feed reader with a list of feeds down or tabs down the side.&lt;/p&gt;
+&lt;p&gt;While there might be some merit in tracking your user base and designing to the majority, you need to track the size of the actual page rendering area, not the screen resolution to get any idea about what your users will see. The best approach however is to design a site that scales well from small screens up to larger screens as gracefully as possible.&lt;/p&gt;
+&lt;p&gt;Moving on to browsers:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Conclusions: Web pages must be tested in at least three browsers: Firefox, IE 6 and IE 7. Pages for this blog should also be tested in Safari, although that may not hold true for all sites (see below).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Seriously, test in Safari – even if only the Windows version. Once you get your pages to work well in Firefox and IE 6, you&amp;rsquo;ve done 99% of the work to get it to work pretty much everywhere. While you&amp;rsquo;re there, test in Opera too. Why limit your audience when you&amp;rsquo;ve done all the hard work to get the design to work cross browser anyway? Either design for one specific browser to minimize the effort required, or design for all of them – the second browser you support is the expensive one, once you&amp;rsquo;ve got that you may as well have them all.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So how should students (and professionals) test their online page designs?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;On as many browsers and platforms as they can manage. You never know what configuration your next paying client might have and you want to make sure the site looks great for them or they&amp;rsquo;ll pass you by. Numbers and statistics don&amp;rsquo;t matter – that million dollar client counts as one hit just like the millions of people you don&amp;rsquo;t care about. Don&amp;rsquo;t miss your chance by being lazy.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

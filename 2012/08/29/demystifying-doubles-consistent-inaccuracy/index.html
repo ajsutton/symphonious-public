@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Demystifying Doubles: Consistent Inaccuracy | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Of all the data types, double is probably one of the most misunderstood. A huge amount of folk lore has been built up around it to help protect developers from falling into its many pitfalls.  Lately I&rsquo;ve done a lot of work replacing usage of BigDecimal with double and learnt a lot about where those pitfalls are and how the folk lore can be misleading.
+The great challenge with double is that it has a degree of inaccuracy because of the way the number is actually stored.  For example, the number 2983792734924.2293 actually winds up being stored as 2983792734924.2295, a tiny difference but with far reaching consequences. All of the folk lore around doubles is designed to deal with this potential for inaccuracy.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2012/08/29/demystifying-doubles-consistent-inaccuracy/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2012/08/29/demystifying-doubles-consistent-inaccuracy/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Demystifying Doubles: Consistent Inaccuracy">
+	<meta property="og:description" content="Of all the data types, double is probably one of the most misunderstood. A huge amount of folk lore has been built up around it to help protect developers from falling into its many pitfalls. Lately I’ve done a lot of work replacing usage of BigDecimal with double and learnt a lot about where those pitfalls are and how the folk lore can be misleading.
+The great challenge with double is that it has a degree of inaccuracy because of the way the number is actually stored. For example, the number 2983792734924.2293 actually winds up being stored as 2983792734924.2295, a tiny difference but with far reaching consequences. All of the folk lore around doubles is designed to deal with this potential for inaccuracy.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2012-08-29T03:36:19+00:00">
+		<meta property="article:modified_time" content="2012-08-29T03:36:19+00:00">
+
+	<meta itemprop="name" content="Demystifying Doubles: Consistent Inaccuracy">
+	<meta itemprop="description" content="Of all the data types, double is probably one of the most misunderstood. A huge amount of folk lore has been built up around it to help protect developers from falling into its many pitfalls. Lately I’ve done a lot of work replacing usage of BigDecimal with double and learnt a lot about where those pitfalls are and how the folk lore can be misleading.
+The great challenge with double is that it has a degree of inaccuracy because of the way the number is actually stored. For example, the number 2983792734924.2293 actually winds up being stored as 2983792734924.2295, a tiny difference but with far reaching consequences. All of the folk lore around doubles is designed to deal with this potential for inaccuracy.">
+	<meta itemprop="datePublished" content="2012-08-29T03:36:19+00:00">
+	<meta itemprop="dateModified" content="2012-08-29T03:36:19+00:00">
+	<meta itemprop="wordCount" content="623">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Demystifying Doubles: Consistent Inaccuracy">
+	<meta name="twitter:description" content="Of all the data types, double is probably one of the most misunderstood. A huge amount of folk lore has been built up around it to help protect developers from falling into its many pitfalls. Lately I’ve done a lot of work replacing usage of BigDecimal with double and learnt a lot about where those pitfalls are and how the folk lore can be misleading.
+The great challenge with double is that it has a degree of inaccuracy because of the way the number is actually stored. For example, the number 2983792734924.2293 actually winds up being stored as 2983792734924.2295, a tiny difference but with far reaching consequences. All of the folk lore around doubles is designed to deal with this potential for inaccuracy.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Demystifying Doubles: Consistent Inaccuracy</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Demystifying Doubles: Consistent Inaccuracy</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2012-08-29T03:36:19Z">August 29, 2012</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Of all the data types, double is probably one of the most misunderstood. A huge amount of folk lore has been built up around it to help protect developers from falling into its many pitfalls.  Lately I&rsquo;ve done a lot of work replacing usage of BigDecimal with double and learnt a lot about where those pitfalls are and how the folk lore can be misleading.</p>
+<p>The great challenge with double is that it has a degree of inaccuracy because of the way the number is actually stored.  For example, the number 2983792734924.2293 actually winds up being stored as 2983792734924.2295, a tiny difference but with far reaching consequences. All of the folk lore around doubles is designed to deal with this potential for inaccuracy.</p>
+<p>One piece of folk lore is that you should never do a strict comparison of double values (e.g. with == or !=).  Due to the inaccuracy of doubles you should always compare them with a level of tolerance:</p>
+<pre>abs(doubleA - doubleB) &lt; tolerance</pre>
+<p>It&rsquo;s important to realise however, that this inaccuracy isn&rsquo;t random, it&rsquo;s perfectly consistent and predictable.  The number 2983792734924.2293 <em>always</em> comes out as 2983792734924.2295.  The same applies if you parse it from a string: parseDouble(“2983792734924.2293”) <em>always</em> comes out as 2983792734924.2295.  As a result the following are consistently true:</p>
+<pre>2983792734924.2293 == 2983792734924.2293
+
+parseDouble("2983792734924.2293") == 2983792734924.2293
+
+parseDouble("2983792734924.2293") == parseDouble("2983792734924.2293")</pre>
+<p>Introducing tolerance to the comparison can lead to subtle bugs. For example, if we were updating our model with user input we might have something like:</p>
+<pre>// In our model:
+public void setAmount(double amount) {
+  this.amount = amount;
+  fireChangeEvent();
+}
+
+// In our UI code:
+model.setAmount(parseDouble(widget.getText()));</pre>
+<p>So far so good, but what if we want to avoid firing the change event if the value hadn&rsquo;t really changed?  We might change the model code to:</p>
+<pre>public void setAmount(double amount) {
+  if (abs(amount - this.amount) &gt; 0.01) {
+    this.amount = amount;
+    fireChangeEvent();
+  }
+}</pre>
+<p> It follows the double folk lore, but also introduces a bug. Let&rsquo;s say the user first enters the amount ‘1&rsquo;.  Then they change the amount to ‘1.001&rsquo;.  The second amount is within the tolerance so it&rsquo;s not considered an actual change. The user is now looking at a text field that says 1.0001, but the model thinks the value is still 1.   You can make the tolerance smaller but that just means the user has to enter more zeros to trigger the problem.</p>
+<p>The right answer is to take advantage of the fact that inaccuracy with doubles is consistent and do the comparison using strict comparison:</p>
+<pre>public void setAmount(double amount) {
+  if (about != this.amount) {
+    this.amount = amount;
+    fireChangeEvent();
+  }
+}</pre>
+<p>So when doesn&rsquo;t this work? When the two values are calculated in different ways. So:</p>
+<pre><strong>(1491896367462.1147 * 29.837927349242293)</strong> / 2.3982983923
+= 18561116318075.207
+
+1491896367462.1147 * <strong>(29.837927349242293 / 2.3982983923)</strong>
+= 18561116318075.203</pre>
+<p>The only difference between the two equations is the order of evaluation – they <em>should</em> give the same answer, but because doubles have a degree of inaccuracy the intermediate result is rounded to something that will fit in a double, so the order of evaluation matters because it affects what rounding is done to the intermediate result. Repeating the exact same calculation will always give the exact same result, but if there&rsquo;s any chance that the values were calculated in different ways, comparisons must be done with tolerance.</p>
+<p>So the folk lore about needing to compare doubles with some tolerance is perfectly valid, good advice, but be aware that it introduces its own inaccuracy which may cause problems. You should consider what the impact of falsely deciding that the values are different vs falsely deciding that the values are the same; which side should you err on?</p>
+<p>Sometimes you really do want a strict comparison, even between doubles.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

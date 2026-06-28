@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>CACert | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Well I figure if you&rsquo;re going to do something you may as well do it properly and I&rsquo;ve been getting into the whole PGP thing lately. The trouble is noone has signed my key making it pretty much worthless. I&rsquo;m also a long way away from everyone I know who uses PGP and fate seems to work against me when I&rsquo;m closer to them. Bertrand was in Australia recently and even in Brisbane, unfortunately I was over in San Francisco (btw Bertrand if you manage to read this, my old email is offline at the moment so I can&rsquo;t find your contact details to let you know that I&rsquo;m back in the country but I figure you&rsquo;ve moved on from Brisbane anyway). Meanwhile, when I was in San Francisco I missed the train and didn&rsquo;t make it to the first Apache gathering which had people present who used PGP. I made it to the second but I don&rsquo;t think anyone there used PGP so there was no key signing done. So I figure I should check out a certificate authority and at least get them to sign my key. CACert is the new, free CA service and since I think it&rsquo;s about time someone provided a free CA I wanted to support it by getting involved and if the service stacks up with money. It seems however, that there&rsquo;s no trusted authorities in Brisbane yet. Fortunately they do have a more complex process involving faxing IDs around and finding a couple of lawyers, accountants or bank managers to verify your identity. Since I happen to know a few lawyers and accountants (oh, the company I keep….) that might just work out. So if you&rsquo;re a lawyer and see me coming with a bunch of paper work, you know what it&rsquo;s about. With all the viruses impersonating people these days, not to mention actual identify theft (which I&rsquo;ve personally been a victim of before, though fortunately there were no serious consequences), it&rsquo;s beginning to get more and more important that your identify can be accurately identified online. The first step is for lots of geeks to get involved, then for more email clients to have builtin support for PGP and make it easy, then we should see much more widespread adoption. Hopefully at some point it will be so ubiquitous that ISPs can refuse to relay email unless it&rsquo;s signed with a registered PGP key and spam is no longer a problem (though email server resources would be under much higher load so it&rsquo;s unlikely to actually be done). Client side filters would definitely be an option though.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/07/15/cacert/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/07/15/cacert/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="CACert">
+	<meta property="og:description" content="Well I figure if you’re going to do something you may as well do it properly and I’ve been getting into the whole PGP thing lately. The trouble is noone has signed my key making it pretty much worthless. I’m also a long way away from everyone I know who uses PGP and fate seems to work against me when I’m closer to them. Bertrand was in Australia recently and even in Brisbane, unfortunately I was over in San Francisco (btw Bertrand if you manage to read this, my old email is offline at the moment so I can’t find your contact details to let you know that I’m back in the country but I figure you’ve moved on from Brisbane anyway). Meanwhile, when I was in San Francisco I missed the train and didn’t make it to the first Apache gathering which had people present who used PGP. I made it to the second but I don’t think anyone there used PGP so there was no key signing done. So I figure I should check out a certificate authority and at least get them to sign my key. CACert is the new, free CA service and since I think it’s about time someone provided a free CA I wanted to support it by getting involved and if the service stacks up with money. It seems however, that there’s no trusted authorities in Brisbane yet. Fortunately they do have a more complex process involving faxing IDs around and finding a couple of lawyers, accountants or bank managers to verify your identity. Since I happen to know a few lawyers and accountants (oh, the company I keep….) that might just work out. So if you’re a lawyer and see me coming with a bunch of paper work, you know what it’s about. With all the viruses impersonating people these days, not to mention actual identify theft (which I’ve personally been a victim of before, though fortunately there were no serious consequences), it’s beginning to get more and more important that your identify can be accurately identified online. The first step is for lots of geeks to get involved, then for more email clients to have builtin support for PGP and make it easy, then we should see much more widespread adoption. Hopefully at some point it will be so ubiquitous that ISPs can refuse to relay email unless it’s signed with a registered PGP key and spam is no longer a problem (though email server resources would be under much higher load so it’s unlikely to actually be done). Client side filters would definitely be an option though.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-07-15T08:49:55+00:00">
+		<meta property="article:modified_time" content="2004-07-15T08:49:55+00:00">
+
+	<meta itemprop="name" content="CACert">
+	<meta itemprop="description" content="Well I figure if you’re going to do something you may as well do it properly and I’ve been getting into the whole PGP thing lately. The trouble is noone has signed my key making it pretty much worthless. I’m also a long way away from everyone I know who uses PGP and fate seems to work against me when I’m closer to them. Bertrand was in Australia recently and even in Brisbane, unfortunately I was over in San Francisco (btw Bertrand if you manage to read this, my old email is offline at the moment so I can’t find your contact details to let you know that I’m back in the country but I figure you’ve moved on from Brisbane anyway). Meanwhile, when I was in San Francisco I missed the train and didn’t make it to the first Apache gathering which had people present who used PGP. I made it to the second but I don’t think anyone there used PGP so there was no key signing done. So I figure I should check out a certificate authority and at least get them to sign my key. CACert is the new, free CA service and since I think it’s about time someone provided a free CA I wanted to support it by getting involved and if the service stacks up with money. It seems however, that there’s no trusted authorities in Brisbane yet. Fortunately they do have a more complex process involving faxing IDs around and finding a couple of lawyers, accountants or bank managers to verify your identity. Since I happen to know a few lawyers and accountants (oh, the company I keep….) that might just work out. So if you’re a lawyer and see me coming with a bunch of paper work, you know what it’s about. With all the viruses impersonating people these days, not to mention actual identify theft (which I’ve personally been a victim of before, though fortunately there were no serious consequences), it’s beginning to get more and more important that your identify can be accurately identified online. The first step is for lots of geeks to get involved, then for more email clients to have builtin support for PGP and make it easy, then we should see much more widespread adoption. Hopefully at some point it will be so ubiquitous that ISPs can refuse to relay email unless it’s signed with a registered PGP key and spam is no longer a problem (though email server resources would be under much higher load so it’s unlikely to actually be done). Client side filters would definitely be an option though.">
+	<meta itemprop="datePublished" content="2004-07-15T08:49:55+00:00">
+	<meta itemprop="dateModified" content="2004-07-15T08:49:55+00:00">
+	<meta itemprop="wordCount" content="437">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CACert">
+	<meta name="twitter:description" content="Well I figure if you’re going to do something you may as well do it properly and I’ve been getting into the whole PGP thing lately. The trouble is noone has signed my key making it pretty much worthless. I’m also a long way away from everyone I know who uses PGP and fate seems to work against me when I’m closer to them. Bertrand was in Australia recently and even in Brisbane, unfortunately I was over in San Francisco (btw Bertrand if you manage to read this, my old email is offline at the moment so I can’t find your contact details to let you know that I’m back in the country but I figure you’ve moved on from Brisbane anyway). Meanwhile, when I was in San Francisco I missed the train and didn’t make it to the first Apache gathering which had people present who used PGP. I made it to the second but I don’t think anyone there used PGP so there was no key signing done. So I figure I should check out a certificate authority and at least get them to sign my key. CACert is the new, free CA service and since I think it’s about time someone provided a free CA I wanted to support it by getting involved and if the service stacks up with money. It seems however, that there’s no trusted authorities in Brisbane yet. Fortunately they do have a more complex process involving faxing IDs around and finding a couple of lawyers, accountants or bank managers to verify your identity. Since I happen to know a few lawyers and accountants (oh, the company I keep….) that might just work out. So if you’re a lawyer and see me coming with a bunch of paper work, you know what it’s about. With all the viruses impersonating people these days, not to mention actual identify theft (which I’ve personally been a victim of before, though fortunately there were no serious consequences), it’s beginning to get more and more important that your identify can be accurately identified online. The first step is for lots of geeks to get involved, then for more email clients to have builtin support for PGP and make it easy, then we should see much more widespread adoption. Hopefully at some point it will be so ubiquitous that ISPs can refuse to relay email unless it’s signed with a registered PGP key and spam is no longer a problem (though email server resources would be under much higher load so it’s unlikely to actually be done). Client side filters would definitely be an option though.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">CACert</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">CACert</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-07-15T08:49:55Z">July 15, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Well I figure if you&rsquo;re going to do something you may as well do it properly and I&rsquo;ve been getting into the whole PGP thing lately. The trouble is noone has signed my key making it pretty much worthless. I&rsquo;m also a long way away from everyone I know who uses PGP and fate seems to work against me when I&rsquo;m closer to them. Bertrand was in Australia recently and even in Brisbane, unfortunately I was over in San Francisco (btw Bertrand if you manage to read this, my old email is offline at the moment so I can&rsquo;t find your contact details to let you know that I&rsquo;m back in the country but I figure you&rsquo;ve moved on from Brisbane anyway). Meanwhile, when I was in San Francisco I missed the train and didn&rsquo;t make it to the first Apache gathering which had people present who used PGP. I made it to the second but I don&rsquo;t think anyone there used PGP so there was no key signing done. So I figure I should check out a certificate authority and at least get them to sign my key. <a href="http://www.cacert.org">CACert</a> is the new, free CA service and since I think it&rsquo;s about time someone provided a free CA I wanted to support it by getting involved and if the service stacks up with money. It seems however, that there&rsquo;s no trusted authorities in Brisbane yet. Fortunately they do have a more complex process involving faxing IDs around and finding a couple of lawyers, accountants or bank managers to verify your identity. Since I happen to know a few lawyers and accountants (oh, the company I keep….) that might just work out. So if you&rsquo;re a lawyer and see me coming with a bunch of paper work, you know what it&rsquo;s about. With all the viruses impersonating people these days, not to mention actual identify theft (which I&rsquo;ve personally been a victim of before, though fortunately there were no serious consequences), it&rsquo;s beginning to get more and more important that your identify can be accurately identified online. The first step is for lots of geeks to get involved, then for more email clients to have builtin support for PGP and make it easy, then we should see much more widespread adoption. Hopefully at some point it will be so ubiquitous that ISPs can refuse to relay email unless it&rsquo;s signed with a registered PGP key and spam is no longer a problem (though email server resources would be under much higher load so it&rsquo;s unlikely to actually be done). Client side filters would definitely be an option though.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

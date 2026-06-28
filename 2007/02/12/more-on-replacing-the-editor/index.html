@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>More On Replacing The Editor | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="There were a few interesting comments on my last post. Firstly from Hen:
+
+People are attached to their editors and not their markup. If Maven had moved from xdocs to apt-gui for their site creation, I doubt there would have been many takers.
+It&rsquo;s true, people are very attached to their editors, but you don&rsquo;t have to force them to change, it&rsquo;s also not a reason to write customized mark up languages. In Maven&rsquo;s case, the documentation winds up being published as HTML so that&rsquo;s really the best format to use, people can use whatever editor they want to edit the HTML and it allows people to choose to use a WYSIWYG editor because they exist. This is similar to what Tim O&rsquo;Brien said:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/02/12/more-on-replacing-the-editor/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/02/12/more-on-replacing-the-editor/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="More On Replacing The Editor">
+	<meta property="og:description" content="There were a few interesting comments on my last post. Firstly from Hen:
+People are attached to their editors and not their markup. If Maven had moved from xdocs to apt-gui for their site creation, I doubt there would have been many takers. It’s true, people are very attached to their editors, but you don’t have to force them to change, it’s also not a reason to write customized mark up languages. In Maven’s case, the documentation winds up being published as HTML so that’s really the best format to use, people can use whatever editor they want to edit the HTML and it allows people to choose to use a WYSIWYG editor because they exist. This is similar to what Tim O’Brien said:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-02-12T10:45:51+00:00">
+		<meta property="article:modified_time" content="2007-02-12T10:45:51+00:00">
+
+	<meta itemprop="name" content="More On Replacing The Editor">
+	<meta itemprop="description" content="There were a few interesting comments on my last post. Firstly from Hen:
+People are attached to their editors and not their markup. If Maven had moved from xdocs to apt-gui for their site creation, I doubt there would have been many takers. It’s true, people are very attached to their editors, but you don’t have to force them to change, it’s also not a reason to write customized mark up languages. In Maven’s case, the documentation winds up being published as HTML so that’s really the best format to use, people can use whatever editor they want to edit the HTML and it allows people to choose to use a WYSIWYG editor because they exist. This is similar to what Tim O’Brien said:">
+	<meta itemprop="datePublished" content="2007-02-12T10:45:51+00:00">
+	<meta itemprop="dateModified" content="2007-02-12T10:45:51+00:00">
+	<meta itemprop="wordCount" content="389">
+	<meta itemprop="keywords" content="Editors">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="More On Replacing The Editor">
+	<meta name="twitter:description" content="There were a few interesting comments on my last post. Firstly from Hen:
+People are attached to their editors and not their markup. If Maven had moved from xdocs to apt-gui for their site creation, I doubt there would have been many takers. It’s true, people are very attached to their editors, but you don’t have to force them to change, it’s also not a reason to write customized mark up languages. In Maven’s case, the documentation winds up being published as HTML so that’s really the best format to use, people can use whatever editor they want to edit the HTML and it allows people to choose to use a WYSIWYG editor because they exist. This is similar to what Tim O’Brien said:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">More On Replacing The Editor</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">More On Replacing The Editor</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-02-12T10:45:51Z">February 12, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>There were a few interesting comments on <a href="http://www.symphonious.net/2007/02/08/keep-the-markup-improve-the-editor">my last post</a>. Firstly from Hen:</p>
+<blockquote>
+<p>People are attached to their editors and not their markup. If Maven had moved from xdocs to apt-gui for their site creation, I doubt there would have been many takers.
+It&rsquo;s true, people are very attached to their editors, but you don&rsquo;t have to force them to change, it&rsquo;s also not a reason to write customized mark up languages. In Maven&rsquo;s case, the documentation winds up being published as HTML so that&rsquo;s really the best format to use, people can use whatever editor they want to edit the HTML and it allows people to choose to use a WYSIWYG editor because they exist. This is similar to what Tim O&rsquo;Brien said:</p>
+</blockquote>
+<blockquote>
+<p>Part of the reason why Maven docs are so bad is because there is no way to integrate this customer format with great tools like Ephox.
+Thanks for the plug Tim, but there are plenty of good HTML editors that would have done the job and a standalone program probably would suit most developers better in this particular case.</p>
+</blockquote>
+<p>TimC also made an interesting point:</p>
+<blockquote>
+<p>Actually, please don&rsquo;t speak for all authors. The best way I have found of authoring scientific works is with LaTeX. Most definitely not wysiwyg. Fudging around with mice and equation editors is teh suck when you can simply say $\int^\inf_0 \frac{1}{x^2}= …
+This is definitely a case where wysiwyg isn&rsquo;t the best option, but it&rsquo;s also certainly not a case where they have simplified the markup language – LaTeX makes HTML look like child&rsquo;s play. I&rsquo;m not sure TimC would be so keen on have to use ASCII art to draw his equations like Tim O&rsquo;Brien had to for tables in Maven&rsquo;s markup language. I&rsquo;m certainly not one to advocate WYSIWYG in every situation, my point was that you should use the most suitable mark up and then use the editor to make it easy and intuitive.</p>
+</blockquote>
+<p>Dumbing down the mark up just limits what you can do and forces you to learn a new syntax. Using a standard mark up like HTML or LaTeX allows authors to leverage their existing knowledge and you can simplify it by providing or recommending a good editor. Sometimes that editor will be WYSIWYG, sometimes it will just be a plain old text editor.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

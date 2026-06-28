@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Productivity on Symphonious</title>
+    <link>https://www.symphonious.net/categories/productivity/</link>
+    <description>Recent content in Productivity on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 08 Dec 2014 21:54:51 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/productivity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Decision By Consensus</title>
+      <link>https://www.symphonious.net/2014/12/09/decision-by-consensus/</link>
+      <pubDate>Mon, 08 Dec 2014 21:54:51 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/12/09/decision-by-consensus/</guid>
+      <description>&lt;p&gt;Rich Bowen – &lt;a href=&#34;http://drbacchus.com/weve-always-done-it-that-way/&#34;&gt;&lt;em&gt;We&amp;rsquo;ve Always Done It That Way&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Principle 13 in &lt;a href=&#34;http://en.wikipedia.org/wiki/The_Toyota_Way&#34;&gt;the Toyota Way&lt;/a&gt; says that one should make decisions slowly, by consensus, thoroughly considering all options, and then implement those decisions rapidly. We believe a similar thing at the ASF. So to people who have only been around for a short time, it looks like we never change anything. But the truth is that we change things slowly, because what we’re doing works, and we need to be sure that change is warranted, and is a good idea.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I&amp;rsquo;m a big fan of decision by consensus. It doesn&amp;rsquo;t mean everyone agrees (consensus does not require unanimity) but it does ensure that the bulk of the team are all on board and moving in the same direction.&lt;/p&gt;
+&lt;p&gt;It does take longer – much longer. And it requires investing a lot more into the decision making process, having debates, doing research and planning out how things will actually work. In the end though it&amp;rsquo;s worth it to avoid having the decision undermined by people resistant to the change or having decisions made too independently and then having people heading off in different directions.&lt;/p&gt;
+&lt;p&gt;Just don&amp;rsquo;t forget that one of the best ways to build consensus is by running a trial. It&amp;rsquo;s much easier to plan out a trial (including a rollback plan) and gain consensus for running it than for making the change permanently.&lt;/p&gt;
+&lt;p&gt;Another example of Less Haste, More Speed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Less Haste, More Speed</title>
+      <link>https://www.symphonious.net/2014/12/07/less-haste-more-speed/</link>
+      <pubDate>Sat, 06 Dec 2014 21:54:02 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/12/07/less-haste-more-speed/</guid>
+      <description>&lt;p&gt;Jeffrey Ventrella in &lt;a href=&#34;http://ventrellathing.wordpress.com/2013/06/18/the-case-for-slow-programming/&#34;&gt;&lt;em&gt;The Case for Slow Programming&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Venture-backed software development here in the San Francisco Bay area is on a fever-pitch fast-track. Money dynamics puts unnatural demands on a process that would be best left to the natural circadian rhythms of design evolution. Fast is not always better. In fact, slower sometimes actually means faster – when all is said and done.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Jeffrey&amp;rsquo;s right in suggesting that we sometimes need to go slower to go faster, unfortunately he makes the mistake of believing that committing and releasing in very short cycles is the cause of these problems:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My programming style is defined by organic arcs of different sizes and timescales, Each arc starts with exploration, trial and error, hacks, and temporary variables. Basically, a good deal of scaffolding. A picture begins to take shape. Later on, I come back and dot my i’s and cross my t’s. The end of each arc is something like implementation-ready code. (“Cleaning my studio” is a necessary part of finishing the cycle). The development arc of my code contribution is synonymous with the emergence of a strategy, a design scheme, an architecture.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This kind of design and development arc is completely independent of how often the developer commits or how often a release is taken. As you speed up your commit and release cycle, you mostly shouldn&amp;rsquo;t change the design and development process of any given change you simply reduce the size of the change. By tackling much smaller problems at a time it&amp;rsquo;s much easier and quicker to go through the full arc of understanding, experimenting, scaffolding, building and tidying.&lt;/p&gt;
+&lt;p&gt;Part of making each small change is considering how it fits in with and modifies the overall system design. Bad development teams forget this and wind up with an awful mishmash of designs all cobbled together, but that&amp;rsquo;s a reflection of the team&amp;rsquo;s design ability, not of the process. Good teams gradually adjust the system design as they go, sometimes in subtle ways sometime with more radical changes. Doing so means the system design is optimal for each stage of its life.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://ventrellathing.wordpress.com/2013/06/18/the-case-for-slow-programming/#comment-435&#34;&gt;Commenter mmlac nails it&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Maybe [the machine-gun committer] IS doing the same as you, just sharing the progress with the team, so people can spot obvious mistakes earlier and see the approaches and stop him in time if they have more experience with the way they are trying to go?&lt;/p&gt;
+&lt;p&gt;You are basically advocating waterfall. And the issues you face have nothing to do with the speed of coding and the number of commits.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That&amp;rsquo;s not to say that there isn&amp;rsquo;t value in the saying “Go slower to go faster” but the much better way to phrase it is “Less Haste, More Speed”. It&amp;rsquo;s not about going slow, it&amp;rsquo;s about not rushing and doing a good job. It means taking the time to break down large changes into smaller, simpler incremental changes so you don&amp;rsquo;t have to deliver them all in one go. It means considering what adjustments to the overall system design are required for each change to make it fit in well.&lt;/p&gt;
+&lt;p&gt;And it means committing and releasing more often. Regularly investing time to prove things are completely finished and sent off to users instead of building that time up as technical debt because you&amp;rsquo;re attempting to make too big a change at once.&lt;/p&gt;
+&lt;p&gt;You don&amp;rsquo;t go faster by simply trying to go faster – you go faster by identifying and eliminating bottlenecks which requires you to do things that individually appear to make you go slower but make the overall system go faster. Committing and releasing regularly (continuous integration and continuous deployment respectively) are solutions to the bottle neck of horrendous merge and release processes that result from not doing them regularly enough.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The One True Language</title>
+      <link>https://www.symphonious.net/2014/12/02/the-one-true-language/</link>
+      <pubDate>Tue, 02 Dec 2014 02:04:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/12/02/the-one-true-language/</guid>
+      <description>&lt;p&gt;Lawrence Kesteloot has an excellent post &lt;a href=&#34;http://www.teamten.com/lawrence/writings/java-for-everything.html&#34;&gt;Java for Everything&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;About a year ago, though, I started to form a strange idea: That Java is the right language for all jobs. (I pause here while you vomit in your mouth.) This rests on the argument that what you perceive to be true does not match reality, and that’s never a popular approach, but let me explain anyway.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There are two key realisations that are vital to understanding why this argument has merit and the first one is right there in the introduction: what you perceive to be true does not match reality. As Lawrence notes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The problem is that programmers perceive mindless work as painful and time-consuming, but the reality is never so bad. Here’s a quote from a forum about language design:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It really sucks when you have to add type declarations for blindingly obvious things, e.g. Foo x = new Foo(). – @pazsxn
+No, actually, typing Foo one extra time does not “really suck”. It’s three letters. The burden is massively overstated because the work is mindless, but it’s really pretty trivial.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Every developer knows the mantra that code is only written once but it&amp;rsquo;s read many times, yet we focus on the number of keystrokes required to do something or the number of lines required. Besides which, the time required to type statements is almost never the limiting factor for how fast code can be written – it&amp;rsquo;s almost always dwarfed by the amount of time required to think about what the code should be doing and how it fits into the architecture.&lt;/p&gt;
+&lt;p&gt;The second key realisation is how powerful consistency is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This focus on a single language has had an interesting effect: It has encouraged me to improve my personal library of utility functions (teamten.jar above), since my efforts are no longer split across several languages. […] I can now confidently invest in Java as an important part of my professional and personal technical future.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Being consistent in your choice of language allows you to learn it in much greater detail, become more familiar with a wider range of its available libraries and idioms and get a big return on investment when developing tools or libraries to pave over any rough spots.&lt;/p&gt;
+&lt;p&gt;None of this implies however that different languages aren&amp;rsquo;t better suited to different tasks. It just means that the benefits from switching languages is generally overstated and the costs generally understated. Thus, it should be &lt;em&gt;far&lt;/em&gt; less common for switching languages to be worth it.&lt;/p&gt;
+&lt;p&gt;There &lt;em&gt;are&lt;/em&gt; times when switching languages makes a lot of sense. For example, if your one true language in Java and you need to write code that runs in a web browser, Java is such a poor fit that it is worth switching languages.&lt;/p&gt;
+&lt;p&gt;Similarly, it doesn&amp;rsquo;t have to be Java that&amp;rsquo;s your one true language – C# would probably make more sense if you primarily worked with Windows environments and C would be better if you were a kernel programmer.&lt;/p&gt;
+&lt;p&gt;Ultimately it&amp;rsquo;s not so much about what choices you make, rather that it&amp;rsquo;s about correctly weighting the factors that go into those choices. We need to be aware of the innate bias we have towards overvaluing the elimination of immediate pain and undervaluing longer term benefits.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CI Isn’t a To-do List</title>
+      <link>https://www.symphonious.net/2014/09/22/ci-isnt-a-to-do-list/</link>
+      <pubDate>Sun, 21 Sep 2014 23:59:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/09/22/ci-isnt-a-to-do-list/</guid>
+      <description>&lt;p&gt;When you have automated testing setup with a big display board to provide clear feedback, it&amp;rsquo;s tempting to try and use it for things it wasn&amp;rsquo;t intended for. One example of that is as a kind of reminder system – you identify a problem somewhere that can&amp;rsquo;t be addressed immediately but needs to be handled at some point in the future. It&amp;rsquo;s tempting to add a test that begins failing after a certain date (or the inverse, whitelisting errors until a certain date). Now the build is green and there&amp;rsquo;s no risk of you forgetting to address the problem because it will fail again in the future. Perfect right?&lt;/p&gt;
+&lt;p&gt;The problem is that it sacrifices the ability to easily isolate the cause of a failure. You can no longer revert changes to get back to a working baseline because the current time is a factor in whether your tests pass or not. You can no longer run historical builds through CI which you may need to do as part of supporting clients on older versions.&lt;/p&gt;
+&lt;p&gt;It also inevitably leads to false failures as the time points are almost always arbitrary and estimated time lines for completing tasks often slip. So the board goes red and the response is to just suppress it again.&lt;/p&gt;
+&lt;p&gt;Continuous integration isn&amp;rsquo;t there to remind you to do something – it&amp;rsquo;s there to tell you if your build is ok to ship to production or not. It doesn&amp;rsquo;t make sense to say that a build is ok to ship to production now but not ok to ship in a week&amp;rsquo;s time. If production is going to blow up in the future because of a bug in the code you want to the board to be red now, not when production actually blows up. And if the client is prepared to accept the risk and leave the problem unfixed then it&amp;rsquo;s not yet a requirement and doesn&amp;rsquo;t need tests asserting it – just put a card in the backlog for the client to prioritise and play when required.&lt;/p&gt;
+&lt;p&gt;If you need to remember to do something, either put a task in the backlog or on the current story board to do it or put a reminder in your calendar. Keep CI focussed on telling you about the state of your code right now – if it&amp;rsquo;s broken it should be red, if it&amp;rsquo;s not broken it should be green. Not broken until next week should never be an option.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Where Are All The Remote Jobs?</title>
+      <link>https://www.symphonious.net/2014/05/24/where-are-all-the-remote-jobs/</link>
+      <pubDate>Sat, 24 May 2014 04:38:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/05/24/where-are-all-the-remote-jobs/</guid>
+      <description>&lt;div id=&#34;attachment_1893&#34; style=&#34;width: 310px&#34; class=&#34;wp-caption alignright&#34;&gt;
+  &lt;a href=&#34;https://www.flickr.com/photos/citrixonline/5446645129/&#34;&gt;&lt;img aria-describedby=&#34;caption-attachment-1893&#34; loading=&#34;lazy&#34; class=&#34;wp-image-1893 size-medium&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2014/05/5446645129_9a87e9ffd2_o-300x200.jpg&#34; alt=&#34;Photo by Citrix Online CC BY-NC-ND 2.0&#34; width=&#34;300&#34; height=&#34;200&#34; srcset=&#34;https://www.symphonious.net/wp-content/uploads/2014/05/5446645129_9a87e9ffd2_o-300x200.jpg 300w, https://www.symphonious.net/wp-content/uploads/2014/05/5446645129_9a87e9ffd2_o.jpg 640w&#34; sizes=&#34;(max-width: 300px) 100vw, 300px&#34; /&gt;&lt;/a&gt;
+  &lt;p id=&#34;caption-attachment-1893&#34; class=&#34;wp-caption-text&#34;&gt;
+    &lt;a href=&#34;https://www.flickr.com/photos/citrixonline/5446645129/&#34;&gt;Workshifting by Citrix Online CC BY-NC-ND 2.0&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;It seems like forever that people have been arguing that remote working is the future. Why limit yourself to just the people who live near your office when hiring? Why suffer the distractions of an office when you could define your own environment in your very own home? Why waste employee time commuting? Surely by now every employee would want to be working from wherever they choose and employers would be forced to accept it, if not actively encourage it to save on office costs and get the best employees.&lt;/p&gt;
+&lt;p&gt;Yet somehow despite all the hype and promise there seem to be exceedingly few jobs around that allow for remote work. The fastest way I know of to ensure a recruiter never contacts me again is to simply mention that I&amp;rsquo;m based in Brisbane Australia and have no interest in moving. That greatly surprises me – especially in the technology industry.&lt;/p&gt;
+&lt;p&gt;When I do see jobs that support remote work it&amp;rsquo;s almost always for companies that primarily work on open source code or companies that primarily hire employees based on either their involvement in the company&amp;rsquo;s community or their other open source contributions.&lt;/p&gt;
+&lt;p&gt;So perhaps one of the big reasons employers aren&amp;rsquo;t adopting remote work as much is the difficulty in hiring the right people, training them and integrating them into the company and evaluating if they&amp;rsquo;re actually working out. Remote working involves a significant amount of trust between employer and employee. New employees generally haven&amp;rsquo;t had a chance to build up that trust unless they were already contributing to the companies community or demonstrating their contributions in open source. Unfortunately looking at open source contributions excludes any developer that enjoys their job so much they spend all their spare coding time on that and don&amp;rsquo;t currently work in a job that involves a lot of open source.&lt;/p&gt;
+&lt;p&gt;That fits with my current situation – for the last two and a bit years I&amp;rsquo;ve had the luxury of working from home, but it only happened because I originally worked in the London office and then resigned to move home. Fortunately they were keen to keep me so I wound up staying on and working from home. Later a second developer went through the same process and now works from New Zealand.&lt;/p&gt;
+&lt;p&gt;Once trust and culture is established we seem to have plenty of tools to make remote working extremely effective. If remote working is really the future though, we&amp;rsquo;ll need to find better ways to establish that initial trust and on-board new employees.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Are there hordes of remote working jobs out there that I just don&amp;rsquo;t hear about? If not, what&amp;rsquo;s stopping it from taking off?&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Interruptions, Coding and Being a Team</title>
+      <link>https://www.symphonious.net/2014/02/10/interruptions-coding-and-being-a-team/</link>
+      <pubDate>Mon, 10 Feb 2014 03:21:41 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/02/10/interruptions-coding-and-being-a-team/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://lethargy.org/~jesus/writes/%E6%8A%98%E4%BC%8F---as-it-relates-to-coding/&#34;&gt;Esoteric Curio – 折伏 – as it relates to coding&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Our job as a team is to reinforce each other and make each other more productive. While I attempt to conquer some of the engineering tasks as well as legal tasks, and human resource tasks I face, I need concentration and it world certainly help to not be interrupted. I used to think I needed those times of required solitute pretty much all the time. It turns out that I have added far more productivity by enabling my teams than I have personally lost due to interruptions, even when it was inconvenient and frustrating. So much so that Ive learned to cherish those interruptions in the hope that, on serendipitous occasion, they turn into a swift, sprititual kick to the head. After all, sometimes all you need for a fresh persective is to turn out the light in the next room; and, of course, to not have avoided the circumstance that brought you to do it. Too often we confuse personal productivity, or even just the impression of it, for team productivity. So often though having individuals slow down is the key to making the team as a whole speed up.  See also &lt;a href=&#34;http://www.symphonious.net/2012/05/02/go-faster-by-not-working/&#34; title=&#34;Go Faster By Not Working&#34;&gt;Go Faster By Not Working&lt;/a&gt; and &lt;a href=&#34;http://www.symphonious.net/2012/08/14/the-myth-of-measurable-productivity/&#34; title=&#34;The Myth of Measurable Productivity&#34;&gt;The Myth of Measurable Productivity&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Developing First Class Software with the Developers that Google Rejects</title>
+      <link>https://www.symphonious.net/2013/11/25/developing-first-class-software-with-the-developers-that-google-rejects/</link>
+      <pubDate>Mon, 25 Nov 2013 21:09:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/11/25/developing-first-class-software-with-the-developers-that-google-rejects/</guid>
+      <description>&lt;p&gt;Ron Qartel: &lt;a href=&#34;http://www.solutionsiq.com/resources/agileiq-blog/bid/98316/Developing-First-Class-Software-with-the-Developers-that-Google-Rejects&#34;&gt;Developing First Class Software with the Developers that Google Rejects&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Focus on building a great team and a great way to develop, not on hiring individual hotshots. I would caution however that XP isn&amp;rsquo;t necessarily the “great way to develop” that will work best for your team and your circumstances, but its certainly a good starting point. Just remember that the one key Agile principal is to continuously improve the way you work. So don&amp;rsquo;t just follow “the rules”.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Myth of Measurable Productivity</title>
+      <link>https://www.symphonious.net/2012/08/14/the-myth-of-measurable-productivity/</link>
+      <pubDate>Tue, 14 Aug 2012 01:04:02 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/08/14/the-myth-of-measurable-productivity/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.farnamstreetblog.com/2012/08/increasing-the-productivity-of-computer-programmers-and-engineers/&#34;&gt;Farnam Street Blog holds up a coding competition&lt;/a&gt; as evidence that:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you want to make your computer programmers and engineers more effective give them “privacy, personal space, control over their physical environments, and freedom from interruption.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The only trouble is, the coding competition is fatally flawed as a measure of normal developer productivity. It&amp;rsquo;s setup such that developers work on their own:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Each participant was also assigned a partner from the same company. The partners worked separately, however, without any communication, a feature of the games that turned out to be critical.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So what we actually learn is that if you&amp;rsquo;re working by yourself without interacting with anyone else, you will perform better if you don&amp;rsquo;t have anyone else around – that&amp;rsquo;s not overly surprising.&lt;/p&gt;
+&lt;p&gt;What happens in the real world however is that a team of developers work together to build software. The research is unable to shed any light on the conditions that benefit that mode of development because it measured something completely different.&lt;/p&gt;
+&lt;p&gt;And this isn&amp;rsquo;t the only example – experiments are constantly being put forward as proving or disproving things that affect productivity, but all of them are fatally flawed in one or both of two key ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The activity being performed in the experiment is not the same as what we&amp;rsquo;re trying to optimise in the real world.&lt;/li&gt;
+&lt;li&gt;The way they measure productivity is flawed – usually because it only measures a subset of tasks and attributes that would matter in the real world over the long term.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This shouldn&amp;rsquo;t be surprising, any repeated task is best optimised by automating it and removing humans altogether. The remaining work then is dealing with exceptions and is inherently unique (if the same exception kept happening we&amp;rsquo;d automate it). More importantly though, the idea that productivity of modern office workers can be measured is a myth. Any metrics you put around productivity are inevitably incomplete and lead to people gaming the system, working only on the measured parts of productivity and to the detriment of anything that isn&amp;rsquo;t measured. Measured productivity goes up, but those results aren&amp;rsquo;t reflected in the business&amp;rsquo;s bottom line – they&amp;rsquo;re fictional.&lt;/p&gt;
+&lt;p&gt;The only viable option is to experiment in your own workplace with your actual work and see what works for you. Use measurements as a guide but also follow some gut feel to account for the unmeasurable elements. Maybe individual offices are best for your workers, doing your work or maybe open plan is. Unless you&amp;rsquo;re in the business of completing abstract coding competitions, you probably should work that out for yourself instead of believing the research.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

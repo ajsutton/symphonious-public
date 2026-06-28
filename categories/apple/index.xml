@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apple on Symphonious</title>
+    <link>https://www.symphonious.net/categories/apple/</link>
+    <description>Recent content in Apple on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sun, 20 Jul 2014 11:47:07 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/apple/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Java to Swift</title>
+      <link>https://www.symphonious.net/2014/07/20/from-java-to-swift/</link>
+      <pubDate>Sun, 20 Jul 2014 11:47:07 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/07/20/from-java-to-swift/</guid>
+      <description>&lt;p&gt;Ever since the public beta of OS X I&amp;rsquo;ve been meaning to get around to learning Objective-C but for one reason or another never found a real reason to. I&amp;rsquo;ve picked up bits and pieces of it and even written a couple of working utilities but those were pretty much entirely copy/paste from various sources. Essentially they were small enough and short-lived enough that I only needed the barest grasp of Objective-C syntax and no understanding of the core philosophies and idioms that really make a language what it is. This is probably best exemplified by the approach to memory management those utilities took: it won&amp;rsquo;t run for long, so just let it leak.&lt;/p&gt;
+&lt;p&gt;I do however have a ton of experience in Java and JavaScript plus knowledge and experience in a bunch of other languages to a wide range of extents. In other words, I&amp;rsquo;m not a complete moron, I&amp;rsquo;m just a complete moron &lt;em&gt;with Objective-C&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Anyway, obviously when Swift was announced it was complete justification for my ignoring Objective-C all these years and interesting enough for me to actually get around to learning it.&lt;/p&gt;
+&lt;p&gt;So I&amp;rsquo;ve been building a very small little utility in swift so I can pull out information from OS X&amp;rsquo;s system calendar from the command line and push it around to various places that I happen to want it and can&amp;rsquo;t otherwise get it. The &lt;a href=&#34;https://github.com/ajsutton/caltool&#34;&gt;code is up on GitHub&lt;/a&gt; if you&amp;rsquo;re interested – code reviews and patches most welcome. It&amp;rsquo;s been a great little project to get used to Swift the language without spending too much time trying to learn all the OS X APIs.&lt;/p&gt;
+&lt;h3 id=&#34;language-features&#34;&gt;Language Features&lt;/h3&gt;
+&lt;p&gt;Swift has some really nice language features that make dealing with common scenarios simple and clear. Unlike many languages it doesn&amp;rsquo;t seem to go too far with that though – it doesn&amp;rsquo;t seem likely that people will abuse its features and create overly complex or overly succinct code.&lt;/p&gt;
+&lt;p&gt;My favourite feature is the built-in optional support. A variable of type String is guaranteed to not be null, a variable of type String? might be. You can&amp;rsquo;t call any methods from String on a String? variable directly you have to unwrap it first – confirming it isn&amp;rsquo;t null. That would be painful if it weren&amp;rsquo;t for the ‘if let&amp;rsquo; construct:&lt;/p&gt;
+&lt;pre&gt;let events: &lt;span style=&#34;color: #703daa;&#34;&gt;String&lt;/span&gt;? = &lt;span style=&#34;color: #d12f1b;&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;span style=&#34;color: #bb2ca2;&#34;&gt;&lt;br /&gt;if&lt;/span&gt; &lt;span style=&#34;color: #bb2ca2;&#34;&gt;let&lt;/span&gt; events = events {
+    events.utf16count()&lt;br /&gt;}&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ve dropped into a habit here which might be a bit overly clever – naming the unwrapped variable the same as the wrapped one. The main reason for this is that I can never think of a better name. I figure it&amp;rsquo;s much like have a &lt;code&gt;if events != nil&lt;/code&gt; check.&lt;/p&gt;
+&lt;h3 id=&#34;apis&#34;&gt;APIs&lt;/h3&gt;
+&lt;p&gt;Calling Swift a new language is correct but it would almost be more accurate to call it a new syntax instead. Swift does have its own core API which is unique to it, but that&amp;rsquo;s very limited. For the most part you&amp;rsquo;re actually dealing with the OS X (or iOS) APIs which are shared with Objective-C. Thus, people with experience developing in Objective-C quite obviously have a huge head start with Swift.&lt;/p&gt;
+&lt;p&gt;The other impact of sharing so many APIs with Objective-C is that some of the benefits of Swift get lost – especially around strict type checking and null reference safety. For example retrieving a list of calendar events is done via the EventKit method:&lt;/p&gt;
+&lt;pre&gt;&lt;span style=&#34;color: #bb2ca2;&#34;&gt;func&lt;/span&gt; eventsMatchingPredicate(predicate: &lt;span style=&#34;color: #703daa;&#34;&gt;NSPredicate&lt;/span&gt;!) -&amp;gt; [&lt;span style=&#34;color: #703daa;&#34;&gt;AnyObject&lt;/span&gt;]!&lt;/pre&gt;
+&lt;p&gt;which is helpfully displayed inside Xcode using Swift syntax despite it being a pre-existing Objective-C API and almost certainly still implemented in Objective-C. However if you look at the return type you see the downside of inheriting the Objective-C APIs: the method documentation says it returns [&lt;span style=&#34;color: #703daa;&#34;&gt;EKEvent&lt;/span&gt;] but the actual declaration is [&lt;span style=&#34;color: #703daa;&#34;&gt;AnyObject&lt;/span&gt;]!  So we&amp;rsquo;ve lost both type safety and null reference safety because Objective-C doesn&amp;rsquo;t have non-nullable references or generic arrays. It&amp;rsquo;s not a massive loss because those APIs are well tested and quite stable so we&amp;rsquo;re extremely unlikely to be surprised by a null reference or unexpected type in the array, but it does require some casting in our code and requires humans to read documentation and check if something can be null rather than having the compiler do it for us.&lt;/p&gt;
+&lt;p&gt;If Swift were intended to be a language that competes with Java, python or ruby the legacy of the Objective-C APIs would be a real problem. However, Swift is designed specifically to work with those APIs, to be a relatively small but powerful step of OS X and iOS developers. In that context the legacy APIs are really just a small bump in the road that will smooth out over time.&lt;/p&gt;
+&lt;h3 id=&#34;xcode&#34;&gt;Xcode&lt;/h3&gt;
+&lt;p&gt;The other really big thing a Java developer notices switching to Swift is what a Java developer notices when switching to any other language – the tools suck. In particular, the Java IDEs are superb these days and make writing, navigating and refactoring code so much easier. Xcode doesn&amp;rsquo;t even come close. The available refactorings are quite primitive even for C and Objective-C and they aren&amp;rsquo;t supported at all for Swift.&lt;/p&gt;
+&lt;p&gt;The various project settings and preferences in Xcode are also a complete mystery – and judging from the various questions and explanations on the internet it doesn&amp;rsquo;t seem to be all that much clearer even to people with lots of experience. In reality I doubt its really much different to Java which also has a ridiculous amount of complexity in IDE settings. The big difference is that in the Java world you (hopefully) start out by learning the basics using the standard command line tools directly. Doing so gives you a good understanding of the build and runtime setup and makes it much clearer what is controlling how your software is built and what is just setting up IDE preferences. Xcode does provide a full suite of command line developer tools so hopefully I can learn more about them and get that basic understanding.&lt;/p&gt;
+&lt;p&gt;Finally, Xcode 6 beta 3 is horribly buggy. It&amp;rsquo;s a beta so I can forgive that but I&amp;rsquo;m surprised at just how bad it is even for a beta.&lt;/p&gt;
+&lt;h3 id=&#34;cocoa-pods&#34;&gt;&lt;a href=&#34;http://cocoapods.org/&#34;&gt;Cocoa Pods&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This was a delight to stumble across.  Adding a dependency to a project was a daunting prospect in Xcode (jar files are surprisingly brilliant). I really don&amp;rsquo;t know what it did but it worked and I&amp;rsquo;m grateful. Libraries that aren&amp;rsquo;t available as pods are pretty much dead to me now. There does seem to be a pretty impressive array of libraries available for a wide range of tasks. Currently all of them are Objective-C libraries so you have to be able to understand Objective-C headers and examples and convert them to Swift but it&amp;rsquo;s not terribly difficult (and trivial for anyone with an Objective-C background).&lt;/p&gt;
+&lt;h3 id=&#34;overall&#34;&gt;Overall&lt;/h3&gt;
+&lt;p&gt;Swift has a good feel about it – lots of neat features that keep code succinct. Also it&amp;rsquo;s very hard not to like strict type checking with good type inference. With Apple pushing Swift as a replacement for Objective-C over time the libraries and APIs will become more and more “Swift-like”. Xcode should improve to at least offer the basic refactorings it has for other languages and stabilise which will make it a workable IDE – exceeding the capabilities of what&amp;rsquo;s available for a lot of languages.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Most importantly, the vast majority of existing Objective-C developers seem to quite like it – plenty of issues raised as well, but overall generally positive.&lt;/p&gt;
+&lt;p&gt;I think the future for Swift looks bright.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New Mac Setup</title>
+      <link>https://www.symphonious.net/2013/11/16/new-mac-setup/</link>
+      <pubDate>Sat, 16 Nov 2013 08:45:20 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/11/16/new-mac-setup/</guid>
+      <description>&lt;p&gt;Transitioning to a new Mac has always been a very smooth experience – the first run setup offers to migrate everything for you and generally it gets everything right so your new Mac comes up looking just like your old one.&lt;/p&gt;
+&lt;p&gt;Recently I&amp;rsquo;ve acquired a new MacBook Pro with Retina display and decided that after all these years of migrating everything over I&amp;rsquo;d set up from scratch. Mostly just to make me consciously choose to reinstall things instead of a heap of cruft coming across automatically which I don&amp;rsquo;t actually use anymore.&lt;/p&gt;
+&lt;p&gt;So I chose not to use the migration assistant for anything and was dropped into a brand new account. Except that it didn&amp;rsquo;t feel like a brand new account at all. I&amp;rsquo;d signed into my iCloud account as part of that first run process so it had pulled in everything iCloud was storing for me. That was just a handful of files, but the settings that came across made things feel at home. All my reminders, calendars and notes were there and Safari had all my bookmarks. Even the applications could be re-installed direct from the App Store “purchased” list, or at least most of them.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t use iCloud for my mail, but I do use GMail so when I logged into my Google account in Safari it offered to add it as a local account. Suddenly all my mail was fully setup as well (as well as some old contacts, calendars and notes which I turned off again).&lt;/p&gt;
+&lt;p&gt;What made the whole process so amazingly smooth though was the new-in-Mavericks iCloud keychain. Even when I had to set things up manually, or re-login to a website, my new Mac already had the username and password stored.&lt;/p&gt;
+&lt;p&gt;If I stored my files and email in iCloud, the transition would have been almost entirely iCloud based – just a few preferences to reconfigure the way I want them and the odd application to install for myself.&lt;/p&gt;
+&lt;p&gt;Just goes to show that the cloud doesn&amp;rsquo;t have to mean the web – I use desktop applications for nearly everything but because sync is so pervasive these days, we&amp;rsquo;re often using cloud computing even though we&amp;rsquo;re using applications the same way we always have.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>OS X Lion: iCal Repeatedly Asks for Google Calendar Password</title>
+      <link>https://www.symphonious.net/2011/07/22/os-x-lion-ical-repeatedly-asks-for-google-calendar-password/</link>
+      <pubDate>Fri, 22 Jul 2011 18:16:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/07/22/os-x-lion-ical-repeatedly-asks-for-google-calendar-password/</guid>
+      <description>&lt;p&gt;The one problem I’ve found when upgrading to Lion is that suddenly iCal couldn’t sync to my Google Apps Calendar account – instead it repeatedly asked for the password. I’m still not really sure what caused this, but my solution was to simply delete both ~/Library/Preferences/*iCal* and ~/Library/Calendars. You &lt;em&gt;really&lt;/em&gt; only want to do that if you exclusively use Google Calendar. If you have local calendars deleting ~/Library/Calendars will delete them.&lt;/p&gt;
+&lt;p&gt;Once I’d done that, I re-enabled the Calendars option for the account in System Preferences, “Mail, Contacts and Calendars”, entered my password one last time and it worked perfectly.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Apple-Scented Coffee Beans are Accurate</title>
+      <link>https://www.symphonious.net/2010/11/12/apple-scented-coffee-beans-are-accurate/</link>
+      <pubDate>Fri, 12 Nov 2010 14:12:40 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/11/12/apple-scented-coffee-beans-are-accurate/</guid>
+      <description>&lt;p&gt;So &lt;a href=&#34;http://www.apple.com/pr/library/2010/11/12openjdk.html&#34;&gt;Apple have announced that they will be contributing large swaths of code to the OpenJDK project&lt;/a&gt; and that from Java 7 onwards, Java will be a separate download from Oracle, much like Flash is now a separate download from Adobe. This really shouldn’t be unexpected for &lt;a href=&#34;http://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/&#34;&gt;anyone who was paying attention&lt;/a&gt; to what was going on rather than just running around thinking the sky was falling.&lt;/p&gt;
+&lt;p&gt;This is fantastic news for Java developers of all types. Mac Java developers have been asking for Java to be separated from the OS for many, many years so that multiple versions of Java are more manageable and especially to decouple Java releases from the OS release timeline.&lt;/p&gt;
+&lt;p&gt;Since the main JVM for OS X will now be open source, intrepid developers can dive in and fix issues they run into or at least dig into the code to understand it better and find work-arounds they can use. Apple has historically been quite innovative with it’s JVM port as well, bringing some great stuff to the JVM on OS X first&lt;a href=&#34;#footnote1:1289570799500&#34;&gt;1&lt;/a&gt;{#footlink1:1289570799500.footnote}. It should now be easier to share those innovations across platforms which is great for all Java users.&lt;/p&gt;
+&lt;p&gt;It’s also nice to know that Java 6 will continue to be bundled with the OS in OS X 10.7 Lion. That gives a nice ramp-up for Apple and developers to transition to an optionally installed JVM and ensure things work smoothly either by applications bundling a JVM with the app or the installer or through auto-install methods for applets and webstart etc.&lt;/p&gt;
+&lt;p&gt;Finally, this should mean that JDK7 development on Mac will be done in the open, giving developers earlier and far greater access to try it out and report any issues back.&lt;/p&gt;
+&lt;p&gt;Seems like a huge win all round to me.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1289570799500&#34; id=&#34;footnote1:1289570799500&#34;&gt;1&lt;/a&gt; &amp;#8211; for example the ability to share the core classes between JVM instances, but also a lot of stuff in how swing works and integrates with the OS &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1289570799500&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>On the DVD vs in Software Update</title>
+      <link>https://www.symphonious.net/2010/10/27/on-the-dvd-vs-in-software-update/</link>
+      <pubDate>Wed, 27 Oct 2010 13:56:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/10/27/on-the-dvd-vs-in-software-update/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://radar.oreilly.com/2010/10/developer-week-in-review-3.html?utm_source=feedburner&amp;amp;utm_medium=feed&amp;amp;utm_campaign=Feed%3A+oreilly%2Fradar%2Fatom+%28O%27Reilly+Radar%29&#34;&gt;James Turner gives a week in review&lt;/a&gt; and mentions the deprecated Java on OS X issue&lt;a href=&#34;#footnote1:1288187415254&#34;&gt;1&lt;/a&gt;{#footlink1:1288187415254.footnote}. One thing to correct:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Deprecation basically means that neither package will be delivered as part of the installation DVDs, and updates will not come via the Apple update mechanisms. It doesn&amp;rsquo;t mean they won&amp;rsquo;t be available anymore, it just means you&amp;rsquo;ll have to download them directly from Oracle and Adobe.
+Firstly, there’s &lt;a href=&#34;http://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/&#34;&gt;nothing to suggest&lt;/a&gt; that Java won’t come from Apple but not be part of the standard OS X package.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Secondly, just because something isn’t on the OS X install DVD doesn’t mean it’s not updated via Software Update. Aperture for example is a separately purchased product but updates come through Apple Software Update automatically. On Lion, software update is likely to open up further since it’s the obvious conduit to deliver updates for apps on the Mac App Store.&lt;/p&gt;
+&lt;p&gt;Of course, if the JVM winds up coming from Oracle, I wouldn’t hold your breath for updates via Software Update.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1288187415254&#34; id=&#34;footnote1:1288187415254&#34;&gt;1&lt;/a&gt; &amp;#8211; I’m not sure how deprecated Java counts as lost in the hubbub of Back to the Mac, from where I’m sitting it looks a lot like the other way around but anyway. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1288187415254&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Reading the Apple-Scented Coffee Beans</title>
+      <link>https://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/</link>
+      <pubDate>Tue, 26 Oct 2010 17:15:47 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/</guid>
+      <description>&lt;p&gt;It’s interesting to see how many people are jumping to conclusions around the &lt;a href=&#34;http://developer.apple.com/library/mac/#releasenotes/Java/JavaSnowLeopardUpdate3LeopardUpdate8RN/NewandNoteworthy/NewandNoteworthy.html%23//apple_ref/doc/uid/TP40010380-CH4-SW1&#34;&gt;very carefully worded deprecation notice for Java in OS X&lt;/a&gt;. Read it carefully and pay careful attention to what it actually says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As of the release of Java for Mac OS X 10.6 Update 3, the Java runtime ported by Apple and that ships with Mac OS X is deprecated. Developers should not rely on the Apple-supplied Java runtime being present in future versions of Mac OS X.
+Most notably the note &lt;em&gt;only&lt;/em&gt; refers to the &lt;em&gt;Apple ported&lt;/em&gt; JVM that &lt;em&gt;ships with&lt;/em&gt; OS X. This leaves the door open for an Apple ported JVM that ships as a separate download and for a non-Apple JVM that ships with OS X.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you can drown out all the screaming and gnashing of teeth and pay attention to the Apple Java-Dev list you’d also notice:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A huge amount of effort went into this release, especially setting things up to support multiple JVMs from multiple vendors. In the past, there was only one JVM available on an OS X install, it was upgraded with the OS and provided by Apple&lt;a href=&#34;#footnote1:1288112417885&#34;&gt;1&lt;/a&gt;{#footlink1:1288112417885.footnote}.&lt;/li&gt;
+&lt;li&gt;Even after this release, the Apple engineers who post to the list are still talking about their long term plans for the JVM (&lt;a href=&#34;http://lists.apple.com/archives/Java-dev/2010/Oct/msg00456.html&#34;&gt;one example&lt;/a&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;No one outside of Apple knows for sure what the future of Java on OS X is, and those inside who do know aren’t allowed to talk, but given the currently available evidence it seems at least as likely that Apple will continue to provide a JVM but as a separate download (or possibly just an optional install) as it is that they’ll abandon Java entirely.&lt;/p&gt;
+&lt;p&gt;Yes, there is a chance that Apple will just walk away from Java and leave a gaping void, but I don’t see indications that it’s a corporate strategy of Apple. Remember that Apple isn’t a company that sends a lot of mixed messages. They can turn a marketing message on a dime and they don’t pull punches. They’re also small enough and tightly managed enough that it’s rare for one part of the company to be off doing something that’s not inline with the company direction. If people are still building improvements to Java on OS X rather than moving to maintenance mode, that’s a strong signal that there is a future of some kind.&lt;/p&gt;
+&lt;p&gt;The real problem here is the same one that always happens with Apple – they’re not communicating their plans so developers can plan accordingly and not panic. But if you haven’t learnt to roll with the punches that approach delivers, you’re not a &lt;em&gt;real&lt;/em&gt; Mac developer.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1288112417885&#34; id=&#34;footnote1:1288112417885&#34;&gt;1&lt;/a&gt; &amp;#8211; A situation which caused most of the complaints on the java-dev list.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1288112417885&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why The iPhone Has Succeeded</title>
+      <link>https://www.symphonious.net/2009/06/26/why-the-iphone-has-succeeded/</link>
+      <pubDate>Fri, 26 Jun 2009 19:59:10 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/06/26/why-the-iphone-has-succeeded/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://redmonk.com/sogrady/2009/06/26/iphone-lessons/&#34;&gt;Stephen O’Grady&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Remember that, at its core, the iPhone offers not a whole lot more than a phone, browser, camera, iPod and GPS. Which, ok, is kind of impressive. But not truly differentiating, Apple’s acknowledged strength in user experiences aside. As good and smart as Apple is at design – and they are very, very good – they’re never going to be as good and smart as everyone else. We see this in the enterprise world frequently, where vendors that foster an ecosystem succeed and those that don’t, well, don’t. But we haven’t seen too many examples of this play out in the consumer world yet, which is one of the reasons the iPhone is such an interesting platform. With the App Store, Apple’s attempting to cement its role with a community play.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I find it interesting that everyone holds up the App Store as the key reason for the iPhone being successful – the key differentiating factor. Has everyone forgotten that the iPhone originally launched with &lt;em&gt;no developer SDK at all&lt;/em&gt; and how well did that go? That’s right, it was a massive success.&lt;/p&gt;
+&lt;p&gt;The iPhone is not succeeding purely because of the App Store, in fact it could just as easily be the opposite – the App Store is succeeding because the iPhone is so popular. There’s nothing simple about developing for the iPhone – you have to learn Objective-C and Cocoa Touch, you have to pay to get involved at all and you don’t know if you’ll be allowed to ship your app until after you finish it and submit it to Apple. So why do people do it? Because there are a huge number of iPhone users out there.&lt;/p&gt;
+&lt;p&gt;In the short time the iPhone has been out, people have simply forgotten how revolutionary the phone and Apple software that comes with it actually is. The third party apps are just very tasty icing on top.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Support Sells</title>
+      <link>https://www.symphonious.net/2008/11/29/support-sells/</link>
+      <pubDate>Fri, 28 Nov 2008 15:05:54 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/11/29/support-sells/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://feeds.feedburner.com/~r/ZenAndTheArtOfRubyProgramming/~3/468369437/&#34;&gt;Antonio Cangiano&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In theory I could have been disappointed. After all, my visit didn’t fix the problem at hand, my expensive laptop seemed to be good as a door stopper, and repairing this thing could potentially be less advantageous than just buying a newer unit. Yet, as I arrived home, I told my wife that my next laptop would definitely be an Apple.&lt;/p&gt;
+&lt;p&gt;The reason for this is that I saw a genuine effort to help me out, an unheard level of care for the customer and an willingness to do what’s right, even if it costs the company some money. The whole experience was very positive and I felt that the premium cost of Apple’s products is easily justified by this kind of support.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The way you support your clients is a key part of any products and services your company provides. No matter how much you focus on quality, things will go wrong sometimes and your clients will have problems. Ironically, that’s your biggest chance to make them a fan for live because while people expect products to work all the time, they don’t expect support experiences to be much good. If you provide a great support experience, it surprises them and makes them notice.&lt;/p&gt;
+&lt;p&gt;Two examples I’ve had recently really confirm that.  The first was with one of Ephox’s clients who were experiencing a lot of crashes. It had reached the point where the authors were unable to do any work and the content migration had pretty much completely stopped – their project timeline was dead in the water. Thankfully, they were extremely patient and friendly people so even in such a stressful time were really good to work with and I made sure I dropped everything and worked whatever hours were required to solve their problems. Most importantly though, I gave them copious status updates to make sure they knew exactly what was going on and give them the information that their bosses were going to ask for. We’ve solved the major issues and are still working to clean up some more minor issues, but they’ve already offered to give us a reference.&lt;/p&gt;
+&lt;p&gt;The second case was with a Freecom Tough Drive I bought. It’s meant to be powered off the USB bus, but PowerBook G4s don’t supply enough power that way so the one I bought for my wife has sat in the drawer for quite a while. Recently though our regular backup drive failed so I really needed to get it working. Turns out they’ll ship you a free power adapter if you need it, you just have to email them. I did, and got a response within about 30 minutes to say the adapter would be in the mail asap. Needless to say, I’m seriously impressed and will be sticking with Freecom for any portable hard drives I need in the future.&lt;/p&gt;
+&lt;p&gt;It’s easy to think of support as a cost centre for your business and something that should be outsourced, but the reality is that it’s one of the best opportunities for impressing your clients, building great word of mouth and perhaps most importantly, getting real world feedback on your products so you can make them better in the future.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Loading PICT Images In Java</title>
+      <link>https://www.symphonious.net/2008/09/16/loading-pict-images-in-java/</link>
+      <pubDate>Mon, 15 Sep 2008 15:32:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/09/16/loading-pict-images-in-java/</guid>
+      <description>&lt;p&gt;Since the search function for Apple’s mailing lists is pretty much useless, I’m making a note of the &lt;a href=&#34;http://lists.apple.com/archives/Java-dev/2008/Sep/thrd2.html#00154&#34;&gt;Reading PICT Images&lt;/a&gt; thread which contains numerous options for rendering PICT images in Java on OS X.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Neat Looking iPhone HTML UI Framework</title>
+      <link>https://www.symphonious.net/2008/07/25/neat-looking-iphone-html-ui-framework/</link>
+      <pubDate>Fri, 25 Jul 2008 13:21:27 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/07/25/neat-looking-iphone-html-ui-framework/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/iui/&#34;&gt;iUI&lt;/a&gt; looks like a promising library for making the development of iPhone webapps much simpler.  Worth keeping an eye on since there’s no barrier to entry for iPhone webapps unlike with native iPhone apps.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

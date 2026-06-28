@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Evaluating Pair-Programming | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;m glad Andy side-tracked into talking about us temporarily dropping pair programming – I&rsquo;ve been considering the same kind of things but want to see what the rest of the team thinks about it before I say too much.
+
+Slightly off topic, the development speed we&rsquo;re achieving now is making me wonder if the tradeoffs when developing purely under Pair Programming are actually worth it.
+
+There&rsquo;s a lot more that has changed recently that has led to our sudden improvement in velocity – not just pair programming. For a start, we&rsquo;re more focussed on the task because we&rsquo;re not sharing the support load around the entire team. Plus, the business has really started to understand how difficult it will be for us to get things done so they&rsquo;ve gotten off our backs about everything else and really focussed on hitting this big scary deadline. We were splitting our development efforts between two or three products and the context switching was killing us.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/08/17/evaluating-pair-programming/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/08/17/evaluating-pair-programming/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Evaluating Pair-Programming">
+	<meta property="og:description" content="I’m glad Andy side-tracked into talking about us temporarily dropping pair programming – I’ve been considering the same kind of things but want to see what the rest of the team thinks about it before I say too much.
+Slightly off topic, the development speed we’re achieving now is making me wonder if the tradeoffs when developing purely under Pair Programming are actually worth it.
+There’s a lot more that has changed recently that has led to our sudden improvement in velocity – not just pair programming. For a start, we’re more focussed on the task because we’re not sharing the support load around the entire team. Plus, the business has really started to understand how difficult it will be for us to get things done so they’ve gotten off our backs about everything else and really focussed on hitting this big scary deadline. We were splitting our development efforts between two or three products and the context switching was killing us.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-08-17T07:21:21+00:00">
+		<meta property="article:modified_time" content="2006-08-17T07:21:21+00:00">
+
+	<meta itemprop="name" content="Evaluating Pair-Programming">
+	<meta itemprop="description" content="I’m glad Andy side-tracked into talking about us temporarily dropping pair programming – I’ve been considering the same kind of things but want to see what the rest of the team thinks about it before I say too much.
+Slightly off topic, the development speed we’re achieving now is making me wonder if the tradeoffs when developing purely under Pair Programming are actually worth it.
+There’s a lot more that has changed recently that has led to our sudden improvement in velocity – not just pair programming. For a start, we’re more focussed on the task because we’re not sharing the support load around the entire team. Plus, the business has really started to understand how difficult it will be for us to get things done so they’ve gotten off our backs about everything else and really focussed on hitting this big scary deadline. We were splitting our development efforts between two or three products and the context switching was killing us.">
+	<meta itemprop="datePublished" content="2006-08-17T07:21:21+00:00">
+	<meta itemprop="dateModified" content="2006-08-17T07:21:21+00:00">
+	<meta itemprop="wordCount" content="679">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Evaluating Pair-Programming">
+	<meta name="twitter:description" content="I’m glad Andy side-tracked into talking about us temporarily dropping pair programming – I’ve been considering the same kind of things but want to see what the rest of the team thinks about it before I say too much.
+Slightly off topic, the development speed we’re achieving now is making me wonder if the tradeoffs when developing purely under Pair Programming are actually worth it.
+There’s a lot more that has changed recently that has led to our sudden improvement in velocity – not just pair programming. For a start, we’re more focussed on the task because we’re not sharing the support load around the entire team. Plus, the business has really started to understand how difficult it will be for us to get things done so they’ve gotten off our backs about everything else and really focussed on hitting this big scary deadline. We were splitting our development efforts between two or three products and the context switching was killing us.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Evaluating Pair-Programming</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Evaluating Pair-Programming</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-08-17T07:21:21Z">August 17, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;m glad <a href="http://spyder.wordpress.com/2006/08/17/getting-into-tdd/">Andy side-tracked into talking about us temporarily dropping pair programming</a> – I&rsquo;ve been considering the same kind of things but want to see what the rest of the team thinks about it before I say too much.</p>
+<blockquote>
+<p>Slightly off topic, the development speed we&rsquo;re achieving now is making me wonder if the tradeoffs when developing purely under Pair Programming are actually worth it.</p>
+</blockquote>
+<p>There&rsquo;s a lot more that has changed recently that has led to our sudden improvement in velocity – not just pair programming. For a start, <a href="http://www.symphonious.net/2006/08/12/dealing-with-trouble-while-adopting-xp/" title="Dealing With Trouble While Adopting XP">we&rsquo;re more focussed</a> on the task because we&rsquo;re not sharing the support load around the entire team. Plus, the business has really started to understand how difficult it will be for us to get things done so they&rsquo;ve gotten off our backs about everything else and really focussed on hitting this big scary deadline. We were splitting our development efforts between two or three products and the context switching was killing us.</p>
+<p>Another thing to remember is that right now the two most experienced people with the codebase are doing the development and the other two are handling the support and other miscellaneous support tasks.</p>
+<p>Even the features we&rsquo;re working on have probably contributed. Andy has been starting the work on the UI - a well known area that requires attention to detail but doesn&rsquo;t tend to ambush you with unexpected challenges all the time. Meanwhile, I&rsquo;m finishing off a section that we&rsquo;ve spent the past couple of months laying the ground work for. I suspect that much of the high velocity I&rsquo;m seeing at the moment can be attributed to the hard work we put in earlier to keep the code quality up and stay code debt free. All of a sudden instead of working in a big scary area with no tests and any change might be your last – I&rsquo;m working in a nice safe harbor where there&rsquo;s a ton of tests to tell me if things go wrong at both the acceptance and atomic levels.</p>
+<p>So there&rsquo;s a bunch of things that have fallen into place nicely, but that&rsquo;s not to say that pair programming wasn&rsquo;t impacting our velocity. The problem we are going to run into soon, is that we&rsquo;re going to have Doug and Jack back on the core development as we bring in new support resources and get them trained up. Then all of a sudden half the team is fairly new to the code base and that lack of knowledge sharing is really going to start hurting.</p>
+<p>Even more short term, we have the challenge of bringing the new engineers up to speed on the products, the code bases, company policies and all the rest of the training and mentoring that new recruits need. That work starts on Monday and the faster we can get them up and running to handle support, the better our chances of making that big scary deadline.</p>
+<p>As a team, we need to develop our training and mentoring skills so that we can knowledge share – either through pair programming or some other means, far more effectively. Before we were doing pair programming, I was spending a huge amount of my time helping other people learn about our code base – that cost can&rsquo;t be ignored either.</p>
+<p>The advantage we have is that by the end of the quarter, all going well, we&rsquo;ll have gotten rid of this big scary research feature and moved onto work that we better understand, can better estimate and doesn&rsquo;t require a PhD<a class="footnote" href="#footnote1-1155799109843" name="footlink1-1155799109843" id="footlink1-1155799109843">1</a> to understand the details of. We should also have support under control and we can start focussing our attention back on adopting XP and improving our practices. The big problem we&rsquo;ve had for the past couple of months is trying to do too many hard things at once and burning out – support, the big scary feature and adopting XP. That&rsquo;s why XP has sustainable pace as a key ideal – we&rsquo;re currently focussing on getting that practice right in difficult times.</p>
+<p class="footnote">
+  <a href="#footlink1-1155799109843" name="footnote1-1155799109843" id="footnote1-1155799109843">1</a> &#8211; or reading PhD dissertations<a class="footnotereturn" href="#footlink1-1155799109843">&#8617;</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

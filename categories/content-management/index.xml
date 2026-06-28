@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Content Management on Symphonious</title>
+    <link>https://www.symphonious.net/categories/content-management/</link>
+    <description>Recent content in Content Management on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 13 Sep 2010 13:12:21 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/content-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>contentEditable in Mobile WebKit</title>
+      <link>https://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/</link>
+      <pubDate>Mon, 13 Sep 2010 13:12:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/</guid>
+      <description>&lt;h3 id=&#34;what-is-contenteditable&#34;&gt;What Is contentEditable?&lt;/h3&gt;
+&lt;p&gt;JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly&lt;a href=&#34;#footnote1:1278939007857&#34;&gt;1&lt;/a&gt;{#footlink1:1278939007857.footnote}:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Selection – allowing the user to position a text caret in the content and select various parts of it.&lt;/li&gt;
+&lt;li&gt;Content entry and deletion – allowing the user to type basic text and to delete selected content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.&lt;/p&gt;
+&lt;h3 id=&#34;the-problem&#34;&gt;The Problem&lt;/h3&gt;
+&lt;p&gt;On mobile WebKit, for both iOS and Android, the basics of contentEditable support aren’t working correctly. The problem is two fold:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;While the user can position a text caret and change the selection, the actual caret (the blinking vertical line), never renders so users don’t know where their typing will appear.&lt;/li&gt;
+&lt;li&gt;The on-screen keyboard doesn’t appear when the caret is placed in an editable section. On devices without a real keyboard it’s then impossible to type.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;WebKit is actually surprisingly close to getting this working, with a lot of the underpinning functionality appearing to work but these two issues prevent editors from being usable&lt;a href=&#34;#footnote2:1278940183669&#34;&gt;2&lt;/a&gt;{#footlink2:1278940183669.footnote}.&lt;/p&gt;
+&lt;h3 id=&#34;why-does-it-matter&#34;&gt;Why Does It Matter?&lt;/h3&gt;
+&lt;p&gt;While geeks may feel at home writing HTML code by hand or using a markup language like markdown or textile, non-technical users find it significantly easier to use a WYSIWYG editor. Currently, it’s not possible to offer such an editor on mobile devices due to the lack of contentEditable support.&lt;/p&gt;
+&lt;p&gt;Even worse is that many sites are already using a WYSIWYG editor which then prevents users on a mobile devices from contributing content – even when the rest of the site works perfectly. With mobile browsers improving so rapidly, most sites now work without needing special adjustments so the lack of contentEditable support is one of the few major incompatibilities.&lt;/p&gt;
+&lt;h3 id=&#34;how-might-it-be-fixed&#34;&gt;How Might it be Fixed?&lt;/h3&gt;
+&lt;p&gt;To be honest, I don’t know and don’t have the experience with the code involved to find the source of the problem and fix it. However, with both the source to WebKit and Android being open, hopefully someone does have the experience knowledge and a bit of time to solve this.&lt;/p&gt;
+&lt;p&gt;With WebKit being the browser engine of choice on so many devices, the fix may even flow around to a bunch of mobile OS’s.&lt;/p&gt;
+&lt;h3 id=&#34;relevant-bug-reports&#34;&gt;Relevant Bug Reports&lt;/h3&gt;
+&lt;h4 id=&#34;android&#34;&gt;Android&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=9515&#34;&gt;9515 – No onscreen keyboard when inside a contentEditable area&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=9513&#34;&gt;9513 – Unable to select text in contentEditable field&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=9512&#34;&gt;9512 – contentEditable field shows no caret&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;For some background see also: &lt;a href=&#34;http://code.google.com/p/android/issues/detail?id=8253&#34;&gt;8253 – isContentEditable returns true even if the browser doesn’t really support it&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;iphone&#34;&gt;iPhone&lt;/h4&gt;
+&lt;p&gt;Apple don’t provide a public bug list, but this issue is logged as Radar #8399288. Apple do use the number of bug reports for an issue to adjust priority so if this issue is important to you, please do log an issue and cite Radar #8399288.&lt;/p&gt;
+&lt;h4 id=&#34;others&#34;&gt;Others&lt;/h4&gt;
+&lt;p&gt;I don’t currently have bug reports against other systems but would appreciate pointers to any relevant bugs for other systems (whether they use WebKit or not) so they can be tracked.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1278939007857&#34; href=&#34;#footlink1:1278939007857&#34;&gt;1&lt;/a&gt; &amp;#8211; The other major component is the execCommand function which provides built-in implementations of a number of common commands like bold, italic, etc. While it’s certainly useful to have these, they can generally be replaced by pure-JavaScript implementations without sacrificing quality or performance. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1278939007857&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1278940183669&#34; id=&#34;footnote2:1278940183669&#34;&gt;2&lt;/a&gt; &amp;#8211; I’m unaware of any mobile browser that supports contentEditable well enough to make an editor feasible. In fact, WebKit appears to be the closest to that milestone. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1278940183669&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ephox in the IBM Cloud</title>
+      <link>https://www.symphonious.net/2010/04/06/ephox-in-the-ibm-cloud/</link>
+      <pubDate>Tue, 06 Apr 2010 10:01:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/04/06/ephox-in-the-ibm-cloud/</guid>
+      <description>&lt;p&gt;Ephox EditLive! is now part of the IBM cloud offering on Amazon Web Services. EditLive! OEM edition is bundled in the &lt;a href=&#34;http://www.ibm.com/developerworks/downloads/ls/wps-wcmse/cloud.html&#34;&gt;cloud offering of IBM WCM&lt;/a&gt;. This means you can now quickly run up a new instance of IBM’s WCM system on Amazon EC2 and configure it to use EditLive! as the editor.&lt;/p&gt;
+&lt;p&gt;If you want to take advantage of the extra benefits of the &lt;a href=&#34;http://editlive.com/tour&#34;&gt;Enterprise Edition&lt;/a&gt; (track changes, commenting, accessibility checking, image editing and more), you can install that as normal once the system is running. Currently Ephox doesn’t have per-hour pricing through Amazon but you can &lt;a href=&#34;http://www.ephox.com/contactus.html&#34;&gt;contact our sales team&lt;/a&gt; so they can discuss the options available.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Alfresco Virtualization Server Not Responding – Unable to Preview Site</title>
+      <link>https://www.symphonious.net/2009/12/08/alfresco-virtualization-server-not-responding-unable-to-preview-site/</link>
+      <pubDate>Tue, 08 Dec 2009 09:48:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/12/08/alfresco-virtualization-server-not-responding-unable-to-preview-site/</guid>
+      <description>&lt;p&gt;If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more&lt;a href=&#34;#footnote1:1260264856408&#34;&gt;1&lt;/a&gt;{#footlink1:1260264856408.footnote} of these problems:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;When you click “Preview Website” you get an unable to connect message.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to start the virtualization server that provides the previews or configure it’s IP correctly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you click “Preview Website” you get a blank page and the browser is “connecting” forever.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You started the virtualization server too soon after starting Alfresco. Restart it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you try to deploy the server it fails to connect.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to download and install the deployment server.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You’re trying to follow the getting started example, but when you get to creating content from the Press Release Form, it just gives you an error: Cannot resolve the name &amp;lsquo;pr:company_footer_choices&amp;rsquo;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to get the virtualization server working. Also make sure you have done the bulk import step and can preview the site.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;starting-the-virtualization-server&#34;&gt;Starting the Virtualization Server&lt;/h3&gt;
+&lt;p&gt;There should be a ‘virtual_alf.sh’&lt;a href=&#34;#footnote2:1260265148233&#34;&gt;2&lt;/a&gt;{#footlink2:1260265148233.footnote} script in the Alfresco install directory. Run ‘./virtual_alf.sh start’ There’s also a virtual_start.sh but you’ll probably need to edit it to replace the @@ALF_DIRECTORY@@ placeholder that the installer didn’t replace.&lt;/p&gt;
+&lt;h3 id=&#34;setting-the-admin-password&#34;&gt;Setting the Admin Password&lt;/h3&gt;
+&lt;p&gt;At the end of the file ‘virtual-tomcat/conf/alfresco-virtserver.properties’ within your Alfresco install directory, there’s a property ‘alfresco.server.password’ this needs to be set to the admin password for your Alfresco instance. Keep this in sync anytime you change the admin password or your site previews will stop working.&lt;/p&gt;
+&lt;p&gt;Also note that the user/password you add here will be used for all previews so it bypasses any security you might have. Don’t deploy this on a publicly available site unless you have nothing to hide.&lt;/p&gt;
+&lt;h3 id=&#34;installing-the-deployment-server&#34;&gt;Installing the Deployment Server&lt;/h3&gt;
+&lt;p&gt;No, it doesn’t seem to come with Alfresco by default – the documentation suggests there’s a way to enable it but I haven’t found it. Much easier to just download the component separately (from the main download page, go to “Custom Installs”, look under the WCM section and pick the obviously named package that works best for your platform. Install it by unzip/untarring in a directory and run it with the deploy_start.sh script.&lt;/p&gt;
+&lt;p&gt;There is configuration in the ‘deployment.properties’ file which most importantly controls where it deploys to. You probably want to deploy to a Tomcat server’s webapps directory or similar. The default config will however work for testing and put the deployed content into the ‘target’ directory.&lt;/p&gt;
+&lt;h3 id=&#34;why-isnt-this-in-the-install-guide&#34;&gt;Why Isn’t This in the Install Guide?&lt;/h3&gt;
+&lt;p&gt;I have no idea. It would seem like something you would want to know about while installing.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1260264856408&#34; id=&#34;footnote1:1260264856408&#34;&gt;1&lt;/a&gt; &amp;#8211; probably all of them actually&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1260264856408&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1260265148233&#34; id=&#34;footnote2:1260265148233&#34;&gt;2&lt;/a&gt; &amp;#8211; .bat on Windows &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1260265148233&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Conversion for the Web</title>
+      <link>https://www.symphonious.net/2009/11/04/conversion-for-the-web/</link>
+      <pubDate>Wed, 04 Nov 2009 11:20:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/11/04/conversion-for-the-web/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://shebanator.com/2009/11/02/open-government-and-pdf/&#34;&gt;Andrew Shebanow in Open Government and PDF&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The issue at hand is not whether governments should pick HTML or PDF. The issue at hand is whether governments are capable of publishing information &lt;em&gt;at all&lt;/em&gt;. Show me an HTML creation tool that creates high quality, standards conformant markup from a Word document or any of the zillions of editing tools that government employees use. Now add in all the tools used by people who submit documents to the government. And all the versions of those tools released in the last 20 years. Now make sure that the HTML/XML works correctly even when the user doesn’t have the right browser or the right fonts installed.
+I’ve actually worked with a number of government departments who were looking to move more content online and the content conversion problem is definitely a time consuming and challenging part of the problem. That’s precisely why I wind up getting involved, since &lt;a href=&#34;http://www.ephox.com/products/editlive/&#34;&gt;EditLive!&lt;/a&gt; lets you easily copy and paste content from Word documents and produce clean, compliant XHTML. It can even (optionally) strip out inline formatting and leave just the structure like headings, tables and lists.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Furthermore, EditLive! is actually quite good at making sure the HTML works correctly even when the user doesn’t have the right browser or the right fonts installed, especially when it’s been configured to suit the particular content needs. Even with non-technical business authors this can work very well and is doing so for a significant number of government departments.&lt;/p&gt;
+&lt;p&gt;That’s not to say it’s the whole solution, there are systems out there where it’s hard to convert the content to HTML and where HTML may not be the best format anyway. Some of those cases may work better with PDF but certainly not all of them. To somehow suggest that PDF is a complete and simple solution to publishing information on the web misses quite a lot of the picture. For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How do web site visitors navigate around and get to that PDF data? How do they search and find it? As much time is spent working out navigation structures as it is converting content.&lt;/li&gt;
+&lt;li&gt;How do you expose information from databases with regularly changing information? Wouldn’t a HTML representation be easier to generate than PDF in most of these cases?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Putting information on the web is not simple and no single technology is going to make it simple. PDF definitely has it’s place on the web, but so does HTML and a number of other formats. PDF doesn’t alleviate compatibility concerns, not all users have a recent enough PDF reader, not all PDF embed all the fonts and when they do it makes the download very large etc and not all PDFs are standards compliant. Putting non-web stuff on the web is always a big, challenging project, so review the available technologies carefully and pick the ones that best achieve your goals. Very few companies have success with just dumping a whole heap of PDFs on a web server.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IBM WCM 6.1.0.2 Remote API Content Creation Problem</title>
+      <link>https://www.symphonious.net/2009/05/08/ibm-wcm-6102-remote-api-content-creation-problem/</link>
+      <pubDate>Fri, 08 May 2009 17:22:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/08/ibm-wcm-6102-remote-api-content-creation-problem/</guid>
+      <description>&lt;p&gt;I’m stumped so I’m throwing this one out there in the hope that someone might know the answer. I have a JSP component that builds a URL to create a new content item, in a specific site area with a specific authoring template. It works great on Portal 6.0.1.3 and Portal 6.1.0.0 but breaks on 6.1.0.1 and 6.1.0.2. When you go to the URL, it correctly starts creating content but instead of skipping the stage where it asks for an authoring template it just gives a blank list to choose from. If you omit the authoring template from the URL it will correctly list all templates and go on to create the content.&lt;/p&gt;
+&lt;p&gt;The URL winds up looking like:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://iweb2.ephox.com:10040/wps/myportal/wcmAuthoring?wcmAuthoringAction=new&amp;amp;&#34;&gt;http://iweb2.ephox.com:10040/wps/myportal/wcmAuthoring?wcmAuthoringAction=new&amp;amp;&lt;/a&gt;&lt;br&gt;
+type=com.ibm.workplace.wcm.api.WCM_Content&amp;amp;atid=com.ibm.workplace.wcm.api.WCM_AuthoringTemplate/simple-page/389d16004d3954ac9b4eff0a98a2531c/PUBLISHED&amp;amp;&lt;br&gt;
+pid=com.ibm.workplace.wcm.api.WCM_SiteArea/plugins/ca0d04004e034ec59853f8b5e96d1024/PUBLISHED&lt;/p&gt;
+&lt;p&gt;I’ve verified that the ID for the authoring template is correct by using it in an ‘edit’ action and the authoring template opens in edit mode correctly.&lt;/p&gt;
+&lt;p&gt;If anyone knows why this is suddenly going wrong I’d love to hear it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Key IBM LWCM Config File</title>
+      <link>https://www.symphonious.net/2009/05/07/key-ibm-lwcm-config-file/</link>
+      <pubDate>Thu, 07 May 2009 08:21:32 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/07/key-ibm-lwcm-config-file/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; style=&#34; float: right;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/reminder-hand_benji_park_37872.png&#34; height=&#34;128&#34; width=&#34;90&#34; alt=&#34;Reminder&#34; /&gt;Note to self:&lt;/p&gt;
+&lt;p&gt;That magical file that controls just about everything you ever want to control about IBM LWCM (at least so far as things that are controlled from the file system rather than the web interface) is under the profile directory at /wcm/shared/app/config/wcmservices/WCMConfigService.properties&lt;/p&gt;
+&lt;p&gt;This includes:&lt;/p&gt;
+&lt;ul class=&#34;greenTick&#34;&gt;
+  &lt;li&gt;
+    configuring backwards compatibility for WCM 6.0 -&gt; 6.1 migrations. Primarily the don’t expire content immediately when no expire date is set.
+  &lt;/li&gt;
+  &lt;li&gt;
+    setting up the SMTP server properties so you can get e-mail notifications in workflow &lt;ul class=&#34;blueArrow&#34;&gt;
+      &lt;li&gt;
+        Side note: These get annoying really quickly if you’re not careful.
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    A bunch of stuff on caching that looks cool. I wonder what the changes I just made will do…
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, why did it take me this long to add fancy list bullet styles to my blog stylesheet? Mixing the blue and green is probably a bit much – I should create a blue tick or green arrow, but oh well, I’m drunk with power.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Devices Have Disabilities Too</title>
+      <link>https://www.symphonious.net/2009/03/26/devices-have-disabilities-too/</link>
+      <pubDate>Thu, 26 Mar 2009 10:30:39 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/03/26/devices-have-disabilities-too/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/03/accessibility.png&#34; alt=&#34;Accessibility Icon&#34; height=&#34;215&#34; width=&#34;200&#34; style=&#34; float: right;&#34; /&gt;The &lt;a href=&#34;http://www.australianit.news.com.au/story/0,24897,25231165-5013040,00.html&#34;&gt;Australian brings news of the growing battle for mobile banking leadership among Australian banks&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Brisbane-based Suncorp launched the first mobile browser-based banking service and last week made it compatible with iPhone and Google Android handsets.&lt;/p&gt;
+&lt;p&gt;The Commonwealth Bank has similarly updated its mobile service, which will work on any internet-enabled mobile phone, and has additional functionality for the iPhone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;People have been talking about the coming mobile revolution for a long time. In fact, as the article mentions, the Commonwealth Bank had previously tried to jump on the mobile banking wagon as early as 1999 via a WAP interface. So what’s changed and what does this have to do with accessibility?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The capabilities and affordability of mobile phones with Internet access has dramatically improved. Firstly with the iPhone and now a top-notch browser is a must have feature in a smart phone.&lt;/li&gt;
+&lt;li&gt;WAP is out, users want the real web. It’s not ok to provide a text only WAP interface that works on phones, users want the full functionality and they want it to look pretty too. Modern phones support HTML, CSS and JavaScript and most of the time you should be writing just one site that works everywhere rather than a separate mobile site.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It’s that second point that really brings accessibility in. If you design your site so that it can be used with a range of disabilities, there’s a much better chance that it will also work on devices with a range of capabilities. In other words, someone using an iPhone to view the site is just a user with a particular type of disability.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They have a small screen so the site needs to scale properly (use relative units, not absolute). If your site can handle users changing the size of the font, it can probably scale pretty well to fit on an iPhone.&lt;/li&gt;
+&lt;li&gt;If the networks slow, they may not be able to see images. If you have good alt tags, they won’t need to.&lt;/li&gt;
+&lt;li&gt;They can’t see flash. While you can design accessible flash, most people don’t so surfing without flash is often very similar to what a screen reader would see (at least for the flash side of things).&lt;/li&gt;
+&lt;li&gt;They can’t use a keyboard very fast and can’t drag and drop anything.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There’s also plenty of unique things about various disabilities and the iPhone as well as different limitations on different handsets, but there’s also a lot of overlap.&lt;/p&gt;
+&lt;p&gt;Accessibility isn’t a cost centre – it’s a competitive advantage.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ephox EditLive Editor Will Change The World</title>
+      <link>https://www.symphonious.net/2009/01/20/ephox-editlive-editor-will-change-the-world/</link>
+      <pubDate>Tue, 20 Jan 2009 09:49:22 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/01/20/ephox-editlive-editor-will-change-the-world/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://twitter.com/pangle/statuses/1131403727&#34;&gt;Pangle on Twitter&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ephox EditLive Editor will change the world. Well maybe not the world, but it will make WCM content easier to format.
+I couldn’t agree more. This is of course in response to the news coming out of Lotusphere that &lt;a href=&#34;http://www.ephox.com/ibm/oem&#34;&gt;IBM has licensed EditLive!&lt;/a&gt; as a standard part of their WCM offering. Ephox has been an IBM business partner for quite a few years now and has built up a lot of relationships with their technical and sales teams as well as selling EditLive! as a third party add-on to a lot of WCM clients. It’s very exciting to see this go up a step and have EditLive! as a standard part of the offering. I don’t have an exact ship date for the OEM version yet, but my understanding is that it will come as an update to Portal 6.1.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So to all the new Ephox clients who are being introduced to EditLive! as part of this agreement – welcome. I really look forward to working with IBM to get you up and running with EditLive! and seeing what it can do to improve you WCM authoring environments and resulting content. I’ve spent the last week putting together a &lt;a href=&#34;http://liveworks.ephox.com/products/editliveforiwwcm/resources/upgrade-whitepaper&#34;&gt;white paper&lt;/a&gt; to share the experience we’ve had upgrading WCM deployments to EditLive! and a bunch of best practices for configuring EditLive! to get the most out of it.&lt;/p&gt;
+&lt;p&gt;To all our existing clients, thanks for all your support so far and  we look forward to continuing to work with you. The OEM agreement includes just the base edition of EditLive! so we’ll continue to ship the Enterprise Edition as an add-on, with some big improvements planned for both it and the base edition.  This isn’t an official source of Ephox news and I want to avoid getting any details wrong so I’ll refrain from giving details, but rest assured that everyone at Ephox is committed to making sure that we keep making all our clients happy – especially those who have supported us in the past.  If you have questions, we’ve got &lt;a href=&#34;http://www.ephox.com/ibm/oem&#34;&gt;a page giving some information on the OEM agreement&lt;/a&gt; and please do &lt;a href=&#34;http://www.ephox.com/contactus.html&#34;&gt;contact us&lt;/a&gt; if you have any further questions or concerns. The &lt;a href=&#34;http://liveworks.ephox.com/products/editliveforiwwcm/resources/upgrade-whitepaper&#34;&gt;white paper&lt;/a&gt; is probably useful for you as well.&lt;/p&gt;
+&lt;p&gt;To everyone within Ephox, congratulations on making such a fantastic editor, from engineering and product management making sure the product is great, to sales and marketing getting the word out and making enough sales to keep us in business and the admin team for letting everyone else focus on their jobs.&lt;/p&gt;
+&lt;p&gt;Now let’s get back to work and keep changing the world.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Embrace Your Inner Deletionist</title>
+      <link>https://www.symphonious.net/2009/01/12/embrace-your-inner-deletionist/</link>
+      <pubDate>Mon, 12 Jan 2009 13:25:54 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/01/12/embrace-your-inner-deletionist/</guid>
+      <description>&lt;p&gt;One of the popular geek pissing contests is comparing how far back your email archives go. It’s a game I’ve enjoyed playing in the past and quite regularly one given that I’d never deleted an email (ahh the days before spam…). Still, &lt;a href=&#34;http://spyder.wordpress.com/2009/01/12/the-great-gmail-migration/&#34;&gt;as Andy has just discovered&lt;/a&gt;, it’s not always as useful as it first seems:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; I have to say though I’m not sure keeping all of this email was the best idea. I’ve glanced at a few old emails while sorting this evening and… well put it this way, would you want a detailed account of your uni years?
+If your email is just building up without requiring any effort on your part then there’s no real advantage to deleting it and it may as well sit there. Once you come to expend time and effort migrating that email though it just becomes a waste of your time. The trouble is, now that you’ve got all that email, you’ve got no idea which bits are important to keep and which aren’t. You’re stuck on the treadmill of migrations until it eventually gets so time consuming that you figure it’s easier to just dump everything and start again.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;On the other hand, if you only keep emails that are worth keeping from the outset, you have a much simpler migration path when you change systems and if you do want to cull anything that was once useful but now isn’t, it’s a much smaller set of emails to sort through. I switched to this system a few years back and am very happy with it. I still have too much stuff in my “Other” folder which tends to hold all the web receipts and things like that which are critical to keep until a certain point and then become useless. It’s not really worth setting up a system to make them easier to manage though so I’m just leaving the folder to grow – it’s still a far more manageable mess than if I saved every email.&lt;/p&gt;
+&lt;p&gt;Of course, this isn’t just limited to email – anywhere you store content is susceptible to this kind of problem. As you get more and more content in the system, migrating to a better system becomes harder and harder, but more importantly, it gets harder and harder to find the actual information you want. Even with fantastic search and incredibly detailed categorization, there’s only so far any information architecture will get you and keeping that information architecture running requires more and more effort as you get more and more documents.&lt;/p&gt;
+&lt;p&gt;So deleting outdated content and any other content that’s no longer useful from your system is incredibly important.  Just as programmers should remove unused code from their programs, content management users and administrators should remove unused content from their repositories. Remember, it’s about quality, not quantity – a small set of really useful content is far better than a massive repository of everything the company ever created but that nothing can be found in.&lt;/p&gt;
+&lt;p&gt;Remember, the challenge of information technology isn’t in storing stuff, it’s in storing only the good stuff.&lt;/p&gt;
+&lt;p&gt;Update: See, what did I tell you – &lt;a href=&#34;http://wooga.drbacchus.com/what-weve-been-saying-for-years&#34;&gt;Rich Bowen: What we&amp;rsquo;ve been saying for *years*&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What seems to be missing from this story is the time component. That is, if they don&amp;rsquo;t do it now, they will have to do it later, and the longer they wait, the more it will cost. Every new record adds costs to the total, and that cost will be paid by the entire health-care-consuming public.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Secret to Improving Documentation</title>
+      <link>https://www.symphonious.net/2008/12/12/the-secret-to-improving-documentation/</link>
+      <pubDate>Fri, 12 Dec 2008 13:21:11 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/12/12/the-secret-to-improving-documentation/</guid>
+      <description>&lt;p&gt;Believe it or not, it’s been almost exactly 2 years since I kicked off &lt;a href=&#34;http://liveworks.ephox.com/&#34;&gt;LiveWorks!&lt;/a&gt; as essentially a skunk-works project to get some of our internal experiments out into the open so they proved useful. As it turns out the bigger success has been the weekly hints and tips that we started adding a few months later. Unless one of the migrations has messed up the dates, the first tip was a &lt;a href=&#34;http://liveworks.ephox.com/hints-tips/integrating-editlive-in-4-easy-steps&#34;&gt;simple overview of how to integrate EditLive!&lt;/a&gt; that Rob wrote. I still regularly refer people to that article.  Since then we’ve posted a new article every single week without fail.&lt;/p&gt;
+&lt;p&gt;The net result is that we have a huge collection of knowledge that’s built up, from common tasks to quite specific ways to customize and extend EditLive! It’s actually quite rare for me to resolve a support case without linking to a LiveWorks! article at least once. With the recent addition of a few &lt;a href=&#34;http://liveworks.ephox.com/events/ephoxtv/&#34;&gt;video demos&lt;/a&gt; as well I’m finding it more and more common to put together a customized package of LiveWorks! links for new prospects as well.&lt;/p&gt;
+&lt;p&gt;What’s particularly amazing about this is that I refer people to the LiveWorks! articles far more often than I point them at our official documentation. We’ve been talking about reworking our official documentation for at least as long as LiveWorks! has been around but it always seems like such a huge project so we never do it.  This leads me to the secret of improving documentation: set up a regular schedule for making improvements and stick to it.  Whether you write a new article a week, review an existing article a week or add 3 good “See also” links each week you’ll wind up improving your documentation faster than if you constantly try to find time to fix it all at once.&lt;/p&gt;
+&lt;p&gt;The draw back is that it’s very hard to improve the discoverability of information gradually like this. LiveWorks! really needs a knowledge management expert to come in and make it easier to find what you want – I happen to have a pretty good memory for what’s there and know what to look for, but most people would find it far less useful.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

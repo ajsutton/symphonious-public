@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Excuses and Reasons | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Brad makes an excellent comment regarding the root logins via ssh issue:
+
+I think the biggest disagreement we&rsquo;re having here is where should this be solved. Adrian , as a developer, thinks it should be coded around. Myself, as a sysadmin, think the user should take some responsibility for their actions and check their setup on the critical pieces of software – in this case, the Internet accessible ones. It all makes sense now. I think the movie Babe probably best covers this when the sheep dog goes to talk to the sheep and talks very slowly and clearly because every sheep dog knows that sheep are stupid. When the sheep reply they do so very slowly and clearly because every sheep knows that wolves are ignorant. In this case every developer knows that all users are stupid and so they try to make everything work as safely and easily as possible. Then of course every sysadmin knows that programmers are incompetent and so they double check everything and always assume that the developer has stuffed up. It&rsquo;s then quite natural (and indeed beneficial) for Brad and I to have differing reactions to this issue. As a sysadmin Brad knows that he should read the README.Debian files for the security related packages he installs and that he should double check configuration files (plus he often knows how to do this off the top of his head). As a developer however, I know that when the software gets into the hands of end users (as operating systems for PCs generally do), the users aren&rsquo;t going to do any of this (mostly because they won&rsquo;t know how) so the default configuration should be secure and stable to avoid the user having problems.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/09/14/excuses-and-reasons/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/09/14/excuses-and-reasons/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Excuses and Reasons">
+	<meta property="og:description" content="Brad makes an excellent comment regarding the root logins via ssh issue:
+I think the biggest disagreement we’re having here is where should this be solved. Adrian , as a developer, thinks it should be coded around. Myself, as a sysadmin, think the user should take some responsibility for their actions and check their setup on the critical pieces of software – in this case, the Internet accessible ones. It all makes sense now. I think the movie Babe probably best covers this when the sheep dog goes to talk to the sheep and talks very slowly and clearly because every sheep dog knows that sheep are stupid. When the sheep reply they do so very slowly and clearly because every sheep knows that wolves are ignorant. In this case every developer knows that all users are stupid and so they try to make everything work as safely and easily as possible. Then of course every sysadmin knows that programmers are incompetent and so they double check everything and always assume that the developer has stuffed up. It’s then quite natural (and indeed beneficial) for Brad and I to have differing reactions to this issue. As a sysadmin Brad knows that he should read the README.Debian files for the security related packages he installs and that he should double check configuration files (plus he often knows how to do this off the top of his head). As a developer however, I know that when the software gets into the hands of end users (as operating systems for PCs generally do), the users aren’t going to do any of this (mostly because they won’t know how) so the default configuration should be secure and stable to avoid the user having problems.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-09-14T09:57:07+00:00">
+		<meta property="article:modified_time" content="2004-09-14T09:57:07+00:00">
+
+	<meta itemprop="name" content="Excuses and Reasons">
+	<meta itemprop="description" content="Brad makes an excellent comment regarding the root logins via ssh issue:
+I think the biggest disagreement we’re having here is where should this be solved. Adrian , as a developer, thinks it should be coded around. Myself, as a sysadmin, think the user should take some responsibility for their actions and check their setup on the critical pieces of software – in this case, the Internet accessible ones. It all makes sense now. I think the movie Babe probably best covers this when the sheep dog goes to talk to the sheep and talks very slowly and clearly because every sheep dog knows that sheep are stupid. When the sheep reply they do so very slowly and clearly because every sheep knows that wolves are ignorant. In this case every developer knows that all users are stupid and so they try to make everything work as safely and easily as possible. Then of course every sysadmin knows that programmers are incompetent and so they double check everything and always assume that the developer has stuffed up. It’s then quite natural (and indeed beneficial) for Brad and I to have differing reactions to this issue. As a sysadmin Brad knows that he should read the README.Debian files for the security related packages he installs and that he should double check configuration files (plus he often knows how to do this off the top of his head). As a developer however, I know that when the software gets into the hands of end users (as operating systems for PCs generally do), the users aren’t going to do any of this (mostly because they won’t know how) so the default configuration should be secure and stable to avoid the user having problems.">
+	<meta itemprop="datePublished" content="2004-09-14T09:57:07+00:00">
+	<meta itemprop="dateModified" content="2004-09-14T09:57:07+00:00">
+	<meta itemprop="wordCount" content="290">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Excuses and Reasons">
+	<meta name="twitter:description" content="Brad makes an excellent comment regarding the root logins via ssh issue:
+I think the biggest disagreement we’re having here is where should this be solved. Adrian , as a developer, thinks it should be coded around. Myself, as a sysadmin, think the user should take some responsibility for their actions and check their setup on the critical pieces of software – in this case, the Internet accessible ones. It all makes sense now. I think the movie Babe probably best covers this when the sheep dog goes to talk to the sheep and talks very slowly and clearly because every sheep dog knows that sheep are stupid. When the sheep reply they do so very slowly and clearly because every sheep knows that wolves are ignorant. In this case every developer knows that all users are stupid and so they try to make everything work as safely and easily as possible. Then of course every sysadmin knows that programmers are incompetent and so they double check everything and always assume that the developer has stuffed up. It’s then quite natural (and indeed beneficial) for Brad and I to have differing reactions to this issue. As a sysadmin Brad knows that he should read the README.Debian files for the security related packages he installs and that he should double check configuration files (plus he often knows how to do this off the top of his head). As a developer however, I know that when the software gets into the hands of end users (as operating systems for PCs generally do), the users aren’t going to do any of this (mostly because they won’t know how) so the default configuration should be secure and stable to avoid the user having problems.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Excuses and Reasons</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Excuses and Reasons</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-09-14T09:57:07Z">September 14, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Brad makes an <a href="http://quark.humbug.org.au/blog/index.cgi/2004/09/14#20040914073333">excellent comment</a> regarding the root logins via ssh issue:</p>
+<blockquote>
+<p>I think the biggest disagreement we&rsquo;re having here is where should this be solved. Adrian , as a developer, thinks it should be coded around. Myself, as a sysadmin, think the user should take some responsibility for their actions and check their setup on the critical pieces of software – in this case, the Internet accessible ones. It all makes sense now. I think the movie <em>Babe</em> probably best covers this when the sheep dog goes to talk to the sheep and talks very slowly and clearly because every sheep dog knows that sheep are stupid. When the sheep reply they do so very slowly and clearly because every sheep knows that wolves are ignorant. In this case every developer knows that all users are stupid and so they try to make everything work as safely and easily as possible. Then of course every sysadmin knows that programmers are incompetent and so they double check everything and always assume that the developer has stuffed up. It&rsquo;s then quite natural (and indeed beneficial) for Brad and I to have differing reactions to this issue. As a sysadmin Brad knows that he should read the README.Debian files for the security related packages he installs and that he should double check configuration files (plus he often knows how to do this off the top of his head). As a developer however, I know that when the software gets into the hands of end users (as operating systems for PCs generally do), the users aren&rsquo;t going to do any of this (mostly because they won&rsquo;t know how) so the default configuration should be secure and stable to avoid the user having problems.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

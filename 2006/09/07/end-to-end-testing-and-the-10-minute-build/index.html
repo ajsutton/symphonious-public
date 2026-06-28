@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>End To End Testing And The 10 Minute Build | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="At least in my mind, there seems to be a clash of aims in XP. You want to make sure that you have complete confidence in your tests so that you can go faster and reduce the cost of change. To achieve this you write lots and lots of tests – until your fear of something breaking turns to boredom from writing tests you know will pass. Most of those tests are atomic and test a particular component, but fear lies in the gaps between components too so you regularly get recommendations like Ola Ellnestam&rsquo;s on my previous post, Testing Your Setup Code:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/09/07/end-to-end-testing-and-the-10-minute-build/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/09/07/end-to-end-testing-and-the-10-minute-build/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="End To End Testing And The 10 Minute Build">
+	<meta property="og:description" content="At least in my mind, there seems to be a clash of aims in XP. You want to make sure that you have complete confidence in your tests so that you can go faster and reduce the cost of change. To achieve this you write lots and lots of tests – until your fear of something breaking turns to boredom from writing tests you know will pass. Most of those tests are atomic and test a particular component, but fear lies in the gaps between components too so you regularly get recommendations like Ola Ellnestam’s on my previous post, Testing Your Setup Code:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-09-07T11:45:41+00:00">
+		<meta property="article:modified_time" content="2006-09-07T11:45:41+00:00">
+
+	<meta itemprop="name" content="End To End Testing And The 10 Minute Build">
+	<meta itemprop="description" content="At least in my mind, there seems to be a clash of aims in XP. You want to make sure that you have complete confidence in your tests so that you can go faster and reduce the cost of change. To achieve this you write lots and lots of tests – until your fear of something breaking turns to boredom from writing tests you know will pass. Most of those tests are atomic and test a particular component, but fear lies in the gaps between components too so you regularly get recommendations like Ola Ellnestam’s on my previous post, Testing Your Setup Code:">
+	<meta itemprop="datePublished" content="2006-09-07T11:45:41+00:00">
+	<meta itemprop="dateModified" content="2006-09-07T11:45:41+00:00">
+	<meta itemprop="wordCount" content="1002">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="End To End Testing And The 10 Minute Build">
+	<meta name="twitter:description" content="At least in my mind, there seems to be a clash of aims in XP. You want to make sure that you have complete confidence in your tests so that you can go faster and reduce the cost of change. To achieve this you write lots and lots of tests – until your fear of something breaking turns to boredom from writing tests you know will pass. Most of those tests are atomic and test a particular component, but fear lies in the gaps between components too so you regularly get recommendations like Ola Ellnestam’s on my previous post, Testing Your Setup Code:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">End To End Testing And The 10 Minute Build</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">End To End Testing And The 10 Minute Build</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-09-07T11:45:41Z">September 7, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>At least in my mind, there seems to be a clash of aims in XP. You want to make sure that you have complete confidence in your tests so that you can go faster and reduce the cost of change. To achieve this you write lots and lots of tests – until your fear of something breaking turns to boredom from writing tests you know will pass. Most of those tests are atomic and test a particular component, but fear lies in the gaps between components too so you regularly get recommendations like <a href="http://www.symphonious.net/2006/05/08/testing-your-setup-code/#comment-31347">Ola Ellnestam&rsquo;s</a> on my previous post, <a href="http://www.symphonious.net/2006/05/08/testing-your-setup-code/">Testing Your Setup Code</a>:</p>
+<blockquote>
+<p>Note: When you&rsquo;re TDDing and getting the very loose coupling every one is longing for ;-) you must be aware that integration tests and acceptance tests are an absolute necessity. Since this is the only way to really test your configuration.</p>
+</blockquote>
+<p>On the other hand, to be able to get rapid feedback you want a fast build – under 10 minutes. From James Shore&rsquo;s draft of the <a href="http://www.jamesshore.com/Agile-Book/ten_minute_build.html">10 Minute Build</a> chapter of his upcoming book, <a href="http://www.jamesshore.com/Agile-Book/">The Art of Agile</a>:</p>
+<blockquote>
+<p>For most teams, their tests are the source of a slow build. Usually it&rsquo;s because their tests aren&rsquo;t focused enough. Look for common problems: are you writing end-to-end tests when you should be writing unit tests and integration tests? Do you unit tests talk to a database, network, or file system?</p>
+<p>You should be able to run about 100 unit tests per second (<span class="link">test_driven_development</span>). Unit tests should comprise the majority of your tests. A fraction (less than 10%) should be integration tests, checking that two components synchronize properly. Only a handful, if any at all, should be end-to-end tests (<span class="link">testing</span>).</p>
+</blockquote>
+<p>The problem is, if you want to test your software comprehensively and be able to have confidence that your tests will tell you if you&rsquo;ve broken something, I can&rsquo;t see how you can avoid writing a lot of integration tests. I also don&rsquo;t see why you would avoid automating end to end tests and running them very regularly. The reality is that you need to have a QA process that tests the application from how users actually use it – not from the point of view of this bit of the system or that bit of the system. You need to verify that when a user clicks on this menu item, the event is sent over to the editor pane which interprets it as a bold action and instructs the document to apply bold and finally that when the document serializes it comes out with a STRONG or B tag (depending on the user&rsquo;s preferences) around the text.</p>
+<p>If you don&rsquo;t have a test that verifies that the message from the menu bar actually gets to the editor pane, how can you have confidence that bold works? How can you have confidence that the complex changes you&rsquo;re making to the document result in the right end effect when the document is serialized?</p>
+<p>I suspect there are a couple of contributing factors to my confusion around this issue. Firstly, I work with text and frankly there is nothing less predictable and safe in software than text. It seems simple on the face of it, but there is a huge amount of complexity that goes on behind the scenes and user&rsquo;s absolutely demand that the editing experience is completely seamless and intuitive. There are few other environments where the number of possible program states is so incomprehensibly huge in a practical sense, where the differences really matter. On top of that, there&rsquo;s a ridiculous number of possible user actions that are all available at the same time and all of them interact with the program state is subtly different ways to try to best match the user&rsquo;s expectation.</p>
+<p>In short, if there were any environment where you should be afraid of making changes, it&rsquo;s code that deals with text. That fear turns into a desire to write lots of tests and make them as close as possible to what the user is actually doing. Capturing all the subtleties of the state and embedding them in an atomic test is difficult to get precisely write – you tend to cover the most important details but miss one or two bits of state that can come back to bite you when you least expect it. Having end to end tests resolves that sense of fear, because you know that the program is operating just like when the user actually uses it – you can&rsquo;t have missed a detail somewhere, it&rsquo;s all the real deal.</p>
+<p>The other contributing factor is that I haven&rsquo;t had the opportunity to work on a high quality code base that has very comprehensive atomic tests. Ephox&rsquo;s code base is quite old, it&rsquo;s mostly high quality code but it has some back alleys where ambushes lie in wait and it&rsquo;s well tested but mostly with integration level tests, not atomic tests. It&rsquo;s no surprise then that I don&rsquo;t have complete confidence in the atomic tests – they just don&rsquo;t cover enough of the application. That said, my confidence in the atomic tests is definitely growing as we add more tests and get better at knowing what to test and how to test it.</p>
+<p>The bottom line is that now and for the foreseeable future, I&rsquo;m not going to have enough confidence in the atomic tests to get rid of the slow end to end tests. However I do see it as important to improve our atomic tests and the confidence we have in them. Being able to verify that your changes haven&rsquo;t caused problems in 5-10 seconds by running the appropriate tests is a huge boost to productivity. Being able to have confidence that everything will work in a minute or two by running all the atomic tests is a extremely powerful too. Despite that, knowing that <a href="http://www.symphonious.net/2006/03/02/introducing-bob/" title="Introducing Bob">Bob the Builder</a> is going to come along behind you and run a comprehensive suite of end to end tests as well is priceless.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

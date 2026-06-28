@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Symphonious" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="Symphonious" />
+      
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/posts/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/posts/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Posts">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+
+	<meta itemprop="name" content="Posts">
+	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Posts">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 10, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/11/extreme-gui-makeover/" class="link black dim">
+        Extreme GUI Makeover
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>The session was a lot more fluff than useful stuff and often went for showy graphics instead of actual usability which is a shame. There were some good ideas though.</p>
+<ul>
+<li>Use a modern L&amp;F – they suggested Nimbus. Gosh it&rsquo;s ugly and gray. I suggest using the system native L&amp;F (except on Linux and Solaris then anything is an improvement)</li>
+<li>Add a splash screen, can do this with the -splash argument in Java 6.
+<ul>
+<li>Supports alpha transparency so can be non-rectangular</li>
+<li>Should provide a progress bar.
+<ul>
+<li>They used a sepia image fading into color to show progress which looked cool but didn&rsquo;t really show progress at all effectively.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Validating Data
+<ul>
+<li>Give feedback immediately.</li>
+<li>JGoodies can provide a small icon in the corner of the component. You can do this yourself by painting the icon in the layered pane&rsquo;s popup layer.</li>
+</ul>
+</li>
+<li>Custom Components
+<ul>
+<li>You can improve GUIs by creating custom components.</li>
+<li>This is where they messed up usability in some places. Make sure your custom components are significantly easier to use than the standard components otherwise it&rsquo;s better to go with what the user is used to. Also need to consider accessibility which they didn&rsquo;t mention at all.</li>
+</ul>
+</li>
+<li>Improve interactivity by updating search results immediately as the user changes values.</li>
+<li>Use cyclic gradients for improved performance, even if you don&rsquo;t need the cyclic property (just paint one iteration).</li>
+<li>Measure text with:
+<ul>
+<li>g2.getFotnMetrics() then stringWidth and getAscent</li>
+</ul>
+</li>
+<li>JList has a setLayoutOrientation method which lets you use it as a multicolumn list.</li>
+<li>You can span text across all the cells in a row by clipping the text with a JViewPort to show just the section inside the cell currently being painted.</li>
+<li>You can animate the changes made when sorting by painting the animation in the glass pane over where the table is.</li>
+</ul>
+    </div>
+  <a href="/2007/05/11/extreme-gui-makeover/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 10, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/11/being-productive-with-swing/" class="link black dim">
+        Being Productive With Swing
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>These are my notes from the technical session, &ldquo;Being Productive With Swing&rdquo; by Ben Galbraith. The session focussed a lot on Ben&rsquo;s library that he&rsquo;s creating which was a shame but there are some ideas that are worth taking away.</p>
+<hr>
+<p>The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are &ldquo;stepping up the wow&rdquo; to compete with AJAX and Swing traditionally hasn&rsquo;t had this – JavaFX is likely to bring this to Swing. However, for most business applications &ldquo;wow&rdquo; isn&rsquo;t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.</p>
+    </div>
+  <a href="/2007/05/11/being-productive-with-swing/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 10, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/10/jsr296-swing-application-framework/" class="link black dim">
+        JSR296 Swing Application Framework
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I&rsquo;ve seen at JavaOne so far. It&rsquo;s not trying to be overly fancy but it solves a clear need in a very simple way.</p>
+<p><a href="http://weblogs.java.net/blog/malcolmdavis/archive/2007/05/javaone_blog_4.html">Malcolm Davis also commented on it</a> but wasn&rsquo;t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that&rsquo;s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:</p>
+    </div>
+  <a href="/2007/05/10/jsr296-swing-application-framework/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 8, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/09/desktop-java/" class="link black dim">
+        Desktop Java
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Just finished up in the Desktop Java overview session. Good information in there. The summary glosses over some stuff but I think it covers all the important information. The entire session is an overview so it&rsquo;s really just identifying things that you should look to learn about elsewhere. It looks like some good stuff for Ephox and our user is coming down the pipeline.</p>
+<p>Main points:</p>
+<ul>
+<li>Java on the desktop used to be focussed at the enterprise desktop, now it will focus on becoming far more consumer oriented.</li>
+<li>JavaFX is cool.</li>
+<li>Java 6 Update in 1st half of 2008 to include:
+<ul>
+<li>JRE Detection improvements (funky scripts to get the right JRE installed, seems to bounce off sun.com)</li>
+<li>Install process improvements (Kernel)
+<ul>
+<li>Installs just the absolute minimum components of the JRE and then downloads most common components in the background. Installs less used components on demand. Could be great, but could also cause interruptions to users as they work when new components are needed.</li>
+</ul>
+</li>
+<li>Quick Starter. Loads Java files into the disk cache at startup or browser startup and tries to keep them there. Not a full JRE running but will probably be as annoying as all those other task bar icons that are wasting resources trying to do the same thing. No wonder computers take so long to load these days.</li>
+<li>Windows Graphics Acceleration
+<ul>
+<li>DirectX 9 based pipeline.</li>
+<li>On by default so actually useful unlike the OpenGL pipeline which is off because of some driver incompatibilities.</li>
+<li>High performance for all of Swing and Graphics2D.</li>
+<li>Nimbus. New cross platform look and feel that&rsquo;s meant to actually look good. Screen shots look pretty awful (gray is not a good choice of color scheme people!)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Looking at media improvements in the future.
+<ul>
+<li>Looks like they want to use native libraries (QuickTime, Windows Media etc) instead of a Java based solution. Seems to be a common trend so hopefully they&rsquo;ll get it working seamlessly.</li>
+</ul>
+</li>
+<li>Animation improvements
+<ul>
+<li>Easy to apply animations and effects.</li>
+<li>Better timing facilities</li>
+</ul>
+</li>
+<li>More components
+<ul>
+<li>Date picker.</li>
+<li>Native file chooser</li>
+<li>Ability to mix heavyweight and lightweight components.</li>
+<li>Non-rectangular top level components</li>
+<li>Translucent windows</li>
+</ul>
+</li>
+<li>Applications framework
+<ul>
+<li>JSR 296</li>
+<li>Makes it easier to get standalone Swing apps started.</li>
+<li>Basically just removing boiler plate code, but I suspect it includes more than was shown in the talk.</li>
+<li>Much, much simpler than something like the NetBeans or Eclipse platforms.</li>
+<li>Intended to be useful for small to medium size apps instead of the huge apps that NetBeans/Eclipse platforms are good for.</li>
+</ul>
+</li>
+<li>Beans Binding (JSR 295)
+<ul>
+<li>new way to bind GUI components to data.</li>
+<li>Should remove need to know everything about Swing models.</li>
+<li><a href="http://beansbinding.dev.java.net">http://beansbinding.dev.java.net</a></li>
+</ul>
+</li>
+</ul>
+<p> </p>
+    </div>
+  <a href="/2007/05/09/desktop-java/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 8, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/09/tip-for-javaone-alumni/" class="link black dim">
+        Tip for JavaOne Alumni
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Wake up earlier tomorrow. When I got here (about 7:30am) they actively grabbed me to give me the &ldquo;special present&rdquo; (4 port USB hub), I couldn&rsquo;t have avoided it if I&rsquo;d tried. Now however there are constantly long lines of people lining up to get their present and every so often they&rsquo;re turned away because they&rsquo;re &ldquo;temporarily out of stock, but don&rsquo;t worry you&rsquo;ll all get one&rdquo;.</p>
+<p>You don&rsquo;t have to wake up very early to beat the geek rush, and it does pay off really well.</p>
+    </div>
+  <a href="/2007/05/09/tip-for-javaone-alumni/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 8, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/09/my-new-favorite-comment/" class="link black dim">
+        My New Favorite Comment
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>One of our board members left <a href="http://hamstaa.hbhau.net/2007/05/02/change-brings-opportunity/#comment-6">a comment</a> on <a href="http://hamstaa.hbhau.net/">Brett&rsquo;s blog</a> this morning and I love the way it meshes with my thinking that employee blogs is a crucial tool for senior management to keep up with the directions, understanding and thoughts of the rank and file:</p>
+<blockquote>
+<p>Well, my friend I gotta say that whilst reading board papers a link to a blog is a welcome relief. I get the feedback I crave and welcome and also get a general sense of what is on the minds of your team.</p>
+    </div>
+  <a href="/2007/05/09/my-new-favorite-comment/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 7, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/08/redmonk-sucks/" class="link black dim">
+        RedMonk Sucks
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Just for the record, <a href="http://redmonk.com/">RedMonk</a> sucks because they didn&rsquo;t bring shirts to hand out at their unconference….</p>
+<p>They told me to blog it…</p>
+    </div>
+  <a href="/2007/05/08/redmonk-sucks/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 7, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/07/the-last-click-is-the-easy-bit/" class="link black dim">
+        The Last Click Is The Easy Bit
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;m sitting here in Auckland airport transitioning through to San Francisco and there&rsquo;s an interesting synergy to the stuff that&rsquo;s coming through. First of all, I see that my rash of Twitter subscriptions (<a href="http://twitter.com/ajsutton">my twitter page</a>) and my mentioning twitter in my last post has caused a few people to add me to Twitter and check out my blog.</p>
+<p>In turn, at least one of them read a post mentioning <a href="http://people.ephox.com/">Planet Ephox</a> and posted it to their delicious account. That in turn prompted someone else to invite me to CommunityOne (a lead-up event to JavaOne which I&rsquo;ll try to get to if I can – my flight arrives about 1pm so I&rsquo;ll miss half of it). What&rsquo;s most interesting there is that these extra contacts, invites and awareness of Ephox are completely impossible to track. Even if you had a sophisticated cookie system across all the sites involved, you really need to know what the people are thinking to see if you&rsquo;re having any effect or whether they see good things or bad things etc. If and when you get to the point that someone makes a purchase, there is likely to be a huge range of influencing factors that caused them to get there.</p>
+    </div>
+  <a href="/2007/05/07/the-last-click-is-the-easy-bit/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 5, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/06/off-to-javaone/" class="link black dim">
+        Off To JavaOne
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I fly out tomorrow to the US for JavaOne and after that a week working with the team in our US office. I&rsquo;ll be arriving Monday afternoon US time and fly out Friday the 18th. Being based in Australia (and worse, Brisbane) I don&rsquo;t get a lot of opportunities to meet tech people so I&rsquo;m pretty keen to take the opportunity to talk with as many people as I can. So if you&rsquo;ll be around San Francisco in the next couple of weeks give me a yell. You can <a href="mailto:adrian@symphonious.net">email</a> or phone on +1 (650) 292 9659 x717.</p>
+    </div>
+  <a href="/2007/05/06/off-to-javaone/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 5, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/05/server-problems-here-and-with-some-ephox-sites/" class="link black dim">
+        Server Problems Here And With Some Ephox Sites
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>In case people are wondering, there was a major failure at our hosting provider which is causing down time. Both this server and the server that hosts the Ephox release blog, LiveWorks!, people.ephox.com and the internal Ephox wiki and JIRA installations have been affected. While (obviously) this site is back up, the Ephox sites didn&rsquo;t fair so well and are still down.</p>
+<p>We&rsquo;ll get them back up and running as soon as possible. In the mean time, if you see any problems here please <a href="mailto:adrian@symphonious.net">let me know</a>. For a short while after the system came back WordPress switched to the default theme (but with all other settings in tact) so I really don&rsquo;t know what else might have been damaged.</p>
+    </div>
+  <a href="/2007/05/05/server-problems-here-and-with-some-ephox-sites/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 29, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/29/rss-feed-for-product-pages/" class="link black dim">
+        RSS Feed For Product Pages
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve noticed something I&rsquo;ve been doing with some consistency lately – when I come across a product that I have some interest in, but can&rsquo;t or don&rsquo;t want to start using straight away, I try to add the product page to my RSS feeds. With the proliferation of RSS support in browsers these days it seems to me that every product page should include a link tag pointing to the product updates feed. Ephox doesn&rsquo;t currently do this, but its something that we should fix pretty quickly to help people find the <a href="http://releases.ephox.com">Releases Blog</a> and stay up to date with all the latest features and fixes.</p>
+    </div>
+  <a href="/2007/04/29/rss-feed-for-product-pages/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 27, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/28/exchange-interoperability-solved/" class="link black dim">
+        Exchange Interoperability – Solved?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>With a trip to the US coming up, I needed to set up a way to access my work email from my OS X laptop. Last time I went I just used Mail.app to access the Exchange server via IMAP and it worked ok, but obviously had no calendaring ability. This time round I really need the calendar to work as well so I fired up Entourage.</p>
+<p>Going through the set up was a bit tedious and I thought it pretty dodgy that it wanted the Outlook Web Access (OWA) URL – obviously it goes via that instead of the normal exchange protocols. As it turns out though, that&rsquo;s the way that the Exchange server hosting company recommends you access your email. In fact, the instructions for setting up Outlook on Windows include a series of complex maneuvers to get it to use OWA too. Indeed, Entourage seems just as capable a client as Outlook at least form early impressions. The only thing I miss is the SpamBayes integration and that&rsquo;s not really a feature of Outlook.</p>
+    </div>
+  <a href="/2007/04/28/exchange-interoperability-solved/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+    </section>
+		<ul class="pagination pagination-default">
+			<li class="page-item">
+				<a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+			</li>
+		<li class="page-item">
+			<a href="/posts/page/44/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+		</li>
+			<li class="page-item">
+				<a href="/posts/page/43/" aria-label="Page 43" class="page-link" role="button">43</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/44/" aria-label="Page 44" class="page-link" role="button">44</a>
+			</li>
+			<li class="page-item active">
+				<a aria-current="page" aria-label="Page 45" class="page-link" role="button">45</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/46/" aria-label="Page 46" class="page-link" role="button">46</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/47/" aria-label="Page 47" class="page-link" role="button">47</a>
+			</li>
+		<li class="page-item">
+			<a href="/posts/page/46/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+		</li>
+			<li class="page-item">
+				<a href="/posts/page/102/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+			</li>
+		</ul></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>WYSYIWYG Editors, The Back Button and a Monkey | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The back button has been a great challenge for a lot of modern web applications and WYSIWYG editors are certainly no exception. Way back before I can remember, someone had the fantastic idea of preserving content entered into text fields and restoring it if the user hit the back button to return to the page. Unfortunately, with the advent of WYSIWYG editors, this was generally lost because the browser reruns the JavaScript in the page again, providing no indication that the user was returning to the page. I could be wrong, and I&rsquo;d love to hear of other examples, but I don&rsquo;t believe there is a WYSIWYG editors available today that preserves content when the user hits the back button. I find it somewhat interesting that despite the huge amount of user angst this causes1, there doesn&rsquo;t seem to be a lot of interest in solving the problem.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/10/24/wysyiwyg-editors-the-back-button-and-a-monkey/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/10/24/wysyiwyg-editors-the-back-button-and-a-monkey/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="WYSYIWYG Editors, The Back Button and a Monkey">
+	<meta property="og:description" content="The back button has been a great challenge for a lot of modern web applications and WYSIWYG editors are certainly no exception. Way back before I can remember, someone had the fantastic idea of preserving content entered into text fields and restoring it if the user hit the back button to return to the page. Unfortunately, with the advent of WYSIWYG editors, this was generally lost because the browser reruns the JavaScript in the page again, providing no indication that the user was returning to the page. I could be wrong, and I’d love to hear of other examples, but I don’t believe there is a WYSIWYG editors available today that preserves content when the user hits the back button. I find it somewhat interesting that despite the huge amount of user angst this causes1, there doesn’t seem to be a lot of interest in solving the problem.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-10-24T11:09:26+00:00">
+		<meta property="article:modified_time" content="2006-10-24T11:09:26+00:00">
+
+	<meta itemprop="name" content="WYSYIWYG Editors, The Back Button and a Monkey">
+	<meta itemprop="description" content="The back button has been a great challenge for a lot of modern web applications and WYSIWYG editors are certainly no exception. Way back before I can remember, someone had the fantastic idea of preserving content entered into text fields and restoring it if the user hit the back button to return to the page. Unfortunately, with the advent of WYSIWYG editors, this was generally lost because the browser reruns the JavaScript in the page again, providing no indication that the user was returning to the page. I could be wrong, and I’d love to hear of other examples, but I don’t believe there is a WYSIWYG editors available today that preserves content when the user hits the back button. I find it somewhat interesting that despite the huge amount of user angst this causes1, there doesn’t seem to be a lot of interest in solving the problem.">
+	<meta itemprop="datePublished" content="2006-10-24T11:09:26+00:00">
+	<meta itemprop="dateModified" content="2006-10-24T11:09:26+00:00">
+	<meta itemprop="wordCount" content="537">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Ephox">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="WYSYIWYG Editors, The Back Button and a Monkey">
+	<meta name="twitter:description" content="The back button has been a great challenge for a lot of modern web applications and WYSIWYG editors are certainly no exception. Way back before I can remember, someone had the fantastic idea of preserving content entered into text fields and restoring it if the user hit the back button to return to the page. Unfortunately, with the advent of WYSIWYG editors, this was generally lost because the browser reruns the JavaScript in the page again, providing no indication that the user was returning to the page. I could be wrong, and I’d love to hear of other examples, but I don’t believe there is a WYSIWYG editors available today that preserves content when the user hits the back button. I find it somewhat interesting that despite the huge amount of user angst this causes1, there doesn’t seem to be a lot of interest in solving the problem.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">WYSYIWYG Editors, The Back Button and a Monkey</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">WYSYIWYG Editors, The Back Button and a Monkey</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-10-24T11:09:26Z">October 24, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The back button has been a great challenge for a lot of modern web applications and WYSIWYG editors are certainly no exception. Way back before I can remember, someone had the fantastic idea of preserving content entered into text fields and restoring it if the user hit the back button to return to the page. Unfortunately, with the advent of WYSIWYG editors, this was generally lost because the browser reruns the JavaScript in the page again, providing no indication that the user was returning to the page. I could be wrong, and I&rsquo;d love to hear of other examples, but I don&rsquo;t believe there is a WYSIWYG editors available today that preserves content when the user hits the back button. I find it somewhat interesting that despite the huge amount of user angst this causes<a class="footnote" id="footlink1-1161686769328" href="#footnote1-1161686769328" name="footlink1-1161686769328">1</a>, there doesn&rsquo;t seem to be a lot of interest in solving the problem.</p>
+<p><img loading="lazy" alt="Monkey" id="image613" width="48" align="middle" src="http://www.symphonious.net/wp-content/uploads/2006/10/monkeypoo.jpg" height="48" /> Similarly interesting is the Ephox engineering team&rsquo;s fascination with monkeys.</p>
+<p>One night I must have been pondering this<a id="footlink2-1161686996609" name="footlink2-1161686996609" class="footnote" href="#footnote2-1161686996609">2</a> before falling asleep because in the middle of the night I awoke with a solution for this perplexing back button issue racing through my mind. An hour or so working on a proof of concept and it was clear that it really could work. <a href="http://spyder.wordpress.com">Andy</a> came along and worked out all the details<a id="footlink3-1161687303515" name="footlink3-1161687303515" class="footnote" href="#footnote3-1161687303515">3</a>, refining the raw concepts in some pretty neat ways and generally weaving the code magic that he does and now EditLive! is the first<a id="footlink4-1161687406046" name="footlink4-1161687406046" class="footnote" href="#footnote4-1161687406046">4</a> WYSIWYG editor that works correctly with the back button<a id="footlink5-1161687424531" name="footlink5-1161687424531" class="footnote" href="#footnote5-1161687424531">5</a>. You can check it on in the <a href="http://www.ephox.com/products/editlive/beta.html">EditLive! 6.0 beta</a>.</p>
+<p>While track changes gets all the fanfare, this has to be my favorite feature that we&rsquo;ve ever added to EditLive! I know longer live in fear of accidentally clicking a link or hitting backspace when the editor doesn&rsquo;t have focus<a id="footlink6-1161687601453" name="footlink6-1161687601453" class="footnote" href="#footnote6-1161687601453">6</a>.</p>
+<p>You may be wondering what this has to do with monkeys. It turns out that while I was explaining this great idea to Brett, I started by mentioning that I was dreaming. Brett didn&rsquo;t care about what the idea was, he just wanted to know if there was a monkey in the dream. Naturally I said there was and from then on the monkey got all the credit for coming up with the back button solution and any other great idea the engineering team has had. Stupid monkey…</p>
+<p>In the end, I think what I really like about this feature is that users will never notice it – it will save them from experiencing major data loss countless times and they won&rsquo;t even know. It will just work the way they expect it to. Could there be a better user interface for a feature?</p>
+<p class="footnote">
+  <a id="footnote1-1161686769328" name="footnote1-1161686769328" href="#footlink1-1161686769328">1</a> &#8211; not least of all to me considering how much time I spend using WYSIWYG&#160;editors in a browser<a class="footnotereturn" href="#footlink1-1161686769328">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote2-1161686996609" name="footnote2-1161686996609" href="#footlink2-1161686996609">2</a> &#8211; the back button problem, not the fascination with monkeys<a class="footnotereturn" href="#footlink2-1161686996609">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote3-1161687303515" name="footnote3-1161687303515" href="#footlink3-1161687303515">3</a> &#8211; like how to make it work in practice on 4 different OS's, and who knows how many browsers<a class="footnotereturn" href="#footlink3-1161687303515">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote4-1161687406046" name="footnote4-1161687406046" href="#footlink4-1161687406046">4</a> &#8211; at least that we know of, let me know if you know of another one<a class="footnotereturn" href="#footlink4-1161687406046">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote5-1161687424531" name="footnote5-1161687424531" href="#footlink5-1161687424531">5</a> &#8211; it also works with the forward button incidentally.<a class="footnotereturn" href="#footlink5-1161687424531">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote6-1161687601453" name="footnote6-1161687601453" href="#footlink6-1161687601453">6</a> &#8211; who decided backspace should be a shortcut for back in browsers anyway??<a class="footnotereturn" href="#footlink6-1161687601453">&#8617;</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

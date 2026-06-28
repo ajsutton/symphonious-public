@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Dependency Management | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="If ever there was a problem that just wouldn&rsquo;t die it has to be inter-project dependency management. If your code depends on external libraries, it&rsquo;s pretty simple to pick whichever solution you prefer – either grabbing a version from a repository or checking jars into your source control. However, if you depend on a project that you control, it gets so much messier.
+If the projects are small, it&rsquo;s probably a good idea to just set up the build system to build them all together – effectively making them separate projects even if for development purposes you can just build this bit or that bit and utilize precompiled versions of the dependencies.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/06/25/dependency-management/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/06/25/dependency-management/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Dependency Management">
+	<meta property="og:description" content="If ever there was a problem that just wouldn’t die it has to be inter-project dependency management. If your code depends on external libraries, it’s pretty simple to pick whichever solution you prefer – either grabbing a version from a repository or checking jars into your source control. However, if you depend on a project that you control, it gets so much messier.
+If the projects are small, it’s probably a good idea to just set up the build system to build them all together – effectively making them separate projects even if for development purposes you can just build this bit or that bit and utilize precompiled versions of the dependencies.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-06-25T10:28:43+00:00">
+		<meta property="article:modified_time" content="2007-06-25T10:28:43+00:00">
+
+	<meta itemprop="name" content="Dependency Management">
+	<meta itemprop="description" content="If ever there was a problem that just wouldn’t die it has to be inter-project dependency management. If your code depends on external libraries, it’s pretty simple to pick whichever solution you prefer – either grabbing a version from a repository or checking jars into your source control. However, if you depend on a project that you control, it gets so much messier.
+If the projects are small, it’s probably a good idea to just set up the build system to build them all together – effectively making them separate projects even if for development purposes you can just build this bit or that bit and utilize precompiled versions of the dependencies.">
+	<meta itemprop="datePublished" content="2007-06-25T10:28:43+00:00">
+	<meta itemprop="dateModified" content="2007-06-25T10:28:43+00:00">
+	<meta itemprop="wordCount" content="607">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Ephox">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Dependency Management">
+	<meta name="twitter:description" content="If ever there was a problem that just wouldn’t die it has to be inter-project dependency management. If your code depends on external libraries, it’s pretty simple to pick whichever solution you prefer – either grabbing a version from a repository or checking jars into your source control. However, if you depend on a project that you control, it gets so much messier.
+If the projects are small, it’s probably a good idea to just set up the build system to build them all together – effectively making them separate projects even if for development purposes you can just build this bit or that bit and utilize precompiled versions of the dependencies.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Dependency Management</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Dependency Management</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-06-25T10:28:43Z">June 25, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>If ever there was a problem that just wouldn&rsquo;t die it has to be inter-project dependency management. If your code depends on external libraries, it&rsquo;s pretty simple to pick whichever solution you prefer – either grabbing a version from a repository or checking jars into your source control. However, if you depend on a project that you control, it gets so much messier.</p>
+<p>If the projects are small, it&rsquo;s probably a good idea to just set up the build system to build them all together – effectively making them separate projects even if for development purposes you can just build this bit or that bit and utilize precompiled versions of the dependencies.</p>
+<p>Once the projects get to a certain size though it simply takes too long to go recompiling everything unless you really need to. So you want to set up a repository for your internal projects that you can just grab builds from. That&rsquo;s great until you&rsquo;re out on the road and want to compile – suddenly that repository isn&rsquo;t so accessible. The other problem is you always want to be able to reproduce the build with the exact same contents – including the exact build of your dependencies. This implies that you have the particular version number used checked into source control and that you can get that build again – even if your repository goes belly-up (worst case you have to rebuild the dependencies from source control too).</p>
+<p>Of course, if you have a particular build number checked into source control, you&rsquo;re not building against the very latest so if things break you won&rsquo;t know about it until much later when you upgrade. This is where Ephox is at and it&rsquo;s just not good enough. If you always build against the very latest though, it&rsquo;s hard to tie things down when you&rsquo;re testing for a final release.</p>
+<p>There&rsquo;s a couple of things we can do to improve the situation:</p>
+<ol>
+<li>When you depend on some behavior or API in another project, write a test for it <em>in that project</em> and give it an obvious comment describing which project needs that behavior. Then if the behavior or API changes, the project just won&rsquo;t build and someone will have to go and fix it.</li>
+<li>I think we need to set up a nightly build that takes the <a href="http://gump.apache.org/">Gump</a> approach. It should build every single project, always using the very latest version of it&rsquo;s dependencies, then if the build passes, it should automatically commit the version identifier for the dependencies so that when the developers come in the next day they&rsquo;ll all develop against that build (which they can pull from the repository). This neatly avoids the development delays of having to checkout and build dependencies, while still keeping things as up to date as possible and providing fairly rapid feedback if things break.</li>
+</ol>
+<p>That leaves just the problem of doing offline builds – something that&rsquo;s not been a major problem for us before but on a recent project has been a key requirement. The solution we have for that project, which seems to work quite well, is to have the build pull in the dependencies and cache them where they aren&rsquo;t deleted when you do a build clean. Then, simply provide a property that can be set to tell the build to work completely offline and just use the cached version. There&rsquo;s still a few glitches with it but generally it&rsquo;s working really well.</p>
+<p>So if someone wants a project while I&rsquo;m away on my honeymoon, come talk to me this week and I&rsquo;ll give you an overview of how I think we can make it work.</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting on Symphonious</title>
+    <link>https://www.symphonious.net/categories/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sun, 01 Jan 2012 19:58:07 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Searching on Google Maps Does Nothing In Chrome</title>
+      <link>https://www.symphonious.net/2012/01/01/searching-on-google-maps-does-nothing-in-chrome/</link>
+      <pubDate>Sun, 01 Jan 2012 19:58:07 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/01/01/searching-on-google-maps-does-nothing-in-chrome/</guid>
+      <description>&lt;p&gt;If you’re experiencing an issue when using Chrome with Google Maps where typing in a location and hitting enter either does nothing or just says “Loading…” forever, you’ve very likely hit upon a bug in the Skype click-to-call extension.&lt;/p&gt;
+&lt;p&gt;Skype automatically installs this “add-on” when you install Skype and it adds links to phone numbers so that you can click them to call on Skype. Unfortunately, Google Maps seems to be triggering a bug in the extension and so it is either corrupting the data returned to the Google Maps javascript or just preventing the request from ever returning.&lt;/p&gt;
+&lt;p&gt;To solve the issue, just uninstall the Skype click to call add-on. I did that by right clicking the Skype icon in the toolbar and selecting “Uninstall” but it should be possible to remove it from the &lt;a href=&#34;about:extensions&#34;&gt;about:extensions&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;I also found a Skype click-to-call plugin in &lt;a href=&#34;about:plugins&#34;&gt;about:plugins&lt;/a&gt; that I disabled as well – I’m not sure if it’s removed along with the extension.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

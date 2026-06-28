@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JRT | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="James Strachan puts forward a proposal that Sun opensource the standard Java libraries and I see no problems with it. In general I don&rsquo;t think we&rsquo;ll see all the benefits James predicts from it though we would see some. In particular I want to point out one benefit that James claims we&rsquo;ll get but that we definitely won&rsquo;t get:
+
+more eyeballs are now looking closely at the code This is the biggest advantage opensource proponents put forward for opensourcing any code but it just doesn&rsquo;t apply to Java. Why not? The source code to the standard Java libraries are included with every copy of the JRE. You can already go and inspect the source code, find bugs and submit patches to Sun. The fact is, most people can&rsquo;t be bothered. They have real work to do and don&rsquo;t want to be wasting time analyzing the source code for the library their using, they just want it to work. When it doesn&rsquo;t work then people tend to turn to the source and people are already doing that. I also don&rsquo;t believe that people really want to write Java code that can run on the .Net platform. Java has always suffered from people feeling that it was second rate due to it&rsquo;s cross platform nature. This is true to some extent, when writing any cross platform code you inherently make it harder to use the platforms native resources due to the extra layer of abstraction. Why would you use the .Net platform when all of the extra functionality it would provide (like tie-ins to word, infopath etc) wouldn&rsquo;t be available from Java (because they&rsquo;re not cross-platform). You&rsquo;d have to use JNI or similar to call “native” .Net code and so you have to learn C#, the .Net libraries and their toolsets etc. Also, opensource developers who are refusing to use Java now will refuse to use Java then. Read some of the blogs coming out of OSCON at java.net and you&rsquo;ll realize that the majority of the opensource world is just unreasonably bigoted against Java. That&rsquo;s okay though, I&rsquo;ve grown to really dislike the GPL anyway.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/07/31/jrt/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/07/31/jrt/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JRT">
+	<meta property="og:description" content="James Strachan puts forward a proposal that Sun opensource the standard Java libraries and I see no problems with it. In general I don’t think we’ll see all the benefits James predicts from it though we would see some. In particular I want to point out one benefit that James claims we’ll get but that we definitely won’t get:
+more eyeballs are now looking closely at the code This is the biggest advantage opensource proponents put forward for opensourcing any code but it just doesn’t apply to Java. Why not? The source code to the standard Java libraries are included with every copy of the JRE. You can already go and inspect the source code, find bugs and submit patches to Sun. The fact is, most people can’t be bothered. They have real work to do and don’t want to be wasting time analyzing the source code for the library their using, they just want it to work. When it doesn’t work then people tend to turn to the source and people are already doing that. I also don’t believe that people really want to write Java code that can run on the .Net platform. Java has always suffered from people feeling that it was second rate due to it’s cross platform nature. This is true to some extent, when writing any cross platform code you inherently make it harder to use the platforms native resources due to the extra layer of abstraction. Why would you use the .Net platform when all of the extra functionality it would provide (like tie-ins to word, infopath etc) wouldn’t be available from Java (because they’re not cross-platform). You’d have to use JNI or similar to call “native” .Net code and so you have to learn C#, the .Net libraries and their toolsets etc. Also, opensource developers who are refusing to use Java now will refuse to use Java then. Read some of the blogs coming out of OSCON at java.net and you’ll realize that the majority of the opensource world is just unreasonably bigoted against Java. That’s okay though, I’ve grown to really dislike the GPL anyway.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-07-31T08:16:49+00:00">
+		<meta property="article:modified_time" content="2004-07-31T08:16:49+00:00">
+
+	<meta itemprop="name" content="JRT">
+	<meta itemprop="description" content="James Strachan puts forward a proposal that Sun opensource the standard Java libraries and I see no problems with it. In general I don’t think we’ll see all the benefits James predicts from it though we would see some. In particular I want to point out one benefit that James claims we’ll get but that we definitely won’t get:
+more eyeballs are now looking closely at the code This is the biggest advantage opensource proponents put forward for opensourcing any code but it just doesn’t apply to Java. Why not? The source code to the standard Java libraries are included with every copy of the JRE. You can already go and inspect the source code, find bugs and submit patches to Sun. The fact is, most people can’t be bothered. They have real work to do and don’t want to be wasting time analyzing the source code for the library their using, they just want it to work. When it doesn’t work then people tend to turn to the source and people are already doing that. I also don’t believe that people really want to write Java code that can run on the .Net platform. Java has always suffered from people feeling that it was second rate due to it’s cross platform nature. This is true to some extent, when writing any cross platform code you inherently make it harder to use the platforms native resources due to the extra layer of abstraction. Why would you use the .Net platform when all of the extra functionality it would provide (like tie-ins to word, infopath etc) wouldn’t be available from Java (because they’re not cross-platform). You’d have to use JNI or similar to call “native” .Net code and so you have to learn C#, the .Net libraries and their toolsets etc. Also, opensource developers who are refusing to use Java now will refuse to use Java then. Read some of the blogs coming out of OSCON at java.net and you’ll realize that the majority of the opensource world is just unreasonably bigoted against Java. That’s okay though, I’ve grown to really dislike the GPL anyway.">
+	<meta itemprop="datePublished" content="2004-07-31T08:16:49+00:00">
+	<meta itemprop="dateModified" content="2004-07-31T08:16:49+00:00">
+	<meta itemprop="wordCount" content="354">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JRT">
+	<meta name="twitter:description" content="James Strachan puts forward a proposal that Sun opensource the standard Java libraries and I see no problems with it. In general I don’t think we’ll see all the benefits James predicts from it though we would see some. In particular I want to point out one benefit that James claims we’ll get but that we definitely won’t get:
+more eyeballs are now looking closely at the code This is the biggest advantage opensource proponents put forward for opensourcing any code but it just doesn’t apply to Java. Why not? The source code to the standard Java libraries are included with every copy of the JRE. You can already go and inspect the source code, find bugs and submit patches to Sun. The fact is, most people can’t be bothered. They have real work to do and don’t want to be wasting time analyzing the source code for the library their using, they just want it to work. When it doesn’t work then people tend to turn to the source and people are already doing that. I also don’t believe that people really want to write Java code that can run on the .Net platform. Java has always suffered from people feeling that it was second rate due to it’s cross platform nature. This is true to some extent, when writing any cross platform code you inherently make it harder to use the platforms native resources due to the extra layer of abstraction. Why would you use the .Net platform when all of the extra functionality it would provide (like tie-ins to word, infopath etc) wouldn’t be available from Java (because they’re not cross-platform). You’d have to use JNI or similar to call “native” .Net code and so you have to learn C#, the .Net libraries and their toolsets etc. Also, opensource developers who are refusing to use Java now will refuse to use Java then. Read some of the blogs coming out of OSCON at java.net and you’ll realize that the majority of the opensource world is just unreasonably bigoted against Java. That’s okay though, I’ve grown to really dislike the GPL anyway.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JRT</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JRT</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-07-31T08:16:49Z">July 31, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>James Strachan puts forward <a href="http://radio.weblogs.com/0112098/2004/07/30.html#a496">a proposal</a> that Sun opensource the standard Java libraries and I see no problems with it. In general I don&rsquo;t think we&rsquo;ll see all the benefits James predicts from it though we would see some. In particular I want to point out one benefit that James claims we&rsquo;ll get but that we definitely won&rsquo;t get:</p>
+<blockquote>
+<p>more eyeballs are now looking closely at the code This is the biggest advantage opensource proponents put forward for opensourcing any code but it just doesn&rsquo;t apply to Java. Why not? The source code to the standard Java libraries are included with every copy of the JRE. You can already go and inspect the source code, find bugs and submit patches to Sun. The fact is, most people can&rsquo;t be bothered. They have real work to do and don&rsquo;t want to be wasting time analyzing the source code for the library their using, they just want it to work. When it doesn&rsquo;t work then people tend to turn to the source and people are already doing that. I also don&rsquo;t believe that people really want to write Java code that can run on the .Net platform. Java has always suffered from people feeling that it was second rate due to it&rsquo;s cross platform nature. This is true to some extent, when writing any cross platform code you inherently make it harder to use the platforms native resources due to the extra layer of abstraction. Why would you use the .Net platform when all of the extra functionality it would provide (like tie-ins to word, infopath etc) wouldn&rsquo;t be available from Java (because they&rsquo;re not cross-platform). You&rsquo;d have to use JNI or similar to call “native” .Net code and so you have to learn C#, the .Net libraries and their toolsets etc. Also, opensource developers who are refusing to use Java now will refuse to use Java then. Read some of the blogs coming out of OSCON at java.net and you&rsquo;ll realize that the majority of the opensource world is just unreasonably bigoted against Java. That&rsquo;s okay though, I&rsquo;ve grown to really dislike the GPL anyway.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

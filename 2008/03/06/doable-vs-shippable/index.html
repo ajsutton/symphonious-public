@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Doable vs Shippable | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="All the hubbub about flash support on the iPhone highlights an interesting &ldquo;gotcha&rdquo; that many people fall into: there&rsquo;s a world of difference between having something running and having something you can actually ship. The funny thing about software development is that it is generally much quicker and easier to solve all the &ldquo;hard&rdquo; problems and create the software you need than it is to polish off all the little loose ends that turn code into an actual product. It&rsquo;s also surprising how many ideas that sound really good on paper turn out to actually make things worse.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/03/06/doable-vs-shippable/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/03/06/doable-vs-shippable/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Doable vs Shippable">
+	<meta property="og:description" content="All the hubbub about flash support on the iPhone highlights an interesting “gotcha” that many people fall into: there’s a world of difference between having something running and having something you can actually ship. The funny thing about software development is that it is generally much quicker and easier to solve all the “hard” problems and create the software you need than it is to polish off all the little loose ends that turn code into an actual product. It’s also surprising how many ideas that sound really good on paper turn out to actually make things worse.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-03-06T12:37:50+00:00">
+		<meta property="article:modified_time" content="2008-03-06T12:37:50+00:00">
+
+	<meta itemprop="name" content="Doable vs Shippable">
+	<meta itemprop="description" content="All the hubbub about flash support on the iPhone highlights an interesting “gotcha” that many people fall into: there’s a world of difference between having something running and having something you can actually ship. The funny thing about software development is that it is generally much quicker and easier to solve all the “hard” problems and create the software you need than it is to polish off all the little loose ends that turn code into an actual product. It’s also surprising how many ideas that sound really good on paper turn out to actually make things worse.">
+	<meta itemprop="datePublished" content="2008-03-06T12:37:50+00:00">
+	<meta itemprop="dateModified" content="2008-03-06T12:37:50+00:00">
+	<meta itemprop="wordCount" content="928">
+	<meta itemprop="keywords" content="Apple,Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Doable vs Shippable">
+	<meta name="twitter:description" content="All the hubbub about flash support on the iPhone highlights an interesting “gotcha” that many people fall into: there’s a world of difference between having something running and having something you can actually ship. The funny thing about software development is that it is generally much quicker and easier to solve all the “hard” problems and create the software you need than it is to polish off all the little loose ends that turn code into an actual product. It’s also surprising how many ideas that sound really good on paper turn out to actually make things worse.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Doable vs Shippable</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Doable vs Shippable</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-03-06T12:37:50Z">March 6, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>All the hubbub about flash support on the iPhone highlights an interesting &ldquo;gotcha&rdquo; that many people fall into: there&rsquo;s a world of difference between having something running and having something you can actually ship. The funny thing about software development is that it is generally much quicker and easier to solve all the &ldquo;hard&rdquo; problems and create the software you need than it is to polish off all the little loose ends that turn code into an actual product. It&rsquo;s also surprising how many ideas that sound really good on paper turn out to actually make things worse.</p>
+<p>For example, recently I spent an evening and developed a fairly basic image editor that could plug into EditLive!  Just the basic operations like crop and resize that people want to quickly do without switching to a separate program. It took all of about 3 hours work and dealt with error conditions, was well coded etc etc etc. Of course, the UI was hideously ugly because I didn&rsquo;t have any icons to use and it wasn&rsquo;t my primary focus but it was an impressive, if ugly, little program. The trouble is, it will take a month or two of full time effort to bring that program to a point where it can really be shipped to our clients. There are just so many little details you need to consider that aren&rsquo;t obvious until you&rsquo;ve gone through the process a few times.</p>
+<p>There are also times when you develop something, sort out all the loose ends and are really ready to send it out to the market, until you realize it sucks. I spent some time a while back improving the standards compliance of the caching we do in EditLive! It basically cached everything and ignored even the basic Pragma: No-Cache directive which does cause issues for a number of our clients so it seemed like a no-brainer to fix. The trouble is, far too many servers and developers default to disallowing caching even when the content isn&rsquo;t going to change. This has a fairly minimal effect on browsers because you don&rsquo;t go back and forward through pages all that often so the site feels a bit more sluggish but it&rsquo;s not too distracting. In a HTML editor, you want the images to be cached, no question. The number of times the document changes around, when you cut and paste that image etc etc you really don&rsquo;t want to have to download the entire image again – even more so if the image size isn&rsquo;t specified in the HTML since then the document content jumps around when the image finally does download. It turns out you have to be pretty clever in how you apply the caching standards in a HTML editor – they <em>do</em> work, it&rsquo;s not that the standard is wrong, it&rsquo;s just that it takes a lot of careful thought to get it all right.</p>
+<p>So how does this relate to Flash and the iPhone? There&rsquo;s a couple of ways – firstly, let&rsquo;s say Apple has the full Flash running on the iPhone with no bugs etc. How fast is it? If it&rsquo;s too slow, users might be better off with the non-flash version that any decent site should provide. How much battery power does it drain? This is your phone we&rsquo;re talking about, having it run out of battery during a day is a major inconvenience. How well does it interact with the iPhone&rsquo;s touch screen input method and the on-screen keyboard? I keep hearing people argue that the iPhone needs flash so it has access to all those little flash games around the internet. You know, the ones where you move with the arrow keys…. oh wait. Sometimes things aren&rsquo;t as straight forward or as cool as you think and you probably won&rsquo;t know until you&rsquo;ve actually tried it.</p>
+<p>The second question is whether these rumours of Apple having flash running on the iPhone are actually people seeing the mobile version of flash which Jobs mentioned and discarded as too simple for the iPhone. Mobile flash isn&rsquo;t being kept off the iPhone because of technical limitations, but because, at least according to Jobs, it&rsquo;s simply not good enough to handle the real internet. It&rsquo;s also not necessarily a step forward to add mobile flash, even if it can&rsquo;t handle everything. All those sites that do the right thing and provide fall back content automatically if flash isn&rsquo;t available work just fine on the iPhone right now. If you have mobile flash though, suddenly they&rsquo;ll be showing you the flash content and if mobile flash isn&rsquo;t up to scratch it just won&rsquo;t work. Sometimes adding features winds up making things worse.</p>
+<p>What&rsquo;s the bottom line? Whenever you hear someone talk about how easy it would be to do something, ask them if they&rsquo;ve actually done it. If not, there&rsquo;s a very good chance they&rsquo;re wrong, regardless of their qualifications and experience. Really, really smart people hit unexpected roadblocks every day so unless you&rsquo;ve actually achieved something you should be expecting unexpected trouble. Secondly, even if they have proven it can be done, check that it actually works out as well as you&rsquo;d expect in real world testing. The real world is full of surprises and some of them will almost certainly apply to what you&rsquo;re working on so be prepared.</p>
+<p>Of course, this doesn&rsquo;t just apply to flash or the iPhone, it applies to all engineering work that tries to achieve something new. Just remember, if it were simple, someone else would have done it by now.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

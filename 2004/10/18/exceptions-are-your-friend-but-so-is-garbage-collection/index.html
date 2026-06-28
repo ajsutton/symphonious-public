@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exceptions Are Your Friend (but so is garbage collection) | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Benjamine Carlyle and I have been discussing exceptions. Put simply, he hates them, I love them. I think I know why now.
+
+Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don&rsquo;t know about you, but I&rsquo;m a stubborn bastard who needs to be right all the time. I&rsquo;ve picked a fight, and I plan to win it ;) I&rsquo;m also a stubborn bastard (just ask Byron about ampersands), so let the death match begin! Actually, as I mentioned in this case I think we&rsquo;re arguing different things so we might be able to resolve this amicably. Benjamin&rsquo;s biggest problem with exceptions is that code in between the throwing of the exception and the handling of the exception “gets hurt”. The answer here is called abstraction. Abstraction in this context has a very simple tenant: when I call a method, it does stuff and I don&rsquo;t care how it does it. In other words, if I call the method doStuff(), I don&rsquo;t care if an exception is thrown in a deeply nested function call or directly by doStuff, to me doStuff simply through an exception. This is then true for doStuff, it only cares about each method it calls and not any methods under that and so on. So for any given piece of code we only think about one level. Methods and classes provide abstraction. Now that we&rsquo;ve abstracted things, there simply is no code left in the middle to get hurt. Each method should handle whatever exceptions it may cause in whatever way it needs to. It&rsquo;s the whatever way it needs to that differentiates Benjamin&rsquo;s viewpoint and mine. Benjamin has been talking about exceptions in C&#43;&#43; whereas I have been talking about exceptions in Java. In C&#43;&#43; when an exception is thrown you have to carefully sort out what memory you had already allocated and not freed then make sure you free it etc etc etc. In other words, an unexpected failure is catastrophic and pretty much unrecoverable. In Java however, it&rsquo;s no big deal at all. Objects will happily be garbage collected when no longer required, it&rsquo;s simple to tell if objects have been created and it&rsquo;s also really simple to clean up any allocated resources. So in Java if we were working with a database, we&rsquo;d do something like:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/10/18/exceptions-are-your-friend-but-so-is-garbage-collection/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/10/18/exceptions-are-your-friend-but-so-is-garbage-collection/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exceptions Are Your Friend (but so is garbage collection)">
+	<meta property="og:description" content="Benjamine Carlyle and I have been discussing exceptions. Put simply, he hates them, I love them. I think I know why now.
+Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don’t know about you, but I’m a stubborn bastard who needs to be right all the time. I’ve picked a fight, and I plan to win it ;) I’m also a stubborn bastard (just ask Byron about ampersands), so let the death match begin! Actually, as I mentioned in this case I think we’re arguing different things so we might be able to resolve this amicably. Benjamin’s biggest problem with exceptions is that code in between the throwing of the exception and the handling of the exception “gets hurt”. The answer here is called abstraction. Abstraction in this context has a very simple tenant: when I call a method, it does stuff and I don’t care how it does it. In other words, if I call the method doStuff(), I don’t care if an exception is thrown in a deeply nested function call or directly by doStuff, to me doStuff simply through an exception. This is then true for doStuff, it only cares about each method it calls and not any methods under that and so on. So for any given piece of code we only think about one level. Methods and classes provide abstraction. Now that we’ve abstracted things, there simply is no code left in the middle to get hurt. Each method should handle whatever exceptions it may cause in whatever way it needs to. It’s the whatever way it needs to that differentiates Benjamin’s viewpoint and mine. Benjamin has been talking about exceptions in C&#43;&#43; whereas I have been talking about exceptions in Java. In C&#43;&#43; when an exception is thrown you have to carefully sort out what memory you had already allocated and not freed then make sure you free it etc etc etc. In other words, an unexpected failure is catastrophic and pretty much unrecoverable. In Java however, it’s no big deal at all. Objects will happily be garbage collected when no longer required, it’s simple to tell if objects have been created and it’s also really simple to clean up any allocated resources. So in Java if we were working with a database, we’d do something like:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-10-17T22:46:39+00:00">
+		<meta property="article:modified_time" content="2004-10-17T22:46:39+00:00">
+
+	<meta itemprop="name" content="Exceptions Are Your Friend (but so is garbage collection)">
+	<meta itemprop="description" content="Benjamine Carlyle and I have been discussing exceptions. Put simply, he hates them, I love them. I think I know why now.
+Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don’t know about you, but I’m a stubborn bastard who needs to be right all the time. I’ve picked a fight, and I plan to win it ;) I’m also a stubborn bastard (just ask Byron about ampersands), so let the death match begin! Actually, as I mentioned in this case I think we’re arguing different things so we might be able to resolve this amicably. Benjamin’s biggest problem with exceptions is that code in between the throwing of the exception and the handling of the exception “gets hurt”. The answer here is called abstraction. Abstraction in this context has a very simple tenant: when I call a method, it does stuff and I don’t care how it does it. In other words, if I call the method doStuff(), I don’t care if an exception is thrown in a deeply nested function call or directly by doStuff, to me doStuff simply through an exception. This is then true for doStuff, it only cares about each method it calls and not any methods under that and so on. So for any given piece of code we only think about one level. Methods and classes provide abstraction. Now that we’ve abstracted things, there simply is no code left in the middle to get hurt. Each method should handle whatever exceptions it may cause in whatever way it needs to. It’s the whatever way it needs to that differentiates Benjamin’s viewpoint and mine. Benjamin has been talking about exceptions in C&#43;&#43; whereas I have been talking about exceptions in Java. In C&#43;&#43; when an exception is thrown you have to carefully sort out what memory you had already allocated and not freed then make sure you free it etc etc etc. In other words, an unexpected failure is catastrophic and pretty much unrecoverable. In Java however, it’s no big deal at all. Objects will happily be garbage collected when no longer required, it’s simple to tell if objects have been created and it’s also really simple to clean up any allocated resources. So in Java if we were working with a database, we’d do something like:">
+	<meta itemprop="datePublished" content="2004-10-17T22:46:39+00:00">
+	<meta itemprop="dateModified" content="2004-10-17T22:46:39+00:00">
+	<meta itemprop="wordCount" content="1383">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exceptions Are Your Friend (but so is garbage collection)">
+	<meta name="twitter:description" content="Benjamine Carlyle and I have been discussing exceptions. Put simply, he hates them, I love them. I think I know why now.
+Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don’t know about you, but I’m a stubborn bastard who needs to be right all the time. I’ve picked a fight, and I plan to win it ;) I’m also a stubborn bastard (just ask Byron about ampersands), so let the death match begin! Actually, as I mentioned in this case I think we’re arguing different things so we might be able to resolve this amicably. Benjamin’s biggest problem with exceptions is that code in between the throwing of the exception and the handling of the exception “gets hurt”. The answer here is called abstraction. Abstraction in this context has a very simple tenant: when I call a method, it does stuff and I don’t care how it does it. In other words, if I call the method doStuff(), I don’t care if an exception is thrown in a deeply nested function call or directly by doStuff, to me doStuff simply through an exception. This is then true for doStuff, it only cares about each method it calls and not any methods under that and so on. So for any given piece of code we only think about one level. Methods and classes provide abstraction. Now that we’ve abstracted things, there simply is no code left in the middle to get hurt. Each method should handle whatever exceptions it may cause in whatever way it needs to. It’s the whatever way it needs to that differentiates Benjamin’s viewpoint and mine. Benjamin has been talking about exceptions in C&#43;&#43; whereas I have been talking about exceptions in Java. In C&#43;&#43; when an exception is thrown you have to carefully sort out what memory you had already allocated and not freed then make sure you free it etc etc etc. In other words, an unexpected failure is catastrophic and pretty much unrecoverable. In Java however, it’s no big deal at all. Objects will happily be garbage collected when no longer required, it’s simple to tell if objects have been created and it’s also really simple to clean up any allocated resources. So in Java if we were working with a database, we’d do something like:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exceptions Are Your Friend (but so is garbage collection)</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exceptions Are Your Friend (but so is garbage collection)</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-10-17T22:46:39Z">October 17, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/2004/10/16/">Benjamine Carlyle</a> and <a href="http://www.intencha.com/adrian/000251.php">I</a> have been discussing exceptions. Put simply, he hates them, I love them. I think I know why now.</p>
+<blockquote>
+<p>Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don&rsquo;t know about you, but I&rsquo;m a stubborn bastard who needs to be right all the time. I&rsquo;ve picked a fight, and I plan to win it ;) I&rsquo;m also a stubborn bastard (just ask Byron about <a href="http://www.intencha.com/adrian/000228.php">ampersands</a>), so let the death match begin! Actually, as I mentioned in this case I think we&rsquo;re arguing different things so we might be able to resolve this amicably. Benjamin&rsquo;s biggest problem with exceptions is that code in between the throwing of the exception and the handling of the exception “gets hurt”. The answer here is called abstraction. Abstraction in this context has a very simple tenant: when I call a method, it does stuff <em>and I don&rsquo;t care how it does it</em>. In other words, if I call the method doStuff(), I don&rsquo;t care if an exception is thrown in a deeply nested function call or directly by doStuff, to me doStuff simply through an exception. This is then true for doStuff, it only cares about each method it calls and not any methods under that and so on. So for any given piece of code we only think about one level. Methods and classes provide abstraction. Now that we&rsquo;ve abstracted things, there simply is no code left in the middle to get hurt. Each method should handle whatever exceptions it may cause in whatever way it needs to. It&rsquo;s the whatever way it needs to that differentiates Benjamin&rsquo;s viewpoint and mine. Benjamin has been talking about exceptions in C++ whereas I have been talking about exceptions in Java. In C++ when an exception is thrown you have to carefully sort out what memory you had already allocated and not freed then make sure you free it etc etc etc. In other words, an unexpected failure is catastrophic and pretty much unrecoverable. In Java however, it&rsquo;s no big deal at all. Objects will happily be garbage collected when no longer required, it&rsquo;s simple to tell if objects have been created and it&rsquo;s also really simple to clean up any allocated resources. So in Java if we were working with a database, we&rsquo;d do something like:</p>
+</blockquote>
+<pre><code>public void doStuff() {
+    try {
+        _db.openConnection();
+        // Work with connection, possibly throwing exceptions.
+    } finally {
+        _db.releaseConnection();
+    }
+} Note here that we didn't catch any exceptions, they will still propagate up to somewhere that can handle them intelligently (we probably should have caught them and used a wrapper exception for neatness but it's all the same concept). Intelligently might mean killing the application or notifying the user or perhaps even trying again. The finally block however is guaranteed to run in all cases (other than the JVM exiting &amp;#8211; remember, System.exit() is evil). With that finally block in place, our method is now guaranteed to clean up after itself correctly no matter what happens. Situations that you need a finally block in java are pretty rare. It pretty much only happens when you're working with databases or object pools. In C++ however, anytime you allocate memory, you need a finally block and not only that, you need a pretty complex one to make sure that you don't miss freeing any memory and don't free memory that wasn't allocated. I don't know enough C++ to know if this is even possible but it definitely sounds complex. The 
+</code></pre>
+<p><a href="http://www.awprofessional.com/content/images/020163371x/supplements/Exception_Handling_Article.html">article</a> that Benjamin points to discusses these problems but does so in the context of C++ and points out some incredibly shoddy points in the example code which would be flaws even if return codes were used. I fail to see anything in that article that is actually specific to exceptions. It&rsquo;s all a lacking of programmer ability in the first place (which would have existed regardless of how errors were reported and handled) or limitations of the language in use (anything related to memory management). Regarding the quote:</p>
+<blockquote>
+<p>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. Using exceptions is not writing something as cleverly as possible, it&rsquo;s actually writing something as clearly as possible. In fact, exceptions are really no different to return codes except for the fact that they are more obvious. It is trivial to replace all instances where an exception is used with a form of return code instead but it will make the code significantly less readable. Besides, the “cleverly as possible” is particularly referring to using “cute” or “tricky” ways of doing things instead of using a clearer approach. Exceptions do not fall into this category as they were specifically created to make things clearer.</p>
+</blockquote>
+<blockquote>
+<p>Adrian also picks up my final points about how to program with the most straightforward error checking, and perhaps I should have worded my final paragraphs more clearly to avoid his confusion. I don&rsquo;t like threads (that share data). They do cause similar code path blowouts and comprehensibility problems as do exceptions unless approached with straightforward discipline (such as a discipline of message-passing-only between threads). Threads are difficult, threads do increase complexity, threads however are extremely important. Threads that don&rsquo;t share data shouldn&rsquo;t be different threads, they should be different programs (or at least processes). Threads must be used wisely. I&rsquo;ll leave it at that for now, but expect a future entry on the subject.</p>
+</blockquote>
+<blockquote>
+<p>Dealing with the operating system can&rsquo;t be written off so easily, and my note towards the end of my original post was meant to convey my sentiment of “exceptions are no good elsewhere, and if the only place you can still argue their valid use is when dealing with the operating system… well… get a life” :) Anyone who puts forward the argument that exceptions are more important along operating system boundaries is an idiot. The clearest examples of exception usage is found at operating system boundaries definitely because that&rsquo;s the area where unexpected errors are most likely to occur, however unexpected errors can happen in many more places than at the operating system boundary. Exceptions are appropriate anywhere that a return code is appropriate. Remember, exceptions are simply a different and clearer way of returning the error code.</p>
+</blockquote>
+<blockquote>
+<p>Most software is far more internally-complex than it is complex along its operating system boundary. If you want to use exceptions there, feel free. Just don&rsquo;t throw them through other classes. I personally think that exceptions offer no better alternative to return code checking in that limited environment. They are clearer. That&rsquo;s all. Checked exceptions have the added benefit of forcing people to deal with them (another major reason why C++ exceptions aren&rsquo;t particularly useful). When an IOException is thrown in Java, every single method that it might impact on <em>must</em> have explicitly dealt with it. No code will be caught out because they didn&rsquo;t expect that exception, ever. I&rsquo;m not familiar enough with C++ to be certain, but I am definitely leaning towards thinking that exceptions in C++ is evil, though mostly I&rsquo;d just suggest that C++ itself is mostly the problem (it&rsquo;s just too difficult to recover from unexpected errors). I don&rsquo;t know what the solution to the problem is and I suspect that the same kind of problem would show up in C despite the fact that exceptions simply aren&rsquo;t an option. What I can say without a doubt however, is that exceptions in Java are well thought out, simple to use and provide a massive benefit to writing clear, robust code. Most of this I suspect is due to the fact that it is surprisingly simple to recover from errors in Java in many situations. There is however a never-ending debate in the Java community about whether or not checked exceptions are a good thing or not. Personally I like them, James Gosling puts forward some very strong arguments for them but they do have some problems particularly when dealing with interfaces and the list of possible exceptions can get out of hand at times. Still, the concept of exceptions themselves is definitely beneficial, the particular implementation of them may not be though.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

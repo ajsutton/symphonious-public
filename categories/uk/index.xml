@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UK on Symphonious</title>
+    <link>https://www.symphonious.net/categories/uk/</link>
+    <description>Recent content in UK on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Fri, 09 May 2008 08:50:05 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/uk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finally Set Up At IBM</title>
+      <link>https://www.symphonious.net/2008/05/09/finally-set-up-at-ibm/</link>
+      <pubDate>Fri, 09 May 2008 08:50:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/05/09/finally-set-up-at-ibm/</guid>
+      <description>&lt;p&gt;Since Ephox is an IBM business partner and we pulled the right strings and made friends with the right people, I get access to IBM’s offices (apparently world wide but Bedfont Lakes is closest and best set up). They’ve got quite a nice business partner suite on the first floor looking up at all the real IBM employee’s offices but before today it’s always been a major pain.&lt;/p&gt;
+&lt;p&gt;Firstly, without a car it takes about 2 hours to get here which is never fun, but today I have a car so that was ok.&lt;/p&gt;
+&lt;p&gt;Then you need to have your IBM badge to get in the front door which on previous occasions I’ve either not had yet, forgotten or in one case walked in the front door and lost, gone back out cancelled it and got a temporary replacement, walked back in a found my last card on the floor. Today I remembered my badge and at least so far it’s managed to not fall out of it’s little holder so it’s still with me.&lt;/p&gt;
+&lt;p&gt;Once you’re in the business partner suite you find that it’s very difficult to plug a MacBook power adapter into the power points here if you only have the short plug – you need to have the actual cord which until recently I only had an Australian version of.&lt;/p&gt;
+&lt;p&gt;Then you find that you need a login for the wireless internet which is easy enough to sort out but until today, somewhat inexplicably, HTTP POST didn’t work (GET worked perfectly, but not any HTTP operation that sent a request body), so I was left using my mobile internet. It seems that while I was back in Australia they’ve managed to fix that so I’m up and running again.&lt;/p&gt;
+&lt;p&gt;Even better, there’s now a beasty Dell server sitting in my utilities cupboard at home running the IWWCM VMs I need to work with and demo &lt;em&gt;and&lt;/em&gt; I’ve actually got the firewall configured right so I can SSH in and set up tunnelling to access it from here.&lt;/p&gt;
+&lt;p&gt;Who knows, I might actually be settling in over here!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Is It Me Or Is Google Less Useful?</title>
+      <link>https://www.symphonious.net/2008/02/22/is-it-me-or-is-google-less-useful/</link>
+      <pubDate>Thu, 21 Feb 2008 15:37:20 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/02/22/is-it-me-or-is-google-less-useful/</guid>
+      <description>&lt;p&gt;Going through the process of setting up a new apartment in the UK, I&amp;rsquo;ve found myself Googling a whole bunch of things that normally I wouldn&amp;rsquo;t need to. For instance, where can I find a desk and chair to set up a home office? Back in Australia I know of a bunch of different stores that would have that kind of thing so I wouldn&amp;rsquo;t bother searching for it. Here though, I wind up searching for &amp;ldquo;home office furniture&amp;rdquo; and get a whole bunch of online only retailers of widely varying reliability. Even if they&amp;rsquo;re all completely legit – why doesn&amp;rsquo;t something like IKEA turn up when that&amp;rsquo;s what all the locals recommended (somewhat grudgingly admittedly)?&lt;/p&gt;
+&lt;p&gt;Now I&amp;rsquo;m trying to find a teleconferencing provider that offers at least UK dial-in numbers – preferably a range of European countries and all Google&amp;rsquo;s turning up is a bunch of &amp;ldquo;free&amp;rdquo; providers that seem to offer free calls if you just call into their premium number. Seems to be about as free as calling a psychic hotline… Maybe they could at least tell me where to find some decent furniture…&lt;/p&gt;
+&lt;p&gt;The impression I get is that if you&amp;rsquo;re looking to buy anything or are generally looking for information on anything commercial Google will just feed you a bunch of spam. I&amp;rsquo;d revert to the yellow pages but it doesn&amp;rsquo;t seem to know the difference between teleconferencing and telecommunications since it&amp;rsquo;s categories are so broad. I&amp;rsquo;ve found the same problem when I&amp;rsquo;ve been searching for information on various printers and digital cameras – nearly all the results were from online stores rather than less biased reviews and experiences using the products. I guess those SEO guys really do have an effect – sadly it seems to be a bad one.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Impressed With Mobile Internet</title>
+      <link>https://www.symphonious.net/2008/02/14/impressed-with-mobile-internet/</link>
+      <pubDate>Thu, 14 Feb 2008 13:32:35 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/02/14/impressed-with-mobile-internet/</guid>
+      <description>&lt;p&gt;After much hassle with getting proof of address and what not, I&amp;rsquo;ve finally managed to get a mobile broadband deal through 3 in the UK and I&amp;rsquo;m very impressed. It helps that my house is within a HSDPA area so we&amp;rsquo;re getting the fastest possible speeds but even when that drops out and we just get 3G connectivity it&amp;rsquo;s quite usable. At £15/month for 3Gb/month it&amp;rsquo;s actually quite affordable too. I can see it getting a lot of use on the train and places like that so I don&amp;rsquo;t wind up wasting huge amounts of time travelling.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s particularly nice to not have to head down to the local pub constantly just to get internet access – though it was one of the best excuses for going to the pub in work time I&amp;rsquo;ve ever found.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Little Advice From The UK Crew</title>
+      <link>https://www.symphonious.net/2008/01/08/a-little-advice-from-the-uk-crew/</link>
+      <pubDate>Tue, 08 Jan 2008 08:14:13 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/01/08/a-little-advice-from-the-uk-crew/</guid>
+      <description>&lt;p&gt;Can anyone provide pointers to who the reliable mobile phone and broadband internet providers in the UK (Slough area particularly) would be?  In Australia there are a number of smaller providers (but significantly bigger than mum &amp;amp; pop shops) that give better deals than the major providers but I&amp;rsquo;m not sure if that&amp;rsquo;s true in the UK or how I&amp;rsquo;d find such second-tier providers anyway.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>String Interning | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Elan Meng investigates the behaviours of string constants, interning and == compared to .equals. Very informative. The question remaining is, why would anyone ever use == instead of .equals on a String considering how likely it is to cause confusion and the potential for disaster if one of the strings for some reason isn&rsquo;t interned. The answer is performance. In the average case, the performance difference between == and .equals is pretty much non-existent. The first thing .equals does (like any good equals method) is check if the objects are == and returns true immediately if they are. The second thing .equals does is check that the strings have the same length (in Java the length of the string is a constant field and so requires no computation). If an answer still hasn&rsquo;t been found, the characters of each String are iterated over and as soon as they differ, false is returned. Now, consider the possible cases:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/08/15/string-interning/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/08/15/string-interning/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="String Interning">
+	<meta property="og:description" content="Elan Meng investigates the behaviours of string constants, interning and == compared to .equals. Very informative. The question remaining is, why would anyone ever use == instead of .equals on a String considering how likely it is to cause confusion and the potential for disaster if one of the strings for some reason isn’t interned. The answer is performance. In the average case, the performance difference between == and .equals is pretty much non-existent. The first thing .equals does (like any good equals method) is check if the objects are == and returns true immediately if they are. The second thing .equals does is check that the strings have the same length (in Java the length of the string is a constant field and so requires no computation). If an answer still hasn’t been found, the characters of each String are iterated over and as soon as they differ, false is returned. Now, consider the possible cases:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-08-15T12:37:22+00:00">
+		<meta property="article:modified_time" content="2004-08-15T12:37:22+00:00">
+
+	<meta itemprop="name" content="String Interning">
+	<meta itemprop="description" content="Elan Meng investigates the behaviours of string constants, interning and == compared to .equals. Very informative. The question remaining is, why would anyone ever use == instead of .equals on a String considering how likely it is to cause confusion and the potential for disaster if one of the strings for some reason isn’t interned. The answer is performance. In the average case, the performance difference between == and .equals is pretty much non-existent. The first thing .equals does (like any good equals method) is check if the objects are == and returns true immediately if they are. The second thing .equals does is check that the strings have the same length (in Java the length of the string is a constant field and so requires no computation). If an answer still hasn’t been found, the characters of each String are iterated over and as soon as they differ, false is returned. Now, consider the possible cases:">
+	<meta itemprop="datePublished" content="2004-08-15T12:37:22+00:00">
+	<meta itemprop="dateModified" content="2004-08-15T12:37:22+00:00">
+	<meta itemprop="wordCount" content="601">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="String Interning">
+	<meta name="twitter:description" content="Elan Meng investigates the behaviours of string constants, interning and == compared to .equals. Very informative. The question remaining is, why would anyone ever use == instead of .equals on a String considering how likely it is to cause confusion and the potential for disaster if one of the strings for some reason isn’t interned. The answer is performance. In the average case, the performance difference between == and .equals is pretty much non-existent. The first thing .equals does (like any good equals method) is check if the objects are == and returns true immediately if they are. The second thing .equals does is check that the strings have the same length (in Java the length of the string is a constant field and so requires no computation). If an answer still hasn’t been found, the characters of each String are iterated over and as soon as they differ, false is returned. Now, consider the possible cases:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">String Interning</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">String Interning</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-08-15T12:37:22Z">August 15, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Elan Meng <a href="http://blogs.sun.com/roller/page/dreamwords/20040814#can_i_use_to_compare">investigates</a> the behaviours of string constants, interning and <tt>==</tt> compared to <tt>.equals</tt>. Very informative. The question remaining is, why would anyone ever use <tt>==</tt> instead of <tt>.equals</tt> on a <tt>String</tt> considering how likely it is to cause confusion and the potential for disaster if one of the strings for some reason isn&rsquo;t interned. The answer is performance. In the average case, the performance difference between <tt>==</tt> and <tt>.equals</tt> is pretty much non-existent. The first thing <tt>.equals</tt> does (like any good <tt>equals</tt> method) is check if the objects are <tt>==</tt> and returns true immediately if they are. The second thing <tt>.equals</tt> does is check that the strings have the same length (in Java the length of the string is a constant field and so requires no computation). If an answer still hasn&rsquo;t been found, the characters of each String are iterated over and as soon as they differ, <tt>false</tt> is returned. Now, consider the possible cases:</p>
+<ol>
+<li>
+<p>The strings are <tt>.equals</tt> and <tt>==</tt> (the same object).</p>
+</li>
+<li>
+<p>The strings are <tt>.equals</tt> but not <tt>==</tt>.</p>
+</li>
+<li>
+<p>The strings are neither <tt>.equals</tt> or <tt>==</tt> and have different lengths.</p>
+</li>
+<li>
+<p>The strings are neither <tt>.equals</tt> or <tt>==</tt> and have the same length. The effective performance hit is then:</p>
+</li>
+<li>
+<p>The <tt>==</tt> check returns true. The only extra cost of using <tt>.equals</tt> over <tt>==</tt> is the cost of the method call (which is likely to be inlined anyway).</p>
+</li>
+<li>
+<p>The <tt>==</tt> check will fail, the length will match and all characters in the array will have to be iterated over.</p>
+</li>
+<li>
+<p>The <tt>==</tt> check will fail, the length will be different and <tt>.equals</tt> can then return false. The only extra overhead is then the method call, and an integer comparison.</p>
+</li>
+<li>
+<p>The <tt>==</tt> check will fail, the length check will pass and the <tt>.equals</tt> method will have to iterate over each character until the first difference. It may seem from that description that the most significant performance problem occurs when the strings are</p>
+</li>
+</ol>
+<p><tt>.equals</tt> but not <tt>==</tt>, however this problem can be easily mitigated by interning all of the strings when they first enter the section of code. Since the interning should occur outside of tight loops it should be a reasonably uncommon occurrence and so the performance hit of having to compare the strings will be irrelevant. The final situation is the one that causes all the problems though. There is no way to eliminate or reduce the cost of this case when using the <tt>.equals</tt> method. When the strings are long, only differ by the last character and the comparison happens in a critical section of code (particularly inside tight loops), the performance hit can be very significant. This is the case with the Xerces parser (and in fact most parsers that work with a lot of strings). So if you look at the source code for something like Xerces, you&rsquo;ll find that <tt>==</tt> is used in preference to <tt>.equals</tt> most of the time because any strings that come into the library are immediately interned to avoid the performance penalties above in the critical sections of code. Of course, since you have to be absolutely positively certain that all the strings are interned, you may as well use <tt>==</tt> all through the “interned section” as it will help to reveal any bugs caused by strings not being interned (the more times an incorrect comparison occurs the higher the chance that it will be noticed). It should of course be noted that unless profiling has revealed string comparison to be a significant performance bottleneck for your application, you shouldn&rsquo;t even consider this optimization as it <em>will</em> cause problems sooner or later.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

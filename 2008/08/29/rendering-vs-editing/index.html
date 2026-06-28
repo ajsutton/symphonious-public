@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Rendering vs Editing | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Working in the world of editors there are a range of blog posts that float back up to the surface every so often, generally because they discuss an age old concern that just keeps resurfacing.  Recently a post from Moxiecode resurfaced complaining about the lack of focus on editing support in browsers. There’s been a few such posts in the past that I’ve seen and while the world of contenteditable support has definitely improved lately, it’s still one of the weakest areas of modern browsers.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/08/29/rendering-vs-editing/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/08/29/rendering-vs-editing/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Rendering vs Editing">
+	<meta property="og:description" content="Working in the world of editors there are a range of blog posts that float back up to the surface every so often, generally because they discuss an age old concern that just keeps resurfacing. Recently a post from Moxiecode resurfaced complaining about the lack of focus on editing support in browsers. There’s been a few such posts in the past that I’ve seen and while the world of contenteditable support has definitely improved lately, it’s still one of the weakest areas of modern browsers.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-08-29T10:27:04+00:00">
+		<meta property="article:modified_time" content="2008-08-29T10:27:04+00:00">
+
+	<meta itemprop="name" content="Rendering vs Editing">
+	<meta itemprop="description" content="Working in the world of editors there are a range of blog posts that float back up to the surface every so often, generally because they discuss an age old concern that just keeps resurfacing. Recently a post from Moxiecode resurfaced complaining about the lack of focus on editing support in browsers. There’s been a few such posts in the past that I’ve seen and while the world of contenteditable support has definitely improved lately, it’s still one of the weakest areas of modern browsers.">
+	<meta itemprop="datePublished" content="2008-08-29T10:27:04+00:00">
+	<meta itemprop="dateModified" content="2008-08-29T10:27:04+00:00">
+	<meta itemprop="wordCount" content="902">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Editors">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Rendering vs Editing">
+	<meta name="twitter:description" content="Working in the world of editors there are a range of blog posts that float back up to the surface every so often, generally because they discuss an age old concern that just keeps resurfacing. Recently a post from Moxiecode resurfaced complaining about the lack of focus on editing support in browsers. There’s been a few such posts in the past that I’ve seen and while the world of contenteditable support has definitely improved lately, it’s still one of the weakest areas of modern browsers.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Rendering vs Editing</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Rendering vs Editing</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-08-29T10:27:04Z">August 29, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Working in the world of editors there are a range of blog posts that float back up to the surface every so often, generally because they discuss an age old concern that just keeps resurfacing.  Recently a post from Moxiecode resurfaced <a href="http://blog.moxiecode.com/2008/04/09/why-is-editing-not-a-focused-area-in-browser-development/">complaining about the lack of focus on editing support in browsers</a>. There’s been a few such posts in the past that I’ve seen and while the world of contenteditable support has definitely improved lately, it’s still one of the weakest areas of modern browsers.</p>
+<blockquote>
+<p>Why is this not higher on the agenda? Behind most websites are some form of Content Management System, and most of them have some form of WYSIWYG editor for handling normal text content, if the tools we have where better and the bugs fewer, these systems would produce better code, and in the long run improve the web as a whole.
+The primary reason this isn’t a bigger focus comes down to the basic ratios of participation – the vast majority of people only read web content, they don’t create it.  So browser vendors inherently get more bang for their buck by focussing on the rendering of content rather than the creation of it. Even with the explosion of blogs, Web 2.0 and user generated content, the percentages of people who create anything more complex than plain text with paragraphs is amazingly small compared to the number of browser users. When you build editors though, you don’t see that kind of difference – a much larger percentage of intranet users contribute content, and the same is true of many other areas where editors are used (blogs, forums, wikis etc all have vastly higher contribution rates than the web as a whole).</p>
+</blockquote>
+<p>That said, user demand isn’t the only contributing factor. The fact is, rendering content is a completely different technical challenge to editing it. It requires different skills, different engineering approaches and a different understanding of users. Probably the biggest technical difference is that editing exposes far more of your document model than rendering does.</p>
+<p>Think about what happens when you render HTML (very roughly) – first your parse the HTML text into a DOM and mix in all the external stuff like CSS and scripts etc so that you have a model that you can render. Then you use the information in that to render text and images on the screen. In the background you have a tree structure with a whole swag of complex attributes, but none of that actually shows on screen. When you look at a web page you can’t tell the difference between a site that uses plain paragraphs and one that nests those paragraphs in a whole bunch of DIV tags. It would never occur to you that a paragraph that contains some plain text and some bold text is modelled as a bunch of elements and a small sub-tree, it’s just a line of text.</p>
+<p>When you’re editing though, the user is actually manipulating the DOM, but users still don’t want to think about any of that stuff. They don’t want to split a text element into three pieces and make the middle one a child of a new “b” element, they just want to select the text and apply a bold attribute to it. The way most users think about HTML pages is fundamentally different to the way the DOM is actually modelled and it’s up to the editor to make HTML work the way the user thinks while still creating valid, semantic HTML.</p>
+<p>So if there’s a fundamental difference in the way that users think and the way that the content is modelled you have two choices – change the model or throw a whole lot of code at it to map between the two models. Programming tend to choice the second option by default, but changing the model is in general far more effective. That of course is a problem for browser vendors because the model they have is actually pretty ideal for rendering the content so changing it isn’t a particularly viable option. Thus, for a browser to support editing really well they have to throw a huge amount of code at the problem. There are an endless supply of corner cases that you have to consider and take care of so there always seems to be a ton more work to do. The only saving grace is that a lot of this work is handled by the JavaScript code that implements the editor – the browser generally just provides the underlying building blocks but it’s still a huge amount of work.</p>
+<p>When you think through the amount of effort required and the number of affected users, it really shouldn’t come as a surprise that editing support is the neglected step child for browsers. It’s just a matter of return on investment. Fortunately, the demand side is increasing rapidly and the general improvements to JavaScript speed are making it more viable to move a lot of this handling out of the browser code and into JavaScript. There are surprisingly few fundamental types of changes you can make to a HTML DOM but there is an awful lot of code involved in deciding exactly which of them to apply when. The more of that code that is moved to being browser independent the better JavaScript editors will get because they’ll have more control over their own destiny.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

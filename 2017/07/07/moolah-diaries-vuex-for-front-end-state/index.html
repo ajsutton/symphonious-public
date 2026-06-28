@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Moolah Diaries – Vuex for Front End State | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Most of the work I&rsquo;ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I&rsquo;ve been using Vue.js and Vuetify for the UI after Vue&rsquo;s success in the day job. The Moolah UI has much more data-interdependence between components than what we&rsquo;ve needed at work though so I&rsquo;ve introduced Vuex to manage the state in a centralised and more managed way.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2017/07/07/moolah-diaries-vuex-for-front-end-state/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2017/07/07/moolah-diaries-vuex-for-front-end-state/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Moolah Diaries – Vuex for Front End State">
+	<meta property="og:description" content="Most of the work I’ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I’ve been using Vue.js and Vuetify for the UI after Vue’s success in the day job. The Moolah UI has much more data-interdependence between components than what we’ve needed at work though so I’ve introduced Vuex to manage the state in a centralised and more managed way.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2017-07-06T20:38:35+00:00">
+		<meta property="article:modified_time" content="2017-07-06T20:38:35+00:00">
+
+	<meta itemprop="name" content="Moolah Diaries – Vuex for Front End State">
+	<meta itemprop="description" content="Most of the work I’ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I’ve been using Vue.js and Vuetify for the UI after Vue’s success in the day job. The Moolah UI has much more data-interdependence between components than what we’ve needed at work though so I’ve introduced Vuex to manage the state in a centralised and more managed way.">
+	<meta itemprop="datePublished" content="2017-07-06T20:38:35+00:00">
+	<meta itemprop="dateModified" content="2017-07-06T20:38:35+00:00">
+	<meta itemprop="wordCount" content="609">
+	<meta itemprop="keywords" content="Code and Geek Stuff,JavaScript,Moolah">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Moolah Diaries – Vuex for Front End State">
+	<meta name="twitter:description" content="Most of the work I’ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I’ve been using Vue.js and Vuetify for the UI after Vue’s success in the day job. The Moolah UI has much more data-interdependence between components than what we’ve needed at work though so I’ve introduced Vuex to manage the state in a centralised and more managed way.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Moolah Diaries – Vuex for Front End State</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Moolah Diaries – Vuex for Front End State</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2017-07-06T20:38:35Z">July 6, 2017</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Most of the work I&rsquo;ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I&rsquo;ve been using <a href="https://vuejs.org/">Vue.js</a> and <a href="https://vuetifyjs.com/">Vuetify</a> for the UI after <a href="https://www.symphonious.net/2017/07/04/modernising-our-javascript-vue-js-to-the-rescue/">Vue&rsquo;s success in the day job</a>. The Moolah UI has much more data-interdependence between components than what we&rsquo;ve needed at work though so I&rsquo;ve introduced <a href="https://github.com/vuejs/vuex">Vuex</a> to manage the state in a centralised and more managed way.</p>
+<p>I really quite like the flow – Vue components still own any state related directly to the UI like whether a dialog is shown or hidden etc but all the business model is stored in and managed by the Vuex store. The Vue components dispatch actions which perform computation, make requests to the backend or whatever is required then commit any changes to the store (via mutations). The usual Vue data-binding then kicks in to update the UI to reflect those changes.</p>
+<p>The big advantage of this is that it naturally pulls business logic out of .vue files, preventing them getting to big. Without Vuex that basically depends on having the discipline to notice when a .vue file is doing too much and then untangling and splitting out the business logic.  Vuex provides a much clearer and more consistent way to delineate business logic from view code because you can&rsquo;t modify state directly from the Vue component and it then becomes natural to split out an action.</p>
+<p>Vuex&rsquo;s module support also makes it easy to avoid your Vuex store from becoming the big ball of mud that does everything.</p>
+<p>However, I&rsquo;m still searching for a good, efficient way to calculate and update the current balance for each transaction. The actual calculation is simple enough – the balance for any transaction is the sum of the amount of every transaction before it in the account. Simplistically we could just start from the first transaction and iterate through calculating all the balances in a single O(n) pass. However, recalculating the balance for every transaction on each change is incredibly wasteful and is a big part of why the original version of Moolah takes so long to get started – it&rsquo;s calculating all those balances. Each transaction balance actually only depends on two things, the transaction amount and the balance of the previous transaction. Since most new or changed transactions are at or near the very end of the transaction list, we should be able to avoid recalculating most of the balances.</p>
+<p>I don&rsquo;t think Vue/Vuex&rsquo;s lazy evaluation will be able to avoid doing a lot of extra recalculation, not least of all because the only way to represent this would be a transactionsWithBalances computed view and it would output the entire list of transactions so would recalculate every balance on every change.</p>
+<p>However, it&rsquo;s reasonably straight forward to build the lazy evaluation manually, but where does that sit in the Vuex system? I&rsquo;m guessing pre-calculated balance is just a property of every transaction in the state and actions take responsibility for updating any balances they might have affected.</p>
+<p>I&rsquo;m leaning towards having a dedicated ‘updateBalances&rsquo; action that can be triggered at the end of any action that changes transactions and is given the first transaction that requires it&rsquo;s balance recalculated. Since every transaction after that depends on the balance of the one before they&rsquo;ll also need updating.</p>
+<p>I think that works and am now reminded about how useful it is to write a diary like this as a way to think through issues like this.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

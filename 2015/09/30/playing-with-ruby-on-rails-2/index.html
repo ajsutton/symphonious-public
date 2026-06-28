@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Playing with Ruby on Rails | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve been playing around with ruby on rails recently, partly to play around with rails and partly to take a run at a web app I&rsquo;ve been considering (which I&rsquo;ve open sourced because why not?).
+It turns out the last time I played with it was back in 2005 and slightly amusingly my thoughts on it haven&rsquo;t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what&rsquo;s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I&rsquo;m still using TextMate and it&rsquo;s still annoying that I can&rsquo;t click a method name to jump to it&rsquo;s definition – I hear good things about RubyMine but I&rsquo;m not keen to invest that kind of money in what may be a very short-lived experiment.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2015/09/30/playing-with-ruby-on-rails-2/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2015/09/30/playing-with-ruby-on-rails-2/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Playing with Ruby on Rails">
+	<meta property="og:description" content="I’ve been playing around with ruby on rails recently, partly to play around with rails and partly to take a run at a web app I’ve been considering (which I’ve open sourced because why not?).
+It turns out the last time I played with it was back in 2005 and slightly amusingly my thoughts on it haven’t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what’s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I’m still using TextMate and it’s still annoying that I can’t click a method name to jump to it’s definition – I hear good things about RubyMine but I’m not keen to invest that kind of money in what may be a very short-lived experiment.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2015-09-30T10:47:10+00:00">
+		<meta property="article:modified_time" content="2015-09-30T10:47:10+00:00">
+
+	<meta itemprop="name" content="Playing with Ruby on Rails">
+	<meta itemprop="description" content="I’ve been playing around with ruby on rails recently, partly to play around with rails and partly to take a run at a web app I’ve been considering (which I’ve open sourced because why not?).
+It turns out the last time I played with it was back in 2005 and slightly amusingly my thoughts on it haven’t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what’s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I’m still using TextMate and it’s still annoying that I can’t click a method name to jump to it’s definition – I hear good things about RubyMine but I’m not keen to invest that kind of money in what may be a very short-lived experiment.">
+	<meta itemprop="datePublished" content="2015-09-30T10:47:10+00:00">
+	<meta itemprop="dateModified" content="2015-09-30T10:47:10+00:00">
+	<meta itemprop="wordCount" content="312">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Playing with Ruby on Rails">
+	<meta name="twitter:description" content="I’ve been playing around with ruby on rails recently, partly to play around with rails and partly to take a run at a web app I’ve been considering (which I’ve open sourced because why not?).
+It turns out the last time I played with it was back in 2005 and slightly amusingly my thoughts on it haven’t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what’s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I’m still using TextMate and it’s still annoying that I can’t click a method name to jump to it’s definition – I hear good things about RubyMine but I’m not keen to invest that kind of money in what may be a very short-lived experiment.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Playing with Ruby on Rails</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Playing with Ruby on Rails</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-09-30T10:47:10Z">September 30, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve been playing around with ruby on rails recently, partly to play around with rails and partly to take a run at a web app I&rsquo;ve been considering (<a href="https://github.com/ajsutton/river">which I&rsquo;ve open sourced</a> because why not?).</p>
+<p>It turns out the last time I played with it was <a href="https://www.symphonious.net/2005/06/19/playing-with-ruby-on-rails/">back in 2005</a> and slightly amusingly my thoughts on it haven&rsquo;t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what&rsquo;s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I&rsquo;m still using TextMate and it&rsquo;s still annoying that I can&rsquo;t click a method name to jump to it&rsquo;s definition – I hear good things about RubyMine but I&rsquo;m not keen to invest that kind of money in what may be a very short-lived experiment.</p>
+<p>The two big changes are that I&rsquo;ve got 10 years more development experience and the quality of gems seems to have improved significantly. The extra experience means I pick things up a lot faster, understand them more deeply and am a lot less convinced that the way I&rsquo;m used to is the only right way. The improved quality of gems makes it far less likely that I&rsquo;ll <a href="https://www.symphonious.net/2005/07/08/login-gems-for-ruby-on-rails/">waste a heap of time struggling with a poorly written gem</a> and instead can drop it in and see benefits straight away.</p>
+<p>While all the hipsters may consider rails old-hat now and moved onto node or go, from what I&rsquo;ve seen it&rsquo;s matured extremely well and is in a fairly ideal point in the hype-cycle – still getting a lot of attention, embedded enough to have loads of people with experience in it and code depending on it so it will never go away but old and boring enough to be well documented with good libraries and not changing dramatically every week.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

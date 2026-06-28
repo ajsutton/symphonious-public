@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Automation and Selecting Web Hosts | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="One of the biggest challenges with selecting a web host is that it&rsquo;s very difficult to determine the quality of a provider without actually setting everything up and seeing how it goes for a while. Generally that means that you either wind up avoiding the very low cost providers out of fear they won&rsquo;t be reliable and possibly paying too much, or spending a lot of time and effort setting up with a provider only to then discover they&rsquo;re unreliable or the performance isn&rsquo;t as good as you expected.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2013/08/14/automation-and-selecting-web-hosts/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2013/08/14/automation-and-selecting-web-hosts/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Automation and Selecting Web Hosts">
+	<meta property="og:description" content="One of the biggest challenges with selecting a web host is that it’s very difficult to determine the quality of a provider without actually setting everything up and seeing how it goes for a while. Generally that means that you either wind up avoiding the very low cost providers out of fear they won’t be reliable and possibly paying too much, or spending a lot of time and effort setting up with a provider only to then discover they’re unreliable or the performance isn’t as good as you expected.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-08-14T04:06:57+00:00">
+		<meta property="article:modified_time" content="2013-08-14T04:06:57+00:00">
+
+	<meta itemprop="name" content="Automation and Selecting Web Hosts">
+	<meta itemprop="description" content="One of the biggest challenges with selecting a web host is that it’s very difficult to determine the quality of a provider without actually setting everything up and seeing how it goes for a while. Generally that means that you either wind up avoiding the very low cost providers out of fear they won’t be reliable and possibly paying too much, or spending a lot of time and effort setting up with a provider only to then discover they’re unreliable or the performance isn’t as good as you expected.">
+	<meta itemprop="datePublished" content="2013-08-14T04:06:57+00:00">
+	<meta itemprop="dateModified" content="2013-08-14T04:06:57+00:00">
+	<meta itemprop="wordCount" content="230">
+	<meta itemprop="keywords" content="Code and Geek Stuff,System Administration">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Automation and Selecting Web Hosts">
+	<meta name="twitter:description" content="One of the biggest challenges with selecting a web host is that it’s very difficult to determine the quality of a provider without actually setting everything up and seeing how it goes for a while. Generally that means that you either wind up avoiding the very low cost providers out of fear they won’t be reliable and possibly paying too much, or spending a lot of time and effort setting up with a provider only to then discover they’re unreliable or the performance isn’t as good as you expected.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Automation and Selecting Web Hosts</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Automation and Selecting Web Hosts</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-08-14T04:06:57Z">August 14, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>One of the biggest challenges with selecting a web host is that it&rsquo;s very difficult to determine the quality of a provider without actually setting everything up and seeing how it goes for a while. Generally that means that you either wind up avoiding the very low cost providers out of fear they won&rsquo;t be reliable and possibly paying too much, or spending a lot of time and effort setting up with a provider only to then discover they&rsquo;re unreliable or the performance isn&rsquo;t as good as you expected.</p>
+<p>Virtual private servers are a particular problem because hosting providers advertise specs like CPU cores and RAM, but don&rsquo;t advertise whether those CPUs are oversubscribed or what the contention on disk access is.</p>
+<p>Fortunately, now that tools like puppet and chef have appeared and matured, its quite easy to automate the setup and configuration of a server so you can easily switch hosts if needed. Even more so with web hosting companies more and more becoming cloud providers – the difference primarily being per-hour pricing.</p>
+<p>Which is a round about way of saying – welcome to the new symphonious, completely re-homed and rebuilt using automated scripts. Hopefully you didn&rsquo;t notice the difference. The move saves me about $20/month and because the entire build was automated if I have issues here or find a better deal elsewhere I can now move effortlessly.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Curse Of Good Ideas | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="There&rsquo;s a somewhat inevitable drawback of ideas that work out well – they continue on much longer than you anticipated. Such is the case with the mess of AppleScript, UNIX commands and Excel spreadsheet that makes up our engineering statistics tracking system. It tracks bug counts, test coverage, velocity etc over time and produces a bunch of graphs that we can look at and try and work out what they mean. It&rsquo;s by no means mission critical but it is interesting to see what&rsquo;s going on from day to day. The trouble is, now that we&rsquo;ve come to like having those graphs, the fact that this mess of scripts can only actually run on my laptop is something of a concern.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/11/21/the-curse-of-good-ideas/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/11/21/the-curse-of-good-ideas/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Curse Of Good Ideas">
+	<meta property="og:description" content="There’s a somewhat inevitable drawback of ideas that work out well – they continue on much longer than you anticipated. Such is the case with the mess of AppleScript, UNIX commands and Excel spreadsheet that makes up our engineering statistics tracking system. It tracks bug counts, test coverage, velocity etc over time and produces a bunch of graphs that we can look at and try and work out what they mean. It’s by no means mission critical but it is interesting to see what’s going on from day to day. The trouble is, now that we’ve come to like having those graphs, the fact that this mess of scripts can only actually run on my laptop is something of a concern.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-11-21T11:42:33+00:00">
+		<meta property="article:modified_time" content="2006-11-21T11:42:33+00:00">
+
+	<meta itemprop="name" content="The Curse Of Good Ideas">
+	<meta itemprop="description" content="There’s a somewhat inevitable drawback of ideas that work out well – they continue on much longer than you anticipated. Such is the case with the mess of AppleScript, UNIX commands and Excel spreadsheet that makes up our engineering statistics tracking system. It tracks bug counts, test coverage, velocity etc over time and produces a bunch of graphs that we can look at and try and work out what they mean. It’s by no means mission critical but it is interesting to see what’s going on from day to day. The trouble is, now that we’ve come to like having those graphs, the fact that this mess of scripts can only actually run on my laptop is something of a concern.">
+	<meta itemprop="datePublished" content="2006-11-21T11:42:33+00:00">
+	<meta itemprop="dateModified" content="2006-11-21T11:42:33+00:00">
+	<meta itemprop="wordCount" content="574">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Curse Of Good Ideas">
+	<meta name="twitter:description" content="There’s a somewhat inevitable drawback of ideas that work out well – they continue on much longer than you anticipated. Such is the case with the mess of AppleScript, UNIX commands and Excel spreadsheet that makes up our engineering statistics tracking system. It tracks bug counts, test coverage, velocity etc over time and produces a bunch of graphs that we can look at and try and work out what they mean. It’s by no means mission critical but it is interesting to see what’s going on from day to day. The trouble is, now that we’ve come to like having those graphs, the fact that this mess of scripts can only actually run on my laptop is something of a concern.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Curse Of Good Ideas</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Curse Of Good Ideas</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-11-21T11:42:33Z">November 21, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>There&rsquo;s a somewhat inevitable drawback of ideas that work out well – they continue on much longer than you anticipated. Such is the case with the mess of AppleScript, UNIX commands and Excel spreadsheet that makes up our engineering statistics tracking system. It tracks bug counts, test coverage, velocity etc over time and produces a bunch of graphs that we can look at and try and work out what they mean. It&rsquo;s by no means mission critical but it is interesting to see what&rsquo;s going on from day to day. The trouble is, now that we&rsquo;ve come to like having those graphs, the fact that this mess of scripts can only actually run on my laptop is something of a concern.</p>
+<p>So over the last few days I&rsquo;ve been converting the mess of AppleScript over to a much nicer bash shell script to retrieve and store the data and some PHP scripts to generate the graphs. It&rsquo;s come up really quite well in the end and it&rsquo;s a lot more maintainable than it was. As an added bonus, it can all happen from a cron job now, requires absolutely no user intervention and doesn&rsquo;t require me to not touch my laptop while it extracts the graphs from Excel via AppleScript GUI scripting. On the down side, the graphs just aren&rsquo;t as pretty as Excel made. If only someone would fix fonts on Linux once and for all.</p>
+<p>There are a number of systems like that floating around – not all in as bad a state, most at least run somewhere other than my laptop – never really intended to take off but somehow succeeding anyway. Heck, the wiki that our entire company uses and depends on was originally a quick prototype to see if you could embed EditLive! into JSPWiki. No one really saw that going company wide, I&rsquo;m not even sure what prompted people outside of engineering to start using it, yet somehow it took off.</p>
+<p>I&rsquo;m still not quite certain if it&rsquo;s wise to have some discipline and think about the anticipated goal for an idea if it is successful (ie: stats have to run automatically every day, even if I&rsquo;m not at work with my laptop, so don&rsquo;t write it in AppleScript) or if you should just do the simplest thing possible to test out the idea then change later if it does work. XP tends to say you should do the simplest thing possible, but XP also tries to keep the cost of change low – via test cases, refactoring etc. When you don&rsquo;t have the tools and/or skills required to do the simplest possible thing with test cases and keeping the code clean etc, what do you do? Stopping to acquire the skills or tools is likely to take longer than just doing it the more complex way, doing it without tests means you&rsquo;ll probably have to throw it out and start again if the idea works and doing it the more complex way takes too long so you may not find time to do it.</p>
+<p>My best thought on this is to do it the simplest way possible but write down ahead of time a set of criteria you&rsquo;ll use to decide if the experiment was successful or if it was unsuccessful and <em>when</em> you&rsquo;ll review those goals. Once you reach that point, either throw it out immediately if it failed or rewrite properly it if it succeeded.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

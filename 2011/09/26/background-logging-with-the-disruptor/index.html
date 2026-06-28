@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Background Logging with the Disruptor | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation. He briefly compared it to the LMAX disruptor and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.
+Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:
+
+This approach has similar principles to the Disruptor. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn&rsquo;t busy wait, but it could)">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Background Logging with the Disruptor">
+	<meta property="og:description" content="Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation. He briefly compared it to the LMAX disruptor and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.
+Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:
+This approach has similar principles to the Disruptor. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn’t busy wait, but it could)">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2011-09-26T20:27:26+00:00">
+		<meta property="article:modified_time" content="2011-09-26T20:27:26+00:00">
+
+	<meta itemprop="name" content="Background Logging with the Disruptor">
+	<meta itemprop="description" content="Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation. He briefly compared it to the LMAX disruptor and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.
+Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:
+This approach has similar principles to the Disruptor. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn’t busy wait, but it could)">
+	<meta itemprop="datePublished" content="2011-09-26T20:27:26+00:00">
+	<meta itemprop="dateModified" content="2011-09-26T20:27:26+00:00">
+	<meta itemprop="wordCount" content="958">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Disruptor,Java,LMAX,Performance">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Background Logging with the Disruptor">
+	<meta name="twitter:description" content="Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation. He briefly compared it to the LMAX disruptor and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.
+Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:
+This approach has similar principles to the Disruptor. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn’t busy wait, but it could)">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Background Logging with the Disruptor</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Background Logging with the Disruptor</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-09-26T20:27:26Z">September 26, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://vanillajava.blogspot.com/2011/09/exchange-and-gc-less-java.html">Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation</a>. He briefly compared it to the <a href="http://code.google.com/p/disruptor/">LMAX disruptor</a> and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.</p>
+<p>Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:</p>
+<blockquote>
+<p>This approach has similar principles to the <a href="http://code.google.com/p/disruptor/">Disruptor</a>. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn&rsquo;t busy wait, but it could)</p>
+<p>Two keys difference are:</p>
+<ul>
+<li>there is only one producer/consumer in this case, the disruptor supports multiple consumers.</li>
+<li>this approach re-uses a much smaller buffer efficiently. If you are using ByteBuffer (as I have in the past) an optimal size might be 32 KB. The disruptor library was designed to exploit large amounts of memory on the assumption it is relative cheap and can use medium sized (MBs) to very large buffers (GBs). e.g. it was design for servers with 144 GB. I am sure it works well on much smaller servers. ;)</li>
+</ul>
+</blockquote>
+<p>Actually, there’s nothing about the Disruptor that requires large amounts of memory. If you know that your producers and consumers are going to keep pace with each other well and you don’t have a requirement to replay old events, you can use quite a small ring buffer with the Disruptor. There are a lot of advantages to having a large ring buffer, but it’s by no means a requirement.</p>
+<p>It’s also worth noting that the Disruptor does not require consumers to busy-spin, you can choose to use a blocking wait strategy, or strategies that combine busy-spin and blocking to handle both spikes and lulls in event rates efficiently.</p>
+<p>There is also an important advantage to the Disruptor that wasn’t mentioned: it will process events immediately if the consumer is keeping up. If the consumer falls behind however, it can process events in a batch to catch up. This significantly reduces latency while still handling spikes in load efficiently.</p>
+<h2 id="the-code">The Code</h2>
+<p>First let’s start with the LogEntry class. This is a simple value object that is used as our entries on the ring buffer and passed from the producer thread over to the consumer thread.</p>
+<p>Peter’s Exchanger based implementation – the use of StringBuilder in the LogEntry class is actually a race condition and not thread safe. Both the publishing side and the consumer side are attempting to modify it and depending on how long it takes the publishing side to write the log message to the StringBuilder, it will potentially be processed and then reset by the consumer side before the publisher is complete. In this implementation I’m instead using a simple String to avoid that problem.</p>
+<noscript>
+  <pre><code class="language-java java">import com.lmax.disruptor.EventFactory;
+<p>class LogEntry
+{
+public static final EventFactory&lt;LogEntry&gt; FACTORY = new EventFactory&lt;LogEntry&gt;()
+{
+public LogEntry newInstance()
+{
+return new LogEntry();
+}
+};</p>
+<pre><code>long time;
+int level;
+String text;
+</code></pre>
+<p>}
+</code></pre>
+</noscript></p>
+<p>The one Disruptor-specific addition is that we create an EventFactory instance which the Disruptor uses to pre-populate the ring buffer entries.</p>
+<p>Next, let’s look at the BackgroundLogger class that sets up the process and acts as the producer.</p>
+<noscript>
+  <pre><code class="language-java java">import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
+<p>import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;</p>
+<p>public class BackgroundLogger
+{
+private static final int ENTRIES = 64;</p>
+<pre><code>private final ExecutorService executorService;
+private final Disruptor&amp;lt;LogEntry&amp;gt; disruptor;
+private final RingBuffer&amp;lt;LogEntry&amp;gt; ringBuffer;
+
+BackgroundLogger()
+{
+    executorService = Executors.newCachedThreadPool();
+    disruptor = new Disruptor&amp;lt;LogEntry&amp;gt;(LogEntry.FACTORY, ENTRIES, executorService);
+    disruptor.handleEventsWith(new LogEntryHandler());
+    disruptor.start();
+    ringBuffer = disruptor.getRingBuffer();
+}
+
+public void log(String text)
+{
+    final long sequence = ringBuffer.next();
+    final LogEntry logEntry = ringBuffer.get(sequence);
+
+    logEntry.time = System.currentTimeMillis();
+    logEntry.level = level;
+    logEntry.text = text;
+
+    ringBuffer.publish(sequence);
+}
+
+public void stop()
+{
+    disruptor.shutdown();
+    executorService.shutdownNow();
+}
+</code></pre>
+<p>}</p>
+<p></code></pre>
+</noscript></p>
+<p>In the constructor we create an ExecutorService which the Disruptor will use to execute the consumer threads (a single thread in this case), then the disruptor itself. We pass in the LogEntry.FACTORY instance for it to use to create the entries and a size for the ring buffer.</p>
+<p>The log method is our producer method. Note the use of two-phase commit. First claim a slot with the ringBuffer.next() method, then copy our values into that slot’s entry and finally publish the slot, ready for the consumer to process. We could have also used the Disruptor.publish method which can make this simpler for many use cases by rolling the two phase commit into call.</p>
+<p>The producer doesn’t need to do any batching as the Disruptor will do that automatically if the consumer is falling behind, though there are also APIs that allow batching the producer which can improve the performance if it fits into your design (here it’s probably better to publish each log entry as it comes in).</p>
+<p>The stop method uses the new shutdown method on the Disruptor which takes care of waiting until all consumers have processed all available entries for you, <a href="http://groups.google.com/group/lmax-disruptor/browse_thread/thread/511cadc6383260aa/35e537304fc6439f?lnk=gst&amp;q=stop+disruptor#35e537304fc6439f">though the code for doing it yourself is quite straight-forward</a>. Finally we shut down the executor.</p>
+<p>Note that we don’t need a flush method since the Disruptor is always consuming log events as quickly as the consumer can.</p>
+<p>Last of all, the consumer which is almost entirely implementation logic:</p>
+<noscript>
+  <pre><code class="language-java java">
+import com.lmax.disruptor.EventHandler;
+<p>public class LogEntryHandler implements EventHandler&lt;LogEntry&gt;
+{</p>
+<pre><code>public LogEntryHandler()
+{
+}
+
+public void onEvent(final LogEntry logEntry, final long sequence, final boolean endOfBatch) throws Exception
+{
+    // Write
+}
+</code></pre>
+<p>}
+</code></pre>
+</noscript></p>
+<p>The consumer’s onEvent method is called for each LogEntry put into the Disruptor. The endOfBatch flag can be used as a signal to flush written content to disk, allowing very large buffer sizes to be used causing writes to disk to be batched when the consumer is running behind, yet also ensure that our valuable log messages get to disk as quickly as possible.</p>
+<p><a href="https://gist.github.com/1243275">The full code is available as a Gist</a>.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

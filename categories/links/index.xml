@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Links on Symphonious</title>
+    <link>https://www.symphonious.net/categories/links/</link>
+    <description>Recent content in Links on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 20 Sep 2010 07:47:31 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/links/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customizing EditLive! in Documentum Web Publisher</title>
+      <link>https://www.symphonious.net/2010/09/20/customizing-editlive-in-documentum-web-publisher/</link>
+      <pubDate>Mon, 20 Sep 2010 07:47:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/20/customizing-editlive-in-documentum-web-publisher/</guid>
+      <description>&lt;p&gt;Lisa Hill from Blue Fish has published an excellent article covering &lt;a href=&#34;http://www.bluefishgroup.com/library/2010/wp-rich-text-editor/&#34;&gt;how to customize the EditLive! rich text editor in Web Publisher&lt;/a&gt;. It includes many of my favorite ways to get the most out of EditLive! as well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>RightScale AWS Amazon EC2 Library for Ruby</title>
+      <link>https://www.symphonious.net/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/</link>
+      <pubDate>Wed, 07 Apr 2010 07:35:48 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/</guid>
+      <description>&lt;p&gt;I’ve always known you could do a lot of programmatic stuff with Amazon but I’ve simultaneously been too lazy to actually look into it in detail and never really needed to. However, I’ve stumbled across &lt;a href=&#34;http://www.ioncannon.net/system-administration/199/automounting-amazon-ebs-volumes-on-ec2-instances/&#34;&gt;instructions for auto-mounting an EBS volume&lt;/a&gt; which turns out to be very handy, and leads on to the particularly awesome &lt;a href=&#34;http://rightscale.rubyforge.org/&#34;&gt;right_aws ruby gem&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Lots of useful looking stuff for working with EC2, S3 and EBS volumes that I can see me taking a lot more advantage of in the future.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Useful Link Roundup</title>
+      <link>https://www.symphonious.net/2009/02/23/useful-link-roundup/</link>
+      <pubDate>Mon, 23 Feb 2009 12:18:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/02/23/useful-link-roundup/</guid>
+      <description>&lt;p&gt;I have far more tabs open in NetNewsWire than I can handle, so here’s all the stuff that’s open more so I can find them again if I need them than because I actually want to comment on them or do something with them right now:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://a.deveria.com/caniuse/#agents=All&amp;amp;cats=All&amp;amp;eras=All&amp;amp;statuses=All&#34;&gt;When Can I Use?&lt;/a&gt; – Useful page for getting a rough idea of the current state of support for web stuff in browsers.  Not perfect but definitely a very good starting point.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.whatwg.org/specs/web-apps/current-work/multipage/rendering.html&#34;&gt;HTML 5 Rendering Section&lt;/a&gt; – Actually the entire draft spec is a good reference for anyone parsing or rendering HTML.  Since EditLive! does both this is likely to be useful.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.idea.org/find-information.html&#34;&gt;Factors That Improve Online Experiences&lt;/a&gt; – Interesting research on how user’s navigate web sites and the misconceptions designers have about how usable their sites are.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.bit-tech.net/hardware/2009/02/13/replacement-iphone-earphones-on-test/&#34;&gt;Replacement iPhone Earphones Review&lt;/a&gt; – since my standard set seem to be dying this looks handy.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/google-mobwrite/&#34;&gt;Google Mobwrite&lt;/a&gt; – Interesting looking JavaScript real-time collaborative editing implementation. The &lt;a href=&#34;http://code.google.com/p/google-mobwrite/wiki/Theory&#34;&gt;theory section&lt;/a&gt; is particularly worth studying.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.seejay.net/2009/02/how-to-unlock-huawei-e220-hsdpa-modem.html&#34;&gt;How To Unlock the Huawei E220 HSDPA modem&lt;/a&gt; – can’t really see that I’ll need to use this, but useful to know it’s possible.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Neat Looking iPhone HTML UI Framework</title>
+      <link>https://www.symphonious.net/2008/07/25/neat-looking-iphone-html-ui-framework/</link>
+      <pubDate>Fri, 25 Jul 2008 13:21:27 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/07/25/neat-looking-iphone-html-ui-framework/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/iui/&#34;&gt;iUI&lt;/a&gt; looks like a promising library for making the development of iPhone webapps much simpler.  Worth keeping an eye on since there’s no barrier to entry for iPhone webapps unlike with native iPhone apps.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Smooth JList DnD Animation</title>
+      <link>https://www.symphonious.net/2006/05/03/smooth-jlist-dnd-animation/</link>
+      <pubDate>Tue, 02 May 2006 22:50:32 +0000</pubDate>
+      <guid>https://www.symphonious.net/2006/05/03/smooth-jlist-dnd-animation/</guid>
+      <description>&lt;p&gt;The Rabbit Hole: &lt;a href=&#34;http://rabbit-hole.blogspot.com/2006/04/smooth-jlist-drop-target-animation.html&#34;&gt;Smooth JList Target Animation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a JTree animation in the next post too. Cool, but the code is awful so it&amp;rsquo;s probably better to just reimplement the generic technique.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

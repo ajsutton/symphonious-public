@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Being Productive With Swing | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="These are my notes from the technical session, &ldquo;Being Productive With Swing&rdquo; by Ben Galbraith. The session focussed a lot on Ben&rsquo;s library that he&rsquo;s creating which was a shame but there are some ideas that are worth taking away.
+
+The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are &ldquo;stepping up the wow&rdquo; to compete with AJAX and Swing traditionally hasn&rsquo;t had this – JavaFX is likely to bring this to Swing. However, for most business applications &ldquo;wow&rdquo; isn&rsquo;t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/05/11/being-productive-with-swing/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/05/11/being-productive-with-swing/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Being Productive With Swing">
+	<meta property="og:description" content="These are my notes from the technical session, “Being Productive With Swing” by Ben Galbraith. The session focussed a lot on Ben’s library that he’s creating which was a shame but there are some ideas that are worth taking away.
+The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are “stepping up the wow” to compete with AJAX and Swing traditionally hasn’t had this – JavaFX is likely to bring this to Swing. However, for most business applications “wow” isn’t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-05-10T15:58:30+00:00">
+		<meta property="article:modified_time" content="2007-05-10T15:58:30+00:00">
+
+	<meta itemprop="name" content="Being Productive With Swing">
+	<meta itemprop="description" content="These are my notes from the technical session, “Being Productive With Swing” by Ben Galbraith. The session focussed a lot on Ben’s library that he’s creating which was a shame but there are some ideas that are worth taking away.
+The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are “stepping up the wow” to compete with AJAX and Swing traditionally hasn’t had this – JavaFX is likely to bring this to Swing. However, for most business applications “wow” isn’t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.">
+	<meta itemprop="datePublished" content="2007-05-10T15:58:30+00:00">
+	<meta itemprop="dateModified" content="2007-05-10T15:58:30+00:00">
+	<meta itemprop="wordCount" content="849">
+	<meta itemprop="keywords" content="JavaOne">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Being Productive With Swing">
+	<meta name="twitter:description" content="These are my notes from the technical session, “Being Productive With Swing” by Ben Galbraith. The session focussed a lot on Ben’s library that he’s creating which was a shame but there are some ideas that are worth taking away.
+The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are “stepping up the wow” to compete with AJAX and Swing traditionally hasn’t had this – JavaFX is likely to bring this to Swing. However, for most business applications “wow” isn’t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Being Productive With Swing</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Being Productive With Swing</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-05-10T15:58:30Z">May 10, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>These are my notes from the technical session, &ldquo;Being Productive With Swing&rdquo; by Ben Galbraith. The session focussed a lot on Ben&rsquo;s library that he&rsquo;s creating which was a shame but there are some ideas that are worth taking away.</p>
+<hr>
+<p>The techniques described below are very specific to business applications that center around forms. At the moment desktop applications are &ldquo;stepping up the wow&rdquo; to compete with AJAX and Swing traditionally hasn&rsquo;t had this – JavaFX is likely to bring this to Swing. However, for most business applications &ldquo;wow&rdquo; isn&rsquo;t a requirement, productivity is. In that area, no emerging platform provides material advantages over Swing with the exception of JFace and Cocoa.</p>
+<p>JFace has some really nice abstractions which make it productive, but is hard to learn.</p>
+<p>Cocoa has great data binding via Core Data and excellent tooling support which makes it very productive, but it&rsquo;s Mac only.</p>
+<p>For business application development, productivity is king. How quick is it to make, how easy to reuse, how cheap to maintain? Swing&rsquo;s not too far from being productive but isn&rsquo;t there yet. JSR296 (swing application framework) doesn&rsquo;t help with productivity much because it&rsquo;s really just targeted at getting started with an app, not the actual form design. JSR295 Beans Binding is a key improvement.</p>
+<p>What&rsquo;s missing from Swing? It needs to be a framework instead of just a GUI toolkit. What&rsquo;s a form? How does validation work etc .</p>
+<h3 id="template-pattern">Template Pattern</h3>
+<p>There are too many ways to create a GUI which makes understanding and reuse difficult. He&rsquo;s created a system to enforce a standard template. The aim is to split the code up and provide as many behavioral contracts as possible to enable reuse. (To me it looks like too much up front engineering – most of the time you don&rsquo;t want to reuse GUIs, they&rsquo;re task specific so what&rsquo;s the point of designing every GUI for reuse?)</p>
+<h3 id="gui160builders">GUI Builders</h3>
+<p>GUIs used to be hand coded because tools weren&rsquo;t good enough. Ben suggests that modern GUI tools have solved that problem and there&rsquo;s no good reason to use a GUI builder and he believes he&rsquo;s vastly more productive using a GUI builder. Often though, people aren&rsquo;t happy about having machine generated code that they then have to maintain. The key is to keep the machine generated code completely separate:</p>
+<ul>
+<li>Bind behaviors to components by name</li>
+<li>Let the builder own all the code it develops</li>
+<li>Supplement the GUI builder at runtime as needed by manually creating just the parts that are dynamic.</li>
+<li>Use an abstract GUI builder plugin system.
+<ul>
+<li>Support any GUI builder</li>
+<li>Support custom frameworks.</li>
+</ul>
+</li>
+</ul>
+<p>Ben then went into a particular function he&rsquo;s developed that helps retrieve a component by name easily. Basic idea was taken from prototype.</p>
+<p>The issues I see with this that Ben didn&rsquo;t address:</p>
+<ul>
+<li>How do you change GUI builders and preserve the work you&rsquo;ve done? What if the GUI builder you currently use is discontinued?</li>
+<li>Ben suggests you can work with a team that uses a range of different GUI builders and it&rsquo;ll still work. Sounds like a nightmare to me.</li>
+<li>What do you do if you don&rsquo;t have access to the GUI builder that was used? How do you maintain the code?</li>
+</ul>
+<h3 id="binding">Binding</h3>
+<p>JSR295 is very exciting. Binding is important to avoid all the code required to copy data between the GUI and the model. This code is often error prone and duplicated, particularly when parsing is required (ints, dates etc)</p>
+<p>Opensource binding systems have been available for a while and JSR295 won&rsquo;t be available for some time.</p>
+<p>The problem with binding in Java is that most systems try to make the binding bi-directional (automatically respond to changes made in either the GUI or the model). Java doesn&rsquo;t have a way to watch a variable for changes so you have to implement property change notifications which is tedious and error prone. While AOP could be used here, it&rsquo;s not widely accepted and you can&rsquo;t assume that you can just store the current value, make the change and send the notification – some variables need special change handling.</p>
+<p>In most apps, there isn&rsquo;t a need for bidirectional binding, it&rsquo;s okay to just provide a method that tells the binding framework when changes have been made to the model (swing already has property change notifications built in so it can use them).</p>
+<h3 id="simple-configuration">Simple Configuration</h3>
+<p>It&rsquo;s a pain to apply common attributes like padding, bolding etc to components. Ben implemented CSS for Swing to work around this. To me CSS doesn&rsquo;t apply particularly well to Swing – it&rsquo;s a DSL for styling HTML, not swing. It would be better to create a DSL specifically for styling swing if you wanted to go that route, but if you&rsquo;re using a GUI builder you should just use the GUI builder to do this so that it owns all the code and you can see what it actually looks like in the GUI builder. Otherwise, write the GUI by hand and just use utility functions to set up components with the default settings you need.</p>
+<p>Ben&rsquo;s framework is available from <a href="http://code.google.com/p/swing-clarity/">http://code.google.com/p/swing-clarity/</a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

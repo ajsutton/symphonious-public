@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Symphonious</title>
+    <link>https://www.symphonious.net/categories/java/</link>
+    <description>Recent content in Java on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 04 Feb 2019 00:13:29 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fun with Java Backwards Compatibility</title>
+      <link>https://www.symphonious.net/2019/02/04/fun-with-java-backwards-compatibility/</link>
+      <pubDate>Mon, 04 Feb 2019 00:13:29 +0000</pubDate>
+      <guid>https://www.symphonious.net/2019/02/04/fun-with-java-backwards-compatibility/</guid>
+      <description>&lt;p&gt;There&amp;rsquo;s a fun little gotcha introduced in Java 10 which causes trouble for anyone wanting to support earlier JVMs.  If you take the code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; java.nio.ByteBuffer;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ProblemCode&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(String&lt;span style=&#34;color:#f92672&#34;&gt;[]&lt;/span&gt; args) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;final&lt;/span&gt; ByteBuffer buffer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ByteBuffer.&lt;span style=&#34;color:#a6e22e&#34;&gt;allocate&lt;/span&gt;(10);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    buffer.&lt;span style=&#34;color:#a6e22e&#34;&gt;position&lt;/span&gt;(10);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    System.&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Yay it worked!&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you compile it on Java 8 it will run on any Java from 8 and above. If you compile it on Java 10 or above it will only work on Java 10 and above, even if you specify &lt;code&gt;-target 8 -source 8&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The problem is that you&amp;rsquo;re compiling against the Java 10 libraries and Java 10 changed the ByteBuffer.position return type. Previously it was inherited from Buffer and so returned a Buffer but Java 10 took advantage of co-variant return types and now returns ByteBuffer so it&amp;rsquo;s easier to use in a fluent style. Compiled against Java 10 libraries the compiler embeds a reference to the Java 10 version which results in a NoSuchMethodError on Java 8:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Exception in thread &amp;#34;main&amp;#34; java.lang.NoSuchMethodError: java.nio.ByteBuffer.position(I)Ljava/nio/ByteBuffer;
+at ProblemCode.main(ProblemCode.java:6)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Javac helpfully provides a warning which suggest how to solve the issue:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;warning: [options] bootstrap class path not set in conjunction with -source 8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;which has been best practice for many, many years anyway but it&amp;rsquo;s extremely common to skip that step because going and finding the libraries from Java 8 is a challenge and they believe they can make things work just by avoiding new APIs.  Often that&amp;rsquo;s tested by periodically checking the code compiles on Java 8 as well.&lt;/p&gt;
+&lt;p&gt;This case shows that&amp;rsquo;s not enough. It&amp;rsquo;s possible to have code that compiles correctly on Java 8 and 10 but is not backwards compatible when compiled against Java 10 libraries.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Alert Dialogs Do Not Appear When Using WebDriverBackedSeleniu</title>
+      <link>https://www.symphonious.net/2015/12/08/alert-dialogs-do-not-appear-when-using-webdriverbackedseleniu/</link>
+      <pubDate>Tue, 08 Dec 2015 03:18:28 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/12/08/alert-dialogs-do-not-appear-when-using-webdriverbackedseleniu/</guid>
+      <description>&lt;p&gt;With Selenium 1, JavaScript alert and confirmation dialogs were intercepted by the Selenium JavaScript library so they never appeared on-screen and were accessed using selenium.isAlertPresent(), selenium.isConfirmationPresent(), selenium.chooseOkOnNextConfirmation() and similar methods.&lt;/p&gt;
+&lt;p&gt;With Selenium 2 aka WebDriver, the dialogs &lt;em&gt;do&lt;/em&gt; appear on screen and you access them with webDriver.switchTo().alert() which returns an Alert instance for further interactions.&lt;/p&gt;
+&lt;p&gt;However, when you use WebDriverBackedSelenium to mix Selenium 1 and WebDriver APIs – for example, during migrations from one to the other – the alerts don&amp;rsquo;t appear on screen and webDriver.switchTo().alert() always throws a NoAlertPresentException. This makes migration problematic because selenium.chooseOkOnNextConfirmation() doesn&amp;rsquo;t have any effect if the next confirmation is triggered by an action performed directly through Web Driver.&lt;/p&gt;
+&lt;p&gt;The solution is to avoid WebDriverBackedSelenium entirely and instead create a WebDriverCommandProcessor, configure it to not emulate dialogs and pass it to DefaultSelenium.&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;public&lt;/span&gt; Selenium &lt;span style=&#34;color: #0000ff;&#34;&gt;createSelenium&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
+  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;final&lt;/span&gt; WebDriver webDriver&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; 
+  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;final&lt;/span&gt; String baseUrl&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt; 
+&lt;span style=&#34;color: #666666;&#34;&gt;{&lt;/span&gt;
+  WebDriverCommandProcessor commandProcessor &lt;span style=&#34;color: #666666;&#34;&gt;=&lt;/span&gt; 
+    &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #0000ff;&#34;&gt;WebDriverCommandProcessor&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;baseUrl&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;-&amp;gt;&lt;/span&gt; webDriver&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
+  commandProcessor&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;setEnableAlertOverrides&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
+  processor&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;start&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;();&lt;/span&gt;
+  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #0000ff;&#34;&gt;DefaultSelenium&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;commandProcessor&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
+&lt;span style=&#34;color: #666666;&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The key method call here is setEnableAlertOverride(false) which disables the alert emulation.  Note that the Selenium 1 methods for interacting with dialogs will no longer work – you have to switch all alert handling over to WebDriver.&lt;/p&gt;
+&lt;p&gt;Also note the subtle but important use of a closure to provide a Supplier&lt;WebDriver&gt; instead of just passing the webDriver. The overloaded constructor instance that takes a WebDriver immediately calls start() on the processor and setEnableAlertOverrides must be called before start().&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s unfortunate, but understandable, that Selenium 1 and WebDriver style alert interactions can&amp;rsquo;t be mixed as that would make migration a lot easier. At least with this approach you can convert your alert interactions over in one batch then convert all the other interactions incrementally.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Introducing ElementSpecification</title>
+      <link>https://www.symphonious.net/2015/12/04/testinglmax-introducing-elementspecification/</link>
+      <pubDate>Fri, 04 Dec 2015 03:26:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/12/04/testinglmax-introducing-elementspecification/</guid>
+      <description>&lt;p&gt;Today LMAX Exchange has released &lt;a href=&#34;https://github.com/LMAX-Exchange/elementspec&#34;&gt;ElementSpecification&lt;/a&gt;, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make it easier to understand selectors by using a very English-like syntax&lt;/li&gt;
+&lt;li&gt;Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests&lt;/li&gt;
+&lt;li&gt;Strongly discourage writing overly complicated selectors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.&lt;/p&gt;
+&lt;p&gt;Making selectors easier to understand doesn&amp;rsquo;t mean making locators shorter – CSS is already a very terse language. We actually want to use more characters to express our intent so that future developers can read the specification without having to decode CSS. For example, the CSS:&lt;/p&gt;
+&lt;pre&gt;#data-table tr[data-id=&#39;78&#39;] .name&lt;/pre&gt;
+&lt;p&gt;becomes:&lt;/p&gt;
+&lt;pre&gt;anElementWithId(&#34;data-table&#34;)&lt;br /&gt;    .thatContainsA(&#34;tr&#34;).withAttributeValue(&#34;data-id&#34;, &#34;78&#34;)&lt;br /&gt;    .thatContainsAnElementWithClass(&#34;name&#34;)&lt;/pre&gt;
+&lt;p&gt;Much longer, but if you were to read the CSS selector to yourself, it would come out a lot like the ElementSpecification syntax. That allows you to stay focussed on what the test is doing instead of pausing to decode the CSS. It&amp;rsquo;s also reduces the likelihood of misreading a vital character and misunderstanding the selector.&lt;/p&gt;
+&lt;p&gt;With ElementSpecification essentially acting as an adapter layer between the test author and the actual CSS, it&amp;rsquo;s also able to avoid some common intermittency pitfalls. In fact, the reason ElementSpecification was first built was because really smart people kept attempting to locate an element with a classname using:&lt;/p&gt;
+&lt;pre&gt;//*[contains(@class, &#39;valid&#39;)]&lt;/pre&gt;
+&lt;p&gt;which looks ok, but incorrectly also matches an element with the class ‘invalid&amp;rsquo;. Requiring the class attribute to exactly match ‘valid&amp;rsquo; is too brittle because it will fail if an additional class is added to the element. Instead, ElementSpecification would generate:&lt;/p&gt;
+&lt;pre&gt;contains(concat(&#39; &#39;, @class, &#39; &#39;), &#39; valid &#39;)&lt;/pre&gt;
+&lt;p&gt;which is decidedly unpleasant to have to write by hand.&lt;/p&gt;
+&lt;p&gt;The biggest benefit we&amp;rsquo;ve seen from ElementSpecification though is that fact that it has a deliberately limited set of abilities. You can only descend down the DOM tree, never back up and never across to siblings. That makes selectors &lt;em&gt;far&lt;/em&gt; easier to understand and avoids a lot of unintended coupling between the tests and incidental properties of the DOM. Sometimes it means augmenting the DOM to make it more semantic – things like adding a “data-id” attribute to rows as in the example above. It&amp;rsquo;s surprisingly rare how often we need to do that and surprising how useful those extra semantics wind up being for a whole variety of reasons anyway.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Single Responsibility Principle (and what’s wrong with it)</title>
+      <link>https://www.symphonious.net/2014/05/07/the-single-responsibility-principle-and-whats-wrong-with-it/</link>
+      <pubDate>Wed, 07 May 2014 04:25:15 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/05/07/the-single-responsibility-principle-and-whats-wrong-with-it/</guid>
+      <description>&lt;p&gt;Marco Cecconi – &lt;a href=&#34;http://sklivvz.com/posts/i-dont-love-the-single-responsibility-principle&#34;&gt;I don&amp;rsquo;t love the single responsibility principle&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The principle is arbitrary in itself. What makes one and only Reason To Change™ always, unequivocally better than two Reasons To Change™? The number one sounds great, but I&amp;rsquo;m a strong advocate of simple things and sometimes a class with more reasons to change is the simplest thing. I agree that we mustn&amp;rsquo;t do mega-classes that try to do too many different things, but why should a class have one single Reason To Change™? I flatly disagree with the statement. It&amp;rsquo;s not supported by any fact. I could say “three” reasons and be just as arbitrary. Interesting critique of the single responsibility pattern. The quote above is perhaps one of the weaker arguments against the single responsibility pattern but it struck a nerve with me because all too often we assume that because a rule sounds good it has some validity. In reality, picking one responsibility for a class is quite arbitrary and, as the article argues, deciding what a responsibility is is even more arbitrary.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So, whilst I agree completely on the premise of not make ginormous classes, I think this principle is not at all helpful in either illustrating the concept or even identifying unequivocally problematic cases so they can be corrected. In the same way, anemic micro-classes that do little are a very complicated way of organizing a code base. Given I&amp;rsquo;ve spent time today fixing a bug that was almost entirely caused by having too many classes with too focused responsibilities which caused the combined structure to be difficult to reason about and have unintended consequences this resonates strongly as well. Making responsibilities too fine grained is just as detrimental to the maintainability of code and somewhat counterintuitively also to it&amp;rsquo;s reusability. Reusing a single class is far simpler than having to work out how to piece together ten separate classes in the right way (hence the existence of builders which create a facade that everything is really a single unit again). I can see a lot of value in discussing things in terms of coupling and cohesion rather than responsibilities and using those concepts to find the right balance.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Javassist &amp; Java 8 – invalid constant type: 15</title>
+      <link>https://www.symphonious.net/2014/03/21/javassist-java-8-invalid-constant-type-15/</link>
+      <pubDate>Fri, 21 Mar 2014 04:32:10 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/03/21/javassist-java-8-invalid-constant-type-15/</guid>
+      <description>&lt;p&gt;Here&amp;rsquo;s a fun one, we have some code generated using javassist that looks a bit like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public void doStuff(byte actionId) {&amp;lt;br /&amp;gt;  switch (actionId) {&amp;lt;br /&amp;gt;    case 0: doOneThing(); break;&amp;lt;br /&amp;gt;    case 1: doSomethingElse(); break;&amp;lt;br /&amp;gt;    default: &amp;lt;br /&amp;gt;      throw new IllegalArgumentException(&amp;quot;Unknown action: &amp;quot; + actionId);&amp;lt;br /&amp;gt;  }&amp;lt;br /&amp;gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This works perfectly fine on Java 6 and Java 7 but fails on Java 8.  It turns out the problematic part is &lt;code&gt;&amp;quot;Unknown action: &amp;quot; + actionId&lt;/code&gt;. When run on Java 8 that throws “java.io.IOException: invalid constant type: 15” in javassist.bytecode.ConstPool.readOne.&lt;/p&gt;
+&lt;p&gt;The work around is simple, just do the conversion from byte to String explicitly:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;throw new IllegalArgumentException(&amp;quot;Unknown action: &amp;quot; + &amp;lt;br /&amp;gt;                                   String.valueOf(actionId));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There may be a more recent version of Javassist which fixes this, I haven&amp;rsquo;t looked as the work around is so trivial (and we only hit this problem in the error handling code which should never be triggered anyway).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why Are My JUnit Tests Running So Slow?</title>
+      <link>https://www.symphonious.net/2013/12/16/why-are-my-junit-tests-running-so-slow/</link>
+      <pubDate>Mon, 16 Dec 2013 23:15:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/12/16/why-are-my-junit-tests-running-so-slow/</guid>
+      <description>&lt;p&gt;This is mostly a note to myself, but often when I setup a new Linux install, I find that JUnit tests run significantly slower than usual. The CPU is nearly entirely idle and there&amp;rsquo;s almost no IO-wait making it hard to work out what&amp;rsquo;s going on.&lt;/p&gt;
+&lt;p&gt;The problem is that JUnit (or something in our tests or test runner) is doing a DNS lookup on the machine&amp;rsquo;s hostname. That lookup should be really fast, but if you&amp;rsquo;re connected to a VPN it may search the remote DNS server which takes time and makes the tests take much longer than they should.&lt;/p&gt;
+&lt;p&gt;The solution is to make sure your hostname is in /etc/hosts pointing to 127.0.0.1 (and that /etc/hosts is searched first but it usually is). Then the lookup is lightning fast and the tests start maxing out the CPU like they should.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Background Logging with the Disruptor</title>
+      <link>https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/</link>
+      <pubDate>Mon, 26 Sep 2011 20:27:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://vanillajava.blogspot.com/2011/09/exchange-and-gc-less-java.html&#34;&gt;Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation&lt;/a&gt;. He briefly compared it to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;LMAX disruptor&lt;/a&gt; and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.&lt;/p&gt;
+&lt;p&gt;Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This approach has similar principles to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;Disruptor&lt;/a&gt;. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn&amp;rsquo;t busy wait, but it could)&lt;/p&gt;
+&lt;p&gt;Two keys difference are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;there is only one producer/consumer in this case, the disruptor supports multiple consumers.&lt;/li&gt;
+&lt;li&gt;this approach re-uses a much smaller buffer efficiently. If you are using ByteBuffer (as I have in the past) an optimal size might be 32 KB. The disruptor library was designed to exploit large amounts of memory on the assumption it is relative cheap and can use medium sized (MBs) to very large buffers (GBs). e.g. it was design for servers with 144 GB. I am sure it works well on much smaller servers. ;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Actually, there’s nothing about the Disruptor that requires large amounts of memory. If you know that your producers and consumers are going to keep pace with each other well and you don’t have a requirement to replay old events, you can use quite a small ring buffer with the Disruptor. There are a lot of advantages to having a large ring buffer, but it’s by no means a requirement.&lt;/p&gt;
+&lt;p&gt;It’s also worth noting that the Disruptor does not require consumers to busy-spin, you can choose to use a blocking wait strategy, or strategies that combine busy-spin and blocking to handle both spikes and lulls in event rates efficiently.&lt;/p&gt;
+&lt;p&gt;There is also an important advantage to the Disruptor that wasn’t mentioned: it will process events immediately if the consumer is keeping up. If the consumer falls behind however, it can process events in a batch to catch up. This significantly reduces latency while still handling spikes in load efficiently.&lt;/p&gt;
+&lt;h2 id=&#34;the-code&#34;&gt;The Code&lt;/h2&gt;
+&lt;p&gt;First let’s start with the LogEntry class. This is a simple value object that is used as our entries on the ring buffer and passed from the producer thread over to the consumer thread.&lt;/p&gt;
+&lt;p&gt;Peter’s Exchanger based implementation – the use of StringBuilder in the LogEntry class is actually a race condition and not thread safe. Both the publishing side and the consumer side are attempting to modify it and depending on how long it takes the publishing side to write the log message to the StringBuilder, it will potentially be processed and then reset by the consumer side before the publisher is complete. In this implementation I’m instead using a simple String to avoid that problem.&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;import com.lmax.disruptor.EventFactory;
+&lt;p&gt;class LogEntry
+{
+public static final EventFactory&amp;lt;LogEntry&amp;gt; FACTORY = new EventFactory&amp;lt;LogEntry&amp;gt;()
+{
+public LogEntry newInstance()
+{
+return new LogEntry();
+}
+};&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;long time;
+int level;
+String text;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;The one Disruptor-specific addition is that we create an EventFactory instance which the Disruptor uses to pre-populate the ring buffer entries.&lt;/p&gt;
+&lt;p&gt;Next, let’s look at the BackgroundLogger class that sets up the process and acts as the producer.&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
+&lt;p&gt;import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;&lt;/p&gt;
+&lt;p&gt;public class BackgroundLogger
+{
+private static final int ENTRIES = 64;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private final ExecutorService executorService;
+private final Disruptor&amp;amp;lt;LogEntry&amp;amp;gt; disruptor;
+private final RingBuffer&amp;amp;lt;LogEntry&amp;amp;gt; ringBuffer;
+
+BackgroundLogger()
+{
+    executorService = Executors.newCachedThreadPool();
+    disruptor = new Disruptor&amp;amp;lt;LogEntry&amp;amp;gt;(LogEntry.FACTORY, ENTRIES, executorService);
+    disruptor.handleEventsWith(new LogEntryHandler());
+    disruptor.start();
+    ringBuffer = disruptor.getRingBuffer();
+}
+
+public void log(String text)
+{
+    final long sequence = ringBuffer.next();
+    final LogEntry logEntry = ringBuffer.get(sequence);
+
+    logEntry.time = System.currentTimeMillis();
+    logEntry.level = level;
+    logEntry.text = text;
+
+    ringBuffer.publish(sequence);
+}
+
+public void stop()
+{
+    disruptor.shutdown();
+    executorService.shutdownNow();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;In the constructor we create an ExecutorService which the Disruptor will use to execute the consumer threads (a single thread in this case), then the disruptor itself. We pass in the LogEntry.FACTORY instance for it to use to create the entries and a size for the ring buffer.&lt;/p&gt;
+&lt;p&gt;The log method is our producer method. Note the use of two-phase commit. First claim a slot with the ringBuffer.next() method, then copy our values into that slot’s entry and finally publish the slot, ready for the consumer to process. We could have also used the Disruptor.publish method which can make this simpler for many use cases by rolling the two phase commit into call.&lt;/p&gt;
+&lt;p&gt;The producer doesn’t need to do any batching as the Disruptor will do that automatically if the consumer is falling behind, though there are also APIs that allow batching the producer which can improve the performance if it fits into your design (here it’s probably better to publish each log entry as it comes in).&lt;/p&gt;
+&lt;p&gt;The stop method uses the new shutdown method on the Disruptor which takes care of waiting until all consumers have processed all available entries for you, &lt;a href=&#34;http://groups.google.com/group/lmax-disruptor/browse_thread/thread/511cadc6383260aa/35e537304fc6439f?lnk=gst&amp;amp;q=stop+disruptor#35e537304fc6439f&#34;&gt;though the code for doing it yourself is quite straight-forward&lt;/a&gt;. Finally we shut down the executor.&lt;/p&gt;
+&lt;p&gt;Note that we don’t need a flush method since the Disruptor is always consuming log events as quickly as the consumer can.&lt;/p&gt;
+&lt;p&gt;Last of all, the consumer which is almost entirely implementation logic:&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;
+import com.lmax.disruptor.EventHandler;
+&lt;p&gt;public class LogEntryHandler implements EventHandler&amp;lt;LogEntry&amp;gt;
+{&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public LogEntryHandler()
+{
+}
+
+public void onEvent(final LogEntry logEntry, final long sequence, final boolean endOfBatch) throws Exception
+{
+    // Write
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;The consumer’s onEvent method is called for each LogEntry put into the Disruptor. The endOfBatch flag can be used as a signal to flush written content to disk, allowing very large buffer sizes to be used causing writes to disk to be batched when the consumer is running behind, yet also ensure that our valuable log messages get to disk as quickly as possible.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/1243275&#34;&gt;The full code is available as a Gist&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Single Implementation Fallacy</title>
+      <link>https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/</link>
+      <pubDate>Sat, 18 Jun 2011 17:42:53 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/</guid>
+      <description>&lt;p&gt;As my colleague and favorite debating opponent &lt;a href=&#34;http://blog.codeaholics.org/2011/the-single-implementation-paradox/&#34;&gt;Danny Yates noted&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We got into a bit of a debate at work recently. It went a bit like this:&lt;/p&gt;
+&lt;p&gt;“Gah! Why do we have this interface when there is only a single implementation?”&lt;/p&gt;
+&lt;p&gt;(The stock answer to this goes:) “Because we need the interface in order to mock this class in our tests.”&lt;/p&gt;
+&lt;p&gt;“Oh no you don’t, you can use the FingleWidget [insert appropriate technology of your mocking framework of choice here – e.g. JMock ClassImposteriser]! I’m smarter than you!”&lt;/p&gt;
+&lt;p&gt;“Well, yes, you can. But if you’ve correctly followed Design for Extension principles, you’ve made the class final, right? And you definitely can’t mock that! Hah! I’m smarter than you!”&lt;/p&gt;
+&lt;p&gt;“Ah ha! But you could always use the &lt;a href=&#34;http://jdave.org/documentation.html#mocking&#34;&gt;JDave Unfinaliser Agent&lt;/a&gt;! I’m so smart it hurts!”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I tend to side with Danny that using the unfinaliser agent is a bad idea, but I also have to question the benefit of declaring a class final in the first place. However, let’s first cover why I think &lt;a href=&#34;http://www.symphonious.net/2011/06/02/enterprisey-interfaces/&#34;&gt;single implementation interfaces are an “enterprisey” anti-pattern&lt;/a&gt; in a little more detail.&lt;/p&gt;
+&lt;h2 id=&#34;why-single-implementation-interfaces-are-evil&#34;&gt;Why Single Implementation Interfaces Are Evil&lt;/h2&gt;
+&lt;h3 id=&#34;interface-separation-or-interface-duplication&#34;&gt;Interface Separation or Interface Duplication&lt;/h3&gt;
+&lt;p&gt;The main argument people raise in favour of having interfaces for everything, even if there’s only one implementation is that it separates the API from the implementation. However in practice with languages like Java, this is simply not true. The interface has to be entirely duplicated in the implementation and the two are tightly coupled. Take the code:&lt;/p&gt;
+&lt;pre&gt;public interface A {
+  String doSomething(int p1, Object p2);
+}
+
+public class AImpl implements A {
+  public String doSomething(int p1, Object p2) { ... }
+}
+&lt;/pre&gt;
+&lt;p&gt;This is a pretty clear violation of Don’t Repeat Yourself (DRY). The fact that the implementation name is essentially the same as the interface is a clear indication that there’s actually only one concept here. If there had been a vision of multiple implementations that work in different ways the class name would have reflected this (e.g. LinkedList vs ArrayList or FileReader vs StringReader).&lt;/p&gt;
+&lt;p&gt;As a general rule, if you can’t think of a good name for your class (or method, variable, etc) you’ve probably broken things down in the wrong way and you should rethink it.&lt;/p&gt;
+&lt;h3 id=&#34;extra-layers--extra-work&#34;&gt;Extra Layers == Extra Work&lt;/h3&gt;
+&lt;p&gt;The net result of duplicating the API is that each time you want to add or change a method on the interface you have to duplicate that work and add it to the class as well. It’s a small amount of time but distracts from the real task at hand and amounts to a lot of unnecessary “busy work” if you force every class to have a duplicate interface. Plus if you subscribe to the idea of &lt;a href=&#34;http://www.infoq.com/news/2011/05/less-code-is-better&#34;&gt;code as inventory&lt;/a&gt;, those duplicated method declarations are costing you money.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://radar.oreilly.com/2011/06/devwir-ios-lawsuits-openoffice-apache-java.html&#34;&gt;Also, as James Turner pointed out&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Unneeded interfaces are not only wasted code, they make reading and debugging the code much more difficult, because they break the link between the call and the implementation.
+This is probably the biggest problem I have with single implementation interfaces. When you’re tracking down a difficult bug you have to load up a lot of stuff into your head all at once – the call stack, variable values, expected control flow vs actual etc etc. Having to make the extra jump through a pointless interface on each call can be the straw that breaks the camel’s back and cause the developer to loose track of the vital context information. It’s doubly bad if you have to jump through a factory as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;library-code&#34;&gt;Library Code&lt;/h3&gt;
+&lt;p&gt;Many people argue that in library code, providing separate interfaces is essential to define the API and ensure nothing leaks out accidentally. This is the one case where I think it makes sense to use an interface as it frees up your internal classes to use method visibility to let classes collaborate “behind the scenes” and have a clean implementation, without that leaking out to the API.&lt;/p&gt;
+&lt;p&gt;A word of warning however: one of the fatal mistakes you can make in a Java library is to provide interfaces that you expect the code using the library to implement. Doing this makes it extremely difficult to maintain backwards compatibility – if you ever need to add a method to that interface compatibility is immediately and unavoidably broken. On the other hand, providing an abstract class that you expect to be extended allows new methods to be added more easily since they can often provide a no-op implementation and maintain backwards compatibility. Abstract classes do limit the choices the code using the library can make though so neither option is a clear cut winner.&lt;/p&gt;
+&lt;h2 id=&#34;why-declaring-classes-final-is-pointless&#34;&gt;Why Declaring Classes Final is Pointless&lt;/h2&gt;
+&lt;p&gt;So at last we come back around to the original problem of needing to mock out classes during testing but being unable to because they’re marked final. There seem to be two main reasons that people like to make classes final:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Classes should be marked final unless they are explicitly designed for inheritance.&lt;/li&gt;
+&lt;li&gt;Marking a class final provides hints to HotSpot that can improve performance either by method inlining or using faster method call dispatch algorithms (direct instead of dynamic).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;designing-for-extension&#34;&gt;Designing for Extension&lt;/h3&gt;
+&lt;p&gt;I have a fair bit of sympathy for the argument that classes should be final unless designed for inheritance, but for shared code within a development team it has a very critical flaw – it’s trivial to just remove the word final and carry on, so people will. Let’s face it, if you look at a class and think “I can best solve my problem by extending this class” then a silly little keyword which may have just been put their by habit is not going to stop you. You’d need to also provide a clear comment about why the class isn’t suitable for extension but in most cases such a reason doesn’t exist – extension just hadn’t been thought about yet so the class is inherently not designed for extension. Besides which, if you have the concept of shared code ownership then whoever extends the class is responsible for making any design changes required to make it suitable for extending when they use it as a base class. Most likely though, they have already looked at the class and decided it’s suitable for extension as is which is why they are trying to do just that.&lt;/p&gt;
+&lt;p&gt;Perhaps what would be better is to require any class that is designed for extension to have a @DesignedForExtension annotation, then use code analysis tools (like &lt;a href=&#34;http://code.google.com/p/freud/&#34;&gt;Freud&lt;/a&gt;) to fail the build if a class without that annotation is extended. That makes the default not-extendable which is more likely to be correct and still lets you mock the object for testing. You would however want an IDE plugin to make the error message show up immediately but it does seem like a nice way to get the best of all worlds.&lt;/p&gt;
+&lt;h3 id=&#34;final-classes-go-faster&#34;&gt;Final Classes Go Faster&lt;/h3&gt;
+&lt;p&gt;I found myself immediately suspicious of this claim – it may have been true once but HotSpot is a seriously clever little JIT engine and advances at an amazing pace. Many people claim that HotSpot can inline final methods and it can, but it can also inline non-final methods. That’s right, &lt;a href=&#34;http://java.sun.com/developer/technicalArticles/Networking/HotSpot/inlining.html&#34;&gt;it will automatically work out that there is only one possible version of this method that exists and go right ahead and inline it for you&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is also a slight variant of this that claims that since dynamic method dispatch is more expensive, marking a method as final means the JVM can avoid the dynamic dispatch for that method. Marking a class final effectively makes all it’s methods final so that every method would get the benefit.&lt;/p&gt;
+&lt;p&gt;My reasoning is such that if HotSpot can work out that it can safely inline a method, it clearly has all the information required to avoid the dynamic dispatch as well. I can’t however find any reference to definitively show it does that. Fortunately, I don’t need to. Remember back at the start we said we had to introduce an interface to make things testable? That means changing our code from:&lt;/p&gt;
+&lt;pre&gt;final class A { public void doSomething(); }
+…
+A a = new A();
+a.doSomething();
+&lt;/pre&gt;
+&lt;p&gt;To:&lt;/p&gt;
+&lt;pre&gt;interface A { void doSomething(); }
+
+final class AImpl implements A { public void doSomething(); }
+…
+A a = new AImpl();
+a.doSomething();
+&lt;/pre&gt;
+&lt;p&gt;Since we’ve duplicated the method declaration, there is no guarantee that the only version of doSomething is in AImpl, since any class could implement interface A and provide a version of doSomething. We’re right back to relying on HotSpot doing clever tricks to enable method inlining and avoiding dynamic method dispatch.&lt;/p&gt;
+&lt;p&gt;There simply can be no performance benefit to declaring a class final if you then refer to it via an interface rather than the concrete class. And if you refer to it as the concrete class you can’t test it.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There shouldn’t be anything too surprising here – less code is better, simpler architectures work better and never underestimate how clever HotSpot is. Slavishly following the rule of separating the interface from the code doesn’t make code any more testable, it doesn’t reduce coupling between classes (since they still call the same methods) and it does create extra work. So why does everyone keep doing it?&lt;/p&gt;
+&lt;p&gt;Oh and, nyah, nyah, I’m so smart it hurts…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Abstracting Acceptance Tests</title>
+      <link>https://www.symphonious.net/2011/03/26/abstracting-acceptance-tests/</link>
+      <pubDate>Sat, 26 Mar 2011 21:38:37 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/03/26/abstracting-acceptance-tests/</guid>
+      <description>&lt;p&gt;For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”&lt;a href=&#34;#footnote1:1301173295622&#34;&gt;1&lt;/a&gt;{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.&lt;/p&gt;
+&lt;p&gt;At LMAX that issue has been quite well handled by building a custom DSL for writing the acceptance tests so the acceptance tests are described at a very high level and then the details are handled in one place within the DSL – where they can be easily adjusted if the UI needs to be changed. It’s certainly not a new idea, but it’s executed better at LMAX than I’ve seen anywhere else. They regularly have not just testers but also business analysts writing acceptance tests ahead of the new functionality being developed.&lt;/p&gt;
+&lt;p&gt;One of the key reasons for the success of the DSL at LMAX is getting the level of abstraction right – much higher than most acceptance test examples use. The typical example of a login acceptance test would be something like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open the application&lt;/li&gt;
+&lt;li&gt;Enter “fred” in the field “username”&lt;/li&gt;
+&lt;li&gt;Enter “mypass” in the field “password”&lt;/li&gt;
+&lt;li&gt;Click the “login” button&lt;/li&gt;
+&lt;li&gt;Assert that the application welcome screen is shown&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;However the LMAX DSL would abstract all of that away as just:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Login as “fred”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The DSL knows what web page to load to login (and how to log out if it’s already logged in), what fields to fill out and has default values for the password and other fields on the login form. You can specify them directly if required, but the DSL takes care of as much as possible.&lt;/p&gt;
+&lt;p&gt;The second thing I’ve found very clever with the DSL is the way it helps to ensure tests run in an isolated environment as much as possible – even when running in parallel with other tests. There is very heavy use of aliases instead of actual values. So telling the DSL to login as “fred” will actually result in logging in as something like “fred-938797” – the real username being stored under the alias “fred” when the user was setup by the DSL. That way you have can thousands of tests all logging in as “user” and still be isolated from each other.&lt;/p&gt;
+&lt;p&gt;Interestingly, the LMAX DSL isn’t particularly English-like at all – it’s much closer to Java than English. It aims to be simple enough to understand by smart people who are working with the acceptance tests, but not necessarily the code, regularly. Sometimes developers can assume that non-developers are only capable of reading actual English text and invest too much time in making the DSL readable rather than functional, effective and efficient at expressing the requirements.&lt;/p&gt;
+&lt;p&gt;There is still a very obvious cost to building and maintaining such a large body of acceptance: some stories can require as much time writing acceptance tests as they do building the actual functionality and there is a lot of time and money invested in having enough hardware to run all those slow acceptance tests. Even so, I’ve seen a huge payoff for that effort even in the short time I’ve worked there. The acceptance tests give people the confidence to try things out and go ahead an refactor code that needs it – even it the changes also require large-scale changes to the unit tests.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1301173295622&#34; id=&#34;footnote1:1301173295622&#34;&gt;1&lt;/a&gt; &amp;#8211; strictly speaking I believe it’s a multi-lateral trading facility. Don&#39;t ask me what the exact difference is. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1301173295622&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Apple-Scented Coffee Beans are Accurate</title>
+      <link>https://www.symphonious.net/2010/11/12/apple-scented-coffee-beans-are-accurate/</link>
+      <pubDate>Fri, 12 Nov 2010 14:12:40 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/11/12/apple-scented-coffee-beans-are-accurate/</guid>
+      <description>&lt;p&gt;So &lt;a href=&#34;http://www.apple.com/pr/library/2010/11/12openjdk.html&#34;&gt;Apple have announced that they will be contributing large swaths of code to the OpenJDK project&lt;/a&gt; and that from Java 7 onwards, Java will be a separate download from Oracle, much like Flash is now a separate download from Adobe. This really shouldn’t be unexpected for &lt;a href=&#34;http://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/&#34;&gt;anyone who was paying attention&lt;/a&gt; to what was going on rather than just running around thinking the sky was falling.&lt;/p&gt;
+&lt;p&gt;This is fantastic news for Java developers of all types. Mac Java developers have been asking for Java to be separated from the OS for many, many years so that multiple versions of Java are more manageable and especially to decouple Java releases from the OS release timeline.&lt;/p&gt;
+&lt;p&gt;Since the main JVM for OS X will now be open source, intrepid developers can dive in and fix issues they run into or at least dig into the code to understand it better and find work-arounds they can use. Apple has historically been quite innovative with it’s JVM port as well, bringing some great stuff to the JVM on OS X first&lt;a href=&#34;#footnote1:1289570799500&#34;&gt;1&lt;/a&gt;{#footlink1:1289570799500.footnote}. It should now be easier to share those innovations across platforms which is great for all Java users.&lt;/p&gt;
+&lt;p&gt;It’s also nice to know that Java 6 will continue to be bundled with the OS in OS X 10.7 Lion. That gives a nice ramp-up for Apple and developers to transition to an optionally installed JVM and ensure things work smoothly either by applications bundling a JVM with the app or the installer or through auto-install methods for applets and webstart etc.&lt;/p&gt;
+&lt;p&gt;Finally, this should mean that JDK7 development on Mac will be done in the open, giving developers earlier and far greater access to try it out and report any issues back.&lt;/p&gt;
+&lt;p&gt;Seems like a huge win all round to me.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1289570799500&#34; id=&#34;footnote1:1289570799500&#34;&gt;1&lt;/a&gt; &amp;#8211; for example the ability to share the core classes between JVM instances, but also a lot of stuff in how swing works and integrates with the OS &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1289570799500&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

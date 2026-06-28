@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Diffing HTML | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I think this is the final episode in my series of responses1 to Alastair&rsquo;s Responding to Adrian. What&rsquo;s the aim of diffing HTML, how hard is it and how do you go about it?
+The aim is really important to identify. The most common and most useful aim that I see for diffing HTML is to be able to show users what changed between two versions of a document. Since the management of most content is centralized2, this equates to showing the combined changes in each version between the original version to compare and the final version to compare. If you&rsquo;ve ever wanted to see what&rsquo;s changed on a wiki page, you&rsquo;ve wanted this type of diff. If you&rsquo;re sending Word documents back and forth between people you probably want this type of diff too.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/06/13/diffing-html/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/06/13/diffing-html/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Diffing HTML">
+	<meta property="og:description" content="I think this is the final episode in my series of responses1 to Alastair’s Responding to Adrian. What’s the aim of diffing HTML, how hard is it and how do you go about it?
+The aim is really important to identify. The most common and most useful aim that I see for diffing HTML is to be able to show users what changed between two versions of a document. Since the management of most content is centralized2, this equates to showing the combined changes in each version between the original version to compare and the final version to compare. If you’ve ever wanted to see what’s changed on a wiki page, you’ve wanted this type of diff. If you’re sending Word documents back and forth between people you probably want this type of diff too.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-06-13T03:05:18+00:00">
+		<meta property="article:modified_time" content="2006-06-13T03:05:18+00:00">
+
+	<meta itemprop="name" content="Diffing HTML">
+	<meta itemprop="description" content="I think this is the final episode in my series of responses1 to Alastair’s Responding to Adrian. What’s the aim of diffing HTML, how hard is it and how do you go about it?
+The aim is really important to identify. The most common and most useful aim that I see for diffing HTML is to be able to show users what changed between two versions of a document. Since the management of most content is centralized2, this equates to showing the combined changes in each version between the original version to compare and the final version to compare. If you’ve ever wanted to see what’s changed on a wiki page, you’ve wanted this type of diff. If you’re sending Word documents back and forth between people you probably want this type of diff too.">
+	<meta itemprop="datePublished" content="2006-06-13T03:05:18+00:00">
+	<meta itemprop="dateModified" content="2006-06-13T03:05:18+00:00">
+	<meta itemprop="wordCount" content="752">
+	<meta itemprop="keywords" content="Code and Geek Stuff,General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Diffing HTML">
+	<meta name="twitter:description" content="I think this is the final episode in my series of responses1 to Alastair’s Responding to Adrian. What’s the aim of diffing HTML, how hard is it and how do you go about it?
+The aim is really important to identify. The most common and most useful aim that I see for diffing HTML is to be able to show users what changed between two versions of a document. Since the management of most content is centralized2, this equates to showing the combined changes in each version between the original version to compare and the final version to compare. If you’ve ever wanted to see what’s changed on a wiki page, you’ve wanted this type of diff. If you’re sending Word documents back and forth between people you probably want this type of diff too.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Diffing HTML</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Diffing HTML</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-06-13T03:05:18Z">June 13, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I think this is the final episode in my series of responses<a id="footlink1" href="#footnote1" name="footlink1" class="footnote">1</a> to Alastair&rsquo;s <em><a href="http://girtby.net/archives/2006/06/05/responding-to-adrian/">Responding to Adrian</a></em>. What&rsquo;s the aim of diffing HTML, how hard is it and how do you go about it?</p>
+<p>The aim is really important to identify. The most common and most useful aim that I see for diffing HTML is to be able to show users what changed between two versions of a document. Since the management of most content is centralized<a id="footlink2" href="#footnote2" name="footlink2" class="footnote">2</a>, this equates to showing the combined changes in each version between the original version to compare and the final version to compare. If you&rsquo;ve ever wanted to see what&rsquo;s changed on a wiki page, you&rsquo;ve wanted this type of diff. If you&rsquo;re sending Word documents back and forth between people you probably want this type of diff too.</p>
+<p>Another common and useful type of diff is where two parties have made changes to the same base version and you want to compare them so they can be merged into a single document with both changes. This is useful when you don&rsquo;t have a centralized repository controlling things, or if that repository allows concurrent changes.</p>
+<p>The third use of diff is to store only changes to a document in order to save space, be that on the file system or network bandwidth. This is the one form which has absolutely no need for human readability.</p>
+<p>It&rsquo;s also worth noting that diffing HTML is quite different to diffing generic XML. HTML is a document format and the type of content it generally contains is very natural language intensive. There are many XML formats that have similar attributes<a id="footlink3" href="#footnote3" name="footlink3" class="footnote">3</a>, but also a lot of XML formats that don&rsquo;t<a id="footlink4" href="#footnote4" name="footlink4" class="footnote">4</a>. For content that isn&rsquo;t natural language intensive, diffing in any of these use cases comes down to the classic computer science techniques – adding, removing and moving elements, adding, removing and changing attributes, changing element content etc. However, for natural language based content, the changes to the XML structure are far less important than the changes to the actual textual content.</p>
+<p>It may well be that I&rsquo;ve missed something, and if so please let me know, but despite a reasonable amount of searching I&rsquo;ve never seen a diff tool for any format that can handle natural language well. For the aim of showing changes between document versions, the most important thing is that the diff output clearly shows the intent of changes, not the effect of them. Line based diff obviously doesn&rsquo;t cut it here as a single character spelling correction shouldn&rsquo;t cause the entire line to be marked as different. This kind of change is where Word&rsquo;s track changes shines – it can mark that one character change as a single character change while still marking a change from &ldquo;the&rdquo; to &ldquo;tear&rdquo; as a word change instead of removed h and an inserted a and r. It is complexities like these that make natural language diffing so hard.</p>
+<p>XML structural diffing on the other hand is a fairly well solved problem as long as you just need to know that the content changed, rather than clearly what was changed. <a href="http://www.docucomp.com/">Docucomp</a> for instance has very good diffing tools for HTML, but it is largely ineffective at showing the intent of changes to natural language.</p>
+<p>In general, I agree with Alastair&rsquo;s comments on diffing, but he seems to be looking mostly at the second two use cases<a id="footlink5" href="#footnote5" name="footlink5" class="footnote">5</a> whereas I mostly focus on the first case since that&rsquo;s about the only use case I have for diff. I also agree that Word has some significant limitations and bugs in its track changes implementation, but as a technology concept it does show the potential for tracking changes as they happen instead of diffing after the fact as a way of showing changes between two versions of a document to humans. A complete implementation of track changes<a id="footlink6" href="#footnote6" name="footlink6" class="footnote">6</a> would enable the other two use cases but with more effort than a post-edit diff.</p>
+<p>In the end, it really comes down to what your use case is.</p>
+<p> </p>
+<p class="footnote">
+  <a id="footnote1" href="#footlink1" name="footnote1">1</a> &#8211; Previous responses:&#160;<a href="http://www.symphonious.net/2006/06/11/on-the-importance-of-rendering-fidelity/" title="On The Importance Of Rendering Fidelity">On The Importance Of Rendering Fidelity</a>, <a href="http://www.symphonious.net/2006/06/12/the-invisible-formatting-tag-problem/" title="The Invisible Formatting Tag Problem">The Invisible Formatting Tag Problem</a> and the original <a href="http://www.symphonious.net/2006/05/12/the-challenge-of-intuitive-wysiwyg-html/" title="The Challenge Of Intuitive WYSIWYG HTML">The Challenge Of Intuitive WYSIWYG HTML</a><a href="#footlink1">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote2" href="#footlink2" name="footnote2">2</a> &#8211; at least in the area I&#160;work in where CMSs and similar systems are everywhere<a href="#footlink2">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote3" href="#footlink3" name="footnote3">3</a> &#8211; Docbook and DITA&#160;come to mind<a href="#footlink3">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote4" href="#footlink4" name="footnote4">4</a> &#8211; eg: the data from a form that is stored as XML<a href="#footlink4">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote5" href="#footlink5" name="footnote5">5</a> &#8211; which explains why three way diff is a hard requirement<a href="#footlink5">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote6" href="#footlink6" name="footnote6">6</a> &#8211; Word can't track structural changes to tables<a href="#footlink6">&#8617;</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

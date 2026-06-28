@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Build Systems on Symphonious</title>
+    <link>https://www.symphonious.net/categories/build-systems/</link>
+    <description>Recent content in Build Systems on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sat, 25 Mar 2017 09:58:21 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/build-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using WebPack with Buck</title>
+      <link>https://www.symphonious.net/2017/03/25/using-webpack-with-buck/</link>
+      <pubDate>Sat, 25 Mar 2017 09:58:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/03/25/using-webpack-with-buck/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been gradually tidying up the build process for UI stuff at LMAX. We had been using a mix of requires and browserify – both pretty sub-optimally configured. Obviously when you have too many ways of doing things the answer is to introduce another new way so I&amp;rsquo;ve converted everything over to &lt;a href=&#34;https://webpack.js.org&#34;&gt;webpack&lt;/a&gt;.&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; class=&#34;alignnone size-large&#34; src=&#34;https://imgs.xkcd.com/comics/standards.png&#34; alt=&#34;Situation: There are 14 competing standards. We need to develop one universal standard that overs everyone&#39;s use cases. Situation: there are 15 competing standards...&#34; width=&#34;500&#34; height=&#34;283&#34; /&gt; 
+&lt;p&gt;Webpack is most often used as part of a node or gulp/grunt build process but our overall build process is controlled by &lt;a href=&#34;http://buckbuild.com&#34;&gt;Buck&lt;/a&gt; so I&amp;rsquo;ve had to work it into that setup. I was also keen to minimise the amount of code that had to be changed to support the new build process.&lt;/p&gt;
+&lt;p&gt;The final key requirement, which had almost entirely been missed by our previous UI build attempts was the ability to easily create reusable UI modules that are shared by some, but not all projects. Buck shuns the use of repositories in favour of a single source tree with everything in it so an internal npm repo wasn&amp;rsquo;t going to fly.&lt;/p&gt;
+&lt;p&gt;While the exact details are probably pretty specific to our setup, the overall shape of the build likely has benefit.  We have separate buck targets (using genrule) for a few different key stages:&lt;/p&gt;
+&lt;h3 id=&#34;build-node_modules&#34;&gt;Build node_modules&lt;/h3&gt;
+&lt;p&gt;We use npm to install third party dependencies to build the node_modules directory we&amp;rsquo;ll need. We do this in an offline way by checking in the node cache as CI doesn&amp;rsquo;t have internet access but it&amp;rsquo;s pretty unsatisfactory. Checking in node_modules directory was tried previously but both svn and git have massive problems with the huge numbers of files it winds up containing.&lt;/p&gt;
+&lt;p&gt;yarn has much better offline support and other benefits as well, but it&amp;rsquo;s offline support requires a cache and the cache has every package already expanded so it winds up with hundreds of thousands of files to check in and deal with. Further investigations are required here…&lt;/p&gt;
+&lt;p&gt;For our projects that use Angular 2, this is actually the slowest part of our entire build (UI and server side). rxjs seems to be the main source of issues as it takes &lt;em&gt;forever&lt;/em&gt; to install. Fortunately we don&amp;rsquo;t change our third party modules often and we can utilise the shared cache of artefacts so developers don&amp;rsquo;t wind up building this step locally too often.&lt;/p&gt;
+&lt;h3 id=&#34;setup-a-workspace-and-generate-webpackconfigjs&#34;&gt;Setup a Workspace and Generate webpack.config.js&lt;/h3&gt;
+&lt;p&gt;We don&amp;rsquo;t want to have to repeat the same configuration for webpack, typescript, karma etc for everything UI thing we build. So our build process generates them for us, tweaking things as needed to account for the small differences between projects. It also grabs the node_modules from the previous step and installs any of our own shared components (with npm install &amp;lt;local/path/to/component&amp;gt;).&lt;/p&gt;
+&lt;h3 id=&#34;build-ui-stuff&#34;&gt;Build UI Stuff&lt;/h3&gt;
+&lt;p&gt;Now we&amp;rsquo;ve got something that looks just like most stand-alone javascript projects would have – config files at the root, source ready to combine/minify etc. At this point we can just run things out of node_modules. So we have a target to build with ./node_modules/.bin/webpack, run tests with ./node_modules/.bin/karma or start the webpack dev server.&lt;/p&gt;
+&lt;p&gt;Buck can then pick up those results and integrate them where they&amp;rsquo;re needed in the final outputs ready for deployment.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Finding What Buck Actually Built</title>
+      <link>https://www.symphonious.net/2017/03/20/finding-what-buck-actually-built/</link>
+      <pubDate>Sun, 19 Mar 2017 17:30:16 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/03/20/finding-what-buck-actually-built/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://buckbuild.com&#34;&gt;Buck&lt;/a&gt; is a weird but very fast build tool that happens to be rather opaque about where it actually puts the things you build with it. They wind up somewhere under the buck-out folder but there&amp;rsquo;s no guarantee where and everything under there is considered buck&amp;rsquo;s private little scratch pad.&lt;/p&gt;
+&lt;p&gt;So how do you get build results out so they can be used? For things with built-in support like Java libraries you can use ‘buck publish&amp;rsquo; to push them out to a repo but that doesn&amp;rsquo;t work for things you&amp;rsquo;ve built with a custom genrule. In those cases you could use an additional genrule build target to actually publish but it would only run when one of it&amp;rsquo;s dependencies have changed. Sometimes that&amp;rsquo;s an excellent feature but it&amp;rsquo;s not always what you want.&lt;/p&gt;
+&lt;p&gt;Similarly, you might want to actually run something you&amp;rsquo;ve built. You can almost always use the ‘buck run&amp;rsquo; command to do that but it will tie up the buck daemon while it&amp;rsquo;s running so you can&amp;rsquo;t run two things at once.&lt;/p&gt;
+&lt;p&gt;For ultimate flexibility you really want to just find out where the built file is which thankfully is possible using ‘buck targets –show-full-output&amp;rsquo;. However it outputs both the target and it&amp;rsquo;s output:&lt;/p&gt;
+&lt;pre&gt;$ buck targets --show-full-output //support/bigfeedback:bigfeedback&lt;br /&gt;//bigfeedback:bigfeedback /code/buck-out/gen/bigfeedback/bigfeedback.jar&lt;/pre&gt;
+&lt;p&gt;To get just the target file we need to pipe it through:&lt;/p&gt;
+&lt;pre&gt;cut -d &#39; &#39; -f 2-&lt;/pre&gt;
+&lt;p&gt;Or as a handy reusable bash function:&lt;/p&gt;
+&lt;pre&gt;function findOutput() {
+    $BUCK targets --show-full-output ${1} | cut -d &#39; &#39; -f 2-
+}&lt;/pre&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Replacing Symlinks with Hardlinks</title>
+      <link>https://www.symphonious.net/2017/03/13/replacing-symlinks-with-hardlinks/</link>
+      <pubDate>Sun, 12 Mar 2017 14:42:04 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/03/13/replacing-symlinks-with-hardlinks/</guid>
+      <description>&lt;p&gt;Symlinks have been causing me grief lately.  Our build tool, buck, loves creating symlinks but publishes corrupt cache artefacts for any build rule that includes a symlink amongst it&amp;rsquo;s output.&lt;/p&gt;
+&lt;p&gt;We also wind up calling out to npm to manage JavaScript dependencies and it has an annoying (for us) habit of resolving symlinks when processing files and then failing to find required libraries because the node_modules folder was back where the symlink was, not with the original file. Mostly this problem is caused by buck creating so many symlinks.&lt;/p&gt;
+&lt;p&gt;So it&amp;rsquo;s useful to be able to get rid of symlinks which can be done with the handy -L or –dereference option to cp. Then instead of copying the symlink you copy the file it points to. Avoids all the problems with buck and npm but wastes lots of disk space and means that changes to the original file are no longer reflected in the new copy (so watching files doesn&amp;rsquo;t work).&lt;/p&gt;
+&lt;p&gt;Assuming our checkout is on a single file system (which seems reasonable) we can get the best of both worlds by using hard links.  cp has a handy option for that too -l or –link. But since buck gave us a symlink to start with it just gives us a hard link to the symlink that points to the original file.&lt;/p&gt;
+&lt;p&gt;So combining the two options, cp -Ll, should be exactly what we want. And if you&amp;rsquo;re using coreutils 8.25 or above it is. cp will dereference the symlink and create a hard link to the original file. If you&amp;rsquo;re using coreutils &lt;em&gt;prior&lt;/em&gt; to 8.25 cp will just copy the symlink. Hitting a bug in coreutils is pretty much the definition of the world being out to get you.&lt;/p&gt;
+&lt;p&gt;Fortunately, we can work around the issue with a bit of find magic:&lt;/p&gt;
+&lt;pre&gt;find ${DIR} -type l -exec bash -c &#39;ln -f &#34;$(readlink -m &#34;$0&#34;)&#34; &#34;$0&#34;&#39; {} \;&lt;/pre&gt;
+&lt;p&gt;‘find -type l&amp;rsquo; will find all symlinks.  For each of those we execute some bash, reading from inside out, to deference the symlink with readlink -m then use ln to create a hard link with the -f option to force it to overwrite the existing symlink.&lt;/p&gt;
+&lt;p&gt;Good times…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Travis CI</title>
+      <link>https://www.symphonious.net/2015/10/01/travis-ci/</link>
+      <pubDate>Thu, 01 Oct 2015 01:26:18 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/10/01/travis-ci/</guid>
+      <description>&lt;p&gt;Probably the best thing I&amp;rsquo;ve discovered with my recent playing is &lt;a href=&#34;https://travis-ci.org&#34;&gt;Travis CI&lt;/a&gt;. I&amp;rsquo;ve known about it for quite some time, even played with it for simple projects but never with anything with any real complexity. Given this project uses rails which wants a database for pretty much every test and that database has to be postgres because I&amp;rsquo;m using it&amp;rsquo;s jsonb support, plus capybara and phantomjs for good measure, this certainly isn&amp;rsquo;t a simple project to test.&lt;/p&gt;
+&lt;p&gt;Despite that, getting things running on Travis CI was quick and easy. The container based builds give you a well controlled environment out of the box and they already have a heap of software you&amp;rsquo;re likely to need ready to go. Other things can be easily provided using a simple .travis.yml file.&lt;/p&gt;
+&lt;p&gt;While it&amp;rsquo;s common to have a build server these days, it&amp;rsquo;s quite uncommon for them to be so well controlled and able to be rebuilt quickly and easily – most wind up being special little snowflakes in some way or other. So building on Travis CI is immediately a massive leap forward in testing practices.&lt;/p&gt;
+&lt;p&gt;The two things we do at LMAX that I can&amp;rsquo;t see how to do with Travis CI (yet) is creating &lt;a href=&#34;https://www.symphonious.net/2014/03/25/testinglmax-test-results-database/&#34;&gt;a database of historic test results&lt;/a&gt; that can be easily queried (at the individual test level, not the build result level), and &lt;a href=&#34;https://www.symphonious.net/2014/03/30/testinglmax-distributed-builds-with-romero/&#34;&gt;running a build in parallel with the tests automatically load balanced across a number of hosts&lt;/a&gt;. I wouldn&amp;rsquo;t expect either to be provided as part of the free service anyway but they seem like the next major areas of value it could offer (with significant effort required I imagine).&lt;/p&gt;
+&lt;p&gt;Still, it&amp;rsquo;s been a real luxury to have a full CI setup for hacking on a little side project. So thanks for the generosity Travis CI.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Distributed Builds with Romero</title>
+      <link>https://www.symphonious.net/2014/03/30/testinglmax-distributed-builds-with-romero/</link>
+      <pubDate>Sun, 30 Mar 2014 02:48:17 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/03/30/testinglmax-distributed-builds-with-romero/</guid>
+      <description>&lt;p&gt;LMAX has invested quite a lot of time into building a suite of automated tests to verify the behaviour of our exchange. While the majority of those tests are unit or integration tests that run extremely fast, in order for us to have confidence that the whole package fits together in the right way we have a lot of end-to-end acceptance tests as well.&lt;/p&gt;
+&lt;p&gt;These tests deliver a huge amount of confidence and are thus highly valuable to us, but they come at a significant cost because end-to-end tests are relatively time consuming to run. To minimise the feedback cycle we want to run these tests in parallel as much as possible.&lt;/p&gt;
+&lt;p&gt;We started out by simply creating separate groupings of tests, each of which would run in a different Jenkins job and thus run in parallel. However as the set of tests changed over time we kept having to rebalance the groups to ensure we got fast feedback. With jobs finishing at different times they would generally also pick different revisions to run against so we generally weren&amp;rsquo;t getting any revision that all the tests had run against, reducing confidence in the specific build we picked to release to production each iteration.&lt;/p&gt;
+&lt;p&gt;To solve this we&amp;rsquo;ve created custom software to run our acceptance tests which we call Romero. Romero has three parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Romero server itself which coordinates everything&lt;/li&gt;
+&lt;li&gt;Servers which run a full copy of the exchange &lt;/li&gt;
+&lt;li&gt;Agents which are allocated a test to run against a specific server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the start of a test run, the revision to test is deployed to all servers, then Romero loads all the tests for that revision and begins allocating one test to each agent and assigning that agent a server to run against. When an agent finishes running a test it reports the results back to the server and is allocated another test to run. Romero also records information about how long a test takes to run and then uses that to ensure that the longest running tests are allocated first, to prevent them “overhanging” at the end of the run while all the other agents sit around idle.&lt;/p&gt;
+&lt;p&gt;To make things run even faster, most of our acceptance test suites are able to be run in parallel, running multiple test cases at once and also sharing a single server with multiple Romero agents. Some tests however are testing functions which affect the global state of the server and can&amp;rsquo;t share servers. Romero is able to identify these types of tests and use that information when allocating agents to servers.  Servers are designated as either parallel, supporting multiple agents, or sequential, supporting only a single agent. At the start of the run Romero calculates the optimal way to allocate servers between the two groups, again using historical information about how long each test takes.&lt;/p&gt;
+&lt;p&gt;All together this gives us an acceptance test environment which is self-balancing – if we add a lot of parallel tests one iteration servers are automatically moved from sequential to parallel to minimise the run time required.&lt;/p&gt;
+&lt;p&gt;Romero also has one further trick up its sleeve to reduce feedback time – it reports failures as they happen instead of waiting until the end of the run. Often a problematic commit can be reverted before the end of the run, which is a huge reduction in feedback time – normally the next run would already have started with the bad commit still in before anyone noticed the problem, effectively doubling the time required to fix.&lt;/p&gt;
+&lt;p&gt;The final advantage of Romero is that it seamlessly handles agents dying, even in the middle of running a test and reallocates that test to another agent, giving us better resiliency and keeping the feedback cycle going even in the case of minor problems in CI. Unfortunately we haven&amp;rsquo;t yet extended this resiliency to the test servers but it&amp;rsquo;s something we would like to do.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Importing an ant buildfile multiple times</title>
+      <link>https://www.symphonious.net/2013/06/12/importing-an-ant-buildfile-multiple-times/</link>
+      <pubDate>Tue, 11 Jun 2013 23:49:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/06/12/importing-an-ant-buildfile-multiple-times/</guid>
+      <description>&lt;p&gt;According to &lt;a href=&#34;https://ant.apache.org/manual/Tasks/import.html&#34;&gt;the ant documentation&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is possible to include the same file more than once by using different prefixes, it is not possible to import the same file more than once.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Unfortunately, it turns out this isn&amp;rsquo;t _quite _true. In most cases, ant will indeed ignore a request to import a file for the second time, so:&lt;/p&gt;
+&lt;pre&gt;&amp;lt;import&amp;gt;&lt;br /&gt;   &amp;lt;file name=&#34;utils.xml&#34;/&amp;gt;&lt;br /&gt;   &amp;lt;file name=&#34;utils.xml&#34;/&amp;gt;&lt;br /&gt;&amp;lt;/import&amp;gt;&lt;/pre&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;will only import utils.xml once. This is true even if there&amp;rsquo;s a chain of files being imported (so A imports B and C, then B imports C as well, C will only be imported once).&lt;/p&gt;
+&lt;p&gt;The problem arises if you&amp;rsquo;re importing the file via two different methods, you might wind up having it actually be imported twice. In my case I was loading build files from a zip archive (why is a long story that I should write up some time) and those build files references other files also within the zip file. So my main build file had:&lt;/p&gt;
+&lt;pre&gt;&amp;lt;import&amp;gt;&lt;br /&gt;  &amp;lt;javaresource classpath=&#34;bootstrap.zip&#34; &lt;br /&gt;                     name=&#34;basic-build.xml&#34;/&amp;gt;&lt;br /&gt;&amp;lt;/import&amp;gt;&lt;/pre&gt;
+&lt;p&gt;Then basic-build.xml included another utils file from the same zip. Being the well-coded ant file that it is, basic-build.xml doesn&amp;rsquo;t depend on knowing where it&amp;rsquo;s actually located, so it imports the utils file via:&lt;/p&gt;
+&lt;pre&gt;&amp;lt;import&amp;gt;&lt;br /&gt;  &amp;lt;url baseurl=${ant.file.basic-build}&#34; relativePath=&#34;ivy-utils.xml&#34;/&amp;gt;&lt;br /&gt;&amp;lt;/import&amp;gt;&lt;/pre&gt;
+&lt;p&gt;This all works just fine. Then there came a requirement in our main build file to use one of the macros from ivy-utils.xml to set a version number &lt;em&gt;before&lt;/em&gt; basic-build.xml was imported. So the main build file wound up with something like:&lt;/p&gt;
+&lt;pre&gt;&amp;lt;import&amp;gt;
+ &amp;lt;javaresource classpath=&#34;bootstrap.zip&#34;&lt;br /&gt;                    name=&#34;ivy-utils.xml&#34;/&amp;gt;
+&amp;lt;/import&amp;gt;&lt;br /&gt;&amp;lt;!-- Do some stuff --&amp;gt;
+&amp;lt;import&amp;gt;&lt;br /&gt; &amp;lt;javaresource classpath=&#34;bootstrap.zip&#34; &lt;br /&gt;                    name=&#34;basic-build.xml&#34;/&amp;gt;&lt;br /&gt;&amp;lt;/import&amp;gt;&lt;/pre&gt;
+&lt;p&gt;Suddenly the build started failing because ivy-utils.xml was being executed twice and attempting to redefine the ivy configuration which was explicitly disallowed.&lt;/p&gt;
+&lt;p&gt;Looking at the ant -debug output clearly showed the ivy-utils.xml was being imported twice and not skipped, and even that it came from &lt;em&gt;exactly&lt;/em&gt; the same URL. It appears that resolving the same file using two different mechanisms (javaresource and url in this case) caused ant to believe they were different files.&lt;/p&gt;
+&lt;p&gt;The answer was fairly straight-forward, use url resources consistently when importing the files:&lt;/p&gt;
+&lt;pre&gt;&amp;lt;import&amp;gt;
+ &amp;lt;url url=&#34;jar:file:${ant.file}/bootstrap.zip!/ivy-utils.xml&#34;/&amp;gt;
+&amp;lt;/import&amp;gt;&lt;br /&gt;&amp;lt;!-- Do some stuff --&amp;gt;
+&amp;lt;import&amp;gt;&lt;br /&gt; &amp;lt;url url=&#34;jar:file:${ant.file}/bootstrap.zip!/basic-build.xml&#34;/&amp;gt;&lt;br /&gt;&amp;lt;/import&amp;gt;&lt;/pre&gt;
+&lt;p&gt;Building a jar: URL like this is a little unpleasant but not unreasonable. Strictly we could have kept importing basic-build.xml using the javaresource approach but being consistent will save surprises in the future.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ant Dependencies Running Twice</title>
+      <link>https://www.symphonious.net/2013/05/10/ant-dependencies-running-twice/</link>
+      <pubDate>Fri, 10 May 2013 08:42:25 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/05/10/ant-dependencies-running-twice/</guid>
+      <description>&lt;p&gt;Most people believe that ant will only ever execute a target once per execution of ant. So if we have targets A, B, C and D, where A depends on B and C and C and D both depend on D.&lt;/p&gt;
+&lt;pre&gt;&amp;lt;target name=&#34;A&#34; dependencies=&#34;B, C&#34;/&amp;gt;&lt;br /&gt;&amp;lt;target name=&#34;B&#34; dependencies=&#34;D&#34;/&amp;gt;&lt;br /&gt;&amp;lt;target name=&#34;C&#34; dependencies=&#34;D&#34;/&amp;gt;&lt;br /&gt;&amp;lt;target name=&#34;D&#34;/&amp;gt;&lt;/pre&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;When we run ‘ant A&amp;rsquo;, we expect each task to execute once, D first, then B  and C, ending with A. Since there is no dependency between B and C, they may execute in any order, so we might also get D, C, B, A. All pretty straight forward.&lt;/p&gt;
+&lt;p&gt;Similarly, if we run ‘ant B&amp;rsquo; we expect (and get) D then B and ‘ant C&amp;rsquo; gives D then C. Most people expect that if you run ‘ant B C&amp;rsquo;, the execution path would be D, B, C but that&amp;rsquo;s &lt;em&gt;not&lt;/em&gt; what happens. Instead we get D, B, D, C. Each target passed to the command line creates a new dependency chain and runs all targets in that chain.&lt;/p&gt;
+&lt;p&gt;The other case that catches people out is when using antcall. The antcall task actually sets up essentially a new execution of ant (by default inheriting any properties that have already been set). It never inherits the dependency chain or list of targets that have already been executed. So if our targets were:&lt;/p&gt;
+&lt;pre&gt;&amp;lt;target name=&#34;A&#34;&amp;gt;&lt;br /&gt;  &amp;lt;antcall target=&#34;B&#34;/&amp;gt;&lt;br /&gt;  &amp;lt;antcall target=&#34;C&#34;/&amp;gt;&lt;br /&gt;&amp;lt;/target&amp;gt;&lt;br /&gt;&amp;lt;target name=&#34;B&#34; dependencies=&#34;D&#34;/&amp;gt;&lt;br /&gt;&amp;lt;target name=&#34;C&#34; dependencies=&#34;D&#34;/&amp;gt;&lt;br /&gt;&amp;lt;target name=&#34;D&#34;/&amp;gt;&lt;/pre&gt;
+&lt;p&gt;Then the execution order for ‘ant A&amp;rsquo; would be A,D,B,D,C.&lt;/p&gt;
+&lt;p&gt;The cost of running targets twice is reduced because most ant tasks do nothing if their inputs haven&amp;rsquo;t changed (so javac only compiles files once), but for a large project there can still be a significant cost in checking over all the files to determine if anything needs to be done. So whenever possible, use actual dependencies to build up a chain of targets instead of antcall or specifying multiple targets on the command line.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration Requires Integrating Continuously</title>
+      <link>https://www.symphonious.net/2012/07/31/continuous-integration-requires-integrating-continuously/</link>
+      <pubDate>Tue, 31 Jul 2012 03:31:19 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/07/31/continuous-integration-requires-integrating-continuously/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blogs.atlassian.com/2012/07/feature-branching-continuous-integrationgit-bamboo/&#34;&gt;Sarah Goff-Dupont has a post on the Atlassian blog&lt;/a&gt; about how Atlassian is using feature branches and still doing continuous integration:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In the not-so-recent past, continuous integration in the context of story branching was considered so impractical as to be outright incompatible.  Who has time to manually configure a CI scheme for dozens of active branches that will only live a couple of days?  Nobody –that’s who.  And story branch-loving teams would frequently encounter *ahem* “surprises” when merging work onto the main code line –”master”, in Git-speak.  But recent versions of Bamboo have essentially removed that overhead and allowed these two frenenmies to become genuinely harmonious partners in our development lifecycle.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Unfortunately, what Sarah describes is not continuous integration. At best, it&amp;rsquo;s regular integration but really it&amp;rsquo;s just automated testing. The key principal of continuous integration is that all developers are merging all changes, all the time. That way you see the messy combinatorial effects of concurrent changes and can fix them before you waste a lot of time going down incompatible paths. Anything that reduces the frequency of doing that integration is a step away from continuous integration, regardless of how often automated tests are run.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take a look at the basic process they&amp;rsquo;re using:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Next, we go into development and testing cycles on the story branch.  The developer is making local commits on her workstation.  […]  When she reaches a point where she wants to run tests against her work, the developer pushes those local commits up to the repository –still on the story branch, of course.  Bamboo sees that there’s been a change, and starts building the corresponding Plan branch/es.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is not continuous integration. The developer&amp;rsquo;s changes are being kept away from the main team and not integrated while they&amp;rsquo;re being developed, while they sitting just in the local git repository and while they&amp;rsquo;re in the story branch. Even though Bamboo runs tests against the code, there has been no integration done here. This is just automated testing, not continuous integration.&lt;/p&gt;
+&lt;p&gt;It seems that Atlassian have discovered this lack of integration and have developed ways of combating it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To help find conflict before merging to master, the developer can choose to have Bamboo merge master into her story branch each time she pushes changes to the repo, then run through the CI Plan against the merged code. If the Plan passes, Bamboo will commit the merged code to her branch.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Finally we get some integration happening, but only one way. Since everyone&amp;rsquo;s off working on feature branches this is really only integrating with completed stories. All the work going on in parallel on other stories is still not integrated so we have no idea if they will work when combined.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Some teams are taking this workflow a step further and requiring developers to merge to an integration branch during development, before finally merging the completed story to master. This practice ferrets out integration issues even faster. Developers get to mash their in-progress stories together several times a day, rather than waiting until one has merged a completed story to master (which may happen only every 2-3 days) and the other has pulled code from master onto their story branch.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The key lesson here is that if we integrate more often, it&amp;rsquo;s easier to ferret out integration issues. It&amp;rsquo;s like continuous integration but with the extra fun of managing branches…&lt;/p&gt;
+&lt;p&gt;Of course, Atlassian aren&amp;rsquo;t alone in the use of feature branches – it&amp;rsquo;s become all the rage since DVCS supposedly made branching cheap and merging painless. Unfortunately while DVCS has eliminated many of the basic mechanics of merging, they haven&amp;rsquo;t done anything to reduce the risk of different developers push the codebase in incompatible directions at a structural level. The only way to avoid that is to integrate all changes as often as possible – that&amp;rsquo;s continuous integration.&lt;/p&gt;
+&lt;p&gt;The only way that feature branching and continuous integration can be at all compatible is if the build system automatically builds and tests every possible combination of branches, all the time – a massive waste of build system resources. Anything less leaves potential combinations untested until they are finally merged on to master and all the problems are discovered.&lt;/p&gt;
+&lt;p&gt;Or you know, we could just do continuous integration…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Golden Rule of Dependency Management</title>
+      <link>https://www.symphonious.net/2012/06/19/golden-rule-of-dependency-management/</link>
+      <pubDate>Tue, 19 Jun 2012 01:54:48 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/06/19/golden-rule-of-dependency-management/</guid>
+      <description>&lt;p&gt;There&amp;rsquo;s a huge amount of complaining and problem solving for various dependency management solutions (particularly maven, but ivy and friends certainly aren&amp;rsquo;t immune). Problems range from having optional dependencies unnecessarily included  to having duplicate classes or class conflicts and the solutions tend to be complex and involve a lot of trade offs. All these problems stem from breaking the golden rule of dependency management:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Own your own repository&lt;/strong&gt;&lt;/p&gt;
+&lt;p style=&#34;padding-left: 30px;&#34;&gt;
+  &amp;#8212; Sutton&#39;s golden rule of dependency management
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The vast majority, if not all, problems with dependency management comes from having incorrect, conflicting or imprecise meta-data in the repository of dependencies. Maintaining a public repository of perfectly accurate, precise and flexible dependency metadata is next to impossible – there are just too many libraries and the interrelationships are too complex. Fortunately, even extremely large companies only use a tiny subset of these libraries. With the scope reduced it&amp;rsquo;s much easier to ensure the metadata is correct and consistent.&lt;/p&gt;
+&lt;p&gt;Any time you need to introduce a new dependency, very carefully review the metadata associated it and correct any errors or inconsistencies before importing it into the repository you administer and control.&lt;/p&gt;
+&lt;p&gt;You don&amp;rsquo;t let anyone commit to your source code repository, don&amp;rsquo;t let anyone commit to your dependency repository either.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Controlling Focus in Firefox</title>
+      <link>https://www.symphonious.net/2010/11/24/controlling-focus-in-firefox/</link>
+      <pubDate>Wed, 24 Nov 2010 21:03:02 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/11/24/controlling-focus-in-firefox/</guid>
+      <description>&lt;p&gt;I have a bunch of JavaScript unit tests and for some of them I need to trigger a real keypress – one that activates the browser’s default functionality, not just triggers the JavaScript listeners. To do that, I have a &lt;a href=&#34;https://github.com/ephox/JSRobot/&#34;&gt;simple signed applet that uses the AWT Robot&lt;/a&gt; to programmatically trigger the keypresses. Mostly, this works brilliantly.&lt;/p&gt;
+&lt;p&gt;The problem I’m having is that about 1 time in 10, the focus goes AWOL and the key events generated by the robot simply aren’t delivered anywhere. It’s generally not reliable, though I have got a setup now where I can make it happen within a few minutes of running the tests on a loop.&lt;/p&gt;
+&lt;p&gt;The problem is specific to Firefox 3.6 – I’ve never seen it fail on anything else. I’m testing against Firefox 2.0, 3.0, 3.6 and 4.0 beta 6. 3.6.3 and 3.6.12 to be precise. It fails on all the OS’s I’ve tried: Linux (Ubuntu 10.10), Mac OS X (10.6) and Windows Vista.&lt;/p&gt;
+&lt;h2 id=&#34;the-simple-question&#34;&gt;The Simple Question&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Is there a sure-fire way in JavaScript to force focus to a specific element?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The normal Element.focus() doesn’t seem to be strong enough as I’m already calling that (and I’ve tried oh so many variations of it). I’m even ok with requiring that element to be of a specific type (e.g. a text input). JavaScript is ideal but if it can be done with a signed Java applet I’m ok with that too. Config options, browser plugins and maybe even native code would all be a possibility.&lt;/p&gt;
+&lt;h2 id=&#34;the-simple-answer-update&#34;&gt;The Simple Answer (Update)&lt;/h2&gt;
+&lt;p&gt;It turns out that the ineffectiveness of Element.focus() is a usability/security feature of Firefox which is configurable. In the “Content” tab of preferences, click the “Advanced…” button beside JavaScript and then ensure that “Raise or lower windows” is checked. Annoyingly simple after the amount of effort it took to work out what was going wrong.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.symphonious.net/wp-content/uploads/2010/11/Screen-shot-2010-11-25-at-14.07.20.png&#34; alt=&#34;Firefox advanced JavaScript preferences window&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;the-detail&#34;&gt;The Detail&lt;/h2&gt;
+&lt;p&gt;Here’s what I know:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The test runner framework loads the actual test pages inside an iframe.
+&lt;ul&gt;
+&lt;li&gt;The signed applet is inside this iframe.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The test that is giving me trouble uses TinyMCE, which itself uses an iframe, so we have an iframe inside an iframe and that’s where we need to get focus.&lt;/li&gt;
+&lt;li&gt;To make sure that the actual browser pane has focus (rather than the URL bar etc), when the page first loads the applet clicks just above itself (thus moving focus to the actual test page inside the first iframe).
+&lt;ul&gt;
+&lt;li&gt;I can watch this happen so I know the click is in the right place.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The page is definitely fully loaded before the problematic test runs. It’s not the first test in that file but it is the first test that actually uses the robot (the click still happens on page load). I can’t remember a failure where it wasn’t the first test using the robot that failed but can’t be 100% certain of that.&lt;/li&gt;
+&lt;li&gt;I’m using the JavaScript focus() method to move focus to the element I’m targeting.
+&lt;ul&gt;
+&lt;li&gt;I’ve found I need to focus the main window, then each nested iframe window and document body and then finally the element I want to target to make sure that the focus is on the right frame.&lt;/li&gt;
+&lt;li&gt;I can check that document.activeElement is pointing to the right place.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;When the focus gets lost, even manually typing keys does nothing.
+&lt;ul&gt;
+&lt;li&gt;But typing tab will move the focus back to the right spot and then typing the key the test was expecting will make the test pass correctly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The key event is &lt;em&gt;definitely&lt;/em&gt; firing from the AWT robot, because if that key is the tab key, it correctly moves the focus back to where it should be (but I have no way to know programmatically that I need to repeat the keystroke).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;why-not-selenium&#34;&gt;Why Not Selenium?&lt;/h2&gt;
+&lt;p&gt;Just to cover this off, there are a few reasons that this project isn’t using Selenium:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It was an existing project which already had tests using QUnit and most of the tests don’t need this Robot functionality so can be done in pure JS.&lt;/li&gt;
+&lt;li&gt;It’s a pure JS project so it’s really nice to also write the tests in JavaScript (the robot has a nice JS wrapper).&lt;/li&gt;
+&lt;li&gt;This approach lets me run the tests in any browser without requiring any setup at all. No need to install and configure anything – you could very likely walk up to a computer in an internet cafe and have the tests pass which makes life &lt;em&gt;so&lt;/em&gt; much easier.&lt;/li&gt;
+&lt;li&gt;It should work damn it! I want to know why it doesn’t and why Selenium, which also uses the AWT Robot doesn’t hit the same problem (or maybe it does?).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;murphys-law&#34;&gt;Murphy’s Law&lt;/h2&gt;
+&lt;p&gt;Just before starting to write this post (some 30 minutes ago due to distractions), I had the crazy idea to add a java.awt.TextField to the applet and make the applet a little bit bigger (150x40px instead of 10x10px). The tests have been running continuously with that new configuration since then without a single failure. The text area is never used in any way, but for some reason just having it there seems to make life better. I don’t get it.&lt;/p&gt;
+&lt;p&gt;Due to a power outage I can’t run it on the actual build servers until tomorrow so I’m going to post this anyway since you just &lt;em&gt;know&lt;/em&gt; it will start failing again just as soon as I think I’ve got it fixed.&lt;/p&gt;
+&lt;p&gt;Update 10 seconds after posting: Yep, there it goes, failed again.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

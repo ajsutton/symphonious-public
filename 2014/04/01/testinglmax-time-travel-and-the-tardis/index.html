@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Testing@LMAX – Time Travel and the TARDIS | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Testing time related functions is always a challenge – generally it involves adding some form of abstraction over the system clock which can then be stubbed, mocked or otherwise controlled by unit tests in order to test the functionality. At LMAX we like the confidence that end-to-end acceptance tests give us but, like most financial systems, a significant amount of our functionality is highly time dependent so we need the same kind of control over time but in a way that works even when the system is running as a whole (which means it&rsquo;s running in multiple different JVMs or possibly even on different servers).">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2014/04/01/testinglmax-time-travel-and-the-tardis/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2014/04/01/testinglmax-time-travel-and-the-tardis/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Testing@LMAX – Time Travel and the TARDIS">
+	<meta property="og:description" content="Testing time related functions is always a challenge – generally it involves adding some form of abstraction over the system clock which can then be stubbed, mocked or otherwise controlled by unit tests in order to test the functionality. At LMAX we like the confidence that end-to-end acceptance tests give us but, like most financial systems, a significant amount of our functionality is highly time dependent so we need the same kind of control over time but in a way that works even when the system is running as a whole (which means it’s running in multiple different JVMs or possibly even on different servers).">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2014-04-01T04:44:22+00:00">
+		<meta property="article:modified_time" content="2014-04-01T04:44:22+00:00">
+
+	<meta itemprop="name" content="Testing@LMAX – Time Travel and the TARDIS">
+	<meta itemprop="description" content="Testing time related functions is always a challenge – generally it involves adding some form of abstraction over the system clock which can then be stubbed, mocked or otherwise controlled by unit tests in order to test the functionality. At LMAX we like the confidence that end-to-end acceptance tests give us but, like most financial systems, a significant amount of our functionality is highly time dependent so we need the same kind of control over time but in a way that works even when the system is running as a whole (which means it’s running in multiple different JVMs or possibly even on different servers).">
+	<meta itemprop="datePublished" content="2014-04-01T04:44:22+00:00">
+	<meta itemprop="dateModified" content="2014-04-01T04:44:22+00:00">
+	<meta itemprop="wordCount" content="941">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Testing@LMAX – Time Travel and the TARDIS">
+	<meta name="twitter:description" content="Testing time related functions is always a challenge – generally it involves adding some form of abstraction over the system clock which can then be stubbed, mocked or otherwise controlled by unit tests in order to test the functionality. At LMAX we like the confidence that end-to-end acceptance tests give us but, like most financial systems, a significant amount of our functionality is highly time dependent so we need the same kind of control over time but in a way that works even when the system is running as a whole (which means it’s running in multiple different JVMs or possibly even on different servers).">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Testing@LMAX – Time Travel and the TARDIS</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Testing@LMAX – Time Travel and the TARDIS</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2014-04-01T04:44:22Z">April 1, 2014</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Testing time related functions is always a challenge – generally it involves adding some form of abstraction over the system clock which can then be stubbed, mocked or otherwise controlled by unit tests in order to test the functionality. At LMAX we like the confidence that end-to-end acceptance tests give us but, like most financial systems, a significant amount of our functionality is highly time dependent so we need the same kind of control over time but in a way that works even when the system is running as a whole (which means it&rsquo;s running in multiple different JVMs or possibly even on different servers).</p>
+<p>We&rsquo;ve achieved that by building on the same abstracted clock as is used in unit tests but exposing it in a system-wide, distributed way. To stay as close as possible to real-world conditions we have some reduced control in acceptance tests, in particular time always progresses forward – there&rsquo;s no pause button. However we do have the ability to travel forward in time so that we can test scenarios that span multiple days, weeks or even months quickly. When running acceptance tests, the system clock uses a “time travel” implementation. Initially this clock simply returns the current system time, but it also listens for special time messages on the system&rsquo;s messaging bus. When one of these time messages is received, the clock calculates the difference between the time specified in the message with the current system clock time and records that. From then on when it&rsquo;s asked for the time, the clock adds on that difference to the current system time. As a result, when a time message is received time immediately jumps forward to that time and then continues advancing at the same rate as the system clock.</p>
+<p>Like all good schedulers, ours are written in a way that ensures that events fire in the correct order even if time suddenly jumps forward past the point that the event should have triggered. So receiving a time message not only jumps forward, it also triggers all the events that should have fired during the time period we skipped, allowing us to test that they did their job correctly.</p>
+<p>The time messages are published by a time travel service which is only run in our acceptance test environment – it exposes a JMX method which our acceptance tests use to set the current system time. Each service that uses time also exposes it&rsquo;s current time and the time it&rsquo;s schedulers have reached via JMX so when a test time travels we can wait until the message is received by each service and all the scheduled events have finished being run.</p>
+<h3 id="the-tardis">The TARDIS</h3>
+<p>The trouble with controlling time like this is that it affects the entire system so we can&rsquo;t run multiple tests at the same time or they would interfere with each other. Having to run tests sequentially significantly increases the feedback cycle. To solve this we added the TARDIS to the DSL that runs our acceptance tests. The TARDIS provides a central point of control for multiple test cases running in parallel, coordinating time travel so that the tests all move forward together, without the actual test code needing to care about any of the details or synchronisation.</p>
+<p>The TARDIS hooks into the DSL at two points – when a test asks to time travel and when a test finishes (by either passing or failing). When a test asks to time travel, the TARDIS tracks the destination times being requested and blocks the test until all tests are either ready to time or have completed. It then time travels to the earliest requested time and wakes up any tests that requested that time point so they can continue running. Tests that requested a time point further in the future remain paused waiting for the next time travel.</p>
+<p>Since we had a lot of time travel tests already written before we invented the TARDIS this approach allowed us to start running them in parallel without having to rewrite them – the TARDIS is simply integrated into the DSL framework we use for all tests.</p>
+<p>Currently the TARDIS only works for tests running in the same JVM, so essentially it allows test cases to run in parallel with other cases from the same test suite, but it doesn’t allow multiple test suites on separate Romero agents to run in parallel. The next step in its evolution will be to move the TARDIS out of the test&rsquo;s DSL and provide it as an API from the time travel service on the server. At that point we can run multiple test suites in parallel against the same server. However, we haven&rsquo;t yet done the research to determine what, if any, benefit we&rsquo;d get from that change as different test suites may have very different time travel patterns and thus spend most of their time at interim time points waiting for other tests. Also the load on servers during time travel is quite high due to the number of scheduled jobs that can fire so running multiple test suites at once may not be viable.</p>
+<ul>
+<li>Time being in sync is actually a more complex concept than it first appears. The overall architecture of our system meant this approach to time actually did provide very accurate time sources relative to our main “source of all truth”, the exchange venue itself which is what we really cared about. Even so, anything that had to be strictly “in-sync” generated a timestamp in the service that triggered it and then included in the outgoing event which is the only sane way to do such things.</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

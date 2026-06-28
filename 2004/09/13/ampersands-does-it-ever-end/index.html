@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Ampersands (Does it ever end?) | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Byron continues on the ampersand issue:
+
+I&rsquo;m not going to accept your argument that it&rsquo;s not harmful to produce invalid HTML. What would your code produce for: http://example.com/entities.cgi?entity=&amp; The requirements are that it should produce exactly that since that will work in all known browsers and would break in all known browsers if the ampersand wasn&rsquo;t escaped. Since I didn&rsquo;t personally write the code I can&rsquo;t be certain that it does output that, but that&rsquo;s what it should do. It should output whatever it is that makes things the most compatible so our users are the most happy.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/09/13/ampersands-does-it-ever-end/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/09/13/ampersands-does-it-ever-end/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Ampersands (Does it ever end?)">
+	<meta property="og:description" content="Byron continues on the ampersand issue:
+I’m not going to accept your argument that it’s not harmful to produce invalid HTML. What would your code produce for: http://example.com/entities.cgi?entity=&amp; The requirements are that it should produce exactly that since that will work in all known browsers and would break in all known browsers if the ampersand wasn’t escaped. Since I didn’t personally write the code I can’t be certain that it does output that, but that’s what it should do. It should output whatever it is that makes things the most compatible so our users are the most happy.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-09-13T06:48:24+00:00">
+		<meta property="article:modified_time" content="2004-09-13T06:48:24+00:00">
+
+	<meta itemprop="name" content="Ampersands (Does it ever end?)">
+	<meta itemprop="description" content="Byron continues on the ampersand issue:
+I’m not going to accept your argument that it’s not harmful to produce invalid HTML. What would your code produce for: http://example.com/entities.cgi?entity=&amp; The requirements are that it should produce exactly that since that will work in all known browsers and would break in all known browsers if the ampersand wasn’t escaped. Since I didn’t personally write the code I can’t be certain that it does output that, but that’s what it should do. It should output whatever it is that makes things the most compatible so our users are the most happy.">
+	<meta itemprop="datePublished" content="2004-09-13T06:48:24+00:00">
+	<meta itemprop="dateModified" content="2004-09-13T06:48:24+00:00">
+	<meta itemprop="wordCount" content="783">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Ampersands (Does it ever end?)">
+	<meta name="twitter:description" content="Byron continues on the ampersand issue:
+I’m not going to accept your argument that it’s not harmful to produce invalid HTML. What would your code produce for: http://example.com/entities.cgi?entity=&amp; The requirements are that it should produce exactly that since that will work in all known browsers and would break in all known browsers if the ampersand wasn’t escaped. Since I didn’t personally write the code I can’t be certain that it does output that, but that’s what it should do. It should output whatever it is that makes things the most compatible so our users are the most happy.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Ampersands (Does it ever end?)</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Ampersands (Does it ever end?)</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-09-13T06:48:24Z">September 13, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Byron continues on the ampersand issue:</p>
+<blockquote>
+<p>I&rsquo;m not going to accept your argument that it&rsquo;s not harmful to produce invalid HTML. What would your code produce for: <a href="http://example.com/entities.cgi?entity=">http://example.com/entities.cgi?entity=</a>&amp; The requirements are that it should produce exactly that since that will work in all known browsers and would break in all known browsers if the ampersand wasn&rsquo;t escaped. Since I didn&rsquo;t personally write the code I can&rsquo;t be certain that it does output that, but that&rsquo;s what it should do. It should output whatever it is that makes things the most compatible so our users are the most happy.</p>
+</blockquote>
+<blockquote>
+<p>I seem to recall someone or something in this discussion mentioned using a character other than ampersand entirely. If the links you&rsquo;re producing are for programs within your control, it may be appropriate to use semi-colons, not ampersands. Of course, this approach will often be impractical or impossible. Impractical, impossible and highly incompatible. There are a vast number of pre-existing frameworks that assume GET parameters are of the form name=value&amp;name2=value2. Using anything but an ampersand would break all those frameworks and existing libraries. Besides, as an HTML editor we don&rsquo;t get to decide what the link should be – the user does.</p>
+</blockquote>
+<blockquote>
+<p>There are some other questions I&rsquo;d like to see you answer. Is it OK to use ampersands incorrectly in an XML document because one particular parser isn&rsquo;t conformant to the standard? No, this would greatly decrease the compatibility with real world situations and make life more difficult for our users, thus it would be unacceptable. Were it the case that all known XML parsers handled an unescaped ampersand but one didn&rsquo;t correctly handle an escaped ampersand then my answer would be different. The technology is irrelevant here, the answer is always to do what best meets the user&rsquo;s requirements.</p>
+</blockquote>
+<blockquote>
+<p>Is it OK to expect every parser to let you violate the XML standard to support bugs in others? Yes. Any HTML parser which can&rsquo;t handle unescaped ampersands in a document is not going to particularly useful unless all the HTML documents have been previously cleaned with something like Tidy. The state of the real world is that unescaped ampersands is the least of the problems an HTML parser is expected to deal with – incorrectly nested tags are much more difficult to deal with but most parsers still get them right.</p>
+</blockquote>
+<blockquote>
+<p>I am facing the exact problem under discussion right now: a piece of HTML I wish to parse misuses ampersands. The library I am using does not tolerate malformed attribute values. Do you consider this a bug in the library I am using? That depends. If the library claims to be able to parse only fully validating HTML then I would call it a critical limitation but not a bug. The parser would still be useful for parsing documents that have someone been confirmed to be completely valid (ie: a help function in a program that uses HTML as its help pages). If however the library claimed to be able to parse HTML I would definitely consider it a bug. The most common use of the term “HTML” refers to documents that vaguely comply with the HTML standard (but rarely a fully conforming) so I would expect any parser that claimed to parse HTML to handle these malformed documents. Where you draw the line at how messed up the document can be will entirely depend on your requirements.</p>
+</blockquote>
+<blockquote>
+<p>Personally, I do not consider it a bug in the library, since it parses HTML just fine. A document with a raw ampersand in an attribute value is not, strictly (or pedantically) speaking, HTML. Bug or not, it&rsquo;s failing to meet your requirements and causing your program to fail. That is a bad thing and if you have real world users they should (and most likely will) expect you to fix it. It is worth noting that if people wanted the HTML they took in to be highly compliant and simple to parse, they should use XHTML as it not only makes parsing easier (can be done with any XML parser given the right DTD) and XHTML documents tend to conform to the standard much more regularly than HTML documents do (and browsers generally have a separate mode for XHTML which expects the documents to be well-formed so the browser behavior is more predictable). When all is said and done the point of software is to get a job done, not to comply with standards. If the software accomplishes its job and the users are happy that&rsquo;s all that really matters. Life happens in the real world, users pay money for real world results, expecting HTML to be well formed is a pipe dream.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

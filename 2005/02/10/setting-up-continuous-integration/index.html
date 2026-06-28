@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Setting Up Continuous Integration | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve spent a large chunk of this week investigating what the best way to set up continuous integration builds is for our product.  Being a cross platform application we need a continuous integration set up that builds on four different OSs constantly (Windows, Mac OS X, Solaris and Linux).  Ideally of course it would do so on all variants of those OSs and at some point that might be possible using vmware of some kind.  For now though, just building and running the automated tests on some version of the OSs we support is a huge improvement.  Fortunately, our build process already uses ant and requires just a single target be achieved.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2005/02/10/setting-up-continuous-integration/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2005/02/10/setting-up-continuous-integration/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Setting Up Continuous Integration">
+	<meta property="og:description" content="I’ve spent a large chunk of this week investigating what the best way to set up continuous integration builds is for our product. Being a cross platform application we need a continuous integration set up that builds on four different OSs constantly (Windows, Mac OS X, Solaris and Linux). Ideally of course it would do so on all variants of those OSs and at some point that might be possible using vmware of some kind. For now though, just building and running the automated tests on some version of the OSs we support is a huge improvement. Fortunately, our build process already uses ant and requires just a single target be achieved.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2005-02-10T10:00:05+00:00">
+		<meta property="article:modified_time" content="2005-02-10T10:00:05+00:00">
+
+	<meta itemprop="name" content="Setting Up Continuous Integration">
+	<meta itemprop="description" content="I’ve spent a large chunk of this week investigating what the best way to set up continuous integration builds is for our product. Being a cross platform application we need a continuous integration set up that builds on four different OSs constantly (Windows, Mac OS X, Solaris and Linux). Ideally of course it would do so on all variants of those OSs and at some point that might be possible using vmware of some kind. For now though, just building and running the automated tests on some version of the OSs we support is a huge improvement. Fortunately, our build process already uses ant and requires just a single target be achieved.">
+	<meta itemprop="datePublished" content="2005-02-10T10:00:05+00:00">
+	<meta itemprop="dateModified" content="2005-02-10T10:00:05+00:00">
+	<meta itemprop="wordCount" content="472">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Setting Up Continuous Integration">
+	<meta name="twitter:description" content="I’ve spent a large chunk of this week investigating what the best way to set up continuous integration builds is for our product. Being a cross platform application we need a continuous integration set up that builds on four different OSs constantly (Windows, Mac OS X, Solaris and Linux). Ideally of course it would do so on all variants of those OSs and at some point that might be possible using vmware of some kind. For now though, just building and running the automated tests on some version of the OSs we support is a huge improvement. Fortunately, our build process already uses ant and requires just a single target be achieved.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Setting Up Continuous Integration</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Setting Up Continuous Integration</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-02-10T10:00:05Z">February 10, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve spent a large chunk of this week investigating what the best way to set up continuous integration builds is for our product.  Being a cross platform application we need a continuous integration set up that builds on four different OSs constantly (Windows, Mac OS X, Solaris and Linux).  Ideally of course it would do so on all variants of those OSs and at some point that might be possible using vmware of some kind.  For now though, just building and running the automated tests on some version of the OSs we support is a huge improvement.  Fortunately, our build process already uses ant and requires just a single target be achieved.</p>
+<p>I&rsquo;ve previously tried setting this up using AntHill with no success.  My mind is a little vague on the details of how it went wrong but it did go very, very wrong.  I&rsquo;ve also tried writing my own system with cron, scheduled tasks, shell scripting and ant and I think it&rsquo;s still running but it doesn&rsquo;t give any useful feedback so it&rsquo;s as good as useless.</p>
+<p>This time round I looked at hudson straight off the bat and found it couldn&rsquo;t figure out CVS for a variety of reasons.  I tried to investigate the problems a little further but couldn&rsquo;t checkout the source code from CVS – most likely the server was having a bad day.</p>
+<p>I looked at Damage Control and it&rsquo;s releases seemed to have issues with files being missing (including the executable itself in one build).</p>
+<p>Finally I tried CruiseControl despite the fact that I don&rsquo;t like its design much.  It appears to be working so I guess that&rsquo;s what I&rsquo;m going with.  So far I&rsquo;ve only got it running on Windows though I had it running on OS X for a bit.  The next step will be to set it up dedicated build machines running the various OSs and get it running on that.  Then I need to come up with a way to combine the results from each of the build servers into a single dashboard display so that the build results are more immediately obvious.</p>
+<p>Once all that&rsquo;s running I&rsquo;m hoping it will be easy to add our other products into the build servers and having everything building away happily.  Overall I&rsquo;m amazed at how many problems I&rsquo;ve had with the various continuous integration tools that are out there.  I&rsquo;m sure it shouldn&rsquo;t be as difficult as it has been…</p>
+<p>As an end to this rambling monologue – any recommendations of good resources for continuous integration, unit testing and general code quality improvement techniques?  I&rsquo;m thinking I should pick up a copy of &ldquo;Pragmatic Project Automation&rdquo; and probably also &ldquo;Pragmatic Unit Testing&rdquo;.  Any others?  Any other techniques I should be looking at either before, after or during the process of setting up continuous integration?</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

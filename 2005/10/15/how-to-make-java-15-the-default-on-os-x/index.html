@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>How To Make Java 1.5 The Default On OS X | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;m getting sick of running around web boards posting this over and over again so I thought I&rsquo;d post it here to try and get people to stop breaking their OS X systems by following bad advice.
+First up, the golden rule:
+Never modify anything under /System. Any instructions from anyone but Apple that suggests you do this is wrong.
+So if someone tells you to modify the symlinks in /System/Frameworks/JavaVM.framework/Versions don&rsquo;t. It&rsquo;s not supported by Apple and it will cause you problems when you install future updates to either Java, the OS or other software.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2005/10/15/how-to-make-java-15-the-default-on-os-x/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2005/10/15/how-to-make-java-15-the-default-on-os-x/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="How To Make Java 1.5 The Default On OS X">
+	<meta property="og:description" content="I’m getting sick of running around web boards posting this over and over again so I thought I’d post it here to try and get people to stop breaking their OS X systems by following bad advice.
+First up, the golden rule:
+Never modify anything under /System. Any instructions from anyone but Apple that suggests you do this is wrong.
+So if someone tells you to modify the symlinks in /System/Frameworks/JavaVM.framework/Versions don’t. It’s not supported by Apple and it will cause you problems when you install future updates to either Java, the OS or other software.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2005-10-15T00:59:44+00:00">
+		<meta property="article:modified_time" content="2005-10-15T00:59:44+00:00">
+
+	<meta itemprop="name" content="How To Make Java 1.5 The Default On OS X">
+	<meta itemprop="description" content="I’m getting sick of running around web boards posting this over and over again so I thought I’d post it here to try and get people to stop breaking their OS X systems by following bad advice.
+First up, the golden rule:
+Never modify anything under /System. Any instructions from anyone but Apple that suggests you do this is wrong.
+So if someone tells you to modify the symlinks in /System/Frameworks/JavaVM.framework/Versions don’t. It’s not supported by Apple and it will cause you problems when you install future updates to either Java, the OS or other software.">
+	<meta itemprop="datePublished" content="2005-10-15T00:59:44+00:00">
+	<meta itemprop="dateModified" content="2005-10-15T00:59:44+00:00">
+	<meta itemprop="wordCount" content="506">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="How To Make Java 1.5 The Default On OS X">
+	<meta name="twitter:description" content="I’m getting sick of running around web boards posting this over and over again so I thought I’d post it here to try and get people to stop breaking their OS X systems by following bad advice.
+First up, the golden rule:
+Never modify anything under /System. Any instructions from anyone but Apple that suggests you do this is wrong.
+So if someone tells you to modify the symlinks in /System/Frameworks/JavaVM.framework/Versions don’t. It’s not supported by Apple and it will cause you problems when you install future updates to either Java, the OS or other software.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">How To Make Java 1.5 The Default On OS X</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">How To Make Java 1.5 The Default On OS X</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-10-15T00:59:44Z">October 15, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;m getting sick of running around web boards posting this over and over again so I thought I&rsquo;d post it here to try and get people to stop breaking their OS X systems by following bad advice.</p>
+<p>First up, the golden rule:</p>
+<p><strong><em>Never modify anything under /System. Any instructions from anyone but Apple that suggests you do this is wrong.</em></strong></p>
+<p>So if someone tells you to modify the symlinks in /System/Frameworks/JavaVM.framework/Versions don&rsquo;t. It&rsquo;s not supported by Apple and it will cause you problems when you install future updates to either Java, the OS or other software.</p>
+<p>So how do you do it? It depends on where you want the default to apply.</p>
+<h3 id="default-for-applets">Default For Applets</h3>
+<p>To set the default JRE for applets in Safari:</p>
+<ol>
+<li>Open /Applications/Utilities/Java/J2SE 5.0/Java Preferences</li>
+<li>Select J2SE 5.0 from the drop down labelled &ldquo;Use version:&rdquo; under the &ldquo;Applets&rdquo; heading.</li>
+</ol>
+<p>You can&rsquo;t change the JRE for Internet Explorer, it always uses Java 1.3.</p>
+<p>For Mozilla variants, they use Java 1.3 by default but recent nightly builds include the <a href="http://javaplugin.sourceforge.net/">Java Embedding Plugin</a> by default which uses Java 1.5 by default automatically.  You can install it in previous versions of Mozilla-based browsers as well by following the instructions on that site.</p>
+<h3 id="default-for-webstart-applications-and-application-bundles">Default For WebStart Applications and Application Bundles</h3>
+<p>You can specify the default JRE for WebStart applications and Java application bundles by:</p>
+<ol>
+<li>Open /Applications/Utilities/Java/J2SE 5.0/Java Preferences</li>
+<li>In the &ldquo;Java Application Runtime Settings&rdquo; section, drag &ldquo;J2SE 5.0&rdquo; above &ldquo;J2SE 1.4.2&rdquo;.</li>
+</ol>
+<p>Note however that you don&rsquo;t need to do this if you deploy your application via Java WebStart.  Instead for WebStart applications developers should use multiple j2se tags in the resources section of your JNLP file. This approach has been suggested by a number of people on the Java-Dev list, see <a href="http://lists.apple.com/archives/java-dev/2005/Oct/msg00244.html">this post by Greg Guerin</a> (quoting crucial parts of Scott Palmer&rsquo;s earlier post) for information on how to do it. This has been tested and does work on OS X 10.4 such that it will load your application using Java 1.5 if available or Java 1.4 if 1.5 isn&rsquo;t installed. You can even specify different sets of jar files to load for different JREs.</p>
+<h3 id="default-for-command-line">Default for Command Line</h3>
+<p>Just like with every other major OS, which version of Java you get on the command line is controlled by your PATH environment variable. If you have /System/Library/Frameworks/JavaVM.framework/Versions/1.5/Commands on your path before /usr/bin (and any other versions of Java) you will get Java 1.5 when you type &ldquo;java&rdquo; and any of the other java commands.</p>
+<p>Apple provides <a href="http://developer.apple.com/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CommandLine/chapter_8_section_4.html">documentation on setting the PATH variable</a>, including how to set it automatically for every session. There&rsquo;s also a ton of information on this around the web for different shells.</p>
+<h3 id="where-can-i-find-more-information">Where Can I Find More Information?</h3>
+<p>There&rsquo;s a ton of information in the <a href="http://lists.apple.com/archives/java-dev/">list archives for the Java-Dev list</a>. This post probably misses a number of questions developers have, so I&rsquo;ll try to update it over time. If there&rsquo;s something extra you think should be here please drop it into a comment below and I&rsquo;ll merge the key comments into the main post.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

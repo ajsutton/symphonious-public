@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ephox on Symphonious</title>
+    <link>https://www.symphonious.net/categories/ephox/</link>
+    <description>Recent content in Ephox on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Thu, 16 Dec 2010 19:08:19 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/ephox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving on from Ephox</title>
+      <link>https://www.symphonious.net/2010/12/16/moving-on-from-ephox/</link>
+      <pubDate>Thu, 16 Dec 2010 19:08:19 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/12/16/moving-on-from-ephox/</guid>
+      <description>&lt;p&gt;I joined Ephox back in May 2002 and over the past eight-and-a-half years have had the pleasure of working with some of the most talented, dedicated, passionate and supportive people I’m ever likely to work with. It’s been an incredibly exciting time doing my small part to grow the company from a small team in Brisbane, Australia, though some very tight times to a very rapidly growing team with offices on three continents that’s firing on all cylinders.&lt;/p&gt;
+&lt;p&gt;Despite that, the 23rd of December will be my last day with Ephox and I’ll be starting a new job in the new year. With Ephox doing so well and a rapidly expanding engineering team back in Brisbane having plenty of it’s own momentum to drive it forward without needing a CTO on the other side of the world getting in the way and some fantastic new folk really driving Ephox’s senior management to the next level it feels like a good time for me to hand over and go explore something new. Knowing the people who will be taking over from me I have every confidence that our partners and clients will continue to receive top rate service and I’ll be expecting big things from Ephox in the future.&lt;/p&gt;
+&lt;p&gt;My new focus will be outside of web content management and editors altogether, doing some high performance, low latency server side stuff in the finance sector. I expect to be completely out of my depth and can’t wait. That opportunity to be the complete novice on the team instead of the veteran and the steep learning curve that comes with it is a huge part of the reason I’m making the move.&lt;/p&gt;
+&lt;p&gt;To everyone involved with Ephox past and present, as well as all of the people I’ve had a chance to work with at our clients and partners, thank you so much for giving me such amazing opportunities, experiences and most of all wonderful memories.&lt;/p&gt;
+&lt;p&gt;I truly feel like instead of working in a job for the past 8 years, I’ve enjoyed having Ephox as a big part of my life. I hope every job can feel that way.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Congratulations Yonas – First TinyMCE Patch</title>
+      <link>https://www.symphonious.net/2010/11/08/congratulations-yonas-first-tinymce-patch/</link>
+      <pubDate>Mon, 08 Nov 2010 14:38:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/11/08/congratulations-yonas-first-tinymce-patch/</guid>
+      <description>&lt;p&gt;Ephox has had Yonas working on with us on various TinyMCE related stuff for a while but mostly outside of the core source code on plugins for various clients. Today however, &lt;a href=&#34;https://github.com/tinymce/tinymce/commit/8d02ec2a891c1511d69e797094795a9f8f84ecef&#34;&gt;his first patch&lt;/a&gt; made it through both Ephox QA and the Moxiecode review into the mainline TinyMCE codebase. It will ship as part of the 3.4 release along with a bunch of other Ephox developed fixes and lots of good stuff in general.&lt;/p&gt;
+&lt;p&gt;Since the code is all in the public view, I figure why not give congratulations in public too?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Customizing EditLive! in Documentum Web Publisher</title>
+      <link>https://www.symphonious.net/2010/09/20/customizing-editlive-in-documentum-web-publisher/</link>
+      <pubDate>Mon, 20 Sep 2010 07:47:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/20/customizing-editlive-in-documentum-web-publisher/</guid>
+      <description>&lt;p&gt;Lisa Hill from Blue Fish has published an excellent article covering &lt;a href=&#34;http://www.bluefishgroup.com/library/2010/wp-rich-text-editor/&#34;&gt;how to customize the EditLive! rich text editor in Web Publisher&lt;/a&gt;. It includes many of my favorite ways to get the most out of EditLive! as well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ephox Enterprise TinyMCE</title>
+      <link>https://www.symphonious.net/2010/05/25/ephox-enterprise-tinymce/</link>
+      <pubDate>Tue, 25 May 2010 15:35:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/05/25/ephox-enterprise-tinymce/</guid>
+      <description>&lt;p&gt;The new &lt;a href=&#34;http://tinymce.ephox.com/&#34;&gt;Ephox Enterprise TinyMCE site&lt;/a&gt; has now gone live, a result of our new partnership with &lt;a href=&#34;http://www.moxiecode.com/&#34;&gt;Moxiecode&lt;/a&gt;, the company behind everyone’s favorite open source editor TinyMCE. I’m really excited about the potential of this partnership and have really enjoyed the opportunity to work with the Moxiecode team so far.&lt;/p&gt;
+&lt;h3 id=&#34;what-were-adding&#34;&gt;What We’re Adding…&lt;/h3&gt;
+&lt;p&gt;We think we can bring a lot to the TinyMCE community, the things below are just where we’re starting.&lt;/p&gt;
+&lt;h4 id=&#34;enterprise-grade-support&#34;&gt;Enterprise Grade Support&lt;/h4&gt;
+&lt;p&gt;We’re really proud of the level of support we’ve been able to offer for EditLive! and we’re bringing that over to TinyMCE. TinyMCE gets used in all kinds of mission critical systems where down time costs real money. Ephox’s support packages offer service level agreements to ensure you get help quickly and keep things running smoothly.&lt;/p&gt;
+&lt;h4 id=&#34;more-resources-for-tinymce&#34;&gt;More Resources for TinyMCE&lt;/h4&gt;
+&lt;p&gt;Ephox is dedicating resources to help develop TinyMCE, improve it’s quality, answer questions on the forums (even for the free LGPL version) and generally help make TinyMCE even better.&lt;/p&gt;
+&lt;p&gt;We’ve already had a number of patches accepted into the main TinyMCE branch and are using our build farm to run TinyMCE’s tests across a wide range of browsers and platforms to help the Moxiecode team keep quality levels high (&lt;a href=&#34;http://tinymce.ephox.com/test-results&#34;&gt;check out the results here&lt;/a&gt;). You’ll also see Ephox folk popping up in places like the TinyMCE forums to answer TinyMCE questions.&lt;/p&gt;
+&lt;h4 id=&#34;quick-and-easy-commercial-licensing&#34;&gt;Quick and Easy Commercial Licensing&lt;/h4&gt;
+&lt;p&gt;If you don’t want to distribute changes you make to TinyMCE under the LGPL or prefer a more traditional commercial software license for whatever reason, you can quickly and easily buy one straight from our &lt;a href=&#34;http://tinymce.ephox.com/pricing&#34;&gt;web store&lt;/a&gt;, with our without a support package.&lt;/p&gt;
+&lt;h4 id=&#34;express-edit&#34;&gt;Express Edit&lt;/h4&gt;
+&lt;p&gt;We’re currently working to update our “Express Edit” feature of EditLive! to make it simple to integrate &lt;em&gt;both&lt;/em&gt; EditLive! and TinyMCE with the same set of APIs and have the most appropriate editor for the situation load. Express Edit has been around for a while, but with the power of TinyMCE we think it’s time has really come to shine. With Express Edit you can offer all the advanced features of EditLive! but know that if Java isn’t available or you just need a lightning fast editor to make a quick change you’re users will have TinyMCE available too. Basically, you get the best possible editor for any situation.&lt;/p&gt;
+&lt;h3 id=&#34;committed-to&#34;&gt;Committed To…&lt;/h3&gt;
+&lt;p&gt;In case you were worried there’s a few things that we’re absolutely committed to:&lt;/p&gt;
+&lt;h4 id=&#34;editlive&#34;&gt;EditLive!&lt;/h4&gt;
+&lt;p&gt;We still see EditLive! as being Microsoft Word for the web. It’s a full featured, enterprise editor that dramatically improves author productivity and assists them in creating higher quality content. EditLive! has been the leading online editor for many years now and we are going to continue improving it as fast as we can. There’s plenty of great stuff coming down the pipeline for EditLive! including of course an improved Express Edit.&lt;/p&gt;
+&lt;h4 id=&#34;open-source&#34;&gt;Open Source&lt;/h4&gt;
+&lt;p&gt;Ephox as a company may not have had much to do with open source in the past, but most of the people working for Ephox have and we’re big fans. Now we get the privilege of working with the vast TinyMCE community and that’s really exciting.&lt;/p&gt;
+&lt;p&gt;Most importantly, TinyMCE is absolutely still available under the LGPL, Ephox is even providing a direct download link from our site to ensure everyone knows they are quite welcome to take TinyMCE and use it for free. The only difference between the LGPL community edition download and the commercially licensed options we’re providing is the license information.&lt;/p&gt;
+&lt;h4 id=&#34;tinymce&#34;&gt;TinyMCE&lt;/h4&gt;
+&lt;p&gt;Ephox and Moxiecode are working together closely on this venture. Ephox Enterprise TinyMCE is a distribution of TinyMCE, much like projects such as Debian include other open source products. Like Linux distributions we may find and need to fix problems with TinyMCE which causes our distribution to vary slightly until those changes can flow back upstream. To avoid any confusion, Ephox distributions of TinyMCE have an extra component to the version number, for example the current TinyMCE release is 3.3.6, so the current Ephox distribution is 3.3.6-170. This makes it clear which base version of TinyMCE is being used, that it’s been modified (even if only to add our naming) and which build from Ephox it is.&lt;/p&gt;
+&lt;p&gt;We’ve also called our distribution “Ephox Enterprise TinyMCE”, this is mostly a marketing thing but again it helps to avoid confusion in case there are fixes in our build that haven’t yet made it back upstream.&lt;/p&gt;
+&lt;h3 id=&#34;questions-comments&#34;&gt;Questions? Comments?&lt;/h3&gt;
+&lt;p&gt;If you have any questions, concerns or comments feel free to post them below or get in touch with me directly at &lt;a href=&#34;mailto:adrian.sutton@ephox.com&#34;&gt;adrian.sutton@ephox.com&lt;/a&gt; or by phone on +44 7 525 806 170 and I’ll do my best to get you an answer.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ephox in the IBM Cloud</title>
+      <link>https://www.symphonious.net/2010/04/06/ephox-in-the-ibm-cloud/</link>
+      <pubDate>Tue, 06 Apr 2010 10:01:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/04/06/ephox-in-the-ibm-cloud/</guid>
+      <description>&lt;p&gt;Ephox EditLive! is now part of the IBM cloud offering on Amazon Web Services. EditLive! OEM edition is bundled in the &lt;a href=&#34;http://www.ibm.com/developerworks/downloads/ls/wps-wcmse/cloud.html&#34;&gt;cloud offering of IBM WCM&lt;/a&gt;. This means you can now quickly run up a new instance of IBM’s WCM system on Amazon EC2 and configure it to use EditLive! as the editor.&lt;/p&gt;
+&lt;p&gt;If you want to take advantage of the extra benefits of the &lt;a href=&#34;http://editlive.com/tour&#34;&gt;Enterprise Edition&lt;/a&gt; (track changes, commenting, accessibility checking, image editing and more), you can install that as normal once the system is running. Currently Ephox doesn’t have per-hour pricing through Amazon but you can &lt;a href=&#34;http://www.ephox.com/contactus.html&#34;&gt;contact our sales team&lt;/a&gt; so they can discuss the options available.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Name the New Ephox Mascots</title>
+      <link>https://www.symphonious.net/2010/03/25/name-the-new-ephox-mascots/</link>
+      <pubDate>Thu, 25 Mar 2010 18:14:50 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/03/25/name-the-new-ephox-mascots/</guid>
+      <description>&lt;p&gt;The other day a couple of surprise packages arrived in the Ephox UK office – our new squishy conference giveaways! The ever popular &lt;a href=&#34;http://hamstaa.hbhau.net/2007/10/11/ephox-talking-car/&#34;&gt;red sports cars&lt;/a&gt; are out and in their place are a cute little Koala and a Kangaroo pair.&lt;/p&gt;
+&lt;p style=&#34; text-align: center;&#34;&gt;
+  &lt;img loading=&#34;lazy&#34; width=&#34;327&#34; height=&#34;331&#34; alt=&#34;Ephox Koala&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/03/_MG_3837507513667582796.jpg&#34; style=&#34; vertical-align: middle;&#34; /&gt;&lt;img alt=&#34;Ephox Kangaroo&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/03/_MG_2974950085095280323.jpg&#34; style=&#34; vertical-align: middle;&#34; /&gt;
+&lt;/p&gt;
+&lt;p style=&#34; text-align: center;&#34;&gt;
+  &lt;img alt=&#34;Kangaroo and Koala&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/03/_MG_5283761768490527703.jpg&#34; /&gt;
+&lt;/p&gt;
+&lt;p&gt;It was quickly suggested that we need names for them, so here’s your chance to go down in Ephox history. What should we call them?&lt;/p&gt;
+&lt;p style=&#34; text-align: center;&#34;&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wanted: Open Source Evangelist/TinyMCE Guru</title>
+      <link>https://www.symphonious.net/2010/03/12/wanted-open-source-evangelisttinymce-guru/</link>
+      <pubDate>Fri, 12 Mar 2010 14:34:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/03/12/wanted-open-source-evangelisttinymce-guru/</guid>
+      <description>&lt;p&gt;From the &lt;a href=&#34;http://www.ephox.com/aboutus/jobs.html&#34;&gt;job description:&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We are seeking a Software Developer who is experienced in creating sophisticated, highly interactive, JavaScript applications. Ideally we desire someone that has experience in TinyMCE or has experience working as part of an open source project. The right person will have the ability to work remotely in a highly collaborative manner with virtual teams.
+I’m pretty excited about this new opening within Ephox. Lots of great stuff to come out of it hopefully, but in particular helping Ephox to start working better with Open Source communities and developing some awesome stuff with JavaScript. While TinyMCE experience is something we’re particularly keen to have “ready to go” if possible, whoever fills this role is going to become a web content editor expert in general from Tiny to CK, Dojo and of course our personal favourite &lt;a href=&#34;http://editlive.com/&#34;&gt;EditLive!&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The position is open regardless of your location in the world, though if you happen to be near Brisbane, Maidenhead or Palo Alto we have nice offices you can come in and work from if you like.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Conversion for the Web</title>
+      <link>https://www.symphonious.net/2009/11/04/conversion-for-the-web/</link>
+      <pubDate>Wed, 04 Nov 2009 11:20:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/11/04/conversion-for-the-web/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://shebanator.com/2009/11/02/open-government-and-pdf/&#34;&gt;Andrew Shebanow in Open Government and PDF&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The issue at hand is not whether governments should pick HTML or PDF. The issue at hand is whether governments are capable of publishing information &lt;em&gt;at all&lt;/em&gt;. Show me an HTML creation tool that creates high quality, standards conformant markup from a Word document or any of the zillions of editing tools that government employees use. Now add in all the tools used by people who submit documents to the government. And all the versions of those tools released in the last 20 years. Now make sure that the HTML/XML works correctly even when the user doesn’t have the right browser or the right fonts installed.
+I’ve actually worked with a number of government departments who were looking to move more content online and the content conversion problem is definitely a time consuming and challenging part of the problem. That’s precisely why I wind up getting involved, since &lt;a href=&#34;http://www.ephox.com/products/editlive/&#34;&gt;EditLive!&lt;/a&gt; lets you easily copy and paste content from Word documents and produce clean, compliant XHTML. It can even (optionally) strip out inline formatting and leave just the structure like headings, tables and lists.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Furthermore, EditLive! is actually quite good at making sure the HTML works correctly even when the user doesn’t have the right browser or the right fonts installed, especially when it’s been configured to suit the particular content needs. Even with non-technical business authors this can work very well and is doing so for a significant number of government departments.&lt;/p&gt;
+&lt;p&gt;That’s not to say it’s the whole solution, there are systems out there where it’s hard to convert the content to HTML and where HTML may not be the best format anyway. Some of those cases may work better with PDF but certainly not all of them. To somehow suggest that PDF is a complete and simple solution to publishing information on the web misses quite a lot of the picture. For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How do web site visitors navigate around and get to that PDF data? How do they search and find it? As much time is spent working out navigation structures as it is converting content.&lt;/li&gt;
+&lt;li&gt;How do you expose information from databases with regularly changing information? Wouldn’t a HTML representation be easier to generate than PDF in most of these cases?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Putting information on the web is not simple and no single technology is going to make it simple. PDF definitely has it’s place on the web, but so does HTML and a number of other formats. PDF doesn’t alleviate compatibility concerns, not all users have a recent enough PDF reader, not all PDF embed all the fonts and when they do it makes the download very large etc and not all PDFs are standards compliant. Putting non-web stuff on the web is always a big, challenging project, so review the available technologies carefully and pick the ones that best achieve your goals. Very few companies have success with just dumping a whole heap of PDFs on a web server.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Great Team</title>
+      <link>https://www.symphonious.net/2009/10/01/a-great-team/</link>
+      <pubDate>Thu, 01 Oct 2009 09:42:02 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/10/01/a-great-team/</guid>
+      <description>&lt;p&gt;I’ve spent the last couple of weeks in Australia for my baby sister’s wedding and while I was there I worked out of Ephox’s Brisbane office where our engineering team is based. It’s been nearly 18 months since I left there to move over to the UK and this is the first trip back since. What was most striking about the trip is just how awesome the team is down there. Technically speaking they are one of the most talented groups of engineers you’re ever likely to come across and pull off some seriously amazing stuff, but more importantly they are a truly great &lt;em&gt;team&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Engineers are known for being anti-social but you don’t see any of that in the Ephox team – they all get on well, love the work they do and work as a team, not just a group of individuals. Everyone in that team should be seriously proud of the culture they have built up in that team.&lt;/p&gt;
+&lt;p&gt;For those non-Ephox folk reading this, you too can join the team as Ephox is currently on a serious hiring binge in a number of areas. Check out the &lt;a href=&#34;http://www.ephox.com/aboutus/jobs.html&#34;&gt;jobs page&lt;/a&gt; for details.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Point of Surveys</title>
+      <link>https://www.symphonious.net/2009/08/28/the-point-of-surveys/</link>
+      <pubDate>Fri, 28 Aug 2009 07:37:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/08/28/the-point-of-surveys/</guid>
+      <description>&lt;p&gt;Every so often while using NetSuite, it pops up and asks me to fill in a quick little survey – basically how likely are you to recommend NetSuite and why? This is annoying when your in a rush but on balance not a bad way for them to ensure their customers are happy.&lt;/p&gt;
+&lt;p&gt;There’s just one catch – every single time I tell them that I’d never recommend NetSuite and that they should improve product quality, specifically they should handle escaping XML tags correctly. As a company that makes HTML editors, we quite often send and receive emails that talk about HTML tags rather than just including them. Unfortunately, NetSuite for the past 5 years or more has happily messed these emails up and we’ve had to come up with complicated ways to get the original email text back out. We’ve reported this to them on multiple occasions and at one point had to actually put in a XSS exploit to get them to understand how big a problem it was. Over time they’ve shifted where the correct HTML will appear in the system, but never actually fixed it entirely.&lt;/p&gt;
+&lt;p&gt;So, coming back to the survey – what’s the point of interrupting users to get their feedback when you go and ignore it anyway?&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

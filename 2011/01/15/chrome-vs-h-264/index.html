@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Chrome vs H.264 | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="You may have heard something about Chrome dropping support for H.264 from it’s Video tag implementation in favour of WebM. The reactions are unsurprisingly strong and partisan. From my point of view I see that:
+
+From a normal user’s point of view there is no discernable difference between a video that is played using the embed tag and one that uses the video tag. Advanced users may notice the performance difference or some of the particular behaviours of either Flash or the video tag but ultimately, both view the video perfectly successfully1{#footlink1:1295131564706.footnote}.
+Essentially the only users who can play video via the video tag but not Flash are iOS users.
+Before Google’s announcement, 99% of the web could view a video encoded in H.264 due to it’s support in Flash. About 40-50% could view one in WebM.
+Since every version of Chrome includes Flash, Google’s announcement did nothing to change those figures.
+There are already a variety of excellent libraries to allow the use of both the video tag with a Flash fallback.
+In order to maximise their potential audience, and thus business, content producers are going to supply video in the most widely supported video format.
+Since supporting two video formats simultaneously is expensive in terms of storage and bandwidth, content providers will avoid using a second format unless it is the only reasonable way to address a significant part of the market.
+
+As a result, the only company who can exert any serious leverage on web video formats is Adobe. If they ship a version of Flash that supports WebM, suddenly it has traction very nearly equal to that of H.264 (but H.264 would still have the advantage of also working on iOS devices). For WebM to have the advantage Flash would have to support WebM and disable support for H.264.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2011/01/15/chrome-vs-h-264/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2011/01/15/chrome-vs-h-264/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Chrome vs H.264">
+	<meta property="og:description" content="You may have heard something about Chrome dropping support for H.264 from it’s Video tag implementation in favour of WebM. The reactions are unsurprisingly strong and partisan. From my point of view I see that:
+From a normal user’s point of view there is no discernable difference between a video that is played using the embed tag and one that uses the video tag. Advanced users may notice the performance difference or some of the particular behaviours of either Flash or the video tag but ultimately, both view the video perfectly successfully1{#footlink1:1295131564706.footnote}. Essentially the only users who can play video via the video tag but not Flash are iOS users. Before Google’s announcement, 99% of the web could view a video encoded in H.264 due to it’s support in Flash. About 40-50% could view one in WebM. Since every version of Chrome includes Flash, Google’s announcement did nothing to change those figures. There are already a variety of excellent libraries to allow the use of both the video tag with a Flash fallback. In order to maximise their potential audience, and thus business, content producers are going to supply video in the most widely supported video format. Since supporting two video formats simultaneously is expensive in terms of storage and bandwidth, content providers will avoid using a second format unless it is the only reasonable way to address a significant part of the market. As a result, the only company who can exert any serious leverage on web video formats is Adobe. If they ship a version of Flash that supports WebM, suddenly it has traction very nearly equal to that of H.264 (but H.264 would still have the advantage of also working on iOS devices). For WebM to have the advantage Flash would have to support WebM and disable support for H.264.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2011-01-15T23:18:17+00:00">
+		<meta property="article:modified_time" content="2011-01-15T23:18:17+00:00">
+
+	<meta itemprop="name" content="Chrome vs H.264">
+	<meta itemprop="description" content="You may have heard something about Chrome dropping support for H.264 from it’s Video tag implementation in favour of WebM. The reactions are unsurprisingly strong and partisan. From my point of view I see that:
+From a normal user’s point of view there is no discernable difference between a video that is played using the embed tag and one that uses the video tag. Advanced users may notice the performance difference or some of the particular behaviours of either Flash or the video tag but ultimately, both view the video perfectly successfully1{#footlink1:1295131564706.footnote}. Essentially the only users who can play video via the video tag but not Flash are iOS users. Before Google’s announcement, 99% of the web could view a video encoded in H.264 due to it’s support in Flash. About 40-50% could view one in WebM. Since every version of Chrome includes Flash, Google’s announcement did nothing to change those figures. There are already a variety of excellent libraries to allow the use of both the video tag with a Flash fallback. In order to maximise their potential audience, and thus business, content producers are going to supply video in the most widely supported video format. Since supporting two video formats simultaneously is expensive in terms of storage and bandwidth, content providers will avoid using a second format unless it is the only reasonable way to address a significant part of the market. As a result, the only company who can exert any serious leverage on web video formats is Adobe. If they ship a version of Flash that supports WebM, suddenly it has traction very nearly equal to that of H.264 (but H.264 would still have the advantage of also working on iOS devices). For WebM to have the advantage Flash would have to support WebM and disable support for H.264.">
+	<meta itemprop="datePublished" content="2011-01-15T23:18:17+00:00">
+	<meta itemprop="dateModified" content="2011-01-15T23:18:17+00:00">
+	<meta itemprop="wordCount" content="570">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Chrome vs H.264">
+	<meta name="twitter:description" content="You may have heard something about Chrome dropping support for H.264 from it’s Video tag implementation in favour of WebM. The reactions are unsurprisingly strong and partisan. From my point of view I see that:
+From a normal user’s point of view there is no discernable difference between a video that is played using the embed tag and one that uses the video tag. Advanced users may notice the performance difference or some of the particular behaviours of either Flash or the video tag but ultimately, both view the video perfectly successfully1{#footlink1:1295131564706.footnote}. Essentially the only users who can play video via the video tag but not Flash are iOS users. Before Google’s announcement, 99% of the web could view a video encoded in H.264 due to it’s support in Flash. About 40-50% could view one in WebM. Since every version of Chrome includes Flash, Google’s announcement did nothing to change those figures. There are already a variety of excellent libraries to allow the use of both the video tag with a Flash fallback. In order to maximise their potential audience, and thus business, content producers are going to supply video in the most widely supported video format. Since supporting two video formats simultaneously is expensive in terms of storage and bandwidth, content providers will avoid using a second format unless it is the only reasonable way to address a significant part of the market. As a result, the only company who can exert any serious leverage on web video formats is Adobe. If they ship a version of Flash that supports WebM, suddenly it has traction very nearly equal to that of H.264 (but H.264 would still have the advantage of also working on iOS devices). For WebM to have the advantage Flash would have to support WebM and disable support for H.264.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Chrome vs H.264</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Chrome vs H.264</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-01-15T23:18:17Z">January 15, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>You may have heard something about Chrome dropping support for H.264 from it’s Video tag implementation in favour of WebM. The reactions are unsurprisingly strong and partisan. From my point of view I see that:</p>
+<ul>
+<li>From a normal user’s point of view there is no discernable difference between a video that is played using the embed tag and one that uses the video tag. Advanced users may notice the performance difference or some of the particular behaviours of either Flash or the video tag but ultimately, both view the video perfectly successfully<a href="#footnote1:1295131564706">1</a>{#footlink1:1295131564706.footnote}.</li>
+<li>Essentially the only users who can play video via the video tag but not Flash are iOS users.</li>
+<li>Before Google’s announcement, 99% of the web could view a video encoded in H.264 due to it’s support in Flash. About 40-50% could view one in WebM.</li>
+<li>Since every version of Chrome includes Flash, Google’s announcement did nothing to change those figures.</li>
+<li>There are already a variety of excellent libraries to allow the use of both the video tag with a Flash fallback.</li>
+<li>In order to maximise their potential audience, and thus business, content producers are going to supply video in the most widely supported video format.</li>
+<li>Since supporting two video formats simultaneously is expensive in terms of storage and bandwidth, content providers will avoid using a second format unless it is the only reasonable way to address a significant part of the market.</li>
+</ul>
+<p>As a result, the only company who can exert any serious leverage on web video formats is Adobe. If they ship a version of Flash that supports WebM, suddenly it has traction very nearly equal to that of H.264 (but H.264 would still have the advantage of also working on iOS devices). For WebM to have the advantage Flash would have to support WebM <em>and</em> disable support for H.264.</p>
+<p>For any other company to have a significant impact they would need to disable support for <em>both</em> H.264 and Flash. As long as Flash is available, the user will be able to view H.264 and there is no requirement for content producers to maintain two separate encodings.</p>
+<p>The only other company with any influence is Apple since iOS doesn’t support Flash, it becomes the tie-breaker if a future version of Flash were to support both H.264 and WebM. If for no other reason than the existing install base of iOS devices that only support H.264, that still leaves H.264 as providing the broadest market reach.</p>
+<p>So as much as I would like to see an unencumbered video format take over the web, right now we’re just seeing a bunch of posturing that doesn’t change the underlying business reasoning for content providers — and it’s content providers that need to be convinced to use WebM for it to take off.</p>
+<p>Sadly, I’m not yet seeing a way for WebM to win this game. The best hope I can see to oust H.264 is to provide a better quality format — like PNG was to GIF — but WebM is inferior. The focus needs to be on coming up with a <em>better</em> option, not just one that’s comparable in order to give content producers a reason to change other than addressable market, where H.264 has already won.</p>
+<p class="footnote">
+  <a href="#footlink1:1295131564706" id="footnote1:1295131564706">1</a> &#8211; This is of course assuming the given approach is actually supported, unlike say Flash on the iPhone but that’s where the libraries providing smooth fallback support come into play <a class="footnotereturn" href="#footlink1:1295131564706">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

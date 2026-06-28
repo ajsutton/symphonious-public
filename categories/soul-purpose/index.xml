@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Soul Purpose on Symphonious</title>
+    <link>https://www.symphonious.net/categories/soul-purpose/</link>
+    <description>Recent content in Soul Purpose on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sat, 24 Mar 2007 06:57:30 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/soul-purpose/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reminder: Redemption 101 Movie Premiere *Tonight*</title>
+      <link>https://www.symphonious.net/2007/03/24/reminder-redemption-101-movie-premiere-tonight/</link>
+      <pubDate>Sat, 24 Mar 2007 06:57:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/03/24/reminder-redemption-101-movie-premiere-tonight/</guid>
+      <description>&lt;p&gt;Just a reminder for those in Brisbane that the &lt;a href=&#34;http://angelstudios.com.au/redemption/&#34;&gt;Redemption 101 Movie Premiere&lt;/a&gt; is on tonight, 6:30pm at the Schonell Theatre, Union Rd. University of Queensland, St Lucia. It&amp;rsquo;s a light hearted, quirky, full-length science fiction film made by a &lt;a href=&#34;http://www.angelstudios.com.au&#34;&gt;local studio&lt;/a&gt;. Party with the, er, stars, afterwards and best of all, have something to poke fun at me with.&lt;/p&gt;
+&lt;p&gt;And for those who aren&amp;rsquo;t in Brisbane and can&amp;rsquo;t make it, check out the trailer below and buy a DVD from &lt;a href=&#34;http://angelstudios.com.au/redemption/&#34;&gt;the website&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Redemption 101 Movie Premiere</title>
+      <link>https://www.symphonious.net/2007/03/06/redemption-101-movie-premiere/</link>
+      <pubDate>Tue, 06 Mar 2007 08:53:28 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/03/06/redemption-101-movie-premiere/</guid>
+      <description>&lt;p&gt;For those who are interested in science fiction, particularly the home-brew, long-tail kind, you probably want to check out the premiere of &lt;a href=&#34;http://www.angelstudios.com.au/redemption/&#34;&gt;Redemption 101&lt;/a&gt;. It&amp;rsquo;s an added bonus if you are looking for an opportunity to poke fun at me – I feature as &lt;em&gt;Klang&lt;/em&gt; the less than brilliant Aldaran pilot.&lt;/p&gt;
+&lt;p&gt;The premiere will be at the Schonell Theatre, St Lucia on March 24th. Drinks in the foyer start at 6:30 with the red carpet parade at 7pm. Tickets are $14 ($7 concession) and you can order them online from the &lt;a href=&#34;http://www.angelstudios.com.au/redemption/&#34;&gt;Redemption 101 website&lt;/a&gt; (contact details for offline orders are there too). You can also preorder your copy of the DVD which will be released at the premiere. &lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; alt=&#34;Klang And The Bishop&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2007/03/bts141.jpg&#34; width=&#34;600&#34; height=&#34;403&#34; /&gt; 
+&lt;p&gt;&lt;em&gt;Klang&lt;/em&gt; and &lt;em&gt;The Bishop&lt;/em&gt; kick back at the local bar after a long night shooting.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Last Of The Red Hot Irish Lovers</title>
+      <link>https://www.symphonious.net/2005/04/07/the-last-of-the-red-hot-irish-lovers/</link>
+      <pubDate>Thu, 07 Apr 2005 12:51:28 +0000</pubDate>
+      <guid>https://www.symphonious.net/2005/04/07/the-last-of-the-red-hot-irish-lovers/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s been quiet around here of late because I&amp;rsquo;ve spent pretty much all my spare time at rehearsals for a new play debuting in Brisbane titled &lt;em&gt;The Last Of The Red Hot Irish Lovers&lt;/em&gt; which is probably best described as a light hearted drama.  I&amp;rsquo;ve been put in charge of the technical side of the show – mostly focussing on sound.  If you&amp;rsquo;re near Brisbane I strongly recommend you go see it, the opening night was tonight and there are shows Friday and Saturday from 7:30 and Sunday from 2pm as well as Thursday, Friday and Saturday of next week from 7:30.  All at the MetroArts building in Adelaide street.  Tickets are available at the door or bookings can be made by contacting me (contact details are in the sidebar).  I think it&amp;rsquo;s about $15 a ticket or $10 concession.   If you need further info give me a yell.&lt;/p&gt;
+&lt;p&gt;One of the interesting challenges of doing the sound for the show has been how to manage the sound effects and ensure that they play instantly when required.  Waiting for the hard drive to spin up or caches to fill before the phone starts ringing really isn&amp;rsquo;t an option.  There&amp;rsquo;s also a fairly long list of sounds in use so it needs to be simple to select the sound and sounds sometimes follow in rapid succession and overlap.  I didn&amp;rsquo;t manage to find any software that could meet those requirements, so I wrote my own.&lt;/p&gt;
+&lt;p&gt;The software is a classic example of doing the absolute minimum that works.  A path to the folder full of sound files is hard coded, it only supports WAV and AIFF and sounds are fully loaded into RAM before they can begin playing (but they load into RAM when selected and then you play them in a separate action so the instant response requirement is met).  During the scene changes there are some long sounds which load (up to 5-6 minutes long for the final song during bows etc) and that can take some time to finish loading.  Instead of spawning a separate thread the software just blocks the UI thread and displays the spinning beachball of doom.  There&amp;rsquo;s plenty of time between sound effects for the loading to complete before the sound is needed – just train the operator to always cue up the sounds immediately after the last sound finishes.&lt;/p&gt;
+&lt;p&gt;I wound up writing the little app in Objective-C using the Cocoa libraries which was a very pleasant experience.  I&amp;rsquo;ve tinkered a little with Cocoa but done pretty much nothing with Objective-C before.  I particularly like the fact that I could code the system to provide just a single list of sounds and a single play button (thus only being able to play one sound at a time) then simply duplicate the list, button and sound controller instance in Interface Builder and instantly the app could play 2 sounds at once (I later added a 3rd list for a particularly problematic scene).&lt;/p&gt;
+&lt;p&gt;The system is working absolutely brilliantly.  I use iTunes for the music before the play starts and during intermission but otherwise everything is handled through this little app which is still running straight from Project Builder.  There is definitely something to be said for knowing the requirements for a project precisely and not wasting time on fluff that&amp;rsquo;s not needed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Preparing For Screen Tests</title>
+      <link>https://www.symphonious.net/2004/08/15/preparing-for-screen-tests/</link>
+      <pubDate>Sun, 15 Aug 2004 11:46:23 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/08/15/preparing-for-screen-tests/</guid>
+      <description>&lt;p&gt;Angel Studios is starting to plan a round of screen tests for the people interested in being a part of our films and stage productions. We&amp;rsquo;d essentially like a database of actors we can flick through and find a list of people who might be suitable for a given role. We also need to do a bunch of auditions for our upcoming short film which is just starting production. There are a few people I want to get back in touch with to particularly invite along to do a screen test but we need to sort out exactly how we want to do it yet. Even so, if anyone&amp;rsquo;s interested in getting involved in film or stage productions, no experience is necessary, give me a yell (adrian at intencha dot com) and I&amp;rsquo;ll let you know when we&amp;rsquo;re actually ready to start doing some. It&amp;rsquo;s a lot of fun.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MarchFest Wrap-up</title>
+      <link>https://www.symphonious.net/2004/03/21/marchfest-wrap-up/</link>
+      <pubDate>Sun, 21 Mar 2004 10:48:08 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/03/21/marchfest-wrap-up/</guid>
+      <description>&lt;p&gt;Wow, what a fantastic day. &lt;a href=&#34;http://www.soulpurpose.com.au/marchfest/&#34;&gt;MarchFest&lt;/a&gt; was yesterday and for those who didn&amp;rsquo;t make it, you missed a sensational day. While there&amp;rsquo;s always a few things that go wrong when you put on a big production like MarchFest is, things went exceptionally smoothly and all the reports coming back have been really positive. It was particularly good to see the number of people who offered to help out and did so with such talent and energy. We even had a few people email us completely out of the blue offering to help out. Anyway, I&amp;rsquo;m going to bed as I haven&amp;rsquo;t had much sleep this weekend and I spent most of my waking time either lugging around heavy staging, PA systems or lighting or running madly between the two venues to make sure that the next band at each venue got set up quickly with all the sound stuff they need. The life of a stage manager and sound engineer in one is never easy. Good fun though. Hopefully now I&amp;rsquo;ll have some more time to do some recording with &lt;a href=&#34;http://www.soulpurpose.com.au&#34;&gt;Soul Purpose&lt;/a&gt; and finish writing my musical.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Musical Update</title>
+      <link>https://www.symphonious.net/2004/03/10/musical-update/</link>
+      <pubDate>Wed, 10 Mar 2004 09:05:53 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/03/10/musical-update/</guid>
+      <description>&lt;p&gt;I haven&amp;rsquo;t had a lot of time to continue writing my musical but none the less it is progressing. I&amp;rsquo;m pretty happy with the first act now and have a plan set out for the second. I&amp;rsquo;m a little concerned that it might be a bit depressing though. It can be tough to confront issues like adoption, abuse, homelessness and alcoholism without becoming very depressing. At the same time it&amp;rsquo;s important not to gloss over the issues or the whole musical just becomes too surreal or worse, becomes a Disney movie…. It&amp;rsquo;s interesting to see a distinct style developing in my writing as well with a number of recurring techniques being used, mostly subconsciously, through the musical. I&amp;rsquo;m particularly pleased to see that these techniques aren&amp;rsquo;t just a copy of things I&amp;rsquo;ve seen elsewhere – they&amp;rsquo;re actually fairly unique concepts, if not in themselves, in the way they are used. Still, the greatest challenge for me will be weeding out all the really cheesy lines that seemed like a good idea at the time but just don&amp;rsquo;t work when actually spoken by the character. That task is yet to come. Anyway, back to the &lt;a href=&#34;http://www.soulpurpose.com.au/marchfest/&#34;&gt;MarchFest website&lt;/a&gt;, the program went up this evening.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MarchFest Update</title>
+      <link>https://www.symphonious.net/2004/03/09/marchfest-update/</link>
+      <pubDate>Tue, 09 Mar 2004 10:05:39 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/03/09/marchfest-update/</guid>
+      <description>&lt;p&gt;Things are rocking along with MarchFest 2004 though it, combined with product releases at work, have been keeping me extremely busy. On the plus side the performer list is now up at the &lt;a href=&#34;http://www.soulpurpose.com.au/marchfest/&#34;&gt;MarchFest&lt;/a&gt; website. Information on the fashion parade and art gallery to come soon hopefully. Don&amp;rsquo;t forget to mark your diaries to attend on the 20th!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MarchFest on the Web</title>
+      <link>https://www.symphonious.net/2004/02/27/marchfest-on-the-web/</link>
+      <pubDate>Fri, 27 Feb 2004 07:15:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/02/27/marchfest-on-the-web/</guid>
+      <description>&lt;p&gt;I &lt;a href=&#34;http://www.symphonious.net/2004/02/03/marchfest/&#34;&gt;mentioned earlier&lt;/a&gt; that MarchFest was coming up. The &lt;a href=&#34;http://www.soulpurpose.com.au/marchfest/&#34;&gt;website&lt;/a&gt; has now gone live. If you&amp;rsquo;re in Brisbane on the 20th of March why not drop by and check out some of Brisbane&amp;rsquo;s finest local talent?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Plywood</title>
+      <link>https://www.symphonious.net/2004/02/07/plywood/</link>
+      <pubDate>Sat, 07 Feb 2004 03:25:07 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/02/07/plywood/</guid>
+      <description>&lt;p&gt;At last, a simple to use playwright tool! Not at all documented admittedly and looking very incomplete but it seems to work okay. &lt;a href=&#34;http://packages.debian.org/unstable/text/plywood&#34;&gt;Plywood&lt;/a&gt; is a python script that works with latex to format a simple text file and turn it into a PDF laid out according to the Samuel French style. It&amp;rsquo;s horribly incomplete but it&amp;rsquo;s a great idea and it seems to work. It also includes emacs bindings to make it even easier, but I&amp;rsquo;m using &lt;a href=&#34;http://www.codingmonkeys.de/subethaedit/&#34;&gt;SubEthaEdit&lt;/a&gt; for now and I already know vi so learning emacs seems like to much work now. An example script would be something like: title: Example Script author: Adrian Sutton characters: Adrian Sutton (AJ) – A very excited new user of plywood. newact: setting: AJ&amp;rsquo;s office. AJ – [jumping up from his computer] Woooooooo! I found a playwright tool that&amp;rsquo;s not ridiculously complex. (AJ jumps up and down in excitement then runs off to find a beer to celebrate.) The actual package contains an example that&amp;rsquo;s even worse than that….&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MarchFest</title>
+      <link>https://www.symphonious.net/2004/02/03/marchfest/</link>
+      <pubDate>Tue, 03 Feb 2004 05:34:24 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/02/03/marchfest/</guid>
+      <description>&lt;p&gt;Preparations for this year&amp;rsquo;s &lt;a href=&#34;http://www.soulpurpose.com.au/marchfest&#34;&gt;MarchFest&lt;/a&gt; are moving into full swing. MarchFest is a festival of music, art and and entertainment held every year at Kangaroo Point Uniting Church. We usually get a pretty sensational turnout of local Brisbane talent from a wide range of musical tastes, ranging from choirs and pipe organists during the afternoon in the church, to jazz, blues and rock and roll on the main stage and rocking on into night with punk, rock and alternative. So mark those calendars early, it&amp;rsquo;s always a good day. In the meantime, I&amp;rsquo;d better get to finishing the website for this year…&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

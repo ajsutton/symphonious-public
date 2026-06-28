@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Back To The Exceptions | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Benjamin finally got back to our discussion about exceptions. &nbsp;The summary there is a pretty accurate picture of my viewpoint and the history of the debate.
+
+
+It seems Benjamin doesn&#8217;t like the fact that python throws exceptions when stuff goes wrong:
+
+Fine. An exception is thrown. I don&#8217;t catch it. I get a stack trace on the command-line, and everyone&#8217;s happy right?
+
+No. The pygtk main loop catches it, reports it, and keeps running.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/12/21/back-to-the-exceptions/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/12/21/back-to-the-exceptions/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Back To The Exceptions">
+	<meta property="og:description" content="Benjamin finally got back to our discussion about exceptions.  The summary there is a pretty accurate picture of my viewpoint and the history of the debate.
+It seems Benjamin doesn’t like the fact that python throws exceptions when stuff goes wrong:
+Fine. An exception is thrown. I don’t catch it. I get a stack trace on the command-line, and everyone’s happy right?
+No. The pygtk main loop catches it, reports it, and keeps running.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-12-21T10:34:39+00:00">
+		<meta property="article:modified_time" content="2004-12-21T10:34:39+00:00">
+
+	<meta itemprop="name" content="Back To The Exceptions">
+	<meta itemprop="description" content="Benjamin finally got back to our discussion about exceptions.  The summary there is a pretty accurate picture of my viewpoint and the history of the debate.
+It seems Benjamin doesn’t like the fact that python throws exceptions when stuff goes wrong:
+Fine. An exception is thrown. I don’t catch it. I get a stack trace on the command-line, and everyone’s happy right?
+No. The pygtk main loop catches it, reports it, and keeps running.">
+	<meta itemprop="datePublished" content="2004-12-21T10:34:39+00:00">
+	<meta itemprop="dateModified" content="2004-12-21T10:34:39+00:00">
+	<meta itemprop="wordCount" content="1092">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Back To The Exceptions">
+	<meta name="twitter:description" content="Benjamin finally got back to our discussion about exceptions.  The summary there is a pretty accurate picture of my viewpoint and the history of the debate.
+It seems Benjamin doesn’t like the fact that python throws exceptions when stuff goes wrong:
+Fine. An exception is thrown. I don’t catch it. I get a stack trace on the command-line, and everyone’s happy right?
+No. The pygtk main loop catches it, reports it, and keeps running.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Back To The Exceptions</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Back To The Exceptions</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-12-21T10:34:39Z">December 21, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Benjamin finally got back to our <a href="http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/2004/12/20/">discussion about exceptions</a>. &nbsp;The summary there is a pretty accurate picture of my viewpoint and the history of the debate.</p>
+
+<blockquote>
+<p>It seems Benjamin doesn&#8217;t like the fact that python throws exceptions when stuff goes wrong:</p>
+
+<p>Fine. An exception is thrown. I don&#8217;t catch it. I get a stack trace on the command-line, and everyone&#8217;s happy right?<br />
+<br />
+No. The pygtk main loop catches it, reports it, and keeps running.</p>
+</blockquote>
+
+<p>While all of Benjamin&#8217;s experience says that at this point the application should die in case the state is invalid, all my experience is telling me the opposite. &nbsp;The fact is that in most GUI-based applications, each operation is fairly atomic and starts with the user doing something in the GUI. So when a user wants to insert a list into a document, they click the list button and the software performs the operation. &nbsp;If something goes wrong in that process and an exception is thrown all the way out of the application (up to pygtk in this case), the application shouldn&#8217;t exit because the error can easily be recovered from by performing an undo (if that&#8217;s even necessary). &nbsp;My experience is that about 90% of errors can be recovered from in that manner. &nbsp;That is the software totally fails to deal with the exception, but because the undo code is well built, it maintains a snapshot of a known good state from before the operation and can restore it easily at any time without significant fear of things going wrong.</p>
+
+<p>Undo in this case is a faster version of killing off the process and starting a new one from the last save state &#8211; assuming you save after each operation. &nbsp;Which leads to the next interesting part of the discussion &#8211; why doesn&#8217;t software save everything automatically, all the time?</p>
+
+<p>Well, there are a couple of reasons I can think of:</p>
+
+<ol>
+<li>It&#8217;s not the way users expect to interact with software.</li>
+
+<li>It requires the application to build in persistent version control (OSs should provide this support to applications but none do).</li>
+
+<li>Not all data is saved, a lot of data is just processed.</li>
+
+<li>Not all applications have a place to save.</li>
+</ol>
+
+<p>Reason 1 doesn&#8217;t really stack up too well because I&#8217;m pretty certain would get used to it and eventually really like it. &nbsp;HyperCard works like this &#8211; it constantly saves and it&#8217;s a really nice feature but it does cause confusion and a fair bit of grief from time to time. &nbsp;The grief comes in when the user does something stupid and it&#8217;s automatically saved. &nbsp;To avoid this we also have to have perfect, unlimited and persistent undo/redo operations which are all too often lacking in applications (when was the last time you undid a command in bash? &nbsp;Adding a friend in MSN? &nbsp;When have you ever undone a software install?).</p>
+
+<p>This is obviously leading into reason 2. &nbsp;Version control is <i>hard</i>. &nbsp;Making sure absolutely every operation in your application can be undone is also hard in a lot of cases (fortunately it&#8217;s pretty simple for HTML editors). &nbsp;Currently the user is left to manage the version control because the computer isn&#8217;t smart enough to get it right reliably. &nbsp;That can probably be changed now but in most cases it will require OS support to get it right. &nbsp;For instance, if I have a HTML document, the undo/redo information can&#8217;t be persisted in the document and there&#8217;s no way to clearly identify the document other than it&#8217;s file path. &nbsp;So at the moment you could persist the undo/redo state only if the file path remained constant and if the user moved or copied the file the undo/redo would be lost. &nbsp;Worse than that, what happens if the user edits the file in a different application?</p>
+
+<p>Reason 3 seems non-obvious but it&#8217;s more common than you think. &nbsp;This web form I&#8217;m typing into is a good example. &nbsp;I create the entry in my editor and click submit &#8211; the data goes off to the server and is manipulated according to a set of rules and templates and finally the result of that manipulation is stored. &nbsp;The document I&#8217;m working on now will cease to exist when I submit.</p>
+
+<p>Another example is the &quot;scratch pad&quot; I keep open a lot. &nbsp;It&#8217;s a plain text file that I paste stuff into so I have a place to store it temporarily. &nbsp;If my text editor automatically saved everything I put into it, I&#8217;d have millions of crappy, useless text files cluttering up my system. &nbsp;I&#8217;d never be able to find the one I wanted if I had to go through them anyway and they&#8217;d make searching my file system much more difficult.</p>
+
+<p>Reason 4 is one that&#8217;s close to home. &nbsp;I write a software component. &nbsp;It gets used in a huge range of places &#8211; many that I couldn&#8217;t have imagined when the component was being designed and written. &nbsp;In this particular case, my HTML editor component is sitting in a web page. &nbsp;So where should it save it&#8217;s data to after every operation? &nbsp;It could round-trip to the server and store the content there but that would require our customers to implement complex code to handle the version control and recover the data when required (how does the server know when the data needs to be recovered?). &nbsp;In this particular applet I could save the file to disk but how do I know when it&#8217;s safe to delete that file to clear out the disk space again? &nbsp;Last time our applet accidently left files lying around I wound up with hundreds of thousands of files in my temp directory and it took nearly an hour to delete them all. &nbsp;How does the applet know when to recover the data? &nbsp;In some situations there are answers to these problems but not always and they certainly make the problem much more difficult than it seems on the surface.</p>
+
+<p>Having said all of that &#8211; automatic saving and data recovery needs to be implemented in a lot more places. &nbsp;<a href="http://azure.humbug.org.au/~aj/blog/2004/12/21#2004-12-21-savingstate">The other AJ</a> points out a number of cases that would probably be easy to implement and very effective for the user. &nbsp;Browsers saving the list of open tabs and history for those tabs is the best example there &#8211; you can&#8217;t screw up the users data by saving at a bad time and it&#8217;s exceptionally convenient for the user to have things restore correctly. &nbsp;I&#8217;m not so worried about the OS remembering which applications I had open but it certainly wouldn&#8217;t hurt.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

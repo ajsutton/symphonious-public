@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Curse Of Testing Text | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="
+       One of the major challenges in my job is testing our product. Now most people think that testing is reasonably easy but requires discipline, this is not true if the product you write happens to be a styled text editor and it&#39;s nearly impossible to do really well if you&#39;re working with something as flexibly defined as HTML.
+    
+    
+       The problems start at the unit testing level. Try taking the standard JTextPane class and writing unit tests for it. How do you test that it can render a HTML list correctly? You could write a test to make sure that the list numbering at least comes out in order and in the right format but that still won&#39;t guarantee that the list numbers actually paint correctly. For instance, we recently had a bug where the list numbers painted correctly if the list fit on screen, but if it required scrolling, whatever item was at the top of the screen was numbered 1 even if it was actually the third item in the list. Our list numbering unit tests had no way of picking up on that because it was the actual rendering code (which we didn&#39;t write) that was wrong.
+    ">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/08/31/the-curse-of-testing-text/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/08/31/the-curse-of-testing-text/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Curse Of Testing Text">
+	<meta property="og:description" content="One of the major challenges in my job is testing our product. Now most people think that testing is reasonably easy but requires discipline, this is not true if the product you write happens to be a styled text editor and it&#39;s nearly impossible to do really well if you&#39;re working with something as flexibly defined as HTML.The problems start at the unit testing level. Try taking the standard JTextPane class and writing unit tests for it. How do you test that it can render a HTML list correctly? You could write a test to make sure that the list numbering at least comes out in order and in the right format but that still won&#39;t guarantee that the list numbers actually paint correctly. For instance, we recently had a bug where the list numbers painted correctly if the list fit on screen, but if it required scrolling, whatever item was at the top of the screen was numbered 1 even if it was actually the third item in the list. Our list numbering unit tests had no way of picking up on that because it was the actual rendering code (which we didn&#39;t write) that was wrong.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-08-31T08:52:37+00:00">
+		<meta property="article:modified_time" content="2004-08-31T08:52:37+00:00">
+
+	<meta itemprop="name" content="The Curse Of Testing Text">
+	<meta itemprop="description" content="One of the major challenges in my job is testing our product. Now most people think that testing is reasonably easy but requires discipline, this is not true if the product you write happens to be a styled text editor and it&#39;s nearly impossible to do really well if you&#39;re working with something as flexibly defined as HTML.The problems start at the unit testing level. Try taking the standard JTextPane class and writing unit tests for it. How do you test that it can render a HTML list correctly? You could write a test to make sure that the list numbering at least comes out in order and in the right format but that still won&#39;t guarantee that the list numbers actually paint correctly. For instance, we recently had a bug where the list numbers painted correctly if the list fit on screen, but if it required scrolling, whatever item was at the top of the screen was numbered 1 even if it was actually the third item in the list. Our list numbering unit tests had no way of picking up on that because it was the actual rendering code (which we didn&#39;t write) that was wrong.">
+	<meta itemprop="datePublished" content="2004-08-31T08:52:37+00:00">
+	<meta itemprop="dateModified" content="2004-08-31T08:52:37+00:00">
+	<meta itemprop="wordCount" content="1076">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Curse Of Testing Text">
+	<meta name="twitter:description" content="One of the major challenges in my job is testing our product. Now most people think that testing is reasonably easy but requires discipline, this is not true if the product you write happens to be a styled text editor and it&#39;s nearly impossible to do really well if you&#39;re working with something as flexibly defined as HTML.The problems start at the unit testing level. Try taking the standard JTextPane class and writing unit tests for it. How do you test that it can render a HTML list correctly? You could write a test to make sure that the list numbering at least comes out in order and in the right format but that still won&#39;t guarantee that the list numbers actually paint correctly. For instance, we recently had a bug where the list numbers painted correctly if the list fit on screen, but if it required scrolling, whatever item was at the top of the screen was numbered 1 even if it was actually the third item in the list. Our list numbering unit tests had no way of picking up on that because it was the actual rendering code (which we didn&#39;t write) that was wrong.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Curse Of Testing Text</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Curse Of Testing Text</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-08-31T08:52:37Z">August 31, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>
+       One of the major challenges in my job is testing our product. Now most people think that testing is reasonably easy but requires discipline, this is not true if the product you write happens to be a styled text editor and it&#39;s nearly impossible to do really well if you&#39;re working with something as flexibly defined as HTML.
+    </p>
+    <p>
+       The problems start at the unit testing level. Try taking the standard JTextPane class and writing unit tests for it. How do you test that it can render a HTML list correctly? You could write a test to make sure that the list numbering at least comes out in order and in the right format but that still won&#39;t guarantee that the list numbers actually paint correctly. For instance, we recently had a bug where the list numbers painted correctly if the list fit on screen, but if it required scrolling, whatever item was at the top of the screen was numbered 1 even if it was actually the third item in the list. Our list numbering unit tests had no way of picking up on that because it was the actual rendering code (which we didn&#39;t write) that was wrong.
+    </p>
+    <p>
+       So you may be thinking that integration tests should have picked up that bug. Not a chance. How do you write a set of tests for the list rendering that doesn&#39;t break because we added a slight padding to the body which caused the list to indent a little more than it used to (but still render correctly).
+    </p>
+    <p>
+       The number of false negatives you get from automated tests is staggering and makes the tests completely worthless because adding new features or fixing bugs (like getting padding to work correctly) causes them to fail.
+    </p>
+    <p>
+       So what about manual testing? It&#39;s not particularly effective either. Certainly it would (and did) pick up the list numbering bug I mentioned, however it didn&#39;t pick up the other list bug we&#39;ve had reported recently. To reproduce:
+    </p>
+    <ol>
+      <li>
+        Start with a document that contains just an ordered list with 4 items.
+      </li>
+      <li>
+        Select and indent items 2-4.
+      </li>
+      <li>
+        Select item 4 and outdent it again.
+      </li>
+      <li>
+        Select item 3 and outdent it again.
+      </li>
+      <li>
+        Delete item 3.
+      </li>
+    </ol>
+    <p>
+       Now tell me, when was the last time you saw a testing plan that would have included something like that? That&#39;s certainly not the strangest bug I&#39;ve seen either. The trouble is that every action that&#39;s performed in the editor modifies the document state and that modification then affects every other operation that occurs in the document. There&#39;s simply no way to isolate the operations on the document completely short of wiping the users document to get a clean document all the time (which doesn&#39;t exactly make for a useful editor).
+    </p>
+    <p>
+       Lets take a look at something relatively simple &#8211; inserting a HR. Here&#39;s what I&#39;d go through to perform basic testing:
+    </p>
+    <ol>
+      <li>
+        Insert a HR into a blank document.
+      </li>
+      <li>
+        Insert a HR at the end of the first and only paragraph in the document.
+      </li>
+      <li>
+        Insert a HR at the end of the first of two paragraphs in the document.
+      </li>
+      <li>
+        Insert a HR in the middle of a paragraph.
+      </li>
+      <li>
+        Insert a HR at the end of the first and only item of a list.
+      </li>
+      <li>
+        Insert a HR at the end of the first of two items of a list.
+      </li>
+      <li>
+        Insert a HR at the start of the first and only item of a list.
+      </li>
+      <li>
+        Insert a HR in the middle of a list item.
+      </li>
+      <li>
+        Insert a HR into an empty list item.
+      </li>
+      <li>
+        Insert a HR into an empty table cell.
+      </li>
+      <li>
+        Insert a HR at the end of a paragraph in a table cell.
+      </li>
+      <li>
+        Insert a HR at the start of a paragraph in a table cell.
+      </li>
+      <li>
+        Insert a HR in the middle of a paragraph in a table cell.
+      </li>
+      <li>
+        Insert a HR into an empty list item in a table cell.
+      </li>
+      <li>
+        Insert a HR at the start of a paragraph in a list in a table cell.
+      </li>
+      <li>
+        Insert a HR at the end of a paragraph in a list in a table cell.
+      </li>
+      <li>
+        Insert a HR in the middle of a paragraph in a list in a table cell.
+      </li>
+      <li>
+        Insert a HR into an empty table cell inside an empty table cell.
+      </li>
+      <li>
+        Insert a HR at the start of a paragraph in a table cell in a table cell.
+      </li>
+      <li>
+        Insert a HR at the end of a paragraph in a table cell in a table cell.
+      </li>
+      <li>
+        Insert a HR in the middle of a paragraph in a table cell in a table cell.
+      </li>
+      <li>
+        Insert a HR without first clicking in the editor to position the caret.
+      </li>
+      <li>
+        Insert two HRs in a row.
+      </li>
+    </ol>
+    <p>
+       23 tests for inserting a HR, seems reasonably comprehensive right? Nope, if you inserted three HRs in a row it deleted the document (undo would recover it though). We also haven&#39;t taken into account inserting into arabic text and making sure the text direction remains correct. Now think of how many tests you&#39;d need to cover inserting a table and all the different things you can configure about a table (number of rows and columns, height and width as pixels or percentages, background colors, border size, alignment etc etc). Then think about lists, images, bold, italic, underline, strike through, sup, sub, merging cells, splitting cells, deleting things, selections spanning multiple blocks and a ton of other features. Then think about trying to parse and correct random HTML that&#39;s thrown at you.
+    </p>
+    <p>
+       Considering all of that, how do you manage to quickly fix issues reported by customers and send them a new build that&#39;s been well tested? How about when you have hundreds of new customers going into production each month? Did I mention you have an engineering team of 4?
+    </p>
+    <p>
+       The fact is, this stuff is incredibly hard. There&#39;s a good reason that I laugh at people who think they can just whip up a HTML editor cheaper than our licensing fees, we&#39;ve worked through all these issues &#8211; found them, fixed them and learnt how to engineer our code so that we&#39;re confident they work without testing them. Testing is critical obviously, but reducing the number of errors in the code originally is even more important.
+    </p>
+    <p>
+       Trying to salvage some real point to this post: testing tools for text are practically non-existent and I&#39;m dying for a way to actually automate these tests. If you&#39;re up for a challenge, maybe testing text would be a good one to try.
+    </p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

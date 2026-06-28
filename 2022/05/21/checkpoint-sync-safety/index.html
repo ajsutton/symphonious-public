@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Checkpoint Sync Safety | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Apart from being awesomely fast, checkpoint sync also exists to ensure that you can safely sync despite the limitations of weak subjectivity. The initial state you use is considered trusted - you are telling your beacon node that this state is the canonical chain and it should ignore all others. So it&rsquo;s important to ensure you get the right state.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2022/05/21/checkpoint-sync-safety/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2022/05/21/checkpoint-sync-safety/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Checkpoint Sync Safety">
+	<meta property="og:description" content="Apart from being awesomely fast, checkpoint sync also exists to ensure that you can safely sync despite the limitations of weak subjectivity. The initial state you use is considered trusted - you are telling your beacon node that this state is the canonical chain and it should ignore all others. So it’s important to ensure you get the right state.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2022-05-21T14:56:35+10:00">
+		<meta property="article:modified_time" content="2022-05-21T14:56:35+10:00">
+
+	<meta itemprop="name" content="Checkpoint Sync Safety">
+	<meta itemprop="description" content="Apart from being awesomely fast, checkpoint sync also exists to ensure that you can safely sync despite the limitations of weak subjectivity. The initial state you use is considered trusted - you are telling your beacon node that this state is the canonical chain and it should ignore all others. So it’s important to ensure you get the right state.">
+	<meta itemprop="datePublished" content="2022-05-21T14:56:35+10:00">
+	<meta itemprop="dateModified" content="2022-05-21T14:56:35+10:00">
+	<meta itemprop="wordCount" content="840">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Checkpoint Sync Safety">
+	<meta name="twitter:description" content="Apart from being awesomely fast, checkpoint sync also exists to ensure that you can safely sync despite the limitations of weak subjectivity. The initial state you use is considered trusted - you are telling your beacon node that this state is the canonical chain and it should ignore all others. So it’s important to ensure you get the right state.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Checkpoint Sync Safety</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Checkpoint Sync Safety</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-05-21T14:56:35+10:00">May 21, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Apart from being awesomely fast, checkpoint sync also exists to ensure that you can safely sync despite the limitations of <a href="https://www.symphonious.net/2019/11/27/exploring-ethereum-2-weak-subjectivity-period/">weak subjectivity</a>. The initial state you use is considered trusted - you are telling your beacon node that this state <em>is</em> the canonical chain and it should ignore all others. So it&rsquo;s important to ensure you get the right state.</p>
+<h2 id="get-it-from-somewhere-you-trust">Get It From Somewhere You Trust</h2>
+<p>The simplest and best way to ensure the state is right is to get it from somewhere trusted. There are a few options.</p>
+<p>The best source is one of your own nodes. For setups that run multiple nodes that&rsquo;s easy as they can get an initial state for a new node from any of their existing nodes. Even people running single nodes may be able to use a state from their own node in some cases. For example if you need to re-sync your node or are switching clients you can store the current finalized state from your node before stopping it, then use that as the initial state for your new sync. In both these cases the solution is completely trustless - your using data from your own node so no need to trust anyone else and no need for further verification.</p>
+<p>If you can&rsquo;t get the state from your own node you&rsquo;ll have to get it from someone else. A friend or family member you trust that runs their own node would be an excellent source. This isn&rsquo;t trustless, but will usually still have a very high level of trust even without any further verification.</p>
+<p>Otherwise you&rsquo;ll have to get the state from a public provider. Currently that&rsquo;s just Infura, but ideally more options will be available in the future. We&rsquo;re beyond personal trust circles but Infura is certainly still a very reputable provider so most people would still have a reasonable level of trust in them.</p>
+<p>The final option is to get the state from some random person on the internet. Seems crazy and is definitely not something to be trusted, but it is still an option if you verify the state against more trusted sources. Early on, before Infura supported the API to download the state this was actually the most common way people used checkpoint sync. I would just periodically put a state up in a <a href="https://github.com/ajsutton/eth2-states/">GitHub repo</a> so they could access it.</p>
+<h2 id="verify-the-state">Verify The State</h2>
+<p>If you get the state from a source you don&rsquo;t fully trust, you&rsquo;ll need to verify it. You can do this by calculating the hash tree root of the state, then checking that against one or more block explorers. In essence you&rsquo;re aggregating your trust from multiple services until you (hopefully) reach a level you&rsquo;re comfortable with.</p>
+<p>The main problem with this is that you&rsquo;ll need a tool to calculate the hash tree root of the state itself. It&rsquo;s simpler to just use the state to sync your node then confirm that the block roots your node reports match block explorers. If you wind up at the right chain head, you must have started from a canonical state. You will likely want to disable any validators you run until you&rsquo;ve verified the blocks - otherwise you may attest to something you don&rsquo;t actually trust.</p>
+<h2 id="why-cant-the-beacon-node-do-it-for-me">Why Can&rsquo;t The Beacon Node Do It For Me?</h2>
+<p>There have been some proposals for beacon nodes to automatically verify the state using heuristics like whether the state matches what the majority of your peers have. I&rsquo;m personally very skeptical of such ideas because if you could trust the information from the network, you wouldn&rsquo;t need checkpoint sync in the first place. The fundamental challenge introduced by weak subjectivity is that your node simply <em>can&rsquo;t</em> determine what the canonical chain is (if it&rsquo;s been offline for too long) and so has to be told. Your node&rsquo;s peers are essentially the adversary we&rsquo;re trying to defend against with checkpoint sync so we want to avoid using any information from them to second guess the initial state.</p>
+<p>The beacon node could automate the process of checking against multiple block explorers but there are two problems with that.</p>
+<p>Firstly, there isn&rsquo;t an agreed API to perform that check so we&rsquo;d need to either design that and get block explorers to support it or write custom code in clients to support each block explorer.</p>
+<p>Secondly, and more problematically, client developers would have to decide which block explorers are trust worthy and embed the list into their clients. There&rsquo;s already a lot of responsibility in being a client dev and a lot of trust the community puts in us - we really don&rsquo;t want to expand that by also being responsible for deciding which services users should trust. There could just be a config option so users could specify their own list of explorers to verify against but that&rsquo;s a pretty clunky UX and it&rsquo;s very unlikely users would go to the effort of finding suitable URLs and specifying them.  Besides, it&rsquo;s probably more work for them than just verifying the block roots manually.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LMAX on Symphonious</title>
+    <link>https://www.symphonious.net/categories/lmax/</link>
+    <description>Recent content in LMAX on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sat, 06 Jan 2018 22:51:53 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/lmax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modernising Our JavaScript – Supporting OpenSource</title>
+      <link>https://www.symphonious.net/2018/01/07/modernising-our-javascript-supporting-opensource/</link>
+      <pubDate>Sat, 06 Jan 2018 22:51:53 +0000</pubDate>
+      <guid>https://www.symphonious.net/2018/01/07/modernising-our-javascript-supporting-opensource/</guid>
+      <description>&lt;p&gt;At LMAX, we&amp;rsquo;ve been using &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; for all our new JavaScript work very successfully for a while now. Our existing products used Vue.js for the logic but continued to use bootstrap as the component library to ensure the UI remained consistent.  For anything new though, we started using &lt;a href=&#34;https://vuetifyjs.com&#34;&gt;Vuetify&lt;/a&gt; to give us better UIs much more easily.&lt;/p&gt;
+&lt;p&gt;Vuetify is close to reaching it&amp;rsquo;s 1.0 release now and we&amp;rsquo;ve been using it for a while so when we first started with it, the vast majority of development and support was being done by the project founder, John Leider in his spare time. Migrating UI libraries is painful so having an early stage project without a lot of community (at the time) was a pretty big risk for us, but the code was excellent and John was obviously very committed to the project, being very responsive to bug reports and questions.  So LMAX jumped on board as a platinum supporter of Vuetify, making regular monthly payments to support Vuetify development.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s been a resounding success.&lt;/p&gt;
+&lt;p&gt;As a project, Vuetify has continued to grow – mostly because of the excellent work John was doing to build the community – giving more stability and now has multiple regular contributors. With the number of supporters also growing John quit his day job and is now focussed on Vuetify full-time. So our primary aim of supporting the viability and longevity of the project has worked out well.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve also had secondary benefits. As part of being a platinum supporter the LMAX logo appears on the Vuetify site and we&amp;rsquo;ve set it up to link to &lt;a href=&#34;https://careers.lmax.com/&#34;&gt;our jobs site&lt;/a&gt;. It&amp;rsquo;s driven quite a lot of traffic that way and I think is actually the top source of traffic to our careers site.&lt;/p&gt;
+&lt;p&gt;I believe we also get some guaranteed support time as part of the package, but frankly John is so responsive I&amp;rsquo;m not sure if we&amp;rsquo;d actually notice the difference. We&amp;rsquo;re also keen to contribute code but the project is now moving along so well that stuff gets fixed for us before we get a chance to do it. It&amp;rsquo;s possible some of my colleague who are doing more with Vuetify have contributed some stuff, but every bug I&amp;rsquo;ve found has been fixed almost as soon as I can finish the bug report…&lt;/p&gt;
+&lt;p&gt;Overall, it&amp;rsquo;s been a huge success and well worth the money. I&amp;rsquo;d definitely encourage others to become financial backers of projects they depend on.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Internationalising Vue Components</title>
+      <link>https://www.symphonious.net/2017/08/29/internationalising-vue-components/</link>
+      <pubDate>Tue, 29 Aug 2017 03:28:18 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/08/29/internationalising-vue-components/</guid>
+      <description>&lt;p&gt;As Vue gradually spreads through our JavaScript, it&amp;rsquo;s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it&amp;rsquo;s tied into the mustache templates we&amp;rsquo;ve used to date so we&amp;rsquo;ll need to adapt or change it somehow to work with Vue.&lt;/p&gt;
+&lt;p&gt;In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.&lt;/p&gt;
+&lt;p&gt;There are a number of vue translations plugins around all of which tend to take one of two approaches:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;a directive that automatically pulls out the element text (e.g. &lt;a href=&#34;https://www.npmjs.com/package/vue-translate&#34;&gt;vue-translate&lt;/a&gt;)&lt;br&gt;
+&lt;span class=&#34;meta tag block any html&#34;&gt;&lt;span class=&#34;punctuation definition tag begin html&#34;&gt;&amp;laquo;/span&amp;gt;&lt;span class=&#34;entity name tag block any html&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;entity other attribute-name html&#34;&gt;v-trans&lt;/span&gt; &lt;span class=&#34;entity other attribute-name html&#34;&gt;title&lt;/span&gt;=&lt;span class=&#34;string quoted double html&#34;&gt;&lt;span class=&#34;punctuation definition string begin html&#34;&gt;“&lt;/span&gt;hello&lt;span class=&#34;punctuation definition string end html&#34;&gt;“&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;punctuation definition tag end html&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;hello&lt;span class=&#34;meta tag block any html&#34;&gt;&lt;span class=&#34;punctuation definition tag begin html&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;entity name tag block any html&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;punctuation definition tag end html&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;a method you call (e.g. &lt;a href=&#34;https://www.npmjs.com/package/vue-i18n-mixin&#34;&gt;vue-i18n-mixin&lt;/a&gt;)&lt;br&gt;
+&amp;lt;h1 v-text=”t(‘header.title&amp;rsquo;, ‘fr&amp;rsquo;)”&amp;gt;&lt;/h1&gt;&lt;br&gt;
+&lt;h1&gt;{{ t(‘header.title&amp;rsquo;) }}&lt;/h1&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Using a directive is nice and simple but doesn&amp;rsquo;t work if the text is dynamic (any {{data}} values are already resolved in the element text). Explicitly calling a function to perform the translation leads to pretty unwieldy templates.&lt;/p&gt;
+&lt;p&gt;What we&amp;rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use &lt;i18n&gt;&lt;/i18n&gt; instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&amp;rsquo;s not. So a simple example might be:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello world!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello world!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.&lt;/p&gt;
+&lt;p&gt;When the string includes parameters we write them in the same way as a normal Vue template, for example:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello {{name}}!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;And our pre-loader translates it in exactly the same way:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello {{name\}\}!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.&lt;/p&gt;
+&lt;p&gt;At this point, Vue won&amp;rsquo;t replace {{name}} with the actual value of name because it&amp;rsquo;s part of a JavaScript string, not part of the template. The good part of that is that our translation function will now be looking up the string to translate prior to variable substitution.  So it will look for a translation for “Hello {{name}}!” rather than needing translations for every possible name. Once we find the translation, the translate function then uses a regex to find and replace each placeholder with the actual value from the vue instance. &lt;/p&gt;
+&lt;p&gt;Notably, this process means that you can&amp;rsquo;t use anything but a simple variable name in placeholders within translated strings (though it can refer to a computed property). This is actually a good thing because we don&amp;rsquo;t want to send a string off to the translators that contains complex JavaScript they won&amp;rsquo;t understand. In fact, we have tests that place additional restrictions on strings to translate to ensure they are easily manageable through the translation process.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Modernising Our JavaScript – Why Angular 2 Didn’t Work</title>
+      <link>https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/</link>
+      <pubDate>Sun, 18 Jun 2017 19:00:51 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/</guid>
+      <description>&lt;p&gt;At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we&amp;rsquo;ve historically kept away from JavaScript frameworks. Instead we&amp;rsquo;ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we&amp;rsquo;ve built ourselves. Mostly this has worked very well for us.&lt;/p&gt;
+&lt;p&gt;Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.&lt;/p&gt;
+&lt;p&gt;Some side projects had used Angular and a few people were familiar with it so we started out trialling Angular 2.0. While it was much better for those complex cases the framework itself introduced so much complexity and cost it was unpleasant to work with.  Predominately we had two main issues:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Build times were too slow&lt;/li&gt;
+&lt;li&gt;It wasn&amp;rsquo;t well suited for dropping an Angular 2 component into an existing system rather than having everything live in Angular 2 world&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;build-times&#34;&gt;Build Times&lt;/h2&gt;
+&lt;p&gt;This was the most surprising problem – Angular 2 build times were painfully slow. We found we could build all of the java parts of the exchange before npm could even finish installing the dependencies for an Angular 2 project – even with all the dependencies in a local cache and using npm 5&amp;rsquo;s –offline option. We use &lt;a href=&#34;https://buckbuild.com/&#34;&gt;buck&lt;/a&gt; for our build system and it does an excellent job of only building what needs to be changed and caching results so most of the time we could avoid the long npm install step, but it still needs to run often enough that it was a significant drain on the team&amp;rsquo;s productivity.&lt;/p&gt;
+&lt;p&gt;We did evaluate yarn and pnpm but neither were workable in our particular situation. They were both faster at installing dependencies but still far too slow.&lt;/p&gt;
+&lt;p&gt;The lingering question here is whether the npm install was so slow because of the sheer number of dependencies or because something about those dependencies was slow. Anecdotally it seemed like rxjs took forever to install but other issues led us away from angular before we fully understood this.&lt;/p&gt;
+&lt;p&gt;Even when the npm install could be avoided, the actual compile step was still slow enough to be a drain on the team. The projects we were using angular on were quite new with a fairly small amount of code. Running through the development server was fast, but a production mode build was slow.&lt;/p&gt;
+&lt;h2 id=&#34;existing-system-integration&#34;&gt;Existing System Integration&lt;/h2&gt;
+&lt;p&gt;The initial projects we used angular 2 on were completely from scratch so could do everything the angular 2 way. On those projects productivity was excellent and angular 2 was generally a joy to use. When we tried to build onto our existing systems using angular 2 things were much less pleasant.&lt;/p&gt;
+&lt;p&gt;Technically it was possible to build a single component on a page using angular 2 with other parts of the page using our older approach, but doing so felt fairly unnatural. The angular 2 way is significantly different to how we had been working and since angular 2 provides a full-suite of functionality it often felt like we were working against the framework rather than with it. Re-using our existing code within an angular 2 component felt wrong so we were being pushed towards duplicating code that worked perfectly well and we were happy with just to make it fit “the angular 2 way”.&lt;/p&gt;
+&lt;p&gt;If we intended to rewrite all our existing code using angular 2 that would be fine, but we&amp;rsquo;re not doing that. We have a heap of functionality that&amp;rsquo;s already built, working great and will be unlikely to need changes for quite some time. It would be a huge waste of time for us to go back and rewrite everything just to use the shiny new tool.&lt;/p&gt;
+&lt;h2 id=&#34;angular-2-is-still-great&#34;&gt;Angular 2 is Still Great&lt;/h2&gt;
+&lt;p&gt;None of this means that angular 2 has irretrievable faults, it&amp;rsquo;s actually a pretty great tool to develop with. It just happens to shine most if you&amp;rsquo;re all-in with angular 2 and that&amp;rsquo;s never going to be our situation. I strongly suspect that even the build time issues would disappear if we could approach the build differently, but changing large parts of our build system and the development practices that work with it just doesn&amp;rsquo;t make sense when we have other options.&lt;/p&gt;
+&lt;p&gt;I can&amp;rsquo;t see any reason why a project built with angular 2 would need or want to migrate away. Nor would I rule out angular 2 for a new project. It&amp;rsquo;s a pretty great library, provides a ton of functionality that you can just run with and has excellent tooling. Just work out how your build works and if it&amp;rsquo;s going to be too slow early on.&lt;/p&gt;
+&lt;p&gt;For us though, Angular 2 didn&amp;rsquo;t turn out to be the wonderful new world we hoped it would be.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Finding What Buck Actually Built</title>
+      <link>https://www.symphonious.net/2017/03/20/finding-what-buck-actually-built/</link>
+      <pubDate>Sun, 19 Mar 2017 17:30:16 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/03/20/finding-what-buck-actually-built/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://buckbuild.com&#34;&gt;Buck&lt;/a&gt; is a weird but very fast build tool that happens to be rather opaque about where it actually puts the things you build with it. They wind up somewhere under the buck-out folder but there&amp;rsquo;s no guarantee where and everything under there is considered buck&amp;rsquo;s private little scratch pad.&lt;/p&gt;
+&lt;p&gt;So how do you get build results out so they can be used? For things with built-in support like Java libraries you can use ‘buck publish&amp;rsquo; to push them out to a repo but that doesn&amp;rsquo;t work for things you&amp;rsquo;ve built with a custom genrule. In those cases you could use an additional genrule build target to actually publish but it would only run when one of it&amp;rsquo;s dependencies have changed. Sometimes that&amp;rsquo;s an excellent feature but it&amp;rsquo;s not always what you want.&lt;/p&gt;
+&lt;p&gt;Similarly, you might want to actually run something you&amp;rsquo;ve built. You can almost always use the ‘buck run&amp;rsquo; command to do that but it will tie up the buck daemon while it&amp;rsquo;s running so you can&amp;rsquo;t run two things at once.&lt;/p&gt;
+&lt;p&gt;For ultimate flexibility you really want to just find out where the built file is which thankfully is possible using ‘buck targets –show-full-output&amp;rsquo;. However it outputs both the target and it&amp;rsquo;s output:&lt;/p&gt;
+&lt;pre&gt;$ buck targets --show-full-output //support/bigfeedback:bigfeedback&lt;br /&gt;//bigfeedback:bigfeedback /code/buck-out/gen/bigfeedback/bigfeedback.jar&lt;/pre&gt;
+&lt;p&gt;To get just the target file we need to pipe it through:&lt;/p&gt;
+&lt;pre&gt;cut -d &#39; &#39; -f 2-&lt;/pre&gt;
+&lt;p&gt;Or as a handy reusable bash function:&lt;/p&gt;
+&lt;pre&gt;function findOutput() {
+    $BUCK targets --show-full-output ${1} | cut -d &#39; &#39; -f 2-
+}&lt;/pre&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Isolate UI Tests with vncserver</title>
+      <link>https://www.symphonious.net/2016/10/25/testinglmax-isolate-ui-tests-with-vncserver/</link>
+      <pubDate>Tue, 25 Oct 2016 06:41:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2016/10/25/testinglmax-isolate-ui-tests-with-vncserver/</guid>
+      <description>&lt;p&gt;One reason that automated UI tests can be unreliable is that they tend to be sensitive to what else is on screen at the time and even things like the current screen size. Developers running the tests locally also find it annoying to have windows opening and closing on their machine while the test runs and are unable to do anything else because their clicking might interfere with the test.&lt;/p&gt;
+&lt;p&gt;At LMAX we solve that by isolating tests in their own X session, created using vncserver. We simply start vncserver with:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;vncserver :20 -geometry 1600x1200
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Then set DISPLAY=:20 as an environment variable when starting WebDriver&amp;rsquo;s Firefox instance:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;FirefoxBinary firefoxBinary &lt;span style=&#34;color: #666666;&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;new&lt;/span&gt; FirefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;();&lt;/span&gt;
+firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;setEnvironmentProperty&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;DISPLAY&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;:20&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The Firefox window then pops up in it&amp;rsquo;s own isolated X session. We can still use a vnc client to watch as the test runs but we can also let it run in the background and continue using the machine for other things. In CI it allows us to run UI tests on a headless server.&lt;/p&gt;
+&lt;p&gt;Since we run a number of tests in parallel, in CI we start a number of vncserver instances and allocate a different one to each running test to ensure they&amp;rsquo;re completely isolated.&lt;/p&gt;
+&lt;p&gt;Simple, but incredibly effective.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Screenshots with Selenium/WebDriver</title>
+      <link>https://www.symphonious.net/2016/10/25/testinglmax-screenshots-with-selenium/</link>
+      <pubDate>Tue, 25 Oct 2016 06:23:18 +0000</pubDate>
+      <guid>https://www.symphonious.net/2016/10/25/testinglmax-screenshots-with-selenium/</guid>
+      <description>&lt;p&gt;When an automated UI test fails, it can be hard to tell exactly what went wrong just from the failure message. The failure message typically just says that some element the test was looking for wasn&amp;rsquo;t found, but it doesn&amp;rsquo;t tell you what was there.  Was there an error message displayed instead? Was the operation still executing? Did something completely unexpected happen instead?&lt;/p&gt;
+&lt;p&gt;To answer those questions our DSL automatically captures a screenshot when any UI operation fails and we include a link to it in the failure message. That way when someone reviews the test result they can see exactly what was on screen which typically makes it straight forward to identify what went wrong and fix it.&lt;/p&gt;
+&lt;p&gt;Until recently we&amp;rsquo;d been using the convenient and helpful looking &lt;code&gt;TakesScreenshot.getScreenshotAs&lt;/code&gt; method that WebDriver provides.  For example:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #666666;&#34;&gt;((&lt;/span&gt;TakesScreenshot&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt;webDriver&lt;span style=&#34;color: #666666;&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;getScreenshotAs&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;br /&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;    new&lt;/span&gt; SaveScreenshotOutputType&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;pngFilename&lt;span style=&#34;color: #666666;&#34;&gt;));&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;As expected, this creates a PNG image in the specified location that looks for all the world like a screenshot of the browser content. Unfortunately, it&amp;rsquo;s lying.&lt;/p&gt;
+&lt;p&gt;WebDriver actually does something very clever and gets the browser to render the page content into a canvas element and then saves that as the PNG file. This is an extremely close approximation of what the page looks like with two important exceptions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It doesn&amp;rsquo;t respect the viewport size so body content is never scrolled off-screen.&lt;/li&gt;
+&lt;li&gt;Any browser chrome or random other windows that have popped up aren&amp;rsquo;t shown.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Both of these things can be an issue – the scrolled-off-screen one being the most problematic.  Modern WebDriver quite accurately simulates a user clicking and typing keys so if somethings not on screen it can&amp;rsquo;t be clicked. When your test fails because an element was “present but not visible” and the screenshot shows it as very clearly visible, hilarity ensues. Very frustrating hilarity.&lt;/p&gt;
+&lt;p&gt;To fix this we&amp;rsquo;ve started taking honest-to-goodness screenshots. Since all our tests get their own X session (courtesy of vncserver) their windows are completely isolated from each other and a dump of the entire screen will capture precisely what a real user would see, browser chrome and scrolling included. Linux provides an entertaining array of options for capturing screenshots from the command line but the one that happened to be already installed was import, part of the ImageMagick suite. We simply execute:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;import -display :20 -window root screenshot.png
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;where :20 is the X display this particular test has been allocated and screenshot.png is where we want the screenshot to wind up.&lt;/p&gt;
+&lt;p&gt;Since the WebDriver screenshot can be useful as well – for example finding out an error message is displayed at the top of the screen  we continue to grab that too.&lt;/p&gt;
+&lt;p&gt;Finally, for completeness we grab a dump of the DOM to a HTML file so we can later inspect what IDs, classes, attributes etc are present, including any hidden elements. &lt;code&gt;webDriver.getPageSource()&lt;/code&gt; makes that easy and we append an extra HTML comment that includes webDriver.getCurrentUrl() for good measure.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Compatibility Tests</title>
+      <link>https://www.symphonious.net/2016/03/13/testinglmax-compatibility-tests/</link>
+      <pubDate>Sat, 12 Mar 2016 20:00:09 +0000</pubDate>
+      <guid>https://www.symphonious.net/2016/03/13/testinglmax-compatibility-tests/</guid>
+      <description>&lt;p&gt;Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by migrating it as changes are required. That existing data and the migrations applied to it are often the riskiest and least tested functions in the system. Mistakes in a migration will at best cause a multi-hour outage while backups are restored and more likely will subtly corrupt data, producing incorrect results that may go unnoticed for long periods making it impossible to roll back. At LMAX we reduce that risk by running compatibility tests.&lt;/p&gt;
+&lt;h3 id=&#34;sanitised-data&#34;&gt;Sanitised Data&lt;/h3&gt;
+&lt;p&gt;The first requirement for testing data migrations is testing data that as production-like as possible. It&amp;rsquo;s almost never a good idea to bring actual production data into development and it&amp;rsquo;s definitely never going to happen for a finance company like LMAX. Instead, we have a sanitiser that runs in production and generates a very heavily sanitised version of production data that still has the same “shape”. For example, it has the same number of accounts, the same distribution of open positions across instruments, null values in the same places there&amp;rsquo;s null values in production and so on. However it replaces anything that&amp;rsquo;s even vaguely personally identifiable or sensitive information. If in doubt, sanitise it out.&lt;/p&gt;
+&lt;p&gt;Despite being heavily sanitised, we still treat it as data that should be secured but it can be brought into our development, testing and staging environments.&lt;/p&gt;
+&lt;p&gt;We have multiple production environments so we have sanitised data that matches the shape of each of those environments.&lt;/p&gt;
+&lt;h3 id=&#34;can-migrations-run&#34;&gt;Can Migrations Run?&lt;/h3&gt;
+&lt;p&gt;Once we have sanitised data the most basic check is to confirm the migration process will actually complete successfully. This ensures we can release successfully but doesn&amp;rsquo;t give us any real confidence that the migration is successful. For such a primitive check it&amp;rsquo;s surprisingly effective as it picks up the common errors of changing columns to NOT NULL when the production data actually does have null values, or adding a unique constraint to tables when the content isn&amp;rsquo;t actually unique.&lt;/p&gt;
+&lt;h3 id=&#34;did-migrations-work&#34;&gt;Did Migrations Work?&lt;/h3&gt;
+&lt;p&gt;The obvious next step is to write tests to confirm that migrations actually worked. Our compatibility test jobs are setup so that we can easily write a JUnit test that will be run after migrations complete so we can verify the state. &lt;/p&gt;
+&lt;p&gt;The most direct form of test is an example based test. We select some examples from the production dataset and write assertions to check that specific bit of the data migrated in the way we expect. The down side is that we&amp;rsquo;re dealing with live production data which is regularly updated so it&amp;rsquo;s possible that our examples will change after we&amp;rsquo;ve written the test and then, correctly, migrate to something different to what we expect. Still, these are often useful to put through for a single run as a sanity test when developing the migration, then delete them.&lt;/p&gt;
+&lt;p&gt;Slightly more generic, we can write a test that assert constraints that must be true immediately after the migration completes. For example, when we made permissions more fine-grained we needed to assign a new type of payment role to every account that used real money, but not to any demo accounts (which use pretend money). We can write a test to verify that migration worked correctly quite easily, however once the migration goes out admin users may add or remove the role to different accounts and the constraint would no longer hold. For cases like that we simply delete the test once the migration has gone live at which point it&amp;rsquo;s done its job anyway.  We also mark the test with a @ValidUntil annotation that makes it clear that the test has a limited life time in case we forget to delete it.&lt;/p&gt;
+&lt;p&gt;Finally, we can often identify constraints that should always be valid and write permanent tests for them. These are extremely powerful, testing not just that our current migration works correctly but that no future migration breaks that expectation.&lt;/p&gt;
+&lt;h3 id=&#34;did-something-unexpected-happen&#34;&gt;Did Something Unexpected Happen?&lt;/h3&gt;
+&lt;p&gt;The compatibility tests that should always hold true have an additional benefit – they give us early feedback that the production data has diverged from expectations for some reason, typically because a bug slipped through. We can then investigate, fix the bug to prevent any more data issues and work out how to clean up the problem.&lt;/p&gt;
+&lt;p&gt;Obviously, finding issues only after production data has gone wrong is not something we ever want to do but it&amp;rsquo;s still a useful safety net if something slips through all our pre-release testing and the database schema constraints we use. Typically when we do find issues they are minor inconsistencies that don&amp;rsquo;t cause any issues now, but are like little time bombs just waiting for a future release to assume it can&amp;rsquo;t possibly happen. So even getting feedback that late in the process often allows us to avoid any user-noticeable effects.&lt;/p&gt;
+&lt;h3 id=&#34;making-them-easy&#34;&gt;Making Them Easy&lt;/h3&gt;
+&lt;p&gt;We have a base class we extend our compatibility tests from which makes it easy to get a connection to the database and has a few handy utilities for asserting things. By far the most useful however is the &lt;code&gt;assertNoRowsMatch&lt;/code&gt; method. It does exactly what it says – takes an SQL query and asserts that no rows match. If any do, it prints them out so you get really useful debug information to start investigating the problem. For example:&lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #aa22ff;&#34;&gt;@Test&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #b00040;&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #0000ff;&#34;&gt;shouldHaveAPrincipalForEveryAccount&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;{&lt;/span&gt;
+  assertNoRowsMatch&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
+    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;SELECT a.account_id, a.name &#34;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;+&lt;/span&gt;
+    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;FROM account a &#34;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;+&lt;/span&gt;
+    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;LEFT JOIN principal p ON a.principal_id = p.principal_id &#34;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;+&lt;/span&gt;
+    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;WHERE p.principal_id IS NULL&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
+&lt;span style=&#34;color: #666666;&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If we&amp;rsquo;ve somehow wound up with an account with no principal that could log into it the test will print the account ID and name so we can investigate what happened and clean up the data.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Making Test Output Useful</title>
+      <link>https://www.symphonious.net/2016/02/29/testinglmax-making-test-output-useful/</link>
+      <pubDate>Sun, 28 Feb 2016 23:14:18 +0000</pubDate>
+      <guid>https://www.symphonious.net/2016/02/29/testinglmax-making-test-output-useful/</guid>
+      <description>&lt;p&gt;Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened and why. So just like production code, you should use a logging framework within your DSL, use meaningful log levels and think about what info you&amp;rsquo;d need in the logs if something went wrong (and what you don&amp;rsquo;t). There&amp;rsquo;s also a few things we&amp;rsquo;ve found very useful specifically in our test logging.&lt;/p&gt;
+&lt;h3 id=&#34;log-alias-to-real-name-mappings&#34;&gt;Log Alias to Real Name Mappings&lt;/h3&gt;
+&lt;p&gt;Since &lt;a href=&#34;https://www.symphonious.net/2015/06/08/testinglmax-aliases/&#34;&gt;the DSL uses aliases&lt;/a&gt;, if we want to poke around in the exchange manually to understand why a test failed, we need to know the real names to use. So whenever we create a real name for an alias we log some information about it. For example when creating an instrument:&lt;/p&gt;
+&lt;pre&gt;21:28:53,916 WARN  …rdersWithSuppliedInstructionIds [AdminAPI] Created instrument &#39;instrument&#39; (actual name: &#39;instrument-54369ih64k63&#39;, externalId: 180423, internalId: 180422) on tradeReportingGroup 1003&lt;/pre&gt;
+&lt;p&gt;All the key information we need is in that log statement – the alias, real name plus unique identifiers (externalId and internalId).&lt;/p&gt;
+&lt;h3 id=&#34;name-your-threads&#34;&gt;Name Your Threads&lt;/h3&gt;
+&lt;p&gt;We use a custom JUnit test runner (via the @RunWith annotation) so we can run tests within a test suite in parallel. With tests running in parallel all their output gets mixed up and becomes hard to read.  Recently we started setting the test thread names to the name of the test case. &lt;/p&gt;
+&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #b00040;&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #0000ff;&#34;&gt;executeTest&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
+  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;final&lt;/span&gt; FrameworkMethod method&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; 
+  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;final&lt;/span&gt; Description description&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;{&lt;/span&gt;
+    Thread&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;currentThread&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;setName&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
+      getThreadName&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;description&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;getMethodName&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;()));&lt;/span&gt;
+    methodBlock&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;method&lt;span style=&#34;color: #666666;&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;evaluate&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;();&lt;/span&gt;
+&lt;span style=&#34;color: #666666;&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;We actually trim the method name to 30 characters (cutting off the &lt;em&gt;start&lt;/em&gt; rather than the end which tends to work better with the way we name tests) so we get output like:&lt;/p&gt;
+&lt;pre&gt;21:28:47,356 INFO  …tityAndPriceAndNoStopLossOffset [TestContext] Created PartyCode XMCS (alias: marketMaker)&lt;br /&gt;&lt;br /&gt;21:28:47,356 INFO  …erWithZeroSuppliedInstructionId [TestContext] Created PartyCode U6HK (alias: marketMaker)&lt;br /&gt;&lt;br /&gt;21:28:47,356 INFO  …ctionIdIfFirstOrderHasCompleted [TestContext] Created PartyCode 3DS6 (alias: marketMaker)&lt;br /&gt;&lt;br /&gt;21:28:47,356 INFO  …StopLossOffsetAndAStopLossPrice [TestContext] Created PartyCode XFY8 (alias: marketMaker)&lt;/pre&gt;
+&lt;p&gt;There are a few cases where we spawn additional threads within a test (typically to pull data from long poll or other push event channels). In those cases we generally pass the thread name down with an additional prefix (e.g. LongPoll-…StopLossOffsetAndAStopLossPrice) so we can still associate that output with the right test.&lt;/p&gt;
+&lt;h3 id=&#34;time-traveller-names&#34;&gt;Time Traveller Names&lt;/h3&gt;
+&lt;p&gt;The way &lt;a href=&#34;https://www.symphonious.net/2014/04/01/testinglmax-time-travel-and-the-tardis/&#34;&gt;we allow time travelling tests to run in parallel&lt;/a&gt; is reasonably complex – only one thread ever actually executes the time travel and there&amp;rsquo;s a bunch of cross-thread coordination – so our thread names aren&amp;rsquo;t as useful in that little area of code. As such we give each test we&amp;rsquo;re currently running a time traveller name so we get log output from the Tardis like:&lt;/p&gt;
+&lt;pre&gt;The Doctor asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Clara asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Captain Jack asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Rory asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Missy asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Amy asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;River asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Rose asking to travel to mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;br /&gt;Time travelling to: mondayOpen (Mon Mar 14 07:00:00 UTC 2016)&lt;/pre&gt;
+&lt;p&gt;We may have gotten a little carried away with the Doctor Who theme but having a name for each time traveller makes it far easier to understand what each test is waiting for.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Introducing ElementSpecification</title>
+      <link>https://www.symphonious.net/2015/12/04/testinglmax-introducing-elementspecification/</link>
+      <pubDate>Fri, 04 Dec 2015 03:26:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/12/04/testinglmax-introducing-elementspecification/</guid>
+      <description>&lt;p&gt;Today LMAX Exchange has released &lt;a href=&#34;https://github.com/LMAX-Exchange/elementspec&#34;&gt;ElementSpecification&lt;/a&gt;, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make it easier to understand selectors by using a very English-like syntax&lt;/li&gt;
+&lt;li&gt;Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests&lt;/li&gt;
+&lt;li&gt;Strongly discourage writing overly complicated selectors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.&lt;/p&gt;
+&lt;p&gt;Making selectors easier to understand doesn&amp;rsquo;t mean making locators shorter – CSS is already a very terse language. We actually want to use more characters to express our intent so that future developers can read the specification without having to decode CSS. For example, the CSS:&lt;/p&gt;
+&lt;pre&gt;#data-table tr[data-id=&#39;78&#39;] .name&lt;/pre&gt;
+&lt;p&gt;becomes:&lt;/p&gt;
+&lt;pre&gt;anElementWithId(&#34;data-table&#34;)&lt;br /&gt;    .thatContainsA(&#34;tr&#34;).withAttributeValue(&#34;data-id&#34;, &#34;78&#34;)&lt;br /&gt;    .thatContainsAnElementWithClass(&#34;name&#34;)&lt;/pre&gt;
+&lt;p&gt;Much longer, but if you were to read the CSS selector to yourself, it would come out a lot like the ElementSpecification syntax. That allows you to stay focussed on what the test is doing instead of pausing to decode the CSS. It&amp;rsquo;s also reduces the likelihood of misreading a vital character and misunderstanding the selector.&lt;/p&gt;
+&lt;p&gt;With ElementSpecification essentially acting as an adapter layer between the test author and the actual CSS, it&amp;rsquo;s also able to avoid some common intermittency pitfalls. In fact, the reason ElementSpecification was first built was because really smart people kept attempting to locate an element with a classname using:&lt;/p&gt;
+&lt;pre&gt;//*[contains(@class, &#39;valid&#39;)]&lt;/pre&gt;
+&lt;p&gt;which looks ok, but incorrectly also matches an element with the class ‘invalid&amp;rsquo;. Requiring the class attribute to exactly match ‘valid&amp;rsquo; is too brittle because it will fail if an additional class is added to the element. Instead, ElementSpecification would generate:&lt;/p&gt;
+&lt;pre&gt;contains(concat(&#39; &#39;, @class, &#39; &#39;), &#39; valid &#39;)&lt;/pre&gt;
+&lt;p&gt;which is decidedly unpleasant to have to write by hand.&lt;/p&gt;
+&lt;p&gt;The biggest benefit we&amp;rsquo;ve seen from ElementSpecification though is that fact that it has a deliberately limited set of abilities. You can only descend down the DOM tree, never back up and never across to siblings. That makes selectors &lt;em&gt;far&lt;/em&gt; easier to understand and avoids a lot of unintended coupling between the tests and incidental properties of the DOM. Sometimes it means augmenting the DOM to make it more semantic – things like adding a “data-id” attribute to rows as in the example above. It&amp;rsquo;s surprisingly rare how often we need to do that and surprising how useful those extra semantics wind up being for a whole variety of reasons anyway.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing@LMAX – Replacements in DSL</title>
+      <link>https://www.symphonious.net/2015/08/27/testinglmax-replacements-in-dsl/</link>
+      <pubDate>Thu, 27 Aug 2015 10:29:33 +0000</pubDate>
+      <guid>https://www.symphonious.net/2015/08/27/testinglmax-replacements-in-dsl/</guid>
+      <description>&lt;p&gt;Given our DSL makes heavy use of &lt;a href=&#34;https://www.symphonious.net/2015/06/08/testinglmax-aliases/&#34;&gt;aliases&lt;/a&gt;, we often have to provide a way to include the real name or ID as part of some string. For example, an audit record for a new account might be:&lt;/p&gt;
+&lt;pre&gt;Created account 127322 with username someUser123.&lt;/pre&gt;
+&lt;p&gt;But in our acceptance test we&amp;rsquo;d create the user with:&lt;/p&gt;
+&lt;pre&gt;registrationAPI.createUser(&#34;someUser&#34;);&lt;/pre&gt;
+&lt;p&gt;someUser is just an alias, the DSL creates a unique username to use and the system assigns a unique account ID that the DSL keeps track of for us. So to write a test that the new account audit record is written correctly, we need a way to build the expected audit string.&lt;/p&gt;
+&lt;p&gt;Our initial attempt was straight forward enough:&lt;/p&gt;
+&lt;pre&gt;adminAPI.verifyAuditEntry(&lt;br /&gt;  &#34;expression: Created account &amp;lt;accountId&amp;gt; with username &amp;lt;username&amp;gt;.&#34;,&lt;br /&gt; &#34;account: someUser&#34;,&lt;br /&gt;);&lt;/pre&gt;
+&lt;p&gt;The DSL substitutes &lt;accountId&gt; and &lt;username&gt; with the real values for us. Simple, neat, worked well for quite a while. Except that over time we kept finding more and more things that needed to be substituted and encountered situations where an audit log would reference to two different accounts or multiple instruments, leading us to have &lt;accountId2&gt; and &lt;accountId3&gt; replacements.&lt;/p&gt;
+&lt;p&gt;So a little while back some of my clever colleagues changed things around to a slightly more complex but much more flexible syntax:&lt;/p&gt;
+&lt;pre&gt;adminAPI.verifyAuditEntry(&lt;br /&gt;  &#34;expression: Created account &amp;lt;accountId:someUser&amp;gt; with username &amp;lt;username:someUser&amp;gt;.&#34;&lt;br /&gt;);&lt;/pre&gt;
+&lt;p&gt;Essentially, the replacement now contains both the type of value to insert as well as the alias to look up. This has been a minor revolution for our DSL – it&amp;rsquo;s now much easier to handle all sorts of complex cases and it&amp;rsquo;s much clearer which alias is being used for each replacement.&lt;/p&gt;
+&lt;p&gt;The biggest win though, is that because all the required information to perform the expansions is inside the one string – not requiring any extra DSL parameters – the replacement algorithm can be easily shared across all the different places in the DSL that need to support replacements. New types of things to be replaced can easily be added in one place and are then available everyone as well.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s surprising how much benefit you can get from such a simple little change.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

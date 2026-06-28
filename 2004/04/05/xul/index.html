@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>XUL | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Jono Bacon comments on how XUL could be great for providing more interactive web applications. My take on it: he&rsquo;s gone off the deep end. I just don&rsquo;t get what the current obsession is for having to run everything in a web browser these days.
+
+This framework not only brings the web browser out of the dark ages in terms of the potential for interaction, but the Mozilla developers made the right choice and picked XML as the language for specifying user interfaces. See here and here for why XML not a good programming language.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/04/05/xul/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/04/05/xul/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="XUL">
+	<meta property="og:description" content="Jono Bacon comments on how XUL could be great for providing more interactive web applications. My take on it: he’s gone off the deep end. I just don’t get what the current obsession is for having to run everything in a web browser these days.
+This framework not only brings the web browser out of the dark ages in terms of the potential for interaction, but the Mozilla developers made the right choice and picked XML as the language for specifying user interfaces. See here and here for why XML not a good programming language.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-04-05T06:17:53+00:00">
+		<meta property="article:modified_time" content="2004-04-05T06:17:53+00:00">
+
+	<meta itemprop="name" content="XUL">
+	<meta itemprop="description" content="Jono Bacon comments on how XUL could be great for providing more interactive web applications. My take on it: he’s gone off the deep end. I just don’t get what the current obsession is for having to run everything in a web browser these days.
+This framework not only brings the web browser out of the dark ages in terms of the potential for interaction, but the Mozilla developers made the right choice and picked XML as the language for specifying user interfaces. See here and here for why XML not a good programming language.">
+	<meta itemprop="datePublished" content="2004-04-05T06:17:53+00:00">
+	<meta itemprop="dateModified" content="2004-04-05T06:17:53+00:00">
+	<meta itemprop="wordCount" content="868">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="XUL">
+	<meta name="twitter:description" content="Jono Bacon comments on how XUL could be great for providing more interactive web applications. My take on it: he’s gone off the deep end. I just don’t get what the current obsession is for having to run everything in a web browser these days.
+This framework not only brings the web browser out of the dark ages in terms of the potential for interaction, but the Mozilla developers made the right choice and picked XML as the language for specifying user interfaces. See here and here for why XML not a good programming language.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">XUL</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">XUL</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-04-05T06:17:53Z">April 5, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Jono Bacon <a href="http://www.oreillynet.com/pub/wlg/4654">comments</a> on how XUL could be great for providing more interactive web applications. My take on it: he&rsquo;s gone off the deep end. I just don&rsquo;t get what the current obsession is for having to run everything in a web browser these days.</p>
+<blockquote>
+<p>This framework not only brings the web browser out of the dark ages in terms of the potential for interaction, but the Mozilla developers made the right choice and picked XML as the language for specifying user interfaces. See <a href="http://radio.weblogs.com/0112098/2004/03/27.html#a473">here</a> and <a href="http://weblogs.java.net/pub/wlg/1154">here</a> for why XML not a good programming language.</p>
+</blockquote>
+<blockquote>
+<p>This choice not only makes user interfaces extremely easy to construct (with the benefits of XML DTD validation to boot), but the fact that the interface code is in XML also opens up a whole world of potential for further processing of this interface code. There is no reason why someone could not write a thin compatibility layer to convert XUL interface code to a fake table/div/image based interface for none-XUL browsers. DTD validation == compiler validation. Now there&rsquo;s a new and exciting concept. Extremely easy to construct == <action type="construct"><modifier name="easy"><modifier name="extremely" /></modifier></action>. As for the possibility to post process XUL, take a look at something like BCEL or most of the aspect oriented add-ons for Java that modify bytecode on the fly. I&rsquo;d also question just how useful it is to be able to modify your application via XSLT anyway. The given example (converting to normal HTML for non-XUL browsers) is a throw away because if non-XUL browsers could do what you needed you wouldn&rsquo;t be using XUL in the first place.</p>
+</blockquote>
+<blockquote>
+<p>The exciting thing about XUL is not XML though. The truly inspiring aspect of XUL is the potential to standardise on Mozilla as a platform for developing complex applications. Exactly what we need. I mean all this talk about web standards and cross-browser compatibility is a total waste of time. What we really need is new ways to lock people into a particular browser by using extensions to HTML. Did I just go back in time about 5 years?</p>
+</blockquote>
+<blockquote>
+<p>Application developers are going to need to consider how much user interface code is hooked into application logic. This is of particular importance if cross platform support is one of the goals of an application, and particularly if this cross platform support should be native and not byte-code running on a virtual machine. But XUL <em>is</em> effectively bytecode! Sure, it&rsquo;s exceptionally verbose and slow to parse, but it is essentially a platform independent representation of computer instructions which is translated to machine code at run time – just like bytecode is. It&rsquo;s probably best described as an interpreted language, but the end result is the same. Certainly there is nothing about XUL or Mozilla that is native since they made the (IMO, horribly misguided) decision to emulate widgets and use themes to make them look like the real thing.</p>
+</blockquote>
+<blockquote>
+<p>If a developer was to write all UI elements in XUL XML instead of native code within the application logic, the XML could be converted to this native toolkit code using a compatibility layer. How is this different from writing all UI elements in Java, wxWindows or any of the other cross-platform GUI toolkits and converting them to native toolkit code using a compatibility layer? There&rsquo;s no need to use XML to do this and it&rsquo;s a really bad use of XML because of the inherent verbosity of XML.</p>
+</blockquote>
+<blockquote>
+<p>This could dramatically open up the potential for a new breed of web based applications that could be cross platform and cross browser based if the W3C were to adopt XUL as an official recommendation. Yep absolutely, because CSS 1, 2, 3, XHTML, JavaScript and all those other webstandards are being so well supported by browsers now, adding thousands more functions that they need to support will solve all our problems. If one of the big complaints about HTML and JavaScript is that it&rsquo;s so hard to make things work correctly on different browsers, what inherent quality does XUL have to prevent that from happening again?</p>
+</blockquote>
+<blockquote>
+<p>The Mozilla project is proving to be capable of not only creating a strong and impressive suite of applications, but is also using the combined intellect of the development community to harness the potential for not only Mozilla based development, but development in general. I want my applications custom tailored for the task at hand and tailored to fit in well with my OS of choice. I <em>don&rsquo;t</em> want to use my browser for everything, it&rsquo;s not designed for that. I <em>don&rsquo;t</em> want to use anything built on Mozilla because it looks so horribly out of place on OS X (which is one of my OS&rsquo;s of choice). I&rsquo;d also like to actually use my own processor, I paid good money to get a nice fast one, making everything a thin client makes me dependent on a) having a net connection, b) having a fast net connection and c) the server having enough horse power for all the users. If your app is going to be on my machine anyway, it may as well be standalone and leave my browser to do what it&rsquo;s good at – browsing the web.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

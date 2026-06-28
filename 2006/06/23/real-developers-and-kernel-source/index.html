@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Real Developers and Kernel Source | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Jeremiah Foster writes about Apple closing the source to the OS X kernel on Intel. I the statement:
+
+Without the ability to modify kernel source serious developers will not touch the Apple platform, maybe that is why the OS X server is not making significant inroads into the server community.
+
+Firstly, serious developers don&rsquo;t really care about kernel source unless they happen to develop kernels or kernel modules. Most developers, both fun loving and serious, develop well above the kernel level and don&rsquo;t need access to its source code. Even the link between serious developers and those that are so passionate about open source kernels, that they refuse to use an OS whose kernel isn&rsquo;t open source is tenuous at best. The kernel is one very small, albeit central, part of OS X and the vast majority of the OS is and has always been closed source.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/06/23/real-developers-and-kernel-source/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/06/23/real-developers-and-kernel-source/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Real Developers and Kernel Source">
+	<meta property="og:description" content="Jeremiah Foster writes about Apple closing the source to the OS X kernel on Intel. I the statement:
+Without the ability to modify kernel source serious developers will not touch the Apple platform, maybe that is why the OS X server is not making significant inroads into the server community.
+Firstly, serious developers don’t really care about kernel source unless they happen to develop kernels or kernel modules. Most developers, both fun loving and serious, develop well above the kernel level and don’t need access to its source code. Even the link between serious developers and those that are so passionate about open source kernels, that they refuse to use an OS whose kernel isn’t open source is tenuous at best. The kernel is one very small, albeit central, part of OS X and the vast majority of the OS is and has always been closed source.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-06-22T20:48:55+00:00">
+		<meta property="article:modified_time" content="2006-06-22T20:48:55+00:00">
+
+	<meta itemprop="name" content="Real Developers and Kernel Source">
+	<meta itemprop="description" content="Jeremiah Foster writes about Apple closing the source to the OS X kernel on Intel. I the statement:
+Without the ability to modify kernel source serious developers will not touch the Apple platform, maybe that is why the OS X server is not making significant inroads into the server community.
+Firstly, serious developers don’t really care about kernel source unless they happen to develop kernels or kernel modules. Most developers, both fun loving and serious, develop well above the kernel level and don’t need access to its source code. Even the link between serious developers and those that are so passionate about open source kernels, that they refuse to use an OS whose kernel isn’t open source is tenuous at best. The kernel is one very small, albeit central, part of OS X and the vast majority of the OS is and has always been closed source.">
+	<meta itemprop="datePublished" content="2006-06-22T20:48:55+00:00">
+	<meta itemprop="dateModified" content="2006-06-22T20:48:55+00:00">
+	<meta itemprop="wordCount" content="362">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Real Developers and Kernel Source">
+	<meta name="twitter:description" content="Jeremiah Foster writes about Apple closing the source to the OS X kernel on Intel. I the statement:
+Without the ability to modify kernel source serious developers will not touch the Apple platform, maybe that is why the OS X server is not making significant inroads into the server community.
+Firstly, serious developers don’t really care about kernel source unless they happen to develop kernels or kernel modules. Most developers, both fun loving and serious, develop well above the kernel level and don’t need access to its source code. Even the link between serious developers and those that are so passionate about open source kernels, that they refuse to use an OS whose kernel isn’t open source is tenuous at best. The kernel is one very small, albeit central, part of OS X and the vast majority of the OS is and has always been closed source.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Real Developers and Kernel Source</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Real Developers and Kernel Source</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-06-22T20:48:55Z">June 22, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://www.oreillynet.com/mac/blog/2006/06/apple_is_really_a_consumer_ele.html">Jeremiah Foster writes</a> about Apple closing the source to the OS X kernel on Intel. I the statement:</p>
+<blockquote>
+<p>Without the ability to modify kernel source serious developers will not touch the Apple platform, maybe that is why the OS X server is not making significant inroads into the server community.</p>
+</blockquote>
+<p>Firstly, serious developers don&rsquo;t really care about kernel source unless they happen to develop kernels or kernel modules. Most developers, both fun loving and serious, develop well above the kernel level and don&rsquo;t need access to its source code. Even the link between serious developers and those that are so passionate about open source kernels, that they refuse to use an OS whose kernel isn&rsquo;t open source is tenuous at best. The kernel is one very small, albeit central, part of OS X and the vast majority of the OS is and has always been closed source.</p>
+<p>The connection between the number of developers and the adoption of Apple&rsquo;s server platform specifically is also strange. There&rsquo;s a great range of server software available for OS X, including the Linux staples, Apache, MySQL, PHP, Perl, Python and Ruby on Rails so it is hard to imagine that the lack of adoption of OS X server is particularly because of a lack of software. The fact is that Mac OS has and still is viewed as a consumer OS is significantly hurting OS X&rsquo;s adoption, as is the lack of a clear, long term roadmap from Apple. The truth is that there&rsquo;s a great number of reasons that OS X server isn&rsquo;t taking off, but the least significant of them is the fact that the kernel isn&rsquo;t open source.</p>
+<blockquote>
+<p>Perhaps the question is‚ will Apple have enough innovation to maintain a pipeline of consumer products to remain vital?</p>
+</blockquote>
+<p>Current trends point to yes. If and when being open source becomes important for Apple they are well placed to be able to do that, having gained experience and a lot of tough lessons in building open source communities. Right now, being open source is not a key selling point for Apple&rsquo;s key markets and so they won&rsquo;t hesitate to close source when it suits them.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

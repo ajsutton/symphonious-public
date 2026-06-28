@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Cache Synchronization With Jabber | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Yesterday afternoon Suneth and I took on a research project to see how feasible it was to keep server caches up to date by using XMPP to notify the other servers in the cluster of a change. Imagine a web server with some latency between it and the resources it&rsquo;s serving (eg: it&rsquo;s using S3), to speed up performance you&rsquo;d want to cache the recently used or most commonly used resources locally on the server, but if you need to scale up to a cluster of servers and the resources are being changed, that cache becomes a problem.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/09/08/cache-synchronization-with-jabber/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/09/08/cache-synchronization-with-jabber/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Cache Synchronization With Jabber">
+	<meta property="og:description" content="Yesterday afternoon Suneth and I took on a research project to see how feasible it was to keep server caches up to date by using XMPP to notify the other servers in the cluster of a change. Imagine a web server with some latency between it and the resources it’s serving (eg: it’s using S3), to speed up performance you’d want to cache the recently used or most commonly used resources locally on the server, but if you need to scale up to a cluster of servers and the resources are being changed, that cache becomes a problem.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-09-08T09:21:03+00:00">
+		<meta property="article:modified_time" content="2007-09-08T09:21:03+00:00">
+
+	<meta itemprop="name" content="Cache Synchronization With Jabber">
+	<meta itemprop="description" content="Yesterday afternoon Suneth and I took on a research project to see how feasible it was to keep server caches up to date by using XMPP to notify the other servers in the cluster of a change. Imagine a web server with some latency between it and the resources it’s serving (eg: it’s using S3), to speed up performance you’d want to cache the recently used or most commonly used resources locally on the server, but if you need to scale up to a cluster of servers and the resources are being changed, that cache becomes a problem.">
+	<meta itemprop="datePublished" content="2007-09-08T09:21:03+00:00">
+	<meta itemprop="dateModified" content="2007-09-08T09:21:03+00:00">
+	<meta itemprop="wordCount" content="375">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Cache Synchronization With Jabber">
+	<meta name="twitter:description" content="Yesterday afternoon Suneth and I took on a research project to see how feasible it was to keep server caches up to date by using XMPP to notify the other servers in the cluster of a change. Imagine a web server with some latency between it and the resources it’s serving (eg: it’s using S3), to speed up performance you’d want to cache the recently used or most commonly used resources locally on the server, but if you need to scale up to a cluster of servers and the resources are being changed, that cache becomes a problem.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Cache Synchronization With Jabber</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Cache Synchronization With Jabber</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-09-08T09:21:03Z">September 8, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Yesterday afternoon Suneth and I took on a research project to see how feasible it was to keep server caches up to date by using XMPP to notify the other servers in the cluster of a change. Imagine a web server with some latency between it and the resources it&rsquo;s serving (eg: it&rsquo;s using S3), to speed up performance you&rsquo;d want to cache the recently used or most commonly used resources locally on the server, but if you need to scale up to a cluster of servers and the resources are being changed, that cache becomes a problem.</p>
+<p>The simplest solution to this is to set limits on the length of time that resources can be cached but I&rsquo;d prefer to avoid latency in updates as much as possible.</p>
+<p>The other alternative is to have some kind of notification between the server cluster so that all servers rapidly find out when a change has been made – much like database replication. This is what Suneth and I wanted to play around with and we thought XMPP would be a quick way to get such a notification system going.</p>
+<p>It&rsquo;s worth noting neither of us really knew anything about XMPP other than that it was the protocol underlying Jabber instant messaging and it was a generic XML messaging system. We figured we could use the generic nature of it to send whatever messages we needed and just take advantage of the existing servers to do the marshalling. Fortunately, our lack of knowledge led us right into a much simpler solution – just use Jabber.</p>
+<p>We grabbed the <a href="http://www.igniterealtime.org/projects/smack/index.jsp">Smack API</a> and started playing with it and quickly discovered that sending and receiving messages was ridiculously easy. It turns out that the absolute simplest way you can minimize stale data in your caches is to simply have all the servers join a preconfigured chat room. Whenever they save a change to a resource they send a message to the room with the unique ID of that resource and whenever they receive a message from the room they assume it&rsquo;s a unique ID and remove any cached versions of that resource.</p>
+<p>It also makes testing easy – you simply open a jabber client and join the chat room yourself.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

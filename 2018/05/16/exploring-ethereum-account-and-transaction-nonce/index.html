@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exploring Ethereum – Account and Transaction Nonce | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="This is the second article on things I found particularly interesting in the Ethereum yellow paper.  The first is “What&rsquo;s on the Blockchain?” and the same disclaimers apply: I&rsquo;m no expert and you should go verify any claims I&rsquo;m making before depending on them. Comments and corrections are most welcome either via email or @ajsutton on twitter.
+One of the little details in the way Ethereum works is the idea of a “nonce” attached to each account and transaction. It&rsquo;s a small but important detail.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2018/05/16/exploring-ethereum-account-and-transaction-nonce/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2018/05/16/exploring-ethereum-account-and-transaction-nonce/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exploring Ethereum – Account and Transaction Nonce">
+	<meta property="og:description" content="This is the second article on things I found particularly interesting in the Ethereum yellow paper. The first is “What’s on the Blockchain?” and the same disclaimers apply: I’m no expert and you should go verify any claims I’m making before depending on them. Comments and corrections are most welcome either via email or @ajsutton on twitter.
+One of the little details in the way Ethereum works is the idea of a “nonce” attached to each account and transaction. It’s a small but important detail.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2018-05-16T00:02:54+00:00">
+		<meta property="article:modified_time" content="2018-05-16T00:02:54+00:00">
+
+	<meta itemprop="name" content="Exploring Ethereum – Account and Transaction Nonce">
+	<meta itemprop="description" content="This is the second article on things I found particularly interesting in the Ethereum yellow paper. The first is “What’s on the Blockchain?” and the same disclaimers apply: I’m no expert and you should go verify any claims I’m making before depending on them. Comments and corrections are most welcome either via email or @ajsutton on twitter.
+One of the little details in the way Ethereum works is the idea of a “nonce” attached to each account and transaction. It’s a small but important detail.">
+	<meta itemprop="datePublished" content="2018-05-16T00:02:54+00:00">
+	<meta itemprop="dateModified" content="2018-05-16T00:02:54+00:00">
+	<meta itemprop="wordCount" content="730">
+	<meta itemprop="keywords" content="Blockchain,Code and Geek Stuff,Ethereum">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exploring Ethereum – Account and Transaction Nonce">
+	<meta name="twitter:description" content="This is the second article on things I found particularly interesting in the Ethereum yellow paper. The first is “What’s on the Blockchain?” and the same disclaimers apply: I’m no expert and you should go verify any claims I’m making before depending on them. Comments and corrections are most welcome either via email or @ajsutton on twitter.
+One of the little details in the way Ethereum works is the idea of a “nonce” attached to each account and transaction. It’s a small but important detail.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Ethereum – Account and Transaction Nonce</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exploring Ethereum – Account and Transaction Nonce</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2018-05-16T00:02:54Z">May 16, 2018</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>This is the second article on things I found particularly interesting in the <a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum yellow paper</a>.  The first is “<a href="https://www.symphonious.net/2018/05/11/exploring-ethereum-whats-on-the-blockchain/">What&rsquo;s on the Blockchain?</a>” and the same disclaimers apply: I&rsquo;m no expert and you should go verify any claims I&rsquo;m making before depending on them. Comments and corrections are most welcome either via <a href="mailto:adrian@symphonious.net">email</a> or <a href="https://twitter.com/ajsutton">@ajsutton</a> on twitter.</p>
+<p>One of the little details in the way Ethereum works is the idea of a “nonce” attached to each account and transaction. It&rsquo;s a small but important detail.</p>
+<p>For a “normal” account (ie has no code attached), the nonce is equal to the number of transaction sent from it. In the case of contracts (accounts with code) the nonce is the number of contract-creations made by the account.</p>
+<p>When a transaction is created, the current nonce value from the account is assigned as the transaction nonce. Part of the initial tests for intrinsic transaction validity is that the transaction nonce is equivalent to the sender account&rsquo;s current nonce.</p>
+<p>The nonce is primarily included in transactions to prevent same-chain replay attacks on transactions. The transaction sender is identified by the signature they add to the transaction (those v, r and s items from each transaction we skipped over last time). To generate those you need the account&rsquo;s private key so only the account owner can create a validly signed new transaction.</p>
+<p>However, if the transaction data and the sender are the same, the signature will also be the same. So absent the nonce, an adversary could take any existing transaction and resend it to a node with a valid signature and have it processed a second time. For example, if Alice signed a transaction to send 10ETH to Bob, Bob could take that transaction signed by Alice and repeatedly submit it for processing until all of Alice&rsquo;s funds had been transferred to Bob. Bob couldn&rsquo;t <em>change</em> anything about the transaction but that doesn&rsquo;t make Alice feel any better about losing all her ETH when she only approved a single transfer.</p>
+<p>With the account nonce however, when the transaction is first processed, Alice&rsquo;s account&rsquo;s nonce is incremented and then when Bob resubmits the transaction, it is rejected because the nonce doesn&rsquo;t match. Bob is unable to change the nonce on the transaction without invalidating Alice&rsquo;s signature so the transaction can only be applied once, exactly as Alice intended.</p>
+<p>BUT! This doesn&rsquo;t entirely eliminate replay attacks.  The transaction could still be replayed on a different chain (though it may require replaying a number of transactions so the account nonce “catches up”).  The Ethereum / Ethereum Classic split caused quite a few headaches in this regard, until EIP-155 was implemented to include an ID for the chain in the data to sign, thus making the two different chains incompatible. The same problem can also occur between test chains and MainNet, though hopefully you aren&rsquo;t sharing a single private key between them.</p>
+<p>Interestingly, most explanations for the importance of the nonce suggest it&rsquo;s there to prevent double spending which is not the case. The theory goes that Alice sends transaction t1 to pay Bob for some goods but then very quickly submits another transaction t2 with a higher gas price which is then prioritised higher and mined first allowing her to spend funds twice. Even if t2 was processed before t1, it would result in Alice&rsquo;s balance being reduced before t1 was applied. If there were then insufficient funds t1 would be rejected. If you had already released the goods t1 was intended to pay for that might be bad, which is why typically people wait for the transaction to be in a block at a certain depth before considering it finalised. The nonce doesn&rsquo;t help prevent this double-spend issue at all – Alice could deliberately setup the same race by giving both t1 and t2 the same nonce.</p>
+<p>Finally, the account nonce is also used as part of creating the address for a new account/contract. The address of the new account is “the rightmost 160 bits of the Keccak hash of the RLP encoding of the structure containing only the sender and the account nonce”. Which is to say, the new address is a particular way of hashing the combination of the sender&rsquo;s account hash and nonce. Since the sender account nonce is incremented when sending a new transaction this is guaranteed to generate a unique address.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

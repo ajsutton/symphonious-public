@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Why Least Privilege Users Are Not The Answer | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="G. Andrew Duthie asks: &ldquo;Will 2005 be the year of Least Privilege&rdquo; (via Robert Scoble).
+Not a chance.  Why not?  Scoble sums it up pretty well (unintentionally):
+
+For those who don&rsquo;t know what Least Privilege is, it means turning off a bunch of administrator rights so that no software can install without logging off and logging back in as administrator
+
+People don&rsquo;t want to have to log off and log back on to get stuff installed!  That&rsquo;s awful.  People want to use their computer and have it get out of the way.  What should happen is that they are prompted for an administrator login when admin privileges are needed and it should all just work seamlessly once such a login has been provided.  Similarly, if they are logged in as Administrator, they should have to provide their password to install software anyway so that they know it&rsquo;s happening.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2005/01/26/why-least-privilege-users-are-not-the-answer/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2005/01/26/why-least-privilege-users-are-not-the-answer/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Why Least Privilege Users Are Not The Answer">
+	<meta property="og:description" content="G. Andrew Duthie asks: “Will 2005 be the year of Least Privilege” (via Robert Scoble).
+Not a chance. Why not? Scoble sums it up pretty well (unintentionally):
+For those who don’t know what Least Privilege is, it means turning off a bunch of administrator rights so that no software can install without logging off and logging back in as administrator
+People don’t want to have to log off and log back on to get stuff installed! That’s awful. People want to use their computer and have it get out of the way. What should happen is that they are prompted for an administrator login when admin privileges are needed and it should all just work seamlessly once such a login has been provided. Similarly, if they are logged in as Administrator, they should have to provide their password to install software anyway so that they know it’s happening.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2005-01-26T11:19:55+00:00">
+		<meta property="article:modified_time" content="2005-01-26T11:19:55+00:00">
+
+	<meta itemprop="name" content="Why Least Privilege Users Are Not The Answer">
+	<meta itemprop="description" content="G. Andrew Duthie asks: “Will 2005 be the year of Least Privilege” (via Robert Scoble).
+Not a chance. Why not? Scoble sums it up pretty well (unintentionally):
+For those who don’t know what Least Privilege is, it means turning off a bunch of administrator rights so that no software can install without logging off and logging back in as administrator
+People don’t want to have to log off and log back on to get stuff installed! That’s awful. People want to use their computer and have it get out of the way. What should happen is that they are prompted for an administrator login when admin privileges are needed and it should all just work seamlessly once such a login has been provided. Similarly, if they are logged in as Administrator, they should have to provide their password to install software anyway so that they know it’s happening.">
+	<meta itemprop="datePublished" content="2005-01-26T11:19:55+00:00">
+	<meta itemprop="dateModified" content="2005-01-26T11:19:55+00:00">
+	<meta itemprop="wordCount" content="245">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Why Least Privilege Users Are Not The Answer">
+	<meta name="twitter:description" content="G. Andrew Duthie asks: “Will 2005 be the year of Least Privilege” (via Robert Scoble).
+Not a chance. Why not? Scoble sums it up pretty well (unintentionally):
+For those who don’t know what Least Privilege is, it means turning off a bunch of administrator rights so that no software can install without logging off and logging back in as administrator
+People don’t want to have to log off and log back on to get stuff installed! That’s awful. People want to use their computer and have it get out of the way. What should happen is that they are prompted for an administrator login when admin privileges are needed and it should all just work seamlessly once such a login has been provided. Similarly, if they are logged in as Administrator, they should have to provide their password to install software anyway so that they know it’s happening.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Why Least Privilege Users Are Not The Answer</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Why Least Privilege Users Are Not The Answer</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-01-26T11:19:55Z">January 26, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>G. Andrew Duthie asks: &ldquo;<a href="http://blogs.msdn.com/gduthie/archive/2005/01/19/356543.aspx">Will 2005 be the year of Least Privilege</a>&rdquo; (via Robert Scoble).</p>
+<p>Not a chance.  Why not?  Scoble <a href="http://radio.weblogs.com/0001011/2005/01/26.html#a9262">sums it up</a> pretty well (unintentionally):</p>
+<blockquote>
+<p>For those who don&rsquo;t know what Least Privilege is, it means turning off a bunch of administrator rights so that no software can install without logging off and logging back in as administrator</p>
+</blockquote>
+<p>People don&rsquo;t want to have to log off and log back on to get stuff installed!  That&rsquo;s awful.  People want to use their computer and have it get out of the way.  What should happen is that they are prompted for an administrator login when admin privileges are needed and it should all just work seamlessly once such a login has been provided.  Similarly, if they are logged in as Administrator, they should have to provide their password to install software anyway so that they know it&rsquo;s happening.</p>
+<p>Essentially, don&rsquo;t let software install and run unsafe code without first confirming the user trusts it.  Check out sudo for how to do it on the command line and OS X for how to put a GUI on it.  Then while you&rsquo;re at it – disable the administrator account and just use this system instead (see sudo for how to handle permissions when there is no administrator/root account).</p>
+<p>Sure users can still be daft and install spyware, but putting more steps in their way doesn&rsquo;t make them not do stupid things if they want to do them.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

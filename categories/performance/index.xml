@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Performance on Symphonious</title>
+    <link>https://www.symphonious.net/categories/performance/</link>
+    <description>Recent content in Performance on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Tue, 14 Jan 2014 04:19:54 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/performance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Myth busting mythbusted</title>
+      <link>https://www.symphonious.net/2014/01/14/myth-busting-mythbusted/</link>
+      <pubDate>Tue, 14 Jan 2014 04:19:54 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/01/14/myth-busting-mythbusted/</guid>
+      <description>&lt;p&gt;As a follow up to the earlier link regarding the performance of animations in CSS vs JavaScript, &lt;a href=&#34;http://christianheilmann.com/2014/01/13/myth-busting-mythbusted/&#34;&gt;Christian Heilmann – Myth busting mythbusted&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Jack is doing a great job arguing his point that CSS animations are not always better than JavaScript animations. The issue is that all this does is debunking a blanket statement that was flawed from the very beginning and distilled down to a sound bite. An argument like “CSS animations are better than JavaScript animations for performance” is not a technical argument. It is damage control. You need to know a lot to make a JavaScript animation perform well, and you can do a lot of damage. If you use a CSS animation the only source of error is the browser. Thus, you prevent a lot of people writing even more badly optimised code for the web. Some good points that provide balance and perspective to the way web standards evolve and how to approach web development.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Myth Busting: CSS Animations vs. JavaScript</title>
+      <link>https://www.symphonious.net/2014/01/13/myth-busting-css-animations-vs-javascript-css-tricks/</link>
+      <pubDate>Mon, 13 Jan 2014 21:19:38 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/01/13/myth-busting-css-animations-vs-javascript-css-tricks/</guid>
+      <description>&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a style=&#34;line-height: 24px; font-style: italic;&#34; href=&#34;http://css-tricks.com/myth-busting-css-animations-vs-javascript/&#34;&gt;Myth Busting: CSS Animations vs. JavaScript&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As someone who&amp;rsquo;s fascinated (bordering on obsessed, actually) with animation and performance, I eagerly jumped on the CSS bandwagon. I didn&amp;rsquo;t get far, though, before I started uncovering a bunch of major problems that nobody was talking about. I was shocked.&lt;/p&gt;
+&lt;p&gt;This article is meant to raise awareness about some of the more significant shortcomings of CSS-based animation so that you can avoid the headaches I encountered, and make a more informed decision about when to use JS and when to use CSS for animation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Some really good detail on performance of animations in browsers. I hadn&amp;rsquo;t heard of &lt;a href=&#34;http://www.greensock.com/gsap-js/&#34;&gt;GSAP&lt;/a&gt; previously but it looks like a good option for doing animations, especially if you need something beyond simple transitions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chris Hates Writing • Small things add up</title>
+      <link>https://www.symphonious.net/2013/12/03/chris-hates-writing-%E2%80%A2-small-things-add-up/</link>
+      <pubDate>Tue, 03 Dec 2013 01:04:50 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/12/03/chris-hates-writing-%E2%80%A2-small-things-add-up/</guid>
+      <description>&lt;p&gt;&lt;a style=&#34;line-height: 24px; font-style: italic;&#34; href=&#34;http://chrishateswriting.com/post/68794699432/small-things-add-up&#34;&gt;Chris Poole – Small things add up&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By migrating to the new domain, end users now save roughly 100 KB upstream per page load, which at 500 million pageviews per month adds up to 46 terabytes per month in savings for our users. I find this unreal. Just by moving images to a domain that doesn&amp;rsquo;t have cookies. Impressive, especially given that users upload data significantly slower than they download it and HTTP 1.1 headers are sent uncompressed. Important to note however:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Are these optimizations the first place to start? No, certainly not—the reason we made them is we had exhausted almost every other page performance trick. But at the scale of large sites like 4chan (especially those run on a shoe-string budget!), it’s important to remember: little things do add up. Very few sites are at the scale of 4chan, but I wonder how fast cookie traffic adds up for sites that use things like long poll.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Background Logging with the Disruptor</title>
+      <link>https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/</link>
+      <pubDate>Mon, 26 Sep 2011 20:27:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://vanillajava.blogspot.com/2011/09/exchange-and-gc-less-java.html&#34;&gt;Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation&lt;/a&gt;. He briefly compared it to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;LMAX disruptor&lt;/a&gt; and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.&lt;/p&gt;
+&lt;p&gt;Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This approach has similar principles to the &lt;a href=&#34;http://code.google.com/p/disruptor/&#34;&gt;Disruptor&lt;/a&gt;. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn&amp;rsquo;t busy wait, but it could)&lt;/p&gt;
+&lt;p&gt;Two keys difference are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;there is only one producer/consumer in this case, the disruptor supports multiple consumers.&lt;/li&gt;
+&lt;li&gt;this approach re-uses a much smaller buffer efficiently. If you are using ByteBuffer (as I have in the past) an optimal size might be 32 KB. The disruptor library was designed to exploit large amounts of memory on the assumption it is relative cheap and can use medium sized (MBs) to very large buffers (GBs). e.g. it was design for servers with 144 GB. I am sure it works well on much smaller servers. ;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Actually, there’s nothing about the Disruptor that requires large amounts of memory. If you know that your producers and consumers are going to keep pace with each other well and you don’t have a requirement to replay old events, you can use quite a small ring buffer with the Disruptor. There are a lot of advantages to having a large ring buffer, but it’s by no means a requirement.&lt;/p&gt;
+&lt;p&gt;It’s also worth noting that the Disruptor does not require consumers to busy-spin, you can choose to use a blocking wait strategy, or strategies that combine busy-spin and blocking to handle both spikes and lulls in event rates efficiently.&lt;/p&gt;
+&lt;p&gt;There is also an important advantage to the Disruptor that wasn’t mentioned: it will process events immediately if the consumer is keeping up. If the consumer falls behind however, it can process events in a batch to catch up. This significantly reduces latency while still handling spikes in load efficiently.&lt;/p&gt;
+&lt;h2 id=&#34;the-code&#34;&gt;The Code&lt;/h2&gt;
+&lt;p&gt;First let’s start with the LogEntry class. This is a simple value object that is used as our entries on the ring buffer and passed from the producer thread over to the consumer thread.&lt;/p&gt;
+&lt;p&gt;Peter’s Exchanger based implementation – the use of StringBuilder in the LogEntry class is actually a race condition and not thread safe. Both the publishing side and the consumer side are attempting to modify it and depending on how long it takes the publishing side to write the log message to the StringBuilder, it will potentially be processed and then reset by the consumer side before the publisher is complete. In this implementation I’m instead using a simple String to avoid that problem.&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;import com.lmax.disruptor.EventFactory;
+&lt;p&gt;class LogEntry
+{
+public static final EventFactory&amp;lt;LogEntry&amp;gt; FACTORY = new EventFactory&amp;lt;LogEntry&amp;gt;()
+{
+public LogEntry newInstance()
+{
+return new LogEntry();
+}
+};&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;long time;
+int level;
+String text;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;The one Disruptor-specific addition is that we create an EventFactory instance which the Disruptor uses to pre-populate the ring buffer entries.&lt;/p&gt;
+&lt;p&gt;Next, let’s look at the BackgroundLogger class that sets up the process and acts as the producer.&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
+&lt;p&gt;import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;&lt;/p&gt;
+&lt;p&gt;public class BackgroundLogger
+{
+private static final int ENTRIES = 64;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private final ExecutorService executorService;
+private final Disruptor&amp;amp;lt;LogEntry&amp;amp;gt; disruptor;
+private final RingBuffer&amp;amp;lt;LogEntry&amp;amp;gt; ringBuffer;
+
+BackgroundLogger()
+{
+    executorService = Executors.newCachedThreadPool();
+    disruptor = new Disruptor&amp;amp;lt;LogEntry&amp;amp;gt;(LogEntry.FACTORY, ENTRIES, executorService);
+    disruptor.handleEventsWith(new LogEntryHandler());
+    disruptor.start();
+    ringBuffer = disruptor.getRingBuffer();
+}
+
+public void log(String text)
+{
+    final long sequence = ringBuffer.next();
+    final LogEntry logEntry = ringBuffer.get(sequence);
+
+    logEntry.time = System.currentTimeMillis();
+    logEntry.level = level;
+    logEntry.text = text;
+
+    ringBuffer.publish(sequence);
+}
+
+public void stop()
+{
+    disruptor.shutdown();
+    executorService.shutdownNow();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;In the constructor we create an ExecutorService which the Disruptor will use to execute the consumer threads (a single thread in this case), then the disruptor itself. We pass in the LogEntry.FACTORY instance for it to use to create the entries and a size for the ring buffer.&lt;/p&gt;
+&lt;p&gt;The log method is our producer method. Note the use of two-phase commit. First claim a slot with the ringBuffer.next() method, then copy our values into that slot’s entry and finally publish the slot, ready for the consumer to process. We could have also used the Disruptor.publish method which can make this simpler for many use cases by rolling the two phase commit into call.&lt;/p&gt;
+&lt;p&gt;The producer doesn’t need to do any batching as the Disruptor will do that automatically if the consumer is falling behind, though there are also APIs that allow batching the producer which can improve the performance if it fits into your design (here it’s probably better to publish each log entry as it comes in).&lt;/p&gt;
+&lt;p&gt;The stop method uses the new shutdown method on the Disruptor which takes care of waiting until all consumers have processed all available entries for you, &lt;a href=&#34;http://groups.google.com/group/lmax-disruptor/browse_thread/thread/511cadc6383260aa/35e537304fc6439f?lnk=gst&amp;amp;q=stop+disruptor#35e537304fc6439f&#34;&gt;though the code for doing it yourself is quite straight-forward&lt;/a&gt;. Finally we shut down the executor.&lt;/p&gt;
+&lt;p&gt;Note that we don’t need a flush method since the Disruptor is always consuming log events as quickly as the consumer can.&lt;/p&gt;
+&lt;p&gt;Last of all, the consumer which is almost entirely implementation logic:&lt;/p&gt;
+&lt;noscript&gt;
+  &lt;pre&gt;&lt;code class=&#34;language-java java&#34;&gt;
+import com.lmax.disruptor.EventHandler;
+&lt;p&gt;public class LogEntryHandler implements EventHandler&amp;lt;LogEntry&amp;gt;
+{&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public LogEntryHandler()
+{
+}
+
+public void onEvent(final LogEntry logEntry, final long sequence, final boolean endOfBatch) throws Exception
+{
+    // Write
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/p&gt;
+&lt;p&gt;The consumer’s onEvent method is called for each LogEntry put into the Disruptor. The endOfBatch flag can be used as a signal to flush written content to disk, allowing very large buffer sizes to be used causing writes to disk to be batched when the consumer is running behind, yet also ensure that our valuable log messages get to disk as quickly as possible.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/1243275&#34;&gt;The full code is available as a Gist&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Performance: For vs ForEach</title>
+      <link>https://www.symphonious.net/2010/10/09/javascript-performance-for-vs-foreach/</link>
+      <pubDate>Sat, 09 Oct 2010 11:18:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/10/09/javascript-performance-for-vs-foreach/</guid>
+      <description>&lt;p&gt;As part of &lt;a href=&#34;http://www.symphonious.net/2010/10/07/optimising-javascript/&#34;&gt;exploring JavaScript performance&lt;/a&gt;, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using &lt;a href=&#34;http://jsperf.com/&#34;&gt;jsperf.com&lt;/a&gt; I could set up a simple test case pretty quickly and easily: &lt;a href=&#34;http://jsperf.com/for-vs-foreach/5&#34;&gt;for vs forEach&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are a bunch of variants on loops in that test and the results really surprised me:&lt;/p&gt;
+&lt;table class=&#34;PrimaryBordersTable&#34; cellspacing=&#34;0&#34; cellpadding=&#34;0&#34;&gt;
+  &lt;tr&gt;
+    &lt;th id=&#34;id_58745&#34; valign=&#34;bottom&#34;&gt;
+      Browser
+    &lt;/th&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;th id=&amp;quot;id_58746&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  for loop, cached length
+&amp;lt;/th&amp;gt;
+
+&amp;lt;th id=&amp;quot;id_58747&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  for loop, cached length, no callback
+&amp;lt;/th&amp;gt;
+
+&amp;lt;th id=&amp;quot;id_58748&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  for loop, cached length, using function.call
+&amp;lt;/th&amp;gt;
+
+&amp;lt;th id=&amp;quot;id_58749&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  for loop, reverse
+&amp;lt;/th&amp;gt;
+
+&amp;lt;th id=&amp;quot;id_58750&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  for loop, simple
+&amp;lt;/th&amp;gt;
+
+&amp;lt;th id=&amp;quot;id_58751&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  forEach
+&amp;lt;/th&amp;gt;
+
+&amp;lt;th id=&amp;quot;id_58752&amp;quot; valign=&amp;quot;bottom&amp;quot;&amp;gt;
+  # Tests
+&amp;lt;/th&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id=&#34;id_58753&#34; style=&#34;background-image: none;&#34; headers=&#34;id_58745&#34; valign=&#34;middle&#34;&gt;
+      Chrome
+    &lt;/th&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td headers=&amp;quot;id_58746,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  4000
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58747,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  4531
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58748,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  2184
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58749,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  3804
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58750,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  3333
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58751,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  2998
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58752,id_58753&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  8
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id=&#34;id_58754&#34; style=&#34;background-image: none;&#34; headers=&#34;id_58745&#34; valign=&#34;middle&#34;&gt;
+      Firefox
+    &lt;/th&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td headers=&amp;quot;id_58746,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  6928
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58747,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  7676
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58748,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  4499
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58749,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  8192
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58750,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  7211
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58751,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  450
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58752,id_58754&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  6
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id=&#34;id_58755&#34; style=&#34;background-image: none;&#34; headers=&#34;id_58745&#34; valign=&#34;middle&#34;&gt;
+      iPad
+    &lt;/th&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td headers=&amp;quot;id_58746,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  82
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58747,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  95
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58748,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  69
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58749,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  77
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58750,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  71
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58751,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  103
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58752,id_58755&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  1
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id=&#34;id_58756&#34; style=&#34;background-image: none;&#34; headers=&#34;id_58745&#34; valign=&#34;middle&#34;&gt;
+      iPhone
+    &lt;/th&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td headers=&amp;quot;id_58746,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  87
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58747,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  111
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58748,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  70
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58749,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  88
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58750,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  84
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58751,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  119
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58752,id_58756&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  1
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id=&#34;id_58758&#34; style=&#34;background-image: none;&#34; headers=&#34;id_58745&#34; valign=&#34;middle&#34;&gt;
+      Safari
+    &lt;/th&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td headers=&amp;quot;id_58746,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  3382
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58747,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  5029
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58748,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  1816
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58749,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  3678
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58750,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  3122
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58751,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  1942
+&amp;lt;/td&amp;gt;
+
+&amp;lt;td headers=&amp;quot;id_58752,id_58758&amp;quot; valign=&amp;quot;middle&amp;quot;&amp;gt;
+  4
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Here’s that data in a graph for Chome and Firefox just to make it a bit easier to visualise:&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/10/chrome.png&#34; alt=&#34;Coloumn chart of Chrome test results&#34; width=&#34;600&#34; height=&#34;364&#34; /&gt; 
+&lt;img loading=&#34;lazy&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/10/firefox.png&#34; alt=&#34;Coloumn chart of Firefox test results&#34; width=&#34;600&#34; height=&#34;364&#34; /&gt; 
+&lt;p&gt;Unsurprisingly, the performance characteristics vary quite noticeably between browsers. What was surprising to me at least was that the new [].forEach() is one of or the slowest method to iterate through an array – slower than implementing forEach yourself in JavaScript in most browsers (mobile Safari being the exception).&lt;/p&gt;
+&lt;p&gt;The other thing that stood out is that green bar in the middle, representing the ‘for loop, cached length using function.call’ which is the current method of looping I’m using because that what the libraries implement. The advantage of this approach is that it not only supplies each item in the array, it also gives the index and the full array as extra arguments and it allows me to specify an object to use for ‘this’ in the callback function. That’s all potentially very handy but I wasn’t actually taking advantage of it. Looks like switching to a custom ‘each’ implementation which uses the for loop with cached length approach should give a performance boost without making any other changes to the code so no sacrifice in maintainability.&lt;/p&gt;
+&lt;p&gt;Sounds great, but after making the change there was less than a millisecond difference in the actual performance – well within the margin for error for measuring time in JavaScript performance tests.&lt;/p&gt;
+&lt;h2 id=&#34;lessons-learnt&#34;&gt;Lessons Learnt&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use whatever for loop setup you want – it’s unlikely to affect overall performance in any noticeable way.&lt;/li&gt;
+&lt;li&gt;It’s probably not worth adding code to detect if there’s a built-in forEach you can leverage – just use the JavaScript implementation you’d need on older browsers anyway.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-remaining-question&#34;&gt;The Remaining Question&lt;/h2&gt;
+&lt;p&gt;It’s all very well to learn these lessons, but since I’ve done all of this playing around in my own time at home, there’s a very significant problem with the results: they don’t include IE&lt;a href=&#34;#footnote1:1286622982581&#34;&gt;1&lt;/a&gt;{#footlink1:1286622982581.footnote}. Since my real performance problems are worst on IE 6,7 and 8, I need to be running these tests there – it’s possible that changing the looping system really would yield performance gains in IE. I’ll have to try that out on Monday.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1286622982581&#34; href=&#34;#footlink1:1286622982581&#34;&gt;1&lt;/a&gt; &amp;#8211; I do have IE in a VM I’ve just been too lazy to fire it up. Of course, if you happen have IE ready to hand, you can &lt;a href=&#34;http://jsperf.com/for-vs-foreach/5&#34;&gt;go and run the tests yourself&lt;/a&gt; and jsperf.com will add that into the mix &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1286622982581&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Optimising JavaScript</title>
+      <link>https://www.symphonious.net/2010/10/07/optimising-javascript/</link>
+      <pubDate>Thu, 07 Oct 2010 22:46:56 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/10/07/optimising-javascript/</guid>
+      <description>&lt;p&gt;I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.&lt;/p&gt;
+&lt;p&gt;Since filtering Word HTML is also inherently complex and we want to ensure the code is maintainable, I started out by developing the code in the most maintainable way possible, without regard to performance. There’s also a lot of tests to ensure correctness, and allow me to optimise later without fear of breaking things. With that done, it’s time to set up some performance tests and see what kind of performance behaviour it has.&lt;/p&gt;
+&lt;h2 id=&#34;approach&#34;&gt;Approach&lt;/h2&gt;
+&lt;p&gt;A couple of notes here, the performance I’m testing is all about the filtering, so while it is making a lot of use of the DOM to parse the HTML and give me some structure to filter it, it doesn’t render anything on screen at all. I’m also not yet concerned about the actual time taken, instead focussing on identifying which areas are relatively slow and whether or not optimisations have any actual improvements. I will probably establish some performance tests where the actual timings matter to prevent future changes from slowing things down too much, but for now the best test I can do to get a sense of “is it fast enough?” is to actually paste content from Word manually. After all, my aim is only for users to perceive it as fast.&lt;/p&gt;
+&lt;h2 id=&#34;quick-lessons-learnt&#34;&gt;Quick Lessons Learnt&lt;/h2&gt;
+&lt;p&gt;I will write up some of the more detailed lessons separately, but here’s a few quick observations&lt;a href=&#34;#footnote1:1286489890934&#34;&gt;1&lt;/a&gt;{#footlink1:1286489890934.footnote}:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IE9 is a &lt;em&gt;massive&lt;/em&gt; improvement in performance. The IE team deserve a huge pat on the back for what they’ve achieved. Performance was close enough to Safari and Chrome for it not to matter.&lt;/li&gt;
+&lt;li&gt;Firefox isn’t &lt;em&gt;slow&lt;/em&gt; but it’s certainly &lt;a href=&#34;http://arewefastyet.com&#34;&gt;not fast yet&lt;/a&gt;. They’re putting in a big effort though so I have high hopes for the final Firefox 4, or worst case 4.5.&lt;/li&gt;
+&lt;li&gt;Performance bottlenecks can be more surprising than you think. From &lt;a href=&#34;http://jsconf.eu&#34;&gt;jsconf.eu&lt;/a&gt; I knew that DOM access was going to be a bottleneck but what surprised me is that iterating attributes is dramatically slower than iterating styles.
+&lt;ul&gt;
+&lt;li&gt;Despite that, it was still faster to retrieve style.cssText and use string parsing to access style values rather than using the .style properties directly&lt;a href=&#34;#footnote2:1286490206243&#34;&gt;2&lt;/a&gt;{#footlink2:1286490206243.footnote}.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Parsing HTML by setting innerHTML is really fast across the board, even with quite large documents.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jsperf.com&#34;&gt;jsperf.com&lt;/a&gt; is awesome for micro-benchmarks. I need to use it a lot more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;most-important-lesson&#34;&gt;Most Important Lesson&lt;/h2&gt;
+&lt;p&gt;The biggest thing I’m taking away from the experience so far is that performance is unpredictable and very unique to your situation. You need to use performance tests and keep focusing on the results for your actual use-cases. Micro-benchmarks and other people’s benchmarks can lead you astray – both in terms of potentially hurting your performance and definitely hurting maintainability. Cargo-cult optimisation simply doesn’t work.&lt;/p&gt;
+&lt;p style=&#34; text-align: center;&#34;&gt;
+  &lt;a href=&#34;https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String&#34; title=&#34;JavaScript String .valueOf&#34;&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://static.jsconf.us/promotejsh.gif&#34; height=&#34;150&#34; width=&#34;180&#34; alt=&#34;JavaScript String .valueOf&#34; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1286489890934&#34; id=&#34;footnote1:1286489890934&#34;&gt;1&lt;/a&gt; &amp;#8211; Note that the browser comparisons here are somewhat unfair &amp;#8211; the tests aren’t running in a controlled enough environment to really compare different setups but I’m confident they are accurate enough to speak in these broad terms at least. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1286489890934&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1286490206243&#34; id=&#34;footnote2:1286490206243&#34;&gt;2&lt;/a&gt; &amp;#8211; the code to do this was required anyway since in Safari non-standard styles are available via getAttribute(’style’) but not via the parsed .style attribute, and we need access to those non-standard styles to perform the filtering properly. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1286490206243&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

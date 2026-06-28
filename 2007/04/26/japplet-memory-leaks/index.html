@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JApplet Memory Leaks | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn&rsquo;t have been any references left around. We&rsquo;ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it&rsquo;s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you&rsquo;re using a dual-cpu or dual-core system.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/04/26/japplet-memory-leaks/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/04/26/japplet-memory-leaks/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JApplet Memory Leaks">
+	<meta property="og:description" content="I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn’t have been any references left around. We’ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it’s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you’re using a dual-cpu or dual-core system.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-04-26T07:01:46+00:00">
+		<meta property="article:modified_time" content="2007-04-26T07:01:46+00:00">
+
+	<meta itemprop="name" content="JApplet Memory Leaks">
+	<meta itemprop="description" content="I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn’t have been any references left around. We’ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it’s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you’re using a dual-cpu or dual-core system.">
+	<meta itemprop="datePublished" content="2007-04-26T07:01:46+00:00">
+	<meta itemprop="dateModified" content="2007-04-26T07:01:46+00:00">
+	<meta itemprop="wordCount" content="505">
+	<meta itemprop="keywords" content="Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JApplet Memory Leaks">
+	<meta name="twitter:description" content="I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn’t have been any references left around. We’ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it’s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you’re using a dual-cpu or dual-core system.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JApplet Memory Leaks</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JApplet Memory Leaks</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-04-26T07:01:46Z">April 26, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn&rsquo;t have been any references left around. We&rsquo;ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it&rsquo;s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you&rsquo;re using a dual-cpu or dual-core system.</p>
+<pre>import javax.swing.*;
+public class TinyApplet extends&#160;JApplet&#160;{
+&#160;&#160;&#160;&#160;private byte[] data = new byte[Integer.MAX_VALUE / 100];
+}
+</pre>
+<p>If however, you extends from Applet instead of JApplet, the OutOfMemoryErrors suddenly disappear. Tipped off by a comment in the source code for JApplet:</p>
+<pre>/* Workaround for bug 4155072. The shared double buffer image
+       * may hang on to a reference to this applet; unfortunately
+       * Image.getGraphics() will continue to call JApplet.getForeground()
+       * and getBackground() even after this applet has been destroyed.
+       * So we ensure that these properties are non-null here.
+       */
+</pre>
+<p>Bug 4155072 in turn explains that when using Component.createImage a reference to the Component is held so that the image can get the foreground and background colors. Sadly, Component.createImage is used to support double buffering in swing and so JApplets aren&rsquo;t correctly garbage collected. The bug seems to be a lot worse in Java 1.6 but bug 4155072 dates back to Java 1.2 and we&rsquo;ve seen problems with Applet rention back to at least Java 1.3 but previously we&rsquo;d believed it was the Sun plugin or the browser holding onto the applet.</p>
+<p>Fortunately there&rsquo;s a simple work around, you just need to get the RepaintManager to discard the offscreen buffer. RepaintManager.setDoubleBufferingEnabled(false) doesn&rsquo;t actually let go of any existing buffers, but the code below does, while still preserving double buffering support in the applet so you don&rsquo;t see refresh flickering.</p>
+<pre>RepaintManager manager = RepaintManager.currentManager(theApplet);
+Rectangle maxDoubleBufferSize = manager.getDoubleBufferMaximumSize();
+manager.setDoubleBufferMaximumSize(new Dimension(-1, -1));
+manager.setDoubleBufferMaximumSize(maxDoubleBufferSize);
+</pre>
+<p>By setting the maximum size to -1, every buffer in the RepaintManager is too big and gets flushed out, later we set the size back so that double buffering is still enabled. <span style=" text-decoration: line-through;">No more memory leak.</span> Actually, still a memory leak. Not sure what&rsquo;s going on there – if you disable double buffering all together it goes away but for some reason setting the maximum double buffer size isn&rsquo;t clearing things out like it should.</p>
+<p>UPDATE 2: Setting the maximum double buffer size doesn&rsquo;t work, but setting the current repaint manager to null seems to. I won&rsquo;t proclaim it as a fix quite so confidently this time until we&rsquo;ve finished testing but it seems to solve the problem.</p>
+<p>The most annoying part of this is that back in Java 1.2 Sun applied a work around for bug 4155072 and left the memory leak in there instead of actually fixing the underlying problem. On the plus side, I&rsquo;ll have the chance to hunt down the culprit in a couple of weeks at JavaOne.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

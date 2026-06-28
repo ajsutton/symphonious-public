@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Apple And Java 1.5 | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Sun released Java 1.5 (or 5.0 or something) yesterday and today suddenly there&rsquo;s a whole bunch of people complaining that Apple hasn&rsquo;t yet ported it to Mac OS X. What the? People do realize that porting the JVM takes time right? Apple don&rsquo;t get the final source code from Sun until Sun finish it (oddly enough) and Sun only just finished it. Sure Apple has had access to prerelease builds from Sun (and similarly Apple Select and Premiere developers have access to a seed release of Java 1.5). It will take time to for Apple to port the JVM and add in all the extra little details they provide (where little amounts to an entire L&amp;F plus more). Then it has to go through QA (you do want it tested right?) and then it will be released. Daniel Brookshier” leads the charge with the whining. Of particular note is the comment:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/10/01/apple-and-java-15/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/10/01/apple-and-java-15/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Apple And Java 1.5">
+	<meta property="og:description" content="Sun released Java 1.5 (or 5.0 or something) yesterday and today suddenly there’s a whole bunch of people complaining that Apple hasn’t yet ported it to Mac OS X. What the? People do realize that porting the JVM takes time right? Apple don’t get the final source code from Sun until Sun finish it (oddly enough) and Sun only just finished it. Sure Apple has had access to prerelease builds from Sun (and similarly Apple Select and Premiere developers have access to a seed release of Java 1.5). It will take time to for Apple to port the JVM and add in all the extra little details they provide (where little amounts to an entire L&amp;F plus more). Then it has to go through QA (you do want it tested right?) and then it will be released. Daniel Brookshier” leads the charge with the whining. Of particular note is the comment:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-10-01T07:35:38+00:00">
+		<meta property="article:modified_time" content="2004-10-01T07:35:38+00:00">
+
+	<meta itemprop="name" content="Apple And Java 1.5">
+	<meta itemprop="description" content="Sun released Java 1.5 (or 5.0 or something) yesterday and today suddenly there’s a whole bunch of people complaining that Apple hasn’t yet ported it to Mac OS X. What the? People do realize that porting the JVM takes time right? Apple don’t get the final source code from Sun until Sun finish it (oddly enough) and Sun only just finished it. Sure Apple has had access to prerelease builds from Sun (and similarly Apple Select and Premiere developers have access to a seed release of Java 1.5). It will take time to for Apple to port the JVM and add in all the extra little details they provide (where little amounts to an entire L&amp;F plus more). Then it has to go through QA (you do want it tested right?) and then it will be released. Daniel Brookshier” leads the charge with the whining. Of particular note is the comment:">
+	<meta itemprop="datePublished" content="2004-10-01T07:35:38+00:00">
+	<meta itemprop="dateModified" content="2004-10-01T07:35:38+00:00">
+	<meta itemprop="wordCount" content="455">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Apple And Java 1.5">
+	<meta name="twitter:description" content="Sun released Java 1.5 (or 5.0 or something) yesterday and today suddenly there’s a whole bunch of people complaining that Apple hasn’t yet ported it to Mac OS X. What the? People do realize that porting the JVM takes time right? Apple don’t get the final source code from Sun until Sun finish it (oddly enough) and Sun only just finished it. Sure Apple has had access to prerelease builds from Sun (and similarly Apple Select and Premiere developers have access to a seed release of Java 1.5). It will take time to for Apple to port the JVM and add in all the extra little details they provide (where little amounts to an entire L&amp;F plus more). Then it has to go through QA (you do want it tested right?) and then it will be released. Daniel Brookshier” leads the charge with the whining. Of particular note is the comment:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Apple And Java 1.5</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Apple And Java 1.5</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-10-01T07:35:38Z">October 1, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Sun released Java 1.5 (or 5.0 or something) yesterday and today suddenly there&rsquo;s a whole bunch of people complaining that Apple hasn&rsquo;t yet ported it to Mac OS X. What the? People do realize that porting the JVM takes time right? Apple don&rsquo;t get the final source code from Sun until Sun finish it (oddly enough) and Sun only just finished it. Sure Apple has had access to prerelease builds from Sun (and similarly Apple Select and Premiere developers have access to a seed release of Java 1.5). It will take time to for Apple to port the JVM and add in all the extra little details they provide (where little amounts to an entire L&amp;F plus more). Then it has to go through QA (you do want it tested right?) and then it will be released. <a href="http://weblogs.java.net/blog/turbogeek/archive/2004/09/i_want_my_50_a.html">Daniel Brookshier”</a> leads the charge with the whining. Of particular note is the comment:</p>
+<blockquote>
+<p>Versions of Java 5.0 are released for Linux, Solaris, and MS. When will Apple release 5.0? Not really sure, but the rumors are that the sometime next year when Apple releases their next release of OS X. That&rsquo;s a long wait for someone that needs to be building products with the latest and greatest.
+Firstly, versions of Java 5.0 have been released by precisely one vendor (Sun) for the platforms that they support. When will Apple release 5.0? When they&rsquo;ve had a chance to work on it. Secondly, “needs” to be building products with the latest and greatest?? Exactly what feature is present in Java 5.0 that you absolutely have to have? Sure there&rsquo;s a lot of nice stuff and I can understand the desire to want to use it, but <em>need</em> to use it? I think not. Besides which, right now there are effectively zero users out there with Java 5.0 installed – it hasn&rsquo;t even come through the automatic update system for me yet. Most developers still aren&rsquo;t crazy enough to install Java 5.0 on their main dev boxes and anyone speaking Arabic or other RTL languages <a href="http://bugs.sun.com:80/bugdatabase/view_bug.do?bug_id=5101869">definitely won&rsquo;t be upgrading</a> (big thanks to Igor for the work around on that one). Take a deep breath people, calm down and use some common sense. Now is the time when you should start considering dropping Java 1.3 support if you haven&rsquo;t already and doing testing on Java 1.5 to make sure your product runs on it correctly. In 6-12 months when the new release has stabilized and been deployed widely you might start thinking about dropping support for Java 1.4 and taking advantage of Java 1.5. There&rsquo;s no rush, it&rsquo;s not going to suddenly disappear and leave you stuck behind. However nice the features might be, you&rsquo;ve survived without them this long right?</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

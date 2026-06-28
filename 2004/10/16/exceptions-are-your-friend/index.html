@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exceptions Are Your Friend | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Benjamin claims that exceptions are evil, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin&rsquo;s first problem with exceptions is that they&rsquo;re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you&rsquo;re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can&rsquo;t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn&rsquo;t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/10/16/exceptions-are-your-friend/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/10/16/exceptions-are-your-friend/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exceptions Are Your Friend">
+	<meta property="og:description" content="Benjamin claims that exceptions are evil, he couldn’t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin’s first problem with exceptions is that they’re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you’re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can’t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn’t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-10-16T09:57:28+00:00">
+		<meta property="article:modified_time" content="2004-10-16T09:57:28+00:00">
+
+	<meta itemprop="name" content="Exceptions Are Your Friend">
+	<meta itemprop="description" content="Benjamin claims that exceptions are evil, he couldn’t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin’s first problem with exceptions is that they’re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you’re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can’t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn’t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
+	<meta itemprop="datePublished" content="2004-10-16T09:57:28+00:00">
+	<meta itemprop="dateModified" content="2004-10-16T09:57:28+00:00">
+	<meta itemprop="wordCount" content="2049">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exceptions Are Your Friend">
+	<meta name="twitter:description" content="Benjamin claims that exceptions are evil, he couldn’t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin’s first problem with exceptions is that they’re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you’re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can’t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn’t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exceptions Are Your Friend</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exceptions Are Your Friend</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-10-16T09:57:28Z">October 16, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Benjamin claims that <a href="http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/2004/10/16#exceptions">exceptions are evil</a>, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin&rsquo;s first problem with exceptions is that they&rsquo;re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you&rsquo;re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can&rsquo;t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn&rsquo;t have to work in those situations, but it must behave predictably because one or more of those situations <em>will</em> occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):</p>
+<pre><code>public void writeFile(String path, String output) {
+    new FileWriter(path).write(output);
+} So when we're writing test cases we pass in a path and some output and then check that the contents of the file matches the output we gave and are happy. Our code coverage now returns 100% for that method. The trouble is the actual test coverage is much, much lower than 100% because it hasn't tested any of the error conditions. There's not even any indication that things might go wrong there. C programmers will be the first to tell you that you must always check the return code from IO libraries so that you detect errors &amp;#8211; exceptions make that process more obvious and checked exceptions makes you take action to handle the case (even if your handling of it is really bad). So now lets take a look at that method again, with exceptions: 
+
+public void writeFile(String path, String output) {
+    try {
+        new FileWriter(path).write(output);
+    } catch (Exception e) {
+        System.err.println(&quot;The file &quot;&quot; + path + &quot;&quot; could not be written.  The application can not continue.&quot;);
+        e.printStackTrace();
+        System.exit(-1);
+    }
+} Now I'll be the first to admit that even this second example is awful code and there's no chance you'd ever find something like that in production code I wrote but it at least provides an informative error message when things goes wrong, terminates the program cleanly and most importantly, makes it absolutely clear that things can go wrong. Our code coverage for the method is now down around 50% and we can clearly see that we should add test cases that simulate things going wrong. So how do we test it? The same way we test any other situation. Manipulate stuff so that the code follows the code path we want it to. The simplest method to generate an error here would be to pass in a file that can't possible be created: 
+
+public void testErrorCase() throws Exception {
+    String path = &quot;AA:/thisPathDoesNotExist/file.txt&quot;;
+    writeFile(path, &quot;Test Output&quot;);
+} At this point we see why the code example above is so bad &amp;#8211; code that calls System.exit() is a real pain in the neck to test (it's possible, you just have to set up a security policy to disallow calling System.exit()). Even so, we have successfully made the code go into it's error condition. For the record, a couple of other changes to the exception handling would be to catch the specific exceptions that can be thrown and handle them as appropriate (ie: FileNotFoundException might prompt the user for a different file name, a permissions error might bring up an authorization dialog). Secondly, I'd move the exception logic up a little higher by throwing it from this method and catching it above somewhere &amp;#8211; where depends on application design and what action will be taken in response to each error. 
+</code></pre>
+<blockquote>
+<p>Unfortunately, that&rsquo;s not always what happens. Some people like to put a “catch all exceptions” statement somewhere near the top of their program&rsquo;s stack. Perhaps it is in the main. Perhaps it is in an event loop. Even if you die after catching that exception you&rsquo;ve thrown away the stack trace, the most useful piece of information you had available to you to debug your software. There&rsquo;s nothing wrong with catching all exceptions at the top of the program stack, it just severely limits the potential for recovery since the recovery code has no idea where the problem occurred. Catching the exception at the top of the program stack most definitely doesn&rsquo;t throw away the stack trace either – on the contrary, it allows the stack trace to be sent somewhere useful instead of just dumping it to the console (which may not even be visible to the user). There are a bunch of printStackTrace methods in Exception (at least in Java but something equivalent should be in any sane language) that you can use to print the stack trace where you need it to go. Most importantly though, catching exceptions at the top of the program stack allows you to “offer your sincerest apologies to your user” in a friendly dialog instead of just disappearing into the ether and taking their data with you. The point I really can&rsquo;t believe anyone would try and make though is:</p>
+</blockquote>
+<blockquote>
+<p>The worst thing that catching an exception does, though, is add more paths through your code Exceptions don&rsquo;t add paths through your code, error conditions add paths through your code. Exceptions merely provide a way of handling errors. Burying your head in the sand and pretending that branch doesn&rsquo;t exist won&rsquo;t make the problem go away. That file still won&rsquo;t exist, or that network connection still won&rsquo;t open – it&rsquo;s just that without error handling code your program crashes disgracefully – with error handling code at worst your program crashes gracefully and at best it fully recovers.</p>
+</blockquote>
+<blockquote>
+<p>To minimise paths through your code, just follow a few simple guidelines: 1. Make everything you think should be a branch in your code a precondition instead 2. Assert all your preconditions 3. Proivde[sic] functions that client objects can use to determine ahead of time whether they meet your preconditions This simply isn&rsquo;t possible. It is impossible to know ahead of time if an IO error will occur because there may be more than one thing happening on the machine. For instance, if we wanted to try to avoid the situation of a file not being able to be written, we might be tempted to change our example method to:</p>
+</blockquote>
+<pre><code>public void writeFile(String path, String output) {
+    if (!new File(path).canWrite()) {
+        // Error handling code for lack of permissions.
+    } else {
+        new FileWriter(path).write(output);
+    }
+} Looks like we can't possible run into a file that can't be written anymore right? Wrong. There is always the possibility that the permissions on the file will change right between when the check is performed and when the actual file is written &amp;#8211; or perhaps even while the file is being written. While adding the check is often a good idea as it might avoid getting into an indeterminate state where part of the file might have been written, it is not a complete solution and you still need to handle the possible error condition when you actually write the file. Benjamin's third point about providing functions to check that preconditions are met is particularly susceptible to this problem &amp;#8211; the preconditions may have been met when the check function was called, but they may not be met when the real function is performed. Benjamin's main complaint seems to stem from bad programmers not handling exceptions carefully. This can lead to situations where exceptions are just totally ignored (ie: 
+</code></pre>
+<p><code>try { perform(); } catch(Exception e) {}</code>) or where the error recovery code still winds up leaving an inconsistent state behind. This however is not a problem with Exceptions, but with bad programmers. Bad programmers will create errors in any code, regardless of whether or not it has exceptions. Benjamin also asserts:</p>
+<blockquote>
+<p>It isn&rsquo;t possible to write a class that survives every possible excpetion thrown through its member functions while maintaining consistent internal state. It just isn&rsquo;t. Whenever you catch an exception your data structures are (almost) by definition screwed up.  This is also wrong. For some classes, this is not only possible, it&rsquo;s a requirement. The most obvious example is a wrapper class for a database. I&rsquo;m sure you&rsquo;ve all heard of commits and rollbacks right? They&rsquo;re used to implemented the atomic requirement of the ACID tests for databases. Here&rsquo;s how they can be used to implement the “impossible” case of a class that remains consistent in the face of errors:</p>
+</blockquote>
+<pre><code>public void addPerson(String name) throws DatabaseException {
+    try {
+      _database.execute(&quot;INSERT INTO people (name);&quot;);
+      _database.commit();
+    } catch (Exception e) {
+        _database.rollback();
+        throw new DatabaseException(&quot;Failed to add person to database.&quot;, e);
+    }
+} If you ignore the poor SQL and security issues not quoting things correctly raises, you'll note that this method is absolutely guaranteed to maintain a consistent state in the face of errors. Also note how we throw an exception ourselves to tell the caller of the method that it didn't work and particularly note that the original exception and it's precious stack trace is preserved so it can be logged later if required. That example is however a little contrived since all the rollback stuff is handled by the database and the class itself doesn't really maintain any state that we can see from that method. Still, if a database is capable of committing or rolling back changes then the same process could be used within a class if needed. There are also times when it might be desirable to attempt to continue even if you can't guarantee that the state is consistent. For instance, if you're writing a document in a word processor and something odd happens and the program encounters an error situation. The worst thing the program could do is crash at this point because the user would lose their data. No matter how messed up the internal state might be, the program must at least make an attempt to save the users data. Note here that the save should go to a new file so that even if it doesn't work out at least any previously saved versions are still okay. Another situation where continuing on is probably worthwhile is where a function fails but it's unlikely to have messed things up enough that the user can't continue. For instance, there are a number of error conditions that may occur when the user tries to add a hyperlink in a HTML editor. Most of the time these error conditions result in the operation failing and everything is left in a consistent state (though the user doesn't get their hyperlink). In some rare cases however, things might go really wrong and the state might become inconsistent, however it's not feasible to detect if the state is invalid or not. In this case, it's better to attempt to continue because in most cases it will all be okay and as an added bonus, in this case there is an undo function which provides a partial but exceptionally effective state reset function. I would however suggest that after such an error occurs a backup should be made of the users data and they should be warned that strange behavior might occur. And in the miscellaneous other things I disagree with category: 
+</code></pre>
+<blockquote>
+<p>Of course multiple threads are evil too, and for many of the same reasons. Multiple threads are an extremely important feature and most applications should be taking advantage of them, particularly with the growing popularity of multiple processor systems. Writing safely threaded code is hard, but noone said writing code was easy. Time for a good, solid design and some learning on how to handle threads safely.</p>
+</blockquote>
+<blockquote>
+<p>When dealing with the operating system, just use the damn return codes But return codes are just a primitive, non-obvious form of exceptions. The only real difference is that it&rsquo;s extremely simply to ignore return codes whereas exceptions terminate the thread if you don&rsquo;t do something about them. Checking return codes adds exactly the same amount of complexity as handling exceptions does – it&rsquo;s one extra branch for every different response to the return code.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

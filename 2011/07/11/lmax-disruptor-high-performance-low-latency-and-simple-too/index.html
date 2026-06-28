@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>LMAX Disruptor – High Performance, Low Latency and Simple Too | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The LMAX disruptor is an ultra-high performance, low-latency message exchange between threads. It&rsquo;s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the LMAX exchange run so fast. There is a rapidly growing set of information about what the disruptor is, why it&rsquo;s important and how it works – a good place to start is the list of articles and for the on-going stuff, follow LMAX Blogs. For really detailed stuff, there&rsquo;s also the white paper (PDF).">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2011/07/11/lmax-disruptor-high-performance-low-latency-and-simple-too/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2011/07/11/lmax-disruptor-high-performance-low-latency-and-simple-too/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="LMAX Disruptor – High Performance, Low Latency and Simple Too">
+	<meta property="og:description" content="The LMAX disruptor is an ultra-high performance, low-latency message exchange between threads. It’s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the LMAX exchange run so fast. There is a rapidly growing set of information about what the disruptor is, why it’s important and how it works – a good place to start is the list of articles and for the on-going stuff, follow LMAX Blogs. For really detailed stuff, there’s also the white paper (PDF).">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2011-07-11T08:24:45+00:00">
+		<meta property="article:modified_time" content="2011-07-11T08:24:45+00:00">
+
+	<meta itemprop="name" content="LMAX Disruptor – High Performance, Low Latency and Simple Too">
+	<meta itemprop="description" content="The LMAX disruptor is an ultra-high performance, low-latency message exchange between threads. It’s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the LMAX exchange run so fast. There is a rapidly growing set of information about what the disruptor is, why it’s important and how it works – a good place to start is the list of articles and for the on-going stuff, follow LMAX Blogs. For really detailed stuff, there’s also the white paper (PDF).">
+	<meta itemprop="datePublished" content="2011-07-11T08:24:45+00:00">
+	<meta itemprop="dateModified" content="2011-07-11T08:24:45+00:00">
+	<meta itemprop="wordCount" content="460">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Disruptor,LMAX">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="LMAX Disruptor – High Performance, Low Latency and Simple Too">
+	<meta name="twitter:description" content="The LMAX disruptor is an ultra-high performance, low-latency message exchange between threads. It’s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the LMAX exchange run so fast. There is a rapidly growing set of information about what the disruptor is, why it’s important and how it works – a good place to start is the list of articles and for the on-going stuff, follow LMAX Blogs. For really detailed stuff, there’s also the white paper (PDF).">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">LMAX Disruptor – High Performance, Low Latency and Simple Too</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">LMAX Disruptor – High Performance, Low Latency and Simple Too</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-07-11T08:24:45Z">July 11, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The <a href="http://code.google.com/p/disruptor/">LMAX disruptor</a> is an ultra-high performance, low-latency message exchange between threads. It&rsquo;s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the <a href="http://www.lmaxtrader.co.uk/">LMAX exchange</a> run so fast. There is a rapidly growing set of information about what the disruptor is, why it&rsquo;s important and how it works – a good place to start is the <a href="http://code.google.com/p/disruptor/wiki/BlogsAndArticles">list of articles</a> and for the on-going stuff, follow <a href="http://blogs.lmax.com/">LMAX Blogs</a>. For really detailed stuff, there&rsquo;s also the <a href="http://disruptor.googlecode.com/files/Disruptor-1.0.pdf">white paper</a> (PDF).</p>
+<p>While the disruptor pattern is ultimately very simple to work with, setting up multiple consumers with the dependencies between them can require a bit too much boilerplate code for my liking. To make it quick and easy for 99% of cases, I&rsquo;ve whipped up a <a href="http://github.com/ajsutton/disruptorWizard">simple DSL for the disruptor pattern</a>. For example, to wire up a &ldquo;diamond pattern&rdquo; of consumers:</p>
+<img loading="lazy" src="http://www.symphonious.net/wp-content/uploads/2011/07/1P3C-Diamond.png" alt="Diamond pattern of consumers. C3 depends on both C1 and C2 completing." width="400" height="265" /> 
+<p>(Image blatantly stolen from <a href="http://mechanitis.blogspot.com/2011/07/dissecting-disruptor-wiring-up.html">Trisha Gee&rsquo;s excellent series explaining the disruptor pattern</a>)</p>
+<p>In this scenario, consumers C1 and C2 can process entries as soon as the producer (P1) puts them on the ring buffer (in parallel). However, consumer C3 has to wait for <em>both</em> C1 and C2 to complete before it processes the entries. In real life this might be because we need to both journal the data to disk (C1) and validate the data (C2) before we do the actual business logic (C3).</p>
+<p>With the raw disruptor syntax, these consumers would be created with the following code:</p>
+<pre>Executor executor = Executors.newCachedThreadPool();
+BatchHandler handler1 = new MyBatchHandler1();
+BatchHandler handler2 = new MyBatchHandler2();
+BatchHandler handler3 = new MyBatchHandler3()
+
+RingBuffer ringBuffer = new RingBuffer(ENTRY_FACTORY, RING_BUFFER_SIZE);
+ConsumerBarrier consumerBarrier1 = ringBuffer.createConsumerBarrier();
+
+BatchConsumer consumer1 = new BatchConsumer(consumerBarrier1, handler1);
+BatchConsumer consumer2 = new BatchConsumer(consumerBarrier1, handler2);
+
+ConsumerBarrier consumerBarrier2 =
+ringBuffer.createConsumerBarrier(consumer1, consumer2);
+
+BatchConsumer consumer3 = new BatchConsumer(consumerBarrier2, handler3);
+
+executor.execute(consumer1);
+executor.execute(consumer2);
+executor.execute(consumer3);
+
+ProducerBarrier producerBarrier =
+ringBuffer.createProducerBarrier(consumer3);
+</pre>
+<p>We have to create our actual handlers (the two instances of MyBatchHandler), plus consumer barriers, BatchConsumer instances and actually execute the consumers on their own threads. The DSL can handle pretty much all of that setup work for us with the end result being:</p>
+<pre>Executor executor = Executors.newCachedThreadPool();
+BatchHandler handler1 = new MyBatchHandler1();
+BatchHandler handler2 = new MyBatchHandler2();
+BatchHandler handler3 = new MyBatchHandler3();
+
+DisruptorWizard dw = new DisruptorWizard(ENTRY_FACTORY, RING_BUFFER_SIZE, executor);
+dw.consumeWith(handler1, handler2).then(handler3);
+
+ProducerBarrier producerBarrier = dw.createProducerBarrier();
+</pre>
+<p>We can even build parallel chains of consumers in a diamond pattern:<img loading="lazy" title="Disruptor Dependency Chains" width="764" height="378" src="http://www.symphonious.net/wp-content/uploads/2011/07/disruptorChains-300x225.png" alt="Two chains of consumers running in parallel with a final consumer dependent on both." /></p>
+<p>(Thanks to Trish for using her fancy graphics tablet to create a decent version of this image instead of my original finger painting on an iPad…)</p>
+<pre>dw.consumeWith(handler1a, handler2a);
+dw.after(handler1a).consumeWith(handler1b);
+dw.after(handler2a).consumeWith(handler2b);
+dw.after(handler1b, handler2b).consumeWith(handler3);
+ProducerBarrier producerBarrier = dw.createProducerBarrier();
+</pre>
+<p>The DSL is quite new so any feedback on it would be greatly appreciated and of course feel free to <a href="http://github.com/ajsutton/disruptorWizard">fork it on GitHub</a> and improve it.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Travis CI | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Probably the best thing I&rsquo;ve discovered with my recent playing is Travis CI. I&rsquo;ve known about it for quite some time, even played with it for simple projects but never with anything with any real complexity. Given this project uses rails which wants a database for pretty much every test and that database has to be postgres because I&rsquo;m using it&rsquo;s jsonb support, plus capybara and phantomjs for good measure, this certainly isn&rsquo;t a simple project to test.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2015/10/01/travis-ci/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2015/10/01/travis-ci/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Travis CI">
+	<meta property="og:description" content="Probably the best thing I’ve discovered with my recent playing is Travis CI. I’ve known about it for quite some time, even played with it for simple projects but never with anything with any real complexity. Given this project uses rails which wants a database for pretty much every test and that database has to be postgres because I’m using it’s jsonb support, plus capybara and phantomjs for good measure, this certainly isn’t a simple project to test.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2015-10-01T01:26:18+00:00">
+		<meta property="article:modified_time" content="2015-10-01T01:26:18+00:00">
+
+	<meta itemprop="name" content="Travis CI">
+	<meta itemprop="description" content="Probably the best thing I’ve discovered with my recent playing is Travis CI. I’ve known about it for quite some time, even played with it for simple projects but never with anything with any real complexity. Given this project uses rails which wants a database for pretty much every test and that database has to be postgres because I’m using it’s jsonb support, plus capybara and phantomjs for good measure, this certainly isn’t a simple project to test.">
+	<meta itemprop="datePublished" content="2015-10-01T01:26:18+00:00">
+	<meta itemprop="dateModified" content="2015-10-01T01:26:18+00:00">
+	<meta itemprop="wordCount" content="302">
+	<meta itemprop="keywords" content="Build Systems,Code and Geek Stuff,Testing">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Travis CI">
+	<meta name="twitter:description" content="Probably the best thing I’ve discovered with my recent playing is Travis CI. I’ve known about it for quite some time, even played with it for simple projects but never with anything with any real complexity. Given this project uses rails which wants a database for pretty much every test and that database has to be postgres because I’m using it’s jsonb support, plus capybara and phantomjs for good measure, this certainly isn’t a simple project to test.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Travis CI</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Travis CI</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-10-01T01:26:18Z">October 1, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Probably the best thing I&rsquo;ve discovered with my recent playing is <a href="https://travis-ci.org">Travis CI</a>. I&rsquo;ve known about it for quite some time, even played with it for simple projects but never with anything with any real complexity. Given this project uses rails which wants a database for pretty much every test and that database has to be postgres because I&rsquo;m using it&rsquo;s jsonb support, plus capybara and phantomjs for good measure, this certainly isn&rsquo;t a simple project to test.</p>
+<p>Despite that, getting things running on Travis CI was quick and easy. The container based builds give you a well controlled environment out of the box and they already have a heap of software you&rsquo;re likely to need ready to go. Other things can be easily provided using a simple .travis.yml file.</p>
+<p>While it&rsquo;s common to have a build server these days, it&rsquo;s quite uncommon for them to be so well controlled and able to be rebuilt quickly and easily – most wind up being special little snowflakes in some way or other. So building on Travis CI is immediately a massive leap forward in testing practices.</p>
+<p>The two things we do at LMAX that I can&rsquo;t see how to do with Travis CI (yet) is creating <a href="https://www.symphonious.net/2014/03/25/testinglmax-test-results-database/">a database of historic test results</a> that can be easily queried (at the individual test level, not the build result level), and <a href="https://www.symphonious.net/2014/03/30/testinglmax-distributed-builds-with-romero/">running a build in parallel with the tests automatically load balanced across a number of hosts</a>. I wouldn&rsquo;t expect either to be provided as part of the free service anyway but they seem like the next major areas of value it could offer (with significant effort required I imagine).</p>
+<p>Still, it&rsquo;s been a real luxury to have a full CI setup for hacking on a little side project. So thanks for the generosity Travis CI.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

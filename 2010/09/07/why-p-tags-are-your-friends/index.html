@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Why P Tags are Your Friends | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A few days ago I talked about the Email and P Myth, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/09/07/why-p-tags-are-your-friends/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Why P Tags are Your Friends">
+	<meta property="og:description" content="A few days ago I talked about the Email and P Myth, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-09-07T13:31:19+00:00">
+		<meta property="article:modified_time" content="2010-09-07T13:31:19+00:00">
+
+	<meta itemprop="name" content="Why P Tags are Your Friends">
+	<meta itemprop="description" content="A few days ago I talked about the Email and P Myth, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.">
+	<meta itemprop="datePublished" content="2010-09-07T13:31:19+00:00">
+	<meta itemprop="dateModified" content="2010-09-07T13:31:19+00:00">
+	<meta itemprop="wordCount" content="463">
+	<meta itemprop="keywords" content="Editors,Email">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Why P Tags are Your Friends">
+	<meta name="twitter:description" content="A few days ago I talked about the Email and P Myth, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Why P Tags are Your Friends</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Why P Tags are Your Friends</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-09-07T13:31:19Z">September 7, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><img alt="" src="http://www.symphonious.net/wp-content/uploads/2010/09/ParagraphMarker_387764802665706626.png" style=" float: right;" />A few days ago I talked about <a href="http://www.symphonious.net/2010/09/02/the-email-and-p-myth/">the Email and P Myth</a>, but didn’t explain why it’s so frustrating for editor developers that people keep wanting to use BR tags instead of P tags. It’s not actually because we’re fastidious about using the correct semantic HTML, though obviously we do recommend that, it’s because a lot of concepts that user’s expect simply aren’t possible to implement sensibly if you don’t use the correct paragraph level elements.</p>
+<p>Take for example, a simple function like alignment. In Word and any other sensible editor, when you click the right align button, the current paragraph becomes aligned right. Which pretty clearly highlights the problem – if you don’t have paragraphs, what should become aligned? Typically what happens is the entire document, being one paragraph, gets aligned right and user’s unsurprisingly complain. So why not just change the alignment of the current line? Think about it in HTML terms, if you have:</p>
+<pre>Line 1&#60;br&#62;
+Line 2
+</pre>
+<p>Where do you apply the text-align style exactly? You can’t apply text-align to inline elements so:</p>
+<pre>&#60;span style=”text-align: right;”&#62;Line 1&#60;/span&#62;&#60;br&#62;
+Line 2
+</pre>
+<p>doesn’t work. Further, we’ve been told that inserting P tags isn’t allowed, so we can’t just make it:</p>
+<pre>&#60;p style=”text-align: right;”&#62;Line 1&#60;/p&#62;
+Line 2
+</pre>
+<p>because that would introduce “extra whitespace”<a href="#footnote1:1283780342216">1</a>{#footlink1:1283780342216.footnote}. So the only option is to insert a DIV tag which makes the HTML structure quite complex. DIVs aren’t just a meaningless element, they add structure to the document and the editor can’t tell which DIVs are important structure and which are just pretending to be paragraphs<a href="#footnote2:1283780468469">2</a>{#footlink2:1283780468469.footnote}.</p>
+<p>This problem crops up in a huge number of different places – applying headings, style classes, lists, indenting and more. All these special cases need to be handled, adding to the download size for the editor and reducing performance – not to mention taking up a huge amount of development time that could have been put into something more useful.</p>
+<p>WYSIWYG editors do such a good job of hiding the way that HTML and CSS work, that people often forget that in the end we’re still trying to generate high quality, standards-compliant HTML output. We’re limited by what those standards and browsers can actually do, so removing important concepts like paragraphs makes it incredibly difficult to create an editor that works intuitively.</p>
+<p>Ultimately, it’s not that we developers don’t want to support your use case, it’s just that the restrictions you’re asking us to abide by dramatically reduce our ability to deliver a high quality authoring experience.</p>
+<p class="footnote">
+  <a href="#footlink1:1283780342216" id="footnote1:1283780342216">1</a> &#8211; which can and should be removed using CSS in the first place <a class="footnotereturn" href="#footlink1:1283780342216">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1283780468469" id="footnote2:1283780468469">2</a> &#8211; remembering that what was once an unimportant DIV may become important at some point because of a change to scripts or CSS that the editor isn’t aware of <a class="footnotereturn" href="#footlink2:1283780468469">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

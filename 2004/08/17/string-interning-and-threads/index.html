@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>String Interning and Threads | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Anton Tagunov added an excellent comment to yesterday&rsquo;s entry:
+
+The one thing that has always stopped me from doing this was: interning must use some global lock. So, while interning would cause little to no harm for desktop application it is likely to introduce extra synchronization bottleneck for server applications. Thus potentially degrading perfromance on some multi-cpu beast. Would you agree with this, Adrian? Firstly, let me make something very clear: string interning will cause bugs in your code and they will be hard to track down – they will however be easy to fix once found. At some point, someone, somewhere will forget to intern a string and let it pass into your code that assumes strings are interned. Also, string interning is an extremely situational optimization. In most cases, it will worsen performance because the overhead of interning the strings will not be made up for by the reduced complexity of comparisons. Even of the cases where it does help, most of the time the difference will not be noticeable. As always, don&rsquo;t bother optimizing until you know that you need to and that it will help – this is an optimization that causes the code to become less maintainable. Having said that, lets go back to the original question. Firstly, does string interning require synchronization? Probably, but not in terms of Java. The String.intern() method is a native method and works via JNI. It would be difficult to imagine a way of achieving the behavior without at least some synchronization though. The synchronized block however would be very small, and very rarely encountered. There are two situations to consider, either the string is already in the interned list or the string is not. If it is, then no synchronization needs to occur because the list is only being read. So multiple strings can be interned at once so long as all of them are already in the interned list. Synchronization will be needed however whenever a string is interned for the first time (ie: it doesn&rsquo;t match any String constant that has been loaded or any previously interned string). So on a multiple CPU system, it would be very bad to intern a lot of strings that are only ever used once or twice as they would require a lot of synchronization for no benefit. Of course on a single CPU system, doing this would be a bad thing anyway because it would incur the extra cost of comparing strings to check if they match an interned string without gaining any real benefit. My theory would then be (and only real world application profiling will confirm this in any particular situation) that the string interning technique is slightly less likely to pay off on multiple CPU systems, however because the situations in which string interning is useful require that the vast majority of String.intern() calls match something already in the cache (most likely one of the string constants they&rsquo;re to be compared against) the question of how many CPUs will be in use isn&rsquo;t going to have any significant impact. I can&rsquo;t stress enough though that if you don&rsquo;t have specific profiling data that shows String comparisons as the biggest bottle neck in your application, you shouldn&rsquo;t apply this optimization. Great question. UPDATE: Here&rsquo;s an interesting discussion of interning relating specifically to this question. The automatic google search on the side (if you actually click through to this blog entry) is very handy at times.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/08/17/string-interning-and-threads/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/08/17/string-interning-and-threads/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="String Interning and Threads">
+	<meta property="og:description" content="Anton Tagunov added an excellent comment to yesterday’s entry:
+The one thing that has always stopped me from doing this was: interning must use some global lock. So, while interning would cause little to no harm for desktop application it is likely to introduce extra synchronization bottleneck for server applications. Thus potentially degrading perfromance on some multi-cpu beast. Would you agree with this, Adrian? Firstly, let me make something very clear: string interning will cause bugs in your code and they will be hard to track down – they will however be easy to fix once found. At some point, someone, somewhere will forget to intern a string and let it pass into your code that assumes strings are interned. Also, string interning is an extremely situational optimization. In most cases, it will worsen performance because the overhead of interning the strings will not be made up for by the reduced complexity of comparisons. Even of the cases where it does help, most of the time the difference will not be noticeable. As always, don’t bother optimizing until you know that you need to and that it will help – this is an optimization that causes the code to become less maintainable. Having said that, lets go back to the original question. Firstly, does string interning require synchronization? Probably, but not in terms of Java. The String.intern() method is a native method and works via JNI. It would be difficult to imagine a way of achieving the behavior without at least some synchronization though. The synchronized block however would be very small, and very rarely encountered. There are two situations to consider, either the string is already in the interned list or the string is not. If it is, then no synchronization needs to occur because the list is only being read. So multiple strings can be interned at once so long as all of them are already in the interned list. Synchronization will be needed however whenever a string is interned for the first time (ie: it doesn’t match any String constant that has been loaded or any previously interned string). So on a multiple CPU system, it would be very bad to intern a lot of strings that are only ever used once or twice as they would require a lot of synchronization for no benefit. Of course on a single CPU system, doing this would be a bad thing anyway because it would incur the extra cost of comparing strings to check if they match an interned string without gaining any real benefit. My theory would then be (and only real world application profiling will confirm this in any particular situation) that the string interning technique is slightly less likely to pay off on multiple CPU systems, however because the situations in which string interning is useful require that the vast majority of String.intern() calls match something already in the cache (most likely one of the string constants they’re to be compared against) the question of how many CPUs will be in use isn’t going to have any significant impact. I can’t stress enough though that if you don’t have specific profiling data that shows String comparisons as the biggest bottle neck in your application, you shouldn’t apply this optimization. Great question. UPDATE: Here’s an interesting discussion of interning relating specifically to this question. The automatic google search on the side (if you actually click through to this blog entry) is very handy at times.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-08-17T06:47:02+00:00">
+		<meta property="article:modified_time" content="2004-08-17T06:47:02+00:00">
+
+	<meta itemprop="name" content="String Interning and Threads">
+	<meta itemprop="description" content="Anton Tagunov added an excellent comment to yesterday’s entry:
+The one thing that has always stopped me from doing this was: interning must use some global lock. So, while interning would cause little to no harm for desktop application it is likely to introduce extra synchronization bottleneck for server applications. Thus potentially degrading perfromance on some multi-cpu beast. Would you agree with this, Adrian? Firstly, let me make something very clear: string interning will cause bugs in your code and they will be hard to track down – they will however be easy to fix once found. At some point, someone, somewhere will forget to intern a string and let it pass into your code that assumes strings are interned. Also, string interning is an extremely situational optimization. In most cases, it will worsen performance because the overhead of interning the strings will not be made up for by the reduced complexity of comparisons. Even of the cases where it does help, most of the time the difference will not be noticeable. As always, don’t bother optimizing until you know that you need to and that it will help – this is an optimization that causes the code to become less maintainable. Having said that, lets go back to the original question. Firstly, does string interning require synchronization? Probably, but not in terms of Java. The String.intern() method is a native method and works via JNI. It would be difficult to imagine a way of achieving the behavior without at least some synchronization though. The synchronized block however would be very small, and very rarely encountered. There are two situations to consider, either the string is already in the interned list or the string is not. If it is, then no synchronization needs to occur because the list is only being read. So multiple strings can be interned at once so long as all of them are already in the interned list. Synchronization will be needed however whenever a string is interned for the first time (ie: it doesn’t match any String constant that has been loaded or any previously interned string). So on a multiple CPU system, it would be very bad to intern a lot of strings that are only ever used once or twice as they would require a lot of synchronization for no benefit. Of course on a single CPU system, doing this would be a bad thing anyway because it would incur the extra cost of comparing strings to check if they match an interned string without gaining any real benefit. My theory would then be (and only real world application profiling will confirm this in any particular situation) that the string interning technique is slightly less likely to pay off on multiple CPU systems, however because the situations in which string interning is useful require that the vast majority of String.intern() calls match something already in the cache (most likely one of the string constants they’re to be compared against) the question of how many CPUs will be in use isn’t going to have any significant impact. I can’t stress enough though that if you don’t have specific profiling data that shows String comparisons as the biggest bottle neck in your application, you shouldn’t apply this optimization. Great question. UPDATE: Here’s an interesting discussion of interning relating specifically to this question. The automatic google search on the side (if you actually click through to this blog entry) is very handy at times.">
+	<meta itemprop="datePublished" content="2004-08-17T06:47:02+00:00">
+	<meta itemprop="dateModified" content="2004-08-17T06:47:02+00:00">
+	<meta itemprop="wordCount" content="578">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="String Interning and Threads">
+	<meta name="twitter:description" content="Anton Tagunov added an excellent comment to yesterday’s entry:
+The one thing that has always stopped me from doing this was: interning must use some global lock. So, while interning would cause little to no harm for desktop application it is likely to introduce extra synchronization bottleneck for server applications. Thus potentially degrading perfromance on some multi-cpu beast. Would you agree with this, Adrian? Firstly, let me make something very clear: string interning will cause bugs in your code and they will be hard to track down – they will however be easy to fix once found. At some point, someone, somewhere will forget to intern a string and let it pass into your code that assumes strings are interned. Also, string interning is an extremely situational optimization. In most cases, it will worsen performance because the overhead of interning the strings will not be made up for by the reduced complexity of comparisons. Even of the cases where it does help, most of the time the difference will not be noticeable. As always, don’t bother optimizing until you know that you need to and that it will help – this is an optimization that causes the code to become less maintainable. Having said that, lets go back to the original question. Firstly, does string interning require synchronization? Probably, but not in terms of Java. The String.intern() method is a native method and works via JNI. It would be difficult to imagine a way of achieving the behavior without at least some synchronization though. The synchronized block however would be very small, and very rarely encountered. There are two situations to consider, either the string is already in the interned list or the string is not. If it is, then no synchronization needs to occur because the list is only being read. So multiple strings can be interned at once so long as all of them are already in the interned list. Synchronization will be needed however whenever a string is interned for the first time (ie: it doesn’t match any String constant that has been loaded or any previously interned string). So on a multiple CPU system, it would be very bad to intern a lot of strings that are only ever used once or twice as they would require a lot of synchronization for no benefit. Of course on a single CPU system, doing this would be a bad thing anyway because it would incur the extra cost of comparing strings to check if they match an interned string without gaining any real benefit. My theory would then be (and only real world application profiling will confirm this in any particular situation) that the string interning technique is slightly less likely to pay off on multiple CPU systems, however because the situations in which string interning is useful require that the vast majority of String.intern() calls match something already in the cache (most likely one of the string constants they’re to be compared against) the question of how many CPUs will be in use isn’t going to have any significant impact. I can’t stress enough though that if you don’t have specific profiling data that shows String comparisons as the biggest bottle neck in your application, you shouldn’t apply this optimization. Great question. UPDATE: Here’s an interesting discussion of interning relating specifically to this question. The automatic google search on the side (if you actually click through to this blog entry) is very handy at times.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">String Interning and Threads</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">String Interning and Threads</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-08-17T06:47:02Z">August 17, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://www.apache.org/~atagunov">Anton Tagunov</a> added an excellent comment to <a href="http://www.intencha.com/adrian/000205.php">yesterday&rsquo;s entry</a>:</p>
+<blockquote>
+<p>The one thing that has always stopped me from doing this was: interning must use some global lock. So, while interning would cause little to no harm for desktop application it is likely to introduce extra synchronization bottleneck for server applications. Thus potentially degrading perfromance on some multi-cpu beast. Would you agree with this, Adrian? Firstly, let me make something very clear: string interning <em>will</em> cause bugs in your code and they <em>will</em> be hard to track down – they will however be easy to fix once found. At some point, someone, somewhere will forget to intern a string and let it pass into your code that assumes strings are interned. Also, string interning is an extremely situational optimization. In most cases, it will worsen performance because the overhead of interning the strings will not be made up for by the reduced complexity of comparisons. Even of the cases where it does help, most of the time the difference will not be noticeable. As always, don&rsquo;t bother optimizing until you know that you need to and that it will help – this is an optimization that causes the code to become less maintainable. Having said that, lets go back to the original question. Firstly, does string interning require synchronization? Probably, but not in terms of Java. The <code>String.intern()</code> method is a native method and works via JNI. It would be difficult to imagine a way of achieving the behavior without at least some synchronization though. The synchronized block however would be very small, and very rarely encountered. There are two situations to consider, either the string is already in the interned list or the string is not. If it is, then no synchronization needs to occur because the list is only being read. So multiple strings can be interned at once so long as all of them are already in the interned list. Synchronization will be needed however whenever a string is interned for the first time (ie: it doesn&rsquo;t match any String constant that has been loaded or any previously interned string). So on a multiple CPU system, it would be very bad to intern a lot of strings that are only ever used once or twice as they would require a lot of synchronization for no benefit. Of course on a single CPU system, doing this would be a bad thing anyway because it would incur the extra cost of comparing strings to check if they match an interned string without gaining any real benefit. My theory would then be (and only real world application profiling will confirm this in any particular situation) that the string interning technique is slightly less likely to pay off on multiple CPU systems, however because the situations in which string interning is useful require that the vast majority of <code>String.intern()</code> calls match something already in the cache (most likely one of the string constants they&rsquo;re to be compared against) the question of how many CPUs will be in use isn&rsquo;t going to have any significant impact. I can&rsquo;t stress enough though that if you don&rsquo;t have specific profiling data that shows String comparisons as the biggest bottle neck in your application, you shouldn&rsquo;t apply this optimization. Great question. UPDATE: <a href="http://lists.xml.org/archives/xml-dev/200001/msg00309.html">Here&rsquo;s</a> an interesting discussion of interning relating specifically to this question. The automatic google search on the side (if you actually click through to this blog entry) is very handy at times.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

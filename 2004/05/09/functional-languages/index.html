@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Functional Languages | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I got involved in a long argument last night centering around different language paradigms and how the perl language fits into them. My “worth adversary” argued that perl could be considered a functional language at least in some ways because it supported function language constructs. In particular the example was given: map { freq $_ } @list The particular point being made here was that perl supported passing code into functions as parameters and that was a principle construct of functional languages. In Java you&rsquo;d need to use an object to pass the function in as data thus it&rsquo;s object-oriented and not functional. Now that I&rsquo;m home and have access to my text books, I can safely put this argument to rest too. From Programming Language Essentials by Henri E. Bal and Dick Grune and published by Addison-Wesley:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/05/09/functional-languages/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/05/09/functional-languages/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Functional Languages">
+	<meta property="og:description" content="I got involved in a long argument last night centering around different language paradigms and how the perl language fits into them. My “worth adversary” argued that perl could be considered a functional language at least in some ways because it supported function language constructs. In particular the example was given: map { freq $_ } @list The particular point being made here was that perl supported passing code into functions as parameters and that was a principle construct of functional languages. In Java you’d need to use an object to pass the function in as data thus it’s object-oriented and not functional. Now that I’m home and have access to my text books, I can safely put this argument to rest too. From Programming Language Essentials by Henri E. Bal and Dick Grune and published by Addison-Wesley:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-05-09T00:49:33+00:00">
+		<meta property="article:modified_time" content="2004-05-09T00:49:33+00:00">
+
+	<meta itemprop="name" content="Functional Languages">
+	<meta itemprop="description" content="I got involved in a long argument last night centering around different language paradigms and how the perl language fits into them. My “worth adversary” argued that perl could be considered a functional language at least in some ways because it supported function language constructs. In particular the example was given: map { freq $_ } @list The particular point being made here was that perl supported passing code into functions as parameters and that was a principle construct of functional languages. In Java you’d need to use an object to pass the function in as data thus it’s object-oriented and not functional. Now that I’m home and have access to my text books, I can safely put this argument to rest too. From Programming Language Essentials by Henri E. Bal and Dick Grune and published by Addison-Wesley:">
+	<meta itemprop="datePublished" content="2004-05-09T00:49:33+00:00">
+	<meta itemprop="dateModified" content="2004-05-09T00:49:33+00:00">
+	<meta itemprop="wordCount" content="439">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Functional Languages">
+	<meta name="twitter:description" content="I got involved in a long argument last night centering around different language paradigms and how the perl language fits into them. My “worth adversary” argued that perl could be considered a functional language at least in some ways because it supported function language constructs. In particular the example was given: map { freq $_ } @list The particular point being made here was that perl supported passing code into functions as parameters and that was a principle construct of functional languages. In Java you’d need to use an object to pass the function in as data thus it’s object-oriented and not functional. Now that I’m home and have access to my text books, I can safely put this argument to rest too. From Programming Language Essentials by Henri E. Bal and Dick Grune and published by Addison-Wesley:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Functional Languages</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Functional Languages</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-05-09T00:49:33Z">May 9, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I got involved in a long argument last night centering around different language paradigms and how the perl language fits into them. My “worth adversary” argued that perl could be considered a functional language at least in some ways because it supported function language constructs. In particular the example was given: <code>map { freq $_ } @list</code> The particular point being made here was that perl supported passing code into functions as parameters and that was a principle construct of functional languages. In Java you&rsquo;d need to use an object to pass the function in as data thus it&rsquo;s object-oriented and not functional. Now that I&rsquo;m home and have access to my text books, I can safely put this argument to rest too. From <em>Programming Language Essentials</em> by Henri E. Bal and Dick Grune and published by Addison-Wesley:</p>
+<blockquote>
+<p>A functional (or applicative) language is based on the evaluation of expressions built out of function calls (applications). A function … computes a certain value, based on its input parameters (also called arguments) and nothing else.</p>
+<p>The key issue here is that functions cannot have side-effects on the state of the program, unless this state is carried around in the arguments of the functions. This lack of side-effects results in a property called <strong>referential-transparency</strong>, which is the most important term in functional programming. It means the result of a function application does not depend on <em>when</em> the function is called but only on how it is called (with which arguments). So the most important tenant of a functional language is the fact that functions <em>can&rsquo;t</em> have side effects – not that they <em>don&rsquo;t</em>, they <em>can&rsquo;t</em>. Later it goes on to talk about higher-order functions (functions which take other functions as arguments) and says:</p>
+</blockquote>
+<blockquote>
+<p>Functional languages usually treat functions as first-class objects, which can be passed as arguments, returned as function results, and stored in data structures Note two key terms here: <em>usually</em> and <em>first-class objects</em>. Usually – because it implies that this is not an essential feature of functional languages, though it is a useful one. First-class objects – because, while they don&rsquo;t really mean objects in the object oriented sense, they do mean that the function is an entity in itself and that representing it as an actual object isn&rsquo;t such a big leap, nor is representing it as a function pointer in a language like C. It&rsquo;s also worth pointing out that these functions can not only be passed in, but also returned, stored in data structures and “curried” or partially parametized. Anyway, what this really shows is that keeping your old text books around can occasionally be useful…</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

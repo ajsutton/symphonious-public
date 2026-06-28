@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Refactoring Without Tests | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Refactoring without tests is hard and really, really scary but sometimes you&rsquo;ve inherited (or perhaps written yourself) a big ball of untestable mud and the only way out is to refactor and make it testable. One of our engineers found himself in that situation today so we sat down together to try and make sense of it.
+I tried to follow a few simple rules:
+
+Go slow. No big sweeping changes. Keep the way it does things the same and just break the code down to make it more readable and create multiple small balls of mud instead of one big one.
+Use the automated refactorings in the IDE unless you absolutely have to make manual changes. We discovered a number of bugs in Eclipse this way where it didn&rsquo;t detect identical code – who knows why not. In once case I managed to convince it the code was identical by repeatedly trying the extract method until it picked up the duplicate block but in a second case I had to revert to manually replacing the duplicate code.
+Use the simplest refactoring that could possibly make it testable. Mostly this meant applying extract method with a smattering of extract local variable to pull out the differing pieces so duplicate code could be merged. In hind-sight I may have been better off leaving the duplicate code in and writing tests for it separately, it would then have been easier and safer to remove the duplication.
+
+All in all I think it went really well, slow going but effective and we now have half as much code and it&rsquo;s much easier to test. There&rsquo;s still a lot more work needed to stop that code from smelling but it&rsquo;s a start and that&rsquo;s enough for one day. You can&rsquo;t spend all your time refactoring legacy code, new features have to be added – just make sure that you&rsquo;re constantly improving and eventually you&rsquo;ll get there.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/03/22/refactoring-without-tests/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/03/22/refactoring-without-tests/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Refactoring Without Tests">
+	<meta property="og:description" content="Refactoring without tests is hard and really, really scary but sometimes you’ve inherited (or perhaps written yourself) a big ball of untestable mud and the only way out is to refactor and make it testable. One of our engineers found himself in that situation today so we sat down together to try and make sense of it.
+I tried to follow a few simple rules:
+Go slow. No big sweeping changes. Keep the way it does things the same and just break the code down to make it more readable and create multiple small balls of mud instead of one big one. Use the automated refactorings in the IDE unless you absolutely have to make manual changes. We discovered a number of bugs in Eclipse this way where it didn’t detect identical code – who knows why not. In once case I managed to convince it the code was identical by repeatedly trying the extract method until it picked up the duplicate block but in a second case I had to revert to manually replacing the duplicate code. Use the simplest refactoring that could possibly make it testable. Mostly this meant applying extract method with a smattering of extract local variable to pull out the differing pieces so duplicate code could be merged. In hind-sight I may have been better off leaving the duplicate code in and writing tests for it separately, it would then have been easier and safer to remove the duplication. All in all I think it went really well, slow going but effective and we now have half as much code and it’s much easier to test. There’s still a lot more work needed to stop that code from smelling but it’s a start and that’s enough for one day. You can’t spend all your time refactoring legacy code, new features have to be added – just make sure that you’re constantly improving and eventually you’ll get there.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-03-22T13:00:12+00:00">
+		<meta property="article:modified_time" content="2006-03-22T13:00:12+00:00">
+
+	<meta itemprop="name" content="Refactoring Without Tests">
+	<meta itemprop="description" content="Refactoring without tests is hard and really, really scary but sometimes you’ve inherited (or perhaps written yourself) a big ball of untestable mud and the only way out is to refactor and make it testable. One of our engineers found himself in that situation today so we sat down together to try and make sense of it.
+I tried to follow a few simple rules:
+Go slow. No big sweeping changes. Keep the way it does things the same and just break the code down to make it more readable and create multiple small balls of mud instead of one big one. Use the automated refactorings in the IDE unless you absolutely have to make manual changes. We discovered a number of bugs in Eclipse this way where it didn’t detect identical code – who knows why not. In once case I managed to convince it the code was identical by repeatedly trying the extract method until it picked up the duplicate block but in a second case I had to revert to manually replacing the duplicate code. Use the simplest refactoring that could possibly make it testable. Mostly this meant applying extract method with a smattering of extract local variable to pull out the differing pieces so duplicate code could be merged. In hind-sight I may have been better off leaving the duplicate code in and writing tests for it separately, it would then have been easier and safer to remove the duplication. All in all I think it went really well, slow going but effective and we now have half as much code and it’s much easier to test. There’s still a lot more work needed to stop that code from smelling but it’s a start and that’s enough for one day. You can’t spend all your time refactoring legacy code, new features have to be added – just make sure that you’re constantly improving and eventually you’ll get there.">
+	<meta itemprop="datePublished" content="2006-03-22T13:00:12+00:00">
+	<meta itemprop="dateModified" content="2006-03-22T13:00:12+00:00">
+	<meta itemprop="wordCount" content="322">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Refactoring Without Tests">
+	<meta name="twitter:description" content="Refactoring without tests is hard and really, really scary but sometimes you’ve inherited (or perhaps written yourself) a big ball of untestable mud and the only way out is to refactor and make it testable. One of our engineers found himself in that situation today so we sat down together to try and make sense of it.
+I tried to follow a few simple rules:
+Go slow. No big sweeping changes. Keep the way it does things the same and just break the code down to make it more readable and create multiple small balls of mud instead of one big one. Use the automated refactorings in the IDE unless you absolutely have to make manual changes. We discovered a number of bugs in Eclipse this way where it didn’t detect identical code – who knows why not. In once case I managed to convince it the code was identical by repeatedly trying the extract method until it picked up the duplicate block but in a second case I had to revert to manually replacing the duplicate code. Use the simplest refactoring that could possibly make it testable. Mostly this meant applying extract method with a smattering of extract local variable to pull out the differing pieces so duplicate code could be merged. In hind-sight I may have been better off leaving the duplicate code in and writing tests for it separately, it would then have been easier and safer to remove the duplication. All in all I think it went really well, slow going but effective and we now have half as much code and it’s much easier to test. There’s still a lot more work needed to stop that code from smelling but it’s a start and that’s enough for one day. You can’t spend all your time refactoring legacy code, new features have to be added – just make sure that you’re constantly improving and eventually you’ll get there.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Refactoring Without Tests</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Refactoring Without Tests</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-03-22T13:00:12Z">March 22, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Refactoring without tests is hard and really, really scary but sometimes you&rsquo;ve inherited (or perhaps written yourself) a big ball of untestable mud and the only way out is to refactor and make it testable. One of our engineers found himself in that situation today so we sat down together to try and make sense of it.</p>
+<p>I tried to follow a few simple rules:</p>
+<ol>
+<li>Go slow. No big sweeping changes. Keep the way it does things the same and just break the code down to make it more readable and create multiple small balls of mud instead of one big one.</li>
+<li>Use the automated refactorings in the IDE unless you absolutely have to make manual changes. We discovered a number of bugs in Eclipse this way where it didn&rsquo;t detect identical code – who knows why not. In once case I managed to convince it the code was identical by repeatedly trying the extract method until it picked up the duplicate block but in a second case I had to revert to manually replacing the duplicate code.</li>
+<li>Use the simplest refactoring that could possibly make it testable. Mostly this meant applying extract method with a smattering of extract local variable to pull out the differing pieces so duplicate code could be merged. In hind-sight I may have been better off leaving the duplicate code in and writing tests for it separately, it would then have been easier and safer to remove the duplication.</li>
+</ol>
+<p>All in all I think it went really well, slow going but effective and we now have half as much code and it&rsquo;s much easier to test. There&rsquo;s still a lot more work needed to stop that code from smelling but it&rsquo;s a start and that&rsquo;s enough for one day. You can&rsquo;t spend all your time refactoring legacy code, new features have to be added – just make sure that you&rsquo;re constantly improving and eventually you&rsquo;ll get there.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

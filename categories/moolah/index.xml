@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Moolah on Symphonious</title>
+    <link>https://www.symphonious.net/categories/moolah/</link>
+    <description>Recent content in Moolah on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Fri, 16 Mar 2018 20:35:46 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/moolah/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moolah Diaries – Upgrading to Hapi 17</title>
+      <link>https://www.symphonious.net/2018/03/17/moolah-diaries-upgrading-to-hapi/</link>
+      <pubDate>Fri, 16 Mar 2018 20:35:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2018/03/17/moolah-diaries-upgrading-to-hapi/</guid>
+      <description>&lt;p&gt;Hapi 17 was released a while back with quite a few nice improvement – mostly centered around using promises instead of callbacks and thus fitting in with async/await well.  However, it&amp;rsquo;s a very significant change right across it&amp;rsquo;s APIs so it took quite a while for the various plugins that Moolah uses to be updated.&lt;/p&gt;
+&lt;p&gt;Eventually though they were all ready and then the actual upgrade of Moolah code was pretty straight forward.  Moolah had been using async handlers via a plugin all along so there were minor changes to how they were specified but very few changes to the control flow they then used.&lt;/p&gt;
+&lt;p&gt;In the end it only took an evening&amp;rsquo;s work to get it all upgraded and I haven&amp;rsquo;t encountered any bugs since. That&amp;rsquo;s a pretty good vote of confidence in the effectiveness of it&amp;rsquo;s tests.&lt;/p&gt;
+&lt;p&gt;The next big upgrade will be to move the front-end over to WebPack v4. The improvements there look excellent, removing a lot of the previously required config and simplifying things but that also means it&amp;rsquo;s a pretty complex migration.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Earmarked Funds</title>
+      <link>https://www.symphonious.net/2018/03/01/moolah-diaries-earmarked-funds/</link>
+      <pubDate>Thu, 01 Mar 2018 07:30:37 +0000</pubDate>
+      <guid>https://www.symphonious.net/2018/03/01/moolah-diaries-earmarked-funds/</guid>
+      <description>&lt;p&gt;I dropped out of the habit of writing about Moolah but it&amp;rsquo;s been ticking along doing what I need it to for a fair while with a few additions here and there. Recently I spent a chunk of time adding the ability to ‘earmark&amp;rsquo; money for a particular use.&lt;/p&gt;
+&lt;p&gt;My main motivation is that we&amp;rsquo;re planning a family trip to Germany at the end of the year and I want to be able to set aside money through the year as we save for it. Various things will need to be paid upfront and those expense need to come out of the earmarked funds. I could track that with a new account for the savings, but since I&amp;rsquo;m not setting up a new bank account the balances wouldn&amp;rsquo;t match up and I&amp;rsquo;d spend a lot of time transferring money in and out of the holiday account.&lt;/p&gt;
+&lt;p&gt;So I&amp;rsquo;ve introduced ‘Earmark&amp;rsquo; as a new type of entity. In many ways they&amp;rsquo;re similar to accounts, but a single transaction can have both an account and an earmark, affecting the balance of both. So the transaction recording paying for our flights has the credit card as it&amp;rsquo;s account and the earmark set to the Germany holiday. It acts as an expense reducing the balance of both the account and the earmark.&lt;/p&gt;
+&lt;p&gt;Similarly, my wife&amp;rsquo;s income goes into our bank account and for this year I&amp;rsquo;m also earmarking it for Germany so it increases the bank balance (we did actually get the cash) and also increases the balance of the earmark.&lt;/p&gt;
+&lt;p&gt;This sounds like double counting, but the earmark balance is not included in the net worth which is still just the sum of account balances. The UI also displays “available funds” which is the sum of account balances less the sum of earmark balances.&lt;/p&gt;
+&lt;p&gt;The result of this is that an expense with an account and earmark reduces the balance of the account (we now have less money in total) but also reduces the balance of the earmark so there is less money set aside for that purpose. As a result the net worth is reduced but the available funds remains the same because the cost came out of our reserved funds.&lt;/p&gt;
+&lt;p&gt;Income with an account and an earmark increases the balance of both, so net worth goes up but available funds stays the same – those funds have been earmarked for that purpose and aren&amp;rsquo;t available for general use.&lt;/p&gt;
+&lt;p&gt;But what if we want to earmark a fixed amount per month separately to any actual income? To support that, Moolah allows creating transactions with an earmark but no account. In that case we&amp;rsquo;re recording the allocation of funds but with no actual cash movement.&lt;/p&gt;
+&lt;p&gt;The feature set is rounded out by tracking how much has been saved (total of income) and how much has been spent (total of expenses), a savings target and target date and providing some visualisations to show savings progress vs time and expense breakdowns.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Finding Transaction in the Past Month in MySQL</title>
+      <link>https://www.symphonious.net/2017/07/31/moolah-diaries-finding-transaction-in-the-past-month-in-mysql/</link>
+      <pubDate>Mon, 31 Jul 2017 04:44:04 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/31/moolah-diaries-finding-transaction-in-the-past-month-in-mysql/</guid>
+      <description>&lt;p&gt;Ultimately the point of Moolah isn&amp;rsquo;t just to record a bunch of transactions, it&amp;rsquo;s to provide some insight into how your finances are going. The key question being how much more or less are we spending than we earn? I use a few simple bits of analysis to answer that question in Moolah, the first of which is income vs expenses over the past &lt;em&gt;x&lt;/em&gt; months.&lt;/p&gt;
+&lt;p&gt;The simple way to do that is to show totals based on calendar month (month to date for the current month), but since my salary is paid monthly that doesn&amp;rsquo;t provide a very useful view of the current month since no income has arrived yet.&lt;/p&gt;
+&lt;p&gt;I really want to see data for the previous month as a sliding window.  So on the 3rd July the last month would be 4 June to 3 July (inclusive) and on the 25th of July it would be 26 June to 25 July. Given the way salary and bills are paid each month that provides a fairly stable view of income vs expense without fluctuating too much due to the time of the month.&lt;/p&gt;
+&lt;p&gt;Previously that was easy enough because all the transactions were in memory and we were iterating in JavaScript – flexible but doesn&amp;rsquo;t scale particularly well. With Moolah 2 we really want to do that in the database and avoid loading all the transactions.&lt;/p&gt;
+&lt;p&gt;The key bit of sql that makes it possible to achieve this sliding window for previous month is the group by clause:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;GROUP&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;BY&lt;/span&gt; IF(DAYOFMONTH(&lt;span style=&#34;color: #007020;&#34;&gt;date&lt;/span&gt;) &lt;span style=&#34;color: #333333;&#34;&gt;&amp;gt;&lt;/span&gt; DAYOFMONTH(NOW()), &lt;br /&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;    EXTRACT&lt;/span&gt;(YEAR_MONTH &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;FROM&lt;/span&gt; DATE_ADD(&lt;span style=&#34;color: #007020;&#34;&gt;date&lt;/span&gt;, &lt;span style=&#34;color: #007020;&#34;&gt;INTERVAL&lt;/span&gt; &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;MONTH&lt;/span&gt;)), &lt;br /&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;    EXTRACT&lt;/span&gt;(YEAR_MONTH &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;FROM&lt;/span&gt; &lt;span style=&#34;color: #007020;&#34;&gt;date&lt;/span&gt;))
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;There&amp;rsquo;s nothing particularly magic here – we just decide whether to push a transaction date into the next month based on whether it&amp;rsquo;s day of month is past the current day of month. The full transaction is in &lt;a href=&#34;https://github.com/ajsutton/moolah-server/blob/master/src/db/analysisDao.js&#34;&gt;analysisDao.js&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Initially I limited the query to just the last 12 months worth but MySQL can iterate so much faster than JavaScript it can easily run through the full data set covering about 6 years. I probably should put some limit on it but I&amp;rsquo;m interested in how long it will last.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Data Parity</title>
+      <link>https://www.symphonious.net/2017/07/22/moolah-diaries-data-parity/</link>
+      <pubDate>Sat, 22 Jul 2017 10:01:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/22/moolah-diaries-data-parity/</guid>
+      <description>&lt;p&gt;Moolah just reached it&amp;rsquo;s first key milestone – it&amp;rsquo;s reached “data parity” with the old version. Basically it has enough functionality that it&amp;rsquo;s viable to import the data from the old version and get the same balances and totals. Using real data that&amp;rsquo;s been generated over the last 5 years has revealed a few important things.&lt;/p&gt;
+&lt;p&gt;The good:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The balances add up so things really are working&lt;/li&gt;
+&lt;li&gt;It really does load &lt;em&gt;way&lt;/em&gt; faster&lt;/li&gt;
+&lt;li&gt;The old version allowed some data inconsistencies that the new version will prevent&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The bad:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There&amp;rsquo;s quite a few features still missing from the display – more than I&amp;rsquo;d realised&lt;/li&gt;
+&lt;li&gt;There&amp;rsquo;s a few places that are much slower than expected because of some rather careless algorithm/data structure choices. Fortunately there&amp;rsquo;s some trivial changes that should give pretty dramatic improvements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The next major milestone will be when I can actually switch over from the old system. Hopefully that&amp;rsquo;s not too far off.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Tracking Account Balances</title>
+      <link>https://www.symphonious.net/2017/07/19/moolah-diaries-tracking-account-balances/</link>
+      <pubDate>Tue, 18 Jul 2017 21:18:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/19/moolah-diaries-tracking-account-balances/</guid>
+      <description>&lt;p&gt;Moolah has two separate Vuex modules, transactions and accounts. That&amp;rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&amp;rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account.  As a result, accounts have their own current balance property because they can&amp;rsquo;t always calculate it off of their transactions.&lt;/p&gt;
+&lt;p&gt;That means that sometimes the transaction Vuex module needs to make changes to state owned by the account module which is a rather unpleasant breach of module separation. While we ensured transaction balances remained consistent inside each mutation, we can&amp;rsquo;t do that for account balances because Vuex (presumably deliberately) makes it impossible for a mutation to access or change state outside of the module itself. Instead, I&amp;rsquo;ve used a simple Vuex plugin that watches the balance on the most recent transaction and notifies the account module when it changes:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;import&lt;/span&gt; {mutations as accountsMutations} from &lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;./accountsStore&#39;&lt;/span&gt;;
+&lt;p&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;default&lt;/span&gt; store &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; store.watch(
+(state) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
+&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; state.transactions.transactions.length &lt;span style=&#34;color: #333333;&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt; &lt;br /&gt;&lt;span style=&#34;color: #333333;&#34;&gt;                                 ?&lt;/span&gt; state.transactions.transactions[&lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt;].balance &lt;br /&gt;&lt;span style=&#34;color: #333333;&#34;&gt;                                 :&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt;;
+},
+(newValue, oldValue) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
+&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;if&lt;/span&gt; (store.getters[&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&amp;ldquo;accounts/selectedAccount&amp;rdquo;&lt;/span&gt;] &lt;span style=&#34;color: #333333;&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt; &lt;span style=&#34;color: #333333;&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;br /&gt;           newValue &lt;span style=&#34;color: #333333;&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt;) {
+store.commit(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&amp;lsquo;accounts/&amp;rsquo;&lt;/span&gt; &lt;span style=&#34;color: #333333;&#34;&gt;+&lt;/span&gt; accountsMutations.updateAccount, {
+id&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; store.state.selectedAccountId, &lt;br /&gt;                patch&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; {balance&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; newValue}
+});
+}
+});
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Most of the complexity there is dealing with the case where we don&amp;rsquo;t yet have transaction or don&amp;rsquo;t have a selected account. This essentially makes the syncing between transaction balances and account balances a separate responsibility that belongs to this plugin.&lt;/p&gt;
+&lt;p&gt;The plugin doesn&amp;rsquo;t completely handle transfers between accounts. The balance for the account currently being edited updates correctly, but the balance for the account on the other side of the transfer doesn&amp;rsquo;t update. I&amp;rsquo;m not particularly happy with the solution, but at least for now the responsibility of reacting to transfer changes is in the transaction module&amp;rsquo;s actions. The action can easily calculate the effects of transaction changes on the balances of other accounts and use Vuex&amp;rsquo;s dispatch to send a notification over to the account module to perform the update. Mutations can&amp;rsquo;t dispatch events so it has to be the action that does it.&lt;/p&gt;
+&lt;p&gt;This leaves responsibility for updating the current account&amp;rsquo;s balance with the plugin and the responsibility for updating other account&amp;rsquo;s balances with the transaction module which is ugly. Perhaps the transaction module actions should be responsible for all account balances. Probably the right answer is to extract a separate class/function that the transaction module notifies at the end of each action with the state of the transaction before and after. Then that new class/function is responsible for updating account balances. Will need to prod the code a bit to see if that really can be done…&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Maintaining Invariants with Vuex Mutations</title>
+      <link>https://www.symphonious.net/2017/07/12/moolah-diaries-maintaining-invariants-with-vuex-mutations/</link>
+      <pubDate>Wed, 12 Jul 2017 06:52:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/12/moolah-diaries-maintaining-invariants-with-vuex-mutations/</guid>
+      <description>&lt;p&gt;Previously on the Moolah Diaries I had plans to recalculate the current balance at each transaction as part of any Vuex action that changed a transaction. Tracking balances is a good example of an invariant – at the completion of any atomic change, the balance for a transaction should be the initial balance plus the sum of all transaction amounts &lt;em&gt;prior&lt;/em&gt; to the current transaction.&lt;/p&gt;
+&lt;p&gt;The other invariant around transactions is that they should be sorted in reverse chronological order. To make the order completely deterministic, transactions with the same dates are then sorted by ID. This isn&amp;rsquo;t strictly necessary, but it avoids having transactions jump around unexpectedly.&lt;/p&gt;
+&lt;p&gt;My original plan was to ensure both of these invariants were preserved as part of each Vuex action, but actions aren&amp;rsquo;t the atomic operations in Vuex – mutations are. So we should update balances and adjust sort order as part of any mutation that affects transactions. Since only mutations can change state in Vuex, we can be sure that if our mutations preserve the invariants then they will always hold true. With actions, there&amp;rsquo;s always the risk that something would use mutations directly and break the invariants.&lt;/p&gt;
+&lt;p&gt;So lesson number 1 – in Vuex, it should be mutations that are responsible for maintaining invariants. That&amp;rsquo;s probably not news to anyone who&amp;rsquo;s used Vuex for long.&lt;/p&gt;
+&lt;p&gt;We could take that a step further and verify that the invariants always hold true using a vuex plugin:&lt;/p&gt;
+&lt;pre&gt;const invariantPlugin = store =&amp;gt; {&lt;br /&gt;    if (process.env.NODE_ENV !== &#39;production&#39;) {&lt;br /&gt;        store.subscribe((mutation, state) =&amp;gt; {&lt;br /&gt;            // Verify invariants&lt;br /&gt;        });&lt;br /&gt;    }&lt;br /&gt;};&lt;/pre&gt;
+&lt;p&gt;However, the way vuex recommends testing actions and mutations means registered plugins don&amp;rsquo;t get loaded. Tests that cover views that use the store will most likely stub out the actions since they&amp;rsquo;ll usually make HTTP requests.  So mostly the invariant check will only run during manual testing. That may still be worth it, but I&amp;rsquo;m not entirely sure yet…&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Multi-tenant Support for Testing</title>
+      <link>https://www.symphonious.net/2017/07/08/moolah-diaries-multi-tenant-support-for-testing/</link>
+      <pubDate>Fri, 07 Jul 2017 21:44:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/08/moolah-diaries-multi-tenant-support-for-testing/</guid>
+      <description>&lt;p&gt;Experience at LMAX has very clearly demonstrated the benefits of good &lt;a href=&#34;https://www.symphonious.net/2014/04/12/testinglmax-test-isolation/&#34;&gt;test isolation&lt;/a&gt;, so one of the first things I added to Moolah was multi-tenant support. Each account is a completely isolated little world which is perfect for testing.&lt;/p&gt;
+&lt;p&gt;Given that I&amp;rsquo;ve completely punted on storing passwords by delegating authentication to Google (and potentially other places in the future since it&amp;rsquo;s using &lt;a href=&#34;https://github.com/hapijs/bell/&#34;&gt;bell&lt;/a&gt; to handle third party authentication), there&amp;rsquo;s actually no user creation step at all which makes it even easier. As a result it&amp;rsquo;s not just acceptance tests that are benefiting from the isolation but also the database tests which no longer need to delete everything in the database to give themselves a clear workspace.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s all quite civilised really.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Vuex for Front End State</title>
+      <link>https://www.symphonious.net/2017/07/07/moolah-diaries-vuex-for-front-end-state/</link>
+      <pubDate>Thu, 06 Jul 2017 20:38:35 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/07/moolah-diaries-vuex-for-front-end-state/</guid>
+      <description>&lt;p&gt;Most of the work I&amp;rsquo;ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I&amp;rsquo;ve been using &lt;a href=&#34;https://vuejs.org/&#34;&gt;Vue.js&lt;/a&gt; and &lt;a href=&#34;https://vuetifyjs.com/&#34;&gt;Vuetify&lt;/a&gt; for the UI after &lt;a href=&#34;https://www.symphonious.net/2017/07/04/modernising-our-javascript-vue-js-to-the-rescue/&#34;&gt;Vue&amp;rsquo;s success in the day job&lt;/a&gt;. The Moolah UI has much more data-interdependence between components than what we&amp;rsquo;ve needed at work though so I&amp;rsquo;ve introduced &lt;a href=&#34;https://github.com/vuejs/vuex&#34;&gt;Vuex&lt;/a&gt; to manage the state in a centralised and more managed way.&lt;/p&gt;
+&lt;p&gt;I really quite like the flow – Vue components still own any state related directly to the UI like whether a dialog is shown or hidden etc but all the business model is stored in and managed by the Vuex store. The Vue components dispatch actions which perform computation, make requests to the backend or whatever is required then commit any changes to the store (via mutations). The usual Vue data-binding then kicks in to update the UI to reflect those changes.&lt;/p&gt;
+&lt;p&gt;The big advantage of this is that it naturally pulls business logic out of .vue files, preventing them getting to big. Without Vuex that basically depends on having the discipline to notice when a .vue file is doing too much and then untangling and splitting out the business logic.  Vuex provides a much clearer and more consistent way to delineate business logic from view code because you can&amp;rsquo;t modify state directly from the Vue component and it then becomes natural to split out an action.&lt;/p&gt;
+&lt;p&gt;Vuex&amp;rsquo;s module support also makes it easy to avoid your Vuex store from becoming the big ball of mud that does everything.&lt;/p&gt;
+&lt;p&gt;However, I&amp;rsquo;m still searching for a good, efficient way to calculate and update the current balance for each transaction. The actual calculation is simple enough – the balance for any transaction is the sum of the amount of every transaction before it in the account. Simplistically we could just start from the first transaction and iterate through calculating all the balances in a single O(n) pass. However, recalculating the balance for every transaction on each change is incredibly wasteful and is a big part of why the original version of Moolah takes so long to get started – it&amp;rsquo;s calculating all those balances. Each transaction balance actually only depends on two things, the transaction amount and the balance of the previous transaction. Since most new or changed transactions are at or near the very end of the transaction list, we should be able to avoid recalculating most of the balances.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t think Vue/Vuex&amp;rsquo;s lazy evaluation will be able to avoid doing a lot of extra recalculation, not least of all because the only way to represent this would be a transactionsWithBalances computed view and it would output the entire list of transactions so would recalculate every balance on every change.&lt;/p&gt;
+&lt;p&gt;However, it&amp;rsquo;s reasonably straight forward to build the lazy evaluation manually, but where does that sit in the Vuex system? I&amp;rsquo;m guessing pre-calculated balance is just a property of every transaction in the state and actions take responsibility for updating any balances they might have affected.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m leaning towards having a dedicated ‘updateBalances&amp;rsquo; action that can be triggered at the end of any action that changes transactions and is given the first transaction that requires it&amp;rsquo;s balance recalculated. Since every transaction after that depends on the balance of the one before they&amp;rsquo;ll also need updating.&lt;/p&gt;
+&lt;p&gt;I think that works and am now reminded about how useful it is to write a diary like this as a way to think through issues like this.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Principles</title>
+      <link>https://www.symphonious.net/2017/07/02/moolah-diaries-principles/</link>
+      <pubDate>Sun, 02 Jul 2017 04:20:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/02/moolah-diaries-principles/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s always important to have some basic principles in mind before you start writing code for a project. That way you have something to guide your technology choices, development practices and general approach to the code. They&amp;rsquo;re not immovable – many of them won&amp;rsquo;t survive the first encounter with actual code – but identifying your principles helps to make a code base much more coherent.&lt;/p&gt;
+&lt;p&gt;Naturally for the Moolah rebuild I just jumped in and started writing code without much thought, let alone guiding principles but a few have emerged either as lessons from the first version, personal philosophy or early experiences.&lt;/p&gt;
+&lt;h3 id=&#34;make-the-server-smart&#34;&gt;Make the Server Smart&lt;/h3&gt;
+&lt;p&gt;In the first version of Moolah, the server was just a dumb conduit to the database – in fact for quite some time it didn&amp;rsquo;t even parse the JSON objects, just stuffed them into the database and pulled them back out again. That missed a lot of opportunities for optimisation and keeping the client light and fast.&lt;/p&gt;
+&lt;p&gt;Ultimately this isn&amp;rsquo;t so much about client vs server, it&amp;rsquo;s more about backend vs frontend. In a browser the data storage options are limited (though much better now than 5 years ago) but the server has a proper database so can filter and work with data much faster. Sure I could re-implement fast indexing in the browser but why bother?&lt;/p&gt;
+&lt;h3 id=&#34;provide-well-defined-client-agnostic-apis&#34;&gt;Provide Well-Defined, Client-Agnostic APIs&lt;/h3&gt;
+&lt;p&gt;I want to be able to work on the client and server independently, potentially replacing one outright without changing the other. That way if one of my shiny tool choices doesn&amp;rsquo;t pan out well it&amp;rsquo;s a lot easier to ditch it, even if that means completely rebuilding the client or server. It also means I can play around with native applications should I want to in the future.&lt;/p&gt;
+&lt;h3 id=&#34;deploy-early-deploy-often-and-deploy-automatically&#34;&gt;Deploy Early, Deploy Often and Deploy Automatically&lt;/h3&gt;
+&lt;p&gt;This is basically the only sane way to work, but I&amp;rsquo;m often too lazy to do it properly with side projects. Moolah still has a few missing elements but has come far enough that I&amp;rsquo;m likely to stick with this and do it properly.&lt;/p&gt;
+&lt;h3 id=&#34;test-at-multiple-levels&#34;&gt;Test at Multiple Levels&lt;/h3&gt;
+&lt;p&gt;Side projects that involve playing with shiny new toys often wind up lacking any form of tests and that comes back to hurt pretty quickly. I&amp;rsquo;ve made an effort to have a reasonable level of tests in place right from the start. There&amp;rsquo;s been a big cost to that as I wrestle with the various testing frameworks and understand the best ways to approach testing Moolah, but that cost will be paid back over time and is much lower than trying to wrestle with those tools &lt;em&gt;and&lt;/em&gt; a big, test-unfriendly code base.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m also fairly inclined to only believe something is actually working when I have quite high level tests for it, including going right through to the real database. Unit tests are a design tool, integration tests are where you flush out most of the bugs and I&amp;rsquo;ve been seeing that even this early.&lt;/p&gt;
+&lt;h3 id=&#34;fail-fast&#34;&gt;Fail Fast&lt;/h3&gt;
+&lt;p&gt;If a tool, library or approach isn&amp;rsquo;t going to work I want to find out quickly and ditch it quickly. I&amp;rsquo;m trying lots of new things so have had to be pretty ruthless at ripping them back out, not just if they don&amp;rsquo;t work, but if they introduce too many gotchas or hoops to jump through.&lt;/p&gt;
+&lt;h3 id=&#34;have-fun&#34;&gt;Have Fun&lt;/h3&gt;
+&lt;p&gt;There&amp;rsquo;s a degree to which I need the Moolah rebuild to reach feature parity with the old system fairly quickly so I can switch over, but this is a side project so it&amp;rsquo;s mostly about having fun. I&amp;rsquo;ve let myself get distracted with building a fancy page for before you&amp;rsquo;re logged in even though it&amp;rsquo;s way more than I&amp;rsquo;ll likely ever need.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not sure this is a particularly meaningful list in general but for this particular project at this particular time they seem to be serving me well.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

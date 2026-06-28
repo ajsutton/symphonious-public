@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Testing@LMAX – Compatibility Tests | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by migrating it as changes are required. That existing data and the migrations applied to it are often the riskiest and least tested functions in the system. Mistakes in a migration will at best cause a multi-hour outage while backups are restored and more likely will subtly corrupt data, producing incorrect results that may go unnoticed for long periods making it impossible to roll back. At LMAX we reduce that risk by running compatibility tests.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2016/03/13/testinglmax-compatibility-tests/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2016/03/13/testinglmax-compatibility-tests/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Testing@LMAX – Compatibility Tests">
+	<meta property="og:description" content="Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by migrating it as changes are required. That existing data and the migrations applied to it are often the riskiest and least tested functions in the system. Mistakes in a migration will at best cause a multi-hour outage while backups are restored and more likely will subtly corrupt data, producing incorrect results that may go unnoticed for long periods making it impossible to roll back. At LMAX we reduce that risk by running compatibility tests.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-03-12T20:00:09+00:00">
+		<meta property="article:modified_time" content="2016-03-12T20:00:09+00:00">
+
+	<meta itemprop="name" content="Testing@LMAX – Compatibility Tests">
+	<meta itemprop="description" content="Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by migrating it as changes are required. That existing data and the migrations applied to it are often the riskiest and least tested functions in the system. Mistakes in a migration will at best cause a multi-hour outage while backups are restored and more likely will subtly corrupt data, producing incorrect results that may go unnoticed for long periods making it impossible to roll back. At LMAX we reduce that risk by running compatibility tests.">
+	<meta itemprop="datePublished" content="2016-03-12T20:00:09+00:00">
+	<meta itemprop="dateModified" content="2016-03-12T20:00:09+00:00">
+	<meta itemprop="wordCount" content="970">
+	<meta itemprop="keywords" content="Code and Geek Stuff,LMAX,Testing">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Testing@LMAX – Compatibility Tests">
+	<meta name="twitter:description" content="Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by migrating it as changes are required. That existing data and the migrations applied to it are often the riskiest and least tested functions in the system. Mistakes in a migration will at best cause a multi-hour outage while backups are restored and more likely will subtly corrupt data, producing incorrect results that may go unnoticed for long periods making it impossible to roll back. At LMAX we reduce that risk by running compatibility tests.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Testing@LMAX – Compatibility Tests</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Testing@LMAX – Compatibility Tests</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2016-03-12T20:00:09Z">March 12, 2016</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by migrating it as changes are required. That existing data and the migrations applied to it are often the riskiest and least tested functions in the system. Mistakes in a migration will at best cause a multi-hour outage while backups are restored and more likely will subtly corrupt data, producing incorrect results that may go unnoticed for long periods making it impossible to roll back. At LMAX we reduce that risk by running compatibility tests.</p>
+<h3 id="sanitised-data">Sanitised Data</h3>
+<p>The first requirement for testing data migrations is testing data that as production-like as possible. It&rsquo;s almost never a good idea to bring actual production data into development and it&rsquo;s definitely never going to happen for a finance company like LMAX. Instead, we have a sanitiser that runs in production and generates a very heavily sanitised version of production data that still has the same “shape”. For example, it has the same number of accounts, the same distribution of open positions across instruments, null values in the same places there&rsquo;s null values in production and so on. However it replaces anything that&rsquo;s even vaguely personally identifiable or sensitive information. If in doubt, sanitise it out.</p>
+<p>Despite being heavily sanitised, we still treat it as data that should be secured but it can be brought into our development, testing and staging environments.</p>
+<p>We have multiple production environments so we have sanitised data that matches the shape of each of those environments.</p>
+<h3 id="can-migrations-run">Can Migrations Run?</h3>
+<p>Once we have sanitised data the most basic check is to confirm the migration process will actually complete successfully. This ensures we can release successfully but doesn&rsquo;t give us any real confidence that the migration is successful. For such a primitive check it&rsquo;s surprisingly effective as it picks up the common errors of changing columns to NOT NULL when the production data actually does have null values, or adding a unique constraint to tables when the content isn&rsquo;t actually unique.</p>
+<h3 id="did-migrations-work">Did Migrations Work?</h3>
+<p>The obvious next step is to write tests to confirm that migrations actually worked. Our compatibility test jobs are setup so that we can easily write a JUnit test that will be run after migrations complete so we can verify the state. </p>
+<p>The most direct form of test is an example based test. We select some examples from the production dataset and write assertions to check that specific bit of the data migrated in the way we expect. The down side is that we&rsquo;re dealing with live production data which is regularly updated so it&rsquo;s possible that our examples will change after we&rsquo;ve written the test and then, correctly, migrate to something different to what we expect. Still, these are often useful to put through for a single run as a sanity test when developing the migration, then delete them.</p>
+<p>Slightly more generic, we can write a test that assert constraints that must be true immediately after the migration completes. For example, when we made permissions more fine-grained we needed to assign a new type of payment role to every account that used real money, but not to any demo accounts (which use pretend money). We can write a test to verify that migration worked correctly quite easily, however once the migration goes out admin users may add or remove the role to different accounts and the constraint would no longer hold. For cases like that we simply delete the test once the migration has gone live at which point it&rsquo;s done its job anyway.  We also mark the test with a @ValidUntil annotation that makes it clear that the test has a limited life time in case we forget to delete it.</p>
+<p>Finally, we can often identify constraints that should always be valid and write permanent tests for them. These are extremely powerful, testing not just that our current migration works correctly but that no future migration breaks that expectation.</p>
+<h3 id="did-something-unexpected-happen">Did Something Unexpected Happen?</h3>
+<p>The compatibility tests that should always hold true have an additional benefit – they give us early feedback that the production data has diverged from expectations for some reason, typically because a bug slipped through. We can then investigate, fix the bug to prevent any more data issues and work out how to clean up the problem.</p>
+<p>Obviously, finding issues only after production data has gone wrong is not something we ever want to do but it&rsquo;s still a useful safety net if something slips through all our pre-release testing and the database schema constraints we use. Typically when we do find issues they are minor inconsistencies that don&rsquo;t cause any issues now, but are like little time bombs just waiting for a future release to assume it can&rsquo;t possibly happen. So even getting feedback that late in the process often allows us to avoid any user-noticeable effects.</p>
+<h3 id="making-them-easy">Making Them Easy</h3>
+<p>We have a base class we extend our compatibility tests from which makes it easy to get a connection to the database and has a few handy utilities for asserting things. By far the most useful however is the <code>assertNoRowsMatch</code> method. It does exactly what it says – takes an SQL query and asserts that no rows match. If any do, it prints them out so you get really useful debug information to start investigating the problem. For example:</p>
+<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;"><span style="color: #aa22ff;">@Test</span>
+<span style="color: #008000; font-weight: bold;">public</span> <span style="color: #b00040;">void</span> <span style="color: #0000ff;">shouldHaveAPrincipalForEveryAccount</span><span style="color: #666666;">()</span> <span style="color: #666666;">{</span>
+  assertNoRowsMatch<span style="color: #666666;">(</span>
+    <span style="color: #ba2121;">"SELECT a.account_id, a.name "</span> <span style="color: #666666;">+</span>
+    <span style="color: #ba2121;">"FROM account a "</span> <span style="color: #666666;">+</span>
+    <span style="color: #ba2121;">"LEFT JOIN principal p ON a.principal_id = p.principal_id "</span> <span style="color: #666666;">+</span>
+    <span style="color: #ba2121;">"WHERE p.principal_id IS NULL"</span><span style="color: #666666;">);</span>
+<span style="color: #666666;">}</span>
+</pre>
+</div>
+<p>If we&rsquo;ve somehow wound up with an account with no principal that could log into it the test will print the account ID and name so we can investigate what happened and clean up the data.</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

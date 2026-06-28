@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Invisible Formatting Tag Problem | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Continuing with my response to Alastair&rsquo;s Responding to Adrian, let&rsquo;s take a look into the problem with invisible formatting tags in WYSIWYG editors.
+
+The example I gave was to delete the final character of some hyperlinked text. The delete operation removes the internal formatting tag, and hence removes the hyperlink entirely, as well as the final character.
+In this behaviour Outlook is no different to many other HTML editors, and is a completely appropriate example. The problem of the invisible formatting goes directly to the heart of the limitations of WYSIWYG editors. There is no visual representation of the  tag, so there are bound to be some surprises when the user starts editing in the vicinity of the tag.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/06/12/the-invisible-formatting-tag-problem/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/06/12/the-invisible-formatting-tag-problem/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Invisible Formatting Tag Problem">
+	<meta property="og:description" content="Continuing with my response to Alastair’s Responding to Adrian, let’s take a look into the problem with invisible formatting tags in WYSIWYG editors.
+The example I gave was to delete the final character of some hyperlinked text. The delete operation removes the internal formatting tag, and hence removes the hyperlink entirely, as well as the final character.
+In this behaviour Outlook is no different to many other HTML editors, and is a completely appropriate example. The problem of the invisible formatting goes directly to the heart of the limitations of WYSIWYG editors. There is no visual representation of the tag, so there are bound to be some surprises when the user starts editing in the vicinity of the tag.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-06-12T02:07:18+00:00">
+		<meta property="article:modified_time" content="2006-06-12T02:07:18+00:00">
+
+	<meta itemprop="name" content="The Invisible Formatting Tag Problem">
+	<meta itemprop="description" content="Continuing with my response to Alastair’s Responding to Adrian, let’s take a look into the problem with invisible formatting tags in WYSIWYG editors.
+The example I gave was to delete the final character of some hyperlinked text. The delete operation removes the internal formatting tag, and hence removes the hyperlink entirely, as well as the final character.
+In this behaviour Outlook is no different to many other HTML editors, and is a completely appropriate example. The problem of the invisible formatting goes directly to the heart of the limitations of WYSIWYG editors. There is no visual representation of the tag, so there are bound to be some surprises when the user starts editing in the vicinity of the tag.">
+	<meta itemprop="datePublished" content="2006-06-12T02:07:18+00:00">
+	<meta itemprop="dateModified" content="2006-06-12T02:07:18+00:00">
+	<meta itemprop="wordCount" content="963">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Invisible Formatting Tag Problem">
+	<meta name="twitter:description" content="Continuing with my response to Alastair’s Responding to Adrian, let’s take a look into the problem with invisible formatting tags in WYSIWYG editors.
+The example I gave was to delete the final character of some hyperlinked text. The delete operation removes the internal formatting tag, and hence removes the hyperlink entirely, as well as the final character.
+In this behaviour Outlook is no different to many other HTML editors, and is a completely appropriate example. The problem of the invisible formatting goes directly to the heart of the limitations of WYSIWYG editors. There is no visual representation of the tag, so there are bound to be some surprises when the user starts editing in the vicinity of the tag.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Invisible Formatting Tag Problem</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Invisible Formatting Tag Problem</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-06-12T02:07:18Z">June 12, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Continuing with my response to Alastair&rsquo;s <a href="http://girtby.net/archives/2006/06/05/responding-to-adrian/"><em>Responding to Adrian</em></a>, let&rsquo;s take a look into the problem with invisible formatting tags in WYSIWYG editors.</p>
+<blockquote>
+<p>The example I gave was to delete the final character of some hyperlinked text. The delete operation removes the internal formatting tag, and hence removes the hyperlink entirely, as well as the final character.</p>
+<p>In this behaviour Outlook is no different to many other HTML editors, and is a completely appropriate example. The problem of the invisible formatting goes directly to the heart of the limitations of WYSIWYG editors. There is no visual representation of the </a> tag, so there are bound to be some surprises when the user starts editing in the vicinity of the tag.</p>
+</blockquote>
+<p>It seems like a logical assumption to assume that because is marked up with various tags and that we&rsquo;re so used to thinking in a DOM model, that invisible formatting tags are an inherent limitation of WYSIWYG editors. The truth however is quite different. It&rsquo;s actually possible to write a WYSIWYG editors which <em>doesn&rsquo;t</em> use invisible formatting tags that the user can inadvertently delete.</p>
+<p>The Swing text APIs are an excellent example of this. The general document model that Swing uses is actually generic across many different formats<a class="footnote" name="footlink1" id="footlink1" href="#footnote1">1</a> and has no invisible formatting tags anywhere in the document. The document model is based around a character array containing all the text in the document. On top of that, an element tree is layered. The elements have a start and end offset within the content and their start and end offsets automatically adjust to accomodate changes to the document content. This means that the user can delete any character within a hyperlink and the element representing the hyperlink simply adjust its offsets so that it cover one less character. When the user deletes the last character of the hyperlink the hyperlink element is removed.</p>
+<p>At no stage in this process are there extra characters inserted into the content array to track the positions of elements, it is purely done with offsets in the text. There are a number of user actions which require changes to the element tree beyond just adjusting offsets and these need to be handled specifically. Fortunately, the vast majority of these cases are handled with a few simple rules, leading to simple implementation and an intuitive and predictable editing experience for the end user.</p>
+<p>The assumption that because HTML requires a </a> tag, HTML editors have to include a </a> tag in their model is simply false. No editor I know of does this, including Outlook. Office tends to use the end of a paragraph as the key point for tracking formatting<a class="footnote" name="footlink2" id="footlink2" href="#footnote2">2</a> so there can be unexpected effects when the user backspaces through that point. Even with a bad model, there is no reason that Microsoft couldn&rsquo;t change that behavior to something else – they have simply decided that that is the way it should work or that changing it is not yet a high priority.</p>
+<p>In fact, the Outlook example is a perfect showcase of this – hyperlinks work differently to bold, italic and underline. This actually shows clearly that the problem isn&rsquo;t because of an invisible formatting tag, otherwise the same problem would occur with the </b> tag, the </i> tag etc. The hyperlink behavior is actually a specific choice made by the Outlook team<a class="footnote" name="footlink3" id="footlink3" href="#footnote3">3</a>. I mentioned in <a href="http://www.symphonious.net/2006/05/12/the-challenge-of-intuitive-wysiwyg-html/" title="The Challenge Of Intuitive WYSIWYG HTML">my first response</a> one possible reason the Outlook team might have decided to do this:</p>
+<blockquote>
+<p>Regarding the hyperlink complaint, that&rsquo;s most likely because Outlook automatically applies hyperlinks when you type an URL – this annoys a lot of people so they made it easy to remove the hyperlink again, by hitting backspace at the end of the hyperlink.</p>
+</blockquote>
+<p>No one who has experience writing editors will claim that it is easy to make a WYSIWYG editor intuitive for users no matter what format your editing. The fact is that editing content is hard. There are an infinite number of states your program could be in<a class="footnote" name="footlink4" id="footlink4" href="#footnote4">4</a> and a vast number of user actions to handle. Identifying all the possible things that a user wants to do and how they are going to try to do it is really difficult, but that doesn&rsquo;t mean that WYSIWYG editors are flawed, it simply means it will take a lot of work and dedication to getting it right. Even when there are parts of the editor that don&rsquo;t work perfectly, for the vast majority of users a WYSIWYG editor is better<a class="footnote" name="footlink5" id="footlink5" href="#footnote5">5</a> than having to learn and use a markup language.</p>
+<p>Beyond Outlook, there are plenty of other examples of HTML being represented using a different syntax – the DOM model, binary XML and a range of other XML serialization formats which HTML could be represented as. There is simply no reason an editor needs to deal with the limitations and difficulties of the HTML serialization format, it can come up with any model it deems fit to provide the best experience for end users.</p>
+<p>Hidden formatting tags are simply a bad idea from the early days of WYSIWYG editors that has hung around because Microsoft don&rsquo;t want to break backwards compatibility in Office. They are not required, nor are they acceptable in any modern WYSIWYG editor.</p>
+<p> </p>
+<p class="footnote">
+  <a name="footnote1" id="footnote1" href="#footlink1">1</a> &#8211; HTML, RTF&#160;and plain text support are provided by default but developers can plug in their own implementations for other formats.<a href="#footlink1">&#8617;</a>
+</p>
+<p class="footnote">
+  <a name="footnote2" id="footnote2" href="#footlink2">2</a> &#8211; whether or not this is actually an invisible tag or simply a behavior that Microsoft has chosen to implement I couldn't be sure<a href="#footlink2">&#8617;</a>
+</p>
+<p class="footnote">
+  <a name="footnote3" id="footnote3" href="#footlink3">3</a> &#8211; A bad one I'll agree, but certainly not a limitation of the editor<a href="#footlink3">&#8617;</a>
+</p>
+<p class="footnote">
+  <a name="footnote4" id="footnote4" href="#footlink4">4</a> &#8211; every possible document a user could create is a new state<a href="#footlink4">&#8617;</a>
+</p>
+<p class="footnote">
+  <a name="footnote5" id="footnote5" href="#footlink5">5</a> &#8211; better = easier to use, easier to learn, more intuitive and all round "nicer" to work with<a href="#footlink5">&#8617;</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Debugging Ethereum Reference Tests | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="There&rsquo;s an exceptionally valuable set of ethereum reference tests that are run by most or all of the different Ethereum clients to ensure they actually implement the specifications in a compatible way. They&rsquo;re one of the most valuable resources for anyone developing an Ethereum client.
+The Aleth project maintains the official test client called testeth but it&rsquo;s a little cryptic to work out how to actually run things with it and then use that to debug failures happening in the client you&rsquo;re actually developing. So this is what I&rsquo;ve found useful:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2018/10/17/debugging-ethereum-reference-tests/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2018/10/17/debugging-ethereum-reference-tests/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Debugging Ethereum Reference Tests">
+	<meta property="og:description" content="There’s an exceptionally valuable set of ethereum reference tests that are run by most or all of the different Ethereum clients to ensure they actually implement the specifications in a compatible way. They’re one of the most valuable resources for anyone developing an Ethereum client.
+The Aleth project maintains the official test client called testeth but it’s a little cryptic to work out how to actually run things with it and then use that to debug failures happening in the client you’re actually developing. So this is what I’ve found useful:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2018-10-16T23:08:31+00:00">
+		<meta property="article:modified_time" content="2018-10-16T23:08:31+00:00">
+
+	<meta itemprop="name" content="Debugging Ethereum Reference Tests">
+	<meta itemprop="description" content="There’s an exceptionally valuable set of ethereum reference tests that are run by most or all of the different Ethereum clients to ensure they actually implement the specifications in a compatible way. They’re one of the most valuable resources for anyone developing an Ethereum client.
+The Aleth project maintains the official test client called testeth but it’s a little cryptic to work out how to actually run things with it and then use that to debug failures happening in the client you’re actually developing. So this is what I’ve found useful:">
+	<meta itemprop="datePublished" content="2018-10-16T23:08:31+00:00">
+	<meta itemprop="dateModified" content="2018-10-16T23:08:31+00:00">
+	<meta itemprop="wordCount" content="427">
+	<meta itemprop="keywords" content="Blockchain,Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Debugging Ethereum Reference Tests">
+	<meta name="twitter:description" content="There’s an exceptionally valuable set of ethereum reference tests that are run by most or all of the different Ethereum clients to ensure they actually implement the specifications in a compatible way. They’re one of the most valuable resources for anyone developing an Ethereum client.
+The Aleth project maintains the official test client called testeth but it’s a little cryptic to work out how to actually run things with it and then use that to debug failures happening in the client you’re actually developing. So this is what I’ve found useful:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Debugging Ethereum Reference Tests</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Debugging Ethereum Reference Tests</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2018-10-16T23:08:31Z">October 16, 2018</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>There&rsquo;s an exceptionally valuable set of <a href="https://github.com/ethereum/tests">ethereum reference tests</a> that are run by most or all of the different Ethereum clients to ensure they actually implement the specifications in a compatible way. They&rsquo;re one of the most valuable resources for anyone developing an Ethereum client.</p>
+<p>The <a href="https://github.com/ethereum/aleth">Aleth project</a> maintains the official test client called testeth but it&rsquo;s a little cryptic to work out how to actually run things with it and then use that to debug failures happening in the client you&rsquo;re actually developing. So this is what I&rsquo;ve found useful:</p>
+<p>Firstly, you need to checkout <a href="https://github.com/ethereum/aleth">Aleth</a> and compile it following their instructions. The one catch here is that you need to enable EVM tracing by adding the <code>-D VMTRACE=1</code> flag when doing the initial <code>cmake ..</code> Once the whole build is finished you should find testeth in aleth/build/test/testeth Copy that to somewhere on your PATH.</p>
+<p>Then you need to check out the <a href="https://github.com/ethereum/tests">actual reference tests</a> and set ETHEREUM_TEST_PATH to point to where you checked it out.</p>
+<p>Now you should be able to start running tests. Running a single test with loads of debug looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./testeth -t GeneralStateTests/stCreate2 -- --singletest create2collisionStorage --verbosity <span style="color:#ae81ff">3</span> --vmtrace --statediff | less -R
+</span></span></code></pre></div><p>The param after -t needs to point to a directory containing the group of tests you want to run. It could be as high level as GenerateStateTests or BlockchainTests or point to one of the directories under that. The –singletest option lets you run just one file underneath that directory. The name is the filename without the .json extension.</p>
+<p>–verbosity 3 –vmtrace –statediff turns on pretty comprehensive debugging information so you get a full EVM trace, plus a record of the changes to state that were made (it appears to show each change as well as the final state though I&rsquo;m not sure I&rsquo;ve fully understood the format yet).</p>
+<p>And then finally piping to less -R allows you to scroll up and down and search through the output easily. The -R tells less to render terminal control characters so you still get the pretty colours.</p>
+<p>Now you have a reference client running the test and providing a ton of information about what the test expects to happen, go run the test in the client your developing, compare outputs, beat your head against a wall for a while and eventually find and fix your bug.</p>
+<p>And a massive thanks to everyone who&rsquo;s been involved in building up these reference tests. If you ever have to pay for your own beer at DevCon the community is doing something very wrong.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

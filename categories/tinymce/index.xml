@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TinyMCE on Symphonious</title>
+    <link>https://www.symphonious.net/categories/tinymce/</link>
+    <description>Recent content in TinyMCE on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 08 Nov 2010 14:38:58 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/tinymce/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Congratulations Yonas – First TinyMCE Patch</title>
+      <link>https://www.symphonious.net/2010/11/08/congratulations-yonas-first-tinymce-patch/</link>
+      <pubDate>Mon, 08 Nov 2010 14:38:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/11/08/congratulations-yonas-first-tinymce-patch/</guid>
+      <description>&lt;p&gt;Ephox has had Yonas working on with us on various TinyMCE related stuff for a while but mostly outside of the core source code on plugins for various clients. Today however, &lt;a href=&#34;https://github.com/tinymce/tinymce/commit/8d02ec2a891c1511d69e797094795a9f8f84ecef&#34;&gt;his first patch&lt;/a&gt; made it through both Ephox QA and the Moxiecode review into the mainline TinyMCE codebase. It will ship as part of the 3.4 release along with a bunch of other Ephox developed fixes and lots of good stuff in general.&lt;/p&gt;
+&lt;p&gt;Since the code is all in the public view, I figure why not give congratulations in public too?&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

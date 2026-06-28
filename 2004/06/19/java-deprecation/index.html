@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Java Deprecation | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Java.Net is having conversations about removing stuff from the standard Java libraries because they&rsquo;re getting too big. The comment below really stuck out at me:
+
+Combine that with a program to remove redundant functionality (by declaring it deprecated so it gets killed 2 releases later) and you have a powerful tool to get people to stop using old stuff like Vector and StringTokenizer.” Vector and StringTokenizer aren&rsquo;t “old stuff” – they&rsquo;re extremely useful classes with a specific purpose. Vector is a guaranteed thread safe implementation of List – something you can&rsquo;t possibly get other than declaring that you want a Vector. To clarify that, consider the method signature public void doStuff(List items) what are the thread safe requirements on items? There&rsquo;s no way to know and the default assumption would be that it doesn&rsquo;t have to be thread-safe. Whereas with: public void doStuff(Vector items) the code may be less flexible now but the compiler now guarantees that you&rsquo;ll get something that at least claims to be thread safe. It is still possible to extend Vector and perform non-thread safe operations but that would be a bug in the extending class because it failed to live up to the contract of the parent class. StringTokenizer is a particularly useful class in that it provides the simplest way to break a String down into tokens. You could iterator of the characters yourself or you could use regex to do this but manually iterating is reinventing the wheel and regex are highly inefficient for doing what StringTokenizer does. Furthermore, nothing in StringTokenizer is marked as deprecated in my copy of the Java 1.4 API, nor anything in Vector. Seriously, just because you don&rsquo;t find something useful doesn&rsquo;t mean it&rsquo;s not useful.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/06/19/java-deprecation/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/06/19/java-deprecation/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Java Deprecation">
+	<meta property="og:description" content="Java.Net is having conversations about removing stuff from the standard Java libraries because they’re getting too big. The comment below really stuck out at me:
+Combine that with a program to remove redundant functionality (by declaring it deprecated so it gets killed 2 releases later) and you have a powerful tool to get people to stop using old stuff like Vector and StringTokenizer.” Vector and StringTokenizer aren’t “old stuff” – they’re extremely useful classes with a specific purpose. Vector is a guaranteed thread safe implementation of List – something you can’t possibly get other than declaring that you want a Vector. To clarify that, consider the method signature public void doStuff(List items) what are the thread safe requirements on items? There’s no way to know and the default assumption would be that it doesn’t have to be thread-safe. Whereas with: public void doStuff(Vector items) the code may be less flexible now but the compiler now guarantees that you’ll get something that at least claims to be thread safe. It is still possible to extend Vector and perform non-thread safe operations but that would be a bug in the extending class because it failed to live up to the contract of the parent class. StringTokenizer is a particularly useful class in that it provides the simplest way to break a String down into tokens. You could iterator of the characters yourself or you could use regex to do this but manually iterating is reinventing the wheel and regex are highly inefficient for doing what StringTokenizer does. Furthermore, nothing in StringTokenizer is marked as deprecated in my copy of the Java 1.4 API, nor anything in Vector. Seriously, just because you don’t find something useful doesn’t mean it’s not useful.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-06-19T00:40:03+00:00">
+		<meta property="article:modified_time" content="2004-06-19T00:40:03+00:00">
+
+	<meta itemprop="name" content="Java Deprecation">
+	<meta itemprop="description" content="Java.Net is having conversations about removing stuff from the standard Java libraries because they’re getting too big. The comment below really stuck out at me:
+Combine that with a program to remove redundant functionality (by declaring it deprecated so it gets killed 2 releases later) and you have a powerful tool to get people to stop using old stuff like Vector and StringTokenizer.” Vector and StringTokenizer aren’t “old stuff” – they’re extremely useful classes with a specific purpose. Vector is a guaranteed thread safe implementation of List – something you can’t possibly get other than declaring that you want a Vector. To clarify that, consider the method signature public void doStuff(List items) what are the thread safe requirements on items? There’s no way to know and the default assumption would be that it doesn’t have to be thread-safe. Whereas with: public void doStuff(Vector items) the code may be less flexible now but the compiler now guarantees that you’ll get something that at least claims to be thread safe. It is still possible to extend Vector and perform non-thread safe operations but that would be a bug in the extending class because it failed to live up to the contract of the parent class. StringTokenizer is a particularly useful class in that it provides the simplest way to break a String down into tokens. You could iterator of the characters yourself or you could use regex to do this but manually iterating is reinventing the wheel and regex are highly inefficient for doing what StringTokenizer does. Furthermore, nothing in StringTokenizer is marked as deprecated in my copy of the Java 1.4 API, nor anything in Vector. Seriously, just because you don’t find something useful doesn’t mean it’s not useful.">
+	<meta itemprop="datePublished" content="2004-06-19T00:40:03+00:00">
+	<meta itemprop="dateModified" content="2004-06-19T00:40:03+00:00">
+	<meta itemprop="wordCount" content="288">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Java Deprecation">
+	<meta name="twitter:description" content="Java.Net is having conversations about removing stuff from the standard Java libraries because they’re getting too big. The comment below really stuck out at me:
+Combine that with a program to remove redundant functionality (by declaring it deprecated so it gets killed 2 releases later) and you have a powerful tool to get people to stop using old stuff like Vector and StringTokenizer.” Vector and StringTokenizer aren’t “old stuff” – they’re extremely useful classes with a specific purpose. Vector is a guaranteed thread safe implementation of List – something you can’t possibly get other than declaring that you want a Vector. To clarify that, consider the method signature public void doStuff(List items) what are the thread safe requirements on items? There’s no way to know and the default assumption would be that it doesn’t have to be thread-safe. Whereas with: public void doStuff(Vector items) the code may be less flexible now but the compiler now guarantees that you’ll get something that at least claims to be thread safe. It is still possible to extend Vector and perform non-thread safe operations but that would be a bug in the extending class because it failed to live up to the contract of the parent class. StringTokenizer is a particularly useful class in that it provides the simplest way to break a String down into tokens. You could iterator of the characters yourself or you could use regex to do this but manually iterating is reinventing the wheel and regex are highly inefficient for doing what StringTokenizer does. Furthermore, nothing in StringTokenizer is marked as deprecated in my copy of the Java 1.4 API, nor anything in Vector. Seriously, just because you don’t find something useful doesn’t mean it’s not useful.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Java Deprecation</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Java Deprecation</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-06-19T00:40:03Z">June 19, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://weblogs.java.net/pub/wlg/1445">Java.Net</a> is having conversations about removing stuff from the standard Java libraries because they&rsquo;re getting too big. The comment below really stuck out at me:</p>
+<blockquote>
+<p>Combine that with a program to remove redundant functionality (by declaring it deprecated so it gets killed 2 releases later) and you have a powerful tool to get people to stop using old stuff like Vector and StringTokenizer.” Vector and StringTokenizer aren&rsquo;t “old stuff” – they&rsquo;re extremely useful classes with a specific purpose. Vector is a guaranteed thread safe implementation of List – something you can&rsquo;t possibly get other than declaring that you want a Vector. To clarify that, consider the method signature <code>public void doStuff(List items)</code> what are the thread safe requirements on <tt>items</tt>? There&rsquo;s no way to know and the default assumption would be that it doesn&rsquo;t have to be thread-safe. Whereas with: <code>public void doStuff(Vector items)</code> the code may be less flexible now but the compiler now guarantees that you&rsquo;ll get something that at least claims to be thread safe. It is still possible to extend Vector and perform non-thread safe operations but that would be a bug in the extending class because it failed to live up to the contract of the parent class. <code>StringTokenizer</code> is a particularly useful class in that it provides the simplest way to break a String down into tokens. You could iterator of the characters yourself or you could use regex to do this but manually iterating is reinventing the wheel and regex are highly inefficient for doing what StringTokenizer does. Furthermore, <em>nothing</em> in StringTokenizer is marked as deprecated in my copy of the Java 1.4 API, nor anything in Vector. Seriously, just because <em>you</em> don&rsquo;t find something useful doesn&rsquo;t mean it&rsquo;s not useful.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

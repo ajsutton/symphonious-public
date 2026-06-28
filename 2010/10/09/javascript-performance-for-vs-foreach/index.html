@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JavaScript Performance: For vs ForEach | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="As part of exploring JavaScript performance, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using jsperf.com I could set up a simple test case pretty quickly and easily: for vs forEach.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/10/09/javascript-performance-for-vs-foreach/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/10/09/javascript-performance-for-vs-foreach/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JavaScript Performance: For vs ForEach">
+	<meta property="og:description" content="As part of exploring JavaScript performance, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using jsperf.com I could set up a simple test case pretty quickly and easily: for vs forEach.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-10-09T11:18:55+00:00">
+		<meta property="article:modified_time" content="2010-10-09T11:18:55+00:00">
+
+	<meta itemprop="name" content="JavaScript Performance: For vs ForEach">
+	<meta itemprop="description" content="As part of exploring JavaScript performance, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using jsperf.com I could set up a simple test case pretty quickly and easily: for vs forEach.">
+	<meta itemprop="datePublished" content="2010-10-09T11:18:55+00:00">
+	<meta itemprop="dateModified" content="2010-10-09T11:18:55+00:00">
+	<meta itemprop="wordCount" content="727">
+	<meta itemprop="keywords" content="Code and Geek Stuff,JavaScript,Performance">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JavaScript Performance: For vs ForEach">
+	<meta name="twitter:description" content="As part of exploring JavaScript performance, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using jsperf.com I could set up a simple test case pretty quickly and easily: for vs forEach.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JavaScript Performance: For vs ForEach</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JavaScript Performance: For vs ForEach</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-10-09T11:18:55Z">October 9, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>As part of <a href="http://www.symphonious.net/2010/10/07/optimising-javascript/">exploring JavaScript performance</a>, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using <a href="http://jsperf.com/">jsperf.com</a> I could set up a simple test case pretty quickly and easily: <a href="http://jsperf.com/for-vs-foreach/5">for vs forEach</a>.</p>
+<p>There are a bunch of variants on loops in that test and the results really surprised me:</p>
+<table class="PrimaryBordersTable" cellspacing="0" cellpadding="0">
+  <tr>
+    <th id="id_58745" valign="bottom">
+      Browser
+    </th>
+<pre><code>&lt;th id=&quot;id_58746&quot; valign=&quot;bottom&quot;&gt;
+  for loop, cached length
+&lt;/th&gt;
+
+&lt;th id=&quot;id_58747&quot; valign=&quot;bottom&quot;&gt;
+  for loop, cached length, no callback
+&lt;/th&gt;
+
+&lt;th id=&quot;id_58748&quot; valign=&quot;bottom&quot;&gt;
+  for loop, cached length, using function.call
+&lt;/th&gt;
+
+&lt;th id=&quot;id_58749&quot; valign=&quot;bottom&quot;&gt;
+  for loop, reverse
+&lt;/th&gt;
+
+&lt;th id=&quot;id_58750&quot; valign=&quot;bottom&quot;&gt;
+  for loop, simple
+&lt;/th&gt;
+
+&lt;th id=&quot;id_58751&quot; valign=&quot;bottom&quot;&gt;
+  forEach
+&lt;/th&gt;
+
+&lt;th id=&quot;id_58752&quot; valign=&quot;bottom&quot;&gt;
+  # Tests
+&lt;/th&gt;
+</code></pre>
+  </tr>
+  <tr>
+    <th id="id_58753" style="background-image: none;" headers="id_58745" valign="middle">
+      Chrome
+    </th>
+<pre><code>&lt;td headers=&quot;id_58746,id_58753&quot; valign=&quot;middle&quot;&gt;
+  4000
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58747,id_58753&quot; valign=&quot;middle&quot;&gt;
+  4531
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58748,id_58753&quot; valign=&quot;middle&quot;&gt;
+  2184
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58749,id_58753&quot; valign=&quot;middle&quot;&gt;
+  3804
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58750,id_58753&quot; valign=&quot;middle&quot;&gt;
+  3333
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58751,id_58753&quot; valign=&quot;middle&quot;&gt;
+  2998
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58752,id_58753&quot; valign=&quot;middle&quot;&gt;
+  8
+&lt;/td&gt;
+</code></pre>
+  </tr>
+  <tr>
+    <th id="id_58754" style="background-image: none;" headers="id_58745" valign="middle">
+      Firefox
+    </th>
+<pre><code>&lt;td headers=&quot;id_58746,id_58754&quot; valign=&quot;middle&quot;&gt;
+  6928
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58747,id_58754&quot; valign=&quot;middle&quot;&gt;
+  7676
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58748,id_58754&quot; valign=&quot;middle&quot;&gt;
+  4499
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58749,id_58754&quot; valign=&quot;middle&quot;&gt;
+  8192
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58750,id_58754&quot; valign=&quot;middle&quot;&gt;
+  7211
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58751,id_58754&quot; valign=&quot;middle&quot;&gt;
+  450
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58752,id_58754&quot; valign=&quot;middle&quot;&gt;
+  6
+&lt;/td&gt;
+</code></pre>
+  </tr>
+  <tr>
+    <th id="id_58755" style="background-image: none;" headers="id_58745" valign="middle">
+      iPad
+    </th>
+<pre><code>&lt;td headers=&quot;id_58746,id_58755&quot; valign=&quot;middle&quot;&gt;
+  82
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58747,id_58755&quot; valign=&quot;middle&quot;&gt;
+  95
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58748,id_58755&quot; valign=&quot;middle&quot;&gt;
+  69
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58749,id_58755&quot; valign=&quot;middle&quot;&gt;
+  77
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58750,id_58755&quot; valign=&quot;middle&quot;&gt;
+  71
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58751,id_58755&quot; valign=&quot;middle&quot;&gt;
+  103
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58752,id_58755&quot; valign=&quot;middle&quot;&gt;
+  1
+&lt;/td&gt;
+</code></pre>
+  </tr>
+  <tr>
+    <th id="id_58756" style="background-image: none;" headers="id_58745" valign="middle">
+      iPhone
+    </th>
+<pre><code>&lt;td headers=&quot;id_58746,id_58756&quot; valign=&quot;middle&quot;&gt;
+  87
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58747,id_58756&quot; valign=&quot;middle&quot;&gt;
+  111
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58748,id_58756&quot; valign=&quot;middle&quot;&gt;
+  70
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58749,id_58756&quot; valign=&quot;middle&quot;&gt;
+  88
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58750,id_58756&quot; valign=&quot;middle&quot;&gt;
+  84
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58751,id_58756&quot; valign=&quot;middle&quot;&gt;
+  119
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58752,id_58756&quot; valign=&quot;middle&quot;&gt;
+  1
+&lt;/td&gt;
+</code></pre>
+  </tr>
+  <tr>
+    <th id="id_58758" style="background-image: none;" headers="id_58745" valign="middle">
+      Safari
+    </th>
+<pre><code>&lt;td headers=&quot;id_58746,id_58758&quot; valign=&quot;middle&quot;&gt;
+  3382
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58747,id_58758&quot; valign=&quot;middle&quot;&gt;
+  5029
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58748,id_58758&quot; valign=&quot;middle&quot;&gt;
+  1816
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58749,id_58758&quot; valign=&quot;middle&quot;&gt;
+  3678
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58750,id_58758&quot; valign=&quot;middle&quot;&gt;
+  3122
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58751,id_58758&quot; valign=&quot;middle&quot;&gt;
+  1942
+&lt;/td&gt;
+
+&lt;td headers=&quot;id_58752,id_58758&quot; valign=&quot;middle&quot;&gt;
+  4
+&lt;/td&gt;
+</code></pre>
+  </tr>
+</table>
+<p>Here’s that data in a graph for Chome and Firefox just to make it a bit easier to visualise:</p>
+<img loading="lazy" src="http://www.symphonious.net/wp-content/uploads/2010/10/chrome.png" alt="Coloumn chart of Chrome test results" width="600" height="364" /> 
+<img loading="lazy" src="http://www.symphonious.net/wp-content/uploads/2010/10/firefox.png" alt="Coloumn chart of Firefox test results" width="600" height="364" /> 
+<p>Unsurprisingly, the performance characteristics vary quite noticeably between browsers. What was surprising to me at least was that the new [].forEach() is one of or the slowest method to iterate through an array – slower than implementing forEach yourself in JavaScript in most browsers (mobile Safari being the exception).</p>
+<p>The other thing that stood out is that green bar in the middle, representing the ‘for loop, cached length using function.call’ which is the current method of looping I’m using because that what the libraries implement. The advantage of this approach is that it not only supplies each item in the array, it also gives the index and the full array as extra arguments and it allows me to specify an object to use for ‘this’ in the callback function. That’s all potentially very handy but I wasn’t actually taking advantage of it. Looks like switching to a custom ‘each’ implementation which uses the for loop with cached length approach should give a performance boost without making any other changes to the code so no sacrifice in maintainability.</p>
+<p>Sounds great, but after making the change there was less than a millisecond difference in the actual performance – well within the margin for error for measuring time in JavaScript performance tests.</p>
+<h2 id="lessons-learnt">Lessons Learnt</h2>
+<ul>
+<li>Use whatever for loop setup you want – it’s unlikely to affect overall performance in any noticeable way.</li>
+<li>It’s probably not worth adding code to detect if there’s a built-in forEach you can leverage – just use the JavaScript implementation you’d need on older browsers anyway.</li>
+</ul>
+<h2 id="the-remaining-question">The Remaining Question</h2>
+<p>It’s all very well to learn these lessons, but since I’ve done all of this playing around in my own time at home, there’s a very significant problem with the results: they don’t include IE<a href="#footnote1:1286622982581">1</a>{#footlink1:1286622982581.footnote}. Since my real performance problems are worst on IE 6,7 and 8, I need to be running these tests there – it’s possible that changing the looping system really would yield performance gains in IE. I’ll have to try that out on Monday.</p>
+<p class="footnote">
+  <a id="footnote1:1286622982581" href="#footlink1:1286622982581">1</a> &#8211; I do have IE in a VM I’ve just been too lazy to fire it up. Of course, if you happen have IE ready to hand, you can <a href="http://jsperf.com/for-vs-foreach/5">go and run the tests yourself</a> and jsperf.com will add that into the mix <a class="footnotereturn" href="#footlink1:1286622982581">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

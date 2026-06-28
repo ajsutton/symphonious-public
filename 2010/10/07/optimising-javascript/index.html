@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Optimising JavaScript | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.
+Since filtering Word HTML is also inherently complex and we want to ensure the code is maintainable, I started out by developing the code in the most maintainable way possible, without regard to performance. There’s also a lot of tests to ensure correctness, and allow me to optimise later without fear of breaking things. With that done, it’s time to set up some performance tests and see what kind of performance behaviour it has.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/10/07/optimising-javascript/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/10/07/optimising-javascript/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Optimising JavaScript">
+	<meta property="og:description" content="I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.
+Since filtering Word HTML is also inherently complex and we want to ensure the code is maintainable, I started out by developing the code in the most maintainable way possible, without regard to performance. There’s also a lot of tests to ensure correctness, and allow me to optimise later without fear of breaking things. With that done, it’s time to set up some performance tests and see what kind of performance behaviour it has.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-10-07T22:46:56+00:00">
+		<meta property="article:modified_time" content="2010-10-07T22:46:56+00:00">
+
+	<meta itemprop="name" content="Optimising JavaScript">
+	<meta itemprop="description" content="I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.
+Since filtering Word HTML is also inherently complex and we want to ensure the code is maintainable, I started out by developing the code in the most maintainable way possible, without regard to performance. There’s also a lot of tests to ensure correctness, and allow me to optimise later without fear of breaking things. With that done, it’s time to set up some performance tests and see what kind of performance behaviour it has.">
+	<meta itemprop="datePublished" content="2010-10-07T22:46:56+00:00">
+	<meta itemprop="dateModified" content="2010-10-07T22:46:56+00:00">
+	<meta itemprop="wordCount" content="602">
+	<meta itemprop="keywords" content="Code and Geek Stuff,JavaScript,Performance">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Optimising JavaScript">
+	<meta name="twitter:description" content="I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.
+Since filtering Word HTML is also inherently complex and we want to ensure the code is maintainable, I started out by developing the code in the most maintainable way possible, without regard to performance. There’s also a lot of tests to ensure correctness, and allow me to optimise later without fear of breaking things. With that done, it’s time to set up some performance tests and see what kind of performance behaviour it has.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Optimising JavaScript</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Optimising JavaScript</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-10-07T22:46:56Z">October 7, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.</p>
+<p>Since filtering Word HTML is also inherently complex and we want to ensure the code is maintainable, I started out by developing the code in the most maintainable way possible, without regard to performance. There’s also a lot of tests to ensure correctness, and allow me to optimise later without fear of breaking things. With that done, it’s time to set up some performance tests and see what kind of performance behaviour it has.</p>
+<h2 id="approach">Approach</h2>
+<p>A couple of notes here, the performance I’m testing is all about the filtering, so while it is making a lot of use of the DOM to parse the HTML and give me some structure to filter it, it doesn’t render anything on screen at all. I’m also not yet concerned about the actual time taken, instead focussing on identifying which areas are relatively slow and whether or not optimisations have any actual improvements. I will probably establish some performance tests where the actual timings matter to prevent future changes from slowing things down too much, but for now the best test I can do to get a sense of “is it fast enough?” is to actually paste content from Word manually. After all, my aim is only for users to perceive it as fast.</p>
+<h2 id="quick-lessons-learnt">Quick Lessons Learnt</h2>
+<p>I will write up some of the more detailed lessons separately, but here’s a few quick observations<a href="#footnote1:1286489890934">1</a>{#footlink1:1286489890934.footnote}:</p>
+<ul>
+<li>IE9 is a <em>massive</em> improvement in performance. The IE team deserve a huge pat on the back for what they’ve achieved. Performance was close enough to Safari and Chrome for it not to matter.</li>
+<li>Firefox isn’t <em>slow</em> but it’s certainly <a href="http://arewefastyet.com">not fast yet</a>. They’re putting in a big effort though so I have high hopes for the final Firefox 4, or worst case 4.5.</li>
+<li>Performance bottlenecks can be more surprising than you think. From <a href="http://jsconf.eu">jsconf.eu</a> I knew that DOM access was going to be a bottleneck but what surprised me is that iterating attributes is dramatically slower than iterating styles.
+<ul>
+<li>Despite that, it was still faster to retrieve style.cssText and use string parsing to access style values rather than using the .style properties directly<a href="#footnote2:1286490206243">2</a>{#footlink2:1286490206243.footnote}.</li>
+</ul>
+</li>
+<li>Parsing HTML by setting innerHTML is really fast across the board, even with quite large documents.</li>
+<li><a href="http://jsperf.com">jsperf.com</a> is awesome for micro-benchmarks. I need to use it a lot more.</li>
+</ul>
+<h2 id="most-important-lesson">Most Important Lesson</h2>
+<p>The biggest thing I’m taking away from the experience so far is that performance is unpredictable and very unique to your situation. You need to use performance tests and keep focusing on the results for your actual use-cases. Micro-benchmarks and other people’s benchmarks can lead you astray – both in terms of potentially hurting your performance and definitely hurting maintainability. Cargo-cult optimisation simply doesn’t work.</p>
+<p style=" text-align: center;">
+  <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" title="JavaScript String .valueOf"><img loading="lazy" src="http://static.jsconf.us/promotejsh.gif" height="150" width="180" alt="JavaScript String .valueOf" /></a>
+</p>
+<p class="footnote">
+  <a href="#footlink1:1286489890934" id="footnote1:1286489890934">1</a> &#8211; Note that the browser comparisons here are somewhat unfair &#8211; the tests aren’t running in a controlled enough environment to really compare different setups but I’m confident they are accurate enough to speak in these broad terms at least. <a class="footnotereturn" href="#footlink1:1286489890934">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1286490206243" id="footnote2:1286490206243">2</a> &#8211; the code to do this was required anyway since in Safari non-standard styles are available via getAttribute(’style’) but not via the parsed .style attribute, and we need access to those non-standard styles to perform the filtering properly. <a class="footnotereturn" href="#footlink2:1286490206243">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Into Eth 2 – Eth 1 and the Deposit Contract | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve started a little side-project to setup a “private beacon chain”. The aim is to better understand how the beacon chain works and start to discover some of the things still required to be built or fixed in clients before it can officially launch.
+So what is a private beacon chain? It&rsquo;s intended to be an entirely self-contained, runs-on-my-laptop instance of the beacon chain, run as a small-scale simulation of how the real beacon chain will be fired up.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2019/08/13/into-eth-2-eth-1-and-the-deposit-contract/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2019/08/13/into-eth-2-eth-1-and-the-deposit-contract/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Into Eth 2 – Eth 1 and the Deposit Contract">
+	<meta property="og:description" content="I’ve started a little side-project to setup a “private beacon chain”. The aim is to better understand how the beacon chain works and start to discover some of the things still required to be built or fixed in clients before it can officially launch.
+So what is a private beacon chain? It’s intended to be an entirely self-contained, runs-on-my-laptop instance of the beacon chain, run as a small-scale simulation of how the real beacon chain will be fired up.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2019-08-13T06:25:06+00:00">
+		<meta property="article:modified_time" content="2019-08-13T06:25:06+00:00">
+
+	<meta itemprop="name" content="Into Eth 2 – Eth 1 and the Deposit Contract">
+	<meta itemprop="description" content="I’ve started a little side-project to setup a “private beacon chain”. The aim is to better understand how the beacon chain works and start to discover some of the things still required to be built or fixed in clients before it can officially launch.
+So what is a private beacon chain? It’s intended to be an entirely self-contained, runs-on-my-laptop instance of the beacon chain, run as a small-scale simulation of how the real beacon chain will be fired up.">
+	<meta itemprop="datePublished" content="2019-08-13T06:25:06+00:00">
+	<meta itemprop="dateModified" content="2019-08-13T06:25:06+00:00">
+	<meta itemprop="wordCount" content="978">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Ethereum">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Into Eth 2 – Eth 1 and the Deposit Contract">
+	<meta name="twitter:description" content="I’ve started a little side-project to setup a “private beacon chain”. The aim is to better understand how the beacon chain works and start to discover some of the things still required to be built or fixed in clients before it can officially launch.
+So what is a private beacon chain? It’s intended to be an entirely self-contained, runs-on-my-laptop instance of the beacon chain, run as a small-scale simulation of how the real beacon chain will be fired up.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Into Eth 2 – Eth 1 and the Deposit Contract</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Into Eth 2 – Eth 1 and the Deposit Contract</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-08-13T06:25:06Z">August 13, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve started a little side-project to setup a “private beacon chain”. The aim is to better understand how the beacon chain works and start to discover some of the things still required to be built or fixed in clients before it can officially launch.</p>
+<p>So what is a private beacon chain? It&rsquo;s intended to be an entirely self-contained, runs-on-my-laptop instance of the beacon chain, run as a small-scale simulation of how the real beacon chain will be fired up.</p>
+<p>I&rsquo;ve collected all the various scripts and config together in a <a href="https://github.com/ajsutton/private-beaconchain">git repo</a> so you follow along from home if you like. Be warned, there is absolutely no polish and not even a lot of thought about organisation in there.</p>
+<h3 id="step-1-8211-an-ethereum-1-chain">Step 1 – An Ethereum 1 Chain</h3>
+<p>First of all we need an Ethereum 1 chain that will be the source of our deposits for beacon chain validators. That&rsquo;s pretty easy with Pantheon, but let&rsquo;s complicate matters a little by using Docker. First we&rsquo;re going to need a network which will eventually (hopefully) hold a whole bevy of different Eth 2 clients all happily interoperating on our beacon chain. So:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create beacontest
+</span></span></code></pre></div><p>Then we need a genesis config for our private Eth 1 chain. I&rsquo;ve copied the genesis Pantheon uses by default in dev mode with a couple of tweaks I&rsquo;ll explain later. Here&rsquo;s the <a href="https://github.com/ajsutton/private-beaconchain/blob/6587c4acdeb2071f0b58adb740a131aac4c81512/pantheon/eth1-genesis.json">full file</a>. There are a few accounts that have been allocated lots of ETH and the private keys are included in the config so it&rsquo;s easy to import to MetaMask or other tools (don&rsquo;t use these keys for anything real!).</p>
+<p>Finally there&rsquo;s a <a href="https://github.com/ajsutton/private-beaconchain/blob/dc67d7e66138438cb95897a232757f55de950595/pantheon/run.sh">simple little script to run Pantheon</a> using that file, in our docker network, exposing a bunch of ports and generally being setup to be useful for what we want to do.</p>
+<h2 id="step-2-8211-deposit-funds">Step 2 – Deposit Funds</h2>
+<p>Our beacon chain can&rsquo;t become active until we have enough people who have deposited funds into the beacon chain contract to become validators. Obviously, that means we&rsquo;ll need a beacon chain contract.</p>
+<h3 id="step-21-deploy-the-deposit-contract">Step 2.1 Deploy the Deposit Contract</h3>
+<p>It turns out, the beacon chain contract has changed a bunch of times in different versions of the spec. This is painfully confusing because docs or examples you read usually don&rsquo;t mention which version of the spec and you can waste many hours trying to interact with the wrong contract.</p>
+<p>We will be using version 0.7.1 of the spec. Here&rsquo;s that version of the <a href="https://github.com/ethereum/eth2.0-specs/blob/dev/specs/core/0_deposit-contract.md">deposit contract spec</a> and the <a href="https://github.com/ethereum/eth2.0-specs/blob/v0.7.1/deposit_contract/contracts/validator_registration.v.py">deposit contract code</a>.</p>
+<p>To make life simpler, I&rsquo;ve taken the runtime byte code for that contract and <a href="https://github.com/ajsutton/private-beaconchain/blob/dc67d7e66138438cb95897a232757f55de950595/pantheon/eth1-genesis.json#L25">added it into the genesis config</a> at the fixed address 0xdddddddddddddddddddddddddddddddddddddddd. Note when including contracts in the genesis config you need the runtime byte code, not the constructor byte code you&rsquo;d normally send as transaction data. Remix makes this easy with it&rsquo;s “Runtime Bytecode” tab.</p>
+<h3 id="step-22-deposit-some-eth">Step 2.2 Deposit Some ETH</h3>
+<p>The deposit contract spec helpfully tells us that there&rsquo;s a deposit method we need to call which takes three arguments: pubkey: bytes[48], withdrawal_credentials: bytes[32], signature: bytes[96]</p>
+<p>Unhelpfully it gives us almost no clue what those parameters actually mean or how to generate them.</p>
+<p>I haven&rsquo;t yet found a nice stand-alone way to generate the required parameters, so I wound up shoving an extra class into my local checkout of the Artemis codebase – <a href="https://gist.github.com/ajsutton/e3287814f408ec778ab0353124f5a952">GenerateKeys.java</a> right next to the existing Artemis.java which has the main method. There are three key steps:</p>
+<ol>
+<li>Generate two BLS key pairs. One for the validator to use and one for the ETH 2 account that our funds will be sent to if we choose to leave the validator pool.
+<ul>
+<li>The withdrawal keys can be kept offline until you actually withdraw the funds whereas the validator keys need to be online so the validator can sign things and do its job.</li>
+</ul>
+</li>
+<li>Encode the public key of the validator key pair using the compressed form with big endian encoding.
+<ul>
+<li>This will be the first argument – pubKey.</li>
+<li><del>Don&rsquo;t ask me why it&rsquo;s called compressed encoding when it appears to be exactly the same length as the uncompressed form.</del> UPDATE: Ben Edgington helpfully points out that an uncompressed key is actually 96 bytes – I&rsquo;d been misled by a well-meaning error message when the real problem was I was using little endian instead of big.</li>
+</ul>
+</li>
+<li>Calculate the SHA256 hash of the public key of the withdrawal key pair, in big endian encoding. Replace the first byte with 0 (the BLS_WITHDRAWAL_PREFIX_BYTE).
+<ul>
+<li>This will be the withdrawal commitment</li>
+</ul>
+</li>
+<li>Calculate the signature. This requires serialising the DepositData object that will ultimately be created by Eth2 clients in response to our deposit in SSZ with hash trees and stuff. Don&rsquo;t ask me, I just called the existing Artemis code… That then gets signed using the validator&rsquo;s private key.
+<ul>
+<li>This proves you actually <em>have</em> the private key matching the public key you&rsquo;re trying to register as a validator.</li>
+<li>WARNING: This signature is <em>not</em> checked by the deposit contract, only be Eth2 clients. So if you get it or the public key wrong your deposit will be ignored by the beacon chain and you won&rsquo;t get your ETH back.</li>
+</ul>
+</li>
+</ol>
+<p>Now that we know what parameters we need to pass, we just need to create a transaction with the required 32 ETH and those parameters encoded as a call to the deposit method. I wrote an <a href="https://github.com/ajsutton/private-beaconchain/blob/1242411cc7a0e8410e2a6574a293e569e1087a50/deposit/index.js">especially ugly bit of JavaScript</a> to do that. You&rsquo;ll need to install the npm dependencies first with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install
+</span></span></code></pre></div><p>and can then send our deposit with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node index.js
+</span></span></code></pre></div><p>At this point, if we actually had an ETH2 client, it would recognise that deposit as creating our first validator. Setting up our ETH2 client will be step 3 but I&rsquo;m not writing that up today. And, spoiler alert, we&rsquo;re actually going to need another 65535 validators before the beacon chain will actually start, but that&rsquo;s a problem for another day.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

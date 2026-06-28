@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Ethereum State Rent Proof of Concept | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve had the opportunity to do some proof of concept development of the Ethereum state-rent proposal that Alexey Akhunov has been leading on the Pantheon code base. The proposal evolved as the work continued so the actual implementation is now a lot simpler than described in that PDF.
+Note that the aim is to explore what it takes to implement the proposal, not to create production ready code.  The current work is all available on on my state-rent branch.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2019/01/14/ethereum-state-rent-proof-of-concept/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2019/01/14/ethereum-state-rent-proof-of-concept/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Ethereum State Rent Proof of Concept">
+	<meta property="og:description" content="I’ve had the opportunity to do some proof of concept development of the Ethereum state-rent proposal that Alexey Akhunov has been leading on the Pantheon code base. The proposal evolved as the work continued so the actual implementation is now a lot simpler than described in that PDF.
+Note that the aim is to explore what it takes to implement the proposal, not to create production ready code. The current work is all available on on my state-rent branch.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2019-01-13T23:59:38+00:00">
+		<meta property="article:modified_time" content="2019-01-13T23:59:38+00:00">
+
+	<meta itemprop="name" content="Ethereum State Rent Proof of Concept">
+	<meta itemprop="description" content="I’ve had the opportunity to do some proof of concept development of the Ethereum state-rent proposal that Alexey Akhunov has been leading on the Pantheon code base. The proposal evolved as the work continued so the actual implementation is now a lot simpler than described in that PDF.
+Note that the aim is to explore what it takes to implement the proposal, not to create production ready code. The current work is all available on on my state-rent branch.">
+	<meta itemprop="datePublished" content="2019-01-13T23:59:38+00:00">
+	<meta itemprop="dateModified" content="2019-01-13T23:59:38+00:00">
+	<meta itemprop="wordCount" content="2589">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Ethereum,PegaSys">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Ethereum State Rent Proof of Concept">
+	<meta name="twitter:description" content="I’ve had the opportunity to do some proof of concept development of the Ethereum state-rent proposal that Alexey Akhunov has been leading on the Pantheon code base. The proposal evolved as the work continued so the actual implementation is now a lot simpler than described in that PDF.
+Note that the aim is to explore what it takes to implement the proposal, not to create production ready code. The current work is all available on on my state-rent branch.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Ethereum State Rent Proof of Concept</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Ethereum State Rent Proof of Concept</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-01-13T23:59:38Z">January 13, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve had the opportunity to do some proof of concept development of the <a href="https://github.com/ledgerwatch/eth_state/blob/master/State_rent.pdf">Ethereum state-rent proposal</a> that Alexey Akhunov has been leading on the Pantheon code base. The proposal evolved as the work continued so the actual implementation is now a lot simpler than described in that PDF.</p>
+<p>Note that the aim is to explore what it takes to implement the proposal, not to create production ready code.  The current work is all available on on <a href="https://github.com/ajsutton/pantheon/tree/state-rent">my state-rent branch</a>.</p>
+<p>The easiest way to begin exploring the changes required to implement state-rent in Pantheon is to start with the hard forks required which translate to new ProtocolSpecs in Pantheon which are defined in <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/mainnet/MainnetProtocolSpecs.java">MainnetProtocolSpecs</a>. Ultimately there should be four hard forks:</p>
+<ol>
+<li>Introduce replay protection for accounts that are evicted</li>
+<li>Charge fixed state rent for “owned” accounts</li>
+<li>Charge state rent for newly allocated storage</li>
+<li>Charge state rent for pre-existing storage</li>
+</ol>
+<h2 id="fork-1-replay-protection">Fork 1: Replay Protection</h2>
+<p>When accounts are evicted, their nonce would reset to 0, potentially enabled old transactions to be replayed. There are a few ways to prevent this, my preference was to introduce <a href="https://gist.github.com/holiman/5300039af83375e1698117619554acf7">temporal production</a> (variant 2 in the PDF) which is a simple extra validation to perform before processing transactions. As such, I skipped implementing it in the proof of concept.</p>
+<h2 id="fork-2-state-rent-for-owned-accounts">Fork 2: State Rent for Owned Accounts</h2>
+<p>In this milestone “owned” accounts are charged a fixed rent per block. An “owned” account is defined as one without code in the PoC. To avoid having to process every account on every block, the rent is only recalculated when the account is changed at the end of the block (ie a change would already have to be written to disk for it).</p>
+<p><strong>TODO:</strong> Formalise the definition of owned account more. Particularly, clarify if an account created with empty code is considered owned or not.</p>
+<p>The ProtocolSpec for this fork is defined based on Constantinople with three changes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ProtocolSpecBuilder<span style="color:#f92672">&lt;</span>Void<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">stateRentOwnedAccountsDefinition</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> chainId, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> rentEnabledBlockNumber) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> constantinopleDefinition(chainId)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">rentCost</span>(Wei.<span style="color:#a6e22e">fromGwei</span>(2))
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">rentProcessor</span>(rentCost <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> OwnedAccountsStateRentProcessor(rentCost, rentEnabledBlockNumber))
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">accountInit</span>(StateRentOwnedAccountsAccountInit::<span style="color:#66d9ef">new</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#34;StateRentOwnedAccounts&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Firstly, we set a rent cost of 2 Gwei/block. This is a pretty arbitrary figure and will likely need tweaking. This value is used by the rent processor we also set but has been split out so it&rsquo;s easy for a hypothetical future fork to change the rent cost without having to implement a completely different rent processor.</p>
+<p>Finally, we set a <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/mainnet/account/StateRentOwnedAccountsAccountInit.java">StateRentOwnedAccountsAccountInit</a> which is used to setup defaults for any newly created accounts (post-fork). In this case, it sets the rent balance to zero and rent block to the current block number. These are two new fields added to account state in this fork. This is the first time the new account process has varied in a hard fork, so there was a bunch of plumbing code required to add the concept of a pluggable <em>AccountInit</em> but none of it difficult.</p>
+<p>However, it&rsquo;s also the first hard fork that adds fields to account state, which makes serialising and deserialising them a little more difficult. That code is in <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/worldstate/AccountSerializer.java">AccountSerializer</a>. Fortunately it&rsquo;s easy in RLP to check if you are at the end of the current list or not, so when deserialising we can tell if rent balance and rent block have been added to this account state by checking if we&rsquo;re at the end of the list (<a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/worldstate/AccountSerializer.java#L51">line 51</a>).</p>
+<p>Calculating the rent owed is handled by <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/mainnet/staterent/OwnedAccountsStateRentProcessor.java">OwnedAccountsStateRentProcessor</a> with much of the code able to be reused with later forks via <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/mainnet/staterent/AbstractRentProcessor.java">AbstractRentProcessor</a>. The rent balance is one of the very few things in Ethereum that can be negative which makes life a little frustrating as the existing Wei class used for account balance can&rsquo;t be reused and there&rsquo;s a few points where things need to be converted between Wei and BigInteger but it&rsquo;s manageable.</p>
+<p>Rent is only recalculated when the account has been changed in the block. In Pantheon the simplest way to achieve this was to piggy-back on the concept of “touched” accounts used in Spurious Dragon. We simply iterate through the touched accounts and check if the root of their account state trie is dirty (which is also already tracked), if it is we recalculate rent via the RentProcessor.</p>
+<p>At this stage, any account which is unable to pay its rent can be deleted in the same way it would have been if it were empty. Again, simple to reuse existing code for this.</p>
+<p>For the record, actually calling the rent processor is hooked into <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/mainnet/MainnetBlockProcessor.java#L164">MainnetBlockProcessor</a> so that it happens as the last step in processing a block.</p>
+<p><strong>TODO:</strong> Additional clarification is required about exactly when rent should be charged. In the PoC it&rsquo;s applied even after paying the miner which seems sensible but there are a number of things happening at the end of a block so it needs to be completely clear.</p>
+<p>Note that the priority queue for eviction has been scrapped (I forget why it was originally required…).</p>
+<h2 id="fork-3-state-rent-for-new-storage">Fork 3: State Rent for New Storage</h2>
+<p>This fork introduces quite a bit of new stuff, but most importantly adds a new <em>storagesize</em> field to account state which is adjusted as part of every SSTORE call. Existing storage is not included in the <em>storagesize</em> field at this point, only a count of the storage size either added or cleared since fork 3 became active. The field is added when new accounts are created, when rent is recalculated for an existing account or when an SSTORE call results in the account storage size changing.</p>
+<p><strong>TODO:</strong> Need to be clear about exactly when this field is first added (particularly if multiple SSTORE calls are made that leave the storage at the same size or even completely unchanged).</p>
+<p>The ProtocolSpec for this fork is based on the one for fork 2 but with a few changes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ProtocolSpecBuilder<span style="color:#f92672">&lt;</span>Void<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">stateRentNewStorageDefinition</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> chainId, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> rentEnabledBlockNumber) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> stateRentOwnedAccountsDefinition(chainId, rentEnabledBlockNumber)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">gasCalculator</span>(StateRentNewStorageGasCalculator::<span style="color:#66d9ef">new</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">evmBuilder</span>(MainnetEvmRegistries::stateRentNewStorage)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">rentCost</span>(Wei.<span style="color:#a6e22e">fromGwei</span>(1))
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">rentProcessor</span>(rentCost <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> StorageSizeStateRentProcessor(rentCost, rentEnabledBlockNumber))
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">accountInit</span>(StateRentNewStorageAccountInit::<span style="color:#66d9ef">new</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#34;StateRentNewStorage&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>There&rsquo;s a new AccountInit to set <em>storagesize</em> to 0 when a new account is created.</p>
+<p>Rent cost is reduced to 1 Gwei since it&rsquo;s now charged per byte per block. This is almost certainly still the wrong value but it definitely should be less than when rent was purely per block.</p>
+<p>We also supply a new RentProcessor, <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/mainnet/staterent/StorageSizeStateRentProcessor.java">StorageSizeStateRentProcessor</a>, which applies to all accounts whether they have code or not. It also charges rent based on the value of the new <em>storagesize</em> field. If <em>storagesize</em> hasn&rsquo;t yet been set, it&rsquo;s set to a fixed value to represent the size of an empty account (73 which is the length of an empty account RLP in bytes).</p>
+<p><strong>TODO:</strong> The PoC deliberately uses the value of <em>storagesize</em> from the start of the block, ignoring any changes applied in the current block. Otherwise, if an account is untouched for 100 blocks, then increases its storage size, it will be charged rent at the increased storage size for the whole 100 blocks it was untouched. This rule may need to be tweaked slightly to use the new <em>storagesize</em> value for the current block and the old one for the untouched blocks but it seems reasonable to defer rent changes until the block after they take effect – increased storage would have cost gas in the current block and reduced storage doesn&rsquo;t really give a benefit until the block is complete and committed anyway.</p>
+<p><strong>NOTE:</strong> <em>storagesize</em> may be negative during this fork, indicating that the account now uses less storage than it did when this fork first happened. After fork 5, <em>storagesize</em> should only ever be positive.</p>
+<p><strong>TODO:</strong> Rent calculation during this fork should probably use max(<em>storagesize</em>, 0) to avoid the rent due being negative.</p>
+<p>Accounts with code are not deleted when they can&rsquo;t pay their rent, they are instead “evicted” and replaced with a hash stub so they can be restored via the new RESTORETO operation (see below). This is one of the more complicated changes to work through the code – firstly just in terms of tracking evicted accounts through the transaction commit/rollback code but also in terms of detecting them in the account state trie.</p>
+<h3 id="hash-stubs">Hash Stubs</h3>
+<p><strong>Challenging bit:</strong> Determining if an address in the account state trie is an actual account state or just a hash stub.</p>
+<p>Looking again at <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/worldstate/AccountSerializer.java">AccountSerializer</a> in the <em>serializeHashStub</em> method, we can see that a hash stub is an RLP list containing the code hash and storage root hash. RLP doesn&rsquo;t provide any typing information though so to detect a hash stub, we check if the first item is a nonce or a hash. If it is a hash stub, the size of the RLP item must be 32 bytes. Theoretically a nonce is an arbitrary unsigned scalar number, so it could wind up being 32 bytes (a 256bit number) but at least in Pantheon we already don&rsquo;t support nonces that big and you&rsquo;d have to spend a <em>lot</em> of eth on gas to get a nonce to make a nonce that big. So the item length appears to be a suitable way to distinguish between account state and hash stubs.</p>
+<p>UPDATE: A smarter way to do this would have been to just count the number of items in the RLP list which is relatively straight-forward. If there are 2 items, it must be a hash stub.</p>
+<p><strong>TODO:</strong> Clarify interactions for any operation that looks up an account state if the account state has been replaced by a hash stub. Currently Pantheon treats hash stubs as if they don&rsquo;t exist except in the RESTORETO operation. This is mostly right, except that contract creation should consider it an address conflict if a hash stub is at the target address (not currently implemented but pretty straight forward).</p>
+<h3 id="new-evm-operations">New EVM Operations</h3>
+<p>There are three EVM operations added in this fork: <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/vm/operations/PayRentOperation.java">PAYRENT</a>, <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/vm/operations/RentBalanceOperation.java">RENTBALANCE</a>, <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/vm/operations/SSizeOperation.java">SSIZE</a> and <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/vm/operations/RestoreToOperation.java">RESTORETO</a>. Additionally <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/vm/operations/SStoreOperation.java">SSTORE</a> is updated to update the <em>storagesize</em> field. PAYRENT, RENTBALANCE and the SSTORE changes are pretty trivial but RESTORETO has quite a few complexities.</p>
+<p><strong>TODO:</strong> Decide on the gas cost for these new opcodes.</p>
+<p><strong>Tool Support:</strong> RENTBALANCE returns an Int256 (signed) which I think is the only time an EVM operation returns a signed number. Need to double check compatibility for this with things like Solidity but should be fine.</p>
+<h3 id="restore-to-operation">Restore To Operation</h3>
+<p>The RESTORETO operation turns out to be one of the more interesting parts of this spec to implement. The basic workflow is slightly nuanced and involves three accounts. Let&rsquo;s say that Account A is evicted, leaving behind a stub with its code and storage root hashes. To restore Account A:</p>
+<ol>
+<li>Account B is created with the same code as Account A.</li>
+<li>Account C is created with code that sets up the storage in Account C to precisely match the storage Account A had before being evicted. It may do this in it&rsquo;s constructor or expose functions that can be called over time to build up the correct state from multiple sources (potentially sharing the gas cost of rebuilding that state across multiple people).</li>
+<li>Account C calls RESTORETO <address of Account A> <address of Account B>. The EVM checks that account B&rsquo;s code hash matches what Account A&rsquo;s stub records, and that Account C&rsquo;s storage root hash matches what Account A&rsquo;s stub records. If so, it creates a new contract at Address A, replacing the hash stub, with the code from Account B and the storage from Account C. It also transfers any balance from Account C to Account A and destroys Account C (just as SELFDESTRUCT would).</li>
+</ol>
+<p>Mostly this is fairly straight-forward to implement as seen in <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/vm/operations/RestoreToOperation.java">RestoreToOperation.java</a>. The hidden catch is that most Ethereum clients, including Pantheon, don&rsquo;t update the storage trie until the transaction actually commits – the changes made mid-transaction are stored in a simple HashMap which is much faster. As such, getting the storage root hash for Account C isn&rsquo;t straight-forward. In fact, in the PoC <a href="https://github.com/ajsutton/pantheon/blob/state-rent/ethereum/core/src/main/java/tech/pegasys/pantheon/ethereum/core/AbstractWorldUpdater.java#L433">I haven&rsquo;t implemented it at all</a>. It&rsquo;s certainly possible to create a copy of the unmodified Trie, update that with pending changes and calculate the storage root but it&rsquo;s an expensive operation and that code would <em>only</em> be exercised by RESTORETO, significantly increasing the testing required to fully cover RESTORETO.</p>
+<p><strong>TODO:</strong> Find a way to change RESTORETO so that the storage root is more easily available when required.</p>
+<p>One option here would be to have execution immediately halt when RESTORETO is called, and then to perform the actual restore at the end of the transaction, much like how SELFDESTRUCT only applies at the end of the transaction. Geth and Pantheon currently update the storage trie after every transaction (they don&rsquo;t necessarily calculate the root hash but that&rsquo;s simple once you have the trie), but TurboGeth delays updating the trie until the end of the block, improving performance if the same account is used from multiple transactions in one block. Implementing that improvement for Pantheon is also planned. Delaying application of RESTORETO until the end of the block feels a bit too weird though.</p>
+<p>More thought is required in this area to find a solution that both makes sense to users and can be implemented without significantly increasing the surface area required for testing.</p>
+<h2 id="fork-4-state-rent-for-existing-storage">Fork 4: State Rent for Existing Storage</h2>
+<p>The PoC doesn&rsquo;t include any of this fork currently, but it&rsquo;s fairly straight-forward. When an account&rsquo;s <em>rentblock</em> field is first updated to a block after fork 4 is in effect, the account&rsquo;s <em>storagesize</em> field is increased by the size of its storage immediately prior to fork 3 coming into effect. Basically, we add the historical state size in.</p>
+<p>This is done as a separate fork because it gives times for client developers to precompute the storage size for every account on the various public networks at the fork 3 block and include that in a client update. This means the cost of calculating that existing storage size is done offline and doesn&rsquo;t impact on performance of every node.</p>
+<p>However, because the <em>storagesize</em> field is only updated when the account is first touched anyway, it is still feasible to calculate the existing storage size on the fly, either because the precomputed values aren&rsquo;t available for that particular network or in order to verify them.</p>
+<p><strong>TODO:</strong> It&rsquo;s not explicitly stated anywhere at the moment, but when calculating the rent due for the first time after fork 4, rent should be calculated up to fork 4 block using the new-storage-only-value, then add in the existing storage size and calculate rent from fork 4 block up to the current block. Otherwise accounts start being charge rent for existing storage at different times which is too hard to understand (and unfair).</p>
+<h2 id="other-work-required">Other Work Required</h2>
+<p>There&rsquo;s some other stuff that would need to be done to make state-rent production ready:</p>
+<ul>
+<li>Additional JSON-RPC methods such as <em>getRentBalance</em> and probably something to calculate the rent owing for a given account at a specific block.</li>
+<li>CALLFEE opcode. The spec refers to this to provide a way for contracts to require a rent contribution when users call into it, but there weren&rsquo;t enough details to actually implement it. The main question is where the extra fee is taken from (it can&rsquo;t be an extra gas charge because rent is tracked in ETH not gas).</li>
+<li>Currently if you deploy a contract with Remix it doesn&rsquo;t get any eth balance so it is immediately evicted when you interact with it. This is quite confusing and frustrating as a user. We&rsquo;ll either need to update tools to allow sending an initial rent balance, provide some free rent on contract creation or allow a grace period after contract creation before rent is charged.</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

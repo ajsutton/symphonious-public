@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Amazon EC2 As A Webhost Redux | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Back in 2007 I looked at EC2 for a web server and while it wound up being feasible it had a number of drawbacks:
+
+Those familiar with EC2 won&rsquo;t be surprised to hear that we won&rsquo;t be going with the service for three reasons:
+
+It&rsquo;s at least as expensive as the dedicated server we&rsquo;d need.
+The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem)
+The server gets a new IP address every time it reboots.
+
+
+Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/07/09/amazon-ec2-as-a-webhost-redux/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/07/09/amazon-ec2-as-a-webhost-redux/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Amazon EC2 As A Webhost Redux">
+	<meta property="og:description" content="Back in 2007 I looked at EC2 for a web server and while it wound up being feasible it had a number of drawbacks:
+Those familiar with EC2 won’t be surprised to hear that we won’t be going with the service for three reasons:
+It’s at least as expensive as the dedicated server we’d need. The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem) The server gets a new IP address every time it reboots. Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-07-09T11:44:07+00:00">
+		<meta property="article:modified_time" content="2009-07-09T11:44:07+00:00">
+
+	<meta itemprop="name" content="Amazon EC2 As A Webhost Redux">
+	<meta itemprop="description" content="Back in 2007 I looked at EC2 for a web server and while it wound up being feasible it had a number of drawbacks:
+Those familiar with EC2 won’t be surprised to hear that we won’t be going with the service for three reasons:
+It’s at least as expensive as the dedicated server we’d need. The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem) The server gets a new IP address every time it reboots. Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.">
+	<meta itemprop="datePublished" content="2009-07-09T11:44:07+00:00">
+	<meta itemprop="dateModified" content="2009-07-09T11:44:07+00:00">
+	<meta itemprop="wordCount" content="297">
+	<meta itemprop="keywords" content="Code and Geek Stuff,System Administration">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Amazon EC2 As A Webhost Redux">
+	<meta name="twitter:description" content="Back in 2007 I looked at EC2 for a web server and while it wound up being feasible it had a number of drawbacks:
+Those familiar with EC2 won’t be surprised to hear that we won’t be going with the service for three reasons:
+It’s at least as expensive as the dedicated server we’d need. The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem) The server gets a new IP address every time it reboots. Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Amazon EC2 As A Webhost Redux</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Amazon EC2 As A Webhost Redux</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-07-09T11:44:07Z">July 9, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Back in 2007 <a href="http://www.symphonious.net/2007/07/24/amazon-sc2-as-a-webhost/">I looked at EC2 for a web server</a> and while <a href="http://www.symphonious.net/2007/08/03/hosting-on-amazon-ec2/">it wound up being feasible</a> it had a number of drawbacks:</p>
+<blockquote>
+<p>Those familiar with EC2 won&rsquo;t be surprised to hear that we won&rsquo;t be going with the service for three reasons:</p>
+<ol>
+<li>It&rsquo;s at least as expensive as the dedicated server we&rsquo;d need.</li>
+<li>The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem)</li>
+<li>The server gets a new IP address every time it reboots.</li>
+</ol>
+</blockquote>
+<p>Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.</p>
+<p>Remember that EC2’s original point in life was scalability, not running one single instance for a really long time. They’ve done tons of upgrades to their infrastructure over the last couple of years as well which normally would mean down time and migrations. You can imagine my surprise when I checked how long it’s been since the instance rebooted:</p>
+<pre class="code"><span class="java_plain">e2wiki</span><span class="java_operator">:~</span><span class="java_plain"># uptime</span>
+<span class="java_plain"> </span><span class="java_literal">04</span><span class="java_operator">:</span><span class="java_literal">28</span><span class="java_operator">:</span><span class="java_literal">45</span><span class="java_plain"> up </span><span class="java_literal">499</span><span class="java_plain"> days</span><span class="java_separator">,</span><span class="java_plain"> </span><span class="java_literal">19</span><span class="java_operator">:</span><span class="java_literal">14</span><span class="java_separator">,</span><span class="java_plain">  </span><span class="java_literal">1</span><span class="java_plain"> user</span><span class="java_separator">,</span><span class="java_plain">  load average</span><span class="java_operator">:</span><span class="java_plain"> </span><span class="java_literal">0.33</span><span class="java_separator">,</span><span class="java_plain"> </span><span class="java_literal">0.10</span><span class="java_separator">,</span><span class="java_plain"> </span><span class="java_literal">0.03</span>
+</pre>
+<p>Just shy of 500 days since a reboot for any reason. I can’t say that about any other hosting service I’ve ever used so even if EC2 is more expensive, it’s seriously reliable.</p>
+<p>Now we just need to fix the memory leak in the app we’re running on that server – it up and dies a couple of times a week. That said, the script that automatically restarts it is so effective that the external monitoring tools don’t even notice so it’s probably not worth the effort.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

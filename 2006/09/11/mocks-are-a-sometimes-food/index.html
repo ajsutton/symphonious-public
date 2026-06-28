@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Mocks Are A Sometimes Food | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="There&rsquo;s an interesting pattern when you start doing TDD and trying to make your tests as atomic as possible1. First of all you wonder how anyone could ever get far with completely standalone classes that don&rsquo;t interact with anything – obviously a program needs some level of communication between classes. Then you discover Mock objects. These wonderful little gems allow you to have communication between classes but still test them independently. Pretty soon you&rsquo;re going on a cookie monster style binge session with mocks. Everything can should and will be mocked out and there&rsquo;s no longer any need to worry about making your classes keep to themselves, all those external dependencies can just be mocked out.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/09/11/mocks-are-a-sometimes-food/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/09/11/mocks-are-a-sometimes-food/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Mocks Are A Sometimes Food">
+	<meta property="og:description" content="There’s an interesting pattern when you start doing TDD and trying to make your tests as atomic as possible1. First of all you wonder how anyone could ever get far with completely standalone classes that don’t interact with anything – obviously a program needs some level of communication between classes. Then you discover Mock objects. These wonderful little gems allow you to have communication between classes but still test them independently. Pretty soon you’re going on a cookie monster style binge session with mocks. Everything can should and will be mocked out and there’s no longer any need to worry about making your classes keep to themselves, all those external dependencies can just be mocked out.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-09-11T08:03:41+00:00">
+		<meta property="article:modified_time" content="2006-09-11T08:03:41+00:00">
+
+	<meta itemprop="name" content="Mocks Are A Sometimes Food">
+	<meta itemprop="description" content="There’s an interesting pattern when you start doing TDD and trying to make your tests as atomic as possible1. First of all you wonder how anyone could ever get far with completely standalone classes that don’t interact with anything – obviously a program needs some level of communication between classes. Then you discover Mock objects. These wonderful little gems allow you to have communication between classes but still test them independently. Pretty soon you’re going on a cookie monster style binge session with mocks. Everything can should and will be mocked out and there’s no longer any need to worry about making your classes keep to themselves, all those external dependencies can just be mocked out.">
+	<meta itemprop="datePublished" content="2006-09-11T08:03:41+00:00">
+	<meta itemprop="dateModified" content="2006-09-11T08:03:41+00:00">
+	<meta itemprop="wordCount" content="404">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Mocks Are A Sometimes Food">
+	<meta name="twitter:description" content="There’s an interesting pattern when you start doing TDD and trying to make your tests as atomic as possible1. First of all you wonder how anyone could ever get far with completely standalone classes that don’t interact with anything – obviously a program needs some level of communication between classes. Then you discover Mock objects. These wonderful little gems allow you to have communication between classes but still test them independently. Pretty soon you’re going on a cookie monster style binge session with mocks. Everything can should and will be mocked out and there’s no longer any need to worry about making your classes keep to themselves, all those external dependencies can just be mocked out.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Mocks Are A Sometimes Food</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Mocks Are A Sometimes Food</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-09-11T08:03:41Z">September 11, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><img loading="lazy" alt="Cookie Monster" width="69" src="http://www.symphonious.net/wp-content/uploads/2006/09/cookiemonster.thumbnail.jpg" height="96" align="left" id="image587" />There&rsquo;s an interesting pattern when you start doing TDD and trying to make your tests as atomic as possible<a name="footlink1-1157959918015" class="footnote" href="#footnote1-1157959918015" id="footlink1-1157959918015">1</a>. First of all you wonder how anyone could ever get far with completely standalone classes that don&rsquo;t interact with anything – obviously a program needs some level of communication between classes. Then you discover Mock objects. These wonderful little gems allow you to have communication between classes but still test them independently. Pretty soon you&rsquo;re going on a cookie monster style binge session with mocks. Everything can should and will be mocked out and there&rsquo;s no longer any need to worry about making your classes keep to themselves, all those external dependencies can just be mocked out.</p>
+<p>At some point though, you get an error about the max permspace being reached. You&rsquo;ve created so many mock classes that the JVM no longer has room to load class definitions. What&rsquo;s worse, your atomic tests which should be running lightning fast because they&rsquo;re so atomic, aren&rsquo;t. This is the point where you learn that Mocks are in fact a sometimes food. They&rsquo;re a nasty hack which allows you to pretend the world is all happy and isolated even though it&rsquo;s not.</p>
+<p>Now, there are certainly architectures you could use which would completely avoid the need for mocks while still allowing inter-class communication but it can become mind-bendingly difficult to work out where the heck those messages are going and the performance implications of breaking things up at this level is pretty severe. A completely separated design is often beneficial at a component level, but it&rsquo;s usually impractical at the class level.</p>
+<p>So mocks are a useful tool to help test things that need to interface with other classes but are largely independent. I&rsquo;ve taken to the rule of thumb that if I need to use more than one mock in a test I&rsquo;m probably doing something wrong – if I&rsquo;m using more than three mocks I really need to rethink my approach.</p>
+<p>How do other people approach the use of mocks and other related techniques?</p>
+<p class="footnote">
+  <a name="footnote1-1157959918015" href="#footlink1-1157959918015" id="footnote1-1157959918015">1</a> &#8211; I'm not yet sure, but perhaps it would be better to focus on making them run as fast as possible, rather than as atomic as possible. They would still need to be focussed enough to make it clear <em>where</em> the problem is instead of just showing that this <em>is</em> a problem.<a class="footnotereturn" href="#footlink1-1157959918015">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote2-1157960421171" name="footnote2-1157960421171" href="#footlink2-1157960421171">2</a> &#8211; possibly hidden away in the language runtime<a class="footnotereturn" href="#footlink2-1157960421171">&#8617;</a>
+</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

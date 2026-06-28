@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JSR296 Swing Application Framework | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I&rsquo;ve seen at JavaOne so far. It&rsquo;s not trying to be overly fancy but it solves a clear need in a very simple way.
+Malcolm Davis also commented on it but wasn&rsquo;t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that&rsquo;s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/05/10/jsr296-swing-application-framework/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/05/10/jsr296-swing-application-framework/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JSR296 Swing Application Framework">
+	<meta property="og:description" content="These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I’ve seen at JavaOne so far. It’s not trying to be overly fancy but it solves a clear need in a very simple way.
+Malcolm Davis also commented on it but wasn’t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that’s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-05-10T06:21:50+00:00">
+		<meta property="article:modified_time" content="2007-05-10T06:21:50+00:00">
+
+	<meta itemprop="name" content="JSR296 Swing Application Framework">
+	<meta itemprop="description" content="These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I’ve seen at JavaOne so far. It’s not trying to be overly fancy but it solves a clear need in a very simple way.
+Malcolm Davis also commented on it but wasn’t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that’s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:">
+	<meta itemprop="datePublished" content="2007-05-10T06:21:50+00:00">
+	<meta itemprop="dateModified" content="2007-05-10T06:21:50+00:00">
+	<meta itemprop="wordCount" content="1226">
+	<meta itemprop="keywords" content="JavaOne">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JSR296 Swing Application Framework">
+	<meta name="twitter:description" content="These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I’ve seen at JavaOne so far. It’s not trying to be overly fancy but it solves a clear need in a very simple way.
+Malcolm Davis also commented on it but wasn’t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that’s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JSR296 Swing Application Framework</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JSR296 Swing Application Framework</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-05-10T06:21:50Z">May 10, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>These are my notes from the talk on the Swing Application Framework (JSR296). This is probably my favorite technology I&rsquo;ve seen at JavaOne so far. It&rsquo;s not trying to be overly fancy but it solves a clear need in a very simple way.</p>
+<p><a href="http://weblogs.java.net/blog/malcolmdavis/archive/2007/05/javaone_blog_4.html">Malcolm Davis also commented on it</a> but wasn&rsquo;t impressed. Personally I think he missed the point. Firstly Malcolm, yes Eclipse and NetBeans platforms have had basically all these features and far, far more for a while and that&rsquo;s the problem. Using Eclipse or NetBeans as a base for a small or medium sized swing app is total overkill and the frameworks are huge and take ages to learn and configure for your needs. JSR296 is all about defining a really simple framework that gives you just the basics. If you need more you can either add on to it or go the whole hog with Eclipse or NetBeans. Malcolm suggested a few areas he thought it should also cover:</p>
+<ul>
+<li>Help</li>
+<li>Preference Screen</li>
+<li>Update</li>
+</ul>
+<p>The thing is, all these three things are really simple to plug in as <em>separate</em> modules. There&rsquo;s no need to bundle them into every single application because not all apps provide or need help, preferences or automatic updates. Also, Help is already provided (poorly) by JavaHelp and updates are already handled by Java WebStart. So all we really need is a Swing based preferences library (that hopefully looks nothing like the Eclipse preferences which are pretty awful).</p>
+<p>Anyway, the notes I took are below.</p>
+<hr>
+<p>From the very first release of swing, people have been asking for a framework to make writing Swing applications easier. It&rsquo;s finally happening.<br>
+JSR295 beans binding is also a part of the solution in that it simplifies the wiring together of the application logic and the GUI.<br>
+The swing application framework is intended to be a very lightweight framework for small to medium applications. It has no module system, GUI markup, docking etc. It should be as simple as possible and no simpler. The NetBeans and Eclipse frameworks provide these things and may be more suitable for large applications but are too big for small applications.</p>
+<p>Key aspects of the swing application framework:</p>
+<ul>
+<li>Life Cycle</li>
+<li>Resource Management</li>
+<li>Actions </li>
+<li>Tasks (for asynchronous work in background threads)</li>
+<li>Session State</li>
+</ul>
+<p>The framework is centered around two singletons, Application and ApplicationContext. They function in a similar manner to Applet and AppletContext. To use the framework, you create a subclass of Application and implement the startup method. Then, in the main method, call Application.launch. You use the ApplicationContext class to register tasks, retrieve resources etc. For applications that only use a single frame, the SingleFrameApplication provides some extra functionality like exiting when the frame is closed.</p>
+<h3 id="life160cycle">Life Cycle</h3>
+<p>The Application class defines the lifecycle of the application. You can control aspects of the life cycle by overriding on of the methods in Application: launch, init, startup, ready, exit, shutdown. You can also use exitListeners to veto the shutdown if needed (eg: prompting the user to save). It looks like most of the methods are called on the event dispatch thread but check the JavaDoc to be sure.</p>
+<h3 id="resource-management">Resource Management</h3>
+<p>Resources are designed with the existing ResourceBundle system. There are some utilities to make the more useful, for example the ability to easily store and retrieve Colors and other resources. Locale specific bundles can be used as normal, but also platform specific bundles.</p>
+<p>ResourceMaps are the interface to the resources and are just like a normal Map but include parent chaining. They also support string to type conversion (eg: Color) and the conversions supported are extensible.<br>
+The resources go in a resources subpackage. Eg: com.myapp.MyApplication has resources in com.myapp.resources</p>
+<p>The framework can also handle resource injection by applying resources to components with a specified name. You can also use the @Resource annotation to have resources injected into a component stored in a class field. The name looked up in the resources is then the same as the name of the variable. So if there&rsquo;s a button called &ldquo;myButton&rdquo; it&rsquo;s resources would look like:<br>
+myButton.text=Foo</p>
+<h4 id="advantages-of-resource-injection">Advantages of resource injection:</h4>
+<ul>
+<li>Localization happens by default</li>
+<li>No need to explicitly set resources – saves a lot of code.</li>
+<li>All GUI resources are stored in one place instead of scattered throughout the java code.</li>
+</ul>
+<p>It&rsquo;s not meant to be a styles mechanism or general GUI markup just a simple way to specify properties to set.<br>
+Note that injecting private fields with the @Resource annotation requires privileges (which it will have once this becomes part of the JRE).</p>
+<h3 id="actions">Actions</h3>
+<p>The actions used are the standard Swing Actions. However they suffer from a few problems:</p>
+<ul>
+<li>Not localized</li>
+<li>Creating them is a pain.</li>
+<li>Asynchronous work is hard.</li>
+</ul>
+<p>To solve this, there is a new @Action annotation. You mark a method with it and an action is automatically created that calls the method on actionPerformed. You can retrieve the action with the getAction method on ApplicationContext. For example:</p>
+<pre>@Action public void doStuff(ActionEvent e) {}
+</pre>
+<p>The ActionEvent argument is now optional and there are ways to specify what arguments are passed through to the method. The resource management system then injects the localized resources into the action based on it&rsquo;s name.</p>
+<p>You can also bind the action&rsquo;s enabled state to a variable:</p>
+<pre>@Action(enabledProperty = "changesPending") public void doStuff() {}
+</pre>
+<p>the action will then enable and disable whenever the changesPending variable is changed (through beans binding).<br>
+Actions have problems when used in toolbar buttons and menu items – the menu items need text, the toolbars shouldn&rsquo;t have it. You can achieve this by overriding the text for the action in the toolbar button by specifying toolbarButtonName.text=${null}</p>
+<h3 id="tasks">Tasks</h3>
+<p>Tasks are a simple mechanism to avoid blocking the event dispatch thread by spawning background threads. When using these background threads though, you need some way to manage them – display progress, start, stop and send messages.<br>
+SwingWorker already does most of this but Tasks takes it a step further.<br>
+Tasks use the Java concurrency library so it&rsquo;s Java 1.5 only (probably possible to backport to 1.4)<br>
+The first enhancement to SwingWorker is the addition of multiple &ldquo;done&rdquo; type methods that handle different ways that the task completed – cancelled, error or successful completion. This is error prone with SwingWorker.<br>
+Tasks also provide a means to block the GUI without freezing it by displaying a modal progress dialog. Use the block and unblock methods to use it. There are also a series of properties to control the scope of blocking.</p>
+<p>For managing the tasks, there is a TaskService which can be configured to execute tasks serially, in parallel with thread pools etc. It&rsquo;s possible to create multiple task service instances for different types of operations (network, database etc). You can specify this via the Action annotation:</p>
+<pre>@Action(taskService="database")
+</pre>
+<p>The ApplicationContext provides access to the instances of TaskServices.</p>
+<p>Finally, there&rsquo;s a TaskMonitor class that provides a summary of the running tasks which is good for status bar implementations.</p>
+<h3 id="session-state">Session State</h3>
+<p>Very simple. It stores which windows are where on screen and JTable column sizings so they can be restored to those locations when the application is restarted. Most apps don&rsquo;t manage this themselves because they either don&rsquo;t know where to store the state, are unsigned and can&rsquo;t store it or they don&rsquo;t have a way to safely restore the state. The storage is available via the ApplicationContext.getSessionStorage method.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

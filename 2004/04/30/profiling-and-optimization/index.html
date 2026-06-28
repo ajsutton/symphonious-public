@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Profiling and Optimization | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Recently there has been a very interesting and at times heated discussion about optimization on the HUMBUG mailing list. It&rsquo;s worth reading the
+ archives (look for the “Which is better?” thread) to get the whole picture.
+There were two main topics being discussed:
+
+Whether you should look for optimizations as you code and implement them if they don&rsquo;t affect readability and
+Whether or not memory allocation in Java is slow and thus efforts should be taken to avoid it.
+
+Issue 1 – Premature Optimization
+Inside The Loop or Outside The Loop?
+Most people argued that premature optimization is the root of all evil, and that in Java particularly it&rsquo;s a waste of time because you almost always predict what the compiler and the JITC are going to do incorrectly. There were a couple of people (one in particular) who thought that optimizations that didn&rsquo;t affect readability were a good idea. The example:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/04/30/profiling-and-optimization/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/04/30/profiling-and-optimization/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Profiling and Optimization">
+	<meta property="og:description" content="Recently there has been a very interesting and at times heated discussion about optimization on the HUMBUG mailing list. It’s worth reading the archives (look for the “Which is better?” thread) to get the whole picture.
+There were two main topics being discussed:
+Whether you should look for optimizations as you code and implement them if they don’t affect readability and Whether or not memory allocation in Java is slow and thus efforts should be taken to avoid it. Issue 1 – Premature Optimization Inside The Loop or Outside The Loop? Most people argued that premature optimization is the root of all evil, and that in Java particularly it’s a waste of time because you almost always predict what the compiler and the JITC are going to do incorrectly. There were a couple of people (one in particular) who thought that optimizations that didn’t affect readability were a good idea. The example:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-04-30T07:24:40+00:00">
+		<meta property="article:modified_time" content="2004-04-30T07:24:40+00:00">
+
+	<meta itemprop="name" content="Profiling and Optimization">
+	<meta itemprop="description" content="Recently there has been a very interesting and at times heated discussion about optimization on the HUMBUG mailing list. It’s worth reading the archives (look for the “Which is better?” thread) to get the whole picture.
+There were two main topics being discussed:
+Whether you should look for optimizations as you code and implement them if they don’t affect readability and Whether or not memory allocation in Java is slow and thus efforts should be taken to avoid it. Issue 1 – Premature Optimization Inside The Loop or Outside The Loop? Most people argued that premature optimization is the root of all evil, and that in Java particularly it’s a waste of time because you almost always predict what the compiler and the JITC are going to do incorrectly. There were a couple of people (one in particular) who thought that optimizations that didn’t affect readability were a good idea. The example:">
+	<meta itemprop="datePublished" content="2004-04-30T07:24:40+00:00">
+	<meta itemprop="dateModified" content="2004-04-30T07:24:40+00:00">
+	<meta itemprop="wordCount" content="1331">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Profiling and Optimization">
+	<meta name="twitter:description" content="Recently there has been a very interesting and at times heated discussion about optimization on the HUMBUG mailing list. It’s worth reading the archives (look for the “Which is better?” thread) to get the whole picture.
+There were two main topics being discussed:
+Whether you should look for optimizations as you code and implement them if they don’t affect readability and Whether or not memory allocation in Java is slow and thus efforts should be taken to avoid it. Issue 1 – Premature Optimization Inside The Loop or Outside The Loop? Most people argued that premature optimization is the root of all evil, and that in Java particularly it’s a waste of time because you almost always predict what the compiler and the JITC are going to do incorrectly. There were a couple of people (one in particular) who thought that optimizations that didn’t affect readability were a good idea. The example:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Profiling and Optimization</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Profiling and Optimization</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-04-30T07:24:40Z">April 30, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Recently there has been a very interesting and at times heated discussion about optimization on the <a href="http://www.humbug.org.au">HUMBUG</a> mailing list. It&rsquo;s worth reading the
+<a href="http://lists.humbug.org.au/archives/general/2004-April/thread.html"> archives</a> (look for the “Which is better?” thread) to get the whole picture.</p>
+<p>There were two main topics being discussed:</p>
+<ol>
+<li>Whether you should look for optimizations as you code and implement them if they don&rsquo;t affect readability and</li>
+<li>Whether or not memory allocation in Java is slow and thus efforts should be taken to avoid it.</li>
+</ol>
+<h2 id="issue-1-8211-premature-optimization">Issue 1 – Premature Optimization</h2>
+<h3 id="inside-the-loop-or-outside-the-loop">Inside The Loop or Outside The Loop?</h3>
+<p>Most people argued that premature optimization is the root of all evil, and that in Java particularly it&rsquo;s a waste of time because you almost always predict what the compiler and the JITC are going to do incorrectly. There were a couple of people (one in particular) who thought that optimizations that didn&rsquo;t affect readability were a good idea. The example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 1000; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  SimpleDateFormat format <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SimpleDateFormat(<span style="color:#e6db74">&#34;YYYY-MM-DD&#34;</span>);
+</span></span><span style="display:flex;"><span>  format.<span style="color:#a6e22e">format</span>(<span style="color:#66d9ef">new</span> Date());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>was bandied around as an example of something you should optimize by moving the creation of the SimpleDateFormat out of the loop.  The speed increase of doing so is very significant and so you should move it out of the loop, however there are two possible reasons why you would move it:</p>
+<ul>
+<li>Because it&rsquo;s faster outside the loop.</li>
+<li>Because the scope of the formatter extends across all iterations of the loop and not just a single iteration.</li>
+</ul>
+<p>It&rsquo;s for the second reason that I would move the SimpleDateFormat outside of the loop and not the first.  This is highlighted nicely by one of the other examples that floated around:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 1000; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  Dimension i <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dimension();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p> </p>
+<p>In this case the creation of Dimension is a much cheaper operation then creating a SimpleDateFormat and parsing a string (after the first instance is created as that first instance causes AWT to be inintialized), so it really doesn&rsquo;t matter if it&rsquo;s inside the loop or out of it in terms of performance but if it were the same exact same dimension object that was unchanged throughout the iterations, I&rsquo;d still move it outside of the loop because it is global to the loop and unaffected by the current value of the loop counter.  Similarly with a class like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Format</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">formatDate</span>(Date date) {
+</span></span><span style="display:flex;"><span>    SimpleDateFormat format <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SimpleDateFormat(<span style="color:#e6db74">&#34;YYYY-MM-DD&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> format.<span style="color:#a6e22e">format</span>(date);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I would move the SimpleDateFormat to at least a class variable and, if every instance of the class used the same format for the date, a static class variable.  I&rsquo;d do that simply because it better reflects the behaviour and intent of the class, not because it improves speed (if the formatDate method were only called once, or was never called on the critical path for performance, the change would not improve speed).</p>
+<p>So out of this we come to a simple rule that all programmers should know and follow pretty much automatically:</p>
+<blockquote>
+<p>Scope variables to reflect their usage.  No more than required, no less.</p>
+</blockquote>
+<h3 id="forwards-or-backwards">Forwards Or Backwards?</h3>
+<p>The original question posted was about loops and whether or not you should evaluate the termination value (eg: array.length) before the loop and store it in a local variable to avoid having to recalculate it.  Now, obviously in Java array.length happens to be a variable anyway so it&rsquo;s unlikely to make any difference regardless.  The question did lead to a bunch of different ways that people might try to optimize arrays, including going from end to finish to take advantage of the fact that CPUs can compare to 0 faster than they can compare to other numbers (apparently).  It was pointed out many times, by many people that it&rsquo;s not worth worrying about it because of the small amount of difference it would make, however one or two people thought that if you knew in advance techniques to make things run faster, why not use them?  A benchmark was put forward to determine what the fastest way to iterate over an array was.  It showed the code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> Test array_unopt <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>10000<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> array.<span style="color:#a6e22e">length</span>; i <span style="color:#f92672">+=</span> 1)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> Test array_harry <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>10000<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> array.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> l; i <span style="color:#f92672">+=</span> 1)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> Test array_aj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>10000<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> array.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1; i <span style="color:#f92672">&gt;=</span> 0; i <span style="color:#f92672">-=</span> 1)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>took 1570, 1439 and 1456 milliseconds for each test respectively.  I thought the entire benchmark was
+<a href="http://lists.humbug.org.au/archives/general/2004-April/023785.html"> critically flawed</a>.  Even if you take the benchmark as valid, it showed no noticeable difference in the different ways to iterator over an array.  Most developers however would expects to see the “for (int i = 0; i &lt; array.length; i++)” version and would thus recognise it more easily.  Out of this I would derive the rule (but others didn&rsquo;t):</p>
+<blockquote>
+<p>Benchmarks are a waste of time.  Profile the real code instead.</p>
+</blockquote>
+<h2 id="memory-allocation-in-java">Memory Allocation In Java</h2>
+<p>The SimpleDateFormat in the for loop example sparked off a significant debate about how expensive memory allocation was in Java, primarily because it was heap based rather than stack based.  Obviously using SimpleDateFormat as a test class is a really bad idea because of the amount of string parsing it does in it&rsquo;s constructor.  The other benchmark that was put forward was creating a lot of Dimension objects in a loop.  What really killed that benchmark is the fact that creating a Dimension object requires AWT to be initialized, so when the benchmark was run, it appeared that Java was exceptionally slow at creating a whole bunch of objects that effectively did nothing.  The “equivalent” benchmark in C (which is actually completely different but never mind that for now):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;time.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;malloc.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">long</span> t <span style="color:#f92672">=</span> <span style="color:#a6e22e">time</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100000000</span>; i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">free</span>(<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">16</span>));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;elapsed = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">time</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">-</span> t);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Turned out to run 30% slower than the Java benchmark (creating Dimension objects).  That certainly surprised me.  So even taking into account the fact that benchmarks are a horrible waste of time, I think it&rsquo;s safe to say that memory allocation in Java is a lot faster than even I thought it was.</p>
+<p>From this and a bunch of other suprises in the thread, I&rsquo;d derive the rule:</p>
+<blockquote>
+<p>If you haven&rsquo;t profiled it, you don&rsquo;t know how well it performs.</p>
+</blockquote>
+<h2 id="learning">Learning</h2>
+<p>Throughout the thread, there have been a lot of cases where someone didn&rsquo;t fully understand a part of the language or library that they thought they knew well.  This lack of knowledge really stood out when it came to talking about performance because the performance of an application can be greatly affected by seemingly trivial details.  All the people involved in the thread are really quite intelligent people and most of them have significant experience in the computing field, but nearly everyone (myself included) managed to come out with a statement that was at least partially wrong.</p>
+<p>From this I&rsquo;d derive the rule:</p>
+<blockquote>
+<p>You always need to learn more.</p>
+</blockquote>
+<h2 id="summary">Summary</h2>
+<p>While I&rsquo;ve learnt a lot of things out of that thread, as well as becoming very frustrated at times, the main lessons I&rsquo;ve either learnt from it or had reaffirmed by it were:</p>
+<blockquote>
+<p>Scope variables to reflect their usage.  No more than required, no less.
+Benchmarks are a waste of time.  Profile the real code instead.
+If you haven&rsquo;t profiled it, you don&rsquo;t know how well it performs.
+You always need to learn more.
+Most importantly, many people pointed out the following, but I think Andrae Muys said it best:</p>
+</blockquote>
+<blockquote>
+<p>Keep the code simple.<br>
+Get the code correct.<br>
+Measure.
+ </p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

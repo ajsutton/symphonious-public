@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IBM on Symphonious</title>
+    <link>https://www.symphonious.net/categories/ibm/</link>
+    <description>Recent content in IBM on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Tue, 06 Apr 2010 10:01:59 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/ibm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ephox in the IBM Cloud</title>
+      <link>https://www.symphonious.net/2010/04/06/ephox-in-the-ibm-cloud/</link>
+      <pubDate>Tue, 06 Apr 2010 10:01:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/04/06/ephox-in-the-ibm-cloud/</guid>
+      <description>&lt;p&gt;Ephox EditLive! is now part of the IBM cloud offering on Amazon Web Services. EditLive! OEM edition is bundled in the &lt;a href=&#34;http://www.ibm.com/developerworks/downloads/ls/wps-wcmse/cloud.html&#34;&gt;cloud offering of IBM WCM&lt;/a&gt;. This means you can now quickly run up a new instance of IBM’s WCM system on Amazon EC2 and configure it to use EditLive! as the editor.&lt;/p&gt;
+&lt;p&gt;If you want to take advantage of the extra benefits of the &lt;a href=&#34;http://editlive.com/tour&#34;&gt;Enterprise Edition&lt;/a&gt; (track changes, commenting, accessibility checking, image editing and more), you can install that as normal once the system is running. Currently Ephox doesn’t have per-hour pricing through Amazon but you can &lt;a href=&#34;http://www.ephox.com/contactus.html&#34;&gt;contact our sales team&lt;/a&gt; so they can discuss the options available.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IBM WCM 6.1.0.2 Remote API Content Creation Problem</title>
+      <link>https://www.symphonious.net/2009/05/08/ibm-wcm-6102-remote-api-content-creation-problem/</link>
+      <pubDate>Fri, 08 May 2009 17:22:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/08/ibm-wcm-6102-remote-api-content-creation-problem/</guid>
+      <description>&lt;p&gt;I’m stumped so I’m throwing this one out there in the hope that someone might know the answer. I have a JSP component that builds a URL to create a new content item, in a specific site area with a specific authoring template. It works great on Portal 6.0.1.3 and Portal 6.1.0.0 but breaks on 6.1.0.1 and 6.1.0.2. When you go to the URL, it correctly starts creating content but instead of skipping the stage where it asks for an authoring template it just gives a blank list to choose from. If you omit the authoring template from the URL it will correctly list all templates and go on to create the content.&lt;/p&gt;
+&lt;p&gt;The URL winds up looking like:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://iweb2.ephox.com:10040/wps/myportal/wcmAuthoring?wcmAuthoringAction=new&amp;amp;&#34;&gt;http://iweb2.ephox.com:10040/wps/myportal/wcmAuthoring?wcmAuthoringAction=new&amp;amp;&lt;/a&gt;&lt;br&gt;
+type=com.ibm.workplace.wcm.api.WCM_Content&amp;amp;atid=com.ibm.workplace.wcm.api.WCM_AuthoringTemplate/simple-page/389d16004d3954ac9b4eff0a98a2531c/PUBLISHED&amp;amp;&lt;br&gt;
+pid=com.ibm.workplace.wcm.api.WCM_SiteArea/plugins/ca0d04004e034ec59853f8b5e96d1024/PUBLISHED&lt;/p&gt;
+&lt;p&gt;I’ve verified that the ID for the authoring template is correct by using it in an ‘edit’ action and the authoring template opens in edit mode correctly.&lt;/p&gt;
+&lt;p&gt;If anyone knows why this is suddenly going wrong I’d love to hear it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Key IBM LWCM Config File</title>
+      <link>https://www.symphonious.net/2009/05/07/key-ibm-lwcm-config-file/</link>
+      <pubDate>Thu, 07 May 2009 08:21:32 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/07/key-ibm-lwcm-config-file/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; style=&#34; float: right;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/reminder-hand_benji_park_37872.png&#34; height=&#34;128&#34; width=&#34;90&#34; alt=&#34;Reminder&#34; /&gt;Note to self:&lt;/p&gt;
+&lt;p&gt;That magical file that controls just about everything you ever want to control about IBM LWCM (at least so far as things that are controlled from the file system rather than the web interface) is under the profile directory at /wcm/shared/app/config/wcmservices/WCMConfigService.properties&lt;/p&gt;
+&lt;p&gt;This includes:&lt;/p&gt;
+&lt;ul class=&#34;greenTick&#34;&gt;
+  &lt;li&gt;
+    configuring backwards compatibility for WCM 6.0 -&gt; 6.1 migrations. Primarily the don’t expire content immediately when no expire date is set.
+  &lt;/li&gt;
+  &lt;li&gt;
+    setting up the SMTP server properties so you can get e-mail notifications in workflow &lt;ul class=&#34;blueArrow&#34;&gt;
+      &lt;li&gt;
+        Side note: These get annoying really quickly if you’re not careful.
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    A bunch of stuff on caching that looks cool. I wonder what the changes I just made will do…
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, why did it take me this long to add fancy list bullet styles to my blog stylesheet? Mixing the blue and green is probably a bit much – I should create a blue tick or green arrow, but oh well, I’m drunk with power.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

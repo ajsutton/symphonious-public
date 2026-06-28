@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Controlling Pargraph Spacing Without Abusing HTML | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="There seems to be a great demand for HTML documents that don&rsquo;t include white-space between paragraphs – similar to going into the paragraph formatting in Word and setting space before and space after to zero. This is very simple to achieve in HTML, but people just keep coming up with strange ways to attempt to achieve it.
+The most common way people try to get around the problem is by putting their entire document in one P tag and using BRs. You can pick these people because they set their HTML editors to insert a BR on enter instead of inserting a new paragraph. The end result looks right in all browsers but destroys the semantic structure of the document. I imagine it would be much harder to navigate through the document using a screen reader too, since skipping paragraphs seems like a nice way to skim. The problem people most often run into with this approach is that their editor still treats the whole big block as a paragraph, so when they apply a heading style the entire document becomes a H1 tag with a bunch of BRs.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/04/18/controlling-pargraph-spacing-without-abusing-html/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/04/18/controlling-pargraph-spacing-without-abusing-html/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Controlling Pargraph Spacing Without Abusing HTML">
+	<meta property="og:description" content="There seems to be a great demand for HTML documents that don’t include white-space between paragraphs – similar to going into the paragraph formatting in Word and setting space before and space after to zero. This is very simple to achieve in HTML, but people just keep coming up with strange ways to attempt to achieve it.
+The most common way people try to get around the problem is by putting their entire document in one P tag and using BRs. You can pick these people because they set their HTML editors to insert a BR on enter instead of inserting a new paragraph. The end result looks right in all browsers but destroys the semantic structure of the document. I imagine it would be much harder to navigate through the document using a screen reader too, since skipping paragraphs seems like a nice way to skim. The problem people most often run into with this approach is that their editor still treats the whole big block as a paragraph, so when they apply a heading style the entire document becomes a H1 tag with a bunch of BRs.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-04-18T02:40:35+00:00">
+		<meta property="article:modified_time" content="2006-04-18T02:40:35+00:00">
+
+	<meta itemprop="name" content="Controlling Pargraph Spacing Without Abusing HTML">
+	<meta itemprop="description" content="There seems to be a great demand for HTML documents that don’t include white-space between paragraphs – similar to going into the paragraph formatting in Word and setting space before and space after to zero. This is very simple to achieve in HTML, but people just keep coming up with strange ways to attempt to achieve it.
+The most common way people try to get around the problem is by putting their entire document in one P tag and using BRs. You can pick these people because they set their HTML editors to insert a BR on enter instead of inserting a new paragraph. The end result looks right in all browsers but destroys the semantic structure of the document. I imagine it would be much harder to navigate through the document using a screen reader too, since skipping paragraphs seems like a nice way to skim. The problem people most often run into with this approach is that their editor still treats the whole big block as a paragraph, so when they apply a heading style the entire document becomes a H1 tag with a bunch of BRs.">
+	<meta itemprop="datePublished" content="2006-04-18T02:40:35+00:00">
+	<meta itemprop="dateModified" content="2006-04-18T02:40:35+00:00">
+	<meta itemprop="wordCount" content="500">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Controlling Pargraph Spacing Without Abusing HTML">
+	<meta name="twitter:description" content="There seems to be a great demand for HTML documents that don’t include white-space between paragraphs – similar to going into the paragraph formatting in Word and setting space before and space after to zero. This is very simple to achieve in HTML, but people just keep coming up with strange ways to attempt to achieve it.
+The most common way people try to get around the problem is by putting their entire document in one P tag and using BRs. You can pick these people because they set their HTML editors to insert a BR on enter instead of inserting a new paragraph. The end result looks right in all browsers but destroys the semantic structure of the document. I imagine it would be much harder to navigate through the document using a screen reader too, since skipping paragraphs seems like a nice way to skim. The problem people most often run into with this approach is that their editor still treats the whole big block as a paragraph, so when they apply a heading style the entire document becomes a H1 tag with a bunch of BRs.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Controlling Pargraph Spacing Without Abusing HTML</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Controlling Pargraph Spacing Without Abusing HTML</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-04-18T02:40:35Z">April 18, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>There seems to be a great demand for HTML documents that don&rsquo;t include white-space between paragraphs – similar to going into the paragraph formatting in Word and setting space before and space after to zero. This is very simple to achieve in HTML, but people just keep coming up with strange ways to attempt to achieve it.</p>
+<p>The most common way people try to get around the problem is by putting their entire document in one P tag and using BRs. You can pick these people because they set their HTML editors to insert a BR on enter instead of inserting a new paragraph. The end result looks right in all browsers but destroys the semantic structure of the document. I imagine it would be much harder to navigate through the document using a screen reader too, since skipping paragraphs seems like a nice way to skim. The problem people most often run into with this approach is that their editor still treats the whole big block as a paragraph, so when they apply a heading style the entire document becomes a H1 tag with a bunch of BRs.</p>
+<p>The other way that people try is to use DIV instead of P, this probably works better with screen readers, but has the same problem with the HTML not meaning what the user expects it to mean. In this case, it manifests as editors that wind up inserting a H1 inside the DIV instead of converting the DIV to a H1. Even worse, the editor may insert P tags on enter instead of creating a new DIV. The worst of all is when the editor inserts BRs on enter because there&rsquo;s no paragraph tags to split. It all winds up getting very messy.</p>
+<p>Fortunately, there&rsquo;s a very simple solution to the entire problem that will let you just use P tags instead of all these nasty work arounds. In your stylesheet, just add:</p>
+<pre>p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+</pre>
+<p>No more spacing above and below the paragraphs. You have in fact done the exact equivalent of going into paragraph formatting and setting space before and after to 0. The semantic structure of the HTML is preserved, editors will know what to do with the HTML without needing to be configured and fought with, your HTML markup will be cleaner and easier to read and your content will be more accessible.</p>
+<p>If you can&rsquo;t control the stylesheet for the document, you can put the CSS inline:</p>
+<pre>&#60;p style="margin-top:&#160;0; margin-bottom: 0;"&#62;Paragraph content.&#60;/p&#62;
+</pre>
+<p>It is important to set both margin-top and margin-bottom to 0, while every browser I&rsquo;ve seen defaults to putting space between paragraphs, some browsers apply it to the top, some to the bottom and some apply it to both. Setting top and bottom to 0 guarantees it will look like you want.</p>
+<p>Oh and don&rsquo;t worry, most editors will let you press shift-enter to insert a BR when you really do have a paragraph that needs a hard line break.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

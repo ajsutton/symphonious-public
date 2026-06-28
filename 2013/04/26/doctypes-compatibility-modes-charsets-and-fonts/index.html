@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Doctypes, Compatibility Modes, Charsets and Fonts | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="This information is all covered in much more detail elsewhere on the web but for my own future reference, here&rsquo;s a primer on doctypes, compatibility modes, charsets and fonts which was required to explain why certain Chinese characters weren&rsquo;t showing up in IE8. Of course the best answer is that you need to have the East Asian Font pack installed and then it just works (usually) but this tends to be useful background and saves “server side” folks from a number of gotchas.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2013/04/26/doctypes-compatibility-modes-charsets-and-fonts/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2013/04/26/doctypes-compatibility-modes-charsets-and-fonts/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Doctypes, Compatibility Modes, Charsets and Fonts">
+	<meta property="og:description" content="This information is all covered in much more detail elsewhere on the web but for my own future reference, here’s a primer on doctypes, compatibility modes, charsets and fonts which was required to explain why certain Chinese characters weren’t showing up in IE8. Of course the best answer is that you need to have the East Asian Font pack installed and then it just works (usually) but this tends to be useful background and saves “server side” folks from a number of gotchas.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-04-26T01:08:22+00:00">
+		<meta property="article:modified_time" content="2013-04-26T01:08:22+00:00">
+
+	<meta itemprop="name" content="Doctypes, Compatibility Modes, Charsets and Fonts">
+	<meta itemprop="description" content="This information is all covered in much more detail elsewhere on the web but for my own future reference, here’s a primer on doctypes, compatibility modes, charsets and fonts which was required to explain why certain Chinese characters weren’t showing up in IE8. Of course the best answer is that you need to have the East Asian Font pack installed and then it just works (usually) but this tends to be useful background and saves “server side” folks from a number of gotchas.">
+	<meta itemprop="datePublished" content="2013-04-26T01:08:22+00:00">
+	<meta itemprop="dateModified" content="2013-04-26T01:08:22+00:00">
+	<meta itemprop="wordCount" content="524">
+	<meta itemprop="keywords" content="Code and Geek Stuff,HTML,Internationalisation">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Doctypes, Compatibility Modes, Charsets and Fonts">
+	<meta name="twitter:description" content="This information is all covered in much more detail elsewhere on the web but for my own future reference, here’s a primer on doctypes, compatibility modes, charsets and fonts which was required to explain why certain Chinese characters weren’t showing up in IE8. Of course the best answer is that you need to have the East Asian Font pack installed and then it just works (usually) but this tends to be useful background and saves “server side” folks from a number of gotchas.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Doctypes, Compatibility Modes, Charsets and Fonts</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Doctypes, Compatibility Modes, Charsets and Fonts</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-04-26T01:08:22Z">April 26, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>This information is all covered in much more detail elsewhere on the web but for my own future reference, here&rsquo;s a primer on doctypes, compatibility modes, charsets and fonts which was required to explain why certain Chinese characters weren&rsquo;t showing up in IE8. Of course the best answer is that you need to have the East Asian Font pack installed and then it just works (usually) but this tends to be useful background and saves “server side” folks from a number of gotchas.</p>
+<h2 id="doctypes-and-compatibility-modes">Doctypes and Compatibility Modes</h2>
+<ul>
+<li>IE 7 and above has an insane array of compatibility modes which are out to get you. The most common gotcha is that it will use compatibility mode (emulating IE7) if the website is in the “intranet zone”. There&rsquo;s an option to disable this somewhere in the preferences dialogs.  You wind up in the intranet zone if you&rsquo;re accessing a site via any domain name that doesn&rsquo;t look like a real one (e.g. http://dog/ is in the intranet zone).</li>
+<li>If you can avoid falling into compatibility mode, any pages including the DOCTYPE as <code>&lt;!DOCTYPE html&gt;</code> or <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code> will render in standards compliant mode (where the world is as sane as it gets in web development). Go with the shorter version unless you have a reason not to.</li>
+<li><a href="http://hsivonen.iki.fi/doctype/#">http://hsivonen.iki.fi/doctype/</a> is the gold standard for information about browser modes.</li>
+</ul>
+<h2 id="character-sets-and-fonts">Character Sets and Fonts</h2>
+<ul>
+<li>If you&rsquo;re tracking down problems with foreign languages there are two major categories of problems – encoding corruption (where characters come out garbled or as ?) and missing glyphs in fonts (where characters come out as little boxes).</li>
+<li>Corruption is fixed by specifying the same character encoding everywhere. It is a security issue if any webpage is missing a meta tag defining the character set (smallest variant is <code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code>). It must be the first tag in the <code>&lt;head&gt;</code> of the document.</li>
+<li>Little square boxes mean that either the font currently in use doesn&rsquo;t have a glyph for that particular character and the font fallback routine was unable to find any font on the system which supports that character. </li>
+<li>Browsers have a default stylesheet which is automatically applied to every page which commonly sets a specific font-family and font-size for text input elements, so adding the style <code>body { font-family: 'Arial Unicode MS' }</code> may get some Asian characters working in the main content but not in text boxes unless you also add <code>input { font-family: inherit; }</code>.</li>
+</ul>
+<p>The security issue mentioned above is that any page which doesn&rsquo;t define a character set but includes any form of user supplied content is vulnerable to a cross site scripting injection attack – even if the user supplied content is escaped properly, because the content may include a character that causes the browser to incorrectly switch to UCS-7 or other weird character sets and drastically change the meaning of the content on the page (hence the user content is no longer correctly escaped). There have been steps taken by modern browsers to remove this risk (including removing support for UCS-7 I believe) but its good practice to specify your charset explicitly anyway.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

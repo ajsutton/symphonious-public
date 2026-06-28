@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Using Scala in .NET | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Having become quite interested in languages that support deployment on both Java and .NET, then diving into Scala to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/10/19/using-scala-in-net/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/10/19/using-scala-in-net/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Using Scala in .NET">
+	<meta property="og:description" content="Having become quite interested in languages that support deployment on both Java and .NET, then diving into Scala to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-10-19T14:19:03+00:00">
+		<meta property="article:modified_time" content="2009-10-19T14:19:03+00:00">
+
+	<meta itemprop="name" content="Using Scala in .NET">
+	<meta itemprop="description" content="Having become quite interested in languages that support deployment on both Java and .NET, then diving into Scala to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.">
+	<meta itemprop="datePublished" content="2009-10-19T14:19:03+00:00">
+	<meta itemprop="dateModified" content="2009-10-19T14:19:03+00:00">
+	<meta itemprop="wordCount" content="844">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Scala">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Using Scala in .NET">
+	<meta name="twitter:description" content="Having become quite interested in languages that support deployment on both Java and .NET, then diving into Scala to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Using Scala in .NET</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Using Scala in .NET</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-10-19T14:19:03Z">October 19, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Having become quite interested in <a href="http://www.symphonious.net/2009/09/25/the-new-cross-platform/">languages that support deployment on both Java and .NET</a>, then <a href="http://www.symphonious.net/2009/10/15/getting-into-scala/">diving into Scala</a> to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.</p>
+<h3 id="simple-net-exe">Simple .NET Exe</h3>
+<p>First things first, let’s write some Scala then compile it to a .exe file that uses .NET. Our scala class is the simple Hello World:</p>
+<pre>import System.Console
+object test extends Application {
+  def main(args: Array[String]) = Console.println(“Hello .NET World!”)
+}
+</pre>
+<p>Note that I put this in a file called test.scala as part of my fiddling to make this work – I don’t think that should be required but it certainly doesn’t hurt.</p>
+<p>Compilation to .NET requires two steps. Both are best performed by opening the “SDK Command Prompt”<a href="#footnote1:1255960347063">1</a>{#footlink1:1255960347063.footnote}. This looks very much like the normal Command Prompt but it defines a bunch of important environment variables so that all the .NET tools are on your path and working correctly.</p>
+<ol>
+<li>
+<p>If you haven’t already, <a href="http://www.scala-lang.org/node/168">as the Scala docs say</a>, copy the mscorlib.dll file from the .NET SDK (I had to use find to locate it then picked one of the results at random) to the %SCALA_HOME%\share\scala\lib directory</p>
+</li>
+<li>
+<p>Again, if you haven’t already, install the scala-msil support by running:
+<pre>sbaz install scala-msil
+</pre></p>
+</li>
+<li>
+<p>Then compile to the MSIL intermediary format with scalac-net<a href="#footnote2:1255960467317">2</a>{#footlink2:1255960467317.footnote}:
+<pre>scalac-net test.scala
+</pre></p>
+</li>
+</ol>
+<p>Now you should have a test.msil file alongside the test.scala file. The next step is to convert the file to an actual EXE file with the ilasm tool<a href="#footnote3:1255960786099">3</a>{#footlink3:1255960786099.footnote}:</p>
+<pre>ilasm test.msil
+</pre>
+<p>Now you should have test.exe alongside your test.msil and test.scala files. Before you run it though, you’ll need to find the predef.dll and scalaruntime.dll files in the Scala distribution and copy them to the current directory<a href="#footnote4:1255960886737">4</a>{#footlink4:1255960886737.footnote}.</p>
+<p>Finally, you can now run test.exe and see “Hello .NET World!” printed.</p>
+<h3 id="creating-dlls-for-visual-studio-projects">Creating DLLs for Visual Studio Projects</h3>
+<p>The same tool setup can be used to create DLLs for use with Visual Studio projects. I created a C# web application project in Visual Studio, then modified my test scala class slightly:</p>
+<pre>import System.Console
+class test extends Application {
+  def getStuff) = “Hello .NET World!”
+}
+</pre>
+<p>Then recompile it with scalac-net as before. Since we want a DLL instead of an EXE file we add a /dll parameter to the ilasm invocation:</p>
+<pre>ilasm /dll test.msil
+</pre>
+<p>Now we’ve got a DLL ready to go. I copied the three DLLs, test.dll, predef.dll and scalaruntime.dll into my Visual Studio project to make them easy to access. Then:</p>
+<ol>
+<li>Right click on the project in Visual Studio</li>
+<li>Select “Add Reference…”</li>
+<li>Click the “Browse” tab</li>
+<li>Select the three DLLs you copied in.</li>
+<li>Click “OK”</li>
+</ol>
+<p>You can now access your Scala class from C# quite easily. I edited Default.aspx and added:</p>
+<pre>&#60;%= new test().getStuff() %&#62;
+</pre>
+<p>Code completion even worked. Running the project correctly shows “Hello .NET World!”.</p>
+<h3 id="stuff-yet-to-discover">Stuff Yet To Discover</h3>
+<p>There’s a lot of stuff I don’t know about yet, largely because I’m starting from pretty much no knowledge of .NET programming, but also a few Scala related things:</p>
+<ul>
+<li>Unlike Ruby and Python, Scala doesn’t have a class library that’s designed to stand alone – it somewhat assumes the Java libraries will be there. Things like IO are left to the Java classes so they’d need to be abstracted away with separate Java and .NET implementations. It remains to be seen how limiting that could be.
+<ul>
+<li>Worse, I’ve seen some blog posts mention that not all of the Scala library is actually available on .NET. The XML libraries directly reference a bunch of Java IO stuff for example.</li>
+</ul>
+</li>
+<li>You can combine multiple classes in one DLL. When I still had test as an object, I got ‘test’ and ‘test$’ put into the DLL. When I have multiple .scala files to compile I’m not sure at what point or how they all get combined into one DLL. I’m guessing somewhere along the line putting all the files as arguments should do the trick. Otherwise it will get pretty unwieldy.</li>
+<li>I’ve got no idea what actual deployment of this stuff is like. Last time I touched .NET that was a complete nightmare even without Scala. Hopefully if the project references all the Scala DLL files they will get bundled up in whatever way Visual Studio would normally do when preparing to distribute.</li>
+</ul>
+<p class="footnote">
+  <a href="#footlink1:1255960347063" id="footnote1:1255960347063">1</a> &#8211; I believe this was installed along with the .NET SDK 2.0 package I grabbed &#8211; I didn’t notice it being installed with just Visual Studio but I could be wrong. <a href="#footlink1:1255960347063" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1255960467317" id="footnote2:1255960467317">2</a> &#8211; scalac-net seems to be a handy little wrapper around scalac that sets -target=msil and adds the right DLLs to the classpath. <a href="#footlink2:1255960467317" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink3:1255960786099" id="footnote3:1255960786099">3</a> &#8211; this is the part that really requires the SDK Command Prompt and the environment variables it sets up.<a href="#footlink3:1255960786099" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink4:1255960886737" id="footnote4:1255960886737">4</a> &#8211; I think under Windows DLL loading rules they can actually be anywhere on the PATH. <a href="#footlink4:1255960886737" class="footnotereturn">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

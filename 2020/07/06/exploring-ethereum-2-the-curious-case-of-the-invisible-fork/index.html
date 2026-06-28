@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exploring Ethereum 2: The Curious Case of the Invisible Fork | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="It&rsquo;s like something out of a Sherlock novel – the doors are all locked, windows barred and yet somehow the jewels have been stolen. Or in this case, every block created forms a single chain and yet somehow the validator client has wound up on the wrong fork. Fortunately Sherlock, or rather Cem Ozer, was on the case. This is the story behind those very annoying “Produced invalid attestation” errors that Teku would sometimes generate.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2020/07/06/exploring-ethereum-2-the-curious-case-of-the-invisible-fork/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2020/07/06/exploring-ethereum-2-the-curious-case-of-the-invisible-fork/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exploring Ethereum 2: The Curious Case of the Invisible Fork">
+	<meta property="og:description" content="It’s like something out of a Sherlock novel – the doors are all locked, windows barred and yet somehow the jewels have been stolen. Or in this case, every block created forms a single chain and yet somehow the validator client has wound up on the wrong fork. Fortunately Sherlock, or rather Cem Ozer, was on the case. This is the story behind those very annoying “Produced invalid attestation” errors that Teku would sometimes generate.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2020-07-05T21:00:45+00:00">
+		<meta property="article:modified_time" content="2020-07-05T21:00:45+00:00">
+
+	<meta itemprop="name" content="Exploring Ethereum 2: The Curious Case of the Invisible Fork">
+	<meta itemprop="description" content="It’s like something out of a Sherlock novel – the doors are all locked, windows barred and yet somehow the jewels have been stolen. Or in this case, every block created forms a single chain and yet somehow the validator client has wound up on the wrong fork. Fortunately Sherlock, or rather Cem Ozer, was on the case. This is the story behind those very annoying “Produced invalid attestation” errors that Teku would sometimes generate.">
+	<meta itemprop="datePublished" content="2020-07-05T21:00:45+00:00">
+	<meta itemprop="dateModified" content="2020-07-05T21:00:45+00:00">
+	<meta itemprop="wordCount" content="562">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Ethereum">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exploring Ethereum 2: The Curious Case of the Invisible Fork">
+	<meta name="twitter:description" content="It’s like something out of a Sherlock novel – the doors are all locked, windows barred and yet somehow the jewels have been stolen. Or in this case, every block created forms a single chain and yet somehow the validator client has wound up on the wrong fork. Fortunately Sherlock, or rather Cem Ozer, was on the case. This is the story behind those very annoying “Produced invalid attestation” errors that Teku would sometimes generate.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Ethereum 2: The Curious Case of the Invisible Fork</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exploring Ethereum 2: The Curious Case of the Invisible Fork</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-07-05T21:00:45Z">July 5, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>It&rsquo;s like something out of a Sherlock novel – the doors are all locked, windows barred and yet somehow the jewels have been stolen. Or in this case, every block created forms a single chain and yet somehow the validator client has wound up on the wrong fork. Fortunately Sherlock, or rather Cem Ozer, was on the case. This is the story behind those very annoying “Produced invalid attestation” errors that Teku would sometimes generate.</p>
+<p>The blocks involved look a lot like:</p>
+<table border="1" cellpadding="4">
+<tr>
+<th>Slot</th>
+<th>28</th>
+<th>29</th>
+<th>30</th>
+<th>31</th>
+<th>32</th>
+</tr>
+<tr>
+<th>Block Root</th>
+<td>0x01</td>
+<td>0x02</td>
+<td>0x03</td>
+<td>0x04</td>
+<td>0x05</td>
+</tr>
+<tr>
+<th>Parent Root</th>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x02</td>
+<td>0x03</td>
+<td>0x04</td>
+</tr>
+</table>
+<p>There are no other blocks floating around. This looks like a chain working perfectly with no forks. However, timing matters in ETH2 and there&rsquo;s an invisible fork hidden in there. Slot 32 is the start of a new epoch so validator needs to calculate the duties it should perform but in this case the block for slot 32 arrived late, so the validator calculated it&rsquo;s duties based on:</p>
+<table border="1" cellpadding="4">
+<tr>
+<th>Slot</th>
+<th>28</th>
+<th>29</th>
+<th>30</th>
+<th>31</th>
+<th>32</th>
+</tr>
+<tr>
+<th>Block Root</th>
+<td>0x01</td>
+<td>0x02</td>
+<td>0x03</td>
+<td>0x04</td>
+<td>&lt;empty></td>
+</tr>
+<tr>
+<th>Parent Root</th>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x02</td>
+<td>0x03</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>While in ETH1 that would just mean you&rsquo;re behind head, in ETH2 whether a block exists or not effectively creates a fork. That missing block contributes to the randao value and so all the committee shuffling and duty scheduling based off the randao changes depending on whether the slot is empty or not.</p>
+<p>So when the validator calculates its duties based on slot 32 being empty, it gets a different set of duties than it would if the block had already arrived. The net result is that attestation signatures appear invalid because the validator they come from is calculated based on the shuffling, not explicitly stated in the attestation.</p>
+<p>Later when the block for slot 32 does arrive, the beacon chain considers it as just an extension of the current fork, so doesn&rsquo;t tell the validator client to recalculate duties. An epoch later when those scheduled duties actually happen, they&rsquo;re still scheduled as if that slot was empty and so the signatures appear invalid.</p>
+<p><a href="https://github.com/PegaSysEng/teku/pull/2305">Cem&rsquo;s fix</a> is elementary (as most things are once you understand the problem) – the beacon chain node needs to fire a reorg event when a previously empty slot is filled, which causes the validator client to recalculate its duties.</p>
+<p>So case closed? Not quite… We&rsquo;d actually already thought of this potential problem and the validator client was already listening for block imported events. When a block was imported, any duties from two or more epochs were invalidated (at the start of an epoch, you can safely calculate duties for that epoch and the one after, so the blocks in epoch 3 only affects duties for epoch 5 and later). That should have caught this case – why was the problem still happening?</p>
+<p>It turns out that while the duties were correctly invalidated when the block was imported, block import isn&rsquo;t what updates the best block – running the fork choice algorithm does. It turns out the validator client wound up recalculating the duties before fork choice had been run to consider the new block and thus recalculated duties based on the slot still being empty. With Cem&rsquo;s fix in place we&rsquo;ll be able to remove this first attempt at a fix and only invalidate on re-org events.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

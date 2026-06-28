@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Trends on Symphonious</title>
+    <link>https://www.symphonious.net/categories/trends/</link>
+    <description>Recent content in Trends on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Sat, 24 May 2014 04:38:58 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/trends/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Where Are All The Remote Jobs?</title>
+      <link>https://www.symphonious.net/2014/05/24/where-are-all-the-remote-jobs/</link>
+      <pubDate>Sat, 24 May 2014 04:38:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/05/24/where-are-all-the-remote-jobs/</guid>
+      <description>&lt;div id=&#34;attachment_1893&#34; style=&#34;width: 310px&#34; class=&#34;wp-caption alignright&#34;&gt;
+  &lt;a href=&#34;https://www.flickr.com/photos/citrixonline/5446645129/&#34;&gt;&lt;img aria-describedby=&#34;caption-attachment-1893&#34; loading=&#34;lazy&#34; class=&#34;wp-image-1893 size-medium&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2014/05/5446645129_9a87e9ffd2_o-300x200.jpg&#34; alt=&#34;Photo by Citrix Online CC BY-NC-ND 2.0&#34; width=&#34;300&#34; height=&#34;200&#34; srcset=&#34;https://www.symphonious.net/wp-content/uploads/2014/05/5446645129_9a87e9ffd2_o-300x200.jpg 300w, https://www.symphonious.net/wp-content/uploads/2014/05/5446645129_9a87e9ffd2_o.jpg 640w&#34; sizes=&#34;(max-width: 300px) 100vw, 300px&#34; /&gt;&lt;/a&gt;
+  &lt;p id=&#34;caption-attachment-1893&#34; class=&#34;wp-caption-text&#34;&gt;
+    &lt;a href=&#34;https://www.flickr.com/photos/citrixonline/5446645129/&#34;&gt;Workshifting by Citrix Online CC BY-NC-ND 2.0&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;It seems like forever that people have been arguing that remote working is the future. Why limit yourself to just the people who live near your office when hiring? Why suffer the distractions of an office when you could define your own environment in your very own home? Why waste employee time commuting? Surely by now every employee would want to be working from wherever they choose and employers would be forced to accept it, if not actively encourage it to save on office costs and get the best employees.&lt;/p&gt;
+&lt;p&gt;Yet somehow despite all the hype and promise there seem to be exceedingly few jobs around that allow for remote work. The fastest way I know of to ensure a recruiter never contacts me again is to simply mention that I&amp;rsquo;m based in Brisbane Australia and have no interest in moving. That greatly surprises me – especially in the technology industry.&lt;/p&gt;
+&lt;p&gt;When I do see jobs that support remote work it&amp;rsquo;s almost always for companies that primarily work on open source code or companies that primarily hire employees based on either their involvement in the company&amp;rsquo;s community or their other open source contributions.&lt;/p&gt;
+&lt;p&gt;So perhaps one of the big reasons employers aren&amp;rsquo;t adopting remote work as much is the difficulty in hiring the right people, training them and integrating them into the company and evaluating if they&amp;rsquo;re actually working out. Remote working involves a significant amount of trust between employer and employee. New employees generally haven&amp;rsquo;t had a chance to build up that trust unless they were already contributing to the companies community or demonstrating their contributions in open source. Unfortunately looking at open source contributions excludes any developer that enjoys their job so much they spend all their spare coding time on that and don&amp;rsquo;t currently work in a job that involves a lot of open source.&lt;/p&gt;
+&lt;p&gt;That fits with my current situation – for the last two and a bit years I&amp;rsquo;ve had the luxury of working from home, but it only happened because I originally worked in the London office and then resigned to move home. Fortunately they were keen to keep me so I wound up staying on and working from home. Later a second developer went through the same process and now works from New Zealand.&lt;/p&gt;
+&lt;p&gt;Once trust and culture is established we seem to have plenty of tools to make remote working extremely effective. If remote working is really the future though, we&amp;rsquo;ll need to find better ways to establish that initial trust and on-board new employees.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Are there hordes of remote working jobs out there that I just don&amp;rsquo;t hear about? If not, what&amp;rsquo;s stopping it from taking off?&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>“New” Dutch Accessibility Laws</title>
+      <link>https://www.symphonious.net/2008/10/14/new-dutch-accessibility-laws/</link>
+      <pubDate>Tue, 14 Oct 2008 13:08:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/10/14/new-dutch-accessibility-laws/</guid>
+      <description>&lt;p&gt;They aren’t really new anymore, but I just discovered them.  Apparently the &lt;a href=&#34;http://www.quirksmode.org/blog/archives/2007/01/new_dutch_acces.html&#34;&gt;Dutch accessibility laws go beyond just the WCAG standard&lt;/a&gt; and require a whole range of best practices for web sites.  Good stuff.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Atom Is The New JCR</title>
+      <link>https://www.symphonious.net/2008/01/08/atom-is-the-new-jcr/</link>
+      <pubDate>Tue, 08 Jan 2008 03:55:54 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/01/08/atom-is-the-new-jcr/</guid>
+      <description>&lt;p&gt;When the Java Content Repository (JCR) standard first came out it was supposed to bring in a new era of compatibility between content repositories and put an end to the content silo. There was, and still is, a lot of talk about it and just about everyone added JCR compliance to their marketing materials. Unfortunately, that&amp;rsquo;s mostly where things stopped – the implementation work that followed was generally done was buggy or incomplete and the only viable JCR implementations that I&amp;rsquo;ve seen have come out of Day Software, who lead the JCR spec effort. There are a few CMSs around that do have good JCR support – Alfresco for example – but they&amp;rsquo;re few and far between and even with that, there isn&amp;rsquo;t a lot of people taking advantage of that support and the standardization of the repository interface.&lt;/p&gt;
+&lt;p&gt;Then along came Atom which is all about remote access and manipulation of data and missing probably 90% of the functionality that JCR offers. It really isn&amp;rsquo;t a competitor to JCR at all and yet it&amp;rsquo;s doing more to break down content silos than JCR ever has. Atom support isn&amp;rsquo;t just being added to the marketing materials, it&amp;rsquo;s actually shipping and is usable in a lot of places – IBM&amp;rsquo;s Lotus Connections has Atom APIs to everything and, as best I can tell, only Atom APIs to it&amp;rsquo;s repository.&lt;/p&gt;
+&lt;p&gt;Atom seems to have walked the line between simplicity and power just right, and even in the cases where it&amp;rsquo;s too simplistic it&amp;rsquo;s extensibility is so effective that you hardly notice. Connections for instance makes heavy use of the pagination extensions to make sure that content doesn&amp;rsquo;t drop off the bottom of the Atom feed and out of existence. Having Atom support in your product, serving and consuming as necessary is becoming an extremely powerful feature.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Windows Looks Bad</title>
+      <link>https://www.symphonious.net/2008/01/03/windows-looks-bad/</link>
+      <pubDate>Thu, 03 Jan 2008 11:34:29 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/01/03/windows-looks-bad/</guid>
+      <description>&lt;p&gt;Tim Bray&amp;rsquo;s second, very short notice, prediction for 2008 is that &lt;a href=&#34;http://www.tbray.org/ongoing/When/200x/2008/01/02/Prediction-Windows-OS-X-Linux&#34;&gt;Windows is going to &amp;ldquo;look bad&amp;rdquo;&lt;/a&gt;. It&amp;rsquo;s probably a good prediction – Vista simply didn&amp;rsquo;t do enough to make Windows competitive for the next 3 years or so they&amp;rsquo;ll take to get the next release out. Obviously Windows isn&amp;rsquo;t going to disappear but there is already a strong trend towards alternate platforms, mostly OS X, which is very likely to increase over the next 12 months. Even my wife has become an Apple evangelist (more so than me) ever since she got my old powerbook to use in front of the couch. It seems the in-laws will be making the switch in the next year as well.&lt;/p&gt;
+&lt;p&gt;In the anti-trust trial, I seem to recall it being ruled that Apple and Linux were not viable competitors for Windows and thus Microsoft held a monopoly. I probably wouldn&amp;rsquo;t go so far as to say that&amp;rsquo;s no longer true, but it&amp;rsquo;s certainly less clear cut.&lt;/p&gt;
+&lt;p&gt;As Tim says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Microsoft’s continuing extraction of monopoly rents is dependent, near as I can tell, on just two things: &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MS Office staying good enough that people don’t mind paying the fearful Windows tax that goes with it. Except for, Office runs better on OS X than on Windows.&lt;/li&gt;
+&lt;li&gt;The Exchange/Outlook lock-in. This seems the big one to me.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If Office 2008 (the OS X Office update to be released Jan 15) can read and write Microsoft&amp;rsquo;s new force-you-to-upgrade document format natively&lt;a id=&#34;footlink1:1199359588609&#34; class=&#34;footnote&#34; href=&#34;#footnote1:1199359588609&#34; name=&#34;footlink1:1199359588609&#34;&gt;1&lt;/a&gt;, I think point 1 will be well and truly taken care of – at least until Microsoft break the format again. The current Office for Mac is painful because it runs in Rosetta so it just isn&amp;rsquo;t as snappy as it should be, particularly if you have a number of other apps using a lot of memory.&lt;/p&gt;
+&lt;p&gt;The second one is going to get very interesting. I don&amp;rsquo;t rate Google any chance of knocking off Office – Google Docs and Spreadsheets is way too primitive and buggy – but their flagship AJAX app is GMail and it&amp;rsquo;s really good. With IMAP support now available, all that&amp;rsquo;s missing is a good syndication system for Google Calendar. There&amp;rsquo;s a lot of work to be done, but if Google can bring it&amp;rsquo;s calendar offering up to par with GMail, we should see it starting to gain significant traction by years end.&lt;/p&gt;
+&lt;p&gt;What I find interesting in this, is that there&amp;rsquo;s little indication that AJAX is going to take over, it&amp;rsquo;s the combination of AJAX, desktop applications and open protocols to access and synchronize data that makes it all work. In other words, if the major trends of 2007 all came together, you&amp;rsquo;d really have something.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1199359588609&#34; href=&#34;#footlink1:1199359588609&#34; name=&#34;footnote1:1199359588609&#34;&gt;1&lt;/a&gt; &amp;#8211; and given the lack of uproar from the peanut gallery, er blogs, I&amp;#160;assume it does&lt;a href=&#34;#footlink1:1199359588609&#34; class=&#34;footnotereturn&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

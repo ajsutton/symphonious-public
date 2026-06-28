@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Moolah Diaries – Principles | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="It&rsquo;s always important to have some basic principles in mind before you start writing code for a project. That way you have something to guide your technology choices, development practices and general approach to the code. They&rsquo;re not immovable – many of them won&rsquo;t survive the first encounter with actual code – but identifying your principles helps to make a code base much more coherent.
+Naturally for the Moolah rebuild I just jumped in and started writing code without much thought, let alone guiding principles but a few have emerged either as lessons from the first version, personal philosophy or early experiences.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2017/07/02/moolah-diaries-principles/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2017/07/02/moolah-diaries-principles/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Moolah Diaries – Principles">
+	<meta property="og:description" content="It’s always important to have some basic principles in mind before you start writing code for a project. That way you have something to guide your technology choices, development practices and general approach to the code. They’re not immovable – many of them won’t survive the first encounter with actual code – but identifying your principles helps to make a code base much more coherent.
+Naturally for the Moolah rebuild I just jumped in and started writing code without much thought, let alone guiding principles but a few have emerged either as lessons from the first version, personal philosophy or early experiences.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2017-07-02T04:20:14+00:00">
+		<meta property="article:modified_time" content="2017-07-02T04:20:14+00:00">
+
+	<meta itemprop="name" content="Moolah Diaries – Principles">
+	<meta itemprop="description" content="It’s always important to have some basic principles in mind before you start writing code for a project. That way you have something to guide your technology choices, development practices and general approach to the code. They’re not immovable – many of them won’t survive the first encounter with actual code – but identifying your principles helps to make a code base much more coherent.
+Naturally for the Moolah rebuild I just jumped in and started writing code without much thought, let alone guiding principles but a few have emerged either as lessons from the first version, personal philosophy or early experiences.">
+	<meta itemprop="datePublished" content="2017-07-02T04:20:14+00:00">
+	<meta itemprop="dateModified" content="2017-07-02T04:20:14+00:00">
+	<meta itemprop="wordCount" content="644">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Moolah">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Moolah Diaries – Principles">
+	<meta name="twitter:description" content="It’s always important to have some basic principles in mind before you start writing code for a project. That way you have something to guide your technology choices, development practices and general approach to the code. They’re not immovable – many of them won’t survive the first encounter with actual code – but identifying your principles helps to make a code base much more coherent.
+Naturally for the Moolah rebuild I just jumped in and started writing code without much thought, let alone guiding principles but a few have emerged either as lessons from the first version, personal philosophy or early experiences.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Moolah Diaries – Principles</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Moolah Diaries – Principles</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2017-07-02T04:20:14Z">July 2, 2017</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>It&rsquo;s always important to have some basic principles in mind before you start writing code for a project. That way you have something to guide your technology choices, development practices and general approach to the code. They&rsquo;re not immovable – many of them won&rsquo;t survive the first encounter with actual code – but identifying your principles helps to make a code base much more coherent.</p>
+<p>Naturally for the Moolah rebuild I just jumped in and started writing code without much thought, let alone guiding principles but a few have emerged either as lessons from the first version, personal philosophy or early experiences.</p>
+<h3 id="make-the-server-smart">Make the Server Smart</h3>
+<p>In the first version of Moolah, the server was just a dumb conduit to the database – in fact for quite some time it didn&rsquo;t even parse the JSON objects, just stuffed them into the database and pulled them back out again. That missed a lot of opportunities for optimisation and keeping the client light and fast.</p>
+<p>Ultimately this isn&rsquo;t so much about client vs server, it&rsquo;s more about backend vs frontend. In a browser the data storage options are limited (though much better now than 5 years ago) but the server has a proper database so can filter and work with data much faster. Sure I could re-implement fast indexing in the browser but why bother?</p>
+<h3 id="provide-well-defined-client-agnostic-apis">Provide Well-Defined, Client-Agnostic APIs</h3>
+<p>I want to be able to work on the client and server independently, potentially replacing one outright without changing the other. That way if one of my shiny tool choices doesn&rsquo;t pan out well it&rsquo;s a lot easier to ditch it, even if that means completely rebuilding the client or server. It also means I can play around with native applications should I want to in the future.</p>
+<h3 id="deploy-early-deploy-often-and-deploy-automatically">Deploy Early, Deploy Often and Deploy Automatically</h3>
+<p>This is basically the only sane way to work, but I&rsquo;m often too lazy to do it properly with side projects. Moolah still has a few missing elements but has come far enough that I&rsquo;m likely to stick with this and do it properly.</p>
+<h3 id="test-at-multiple-levels">Test at Multiple Levels</h3>
+<p>Side projects that involve playing with shiny new toys often wind up lacking any form of tests and that comes back to hurt pretty quickly. I&rsquo;ve made an effort to have a reasonable level of tests in place right from the start. There&rsquo;s been a big cost to that as I wrestle with the various testing frameworks and understand the best ways to approach testing Moolah, but that cost will be paid back over time and is much lower than trying to wrestle with those tools <em>and</em> a big, test-unfriendly code base.</p>
+<p>I&rsquo;m also fairly inclined to only believe something is actually working when I have quite high level tests for it, including going right through to the real database. Unit tests are a design tool, integration tests are where you flush out most of the bugs and I&rsquo;ve been seeing that even this early.</p>
+<h3 id="fail-fast">Fail Fast</h3>
+<p>If a tool, library or approach isn&rsquo;t going to work I want to find out quickly and ditch it quickly. I&rsquo;m trying lots of new things so have had to be pretty ruthless at ripping them back out, not just if they don&rsquo;t work, but if they introduce too many gotchas or hoops to jump through.</p>
+<h3 id="have-fun">Have Fun</h3>
+<p>There&rsquo;s a degree to which I need the Moolah rebuild to reach feature parity with the old system fairly quickly so I can switch over, but this is a side project so it&rsquo;s mostly about having fun. I&rsquo;ve let myself get distracted with building a fancy page for before you&rsquo;re logged in even though it&rsquo;s way more than I&rsquo;ll likely ever need.</p>
+<p>I&rsquo;m not sure this is a particularly meaningful list in general but for this particular project at this particular time they seem to be serving me well.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

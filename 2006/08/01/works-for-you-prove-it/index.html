@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Works For You? Prove It! | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I just stumbled across something interesting that I probably should have realized before. With TDD, the first thing you should do when you get assigned a bug to fix is write a test that reproduces it. This morning I was good and did just that, but surprisingly the test passed.
+Now normally when your test passes straight off, it means you didn&rsquo;t write it correctly and you need to fix the test. In this case though I could confirm manually that the bug simply didn&rsquo;t happen – a classic works for me. Drop back into bugzilla and mark the bug WFM and I suddenly realized I could prove that it works correctly by pointing to the test.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/08/01/works-for-you-prove-it/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/08/01/works-for-you-prove-it/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Works For You? Prove It!">
+	<meta property="og:description" content="I just stumbled across something interesting that I probably should have realized before. With TDD, the first thing you should do when you get assigned a bug to fix is write a test that reproduces it. This morning I was good and did just that, but surprisingly the test passed.
+Now normally when your test passes straight off, it means you didn’t write it correctly and you need to fix the test. In this case though I could confirm manually that the bug simply didn’t happen – a classic works for me. Drop back into bugzilla and mark the bug WFM and I suddenly realized I could prove that it works correctly by pointing to the test.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-07-31T20:37:29+00:00">
+		<meta property="article:modified_time" content="2006-07-31T20:37:29+00:00">
+
+	<meta itemprop="name" content="Works For You? Prove It!">
+	<meta itemprop="description" content="I just stumbled across something interesting that I probably should have realized before. With TDD, the first thing you should do when you get assigned a bug to fix is write a test that reproduces it. This morning I was good and did just that, but surprisingly the test passed.
+Now normally when your test passes straight off, it means you didn’t write it correctly and you need to fix the test. In this case though I could confirm manually that the bug simply didn’t happen – a classic works for me. Drop back into bugzilla and mark the bug WFM and I suddenly realized I could prove that it works correctly by pointing to the test.">
+	<meta itemprop="datePublished" content="2006-07-31T20:37:29+00:00">
+	<meta itemprop="dateModified" content="2006-07-31T20:37:29+00:00">
+	<meta itemprop="wordCount" content="240">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Works For You? Prove It!">
+	<meta name="twitter:description" content="I just stumbled across something interesting that I probably should have realized before. With TDD, the first thing you should do when you get assigned a bug to fix is write a test that reproduces it. This morning I was good and did just that, but surprisingly the test passed.
+Now normally when your test passes straight off, it means you didn’t write it correctly and you need to fix the test. In this case though I could confirm manually that the bug simply didn’t happen – a classic works for me. Drop back into bugzilla and mark the bug WFM and I suddenly realized I could prove that it works correctly by pointing to the test.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Works For You? Prove It!</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Works For You? Prove It!</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-07-31T20:37:29Z">July 31, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I just stumbled across something interesting that I probably should have realized before. With TDD, the first thing you should do when you get assigned a bug to fix is write a test that reproduces it. This morning I was good and did just that, but surprisingly the test passed.</p>
+<p>Now normally when your test passes straight off, it means you didn&rsquo;t write it correctly and you need to fix the test. In this case though I could confirm manually that the bug simply didn&rsquo;t happen – a classic works for me. Drop back into bugzilla and mark the bug WFM and I suddenly realized I could <em>prove</em> that it works correctly by pointing to the test.</p>
+<p>So now, we have a closed bug <em>and</em> a passing test that will make sure it never comes back. The normal inclination I have is that the test passed straight off so it didn&rsquo;t have value and shouldn&rsquo;t be committed, but that&rsquo;s not true. Writing a new test for an area we didn&rsquo;t have a clear acceptance test<a id="footlink1" name="footlink1" class="footnote" href="#footnote1">1</a> for before is a really good thing and should be preserved. Better yet, I can point to that test in the bugzilla case and if someone disagrees they can change the test to show the problem and reopen the bug.</p>
+<p class="footnote">
+  <a id="footnote1" name="footnote1" href="#footlink1">1</a> &#8211; I'd written the acceptance test first to verify the problem but didn't have a need to drill down to integration and atomic tests.<a href="#footlink1">&#8617;</a>
+</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

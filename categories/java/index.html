@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/categories/java/index.xml" rel="alternate" type="application/rss+xml" title="Symphonious" />
+      <link href="/categories/java/index.xml" rel="feed" type="application/rss+xml" title="Symphonious" />
+      
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/categories/java/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/categories/java/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Java">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+
+	<meta itemprop="name" content="Java">
+	<meta itemprop="datePublished" content="2019-02-04T00:13:29+00:00">
+	<meta itemprop="dateModified" content="2019-02-04T00:13:29+00:00">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Java">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          Java
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Java”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 4, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/02/04/fun-with-java-backwards-compatibility/" class="link black dim">
+        Fun with Java Backwards Compatibility
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>There&rsquo;s a fun little gotcha introduced in Java 10 which causes trouble for anyone wanting to support earlier JVMs.  If you take the code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.nio.ByteBuffer;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProblemCode</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> ByteBuffer buffer <span style="color:#f92672">=</span> ByteBuffer.<span style="color:#a6e22e">allocate</span>(10);
+</span></span><span style="display:flex;"><span>    buffer.<span style="color:#a6e22e">position</span>(10);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Yay it worked!&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you compile it on Java 8 it will run on any Java from 8 and above. If you compile it on Java 10 or above it will only work on Java 10 and above, even if you specify <code>-target 8 -source 8</code>.</p>
+    </div>
+  <a href="/2019/02/04/fun-with-java-backwards-compatibility/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 8, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/12/08/alert-dialogs-do-not-appear-when-using-webdriverbackedseleniu/" class="link black dim">
+        Alert Dialogs Do Not Appear When Using WebDriverBackedSeleniu
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>With Selenium 1, JavaScript alert and confirmation dialogs were intercepted by the Selenium JavaScript library so they never appeared on-screen and were accessed using selenium.isAlertPresent(), selenium.isConfirmationPresent(), selenium.chooseOkOnNextConfirmation() and similar methods.</p>
+<p>With Selenium 2 aka WebDriver, the dialogs <em>do</em> appear on screen and you access them with webDriver.switchTo().alert() which returns an Alert instance for further interactions.</p>
+<p>However, when you use WebDriverBackedSelenium to mix Selenium 1 and WebDriver APIs – for example, during migrations from one to the other – the alerts don&rsquo;t appear on screen and webDriver.switchTo().alert() always throws a NoAlertPresentException. This makes migration problematic because selenium.chooseOkOnNextConfirmation() doesn&rsquo;t have any effect if the next confirmation is triggered by an action performed directly through Web Driver.</p>
+    </div>
+  <a href="/2015/12/08/alert-dialogs-do-not-appear-when-using-webdriverbackedseleniu/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 4, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/12/04/testinglmax-introducing-elementspecification/" class="link black dim">
+        Testing@LMAX – Introducing ElementSpecification
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Today LMAX Exchange has released <a href="https://github.com/LMAX-Exchange/elementspec">ElementSpecification</a>, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:</p>
+<ul>
+<li>Make it easier to understand selectors by using a very English-like syntax</li>
+<li>Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests</li>
+<li>Strongly discourage writing overly complicated selectors.</li>
+</ul>
+<p>Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.</p>
+    </div>
+  <a href="/2015/12/04/testinglmax-introducing-elementspecification/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 7, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/05/07/the-single-responsibility-principle-and-whats-wrong-with-it/" class="link black dim">
+        The Single Responsibility Principle (and what’s wrong with it)
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Marco Cecconi – <a href="http://sklivvz.com/posts/i-dont-love-the-single-responsibility-principle">I don&rsquo;t love the single responsibility principle</a>:</p>
+<blockquote>
+<p>The principle is arbitrary in itself. What makes one and only Reason To Change™ always, unequivocally better than two Reasons To Change™? The number one sounds great, but I&rsquo;m a strong advocate of simple things and sometimes a class with more reasons to change is the simplest thing. I agree that we mustn&rsquo;t do mega-classes that try to do too many different things, but why should a class have one single Reason To Change™? I flatly disagree with the statement. It&rsquo;s not supported by any fact. I could say “three” reasons and be just as arbitrary. Interesting critique of the single responsibility pattern. The quote above is perhaps one of the weaker arguments against the single responsibility pattern but it struck a nerve with me because all too often we assume that because a rule sounds good it has some validity. In reality, picking one responsibility for a class is quite arbitrary and, as the article argues, deciding what a responsibility is is even more arbitrary.</p>
+    </div>
+  <a href="/2014/05/07/the-single-responsibility-principle-and-whats-wrong-with-it/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 21, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/03/21/javassist-java-8-invalid-constant-type-15/" class="link black dim">
+        Javassist &amp; Java 8 – invalid constant type: 15
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Here&rsquo;s a fun one, we have some code generated using javassist that looks a bit like:</p>
+<pre><code>public void doStuff(byte actionId) {&lt;br /&gt;  switch (actionId) {&lt;br /&gt;    case 0: doOneThing(); break;&lt;br /&gt;    case 1: doSomethingElse(); break;&lt;br /&gt;    default: &lt;br /&gt;      throw new IllegalArgumentException(&quot;Unknown action: &quot; + actionId);&lt;br /&gt;  }&lt;br /&gt;}
+</code></pre>
+<p>This works perfectly fine on Java 6 and Java 7 but fails on Java 8.  It turns out the problematic part is <code>&quot;Unknown action: &quot; + actionId</code>. When run on Java 8 that throws “java.io.IOException: invalid constant type: 15” in javassist.bytecode.ConstPool.readOne.</p>
+    </div>
+  <a href="/2014/03/21/javassist-java-8-invalid-constant-type-15/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 16, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/12/16/why-are-my-junit-tests-running-so-slow/" class="link black dim">
+        Why Are My JUnit Tests Running So Slow?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This is mostly a note to myself, but often when I setup a new Linux install, I find that JUnit tests run significantly slower than usual. The CPU is nearly entirely idle and there&rsquo;s almost no IO-wait making it hard to work out what&rsquo;s going on.</p>
+<p>The problem is that JUnit (or something in our tests or test runner) is doing a DNS lookup on the machine&rsquo;s hostname. That lookup should be really fast, but if you&rsquo;re connected to a VPN it may search the remote DNS server which takes time and makes the tests take much longer than they should.</p>
+    </div>
+  <a href="/2013/12/16/why-are-my-junit-tests-running-so-slow/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 26, 2011
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2011/09/26/background-logging-with-the-disruptor/" class="link black dim">
+        Background Logging with the Disruptor
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://vanillajava.blogspot.com/2011/09/exchange-and-gc-less-java.html">Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation</a>. He briefly compared it to the <a href="http://code.google.com/p/disruptor/">LMAX disruptor</a> and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.</p>
+<p>Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:</p>
+<blockquote>
+<p>This approach has similar principles to the <a href="http://code.google.com/p/disruptor/">Disruptor</a>. No GC using recycled, pre-allocated buffers and lock free operations (The Exchanger not completely lock free and doesn&rsquo;t busy wait, but it could)</p>
+    </div>
+  <a href="/2011/09/26/background-logging-with-the-disruptor/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 18, 2011
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2011/06/18/the-single-implementation-fallacy/" class="link black dim">
+        The Single Implementation Fallacy
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>As my colleague and favorite debating opponent <a href="http://blog.codeaholics.org/2011/the-single-implementation-paradox/">Danny Yates noted</a>:</p>
+<blockquote>
+<p>We got into a bit of a debate at work recently. It went a bit like this:</p>
+<p>“Gah! Why do we have this interface when there is only a single implementation?”</p>
+<p>(The stock answer to this goes:) “Because we need the interface in order to mock this class in our tests.”</p>
+<p>“Oh no you don’t, you can use the FingleWidget [insert appropriate technology of your mocking framework of choice here – e.g. JMock ClassImposteriser]! I’m smarter than you!”</p>
+    </div>
+  <a href="/2011/06/18/the-single-implementation-fallacy/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 26, 2011
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2011/03/26/abstracting-acceptance-tests/" class="link black dim">
+        Abstracting Acceptance Tests
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>For the past three months I’ve been settling into my new role with LMAX developing a high-performance financial “exchange”<a href="#footnote1:1301173295622">1</a>{#footlink1:1301173295622.footnote}, hence the silence on the blog lately. One of the things I’ve found extremely impressive about LMAX is the impressive acceptance test coverage and the relative ease with which they are maintained. Normally as a set of acceptance tests gets to be extremely large they can become an impediment to being agile and changing the system since a small change to the UI can affect a large number of tests.</p>
+    </div>
+  <a href="/2011/03/26/abstracting-acceptance-tests/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 12, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/11/12/apple-scented-coffee-beans-are-accurate/" class="link black dim">
+        Apple-Scented Coffee Beans are Accurate
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>So <a href="http://www.apple.com/pr/library/2010/11/12openjdk.html">Apple have announced that they will be contributing large swaths of code to the OpenJDK project</a> and that from Java 7 onwards, Java will be a separate download from Oracle, much like Flash is now a separate download from Adobe. This really shouldn’t be unexpected for <a href="http://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/">anyone who was paying attention</a> to what was going on rather than just running around thinking the sky was falling.</p>
+<p>This is fantastic news for Java developers of all types. Mac Java developers have been asking for Java to be separated from the OS for many, many years so that multiple versions of Java are more manageable and especially to decouple Java releases from the OS release timeline.</p>
+    </div>
+  <a href="/2010/11/12/apple-scented-coffee-beans-are-accurate/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 27, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/10/27/on-the-dvd-vs-in-software-update/" class="link black dim">
+        On the DVD vs in Software Update
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://radar.oreilly.com/2010/10/developer-week-in-review-3.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+oreilly%2Fradar%2Fatom+%28O%27Reilly+Radar%29">James Turner gives a week in review</a> and mentions the deprecated Java on OS X issue<a href="#footnote1:1288187415254">1</a>{#footlink1:1288187415254.footnote}. One thing to correct:</p>
+<blockquote>
+<p>Deprecation basically means that neither package will be delivered as part of the installation DVDs, and updates will not come via the Apple update mechanisms. It doesn&rsquo;t mean they won&rsquo;t be available anymore, it just means you&rsquo;ll have to download them directly from Oracle and Adobe.
+Firstly, there’s <a href="http://www.symphonious.net/2010/10/26/reading-the-apple-scented-coffee-beans/">nothing to suggest</a> that Java won’t come from Apple but not be part of the standard OS X package.</p>
+    </div>
+  <a href="/2010/10/27/on-the-dvd-vs-in-software-update/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 26, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/10/26/reading-the-apple-scented-coffee-beans/" class="link black dim">
+        Reading the Apple-Scented Coffee Beans
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>It’s interesting to see how many people are jumping to conclusions around the <a href="http://developer.apple.com/library/mac/#releasenotes/Java/JavaSnowLeopardUpdate3LeopardUpdate8RN/NewandNoteworthy/NewandNoteworthy.html%23//apple_ref/doc/uid/TP40010380-CH4-SW1">very carefully worded deprecation notice for Java in OS X</a>. Read it carefully and pay careful attention to what it actually says:</p>
+<blockquote>
+<p>As of the release of Java for Mac OS X 10.6 Update 3, the Java runtime ported by Apple and that ships with Mac OS X is deprecated. Developers should not rely on the Apple-supplied Java runtime being present in future versions of Mac OS X.
+Most notably the note <em>only</em> refers to the <em>Apple ported</em> JVM that <em>ships with</em> OS X. This leaves the door open for an Apple ported JVM that ships as a separate download and for a non-Apple JVM that ships with OS X.</p>
+    </div>
+  <a href="/2010/10/26/reading-the-apple-scented-coffee-beans/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 21, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/09/21/firefox-is-picky-about-clipboard-html-java-is-sloppy/" class="link black dim">
+        FireFox is Picky About Clipboard HTML, Java is Sloppy
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Windows uses a particularly ugly format for putting HTML on the clipboard, called <a href="http://msdn.microsoft.com/en-us/library/aa767917(VS.85).aspx">CF_HTML</a>. Basically, it adds a header to the content with pretty useless information essentially declaring how many bytes in the header (and yes you have to pad the byte counts since they themselves are included in the count).</p>
+<p>The problem between Java and Firefox is that Java always sets the ‘StartHTML’ and ‘EndHTML’ fields to -1 to indicate there is no context and Firefox will refuse to paste HTML from the clipboard if StartHTML or EndHTML is set to -1. As such, if you copy HTML from Java it will be impossible to paste into Firefox. It works perfectly with Word and IE.</p>
+    </div>
+  <a href="/2010/09/21/firefox-is-picky-about-clipboard-html-java-is-sloppy/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 15, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/06/15/java-awt-robot-and-windows-remote-desktop/" class="link black dim">
+        Java AWT Robot and Windows Remote Desktop
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h3 id="problem">Problem</h3>
+<p>If you’re attempting to use the Java AWT Robot to help automate tests, you may find it convenient to log in via remote desktop to watch the tests execute and verify they work well. You may also find that they work fine while you’re watching them but then inexplicably start failing whenever you aren’t. Basically your test is an <a href="http://en.wikipedia.org/wiki/Blink_(Doctor_Who)">angel from Dr Who</a>.</p>
+<p>What’s most likely happening is that when you disconnect from the remote desktop session, the console on the Windows box is left in a locked state and you need to enter the user password before you can resume interacting with programs on the main display. Since the AWT Robot is doing a very effective job of acting like a user, it also can’t interact with the programs you’re intending and instead is interacting, probably quite ineffectively, with the login dialog box.</p>
+    </div>
+  <a href="/2010/06/15/java-awt-robot-and-windows-remote-desktop/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 9, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/03/09/returning-parameters-in-jmock-2/" class="link black dim">
+        Returning Parameters in JMock 2
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you have a method like:</p>
+<pre><code>String getParameter(String name, String defaultValue)
+</code></pre>
+<p>where defaultValue is returned if the parameter isn’t specified, it can be challenging to get the right behavior in JMock without just hard coding what the defaultValue should be. Fortunately, a custom match which doubles as an Action can solve this pretty easily:</p>
+<pre>import org.hamcrest.*;
+import org.jmock.api.*;
+
+public class CapturingMatcher&#60;T&#62; extends BaseMatcher&#60;T&#62; implements Action {
+	public T captured;
+
+	public boolean matches(Object o) {
+		try {
+			captured = (T)o;
+			return true;
+		} catch (ClassCastException e) {
+			return false;
+		}
+	}
+
+	public void describeTo(Description description) {
+		description.appendText("captured value ");
+		description.appendValue(captured);
+	}
+
+	public Object invoke(Invocation invocation) throws Throwable {
+		return captured;
+	}
+}
+</pre>
+<p>It can then be used like:</p>
+    </div>
+  <a href="/2010/03/09/returning-parameters-in-jmock-2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 3, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/03/03/show-me-the-metrics/" class="link black dim">
+        Show Me the Metrics
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>There’s been a lot of new innovations going on in programming languages and development techniques in general lately, but there’s a really key missing element: metrics.</p>
+<p>Seeing posts like Stephan Schmidt’s <a href="http://codemonkeyism.com/generation-java-programming-style/">Go Ahead: Next Generation Java Programming Style</a> and <a href="http://beust.com/weblog2/archives/000517.html">the response from Cedric Otaku</a> really should make any professional software engineer concerned about the future of their craft. Not because either of them are necessarily right or wrong, but because two highly skilled engineers are engaged in debate based purely on pure personal preference. There’s barely even any anecdotal evidence provided, let alone actual measurements to see what impact on productivity, quality or other desirable qualities the proposed approaches have.</p>
+    </div>
+  <a href="/2010/03/03/show-me-the-metrics/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 21, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/01/21/better-file-system-apis/" class="link black dim">
+        Better File System APIs
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://techtangents.wordpress.com/2010/01/20/filesystems/">Dylan complained about the lack of testability with file system APIs</a>, which reminded me of a neat looking library I stumbled across while looking at build systems: <a href="http://www.entityfs.org/">EntityFS</a>. Among a bunch of other useful sounding things it provides:</p>
+<blockquote>
+<p><span class="Apple-style-span" style=" border-collapse: separate; color: rgb(0, 0, 0); font-family: Times; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium;"><span class="Apple-style-span" style=" font-family: serif; line-height: 20px; text-align: left;">File system APIs are backend-independent. File systems can be created in RAM memory, on Zip files, on file system directories, etcetera</span></span>
+Sadly it’s under the LGPL which makes it difficult if you happen to sell to big enterprises that are still somewhat scared of GPL type licenses, but they’re nowhere near as common as they used to be. I should note though that Holocene Software are offering commercial licenses for an undisclosed price.</p>
+    </div>
+  <a href="/2010/01/21/better-file-system-apis/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 25, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/09/25/the-new-cross-platform/" class="link black dim">
+        The New Cross Platform
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>When I first started professional programming, Java was reasonably young and was being hailed as a work of genius with it’s cross platform deployment capabilities. Programming was going to be revolutionised forever and all programs would run on any OS<a href="#footnote1:1253859827521">1</a>{#footlink1:1253859827521.footnote}. Then Java wound up being most popular on the server side and liberated server code from the choice of OS more than the desktop side<a href="#footnote2:1253860194622">2</a>{#footlink2:1253860194622.footnote}.</p>
+<p>Server OS’s started to compete mostly on how well they were a server rather than what programs ran on them because what really mattered was that you could run the Java stack. In other words, Java became the platform that people deployed their applications to. It shouldn’t come as a surprise that a single platform didn’t stand unchallenged for long. .NET sprang up as the big enterprise competitor to Java and all of a sudden you had to choose sides again.</p>
+    </div>
+  <a href="/2009/09/25/the-new-cross-platform/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 22, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/06/22/i-love-parser-generators-i-hate-parser-generators/" class="link black dim">
+        I Love Parser Generators, I Hate Parser Generators
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img loading="lazy" width="185" src="http://www.symphonious.net/wp-content/uploads/2009/06/pitr_LEGO_smiley_-_scared.png" height="200" style=" float: left;" alt="Parsers drive me mad." />I was reminded on the weekend of how much I like working with parser generators – they’re just so pure and clean. You really feel like you’re working with a grammar and all those CS lectures come flooding back. Writing code to parse the same content by hand just never has that feel. Plus they create incredibly accurate parsers in very little time at all.</p>
+    </div>
+  <a href="/2009/06/22/i-love-parser-generators-i-hate-parser-generators/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 20, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/03/21/install-the-msn-toolbar-with-java/" class="link black dim">
+        Install the MSN Toolbar With Java?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>So Microsoft has provided handy instructions for upgrading Java which is nice of them – especially since IE 8 doesn’t play nice with versions of Java before 1.6.0_11. Step 6 suggests installing the MSN toolbar along with Java though:</p>
+<blockquote>
+<p>In addition to Java, you can also install the MSN Toolbar. The MSN Toolbar offers headlines, news alerts, and search tools from Microsoft. For more information see the MSN Toolbar home page. To install the toolbar, click the <strong>Terms of Use</strong> or <strong>Privacy Statement</strong> buttons and then read the statements. If you don&rsquo;t want to install the toolbar, clear the <strong>Install the new MSN Toolbar</strong> check box.
+The odd thing is, last time I installed Java (this morning) it was the Yahoo toolbar that Java tried to install along the way. I guess Sun will give kick backs to whoever sends them traffic…</p>
+    </div>
+  <a href="/2009/03/21/install-the-msn-toolbar-with-java/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 24, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/11/24/debugging-deadlocks-print-all-stack-traces/" class="link black dim">
+        Debugging Deadlocks – Print All Stack Traces
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>One of the hardest types of bugs to track down is a deadlock situation. They are very time dependant which makes them intermitten, specific to a particular computer and configuration and generally impossible to reproduce in a debugger. Fortunately, at least in Java, it’s fairly easy to spot most of the situations where a deadlock is possible:</p>
+<ol>
+<li>Calls to SwingUtilities.invokeAndWait</li>
+<li>Calls to Object.wait()</li>
+<li>synchronized blocks</li>
+</ol>
+<p>There might be a few others depending on the libraries you’re using, but starting with those three, in that order, is very likely to lead you to at least one point in the deadlock.  Just put an old fashioned System.err.println before and after each of those calls and you’ll quite quickly see where things are waiting forever.</p>
+    </div>
+  <a href="/2008/11/24/debugging-deadlocks-print-all-stack-traces/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 15, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/09/16/loading-pict-images-in-java/" class="link black dim">
+        Loading PICT Images In Java
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Since the search function for Apple’s mailing lists is pretty much useless, I’m making a note of the <a href="http://lists.apple.com/archives/Java-dev/2008/Sep/thrd2.html#00154">Reading PICT Images</a> thread which contains numerous options for rendering PICT images in Java on OS X.</p>
+    </div>
+  <a href="/2008/09/16/loading-pict-images-in-java/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 26, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/08/26/url-timeouts/" class="link black dim">
+        java.net.URL Timeouts
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://bluxte.net/blog/2008-08/25-27-10.html">Sylvain Wallez</a>:</p>
+<blockquote>
+<p>If your application uses <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/net/URL.html">java.net.URL</a>, and chances it does are very high, and you are using Sun&rsquo;s JVM (since 1.4.2), you should set the <code>sun.net.client.defaultConnectTimeout</code> and <code>sun.net.client.defaultReadTimeout</code> <a href="http://java.sun.com/javase/6/docs/technotes/guides/net/properties.html">system properties</a> to a reasonable value. Otherwise, if a remote site hangs, your application or server will also hang.
+Useful to know…</p>
+</blockquote>
+    </div>
+  <a href="/2008/08/26/url-timeouts/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 15, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/03/16/componentorientation-and-right-to-left-languages/" class="link black dim">
+        ComponentOrientation and Right To Left Languages
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>For some time, we&rsquo;ve had an Arabic translation in EditLive! and the editor pane itself fully supports bidirectional text, but we&rsquo;ve never updated the UI to flip over to a mirror image when a right to left language is in use. Java actually has pretty reasonable support for this via the ComponentOrientation property in AWT (and inherited through to Swing) but there are a couple of annoying limitations:</p>
+<ol>
+<li>It applies on a per component basis, so there isn&rsquo;t a single place you can apply the orientation and be done with it.</li>
+<li>Various components still don&rsquo;t flip, eg JSplitPane.</li>
+<li>The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode.</li>
+</ol>
+<p>For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.</p>
+    </div>
+  <a href="/2008/03/16/componentorientation-and-right-to-left-languages/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 5, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/11/06/kudos-to-landon-fuller/" class="link black dim">
+        Kudos To Landon Fuller
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>With all the <a href="http://www.symphonious.net/2007/10/31/java-5-on-leopard/">complaining about Apple not having shipped JDK 6 with Leopard</a> it&rsquo;s nice that someone has actually stopped whining and started coding. So kudos to Landon Fuller for <a href="http://www.oreillynet.com/onjava/blog/2007/11/initial_attempts_at_porting_fr.html">actually doing something useful</a>. Of course, he hasn&rsquo;t really gotten anywhere because porting Java is an awful lot of work, but if nothing else he&rsquo;ll understand why it takes Apple so long.</p>
+<p>It also means we can start the timer to see if the open source model can actually bring Java 6 to OS X faster than Apple can.</p>
+    </div>
+  <a href="/2007/11/06/kudos-to-landon-fuller/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 31, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/10/31/java-5-on-leopard/" class="link black dim">
+        Java 5 on Leopard
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>The rumors of Java 5 being horribly broken beyond all usability on Leopard are, quite frankly, bullshit. It&rsquo;s faster, has better integration with the OS, the Aqua L&amp;F is significantly improved, it has full support for 64 bit and a <a href="http://developer.apple.com/releasenotes/Java/JavaLeopardRN/index.html">huge raft of bug fixes and miscellaneous improvements</a>. Everyone&rsquo;s pointing to <a href="http://www.javalobby.org/java/forums/t102936.html">an uninformed rant on JavaLobby</a> which as it&rsquo;s key example actually highlights a major improvement to the Aqua L&amp;F – the JOptionPane icons <em>should</em> use the application icon, not some obscure artwork that&rsquo;s not used anywhere else in the system. The new dialogs actually allow you to look <em>more</em> like native app, not less. It&rsquo;s even explained in <a href="http://developer.apple.com/releasenotes/Java/JavaLeopardRN/index.html">the release notes</a> – heck, the old implementation was probably reported as a bug against Tiger.</p>
+    </div>
+  <a href="/2007/10/31/java-5-on-leopard/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 28, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/10/28/java-on-leopard/" class="link black dim">
+        Java On Leopard
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I was silly enough to open my work email this morning, only to discover that the Apple Java-Dev list had broken out into the age old Java on OS X argument. First up here&rsquo;s what people have reported<a id="footlink1-1193534929322" href="#footnote1-1193534929322" class="footnote" name="footlink1-1193534929322">1</a>:</p>
+<ul>
+<li>Java 6 is not included with Leopard.</li>
+<li>The previous Java 6 DP which was pulled from ADC a while back does not run on Leopard.</li>
+<li>Upgrading to Leopard from a system with the Java 6 DP installed can cause some frustrating issues with switching Java versions.</li>
+<li>Apparently Java 5 is much faster on Leopard.</li>
+<li>Java 5 looks different with quite a few tweaks to the Aqua L&amp;F.</li>
+<li>Some fonts don&rsquo;t look right in Java 5 on Leopard because it uses the Sun 2D graphics pipeline instead of the Quartz pipeline. The Sun 2D pipeline doesn&rsquo;t support sub-pixel antialiasing. You can override the default and there&rsquo;s a few other conditions that trigger the Quartz pipeline to be used by default.</li>
+<li>Java 5 supports 64bit on Intel Core 2s (but not PPC). There seemed to be some problem with it when using the Java tools in /usr/bin though – can&rsquo;t say I followed that discussion too carefully.</li>
+<li>Lots of documentation is coming, but not much is available yet.</li>
+</ul>
+<p>Pretty sure that&rsquo;s the Java on Leopard wrap up, the other 150 emails to the list were just the usual gnashing of teeth about Apple abandoning Java and how Apple will lose so much business if they don&rsquo;t get Java 6 out yesterday etc etc etc. Of course, Apple&rsquo;s doing better than it ever has before and JavaOne was full of people using Macs – without Java 6 – so it would seem it&rsquo;s all just talk and insignificant numbers of people are actually leaving OS X. As a fresh twist, this time round people are talking of porting OpenJDK to OS X themselves and finally freeing themselves from the evil clutches of Apple! Apparently no one has told them that Java 6 isn&rsquo;t available from OpenJDK either – it will become Java 7 and is quite some way from that yet. I think it&rsquo;s a safe bet that Apple will have Java 6 out long before even a reasonable uncertified port of OpenJDK is available for OS X.</p>
+    </div>
+  <a href="/2007/10/28/java-on-leopard/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 21, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/08/21/tomcat-startup-issues/" class="link black dim">
+        Tomcat Startup Issues
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I was so close to having everything working… EC2, S3, automatically pulling down the latest build and deploying it, Tomcat 5.5 with the native APR libraries, SSL support and using iptables to forward ports 80 and 443 directly over to Tomcat. Everything ready to go. Except Tomcat isn&rsquo;t so keen on starting.</p>
+<p>It usually starts, though it can take over half an hour to do so and on a couple of occasions it&rsquo;s just flat out sat there and done nothing for multiple hours on end. At startup it outputs the log message:</p>
+    </div>
+  <a href="/2007/08/21/tomcat-startup-issues/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 16, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/08/17/solr-is-cool/" class="link black dim">
+        Solr Is Cool
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve struggled with Lucene before and failed to configure it properly resulting in absolutely horrendous search results so a recent need to implement search functionality wasn&rsquo;t something I particularly wanted to take on. In fact, I was prepared to do almost anything to avoid delving back into Lucene filters and parsers and tokenizers and &ldquo;stuff&rdquo;. This tends to be problematic given that Lucene is the dominate search library – so popular in fact that it&rsquo;s been ported to other languages.</p>
+    </div>
+  <a href="/2007/08/17/solr-is-cool/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/06/20/permgen-nightmares/" class="link black dim">
+        PermGen Nightmares
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>That permanent generation had better provide some pretty damn amazing optimizations or I&rsquo;m going to add it&rsquo;s inventor to my list of people to track down and torture at next JavaOne. It turns out you can only reload a Tomcat webapp so many times before the PermGen space fills up and everything dies. That&rsquo;s annoying enough in development but it means I can&rsquo;t upload a new WAR file to our test server regularly without also bouncing Tomcat. Right now our continuous integration server (Bob the Builder) is doing just that after every commit so the server isn&rsquo;t staying up all that long.</p>
+    </div>
+  <a href="/2007/06/20/permgen-nightmares/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 19, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/06/19/caching-in-tomcat/" class="link black dim">
+        Caching in Tomcat – SOLVED!
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>It took forever, but I&rsquo;ve finally how to stop Tomcat adding a Pragma: no-cache header to any resources in a secure context. You need to set disableProxyCaching to false, so if you&rsquo;re using basic authentication you need a valve like:</p>
+<pre>&#60;Valve className="org.apache.catalina.authenticator.BasicAuthenticator"<br />  disableProxyCaching="false" /&#62;</pre>
+<p>That needs to go within the <context> definition for your web-app. So, within the META-INF (some sources say within WEB-INF?) create a context.xml file like:</p>
+<pre>&#60;Context&#62;<br />&#60;Valve className="org.apache.catalina.authenticator.BasicAuthenticator"<br />  disableProxyCaching="false" /&#62;<br />&#60;/Context&#62;</pre>
+<p>I found deploying as a WAR didn&rsquo;t work (it seemed to ignore the context.xml), but deploying the exploded files did work and that&rsquo;s fine by me.</p>
+    </div>
+  <a href="/2007/06/19/caching-in-tomcat/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 18, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/06/19/wowsers-suns-updating-the-swing-text-apis/" class="link black dim">
+        Wowsers! Sun’s Updating The Swing Text APIs
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Apparently Sun has finally decided to give some love to the Swing text APIs with <a href="http://weblogs.java.net/blog/g_s_m/archive/2007/06/removing_elemen_1.html">the addition of a removeElement method</a>. What the linked article fails to mention is that in the particular example given, you can remove the list item with a simple document.remove(e.getStartOffset(), e.getEndOffset() - e.getStartOffset());</p>
+<p>When you get into trouble with the swing text apis is when there are two elements that start and end at the same point – ie: a list as the only child of a table cell:</p>
+    </div>
+  <a href="/2007/06/19/wowsers-suns-updating-the-swing-text-apis/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 12, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/06/12/no-signed-applets-for-windows-safari/" class="link black dim">
+        No Signed Applets For Windows Safari
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>It turns out the root cause of the problems I was seeing with Safari on Windows is that it simply doesn&rsquo;t support signed applets. That&rsquo;s pretty sad really. Apple seem to have implemented their own Java plugin instead of using the one that Sun provides (they&rsquo;re using the Sun JRE via their plugin) and of course it&rsquo;s missing most of the features you&rsquo;d want from a Java plugin.</p>
+<p>I&rsquo;ll report it to Apple officially just as soon as someone fixes the bug reporter – it&rsquo;s currently down. Perhaps there are too many people logging bugs against the new Safari and Leopard builds….</p>
+    </div>
+  <a href="/2007/06/12/no-signed-applets-for-windows-safari/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 11, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/06/12/safari-brings-horrible-debugging-to-another-platform/" class="link black dim">
+        Safari Brings Horrible Debugging To Another Platform
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>So Apple have released Safari for Windows – really no idea why, but they have. Sadly, just like on Mac it has terrible JavaScript and Java debugging support. In fact, it&rsquo;s worse on Windows than on Mac – anyone know how to turn the debug menu on? Anyone know how to get a Java console to appear?</p>
+<p>I&rsquo;d really, really like to make things work with it but all I can do at the moment is randomly guess at the source of problems.</p>
+    </div>
+  <a href="/2007/06/12/safari-brings-horrible-debugging-to-another-platform/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 11, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/05/11/the-benefits-of-open-sourcing-java-for-developers/" class="link black dim">
+        The Benefits Of Open Sourcing Java For Developers
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there&rsquo;s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what&rsquo;s the benefit?</p>
+    </div>
+  <a href="/2007/05/11/the-benefits-of-open-sourcing-java-for-developers/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 26, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/26/japplet-memory-leaks/" class="link black dim">
+        JApplet Memory Leaks
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn&rsquo;t have been any references left around. We&rsquo;ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it&rsquo;s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you&rsquo;re using a dual-cpu or dual-core system.</p>
+    </div>
+  <a href="/2007/04/26/japplet-memory-leaks/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 23, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/24/java-outofmemoryerror-sanity-check/" class="link black dim">
+        Java OutOfMemoryError – Sanity Check
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Just for my sanity, before an OutOfMemoryError is thrown, the garbage collector should do everything it can to free up more memory right? What I&rsquo;m seeing now is that the JVM does a partial GC, throws an OutOfMemoryError and then decides to actually do a full GC which frees up enough RAM to get things working again.</p>
+<p>Very annoying and I&rsquo;m not sure what I can do about it. There are definitely no remaining references, but I still can&rsquo;t get that memory back.</p>
+    </div>
+  <a href="/2007/04/24/java-outofmemoryerror-sanity-check/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 23, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/23/remember-to-turn-on-antialiasing/" class="link black dim">
+        Remember To Turn On Antialiasing
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you&rsquo;re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn&rsquo;t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.</p>
+<p>For example, originally <a href="http://www.symphonious.net/2007/04/20/improving-the-applet-startup-experience-2/">the new progress bar I added last week</a> didn&rsquo;t have antialiasing on, but in the tweaks I&rsquo;ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It&rsquo;s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn&rsquo;t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.</p>
+    </div>
+  <a href="/2007/04/23/remember-to-turn-on-antialiasing/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 20, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/20/improving-the-applet-startup-experience-2/" class="link black dim">
+        Improving The Applet Startup Experience
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve spent most of this week working on making the start up experience for our applet better. It should look better, take longer and most importantly feel fast to the user. The first step is obviously to profile and optimize – the faster the start up time actually is, the easier it is to make it feel fast for users. There were a few things we could do to help out there, but nothing that really made a dramatic difference.</p>
+    </div>
+  <a href="/2007/04/20/improving-the-applet-startup-experience-2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 27, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/02/27/beware-the-unused-thread/" class="link black dim">
+        Beware The Unused Thread
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Many people think that because Java has garbage collection, that memory leaks aren&rsquo;t possible – this is totally and utterly wrong. One really good way to introduce leaks into Java programs without blatantly holding on to object references is to create a new thread and then not use it. Once you create a thread, it is added to the list of runnable threads. I&rsquo;m not sure why, but even before the thread is actually started, Java treats it as a running thread and holds on to it. Obviously threads that are currently running shouldn&rsquo;t be garbage collected, but it seems like an unfortunate side effect that newly created threads also can&rsquo;t be garbage collected. Once you know about it, the solution is simple – only ever create a thread immediately before you call its start method.</p>
+    </div>
+  <a href="/2007/02/27/beware-the-unused-thread/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 30, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/01/30/here-we-go-again-aka-java-6-on-os-x/" class="link black dim">
+        Here We Go Again, aka Java 6 On OS X
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>A new release of Java, a new wave of people saying they won&rsquo;t buy Macs unless Apple get their Java update now, dammit now! <a href="http://weblogs.java.net/blog/joconner/archive/2007/01/give_me_any_rea.html">John O&rsquo;Conner</a> joins the chorus. Of course, there&rsquo;s no mention of <em>why</em> he needs Java 6 instead of Java 5, just that he has to be up to date with the very latest. Last time round at least people were eager to use generics and other new language features, but there&rsquo;s really not that much that changed in Java 6 outside of a few specific cases.</p>
+    </div>
+  <a href="/2007/01/30/here-we-go-again-aka-java-6-on-os-x/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

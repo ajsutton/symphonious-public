@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Internationalisation on Symphonious</title>
+    <link>https://www.symphonious.net/categories/internationalisation/</link>
+    <description>Recent content in Internationalisation on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Fri, 26 Apr 2013 01:08:22 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/internationalisation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doctypes, Compatibility Modes, Charsets and Fonts</title>
+      <link>https://www.symphonious.net/2013/04/26/doctypes-compatibility-modes-charsets-and-fonts/</link>
+      <pubDate>Fri, 26 Apr 2013 01:08:22 +0000</pubDate>
+      <guid>https://www.symphonious.net/2013/04/26/doctypes-compatibility-modes-charsets-and-fonts/</guid>
+      <description>&lt;p&gt;This information is all covered in much more detail elsewhere on the web but for my own future reference, here&amp;rsquo;s a primer on doctypes, compatibility modes, charsets and fonts which was required to explain why certain Chinese characters weren&amp;rsquo;t showing up in IE8. Of course the best answer is that you need to have the East Asian Font pack installed and then it just works (usually) but this tends to be useful background and saves “server side” folks from a number of gotchas.&lt;/p&gt;
+&lt;h2 id=&#34;doctypes-and-compatibility-modes&#34;&gt;Doctypes and Compatibility Modes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;IE 7 and above has an insane array of compatibility modes which are out to get you. The most common gotcha is that it will use compatibility mode (emulating IE7) if the website is in the “intranet zone”. There&amp;rsquo;s an option to disable this somewhere in the preferences dialogs.  You wind up in the intranet zone if you&amp;rsquo;re accessing a site via any domain name that doesn&amp;rsquo;t look like a real one (e.g. http://dog/ is in the intranet zone).&lt;/li&gt;
+&lt;li&gt;If you can avoid falling into compatibility mode, any pages including the DOCTYPE as &lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.01//EN&amp;quot; &amp;quot;http://www.w3.org/TR/html4/strict.dtd&amp;quot;&amp;gt;&lt;/code&gt; will render in standards compliant mode (where the world is as sane as it gets in web development). Go with the shorter version unless you have a reason not to.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hsivonen.iki.fi/doctype/#&#34;&gt;http://hsivonen.iki.fi/doctype/&lt;/a&gt; is the gold standard for information about browser modes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;character-sets-and-fonts&#34;&gt;Character Sets and Fonts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re tracking down problems with foreign languages there are two major categories of problems – encoding corruption (where characters come out garbled or as ?) and missing glyphs in fonts (where characters come out as little boxes).&lt;/li&gt;
+&lt;li&gt;Corruption is fixed by specifying the same character encoding everywhere. It is a security issue if any webpage is missing a meta tag defining the character set (smallest variant is &lt;code&gt;&amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;&lt;/code&gt;). It must be the first tag in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; of the document.&lt;/li&gt;
+&lt;li&gt;Little square boxes mean that either the font currently in use doesn&amp;rsquo;t have a glyph for that particular character and the font fallback routine was unable to find any font on the system which supports that character. &lt;/li&gt;
+&lt;li&gt;Browsers have a default stylesheet which is automatically applied to every page which commonly sets a specific font-family and font-size for text input elements, so adding the style &lt;code&gt;body { font-family: &#39;Arial Unicode MS&#39; }&lt;/code&gt; may get some Asian characters working in the main content but not in text boxes unless you also add &lt;code&gt;input { font-family: inherit; }&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The security issue mentioned above is that any page which doesn&amp;rsquo;t define a character set but includes any form of user supplied content is vulnerable to a cross site scripting injection attack – even if the user supplied content is escaped properly, because the content may include a character that causes the browser to incorrectly switch to UCS-7 or other weird character sets and drastically change the meaning of the content on the page (hence the user content is no longer correctly escaped). There have been steps taken by modern browsers to remove this risk (including removing support for UCS-7 I believe) but its good practice to specify your charset explicitly anyway.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>i18n Trap #1</title>
+      <link>https://www.symphonious.net/2011/03/04/i18n-trap-1/</link>
+      <pubDate>Fri, 04 Mar 2011 19:41:38 +0000</pubDate>
+      <guid>https://www.symphonious.net/2011/03/04/i18n-trap-1/</guid>
+      <description>&lt;p&gt;i18n trap #1: I should have a simple way to map an Enum to a presentable string.&lt;/p&gt;
+&lt;p&gt;This seems eminently reasonable at first glance – there are many cases where you have one of a set of things and need to inform the user which one you have. Unfortunately human language, unlike their computer language counter-parts, are context-dependent. So that single Enum value in code could well be presented with many different words when presented as part of different sentences or in different contexts.&lt;/p&gt;
+&lt;p&gt;It turns out that it’s not just language contexts that use these variants either. You might display a short string as a value in a table but have a longer explanatory string as the tooltip. That should be natural within the code, not some special case exception.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

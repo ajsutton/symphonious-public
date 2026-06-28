@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Symphonious" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="Symphonious" />
+      
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/posts/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/posts/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Posts">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+
+	<meta itemprop="name" content="Posts">
+	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Posts">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 16, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/11/17/creating-validator-password-files/" class="link black dim">
+        Creating validator password files
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Teku requires a password file for each individual keystore, with the same relative path as the keystore but a <code>.txt</code>extension. If all the keystores have the same password, you can copy a single <code>password.txt</code>file for all the keystores with the command below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> keyFile in keys/*; <span style="color:#66d9ef">do</span> cp password.txt <span style="color:#e6db74">&#34;secrets/</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$keyFile<span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/keys\/\(.*\)\.json/\1/&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">.txt&#34;</span>; <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Note that the <code>keys</code> directory is specified twice in that command so if the keys are in a different directory name, make sure to update both places.</p>
+    </div>
+  <a href="/2020/11/17/creating-validator-password-files/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 7, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/09/08/exploring-eth2-attestation-inclusion/" class="link black dim">
+        Exploring ETH2: Attestation Inclusion
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Last week I put together a video explaining attestation inclusion and delays in ETH2. This is one of the keys to maximising your validator rewards and the health of the network.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/SPcgevcDqDE?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+    </div>
+  <a href="/2020/09/08/exploring-eth2-attestation-inclusion/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 9, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/08/09/easy-ssh-access-to-ec2-hosts/" class="link black dim">
+        Easy SSH Access to EC2 Hosts
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>We run a bunch of hosts on EC2 and while most just have the default DNS name, they all have a Name tag to identify their purpose. While there&rsquo;s lots of automation setup via ansible, it is often still necessary to SSH directly into a particular box, especially while debugging issues.</p>
+<p>I find it annoying to have to go log into the AWS console just to find the DNS name of the particular box I want so I&rsquo;ve written a little script that searches for hosts based on the name tag and can then SSH into them.</p>
+    </div>
+  <a href="/2020/08/09/easy-ssh-access-to-ec2-hosts/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 5, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/07/06/exploring-ethereum-2-the-curious-case-of-the-invisible-fork/" class="link black dim">
+        Exploring Ethereum 2: The Curious Case of the Invisible Fork
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>It&rsquo;s like something out of a Sherlock novel – the doors are all locked, windows barred and yet somehow the jewels have been stolen. Or in this case, every block created forms a single chain and yet somehow the validator client has wound up on the wrong fork. Fortunately Sherlock, or rather Cem Ozer, was on the case. This is the story behind those very annoying “Produced invalid attestation” errors that Teku would sometimes generate.</p>
+    </div>
+  <a href="/2020/07/06/exploring-ethereum-2-the-curious-case-of-the-invisible-fork/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 23, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/01/23/archunit/" class="link black dim">
+        ArchUnit
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Stumbled across <a href="https://www.archunit.org/">ArchUnit</a> today which looks useful. In particular I think there&rsquo;s power in being able to assert that certain packages really never depend on each other. Although gradle/maven modules would probably be a better level to assert at. It&rsquo;s depressingly common for code bases to be split into separate modules with the intention that they be a clear separation of concerns only for a web of dependencies to be added because someone wanted to reuse some class and didn&rsquo;t refactor to a common module.</p>
+    </div>
+  <a href="/2020/01/23/archunit/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 27, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/11/27/exploring-ethereum-2-weak-subjectivity-period/" class="link black dim">
+        Exploring Ethereum 2: Weak Subjectivity Period
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Occasionally the term “weak subjectivity period” pops up in Eth2 discussions. It&rsquo;s a weird concept that you can usually just watch fly by and not miss too much. But when you&rsquo;re talking about how to sync an existing Eth2 chain it becomes quite important. Probably the best resource for it is Vitalik&rsquo;s post: <a href="https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity/">Proof of Stake: How I Learned to Love Weak Subjectivity</a> I&rsquo;ve struggled to get my head around it and why it matters so am writing up my current understanding. There is almost certainly at least one mistake in here somewhere…</p>
+    </div>
+  <a href="/2019/11/27/exploring-ethereum-2-weak-subjectivity-period/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 27, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/11/27/exploring-ethereum-what-happens-to-transactions-in-non-canonical-blocks/" class="link black dim">
+        Exploring Ethereum: What happens to transactions in non-canonical blocks?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>In Ethereum, there are often short forks near the head of the chain because two miners found the PoW solution for new blocks at around the same time. Only one of those chains will ultimately wind up being considered the canonical chain and any blocks from non-canonical chains wind up having no effect on the state. <a href="https://www.symphonious.net/2019/11/01/exploring-ethereum-ommers-vs-non-canoncial-blocks/">Non-canonical blocks <em>may</em> wind up being added as ommers</a> in future blocks, but everything in this article applies regardless of whether that happens.</p>
+    </div>
+  <a href="/2019/11/27/exploring-ethereum-what-happens-to-transactions-in-non-canonical-blocks/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 31, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/11/01/exploring-ethereum-ommers-vs-non-canoncial-blocks/" class="link black dim">
+        Exploring Ethereum: Ommers vs Non-Canonical Blocks
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>One subtle detail in the way Ethereum works is that there is a difference between Ommers and Non-Canonical Blocks. It&rsquo;s common for people to use the term Ommer for both of these and most of the time the difference doesn&rsquo;t matter but sometimes it does.</p>
+<p>So what is a non-canonical block? Non-canonical blocks are ones which a client imports but which don&rsquo;t wind up on the canonical chain. Maybe they were on the canonical chain for a while and then a re-org switched to a different chain or maybe they were imported to a fork and spent their entire life languishing there. Either way, they don&rsquo;t form part of the current consensus chain and have absolutely no effect on the world state. It&rsquo;s like their transactions have never been executed and no one gets any form of miner reward for them. Non-canonical blocks must be entirely valid blocks that could form part of the canonical chain, but weren&rsquo;t because we found a better chain.</p>
+    </div>
+  <a href="/2019/11/01/exploring-ethereum-ommers-vs-non-canoncial-blocks/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 24, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/09/25/moolah-diaries-making-inject-loader-and-vuetify-loader-play-nice/" class="link black dim">
+        Moolah Diaries: Making inject-loader and vuetify-loader play nice
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve been upgrading Moolah after a long period of neglect. One of the tasks is to update it to WebPack 4. Mostly this went smoothly by just creating a new project with vue-cli and bringing its generated build setup over to replace the old one. Then a bunch of tweaking.</p>
+<p>One thing that did bite however, was tests using inject-loader started failing as soon as I added vuetify-loader to the project with:</p>
+    </div>
+  <a href="/2019/09/25/moolah-diaries-making-inject-loader-and-vuetify-loader-play-nice/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 13, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/08/14/into-eth-2-adding-artemis/" class="link black dim">
+        Into Eth 2 – Adding Artemis
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Continuing our adventures in setting up a private beacon chain… Previously we got an Eth 1 chain with the deposit contract and successfully sent a deposit to register a new validator. So far though, we have no way of telling if it actually worked. What we need is an actual beacon chain client. Enter Artemis…</p>
+<h2 id="step-3-8211-add-a-beacon-chain-client">Step 3 – Add a Beacon Chain Client</h2>
+<p>We&rsquo;ll be using Artemis, partly because I&rsquo;m incredibly biased and partly because it happens to support the exact version of the deposit contract we&rsquo;ve deployed (what a coincidence!).</p>
+    </div>
+  <a href="/2019/08/14/into-eth-2-adding-artemis/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 13, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/08/13/into-eth-2-eth-1-and-the-deposit-contract/" class="link black dim">
+        Into Eth 2 – Eth 1 and the Deposit Contract
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve started a little side-project to setup a “private beacon chain”. The aim is to better understand how the beacon chain works and start to discover some of the things still required to be built or fixed in clients before it can officially launch.</p>
+<p>So what is a private beacon chain? It&rsquo;s intended to be an entirely self-contained, runs-on-my-laptop instance of the beacon chain, run as a small-scale simulation of how the real beacon chain will be fired up.</p>
+    </div>
+  <a href="/2019/08/13/into-eth-2-eth-1-and-the-deposit-contract/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 7, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/08/07/adding-a-dco-signed-off-by-to-every-commit-in-a-git-repo/" class="link black dim">
+        Adding a DCO Signed-off-by to every commit in a git repo
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you&rsquo;re switching from a CLA model to a DCO model you may want to add a Signed-off-by line to every existing commit so that you can run automated DCO checks over the entire repository. Doing this obviously assumes that your CLA sets things up so that you are actually in a position to provide a DCO sign-off.</p>
+<p>Once you&rsquo;re happy with all the legalities, the change is a single command using git filter-branch:</p>
+    </div>
+  <a href="/2019/08/07/adding-a-dco-signed-off-by-to-every-commit-in-a-git-repo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+    </section>
+		<ul class="pagination pagination-default">
+			<li class="page-item">
+				<a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+			</li>
+		<li class="page-item">
+			<a href="/posts/page/3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+		</li>
+			<li class="page-item">
+				<a href="/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+			</li>
+			<li class="page-item active">
+				<a aria-current="page" aria-label="Page 4" class="page-link" role="button">4</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
+			</li>
+		<li class="page-item">
+			<a href="/posts/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+		</li>
+			<li class="page-item">
+				<a href="/posts/page/102/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+			</li>
+		</ul></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Here We Go Again, aka Java 6 On OS X | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A new release of Java, a new wave of people saying they won&rsquo;t buy Macs unless Apple get their Java update now, dammit now! John O&rsquo;Conner joins the chorus. Of course, there&rsquo;s no mention of why he needs Java 6 instead of Java 5, just that he has to be up to date with the very latest. Last time round at least people were eager to use generics and other new language features, but there&rsquo;s really not that much that changed in Java 6 outside of a few specific cases.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/01/30/here-we-go-again-aka-java-6-on-os-x/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/01/30/here-we-go-again-aka-java-6-on-os-x/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Here We Go Again, aka Java 6 On OS X">
+	<meta property="og:description" content="A new release of Java, a new wave of people saying they won’t buy Macs unless Apple get their Java update now, dammit now! John O’Conner joins the chorus. Of course, there’s no mention of why he needs Java 6 instead of Java 5, just that he has to be up to date with the very latest. Last time round at least people were eager to use generics and other new language features, but there’s really not that much that changed in Java 6 outside of a few specific cases.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-01-30T03:33:20+00:00">
+		<meta property="article:modified_time" content="2007-01-30T03:33:20+00:00">
+
+	<meta itemprop="name" content="Here We Go Again, aka Java 6 On OS X">
+	<meta itemprop="description" content="A new release of Java, a new wave of people saying they won’t buy Macs unless Apple get their Java update now, dammit now! John O’Conner joins the chorus. Of course, there’s no mention of why he needs Java 6 instead of Java 5, just that he has to be up to date with the very latest. Last time round at least people were eager to use generics and other new language features, but there’s really not that much that changed in Java 6 outside of a few specific cases.">
+	<meta itemprop="datePublished" content="2007-01-30T03:33:20+00:00">
+	<meta itemprop="dateModified" content="2007-01-30T03:33:20+00:00">
+	<meta itemprop="wordCount" content="182">
+	<meta itemprop="keywords" content="Apple,Code and Geek Stuff,Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Here We Go Again, aka Java 6 On OS X">
+	<meta name="twitter:description" content="A new release of Java, a new wave of people saying they won’t buy Macs unless Apple get their Java update now, dammit now! John O’Conner joins the chorus. Of course, there’s no mention of why he needs Java 6 instead of Java 5, just that he has to be up to date with the very latest. Last time round at least people were eager to use generics and other new language features, but there’s really not that much that changed in Java 6 outside of a few specific cases.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Here We Go Again, aka Java 6 On OS X</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Here We Go Again, aka Java 6 On OS X</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-01-30T03:33:20Z">January 30, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>A new release of Java, a new wave of people saying they won&rsquo;t buy Macs unless Apple get their Java update now, dammit now! <a href="http://weblogs.java.net/blog/joconner/archive/2007/01/give_me_any_rea.html">John O&rsquo;Conner</a> joins the chorus. Of course, there&rsquo;s no mention of <em>why</em> he needs Java 6 instead of Java 5, just that he has to be up to date with the very latest. Last time round at least people were eager to use generics and other new language features, but there&rsquo;s really not that much that changed in Java 6 outside of a few specific cases.</p>
+<p>Seriously folks, the vast, vast majority of Java developers aren&rsquo;t using Java 6 and won&rsquo;t be for quite some time. I know it&rsquo;s fun to play around on the bleeding edge but can we just stop and look at what&rsquo;s actually best for our projects?</p>
+<p>On the plus side, by the time we do this with Java 7 the answer will be simple – it&rsquo;s opensource, port it yourself. Then maybe people will appreciate how difficult porting a JVM to a new processor architecture and OS and understand how long it takes.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on Symphonious</title>
+    <link>https://www.symphonious.net/categories/apache/</link>
+    <description>Recent content in Apache on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 08 Dec 2014 21:54:51 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/apache/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Decision By Consensus</title>
+      <link>https://www.symphonious.net/2014/12/09/decision-by-consensus/</link>
+      <pubDate>Mon, 08 Dec 2014 21:54:51 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/12/09/decision-by-consensus/</guid>
+      <description>&lt;p&gt;Rich Bowen – &lt;a href=&#34;http://drbacchus.com/weve-always-done-it-that-way/&#34;&gt;&lt;em&gt;We&amp;rsquo;ve Always Done It That Way&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Principle 13 in &lt;a href=&#34;http://en.wikipedia.org/wiki/The_Toyota_Way&#34;&gt;the Toyota Way&lt;/a&gt; says that one should make decisions slowly, by consensus, thoroughly considering all options, and then implement those decisions rapidly. We believe a similar thing at the ASF. So to people who have only been around for a short time, it looks like we never change anything. But the truth is that we change things slowly, because what we’re doing works, and we need to be sure that change is warranted, and is a good idea.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I&amp;rsquo;m a big fan of decision by consensus. It doesn&amp;rsquo;t mean everyone agrees (consensus does not require unanimity) but it does ensure that the bulk of the team are all on board and moving in the same direction.&lt;/p&gt;
+&lt;p&gt;It does take longer – much longer. And it requires investing a lot more into the decision making process, having debates, doing research and planning out how things will actually work. In the end though it&amp;rsquo;s worth it to avoid having the decision undermined by people resistant to the change or having decisions made too independently and then having people heading off in different directions.&lt;/p&gt;
+&lt;p&gt;Just don&amp;rsquo;t forget that one of the best ways to build consensus is by running a trial. It&amp;rsquo;s much easier to plan out a trial (including a rollback plan) and gain consensus for running it than for making the change permanently.&lt;/p&gt;
+&lt;p&gt;Another example of Less Haste, More Speed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HttpClient -= Me</title>
+      <link>https://www.symphonious.net/2010/10/20/httpclient-me/</link>
+      <pubDate>Wed, 20 Oct 2010 08:35:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/10/20/httpclient-me/</guid>
+      <description>&lt;p&gt;I was quite pleased to see &lt;a href=&#34;http://www.odi.ch/weblog/posting.php?posting=611&#34;&gt;Odi’s post this morning&lt;/a&gt; stating that the NTLM code in HttpClient (now HttpComponents) has finally been replaced with a more robust and compatible version that supports the more modern NTLM variants. Many years ago that NTLM code was my first contribution to someone else’s open source project and it lead on to me writing a bunch of documentation and becoming an Apache committer. In turn, that’s put me in touch with a whole heap of incredibly smart people.&lt;/p&gt;
+&lt;p&gt;Sadly, the HttpClient 2.0 build proved so stable and reliable that I really didn’t have any more itches to scratch around the project and as the APIs changed quite significantly over the next couple of releases we still haven’t upgraded. With the new NTLM code now landing and the huge improvements already made everywhere else, I suspect there’s no longer any trace of my ever contributing to the project.&lt;/p&gt;
+&lt;p&gt;So a big congratulations to Odi, Oleg and the rest of the team that are still pushing HttpComponents forward and doing a great job of it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Communities and Git</title>
+      <link>https://www.symphonious.net/2009/05/05/communities-and-git/</link>
+      <pubDate>Tue, 05 May 2009 18:38:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/05/communities-and-git/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Group&#34; style=&#34; float: right;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/groupevent-coloured2_43793.png&#34; /&gt;The conversation that has sprung up around how the use of distributed version control, Github in particular, affects community is a refreshing change in the blogosphere&lt;a id=&#34;footlink1:1241547946232&#34; class=&#34;footnote&#34; name=&#34;footlink1:1241547946232&#34; href=&#34;#footnote1:1241547946232&#34;&gt;1&lt;/a&gt;. It’s people collectively thinking things through rather than just reacting in uproar or following the latest meme.&lt;/p&gt;
+&lt;p&gt;The latest installment is from Ben Hyde, &lt;a href=&#34;http://enthusiasm.cozy.org/archives/2009/05/git-balene-for-knowledge&#34;&gt;&lt;em&gt;git: Balene for Knowledge&lt;/em&gt;&lt;/a&gt;&lt;a id=&#34;footlink2:1241548025976&#34; class=&#34;footnote&#34; name=&#34;footlink2:1241548025976&#34; href=&#34;#footnote2:1241548025976&#34;&gt;2&lt;/a&gt;. It’s definitely worth reading in its entirety, but let me pull out a couple of key points:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[Source control] provides a locus around which the work can rendezvous. It a campfire, and the community gathers around it. I accept that. But let’s be clear, it isn’t the only campfire. Other examples: the irc channel, the email, the bug tracking, the release process, the distribution system, the license, the social networks, etc. etc.
+and:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The thing that blew me away about git was that it helps to address this problem. It increases the probability that users will reveal their knowledge. It helps to create a cultural norm toward that behavior. To me this is far more important than the risk that their forking would quench the community campfire.
+The thing that really strikes me about these two comments – GitHub doesn’t just provide forks with a git branch to work on, it also provides a wiki and issue tracker. It does keep track of the network and provide tools to help feed changes back and they do work well, but it unconditionally forks more than just the source control.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So perhaps one improvement GitHub could make is to enable a project to be forked &lt;em&gt;without&lt;/em&gt; creating the wiki, issue tracker etc. Not only would that make it clearer that this was just an experimental or temporary fork rather than an alternate, long term project, it would further reduce the barrier to people getting involved. Right now, creating a fork means creating a whole open source project and it feels like you should be managing it as a project which feels like hard work. If you only forked the source control, it would just be a place to code out in the open so that you can get what you need from the project but also make it easily available to everyone else.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1:1241547946232&#34; name=&#34;footnote1:1241547946232&#34; href=&#34;#footlink1:1241547946232&#34;&gt;1&lt;/a&gt; &amp;#8211; wow that really feels like a blast from the past…&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1241547946232&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote2:1241548025976&#34; name=&#34;footnote2:1241548025976&#34; href=&#34;#footlink2:1241548025976&#34;&gt;2&lt;/a&gt; &amp;#8211; in response to J Aaron Farr’s &lt;a href=&#34;http://cubiclemuses.com/cm/articles/2009/04/28/a-community-of-rockstars/&#34;&gt;&lt;em&gt;A Community of Rockstars&lt;/em&gt;&lt;/a&gt; which amusingly is part of the latest uproar. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1241548025976&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I Love mod_proxy</title>
+      <link>https://www.symphonious.net/2008/11/01/i-love-mod_proxy/</link>
+      <pubDate>Sat, 01 Nov 2008 08:48:50 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/11/01/i-love-mod_proxy/</guid>
+      <description>&lt;p&gt;After my amazingly successful use of mod_proxy to provide clean URLs in an IWWCM instance, it’s been added to my bag of useful tricks to know about.  When you realize you can proxy differently based on the current virtual host it’s a very powerful solution.&lt;/p&gt;
+&lt;p&gt;My latest use for it was to add name based virtual host support to two completely separate virtual machines.  One machine runs IBM WCM and the other runs Quickr. Both use the same port, and in the future there will be more VMs with different versions as well, so while it would be possible to assign different port numbers, I’d prefer to not have to remember which VM is using which port etc.  The firewall however can only forward connections on a given port to one VM.&lt;/p&gt;
+&lt;p&gt;The solution then is to forward the traffic to Apache and configure mod_proxy within name based virtual hosts. Effectively Apache is acting as an intelligent HTTP router and I can add any number of VMs by adding a new CNAME and virtual host entry.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ant SCP/SSH Task Hangs Or Never Disconnects</title>
+      <link>https://www.symphonious.net/2007/10/23/ant-scpssh-task-hangs-or-never-disconnects/</link>
+      <pubDate>Tue, 23 Oct 2007 02:56:21 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/10/23/ant-scpssh-task-hangs-or-never-disconnects/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;re using the scp or ssh tasks with ant, you may run into a problem where part way during the upload or never disconnecting after the command completes for the ssh task. There are a couple of possible causes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The scp problem is almost certainly caused by using ant 1.7.0 or below and jsch 0.1.30 or above. You could upgrade to the latest nightly of ant&lt;a id=&#34;footlink1-1193107782712&#34; class=&#34;footnote&#34; name=&#34;footlink1-1193107782712&#34; href=&#34;#footnote1-1193107782712&#34;&gt;1&lt;/a&gt; but it&amp;rsquo;s probably easier to just drop back to jsch 0.1.29 which is what ant was developed against and works nicely. &lt;a href=&#34;http://issues.apache.org/bugzilla/show_bug.cgi?id=41090&#34;&gt;Bug 41090&lt;/a&gt; contains the gory details.&lt;/li&gt;
+&lt;li&gt;If the command you&amp;rsquo;re executing with the ssh task starts a background service or otherwise leaves a process running, that may be the cause of the problem. You can add &amp;lsquo;shopt -s huponexit&amp;rsquo; to your /etc/profile, .bashrc or somewhere like that. I must admit, I&amp;rsquo;m somewhat vague on the exact details of what that does but the basic idea seems to be to signal any background processes that bash is exiting and then not wait for them to complete (which allows your ssh connection to close). If you&amp;rsquo;re starting a server they&amp;rsquo;ll probably ignore the hup signal it sends and if not, use the nohup command.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Hopefully that will be the last I&amp;rsquo;ll see of that issue.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a id=&#34;footnote1-1193107782712&#34; href=&#34;#footlink1-1193107782712&#34; name=&#34;footnote1-1193107782712&#34;&gt;1&lt;/a&gt; &amp;#8211; which seems to mean compiling from source at the moment, since the nightly build directory the Ant website links to is empty&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1-1193107782712&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Solr Is Cool</title>
+      <link>https://www.symphonious.net/2007/08/17/solr-is-cool/</link>
+      <pubDate>Thu, 16 Aug 2007 22:10:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/08/17/solr-is-cool/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve struggled with Lucene before and failed to configure it properly resulting in absolutely horrendous search results so a recent need to implement search functionality wasn&amp;rsquo;t something I particularly wanted to take on. In fact, I was prepared to do almost anything to avoid delving back into Lucene filters and parsers and tokenizers and &amp;ldquo;stuff&amp;rdquo;. This tends to be problematic given that Lucene is the dominate search library – so popular in fact that it&amp;rsquo;s been ported to other languages.&lt;/p&gt;
+&lt;p&gt;So I took a look at Solr – a web services front end to Lucene. Exchanging Lucene APIs for HTTP requests seems like a good tradeoff for me and Solr comes with a pretty decent configuration for Lucene right out of the box.&lt;/p&gt;
+&lt;p&gt;As it turns out, Solr&amp;rsquo;s default configuration isn&amp;rsquo;t just pretty decent, it&amp;rsquo;s also surprisingly well commented. Combined with some reasonable documentation it was pretty straight forward to get Solr to do what I want and provide good search results without much effort. With a bit more effort I should be able to get search highlighting working as well which takes search results to a whole new level.&lt;/p&gt;
+&lt;p&gt;Two things really made me appreciate the choice to use Solr:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It has a DirectSolrConnection class that removes the need for actual HTTP requests. As a bonus, it still uses the HTTP URLs and returns the same responses so if you later need to split Solr out onto it&amp;rsquo;s own server you just have to implement the HTTP stuff and not change the result of your processing.&lt;/li&gt;
+&lt;li&gt;It caches searches automatically.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Caching is just so cool to see in action. Using the built in search from Jackrabbit (which also uses Lucene) it was too slow to include the output of a search with each page (think, related links etc). With Solr&amp;rsquo;s caching this isn&amp;rsquo;t a problem anymore.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s still a bunch of learning to do so that I can get really optimal results – getting searches to work over multiple fields properly so that I can weight the results based on which field matched would be good and I can see Solr can do it – just not quite sure how to make it all happen. Still, the current search is &lt;em&gt;way&lt;/em&gt; better than anything I&amp;rsquo;ve managed to do before. Thanks to the Solr and Lucene teams!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Most Annoying Bug Ever</title>
+      <link>https://www.symphonious.net/2007/03/27/most-annoying-bug-ever/</link>
+      <pubDate>Tue, 27 Mar 2007 10:49:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/03/27/most-annoying-bug-ever/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve just spent the past three or four hours setting up Apache, Subversion, all my browsers etc etc to use SSL connections and client certificates for authentication with my Debian stable server. I&amp;rsquo;m sure the mod_ssl devs already know what&amp;rsquo;s coming here and are either chuckling gleefully or ripping their hair out right now. Anyway, the joke for all those who are mod_ssl devs, is that you can&amp;rsquo;t get subversion to use client certificates with a Debian stable server because Debian stable has Apache 2.0.54, complete with &lt;a href=&#34;http://issues.apache.org/bugzilla/show_bug.cgi?id=12355&#34;&gt;everybody&amp;rsquo;s favorite mod_ssl bug&lt;/a&gt;. It&amp;rsquo;s fixed in Apache 2.2, but not in 2.0.&lt;/p&gt;
+&lt;p&gt;So, back to basic authentication over SSL. Sigh, I had that working about two hours ago.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Visiting “Apache HQ”</title>
+      <link>https://www.symphonious.net/2004/07/05/visiting-apache-hq/</link>
+      <pubDate>Mon, 05 Jul 2004 00:53:45 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/07/05/visiting-apache-hq/</guid>
+      <description>&lt;p&gt;(I wrote this Thursday night but didn&amp;rsquo;t have net access on the train to post it) I finally managed to catch up with a number of Apache people tonight at the Thirsty Bear (rest assured the bear is not quite as thirsty after our beer drinking efforts). Afterwards we picked up the two new IBM servers that have been sitting at Collab.Net and deposited them into the cage at the colo facility. Since I&amp;rsquo;m not a server guy at all this is one of very few times I&amp;rsquo;ve been in a server room and the first chance I&amp;rsquo;ve had to see the Apache server setup (there&amp;rsquo;s now another colo in Europe somewhere I believe). It&amp;rsquo;s pretty small and simple but seems to do the job quite well which is what really matters. Apparently the Technorati servers are in the same colo and they look a heck of a lot more impressive with a few racks full of servers and cables going everywhere. Either way it was great to finally meet a few Apache developers and put some faces to names. My description of myself as “the tall redhead” seemed to be effective as people walked straight in the door and introduced themselves to me. Sometimes it pays to stand out a bit I guess.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Taking over planetapache.org</title>
+      <link>https://www.symphonious.net/2004/04/06/taking-over-planetapacheorg/</link>
+      <pubDate>Tue, 06 Apr 2004 10:26:15 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/04/06/taking-over-planetapacheorg/</guid>
+      <description>&lt;p&gt;It appears that my back to back rants pretty much completely took over &lt;a href=&#34;http://www.planetapache.org&#34;&gt;Planet Apache&lt;/a&gt; the other day. er, sorry about that… I&amp;rsquo;ll try to use my “extended entry” box a little more in future…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New ASF Machines</title>
+      <link>https://www.symphonious.net/2004/03/23/new-asf-machines/</link>
+      <pubDate>Tue, 23 Mar 2004 06:18:38 +0000</pubDate>
+      <guid>https://www.symphonious.net/2004/03/23/new-asf-machines/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.intertwingly.net/blog/1743.html&#34;&gt;Apparently&lt;/a&gt;, the ASF took delivery of a few new machines today. I just can&amp;rsquo;t get the image of Sam Ruby sitting around ASF head office and suddenly there&amp;rsquo;s a knock on the door and he finds a pile of orphaned servers wrapped in a blanket. Then again, I always was weird…&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

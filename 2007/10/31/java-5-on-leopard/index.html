@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Java 5 on Leopard | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The rumors of Java 5 being horribly broken beyond all usability on Leopard are, quite frankly, bullshit. It&rsquo;s faster, has better integration with the OS, the Aqua L&amp;F is significantly improved, it has full support for 64 bit and a huge raft of bug fixes and miscellaneous improvements. Everyone&rsquo;s pointing to an uninformed rant on JavaLobby which as it&rsquo;s key example actually highlights a major improvement to the Aqua L&amp;F – the JOptionPane icons should use the application icon, not some obscure artwork that&rsquo;s not used anywhere else in the system. The new dialogs actually allow you to look more like native app, not less. It&rsquo;s even explained in the release notes – heck, the old implementation was probably reported as a bug against Tiger.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/10/31/java-5-on-leopard/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/10/31/java-5-on-leopard/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Java 5 on Leopard">
+	<meta property="og:description" content="The rumors of Java 5 being horribly broken beyond all usability on Leopard are, quite frankly, bullshit. It’s faster, has better integration with the OS, the Aqua L&amp;F is significantly improved, it has full support for 64 bit and a huge raft of bug fixes and miscellaneous improvements. Everyone’s pointing to an uninformed rant on JavaLobby which as it’s key example actually highlights a major improvement to the Aqua L&amp;F – the JOptionPane icons should use the application icon, not some obscure artwork that’s not used anywhere else in the system. The new dialogs actually allow you to look more like native app, not less. It’s even explained in the release notes – heck, the old implementation was probably reported as a bug against Tiger.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-10-31T11:11:02+00:00">
+		<meta property="article:modified_time" content="2007-10-31T11:11:02+00:00">
+
+	<meta itemprop="name" content="Java 5 on Leopard">
+	<meta itemprop="description" content="The rumors of Java 5 being horribly broken beyond all usability on Leopard are, quite frankly, bullshit. It’s faster, has better integration with the OS, the Aqua L&amp;F is significantly improved, it has full support for 64 bit and a huge raft of bug fixes and miscellaneous improvements. Everyone’s pointing to an uninformed rant on JavaLobby which as it’s key example actually highlights a major improvement to the Aqua L&amp;F – the JOptionPane icons should use the application icon, not some obscure artwork that’s not used anywhere else in the system. The new dialogs actually allow you to look more like native app, not less. It’s even explained in the release notes – heck, the old implementation was probably reported as a bug against Tiger.">
+	<meta itemprop="datePublished" content="2007-10-31T11:11:02+00:00">
+	<meta itemprop="dateModified" content="2007-10-31T11:11:02+00:00">
+	<meta itemprop="wordCount" content="360">
+	<meta itemprop="keywords" content="Apple,Code and Geek Stuff,Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Java 5 on Leopard">
+	<meta name="twitter:description" content="The rumors of Java 5 being horribly broken beyond all usability on Leopard are, quite frankly, bullshit. It’s faster, has better integration with the OS, the Aqua L&amp;F is significantly improved, it has full support for 64 bit and a huge raft of bug fixes and miscellaneous improvements. Everyone’s pointing to an uninformed rant on JavaLobby which as it’s key example actually highlights a major improvement to the Aqua L&amp;F – the JOptionPane icons should use the application icon, not some obscure artwork that’s not used anywhere else in the system. The new dialogs actually allow you to look more like native app, not less. It’s even explained in the release notes – heck, the old implementation was probably reported as a bug against Tiger.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Java 5 on Leopard</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Java 5 on Leopard</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-10-31T11:11:02Z">October 31, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The rumors of Java 5 being horribly broken beyond all usability on Leopard are, quite frankly, bullshit. It&rsquo;s faster, has better integration with the OS, the Aqua L&amp;F is significantly improved, it has full support for 64 bit and a <a href="http://developer.apple.com/releasenotes/Java/JavaLeopardRN/index.html">huge raft of bug fixes and miscellaneous improvements</a>. Everyone&rsquo;s pointing to <a href="http://www.javalobby.org/java/forums/t102936.html">an uninformed rant on JavaLobby</a> which as it&rsquo;s key example actually highlights a major improvement to the Aqua L&amp;F – the JOptionPane icons <em>should</em> use the application icon, not some obscure artwork that&rsquo;s not used anywhere else in the system. The new dialogs actually allow you to look <em>more</em> like native app, not less. It&rsquo;s even explained in <a href="http://developer.apple.com/releasenotes/Java/JavaLeopardRN/index.html">the release notes</a> – heck, the old implementation was probably reported as a bug against Tiger.</p>
+<blockquote>
+<h3 class="tight" id="radar-4858198">Radar #4858198</h3>
+<p class="spaceabove">
+  JOptionPanes did not match the native Mac OS X dialog appearance
+</p>
+<h5 class="tight" id="description">Description:</h5>
+<p>Default info JOptionPanes now use the application&rsquo;s icon, as per the Aqua User Interface Guidelines instead of a message bubble icon. Warning and error JOptionPanes now show the application&rsquo;s icon badged onto the warning or error icon as per the Aqua User Interface Guidelines.</p>
+<h5 class="tight" id="resolution">Resolution:</h5>
+<p>This problem is now fixed in Mac OS X 10.5.</p>
+</blockquote>
+<p>The graphics pipeline has changed in Leopard which means that if you&rsquo;ve optimized for the Quartz renderer, you should specifically request it or you may find that suddenly things start going much slower. In most cases the Sun 2D pipeline is faster than the Quartz pipeline – particularly if the code makes Windows specific performance assumptions (most Java 2D code does whether the author knows it or not). So while some applications may run slower by default, most applications run much faster and those that do run slow can switch back to the Quartz pipeline. Change isn&rsquo;t always easy but it happens – stop whining and start coding.</p>
+<p>You can complain that there&rsquo;s no Java 6 yet (though all those people complaining aren&rsquo;t getting anywhere with porting their own and there&rsquo;s no excuses now), and you can complain about the lack of information but Java 5 on Leopard is a significant improvement and the engineers at Apple deserve to be congratulated for that – not insulted.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

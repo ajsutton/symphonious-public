@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Joy of Browser Selection | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Anyone who’s done much work with JavaScript has probably discovered that the selection APIs are completely different in Internet Explorer vs the rest of the world, what comes as a bit more of a surprise once you start using them in anger is that FireFox is actually quite different to all the other W3C compliant browsers in an important way as well.
+If all you ever want to do is retrieve the selection or you only want to work with ranges rather than selection, you’ll probably never encounter this, but as soon as you use window.getSelection().addRange() you’re going to get bitten. The difference is that FireFox will preserve whatever range you give it precisely as you original created it. The other browsers won’t.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/04/21/the-joy-of-browser-selection/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/04/21/the-joy-of-browser-selection/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Joy of Browser Selection">
+	<meta property="og:description" content="Anyone who’s done much work with JavaScript has probably discovered that the selection APIs are completely different in Internet Explorer vs the rest of the world, what comes as a bit more of a surprise once you start using them in anger is that FireFox is actually quite different to all the other W3C compliant browsers in an important way as well.
+If all you ever want to do is retrieve the selection or you only want to work with ranges rather than selection, you’ll probably never encounter this, but as soon as you use window.getSelection().addRange() you’re going to get bitten. The difference is that FireFox will preserve whatever range you give it precisely as you original created it. The other browsers won’t.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-04-21T18:33:49+00:00">
+		<meta property="article:modified_time" content="2010-04-21T18:33:49+00:00">
+
+	<meta itemprop="name" content="The Joy of Browser Selection">
+	<meta itemprop="description" content="Anyone who’s done much work with JavaScript has probably discovered that the selection APIs are completely different in Internet Explorer vs the rest of the world, what comes as a bit more of a surprise once you start using them in anger is that FireFox is actually quite different to all the other W3C compliant browsers in an important way as well.
+If all you ever want to do is retrieve the selection or you only want to work with ranges rather than selection, you’ll probably never encounter this, but as soon as you use window.getSelection().addRange() you’re going to get bitten. The difference is that FireFox will preserve whatever range you give it precisely as you original created it. The other browsers won’t.">
+	<meta itemprop="datePublished" content="2010-04-21T18:33:49+00:00">
+	<meta itemprop="dateModified" content="2010-04-21T18:33:49+00:00">
+	<meta itemprop="wordCount" content="410">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Joy of Browser Selection">
+	<meta name="twitter:description" content="Anyone who’s done much work with JavaScript has probably discovered that the selection APIs are completely different in Internet Explorer vs the rest of the world, what comes as a bit more of a surprise once you start using them in anger is that FireFox is actually quite different to all the other W3C compliant browsers in an important way as well.
+If all you ever want to do is retrieve the selection or you only want to work with ranges rather than selection, you’ll probably never encounter this, but as soon as you use window.getSelection().addRange() you’re going to get bitten. The difference is that FireFox will preserve whatever range you give it precisely as you original created it. The other browsers won’t.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Joy of Browser Selection</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Joy of Browser Selection</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-04-21T18:33:49Z">April 21, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Anyone who’s done much work with JavaScript has probably discovered that the selection APIs are completely different in <a href="http://quirksmode.org/dom/range_intro.html">Internet Explorer vs the rest of the world</a>, what comes as a bit more of a surprise once you start using them in anger is that FireFox is actually quite different to all the other W3C compliant browsers in an important way as well.</p>
+<p>If all you ever want to do is retrieve the selection or you only want to work with ranges rather than selection, you’ll probably never encounter this, but as soon as you use window.getSelection().addRange() you’re going to get bitten. The difference is that FireFox will preserve whatever range you give it precisely as you original created it. The other browsers won’t.</p>
+<p>Start with a simple document with three paragraphs:</p>
+<pre>&#60;body&#62;
+  &#60;p&#62;Paragraph 1&#60;/p&#62;
+  &#60;p&#62;Paragraph 2&#60;/p&#62;
+  &#60;p&#62;Paragraph 3&#60;/p&#62;
+&#60;/body&#62;
+</pre>
+<p>Create a range where the startContainer and endContainer are the body element:</p>
+<pre>var range = document.createRange();
+range.setStart(document.body, 0);
+range.setEnd(document.body, 1);
+</pre>
+<p>The range now encompasses the entirety of the first paragraph element – including the actual P element itself, not just the text within. Now add that to a selection:</p>
+<pre>window.getSelection().addRange(range);
+</pre>
+<p>In FireFox this selects the paragraph element, but in Opera, Safari and Chrome the selection is now just the text within the paragraph. So in FireFox and only FireFox, the statements below are true:</p>
+<pre>var selected = window.getSelection().getRangeAt(0);
+selected.startContainer === range.startContainer === document.body;
+selected.endContainer === range.endContainer === document.body;
+</pre>
+<p>This isn’t an arbitrary change by Opera, Safari and Chrome – as far as I can tell, they really can’t select actual elements, only textual ranges. So if you add a range that includes elements, the selection winds up encompassing just the text of those elements and that’s correctly reflected in the range the selection returns. I’m unsure which behavior is correct or whether this is just a missing part of the standard altogether. It appears that the whole concept of a selection object is an old Netscape 4 thing that has never actually been defined<a href="#footnote1:1271874401380">1</a>{#footlink1:1271874401380.footnote}.</p>
+<p>Unfortunately, selection is one of those surprisingly difficult concepts to get right in any rich text editor due to the complexity of what users want to select and how that affects the operations they will then perform. With these kinds of differences in browser behavior, JavaScript based editors really are fighting an uphill battle that they shouldn’t have to.</p>
+<p class="footnote">
+  <a href="#footlink1:1271874401380" id="footnote1:1271874401380">1</a> &#8211; Range has been defined by the W3C, but the selection object doesn’t appear to have been.<a class="footnotereturn" href="#footlink1:1271874401380">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

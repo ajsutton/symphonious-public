@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Eclipse WebTools Is Driving Me Nuts | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="At some point Eclipse seems to have decided that I shouldn&rsquo;t be doing J2EE development and randomly turned off some of it&rsquo;s J2EE related features like being able to Run as server or create a new Webapp project. I suspect a software update went bad and it&rsquo;s screwed over it&rsquo;s configuration.
+Sadly, with the massive number of plugins and crap that makes up an Eclipse install it&rsquo;s nearly impossible to sort out if one particular plugin got corrupted, if it&rsquo;s a configuration setting some that got corrupted or if the whole thing is foobar.  The log file for the workspace is particularly unhelpful just reporting that classes are missing – that&rsquo;s great, where were you expecting to find them though? Which plugin provides that particular class and which plugin is requesting that particular class? Then on a subsequent run it just reports that the plugin is already loaded so it doesn&rsquo;t need to load again – sadly, the plugin isn&rsquo;t loaded and none of the functionality it provides is available.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2005/09/17/eclipse-webtools-is-driving-me-nuts/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2005/09/17/eclipse-webtools-is-driving-me-nuts/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Eclipse WebTools Is Driving Me Nuts">
+	<meta property="og:description" content="At some point Eclipse seems to have decided that I shouldn’t be doing J2EE development and randomly turned off some of it’s J2EE related features like being able to Run as server or create a new Webapp project. I suspect a software update went bad and it’s screwed over it’s configuration.
+Sadly, with the massive number of plugins and crap that makes up an Eclipse install it’s nearly impossible to sort out if one particular plugin got corrupted, if it’s a configuration setting some that got corrupted or if the whole thing is foobar. The log file for the workspace is particularly unhelpful just reporting that classes are missing – that’s great, where were you expecting to find them though? Which plugin provides that particular class and which plugin is requesting that particular class? Then on a subsequent run it just reports that the plugin is already loaded so it doesn’t need to load again – sadly, the plugin isn’t loaded and none of the functionality it provides is available.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2005-09-16T23:59:40+00:00">
+		<meta property="article:modified_time" content="2005-09-16T23:59:40+00:00">
+
+	<meta itemprop="name" content="Eclipse WebTools Is Driving Me Nuts">
+	<meta itemprop="description" content="At some point Eclipse seems to have decided that I shouldn’t be doing J2EE development and randomly turned off some of it’s J2EE related features like being able to Run as server or create a new Webapp project. I suspect a software update went bad and it’s screwed over it’s configuration.
+Sadly, with the massive number of plugins and crap that makes up an Eclipse install it’s nearly impossible to sort out if one particular plugin got corrupted, if it’s a configuration setting some that got corrupted or if the whole thing is foobar. The log file for the workspace is particularly unhelpful just reporting that classes are missing – that’s great, where were you expecting to find them though? Which plugin provides that particular class and which plugin is requesting that particular class? Then on a subsequent run it just reports that the plugin is already loaded so it doesn’t need to load again – sadly, the plugin isn’t loaded and none of the functionality it provides is available.">
+	<meta itemprop="datePublished" content="2005-09-16T23:59:40+00:00">
+	<meta itemprop="dateModified" content="2005-09-16T23:59:40+00:00">
+	<meta itemprop="wordCount" content="213">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Eclipse WebTools Is Driving Me Nuts">
+	<meta name="twitter:description" content="At some point Eclipse seems to have decided that I shouldn’t be doing J2EE development and randomly turned off some of it’s J2EE related features like being able to Run as server or create a new Webapp project. I suspect a software update went bad and it’s screwed over it’s configuration.
+Sadly, with the massive number of plugins and crap that makes up an Eclipse install it’s nearly impossible to sort out if one particular plugin got corrupted, if it’s a configuration setting some that got corrupted or if the whole thing is foobar. The log file for the workspace is particularly unhelpful just reporting that classes are missing – that’s great, where were you expecting to find them though? Which plugin provides that particular class and which plugin is requesting that particular class? Then on a subsequent run it just reports that the plugin is already loaded so it doesn’t need to load again – sadly, the plugin isn’t loaded and none of the functionality it provides is available.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Eclipse WebTools Is Driving Me Nuts</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Eclipse WebTools Is Driving Me Nuts</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-09-16T23:59:40Z">September 16, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>At some point Eclipse seems to have decided that I shouldn&rsquo;t be doing J2EE development and randomly turned off some of it&rsquo;s J2EE related features like being able to Run as server or create a new Webapp project. I suspect a software update went bad and it&rsquo;s screwed over it&rsquo;s configuration.</p>
+<p>Sadly, with the massive number of plugins and crap that makes up an Eclipse install it&rsquo;s nearly impossible to sort out if one particular plugin got corrupted, if it&rsquo;s a configuration setting some that got corrupted or if the whole thing is foobar.  The log file for the workspace is particularly unhelpful just reporting that classes are missing – that&rsquo;s great, where were you expecting to find them though? Which plugin provides that particular class and which plugin is requesting that particular class? Then on a subsequent run it just reports that the plugin is already loaded so it doesn&rsquo;t need to load again – sadly, the plugin isn&rsquo;t loaded and none of the functionality it provides is available.</p>
+<p>So I&rsquo;m downloading the web tools all in one package and hopefully that will work.  Then I&rsquo;ve just got to add in the other plugins I use again and hope it still works.</p>
+<p>In the mean time, maybe I&rsquo;ll check out IDEA again…</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

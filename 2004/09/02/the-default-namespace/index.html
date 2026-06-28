@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Default Namespace | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Byron complains about what he calls a limitation of XPath. It&rsquo;s not actually a limitation of XPath at all but rather a very common mistake people make when working with XML namespaces. Lets take a tour into the dark depths of XML namespaces to discover what&rsquo;s really going on. Originally, XML didn&rsquo;t have namespaces at all, every element was identified purely by it&rsquo;s name. So the element &lt;html&gt; was known as html and the world was simple. Then people discovered that they wanted to combine XML documents and that quite often they&rsquo;d wind up with two elements called html that had completely different meanings and uses – ie: they were actually two different elements. To solve this problem, the clever folk over at the W3C changed the way XML elements and attributes were named. Now instead of a simple string, elements would be named using a QName (short for Qualified Name). A QName is a compound data object consisting of an URI and the regular name we&rsquo;re used to. Now the important thing to note in this distinction is that it is impossible to refer to an element only by it&rsquo;s local-name, you have to use a QName to refer to it and that QName must have a namespace attribute (all QName&rsquo;s do). It is however possible to assign nil to the namespace attribute of a QName, which is referred to as an element in the nil namespace. Now, one of the important things about adding namespaces to XML was backwards compatibility so there had to be some way to assign a namespace to all those elements which were previously referred to only by their local-name. This is where the default namespace comes in (it also happens to be quite convenient). By default in an XML document, any element that doesn&rsquo;t have a prefix to declare which namespace it is in, is assigned the “default namespace”. The default namespace however isn&rsquo;t an actual namespace, it&rsquo;s just a default value for the namespace attribute. By default, the default namespace is the nil namespace. Now, in XML you can specify what the default namespace is by adding an xmlns attribute, eg: xmlns=&quot;http://www.w3.org/1999/xhtml&quot;. The new value for the default namespace is then in effect for that element and any element under it (unless it&rsquo;s changed again). It is important to note here that an XML document doesn&rsquo;t have a default namespace, but rather each element has a value which it inherits (attributes never ever use the default namespace). There can therefore be as many different values for the default namespace as there are elements. So if we were to add Byron&rsquo;s idea of matching any element in the default namespace, it would never match anything because every element (and attribute) would have an explicit namespace. Worse still, the default namespace would change depending on which element we were in and what the specific representation of the XML was (maybe the default namespace was left as nil and every element used a prefix or maybe no elements were prefixed and the default namespace was changed all through the document). Depending on the representation of XML instead of the actual data it represents is very bad practice and will cause problems. This leads right into the other common mistake in Byron&rsquo;s post: //*[name() == &#39;foo&#39;] will do nothing particularly useful. What it will do is match any element with a local-name of foo, in any namespace as long as the element was represented without a prefix. It will not match &lt;my:foo xmlns:my=&quot;http://www.intencha.com/my&quot; /&gt; because name() for my:foo will return my:foo. Elements are the same if they have the same QName regardless of whether or not a prefix used or if different prefixes were used. The correct way to select any element with a local-name of foo in any namespace regardless of what prefix was used is: //*[local-name() = &#39;foo&#39;] If I were to take a shot at selecting any node which had a namespace-uri the same as the default namespace in effect in the original representation of the XML document&rsquo;s root node it would be: //*[string(/*/namespace::*[name() = &quot;&quot;]) = namespace-uri()] Which is to say:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/09/02/the-default-namespace/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/09/02/the-default-namespace/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Default Namespace">
+	<meta property="og:description" content="Byron complains about what he calls a limitation of XPath. It’s not actually a limitation of XPath at all but rather a very common mistake people make when working with XML namespaces. Lets take a tour into the dark depths of XML namespaces to discover what’s really going on. Originally, XML didn’t have namespaces at all, every element was identified purely by it’s name. So the element &lt;html&gt; was known as html and the world was simple. Then people discovered that they wanted to combine XML documents and that quite often they’d wind up with two elements called html that had completely different meanings and uses – ie: they were actually two different elements. To solve this problem, the clever folk over at the W3C changed the way XML elements and attributes were named. Now instead of a simple string, elements would be named using a QName (short for Qualified Name). A QName is a compound data object consisting of an URI and the regular name we’re used to. Now the important thing to note in this distinction is that it is impossible to refer to an element only by it’s local-name, you have to use a QName to refer to it and that QName must have a namespace attribute (all QName’s do). It is however possible to assign nil to the namespace attribute of a QName, which is referred to as an element in the nil namespace. Now, one of the important things about adding namespaces to XML was backwards compatibility so there had to be some way to assign a namespace to all those elements which were previously referred to only by their local-name. This is where the default namespace comes in (it also happens to be quite convenient). By default in an XML document, any element that doesn’t have a prefix to declare which namespace it is in, is assigned the “default namespace”. The default namespace however isn’t an actual namespace, it’s just a default value for the namespace attribute. By default, the default namespace is the nil namespace. Now, in XML you can specify what the default namespace is by adding an xmlns attribute, eg: xmlns=&#34;http://www.w3.org/1999/xhtml&#34;. The new value for the default namespace is then in effect for that element and any element under it (unless it’s changed again). It is important to note here that an XML document doesn’t have a default namespace, but rather each element has a value which it inherits (attributes never ever use the default namespace). There can therefore be as many different values for the default namespace as there are elements. So if we were to add Byron’s idea of matching any element in the default namespace, it would never match anything because every element (and attribute) would have an explicit namespace. Worse still, the default namespace would change depending on which element we were in and what the specific representation of the XML was (maybe the default namespace was left as nil and every element used a prefix or maybe no elements were prefixed and the default namespace was changed all through the document). Depending on the representation of XML instead of the actual data it represents is very bad practice and will cause problems. This leads right into the other common mistake in Byron’s post: //*[name() == &#39;foo&#39;] will do nothing particularly useful. What it will do is match any element with a local-name of foo, in any namespace as long as the element was represented without a prefix. It will not match &lt;my:foo xmlns:my=&#34;http://www.intencha.com/my&#34; /&gt; because name() for my:foo will return my:foo. Elements are the same if they have the same QName regardless of whether or not a prefix used or if different prefixes were used. The correct way to select any element with a local-name of foo in any namespace regardless of what prefix was used is: //*[local-name() = &#39;foo&#39;] If I were to take a shot at selecting any node which had a namespace-uri the same as the default namespace in effect in the original representation of the XML document’s root node it would be: //*[string(/*/namespace::*[name() = &#34;&#34;]) = namespace-uri()] Which is to say:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-09-02T09:06:42+00:00">
+		<meta property="article:modified_time" content="2004-09-02T09:06:42+00:00">
+
+	<meta itemprop="name" content="The Default Namespace">
+	<meta itemprop="description" content="Byron complains about what he calls a limitation of XPath. It’s not actually a limitation of XPath at all but rather a very common mistake people make when working with XML namespaces. Lets take a tour into the dark depths of XML namespaces to discover what’s really going on. Originally, XML didn’t have namespaces at all, every element was identified purely by it’s name. So the element &lt;html&gt; was known as html and the world was simple. Then people discovered that they wanted to combine XML documents and that quite often they’d wind up with two elements called html that had completely different meanings and uses – ie: they were actually two different elements. To solve this problem, the clever folk over at the W3C changed the way XML elements and attributes were named. Now instead of a simple string, elements would be named using a QName (short for Qualified Name). A QName is a compound data object consisting of an URI and the regular name we’re used to. Now the important thing to note in this distinction is that it is impossible to refer to an element only by it’s local-name, you have to use a QName to refer to it and that QName must have a namespace attribute (all QName’s do). It is however possible to assign nil to the namespace attribute of a QName, which is referred to as an element in the nil namespace. Now, one of the important things about adding namespaces to XML was backwards compatibility so there had to be some way to assign a namespace to all those elements which were previously referred to only by their local-name. This is where the default namespace comes in (it also happens to be quite convenient). By default in an XML document, any element that doesn’t have a prefix to declare which namespace it is in, is assigned the “default namespace”. The default namespace however isn’t an actual namespace, it’s just a default value for the namespace attribute. By default, the default namespace is the nil namespace. Now, in XML you can specify what the default namespace is by adding an xmlns attribute, eg: xmlns=&#34;http://www.w3.org/1999/xhtml&#34;. The new value for the default namespace is then in effect for that element and any element under it (unless it’s changed again). It is important to note here that an XML document doesn’t have a default namespace, but rather each element has a value which it inherits (attributes never ever use the default namespace). There can therefore be as many different values for the default namespace as there are elements. So if we were to add Byron’s idea of matching any element in the default namespace, it would never match anything because every element (and attribute) would have an explicit namespace. Worse still, the default namespace would change depending on which element we were in and what the specific representation of the XML was (maybe the default namespace was left as nil and every element used a prefix or maybe no elements were prefixed and the default namespace was changed all through the document). Depending on the representation of XML instead of the actual data it represents is very bad practice and will cause problems. This leads right into the other common mistake in Byron’s post: //*[name() == &#39;foo&#39;] will do nothing particularly useful. What it will do is match any element with a local-name of foo, in any namespace as long as the element was represented without a prefix. It will not match &lt;my:foo xmlns:my=&#34;http://www.intencha.com/my&#34; /&gt; because name() for my:foo will return my:foo. Elements are the same if they have the same QName regardless of whether or not a prefix used or if different prefixes were used. The correct way to select any element with a local-name of foo in any namespace regardless of what prefix was used is: //*[local-name() = &#39;foo&#39;] If I were to take a shot at selecting any node which had a namespace-uri the same as the default namespace in effect in the original representation of the XML document’s root node it would be: //*[string(/*/namespace::*[name() = &#34;&#34;]) = namespace-uri()] Which is to say:">
+	<meta itemprop="datePublished" content="2004-09-02T09:06:42+00:00">
+	<meta itemprop="dateModified" content="2004-09-02T09:06:42+00:00">
+	<meta itemprop="wordCount" content="886">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Default Namespace">
+	<meta name="twitter:description" content="Byron complains about what he calls a limitation of XPath. It’s not actually a limitation of XPath at all but rather a very common mistake people make when working with XML namespaces. Lets take a tour into the dark depths of XML namespaces to discover what’s really going on. Originally, XML didn’t have namespaces at all, every element was identified purely by it’s name. So the element &lt;html&gt; was known as html and the world was simple. Then people discovered that they wanted to combine XML documents and that quite often they’d wind up with two elements called html that had completely different meanings and uses – ie: they were actually two different elements. To solve this problem, the clever folk over at the W3C changed the way XML elements and attributes were named. Now instead of a simple string, elements would be named using a QName (short for Qualified Name). A QName is a compound data object consisting of an URI and the regular name we’re used to. Now the important thing to note in this distinction is that it is impossible to refer to an element only by it’s local-name, you have to use a QName to refer to it and that QName must have a namespace attribute (all QName’s do). It is however possible to assign nil to the namespace attribute of a QName, which is referred to as an element in the nil namespace. Now, one of the important things about adding namespaces to XML was backwards compatibility so there had to be some way to assign a namespace to all those elements which were previously referred to only by their local-name. This is where the default namespace comes in (it also happens to be quite convenient). By default in an XML document, any element that doesn’t have a prefix to declare which namespace it is in, is assigned the “default namespace”. The default namespace however isn’t an actual namespace, it’s just a default value for the namespace attribute. By default, the default namespace is the nil namespace. Now, in XML you can specify what the default namespace is by adding an xmlns attribute, eg: xmlns=&#34;http://www.w3.org/1999/xhtml&#34;. The new value for the default namespace is then in effect for that element and any element under it (unless it’s changed again). It is important to note here that an XML document doesn’t have a default namespace, but rather each element has a value which it inherits (attributes never ever use the default namespace). There can therefore be as many different values for the default namespace as there are elements. So if we were to add Byron’s idea of matching any element in the default namespace, it would never match anything because every element (and attribute) would have an explicit namespace. Worse still, the default namespace would change depending on which element we were in and what the specific representation of the XML was (maybe the default namespace was left as nil and every element used a prefix or maybe no elements were prefixed and the default namespace was changed all through the document). Depending on the representation of XML instead of the actual data it represents is very bad practice and will cause problems. This leads right into the other common mistake in Byron’s post: //*[name() == &#39;foo&#39;] will do nothing particularly useful. What it will do is match any element with a local-name of foo, in any namespace as long as the element was represented without a prefix. It will not match &lt;my:foo xmlns:my=&#34;http://www.intencha.com/my&#34; /&gt; because name() for my:foo will return my:foo. Elements are the same if they have the same QName regardless of whether or not a prefix used or if different prefixes were used. The correct way to select any element with a local-name of foo in any namespace regardless of what prefix was used is: //*[local-name() = &#39;foo&#39;] If I were to take a shot at selecting any node which had a namespace-uri the same as the default namespace in effect in the original representation of the XML document’s root node it would be: //*[string(/*/namespace::*[name() = &#34;&#34;]) = namespace-uri()] Which is to say:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Default Namespace</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Default Namespace</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-09-02T09:06:42Z">September 2, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Byron <a href="http://mlm.bpa.nu:8080/weblog/dev/xml/xpathns.writeback">complains</a> about what he calls a limitation of XPath. It&rsquo;s not actually a limitation of XPath at all but rather a very common mistake people make when working with XML namespaces. Lets take a tour into the dark depths of XML namespaces to discover what&rsquo;s really going on. Originally, XML didn&rsquo;t have namespaces at all, every element was identified purely by it&rsquo;s name. So the element <code>&lt;html&gt;</code> was known as <code>html</code> and the world was simple. Then people discovered that they wanted to combine XML documents and that quite often they&rsquo;d wind up with two elements called <code>html</code> that had completely different meanings and uses – ie: they were actually two different elements. To solve this problem, the clever folk over at the <a href="http://www.w3.org/">W3C</a> changed the way XML elements and attributes were named. Now instead of a simple string, elements would be named using a QName (short for Qualified Name). A QName is a compound data object consisting of an URI and the regular name we&rsquo;re used to. Now the important thing to note in this distinction is that it is impossible to refer to an element only by it&rsquo;s local-name, you have to use a QName to refer to it and that QName must have a namespace attribute (all QName&rsquo;s do). It is however possible to assign <em>nil</em> to the namespace attribute of a QName, which is referred to as an element in the <em>nil</em> namespace. Now, one of the important things about adding namespaces to XML was backwards compatibility so there had to be some way to assign a namespace to all those elements which were previously referred to only by their local-name. This is where the default namespace comes in (it also happens to be quite convenient). By default in an XML document, any element that doesn&rsquo;t have a prefix to declare which namespace it is in, is assigned the “default namespace”. The default namespace however isn&rsquo;t an actual namespace, it&rsquo;s just a default value for the namespace attribute. By default, the default namespace is the <em>nil</em> namespace. Now, in XML you can specify what the default namespace is by adding an <code>xmlns</code> attribute, eg: <code>xmlns=&quot;http://www.w3.org/1999/xhtml&quot;</code>. The new value for the default namespace is then in effect for that element and any element under it (unless it&rsquo;s changed again). It is important to note here that an XML document doesn&rsquo;t have a default namespace, but rather each element has a value which it inherits (attributes never ever use the default namespace). There can therefore be as many different values for the default namespace as there are elements. So if we were to add Byron&rsquo;s idea of matching any element in the default namespace, it would never match anything because every element (and attribute) would have an explicit namespace. Worse still, the default namespace would change depending on which element we were in and what the specific representation of the XML was (maybe the default namespace was left as <em>nil</em> and every element used a prefix or maybe no elements were prefixed and the default namespace was changed all through the document). Depending on the representation of XML instead of the actual data it represents is very bad practice and will cause problems. This leads right into the other common mistake in Byron&rsquo;s post: <code>//*[name() == 'foo']</code> will do nothing particularly useful. What it will do is match any element with a local-name of foo, in any namespace as long as the element was represented without a prefix. It will not match <code>&lt;my:foo xmlns:my=&quot;http://www.intencha.com/my&quot; /&gt;</code> because <code>name()</code> for <code>my:foo</code> will return <code>my:foo</code>. Elements are the same if they have the same QName regardless of whether or not a prefix used or if different prefixes were used. The correct way to select any element with a local-name of foo in any namespace regardless of what prefix was used is: <code>//*[local-name() = 'foo']</code> If I were to take a shot at selecting any node which had a namespace-uri the same as the default namespace in effect in the original representation of the XML document&rsquo;s root node it would be: <code>//*[string(/*/namespace::*[name() = &quot;&quot;]) = namespace-uri()]</code> Which is to say:</p>
+<dl>
+<dt><code>string(/*/namespace::*[name() = &quot;&quot;])</code></dt>
+<dd>Get the namespace nodes applicable to the document element and filter them for just the ones that have no name (ie: the default namespace) then convert it to a string (the string value of a namespace node is it&rsquo;s URI).
+<dl>
+<dt><code>//*[... = namespace-uri()]</code></dt>
+<dd>Select any node which has a namespace-uri matching the result of the above expression.</dt> No idea how standards compliant that is but it does work with Jaxen. This will however also select nodes which used a prefix to be put in the same namespace as the default namespace in effect for the document element. To avoid this, we would have to add
+<code>not(contains(name(), &quot;:&quot;))</code> to get: <code>//*[string(/*/namespace::*[name() = &quot;&quot;]) = namespace-uri() and not(contains(name(), &quot;:&quot;))]</code> It would however be much simpler if we just wanted to select any node that used the default namespace, we just need to check that it doesn&rsquo;t have a prefix, so: <code>//*[not(contains(name(), &quot;:&quot;))]</code> Most people by now would have run away screaming but fortunately since this is the kind of thing I play with all day every day (writing an XML editor is not the world simplest task), I rather enjoy playing with this kind of thing.</dd>
+</dl>
+</dd>
+</dl>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>AppFuse | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Ben Fowler points to AppFuse, a quick way to set up J2EE projects with more buzz words than you can shake a stick at.  Specifically it sets up a Tomcat/MySQL apps that:
+Uses Ant, XDoclet, Spring, Hibernate (or iBATIS), JUnit, Cactus, StrutsTestCase, Canoo&rsquo;s WebTest, Struts Menu, Display Tag Library, OSCache, JSTL and Struts (or Spring MVC)
+That&rsquo;s a huge number of different technologies.  It&rsquo;s not necessarily bad to use all those technologies together (in fact it&rsquo;s probably very good) but it&rsquo;s important to be aware that pragmatic programmers don&rsquo;t use wizards they don&rsquo;t understand.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2005/02/06/appfuse/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2005/02/06/appfuse/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="AppFuse">
+	<meta property="og:description" content="Ben Fowler points to AppFuse, a quick way to set up J2EE projects with more buzz words than you can shake a stick at. Specifically it sets up a Tomcat/MySQL apps that:
+Uses Ant, XDoclet, Spring, Hibernate (or iBATIS), JUnit, Cactus, StrutsTestCase, Canoo’s WebTest, Struts Menu, Display Tag Library, OSCache, JSTL and Struts (or Spring MVC)
+That’s a huge number of different technologies. It’s not necessarily bad to use all those technologies together (in fact it’s probably very good) but it’s important to be aware that pragmatic programmers don’t use wizards they don’t understand.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2005-02-05T23:36:01+00:00">
+		<meta property="article:modified_time" content="2005-02-05T23:36:01+00:00">
+
+	<meta itemprop="name" content="AppFuse">
+	<meta itemprop="description" content="Ben Fowler points to AppFuse, a quick way to set up J2EE projects with more buzz words than you can shake a stick at. Specifically it sets up a Tomcat/MySQL apps that:
+Uses Ant, XDoclet, Spring, Hibernate (or iBATIS), JUnit, Cactus, StrutsTestCase, Canoo’s WebTest, Struts Menu, Display Tag Library, OSCache, JSTL and Struts (or Spring MVC)
+That’s a huge number of different technologies. It’s not necessarily bad to use all those technologies together (in fact it’s probably very good) but it’s important to be aware that pragmatic programmers don’t use wizards they don’t understand.">
+	<meta itemprop="datePublished" content="2005-02-05T23:36:01+00:00">
+	<meta itemprop="dateModified" content="2005-02-05T23:36:01+00:00">
+	<meta itemprop="wordCount" content="211">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="AppFuse">
+	<meta name="twitter:description" content="Ben Fowler points to AppFuse, a quick way to set up J2EE projects with more buzz words than you can shake a stick at. Specifically it sets up a Tomcat/MySQL apps that:
+Uses Ant, XDoclet, Spring, Hibernate (or iBATIS), JUnit, Cactus, StrutsTestCase, Canoo’s WebTest, Struts Menu, Display Tag Library, OSCache, JSTL and Struts (or Spring MVC)
+That’s a huge number of different technologies. It’s not necessarily bad to use all those technologies together (in fact it’s probably very good) but it’s important to be aware that pragmatic programmers don’t use wizards they don’t understand.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">AppFuse</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">AppFuse</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-02-05T23:36:01Z">February 5, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://bjf.id.au/cgi-bin/blosxom.cgi/software/20050205-appfuse.html">Ben Fowler</a> points to <a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse">AppFuse</a>, a quick way to set up J2EE projects with more buzz words than you can shake a stick at.  Specifically it sets up a Tomcat/MySQL apps that:</p>
+<p>Uses Ant, XDoclet, Spring, Hibernate (or iBATIS), JUnit, Cactus, StrutsTestCase, Canoo&rsquo;s WebTest, Struts Menu, Display Tag Library, OSCache, JSTL and Struts (or Spring MVC)</p>
+<p>That&rsquo;s a huge number of different technologies.  It&rsquo;s not necessarily bad to use all those technologies together (in fact it&rsquo;s probably very good) but it&rsquo;s important to be aware that pragmatic programmers don&rsquo;t use wizards they don&rsquo;t understand.</p>
+<p>So unless you are already very familiar with how to set up a project using all of those technologies and understand exactly what AppFuse is doing for you, don&rsquo;t use it.  At some point the code and configuration files that AppFuse sets up are going to become code that&rsquo;s a part of your project and they will be yours to maintain.  If you don&rsquo;t understand what they do, how are you going to fix problems that show up or make changes later?</p>
+<p>Having said that, for seasoned veterans who understand all of those technologies well, AppFuse should be a big time saver.  I can see a lot of beginners getting into very deep water with it though.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

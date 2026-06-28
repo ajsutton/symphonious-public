@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Symphonious" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="Symphonious" />
+      
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/posts/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/posts/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Posts">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+
+	<meta itemprop="name" content="Posts">
+	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Posts">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 21, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/03/21/javassist-java-8-invalid-constant-type-15/" class="link black dim">
+        Javassist &amp; Java 8 – invalid constant type: 15
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Here&rsquo;s a fun one, we have some code generated using javassist that looks a bit like:</p>
+<pre><code>public void doStuff(byte actionId) {&lt;br /&gt;  switch (actionId) {&lt;br /&gt;    case 0: doOneThing(); break;&lt;br /&gt;    case 1: doSomethingElse(); break;&lt;br /&gt;    default: &lt;br /&gt;      throw new IllegalArgumentException(&quot;Unknown action: &quot; + actionId);&lt;br /&gt;  }&lt;br /&gt;}
+</code></pre>
+<p>This works perfectly fine on Java 6 and Java 7 but fails on Java 8.  It turns out the problematic part is <code>&quot;Unknown action: &quot; + actionId</code>. When run on Java 8 that throws “java.io.IOException: invalid constant type: 15” in javassist.bytecode.ConstPool.readOne.</p>
+    </div>
+  <a href="/2014/03/21/javassist-java-8-invalid-constant-type-15/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 18, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/03/18/the-truth-is-out-money-is-just-an-iou/" class="link black dim">
+        The truth is out: money is just an IOU
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a style="line-height: 24px;" href="http://www.theguardian.com/commentisfree/2014/mar/18/truth-money-iou-bank-of-england-austerity">The truth is out: money is just an IOU, and the banks are rolling in it</a>:</p>
+<blockquote>
+<p>What the Bank of England admitted this week is that none of this is really true. To quote from its own initial summary: “Rather than banks receiving deposits when households save and then lending them out, bank lending creates deposits” … “In normal times, the central bank does not fix the amount of money in circulation, nor is central bank money ‘multiplied up&rsquo; into more loans and deposits.” In other words, everything we know is not just wrong – it&rsquo;s backwards. When banks make loans, they create money. The complexity and subtlety in our financial system is delightful and frightening all at the same time. Almost everything has multiple contributing factors that are impossible to isolate and subtle shifts in world view like this can have huge implications on decision making.</p>
+    </div>
+  <a href="/2014/03/18/the-truth-is-out-money-is-just-an-iou/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 10, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/02/10/interruptions-coding-and-being-a-team/" class="link black dim">
+        Interruptions, Coding and Being a Team
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://lethargy.org/~jesus/writes/%E6%8A%98%E4%BC%8F---as-it-relates-to-coding/">Esoteric Curio – 折伏 – as it relates to coding</a></p>
+<blockquote>
+<p>Our job as a team is to reinforce each other and make each other more productive. While I attempt to conquer some of the engineering tasks as well as legal tasks, and human resource tasks I face, I need concentration and it world certainly help to not be interrupted. I used to think I needed those times of required solitute pretty much all the time. It turns out that I have added far more productivity by enabling my teams than I have personally lost due to interruptions, even when it was inconvenient and frustrating. So much so that Ive learned to cherish those interruptions in the hope that, on serendipitous occasion, they turn into a swift, sprititual kick to the head. After all, sometimes all you need for a fresh persective is to turn out the light in the next room; and, of course, to not have avoided the circumstance that brought you to do it. Too often we confuse personal productivity, or even just the impression of it, for team productivity. So often though having individuals slow down is the key to making the team as a whole speed up.  See also <a href="http://www.symphonious.net/2012/05/02/go-faster-by-not-working/" title="Go Faster By Not Working">Go Faster By Not Working</a> and <a href="http://www.symphonious.net/2012/08/14/the-myth-of-measurable-productivity/" title="The Myth of Measurable Productivity">The Myth of Measurable Productivity</a>.</p>
+    </div>
+  <a href="/2014/02/10/interruptions-coding-and-being-a-team/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 14, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/01/14/hypercritical-the-road-to-geekdom/" class="link black dim">
+        Hypercritical: The Road to Geekdom
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <blockquote>
+<p>Geekdom is not a club; it’s a destination, open to anyone who wants to put in the time and effort to travel there…</p>
+<p>…dive headfirst into the things that interest you. Soak up every experience. Lose yourself in the pursuit of knowledge. When you finally come up for air, you’ll find that the long road to geekdom no longer stretches out before you. No one can deny you entry. You’re already home.</p>
+    </div>
+  <a href="/2014/01/14/hypercritical-the-road-to-geekdom/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 14, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/01/14/myth-busting-mythbusted/" class="link black dim">
+        Myth busting mythbusted
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>As a follow up to the earlier link regarding the performance of animations in CSS vs JavaScript, <a href="http://christianheilmann.com/2014/01/13/myth-busting-mythbusted/">Christian Heilmann – Myth busting mythbusted</a>:</p>
+<blockquote>
+<p>Jack is doing a great job arguing his point that CSS animations are not always better than JavaScript animations. The issue is that all this does is debunking a blanket statement that was flawed from the very beginning and distilled down to a sound bite. An argument like “CSS animations are better than JavaScript animations for performance” is not a technical argument. It is damage control. You need to know a lot to make a JavaScript animation perform well, and you can do a lot of damage. If you use a CSS animation the only source of error is the browser. Thus, you prevent a lot of people writing even more badly optimised code for the web. Some good points that provide balance and perspective to the way web standards evolve and how to approach web development.</p>
+    </div>
+  <a href="/2014/01/14/myth-busting-mythbusted/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 13, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/01/13/myth-busting-css-animations-vs-javascript-css-tricks/" class="link black dim">
+        Myth Busting: CSS Animations vs. JavaScript
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p> </p>
+<p><a style="line-height: 24px; font-style: italic;" href="http://css-tricks.com/myth-busting-css-animations-vs-javascript/">Myth Busting: CSS Animations vs. JavaScript</a>:</p>
+<blockquote>
+<p>As someone who&rsquo;s fascinated (bordering on obsessed, actually) with animation and performance, I eagerly jumped on the CSS bandwagon. I didn&rsquo;t get far, though, before I started uncovering a bunch of major problems that nobody was talking about. I was shocked.</p>
+<p>This article is meant to raise awareness about some of the more significant shortcomings of CSS-based animation so that you can avoid the headaches I encountered, and make a more informed decision about when to use JS and when to use CSS for animation.</p>
+    </div>
+  <a href="/2014/01/13/myth-busting-css-animations-vs-javascript-css-tricks/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 9, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/01/09/are-ipads-and-tablets-bad-for-young-children/" class="link black dim">
+        Are iPads and tablets bad for young children?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>The Guardian: <a href="http://www.theguardian.com/society/2014/jan/08/are-tablet-computers-bad-young-children">Are iPads and tablets bad for young children?</a></p>
+<blockquote>
+<p>Kaufman strongly believes it is wrong to presume the same evils of tablets as televisions. “When scientists and paediatrician advocacy groups have talked about the danger of screen time for kids, they are lumping together all types of screen use. But most of the research is on TV. It seems misguided to assume that iPad apps are going to have the same effect. It all depends what you are using it for.”</p>
+    </div>
+  <a href="/2014/01/09/are-ipads-and-tablets-bad-for-young-children/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 6, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/01/06/proper-scrolling-direction-in-linux-on-macbook-pro/" class="link black dim">
+        “Proper” Scrolling Direction in Linux on MacBook Pro
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you&rsquo;ve gotten used to your trackpad scrolling the same way as on iOS and (by default) OS X but you&rsquo;re using Linux you&rsquo;ll want to go to the “Mouse &amp; Touchpad” settings panel and tick “Content sticks to fingers”.</p>
+<p>Yeah I know,shockingly simple but for whatever reason I had assumed “Content sticks to fingers” related to some weird drag and drop system…</p>
+    </div>
+  <a href="/2014/01/06/proper-scrolling-direction-in-linux-on-macbook-pro/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 16, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/12/16/why-are-my-junit-tests-running-so-slow/" class="link black dim">
+        Why Are My JUnit Tests Running So Slow?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This is mostly a note to myself, but often when I setup a new Linux install, I find that JUnit tests run significantly slower than usual. The CPU is nearly entirely idle and there&rsquo;s almost no IO-wait making it hard to work out what&rsquo;s going on.</p>
+<p>The problem is that JUnit (or something in our tests or test runner) is doing a DNS lookup on the machine&rsquo;s hostname. That lookup should be really fast, but if you&rsquo;re connected to a VPN it may search the remote DNS server which takes time and makes the tests take much longer than they should.</p>
+    </div>
+  <a href="/2013/12/16/why-are-my-junit-tests-running-so-slow/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 3, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/12/03/chris-hates-writing-%E2%80%A2-small-things-add-up/" class="link black dim">
+        Chris Hates Writing • Small things add up
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a style="line-height: 24px; font-style: italic;" href="http://chrishateswriting.com/post/68794699432/small-things-add-up">Chris Poole – Small things add up</a>:</p>
+<blockquote>
+<p>By migrating to the new domain, end users now save roughly 100 KB upstream per page load, which at 500 million pageviews per month adds up to 46 terabytes per month in savings for our users. I find this unreal. Just by moving images to a domain that doesn&rsquo;t have cookies. Impressive, especially given that users upload data significantly slower than they download it and HTTP 1.1 headers are sent uncompressed. Important to note however:</p>
+    </div>
+  <a href="/2013/12/03/chris-hates-writing-%E2%80%A2-small-things-add-up/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 25, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/11/25/developing-first-class-software-with-the-developers-that-google-rejects/" class="link black dim">
+        Developing First Class Software with the Developers that Google Rejects
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Ron Qartel: <a href="http://www.solutionsiq.com/resources/agileiq-blog/bid/98316/Developing-First-Class-Software-with-the-Developers-that-Google-Rejects">Developing First Class Software with the Developers that Google Rejects</a></p>
+<p>Focus on building a great team and a great way to develop, not on hiring individual hotshots. I would caution however that XP isn&rsquo;t necessarily the “great way to develop” that will work best for your team and your circumstances, but its certainly a good starting point. Just remember that the one key Agile principal is to continuously improve the way you work. So don&rsquo;t just follow “the rules”.</p>
+    </div>
+  <a href="/2013/11/25/developing-first-class-software-with-the-developers-that-google-rejects/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 25, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/11/25/rewrote-of-lines-of-in-of-lines-of/" class="link black dim">
+        Rewrote {big number} of lines of {old language} in {small number} of lines of {hip new language}
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>There&rsquo;s lots of projects these days moving from one language to the next. Whether that&rsquo;s a good idea or not varies but let&rsquo;s accept that it was the right choice and the world is a better place for it. One thing really bugs me: inevitably justifications of how successful that move has been includes a claim that the number of lines of code were so significantly reduced.</p>
+<blockquote>
+<p>We rewrote 1.5 million lines of Java in just 6,000 lines of haskell!</p>
+    </div>
+  <a href="/2013/11/25/rewrote-of-lines-of-in-of-lines-of/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+    </section>
+		<ul class="pagination pagination-default">
+			<li class="page-item">
+				<a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+			</li>
+		<li class="page-item">
+			<a href="/posts/page/11/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+		</li>
+			<li class="page-item">
+				<a href="/posts/page/10/" aria-label="Page 10" class="page-link" role="button">10</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/11/" aria-label="Page 11" class="page-link" role="button">11</a>
+			</li>
+			<li class="page-item active">
+				<a aria-current="page" aria-label="Page 12" class="page-link" role="button">12</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/13/" aria-label="Page 13" class="page-link" role="button">13</a>
+			</li>
+			<li class="page-item">
+				<a href="/posts/page/14/" aria-label="Page 14" class="page-link" role="button">14</a>
+			</li>
+		<li class="page-item">
+			<a href="/posts/page/13/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+		</li>
+			<li class="page-item">
+				<a href="/posts/page/102/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+			</li>
+		</ul></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

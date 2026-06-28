@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Making Claude Code Tell You What It&#39;s Doing | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Claude Code has a status line that sits at the bottom of the terminal showing things like the current directory, git branch, model, and context window usage. It&rsquo;s driven by a shell script that receives JSON on stdin and prints whatever it wants. I wanted to add one more thing: a short description of what the session is actually working on.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2026/03/10/making-claude-code-tell-you-what-its-doing/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2026/03/10/making-claude-code-tell-you-what-its-doing/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Making Claude Code Tell You What It&#39;s Doing">
+	<meta property="og:description" content="Claude Code has a status line that sits at the bottom of the terminal showing things like the current directory, git branch, model, and context window usage. It’s driven by a shell script that receives JSON on stdin and prints whatever it wants. I wanted to add one more thing: a short description of what the session is actually working on.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-03-10T22:00:00+10:00">
+		<meta property="article:modified_time" content="2026-03-10T22:00:00+10:00">
+
+	<meta itemprop="name" content="Making Claude Code Tell You What It&#39;s Doing">
+	<meta itemprop="description" content="Claude Code has a status line that sits at the bottom of the terminal showing things like the current directory, git branch, model, and context window usage. It’s driven by a shell script that receives JSON on stdin and prints whatever it wants. I wanted to add one more thing: a short description of what the session is actually working on.">
+	<meta itemprop="datePublished" content="2026-03-10T22:00:00+10:00">
+	<meta itemprop="dateModified" content="2026-03-10T22:00:00+10:00">
+	<meta itemprop="wordCount" content="1079">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Making Claude Code Tell You What It&#39;s Doing">
+	<meta name="twitter:description" content="Claude Code has a status line that sits at the bottom of the terminal showing things like the current directory, git branch, model, and context window usage. It’s driven by a shell script that receives JSON on stdin and prints whatever it wants. I wanted to add one more thing: a short description of what the session is actually working on.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Making Claude Code Tell You What It&#39;s Doing</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Making Claude Code Tell You What It&#39;s Doing</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-03-10T22:00:00+10:00">March 10, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Claude Code has a <a href="https://docs.anthropic.com/en/docs/claude-code/status-line">status line</a> that sits at the bottom of the terminal showing things like the current directory, git branch, model, and context window usage. It&rsquo;s driven by a shell script that receives JSON on stdin and prints whatever it wants. I wanted to add one more thing: a short description of what the session is actually working on.</p>
+<h2 id="the-simple-way-rename">The Simple Way: /rename</h2>
+<p>The built-in <code>/rename</code> command sets a session name that Claude Code displays above the prompt. Type <code>/rename fix auth bug</code> at the start of each session and you&rsquo;re done — no scripts needed.</p>
+<p>The downside is that it&rsquo;s manual, and <code>/rename</code> can&rsquo;t be invoked programmatically by Claude. If you want Claude to automatically describe what it&rsquo;s working on and update that description as the focus shifts, you need the automated approach below.</p>
+<h2 id="the-automated-approach">The Automated Approach</h2>
+<p>The goal is for Claude to write a short status like &ldquo;fix auth bug&rdquo; that shows up in the status line, updated automatically as the session&rsquo;s focus changes:</p>
+<pre tabindex="0"><code>op-claude (main) Opus ctx:8% · fix auth bug
+</code></pre><p>This turns out to be harder than it should be. The status line script receives a JSON blob on stdin that includes the <code>session_id</code>. Claude&rsquo;s bash tool calls don&rsquo;t. There&rsquo;s no <code>$SESSION_ID</code> environment variable, and <code>$PPID</code> differs between the two because they&rsquo;re spawned through different process trees.</p>
+<p>So we need a way for the status line side (which knows the session ID) to leave a breadcrumb that the bash side (which doesn&rsquo;t) can find.</p>
+<h2 id="the-breadcrumb">The Breadcrumb</h2>
+<p>Both the status line script and Claude&rsquo;s bash calls have a common ancestor: the <code>claude</code> process. They just reach it through different paths. The trick is to walk up the process tree until you find a process named <code>claude</code>, then use its PID as a shared key.</p>
+<p>A <code>UserPromptSubmit</code> hook runs on every user message and receives the <code>session_id</code> in its input. It walks the process tree to find the ancestor <code>claude</code> PID and writes a breadcrumb file mapping one to the other:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># ~/.claude/hooks/session-status.sh</span>
+</span></span><span style="display:flex;"><span>input<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>session_id<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | jq -r <span style="color:#e6db74">&#39;.session_id // empty&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$session_id<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Write breadcrumb mapping ancestor claude PID -&gt; session_id</span>
+</span></span><span style="display:flex;"><span>pid<span style="color:#f92672">=</span>$PPID
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$pid<span style="color:#e6db74">&#34;</span> -gt <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    comm<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps -o comm<span style="color:#f92672">=</span> -p <span style="color:#e6db74">&#34;</span>$pid<span style="color:#e6db74">&#34;</span> 2&gt;/dev/null<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$comm<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;claude&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;</span>$session_id<span style="color:#e6db74">&#34;</span> &gt; <span style="color:#e6db74">&#34;/tmp/claude-sid-</span><span style="color:#e6db74">${</span>pid<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        break
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    pid<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps -o ppid<span style="color:#f92672">=</span> -p <span style="color:#e6db74">&#34;</span>$pid<span style="color:#e6db74">&#34;</span> 2&gt;/dev/null | tr -d <span style="color:#e6db74">&#39; &#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If no status file exists yet, remind Claude to create one</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;/tmp/claude-status-</span><span style="color:#e6db74">${</span>session_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>jq -n <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;hookSpecificOutput&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;hookEventName&#34;: &#34;UserPromptSubmit&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;additionalContext&#34;: &#34;STATUS LINE REMINDER: Run ~/.claude/update-status.sh \&#34;short summary\&#34; to set what this session is working on (under 30 chars).&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}&#39;</span>
+</span></span></code></pre></div><p>That last part is important. You can&rsquo;t just tell Claude in your CLAUDE.md to &ldquo;please update the status line&rdquo; and expect it to reliably happen. The hook injects a reminder into the conversation context on every user message until a status file exists. Belt and suspenders.</p>
+<h2 id="writing-the-status">Writing the Status</h2>
+<p>Claude calls a small helper script that does the same process-tree walk in reverse — finds the <code>claude</code> ancestor PID, reads the breadcrumb to get the session ID, then writes the status:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># ~/.claude/update-status.sh &#34;short summary&#34;</span>
+</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>pid<span style="color:#f92672">=</span>$$
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$pid<span style="color:#e6db74">&#34;</span> -gt <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    comm<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps -o comm<span style="color:#f92672">=</span> -p <span style="color:#e6db74">&#34;</span>$pid<span style="color:#e6db74">&#34;</span> 2&gt;/dev/null<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$comm<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;claude&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        sid<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">&#34;/tmp/claude-sid-</span><span style="color:#e6db74">${</span>pid<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 2&gt;/dev/null<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$sid<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span> &gt; <span style="color:#e6db74">&#34;/tmp/claude-status-</span><span style="color:#e6db74">${</span>sid<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    pid<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps -o ppid<span style="color:#f92672">=</span> -p <span style="color:#e6db74">&#34;</span>$pid<span style="color:#e6db74">&#34;</span> 2&gt;/dev/null | tr -d <span style="color:#e6db74">&#39; &#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h2 id="the-status-line-script">The Status Line Script</h2>
+<p>The full status line script reads the JSON from stdin, extracts the fields it cares about, and builds the output. The session status is just another part appended at the end:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># ~/.claude/statusline-command.sh</span>
+</span></span><span style="display:flex;"><span>input<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cwd<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | jq -r <span style="color:#e6db74">&#39;.cwd // .workspace.current_dir // &#34;&#34;&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | jq -r <span style="color:#e6db74">&#39;.model.display_name // &#34;&#34;&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>used_pct<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | jq -r <span style="color:#e6db74">&#39;.context_window.used_percentage // empty&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>vim_mode<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | jq -r <span style="color:#e6db74">&#39;.vim.mode // empty&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>session_id<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | jq -r <span style="color:#e6db74">&#39;.session_id // empty&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Per-session status from temp file keyed by session_id</span>
+</span></span><span style="display:flex;"><span>session_status<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$session_id<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    session_status<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">&#34;/tmp/claude-status-</span><span style="color:#e6db74">${</span>session_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 2&gt;/dev/null <span style="color:#f92672">||</span> true<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Directory: basename of cwd</span>
+</span></span><span style="display:flex;"><span>dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span>$cwd<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Git branch (skip optional locks)</span>
+</span></span><span style="display:flex;"><span>branch<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> git_out<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>GIT_OPTIONAL_LOCKS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> git -C <span style="color:#e6db74">&#34;</span>$cwd<span style="color:#e6db74">&#34;</span> symbolic-ref --short HEAD 2&gt;/dev/null<span style="color:#66d9ef">)</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    branch<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$git_out<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build status line parts</span>
+</span></span><span style="display:flex;"><span>parts<span style="color:#f92672">=()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Directory in cyan</span>
+</span></span><span style="display:flex;"><span>parts<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;\033[36m%s\033[0m&#39;</span> <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Git branch in yellow if present</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$branch<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    parts<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;\033[33m(%s)\033[0m&#39;</span> <span style="color:#e6db74">&#34;</span>$branch<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Model</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$model<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    parts<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;\033[90m%s\033[0m&#39;</span> <span style="color:#e6db74">&#34;</span>$model<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Context usage with color thresholds</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$used_pct<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    used_int<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>used_pct%.*<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$used_int<span style="color:#e6db74">&#34;</span> -ge <span style="color:#ae81ff">80</span> <span style="color:#f92672">]</span> 2&gt;/dev/null; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;\033[31m&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$used_int<span style="color:#e6db74">&#34;</span> -ge <span style="color:#ae81ff">50</span> <span style="color:#f92672">]</span> 2&gt;/dev/null; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;\033[33m&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;\033[32m&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    parts<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>color<span style="color:#e6db74">}</span><span style="color:#e6db74">ctx:%s%%\033[0m&#34;</span> <span style="color:#e6db74">&#34;</span>$used_int<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Session status (per-session work summary)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$session_status<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    parts<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;\033[90m· %s\033[0m&#39;</span> <span style="color:#e6db74">&#34;</span>$session_status<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Vim mode</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$vim_mode<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    parts<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;\033[90m[%s]\033[0m&#39;</span> <span style="color:#e6db74">&#34;</span>$vim_mode<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#39;%s&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>parts[*]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h2 id="wiring-it-up">Wiring It Up</h2>
+<p>Make both scripts executable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod +x ~/.claude/statusline-command.sh ~/.claude/update-status.sh ~/.claude/hooks/session-status.sh
+</span></span></code></pre></div><p>Register the status line and hook in <code>~/.claude/settings.json</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusLine&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;command&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;bash ~/.claude/statusline-command.sh&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;hooks&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;UserPromptSubmit&#34;</span>: [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;hooks&#34;</span>: [
+</span></span><span style="display:flex;"><span>          {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;command&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;~/.claude/hooks/session-status.sh&#34;</span>
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And add the instruction to your <code>CLAUDE.md</code> that tells Claude when to update:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Session Status Line
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Update the session status line so the user can see what each session
+</span></span><span style="display:flex;"><span>is working on at a glance.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **After the first user prompt**: run <span style="color:#e6db74">`~/.claude/update-status.sh &#34;short summary&#34;`</span>
+</span></span><span style="display:flex;"><span>  as part of your first response
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **Periodically**: run it again every ~5 interactions or when focus shifts
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Keep summaries under 30 chars
+</span></span></code></pre></div><h2 id="what-i-learned">What I Learned</h2>
+<p>The interesting constraint here is that Claude Code&rsquo;s extensibility points — status line scripts, hooks, and bash tool calls — all run as separate processes with no shared environment. There&rsquo;s no session ID in the environment, no shared memory, no IPC channel. The process tree walk is a hack, but it&rsquo;s a reliable one. Every subprocess of a Claude Code session shares a common <code>claude</code> ancestor, even if the paths diverge.</p>
+<p>The other lesson is that CLAUDE.md instructions alone aren&rsquo;t enough for &ldquo;always do X&rdquo; behaviors. Claude follows them inconsistently, especially across sessions. Hooks that inject reminders into the conversation context are much more reliable. The CLAUDE.md instruction tells Claude <em>what</em> to do; the hook makes sure it actually does it.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

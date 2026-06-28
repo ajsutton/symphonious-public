@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Understanding Attestation Misses | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The process of producing attestations and getting them included into the chain has become more complex post-merge. Combined with a few issues with clients causing more missed attestations than normal there&rsquo;s lots of people struggling to understand what&rsquo;s causing those misses. So let&rsquo;s dig into the process involved and how to identify where problems are occurring.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2022/09/25/understanding-attestation-misses/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2022/09/25/understanding-attestation-misses/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Understanding Attestation Misses">
+	<meta property="og:description" content="The process of producing attestations and getting them included into the chain has become more complex post-merge. Combined with a few issues with clients causing more missed attestations than normal there’s lots of people struggling to understand what’s causing those misses. So let’s dig into the process involved and how to identify where problems are occurring.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2022-09-25T10:27:21+10:00">
+		<meta property="article:modified_time" content="2022-09-25T10:27:21+10:00">
+
+	<meta itemprop="name" content="Understanding Attestation Misses">
+	<meta itemprop="description" content="The process of producing attestations and getting them included into the chain has become more complex post-merge. Combined with a few issues with clients causing more missed attestations than normal there’s lots of people struggling to understand what’s causing those misses. So let’s dig into the process involved and how to identify where problems are occurring.">
+	<meta itemprop="datePublished" content="2022-09-25T10:27:21+10:00">
+	<meta itemprop="dateModified" content="2022-09-25T10:27:21+10:00">
+	<meta itemprop="wordCount" content="1978">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Understanding Attestation Misses">
+	<meta name="twitter:description" content="The process of producing attestations and getting them included into the chain has become more complex post-merge. Combined with a few issues with clients causing more missed attestations than normal there’s lots of people struggling to understand what’s causing those misses. So let’s dig into the process involved and how to identify where problems are occurring.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Understanding Attestation Misses</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Understanding Attestation Misses</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-09-25T10:27:21+10:00">September 25, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The process of producing attestations and getting them included into the chain has become more complex post-merge. Combined with a few issues with clients causing more missed attestations than normal there&rsquo;s lots of people struggling to understand what&rsquo;s causing those misses. So let&rsquo;s dig into the process involved and how to identify where problems are occurring.</p>
+<h2 id="attestation-life-cycle">Attestation Life-Cycle</h2>
+<p>There&rsquo;s a number of steps required to get an attestation included on the chain. My <a href="https://www.symphonious.net/2020/09/08/exploring-eth2-attestation-inclusion/">old video explaining this</a> still covers the details of the journey well - the various optimisations I talk about there have long since been implemented but the process is still the same. In short, the validator needs to produce the attestation and publish it to the attestation subnet gossip channel, an aggregator needs to include it in an aggregation and publish it to the aggregates gossip channel and then it needs to be pick up by a block producer and packed into a block.</p>
+<p>Attestations are more likely to be included in aggregates and blocks if they are published on time and match the majority of other attestations. Attestations that are different can&rsquo;t be aggregated so they&rsquo;re much less likely to be included in aggregates (the aggregator would have to produce an attestation that matches yours) and they take up 1 of the 128 attestations that can be in a block but pay less than better aggregated attestations.</p>
+<p>Since attestations attest to the current state of the chain, the way to ensure your attestation matches the majority is to ensure you&rsquo;re following the chain well. That&rsquo;s where most of the post-merge issues have been - blocks taking too long to import, causing less accurate attestations which are then more likely to not get included. So let&rsquo;s look at some metrics to follow so we can work out what&rsquo;s happening.</p>
+<h2 id="key-indicators-of-attestation-performance">Key Indicators of Attestation Performance</h2>
+<p>Often people just look at the &ldquo;Attestation Effectiveness&rdquo; metric reported by <a href="https://beaconcha.in">beaconcha.in</a>, but that&rsquo;s not a great metric to use. Firstly it tries to bundle together every possible measure of attestations, some within your control and some not, into a single metric. Secondly, it tends to be far too volatile with a single delayed attestation causing a very large drop in the effectiveness metric, distorting the result. As a result, it tends to make your validator performance look worse than it is and doesn&rsquo;t give you any useful information to fix act on.</p>
+<p>So let&rsquo;s look at some more specific and informative metrics we can use instead.</p>
+<p>Firstly for the overall view, look to <a href="https://www.symphonious.net/2021/01/10/exploring-eth2-attestation-rewards-and-validator-performance/">percentage of attestation rewards earned</a>. While that write up is pre-Altair the metrics on the <a href="https://grafana.com/grafana/dashboards/13457-teku/">Teku Dashboard</a> have been updated to show the right values even with the new Altair rules. Look at the &ldquo;Attestation Rewards Earned&rdquo; line on the &ldquo;Attestation Performance&rdquo; graph in the top left of the board. This will tell you quite accurately how well you&rsquo;re doing in terms of total rewards, but it still includes factors outside of your control and won&rsquo;t help identify where problems are occurring.</p>
+<p>To identify where problems are occurring we need to dig a bit deeper. Each epoch, Teku prints a summary of attestation performance to the logs like:</p>
+<pre tabindex="0"><code>Attestation performance: epoch 148933, expected 16, produced 16, included 16 (100%), distance 1 / 1.00 / 1, correct target 16 (100%), correct head 16 (100%)
+</code></pre><p>This is an example of perfect attestation performance - we expected 16 attestations, 16 were included, the distance had a minimum of 1, average of 1.00 and maximum of 1 (the distance numbers are min / avg / max in the output) and 100% of attestations had the correct target and head. One thing to note is that attestation performance is reported 2 epochs after the attestations are produced to give them time to actually be included on chain.  The <code>epoch</code> reported in this line tells you which epoch the attestations being reported on are from.</p>
+<p>Each of these values are also available as metrics and the <a href="https://grafana.com/grafana/dashboards/13457-teku/">Teku Dashboard</a> uses them to create the &ldquo;Attestation Performance&rdquo; graph. That provides a good way to quickly see how your validators have performed over time and get a better overview rather than fixating on a single epoch that wasn&rsquo;t ideal.</p>
+<h3 id="attestations-expected">Attestations Expected</h3>
+<p>Each active validator should produce one attestation per epoch. So the <code>expected</code> value reported should be the same as the number of active validators you&rsquo;re running.  If it&rsquo;s less than that, you probably haven&rsquo;t loaded some of your validator keys and they&rsquo;ll likely be missing all attestations. It&rsquo;s pretty rare that <code>expected</code> isn&rsquo;t what we expect though.</p>
+<h3 id="attestations-produced">Attestations Produced</h3>
+<p>If the <code>produced</code> value is less than the <code>expected</code> then something prevented your node from producing attestations at all. To find out what, you&rsquo;ll need to scroll back up in your validator client logs to the epoch this performance report is for - remember that it will be 2 epochs ago. We&rsquo;re looking for a log that shows the result of the attestation duty. When the attestation is published successfully it will show something like:</p>
+<pre tabindex="0"><code>Validator   *** Published attestation        Count: 176, Slot: 3963003, Root: b4ca6d61be7f54f7ccc6055d0f37f122943e8313dbcfe49513c9d4ef50bbc870
+</code></pre><p>The <code>Count</code> field is the number of local validators that produced this attestation (this example is from our Görli testnet node - sadly we don&rsquo;t have that many real-money validators).</p>
+<p>When an attestation fails to be produced the log will show something like:</p>
+<pre tabindex="0"><code>Validator   *** Failed to produce attestation  Slot: 4726848 Validator: d278fc2
+java.lang.IllegalArgumentException: Cannot create attestation for future slot. Requested 4726848 but current slot is 4726847
+	at tech.pegasys.teku.validator.coordinator.ValidatorApiHandler.createAttestationData(ValidatorApiHandler.java:324)
+	at jdk.internal.reflect.GeneratedMethodAccessor54.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at tech.pegasys.teku.infrastructure.events.DirectEventDeliverer.executeMethod(DirectEventDeliverer.java:74)
+	at tech.pegasys.teku.infrastructure.events.DirectEventDeliverer.deliverToWithResponse(DirectEventDeliverer.java:67)
+	at tech.pegasys.teku.infrastructure.events.AsyncEventDeliverer.lambda$deliverToWithResponse$1(AsyncEventDeliverer.java:80)
+	at tech.pegasys.teku.infrastructure.events.AsyncEventDeliverer$QueueReader.deliverNextEvent(AsyncEventDeliverer.java:125)
+	at tech.pegasys.teku.infrastructure.events.AsyncEventDeliverer$QueueReader.run(AsyncEventDeliverer.java:116)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</code></pre><p>The specific reason the attestation failed can vary a lot. In this case the beacon node wasn&rsquo;t keeping up for some reason which would require further investigation into Teku and its performance. One common source of failures if the beacon node or execution client isn&rsquo;t in sync at the time which appears as a <code>503</code> response code from the beacon node when using the external validator client.</p>
+<p>We can look at the &ldquo;Produced&rdquo; line on the &ldquo;Attestation Performance&rdquo; graph of the standard Teku dashboard to see the percentage of expected attestations that were produced over time.</p>
+<h3 id="attestation-timing">Attestation Timing</h3>
+<p>If the attestation was produced, the next thing to check is that it was actually produced on time. If you find the <code>Published attestation</code> log line, you can compare the timestamp of that log message to the time the attestation&rsquo;s slot started.  You can <a href="https://slots.symphonious.net">Slot Finder</a> to find the start time of the slot. Attestations are due to be published 4 seconds into the slot. Anywhere from the start of the slot up to about 4.5 seconds after is fine.</p>
+<p>You can also use the <code>validator_attestation_publication_delay</code> metric to track publication times. The <a href="https://grafana.com/grafana/dashboards/16737-teku-detailed/">Teku Detailed</a> dashboard includes graphs of this under the <code>Validator Timings</code> section.</p>
+<p>Remember that neither logs nor metrics can identify when your system clock is incorrect, because the timings they&rsquo;re using are from the system clock too. Make sure you&rsquo;re running ntpd or chrony and that they report the clock as in sync.</p>
+<h3 id="correct-head-vote">Correct Head Vote</h3>
+<p>If the attestation was published on time, we need to start checking if it matched the majority of other nodes produced. There isn&rsquo;t a simple way to do this directly, but generally if the head block our attestation votes for turns out to be correct, we will almost certainly have agreed with the majority of other validators. The <code>correct head 16 (100%)</code> part of the attestation performance line shows how many attestations produced had the right head block. If that&rsquo;s at 100% and the attestations were all published on time, there isn&rsquo;t really much more your node can do.</p>
+<p>Having some attestations with incorrect head votes may mean your node is too slow importing blocks. Note though that block producers are sometimes slow in publishing a block. These late blocks sometimes mean that the majority of validators get the head vote &ldquo;wrong&rdquo;, so it&rsquo;s not necessarily a problem with your node when head votes aren&rsquo;t at 100%. Even if it is your node that&rsquo;s slow, we need to work out if the problem is in the beacon node or the execution client.  Block timing logs can help us with that.</p>
+<h2 id="block-timings">Block Timings</h2>
+<p>To dig deeper we need to enable some extra timing metrics in Teku by adding the <code>--Xmetrics-block-timing-tracking-enabled</code> option. This does two things, firstly when a block finishes importing more than 4 seconds into a slot (after attestations are due), Teku will now log a <code>Late Block Import</code> line which includes a break down of the time taken at each stage of processing the block (albeit very Teku-developer oriented). Secondly, it enables the <code>beacon_block_import_delay_counter</code> metric which exposes that break down as metrics. Generally, for any slot where the head vote is incorrect, there will be a late block import that caused it. We just need to work out what caused the delay.</p>
+<p>An example late block log looks like:</p>
+<pre tabindex="0"><code>Late Block Import *** Block: c2b911533a8f8d5e699d1a334e0576d2b9aa4caa726bde8b827548b579b47c68 (4765916) proposer 6230 arrival 3475ms, pre-state_retrieved +5ms, processed +185ms, execution_payload_result_received +1436ms, begin_importing +0ms, transaction_prepared +0ms, transaction_committed +0ms, completed +21ms
+</code></pre><h3 id="arrival">Arrival</h3>
+<p>The first potential source of delay is that the block just didn&rsquo;t get to us in time.  The <code>arrival</code> timing shows how much time after the start of the slot the block was first received by your node. In the example above, that was 3475ms which is quite slow, but did get to us before we needed to create an attestation 4 seconds into the slot. Delays in arrival are almost always caused by the block producer being slow to produce the block. It is however possible that the block was published on time but took a long time to be gossiped to your node. If you&rsquo;re seeing late arrival for most blocks, there&rsquo;s likely an issue with your node - either the system clock is wrong, your network is having issues or you may have reduced the number of peers too far.</p>
+<h3 id="execution-client-processing">Execution Client Processing</h3>
+<p>Post-merge, importing a block involves both the consensus and execution clients.  The time Teku spends waiting for the execution client to finish processing the block is reported in the <code>execution_payload_result_received</code> value.  In this case 1436ms, which would have been ok if the block wasn&rsquo;t received so late but isn&rsquo;t ideal.  Under 2 seconds is probably ok most of the time, but under 1 second would be better. Execution clients will keep working on optimisations to reduce this time so its worth keeping up to date with the latest version of your client.</p>
+<p>Note that prior to Teku 22.9.1 this entry didn&rsquo;t exist and the execution client time was just counted as part of <code>transaction_prepared</code>.</p>
+<h3 id="teku-processing">Teku Processing</h3>
+<p>The other values are all various aspects of the processing Teku needs to do. <code>pre-state_retrieved</code> and <code>processed</code> are part of applying the state transaction when processing the block. <code>begin_importing</code>, <code>transaction_prepared</code> and <code>transaction_committed</code> record the time taken in various parts of storing the new block to disk. Finally <code>completed</code> reports the final details of things like updating the fork choice records and so on.</p>
+<p>Prior to Teku 22.9.1, the <code>transaction_committed</code> was a common source of delays when updating the actual LevelDB database on disk. The disk update is now asynchronous so unless the disk is really exceptionally slow this value is generally only 0 or 1ms.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>All these metrics let us get an understanding of where time was spent or where failures occurred. If you&rsquo;re node is processing blocks quickly, publishing attestations on time and the system clock is accurate there&rsquo;s probably very little you can do to improve things - having the occasional delayed or missed attestation isn&rsquo;t unheard of or really worth worrying about.</p>
+<p>Otherwise these metrics and logs should give a fairly clear indication of which component is causing problems so you can focus investigations there are get help as needed.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

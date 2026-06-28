@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>What’s Different About This Case? | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve found that doing TDD causes me to use, or perhaps just be more aware of using, some useful debugging and programming techniques. As a side note, it occurs to me that debugging and programming in TDD are essentially the same – in either case you&rsquo;re trying to fix the failing test.
+So while TDDing, I find myself asking &ldquo;What&rsquo;s different about this case?&rdquo; in a way that I can&rsquo;t ever recall before. It&rsquo;s easier to think like this with TDD because you have a documented, repeatable set of situations to compare between. Sometimes a change you make to fix the latest test will cause others to break and it&rsquo;s then that you need to determine what&rsquo;s different about the new case that needs special handling. Developing without TDD, the question I&rsquo;d tend to ask is &ldquo;how should this work?&rdquo; which is a lot broader and harder to comprehend. I still ask, &ldquo;how should this work&rdquo;, but it&rsquo;s usually at the start of a story where I need to get my head around what needs to be done and get an overall view of the problem. Finding the answer usually means a bunch of scribbling on notepads or whiteboards going through the possible scenarios and determining what should happen. While programming, the scope is usually reduced enough that you don&rsquo;t need to scribble on whiteboards, but I do find myself going over the various cases to narrow the question down to &ldquo;what&rsquo;s different about this case?&rdquo;.
+In the end, what it means is that TDD is documenting a lot of what I would otherwise do over and over in my head and getting me to the more narrowly focussed question more quickly. It doesn&rsquo;t eliminate that mental process, but it does make it easier and provides a safety net for it if I miss a case.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/10/09/whats-different-about-this-case/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/10/09/whats-different-about-this-case/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="What’s Different About This Case?">
+	<meta property="og:description" content="I’ve found that doing TDD causes me to use, or perhaps just be more aware of using, some useful debugging and programming techniques. As a side note, it occurs to me that debugging and programming in TDD are essentially the same – in either case you’re trying to fix the failing test.
+So while TDDing, I find myself asking “What’s different about this case?” in a way that I can’t ever recall before. It’s easier to think like this with TDD because you have a documented, repeatable set of situations to compare between. Sometimes a change you make to fix the latest test will cause others to break and it’s then that you need to determine what’s different about the new case that needs special handling. Developing without TDD, the question I’d tend to ask is “how should this work?” which is a lot broader and harder to comprehend. I still ask, “how should this work”, but it’s usually at the start of a story where I need to get my head around what needs to be done and get an overall view of the problem. Finding the answer usually means a bunch of scribbling on notepads or whiteboards going through the possible scenarios and determining what should happen. While programming, the scope is usually reduced enough that you don’t need to scribble on whiteboards, but I do find myself going over the various cases to narrow the question down to “what’s different about this case?”.
+In the end, what it means is that TDD is documenting a lot of what I would otherwise do over and over in my head and getting me to the more narrowly focussed question more quickly. It doesn’t eliminate that mental process, but it does make it easier and provides a safety net for it if I miss a case.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-10-09T07:55:57+00:00">
+		<meta property="article:modified_time" content="2006-10-09T07:55:57+00:00">
+
+	<meta itemprop="name" content="What’s Different About This Case?">
+	<meta itemprop="description" content="I’ve found that doing TDD causes me to use, or perhaps just be more aware of using, some useful debugging and programming techniques. As a side note, it occurs to me that debugging and programming in TDD are essentially the same – in either case you’re trying to fix the failing test.
+So while TDDing, I find myself asking “What’s different about this case?” in a way that I can’t ever recall before. It’s easier to think like this with TDD because you have a documented, repeatable set of situations to compare between. Sometimes a change you make to fix the latest test will cause others to break and it’s then that you need to determine what’s different about the new case that needs special handling. Developing without TDD, the question I’d tend to ask is “how should this work?” which is a lot broader and harder to comprehend. I still ask, “how should this work”, but it’s usually at the start of a story where I need to get my head around what needs to be done and get an overall view of the problem. Finding the answer usually means a bunch of scribbling on notepads or whiteboards going through the possible scenarios and determining what should happen. While programming, the scope is usually reduced enough that you don’t need to scribble on whiteboards, but I do find myself going over the various cases to narrow the question down to “what’s different about this case?”.
+In the end, what it means is that TDD is documenting a lot of what I would otherwise do over and over in my head and getting me to the more narrowly focussed question more quickly. It doesn’t eliminate that mental process, but it does make it easier and provides a safety net for it if I miss a case.">
+	<meta itemprop="datePublished" content="2006-10-09T07:55:57+00:00">
+	<meta itemprop="dateModified" content="2006-10-09T07:55:57+00:00">
+	<meta itemprop="wordCount" content="388">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="What’s Different About This Case?">
+	<meta name="twitter:description" content="I’ve found that doing TDD causes me to use, or perhaps just be more aware of using, some useful debugging and programming techniques. As a side note, it occurs to me that debugging and programming in TDD are essentially the same – in either case you’re trying to fix the failing test.
+So while TDDing, I find myself asking “What’s different about this case?” in a way that I can’t ever recall before. It’s easier to think like this with TDD because you have a documented, repeatable set of situations to compare between. Sometimes a change you make to fix the latest test will cause others to break and it’s then that you need to determine what’s different about the new case that needs special handling. Developing without TDD, the question I’d tend to ask is “how should this work?” which is a lot broader and harder to comprehend. I still ask, “how should this work”, but it’s usually at the start of a story where I need to get my head around what needs to be done and get an overall view of the problem. Finding the answer usually means a bunch of scribbling on notepads or whiteboards going through the possible scenarios and determining what should happen. While programming, the scope is usually reduced enough that you don’t need to scribble on whiteboards, but I do find myself going over the various cases to narrow the question down to “what’s different about this case?”.
+In the end, what it means is that TDD is documenting a lot of what I would otherwise do over and over in my head and getting me to the more narrowly focussed question more quickly. It doesn’t eliminate that mental process, but it does make it easier and provides a safety net for it if I miss a case.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">What’s Different About This Case?</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">What’s Different About This Case?</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-10-09T07:55:57Z">October 9, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve found that doing TDD causes me to use, or perhaps just be more aware of using, some useful debugging and programming techniques. As a side note, it occurs to me that debugging and programming in TDD are essentially the same – in either case you&rsquo;re trying to fix the failing test.</p>
+<p>So while TDDing, I find myself asking &ldquo;What&rsquo;s different about this case?&rdquo; in a way that I can&rsquo;t ever recall before. It&rsquo;s easier to think like this with TDD because you have a documented, repeatable set of situations to compare between. Sometimes a change you make to fix the latest test will cause others to break and it&rsquo;s then that you need to determine what&rsquo;s different about the new case that needs special handling. Developing without TDD, the question I&rsquo;d tend to ask is &ldquo;how should this work?&rdquo; which is a lot broader and harder to comprehend. I still ask, &ldquo;how should this work&rdquo;, but it&rsquo;s usually at the start of a story where I need to get my head around what needs to be done and get an overall view of the problem. Finding the answer usually means a bunch of scribbling on notepads or whiteboards going through the possible scenarios and determining what should happen. While programming, the scope is usually reduced enough that you don&rsquo;t need to scribble on whiteboards, but I do find myself going over the various cases to narrow the question down to &ldquo;what&rsquo;s different about this case?&rdquo;.<br>
+In the end, what it means is that TDD is documenting a lot of what I would otherwise do over and over in my head and getting me to the more narrowly focussed question more quickly. It doesn&rsquo;t eliminate that mental process, but it does make it easier and provides a safety net for it if I miss a case.</p>
+<p>For the record, finding what&rsquo;s different doesn&rsquo;t always mean a new case altogether, usually it&rsquo;s just a relaxation or restriction on the criteria for an existing code path. It&rsquo;s also potentially far more useful in &ldquo;soft&rdquo; areas like text where there isn&rsquo;t a simple rule book or process definition that you can look up to determine what should happen.</p>
+<p>More and more I&rsquo;m seeing ways that TDD makes me go faster even ignoring whether or not it leads to better code quality.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

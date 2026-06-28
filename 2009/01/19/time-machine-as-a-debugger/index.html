@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Time Machine as a Debugger | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I’ve had a couple of articles open to remind me to blog about them for a while now – one from Tim Bray’s Android Diary and a response to it from Nick Kew. The key part of Tim’s post:
+
+At a deep level, debugging with print statements is superior to all other approaches. Which is good, because we seem to be stuck with it.
+Firstly, I’m very strongly against debugging via System.err.println – you should have a logging system in place instead and just add extra messages to that. That way if you accidentally check them in, at least they go to the logs and are hidden at DEBUG level rather than annoying everyone all the time by going to System.err.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/01/19/time-machine-as-a-debugger/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/01/19/time-machine-as-a-debugger/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Time Machine as a Debugger">
+	<meta property="og:description" content="I’ve had a couple of articles open to remind me to blog about them for a while now – one from Tim Bray’s Android Diary and a response to it from Nick Kew. The key part of Tim’s post:
+At a deep level, debugging with print statements is superior to all other approaches. Which is good, because we seem to be stuck with it. Firstly, I’m very strongly against debugging via System.err.println – you should have a logging system in place instead and just add extra messages to that. That way if you accidentally check them in, at least they go to the logs and are hidden at DEBUG level rather than annoying everyone all the time by going to System.err.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-01-19T12:18:46+00:00">
+		<meta property="article:modified_time" content="2009-01-19T12:18:46+00:00">
+
+	<meta itemprop="name" content="Time Machine as a Debugger">
+	<meta itemprop="description" content="I’ve had a couple of articles open to remind me to blog about them for a while now – one from Tim Bray’s Android Diary and a response to it from Nick Kew. The key part of Tim’s post:
+At a deep level, debugging with print statements is superior to all other approaches. Which is good, because we seem to be stuck with it. Firstly, I’m very strongly against debugging via System.err.println – you should have a logging system in place instead and just add extra messages to that. That way if you accidentally check them in, at least they go to the logs and are hidden at DEBUG level rather than annoying everyone all the time by going to System.err.">
+	<meta itemprop="datePublished" content="2009-01-19T12:18:46+00:00">
+	<meta itemprop="dateModified" content="2009-01-19T12:18:46+00:00">
+	<meta itemprop="wordCount" content="502">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Time Machine as a Debugger">
+	<meta name="twitter:description" content="I’ve had a couple of articles open to remind me to blog about them for a while now – one from Tim Bray’s Android Diary and a response to it from Nick Kew. The key part of Tim’s post:
+At a deep level, debugging with print statements is superior to all other approaches. Which is good, because we seem to be stuck with it. Firstly, I’m very strongly against debugging via System.err.println – you should have a logging system in place instead and just add extra messages to that. That way if you accidentally check them in, at least they go to the logs and are hidden at DEBUG level rather than annoying everyone all the time by going to System.err.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Time Machine as a Debugger</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Time Machine as a Debugger</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-01-19T12:18:46Z">January 19, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><img src="http://www.symphonious.net/wp-content/uploads/2009/01/timemachine_58281.png" style=" float: left;" alt="Time Machine interface, showing the available revisions of files and allowing the author to scroll back and forward in time." />I’ve had a couple of articles open to remind me to blog about them for a while now – one from <a href="http://www.tbray.org/ongoing/When/200x/2009/01/04/Programming-Notes">Tim Bray’s Android Diary</a> and a <a href="http://bahumbug.wordpress.com/2009/01/05/luddites-or-weenies/">response to it from Nick Kew</a>. The key part of Tim’s post:</p>
+<blockquote>
+<p>At a deep level, debugging with print statements is superior to all other approaches. Which is good, because we seem to be stuck with it.
+Firstly, I’m very strongly against debugging via System.err.println – you should have a logging system in place instead and just add extra messages to that. That way if you accidentally check them in, at least they go to the logs and are hidden at DEBUG level rather than annoying everyone all the time by going to System.err.</p>
+</blockquote>
+<p>Apart from that minor quibble though, I’m a big fan of the println debugging camp. I just never found debuggers to be particularly useful. In thinking about this I think I’ve really struck on the key problem I have with debuggers and a really neat solution.</p>
+<p>The key problem I have is that when you’re in the middle of a debugging session it’s really hard to keep track of where you’re up to and what the state is and whether you want to step over or into this particularly function. If you accidentally step over a function you meant to step into you have to go back and start all over again because the step backwards button, if available at all, is generally pretty useless. On the other hand, if you just print a bunch of stuff out, you can easily scroll back and forth through the output at your leisure to understand what’s going on. The debugger is like keyhole surgery – very accurate but very limited view. The println approach is like a MRI – much more of a general view, but you may not be seeing the entire picture.  Fortunately, with println you get to decide which bits you see and which you don’t as you can always print out more data.</p>
+<p>The solution is to change the debugger from something that lets you view the problem as it’s running, to something that records the program as it runs then lets you watch a replay.  I’m imagining something like the Time Machine interface, where you can scroll back and forwards through time and see what the call stack was and what the value of variables were at that point in time. Matching it up with a screen recording (and/or console output recording) would let you see what you were doing at that point as well.</p>
+<p>While I’m sure it would significantly impact performance to record all this detail as the program is run, it would be incredibly useful – just reproduce the bug once and then roll back and forward over it as many times as you want, with all the detailed information you want, until you identify what the problem is.</p>
+<p>How is it that I’ve never heard of something like this before? It seems so obvious…</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

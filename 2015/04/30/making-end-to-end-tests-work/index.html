@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Making End-to-End Tests Work | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The Google Testing Blog has an article “Just Say No to More End-to-End Tests” which winds up being a rather depressing evaluation of the testing capabilities, culture and infrastructure at Google. For example:
+
+Let&rsquo;s assume the team already has some fantastic test infrastructure in place. Every night:
+
+  
+    The latest version of the service is built. 
+  
+  
+    This version is then deployed to the team&#39;s testing environment. 
+  
+  
+    All end-to-end tests then run against this testing environment. 
+  
+  
+    An email report summarizing the test results is sent to the team.
+  
+
+
+If your idea of fantastic test infrastructure starts with the words “every night” and ends with an email being sent you&rsquo;re doomed. Bryan Pendleton does a good job of analysing and correcting the details so I won&rsquo;t recover that ground. Instead, let me provide a view of what reasonable test infrastructure looks like.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2015/04/30/making-end-to-end-tests-work/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2015/04/30/making-end-to-end-tests-work/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Making End-to-End Tests Work">
+	<meta property="og:description" content="The Google Testing Blog has an article “Just Say No to More End-to-End Tests” which winds up being a rather depressing evaluation of the testing capabilities, culture and infrastructure at Google. For example:
+Let’s assume the team already has some fantastic test infrastructure in place. Every night:
+The latest version of the service is built. This version is then deployed to the team&#39;s testing environment. All end-to-end tests then run against this testing environment. An email report summarizing the test results is sent to the team. If your idea of fantastic test infrastructure starts with the words “every night” and ends with an email being sent you’re doomed. Bryan Pendleton does a good job of analysing and correcting the details so I won’t recover that ground. Instead, let me provide a view of what reasonable test infrastructure looks like.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2015-04-30T05:46:46+00:00">
+		<meta property="article:modified_time" content="2015-04-30T05:46:46+00:00">
+
+	<meta itemprop="name" content="Making End-to-End Tests Work">
+	<meta itemprop="description" content="The Google Testing Blog has an article “Just Say No to More End-to-End Tests” which winds up being a rather depressing evaluation of the testing capabilities, culture and infrastructure at Google. For example:
+Let’s assume the team already has some fantastic test infrastructure in place. Every night:
+The latest version of the service is built. This version is then deployed to the team&#39;s testing environment. All end-to-end tests then run against this testing environment. An email report summarizing the test results is sent to the team. If your idea of fantastic test infrastructure starts with the words “every night” and ends with an email being sent you’re doomed. Bryan Pendleton does a good job of analysing and correcting the details so I won’t recover that ground. Instead, let me provide a view of what reasonable test infrastructure looks like.">
+	<meta itemprop="datePublished" content="2015-04-30T05:46:46+00:00">
+	<meta itemprop="dateModified" content="2015-04-30T05:46:46+00:00">
+	<meta itemprop="wordCount" content="721">
+	<meta itemprop="keywords" content="Code and Geek Stuff,LMAX,Testing">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Making End-to-End Tests Work">
+	<meta name="twitter:description" content="The Google Testing Blog has an article “Just Say No to More End-to-End Tests” which winds up being a rather depressing evaluation of the testing capabilities, culture and infrastructure at Google. For example:
+Let’s assume the team already has some fantastic test infrastructure in place. Every night:
+The latest version of the service is built. This version is then deployed to the team&#39;s testing environment. All end-to-end tests then run against this testing environment. An email report summarizing the test results is sent to the team. If your idea of fantastic test infrastructure starts with the words “every night” and ends with an email being sent you’re doomed. Bryan Pendleton does a good job of analysing and correcting the details so I won’t recover that ground. Instead, let me provide a view of what reasonable test infrastructure looks like.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Making End-to-End Tests Work</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Making End-to-End Tests Work</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-04-30T05:46:46Z">April 30, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>The Google Testing Blog has an article “<a href="http://googletesting.blogspot.com.au/2015/04/just-say-no-to-more-end-to-end-tests.html">Just Say No to More End-to-End Tests</a>” which winds up being a rather depressing evaluation of the testing capabilities, culture and infrastructure at Google. For example:</p>
+<blockquote>
+<p>Let&rsquo;s assume the team already has some fantastic test infrastructure in place. Every night:</p>
+<ol class="my-list">
+  <li>
+    The latest version of the service is built. 
+  </li>
+  <li>
+    This version is then deployed to the team's testing environment. 
+  </li>
+  <li>
+    All end-to-end tests then run against this testing environment. 
+  </li>
+  <li>
+    An email report summarizing the test results is sent to the team.
+  </li>
+</ol>
+</blockquote>
+<p>If your idea of fantastic test infrastructure starts with the words “every night” and ends with an email being sent you&rsquo;re doomed. <a href="http://bryanpendleton.blogspot.com.au/2015/04/on-testing-strategies-and-end-to-end.html?m=1">Bryan Pendleton does a good job of analysing and correcting the details</a> so I won&rsquo;t recover that ground. Instead, let me provide a view of what reasonable test infrastructure looks like.</p>
+<p>At LMAX we&rsquo;ve recently reached the milestone of 10,000 end to end acceptance tests. We&rsquo;ve obviously invested a lot of time in building up all those tests but they&rsquo;re invaluable in the way they free us to try daring things and make sweeping changes, confident that if anything is broken it will be caught. We&rsquo;re happy to radically restructure components in ways that require lots of changes to unit tests because of those end-to-end tests.</p>
+<p>We also have huge numbers of unit tests, integration tests, performance tests, static analysis and various other forms of tests, but the end-to-end tests are far more than a sanity-check, they&rsquo;re a primary form of quality control.</p>
+<p>Those end-to-end tests, or acceptance tests as we call them:</p>
+<ul>
+<li>run constantly through the day</li>
+<li>complete in around 50 minutes, including deploying and starting the servers, running all the tests and shutting down again at the end</li>
+<li>are all required to pass before we consider a version releasable</li>
+<li>are included in our information radiators to ensure the team has constant visibility into the test results</li>
+<li>are owned by the whole team – testers, developers and business analysts together</li>
+</ul>
+<p>That&rsquo;s pretty much entry-level for doing end-to-end testing (or frankly any testing). We&rsquo;ve also got a few extra niceties that I&rsquo;ve written about before:</p>
+<ul>
+<li><a href="https://www.symphonious.net/2014/03/25/testinglmax-test-results-database/">Results are stored in a database to make it easy to query and search</a></li>
+<li><a href="https://www.symphonious.net/2014/04/12/testinglmax-test-isolation/">Tests are isolated so we can run them in parallel to speed things up</a></li>
+<li><a href="https://www.symphonious.net/2014/03/30/testinglmax-distributed-builds-with-romero/">Tests are dynamically distributed across a pool of servers</a></li>
+<li><a href="https://www.symphonious.net/2014/04/14/testinglmax-testing-in-live/">We run a subset of them in production to supplement our monitoring</a></li>
+<li><a href="https://www.symphonious.net/2014/04/01/testinglmax-time-travel-and-the-tardis/">We can control and test time</a></li>
+</ul>
+<p>Plus the test results are displayed in real-time, so we don&rsquo;t even have to wait for the end of the test run to see any failures. Tests that failed on the previous run are run first to give us quick feedback on whether they&rsquo;ve been fixed or not.</p>
+<p>There&rsquo;s lots of great stuff in there, but we have more work to do. We have an intermittency problem. When we started out we didn&rsquo;t believe that intermittency could be avoided and accepted a certain level of breakage on each build – much like the Google post talks about expecting 90% of tests to pass. That attitude is a death-knell for test reliability. If you don&rsquo;t have all the tests passing consistently, gradually and inevitably more and more tests become intermittent over time.</p>
+<p>We&rsquo;ve been fighting back hard against intermittency and making excellent progress – we&rsquo;ve recently added the requirement that releases have no failures and green builds are the norm and if there are intermittent failures it&rsquo;s usually only one or two per run. Currently we&rsquo;re seeing an intermittent failure rate of around 0.00006% of tests run (which actually sounds pretty good but with 10,000 tests that&rsquo;s far too many runs with failures that should have been green).</p>
+<p>But improvements come in waves with new intermittency creeping in because it can hide in amongst the existing noise. It has taken and will take a lot of dedication and commitment to dig ourselves out of the intermittency hole we&rsquo;re in but it&rsquo;s absolutely possible and we will get there.</p>
+<p>So next time you hear someone try to tell you that end-to-end tests aren&rsquo;t worth the effort, point them to LMAX. We do end-to-end testing big time and it is massively, indisputably worth it. And we only expect it to become more worth it as we reduce the intermittency and continue improving our tools over time.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

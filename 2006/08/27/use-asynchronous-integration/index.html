@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Use Asynchronous Integration | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="In James Shore&rsquo;s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything&rsquo;s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can&rsquo;t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/08/27/use-asynchronous-integration/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/08/27/use-asynchronous-integration/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Use Asynchronous Integration">
+	<meta property="og:description" content="In James Shore’s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything’s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can’t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-08-27T00:47:01+00:00">
+		<meta property="article:modified_time" content="2006-08-27T00:47:01+00:00">
+
+	<meta itemprop="name" content="Use Asynchronous Integration">
+	<meta itemprop="description" content="In James Shore’s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything’s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can’t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
+	<meta itemprop="datePublished" content="2006-08-27T00:47:01+00:00">
+	<meta itemprop="dateModified" content="2006-08-27T00:47:01+00:00">
+	<meta itemprop="wordCount" content="2076">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Use Asynchronous Integration">
+	<meta name="twitter:description" content="In James Shore’s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything’s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can’t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Use Asynchronous Integration</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Use Asynchronous Integration</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-08-27T00:47:01Z">August 27, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>In <a href="http://www.jamesshore.com/Agile-Book/continuous_integration.html">James Shore&rsquo;s chapter on Continuous Integration</a> for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything&rsquo;s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can&rsquo;t see how this is encouraged by adding up to twenty minutes of work<a href="#footnote1-1156631682875" class="footnote" id="footlink1-1156631682875" name="footlink1-1156631682875">1</a> every time you want to check in.</p>
+<p>The advantage of synchronous integration is that you always know the build is broken – sort of. In reality you may find that the build broke, but you lock out all the other developers from accessing the source code repository while you check in and do the test build, about ten minutes every time someone checks in<a id="footlink5-1156639192281" href="#footnote5-1156639192281" class="footnote" name="footlink5-1156639192281">5</a>. This lock out period provides the illusion that the build is always passing, because anytime someone checks out the code base or does an update, they get fully working code with all the tests passing. It&rsquo;s really useful to know that anytime you update that you won&rsquo;t get any unexpected surprises, but adding in this delay means less frequent integration cycles, more time waiting around and a greater chance of integration problems.</p>
+<p>With asynchronous integration you accept the risk that every now and then the build might break and in exchange encourage people to integrate more often, allow people to integrate part way through a story without interrupting their flow<a href="#footnote2-1156632272031" class="footnote" name="footlink2-1156632272031" id="footlink2-1156632272031">2</a> and let the whole team know when a problem has come up. Letting the whole team know is an unexpected benefit, it means that when the build breaks, the whole team is informed that an unintended side-effect has been encountered and that help might be needed to resolve it. Most of the build failures we see are complex issues where a new feature is impacting on the expected results of an existing feature, and since we&rsquo;re working with a legacy code base the failing test may not make it obvious why the failure is important. People new to the code base may well have thought that the failing test just needed to be updated because what it was asserting was outside of its intended scope. Fortunately, since the whole team sees the problem, the more experienced people may recall why that was important and be able to provide advice on how to make the test clearer in its intentions and how to resolve the conflict in functionality.</p>
+<p>Being able to check in more regularly is a big advantage as well. If the check in process takes twenty minutes to complete, you might check in two maybe three times a day, with the check in process taking one to two minutes, we check in five to ten times a day. That&rsquo;s a lot more regular integration and a lot less chance for conflicts. If the team is working on completely separate areas of the product that&rsquo;s probably not so useful, but often working on commercial products you find the features you&rsquo;re adding are related. Even with a well designed code base with limited coupling<a href="#footnote3-1156636632000" class="footnote" name="footlink3-1156636632000" id="footlink3-1156636632000">3</a>, there&rsquo;s a good chance of conflicts when you&rsquo;ve got the whole team working on improving the functionality of list handling.</p>
+<p>There are a couple of major problem that many teams encounter with asynchronous integration, and James Shore points them out nicely. Firstly:</p>
+<blockquote>
+<p>If the build succeeds, asynchronous integration does save time. However, if the build fails, you have to interrupt your new task to roll back and fix the old one. To do so, you must leave your new task half-done, switching context (and sometimes pairs as well) to fix the problem, then switching back. It&rsquo;s wasteful and annoying.</p>
+</blockquote>
+<p>This is annoying when your check in occurs at the end of a story, if you check in regularly during the development of a story, when the build fails you&rsquo;re probably still working in the same area of code, with the same pair and can quickly identify why the build failed and fix it straight away. As a bonus, you&rsquo;ve just learnt something about the area you&rsquo;re working in which is clearly important. The other way to mitigate this problem is to make the build fail less. That seems silly, but there are some simple steps you can take to make build failures far less common:</p>
+<ol>
+<li>Don&rsquo;t program by coincidence. You may have tests as a net to catch you if you slip up, but that doesn&rsquo;t mean you should just randomly change code until the tests pass. You need to understand the changes you are making to the code base and have confidence that you haven&rsquo;t broken anything even without running the tests. Use the tests as a safety net, not as a replacement for intelligence. You will still make changes that cause tests to fail, but you will do it less if you think about what you&rsquo;re doing.</li>
+<li>Identify the tests for the area you&rsquo;re working in and run them very regularly while you&rsquo;re developing. Keeping a custom test suite around is a good way of doing this, call it something like sanity-check and don&rsquo;t check it in. It&rsquo;s just a scratch pad that you add related tests to when you come across them. Also run these tests before you check in.</li>
+<li>Identify the really fast tests and run them before you check in. What tests you use here depends on the state of your project, how you like to work and many other things. The key thing is that the tests run fast enough that you&rsquo;re not inclined to walk away from your computer while they run. Checking your e-mail or taking a quick mental break is good, but breaking flow is bad. They should run in under a minute. Some ways of picking these tests are:
+<ul>
+<li>All the atomic tests. If you can run all your atomic tests in under a minute, run them.</li>
+<li>All the &lsquo;fragile&rsquo; tests. It sounds bad to have fragile tests, but there are likely to be parts of your product that are more likely to break than others. Run these before you check in. Also consider the areas that these tests cover as potentially smelly and see if you can make them more robust.</li>
+<li>The tests for the section of code you&rsquo;re working in. This is similar to the set of tests you build up in section 2, but will probably contain more tests in coarser grained sections. If you know that your menu bar is a completely separate module, you can make the menu bar tests separate too and run them before check in whenever you change the menu bar. Since it&rsquo;s completely separate, you should never see a build fail because of changes to the menu bar code if you ran all the menu bar tests.</li>
+</ul>
+</li>
+<li>Don&rsquo;t forget to add files. You might think that everyone forgets to add a new file every so often, or misses committing an important change – it&rsquo;s just a fact of life. That&rsquo;s the wrong way to think. Don&rsquo;t commit if there are any files that are unrecognized by your version control system – that means any files that are never checked in<a href="#footnote4-1156637975671" class="footnote" id="footlink4-1156637975671" name="footlink4-1156637975671">4</a> need to be added to the list of files to ignore. Then make sure you use tools that make it obvious that there are unrecognized files, or better yet just refuse to commit if there are. Finally, when you commit, <em>always</em> do so from the top level of the source tree and <em>always</em> commit every change. If you have changes that you don&rsquo;t want to commit yet, store a patch and revert them, then run the pre-check-in tests again. Don&rsquo;t have unrelated changes in your checked out code – either work on one thing at a time, or check out a new copy of the code for each simultaneous thing you&rsquo;re trying to do.</li>
+</ol>
+<blockquote>
+<p>In practice, rather than switch gears in the middle of a task, many teams simply let the build remain broken for a few hours while they finish their new task. If other people integrate during this time, the existing failures hide any new failures in their integration. Problems compound, leading to a vicious cycle of painful integrations, leading to longer broken builds, leading to more integration problems, leading to more painful integrations. I&rsquo;ve seen teams that practice asynchronous integration leave the build broken for days at a time.</p>
+</blockquote>
+<p>Don&rsquo;t do this. Every build failure is critical and needs to be addressed immediately. If your team doesn&rsquo;t treat builds this way, don&rsquo;t use asynchronous integration. That doesn&rsquo;t mean that your team needs to panic when the build breaks, but it does mean that as a team, you have to make sure someone is immediately working on fixing it. The fact is, synchronous integration only works because the team wants the build to keep passing – otherwise people would just ignore the check-in process. Asynchronous works on the same basis, but requires an even higher level of commitment to the process. You can&rsquo;t use asynchronous integration to sneak continuous integration into your team, you can&rsquo;t dictate to the team that continuous integration will be done, you have to foster the commitment in the team <em>before</em> you implement the integration process. Make it a point of professional pride that you don&rsquo;t leave the build failing for long periods of time. Make sure there aren&rsquo;t time pressures that encourage leaving the build broken – make sure your client understands that fixing the build is <em>always</em> more important than working on their stories. If you can&rsquo;t do that, do synchronous integration and identify things that your developers can do to be productive while waiting on the build to complete.</p>
+<p>Remember, three check-ins a day with a twenty minute delay on each check-in means an hour of downtime per day per developer. While you don&rsquo;t want to hold your developers to the grindstone constantly, that&rsquo;s a lot of down time, so you want to make sure they can do something useful while the build happens. They might check up on other pairs to see if they need help, handle their e-mail, read technical publications or catch up with RSS feeds, brainstorm new stories or products with the customer or discuss how they&rsquo;ll approach their next task. Some of the time they should probably take a short walk outside while the build happens, or go make coffee etc. Most likely though, they will need to do these things while working on a story when it gets tough and they need a break though, so don&rsquo;t assume all of the downtime will happen while the build is happening.</p>
+<p>One important note is that whether you do synchronous or asynchronous integration, you need a fast build – if your build is too long with asynchronous integration you are more likely to get multiple changes bundled into the one build which makes it harder to identify the cause of problems. Keep working to make your build as fast as possible and monitoring what impact the build time is having on your team.</p>
+<p>There&rsquo;s no one right way to do continuous integration with your team, you need to evaluate the process carefully and find what&rsquo;s best for you. If you start with asynchronous integration and find that the build stays broken for long periods then you should probably switch to synchronous integration. If you start with synchronous and find that you almost never have to roll-back a commit, you may be able to reduce the overhead of your integration process by switching to asynchronous integration. You may find that tests often fail but they fail consistently on the local machine and the build machine – you may need to run a full build locally but then leave the build on the integration machine to an automated system. Keep watching the health of your build and adjust your processes as needed to fit your teams needs.</p>
+<p class="footnote">
+  <a href="#footlink1-1156631682875" id="footnote1-1156631682875" name="footnote1-1156631682875">1</a> &#8211; or more frustratingly, twenty minutes of waiting around<a href="#footlink1-1156631682875" class="footnotereturn">&#8617;</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2-1156632272031" name="footnote2-1156632272031" id="footnote2-1156632272031">2</a> &#8211; obviously at a stable point where all the tests pass<a href="#footlink2-1156632272031" class="footnotereturn">&#8617;</a>
+</p>
+<p class="footnote">
+  <a href="#footlink3-1156636632000" name="footnote3-1156636632000" id="footnote3-1156636632000">3</a> &#8211; and let's face it, those are rare particularly with legacy code bases<a href="#footlink3-1156636632000" class="footnotereturn">&#8617;</a>
+</p>
+<p class="footnote">
+  <a href="#footlink4-1156637975671" id="footnote4-1156637975671" name="footnote4-1156637975671">4</a> &#8211; because they were created as part of the&#160;building or testing process<a href="#footlink4-1156637975671" class="footnotereturn">&#8617;</a>
+</p>
+<p class="footnote">
+  <a id="footnote5-1156639192281" href="#footlink5-1156639192281" name="footnote5-1156639192281">5</a> &#8211; ten minutes because the first build on your local machine is done before you take the integration token<a href="#footlink5-1156639192281" class="footnotereturn">&#8617;</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

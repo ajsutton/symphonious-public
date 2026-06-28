@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>On Ampersands And Standards | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Byron commented on ampersand redux:
+
+Yes, an ampersand is valid as part of an attribute value (as represented in an HTML document) where that ampersand is part of an entity reference. An ampersand that is not part of an entity reference is not valid in an attribute value, in an HTML document. Serialization has nothing to do with it, since an HTML document is not the serialization of a DOM tree, although it can be viewed as such. I did not mean to say anything about serializing attribute values, I meant to say that an attribute value in an HTML document cannot legally have an ampersand that is not part of an entity reference. If your document does have such an ampersand, it will not validate. It might work in current browsers, but down the road it might not. Don&rsquo;t do it. If a browser gets it wrong, file a bug against the browser or avoid ampersands entirely, don&rsquo;t force every other author of HTML parsers to work around your markup&rsquo;s faults. I still disagree with the first part – ampersands are perfectly valid in HTML comments but when serialized they must be escaped as entities. It is critical to consider entities as equivalent to the character they represent, otherwise é wouldn&rsquo;t be the same as é which is clearly ludicrous. Regardless, the point is entirely academic so I&rsquo;ll leave it at that. The last part however is crazy. If a browser has a bug and you need to support that browser, you should do whatever it takes to make your application work with that browser – standards be damned. It is in no way acceptable for a software developer to skip requirements just because it would mean conflicting with a standard. If adhering to the standard was also a requirement then the higher priority requirement should wind up being implemented and the other one revised to not be in conflict. If you can get the browser vendor to fix the issue and you consider it acceptable to make all your clients upgrade to the fixed version then by all means follow the standard – otherwise through it out. Standards are designed to enhance interoperability, if they reduce interoperability in areas that are important to your project they are completely worthless and should be ignored. The comment about forcing every other HTML parser to work around the markup problems is a red herring as well – HTML parsers already have to deal with that kind of thing and that&rsquo;s not going to change. XML parsers on the other hand do not have to handle invalid mark up and most don&rsquo;t which is precisely why I pointed out that you should always escape ampersands correctly in XHTML despite the fact that most if not all browsers will get it right either way. Software development is about achieving the project&rsquo;s requirements. It&rsquo;s not about politics, it&rsquo;s not about standards and it&rsquo;s not about making yourself feel good. If you can meet your requirements and do any of that, then great, but the requirements are the only thing that have to be achieved and they override anything else. That said, any of those things could be made a requirement of the project, but it&rsquo;s quite rare that they would actually be requirements let alone high priority ones.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/09/10/on-ampersands-and-standards/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/09/10/on-ampersands-and-standards/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="On Ampersands And Standards">
+	<meta property="og:description" content="Byron commented on ampersand redux:
+Yes, an ampersand is valid as part of an attribute value (as represented in an HTML document) where that ampersand is part of an entity reference. An ampersand that is not part of an entity reference is not valid in an attribute value, in an HTML document. Serialization has nothing to do with it, since an HTML document is not the serialization of a DOM tree, although it can be viewed as such. I did not mean to say anything about serializing attribute values, I meant to say that an attribute value in an HTML document cannot legally have an ampersand that is not part of an entity reference. If your document does have such an ampersand, it will not validate. It might work in current browsers, but down the road it might not. Don’t do it. If a browser gets it wrong, file a bug against the browser or avoid ampersands entirely, don’t force every other author of HTML parsers to work around your markup’s faults. I still disagree with the first part – ampersands are perfectly valid in HTML comments but when serialized they must be escaped as entities. It is critical to consider entities as equivalent to the character they represent, otherwise é wouldn’t be the same as é which is clearly ludicrous. Regardless, the point is entirely academic so I’ll leave it at that. The last part however is crazy. If a browser has a bug and you need to support that browser, you should do whatever it takes to make your application work with that browser – standards be damned. It is in no way acceptable for a software developer to skip requirements just because it would mean conflicting with a standard. If adhering to the standard was also a requirement then the higher priority requirement should wind up being implemented and the other one revised to not be in conflict. If you can get the browser vendor to fix the issue and you consider it acceptable to make all your clients upgrade to the fixed version then by all means follow the standard – otherwise through it out. Standards are designed to enhance interoperability, if they reduce interoperability in areas that are important to your project they are completely worthless and should be ignored. The comment about forcing every other HTML parser to work around the markup problems is a red herring as well – HTML parsers already have to deal with that kind of thing and that’s not going to change. XML parsers on the other hand do not have to handle invalid mark up and most don’t which is precisely why I pointed out that you should always escape ampersands correctly in XHTML despite the fact that most if not all browsers will get it right either way. Software development is about achieving the project’s requirements. It’s not about politics, it’s not about standards and it’s not about making yourself feel good. If you can meet your requirements and do any of that, then great, but the requirements are the only thing that have to be achieved and they override anything else. That said, any of those things could be made a requirement of the project, but it’s quite rare that they would actually be requirements let alone high priority ones.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-09-10T07:37:08+00:00">
+		<meta property="article:modified_time" content="2004-09-10T07:37:08+00:00">
+
+	<meta itemprop="name" content="On Ampersands And Standards">
+	<meta itemprop="description" content="Byron commented on ampersand redux:
+Yes, an ampersand is valid as part of an attribute value (as represented in an HTML document) where that ampersand is part of an entity reference. An ampersand that is not part of an entity reference is not valid in an attribute value, in an HTML document. Serialization has nothing to do with it, since an HTML document is not the serialization of a DOM tree, although it can be viewed as such. I did not mean to say anything about serializing attribute values, I meant to say that an attribute value in an HTML document cannot legally have an ampersand that is not part of an entity reference. If your document does have such an ampersand, it will not validate. It might work in current browsers, but down the road it might not. Don’t do it. If a browser gets it wrong, file a bug against the browser or avoid ampersands entirely, don’t force every other author of HTML parsers to work around your markup’s faults. I still disagree with the first part – ampersands are perfectly valid in HTML comments but when serialized they must be escaped as entities. It is critical to consider entities as equivalent to the character they represent, otherwise é wouldn’t be the same as é which is clearly ludicrous. Regardless, the point is entirely academic so I’ll leave it at that. The last part however is crazy. If a browser has a bug and you need to support that browser, you should do whatever it takes to make your application work with that browser – standards be damned. It is in no way acceptable for a software developer to skip requirements just because it would mean conflicting with a standard. If adhering to the standard was also a requirement then the higher priority requirement should wind up being implemented and the other one revised to not be in conflict. If you can get the browser vendor to fix the issue and you consider it acceptable to make all your clients upgrade to the fixed version then by all means follow the standard – otherwise through it out. Standards are designed to enhance interoperability, if they reduce interoperability in areas that are important to your project they are completely worthless and should be ignored. The comment about forcing every other HTML parser to work around the markup problems is a red herring as well – HTML parsers already have to deal with that kind of thing and that’s not going to change. XML parsers on the other hand do not have to handle invalid mark up and most don’t which is precisely why I pointed out that you should always escape ampersands correctly in XHTML despite the fact that most if not all browsers will get it right either way. Software development is about achieving the project’s requirements. It’s not about politics, it’s not about standards and it’s not about making yourself feel good. If you can meet your requirements and do any of that, then great, but the requirements are the only thing that have to be achieved and they override anything else. That said, any of those things could be made a requirement of the project, but it’s quite rare that they would actually be requirements let alone high priority ones.">
+	<meta itemprop="datePublished" content="2004-09-10T07:37:08+00:00">
+	<meta itemprop="dateModified" content="2004-09-10T07:37:08+00:00">
+	<meta itemprop="wordCount" content="554">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="On Ampersands And Standards">
+	<meta name="twitter:description" content="Byron commented on ampersand redux:
+Yes, an ampersand is valid as part of an attribute value (as represented in an HTML document) where that ampersand is part of an entity reference. An ampersand that is not part of an entity reference is not valid in an attribute value, in an HTML document. Serialization has nothing to do with it, since an HTML document is not the serialization of a DOM tree, although it can be viewed as such. I did not mean to say anything about serializing attribute values, I meant to say that an attribute value in an HTML document cannot legally have an ampersand that is not part of an entity reference. If your document does have such an ampersand, it will not validate. It might work in current browsers, but down the road it might not. Don’t do it. If a browser gets it wrong, file a bug against the browser or avoid ampersands entirely, don’t force every other author of HTML parsers to work around your markup’s faults. I still disagree with the first part – ampersands are perfectly valid in HTML comments but when serialized they must be escaped as entities. It is critical to consider entities as equivalent to the character they represent, otherwise é wouldn’t be the same as é which is clearly ludicrous. Regardless, the point is entirely academic so I’ll leave it at that. The last part however is crazy. If a browser has a bug and you need to support that browser, you should do whatever it takes to make your application work with that browser – standards be damned. It is in no way acceptable for a software developer to skip requirements just because it would mean conflicting with a standard. If adhering to the standard was also a requirement then the higher priority requirement should wind up being implemented and the other one revised to not be in conflict. If you can get the browser vendor to fix the issue and you consider it acceptable to make all your clients upgrade to the fixed version then by all means follow the standard – otherwise through it out. Standards are designed to enhance interoperability, if they reduce interoperability in areas that are important to your project they are completely worthless and should be ignored. The comment about forcing every other HTML parser to work around the markup problems is a red herring as well – HTML parsers already have to deal with that kind of thing and that’s not going to change. XML parsers on the other hand do not have to handle invalid mark up and most don’t which is precisely why I pointed out that you should always escape ampersands correctly in XHTML despite the fact that most if not all browsers will get it right either way. Software development is about achieving the project’s requirements. It’s not about politics, it’s not about standards and it’s not about making yourself feel good. If you can meet your requirements and do any of that, then great, but the requirements are the only thing that have to be achieved and they override anything else. That said, any of those things could be made a requirement of the project, but it’s quite rare that they would actually be requirements let alone high priority ones.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">On Ampersands And Standards</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">On Ampersands And Standards</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-09-10T07:37:08Z">September 10, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Byron commented on <a href="http://www.intencha.com/adrian/000222.php">ampersand redux</a>:</p>
+<blockquote>
+<p>Yes, an ampersand is valid as part of an attribute value (as represented in an HTML document) where that ampersand is part of an entity reference. An ampersand that is not part of an entity reference is not valid in an attribute value, in an HTML document. Serialization has nothing to do with it, since an HTML document is not the serialization of a DOM tree, although it can be viewed as such. I did not mean to say anything about serializing attribute values, I meant to say that an attribute value in an HTML document cannot legally have an ampersand that is not part of an entity reference. If your document does have such an ampersand, it will not validate. It might work in current browsers, but down the road it might not. Don&rsquo;t do it. If a browser gets it wrong, file a bug against the browser or avoid ampersands entirely, don&rsquo;t force every other author of HTML parsers to work around your markup&rsquo;s faults. I still disagree with the first part – ampersands are perfectly valid in HTML comments but when serialized they must be escaped as entities. It is critical to consider entities as equivalent to the character they represent, otherwise é wouldn&rsquo;t be the same as é which is clearly ludicrous. Regardless, the point is entirely academic so I&rsquo;ll leave it at that. The last part however is crazy. If a browser has a bug and you need to support that browser, you should do whatever it takes to make your application work with that browser – standards be damned. It is in no way acceptable for a software developer to skip requirements just because it would mean conflicting with a standard. If adhering to the standard was also a requirement then the higher priority requirement should wind up being implemented and the other one revised to not be in conflict. If you can get the browser vendor to fix the issue and you consider it acceptable to make all your clients upgrade to the fixed version then by all means follow the standard – otherwise through it out. Standards are designed to enhance interoperability, if they reduce interoperability in areas that are important to your project they are completely worthless and should be ignored. The comment about forcing every other HTML parser to work around the markup problems is a red herring as well – HTML parsers already have to deal with that kind of thing and that&rsquo;s not going to change. XML parsers on the other hand do not have to handle invalid mark up and most don&rsquo;t which is precisely why I pointed out that you should always escape ampersands correctly in XHTML despite the fact that most if not all browsers will get it right either way. Software development is about achieving the project&rsquo;s requirements. It&rsquo;s not about politics, it&rsquo;s not about standards and it&rsquo;s not about making yourself feel good. If you can meet your requirements <em>and</em> do any of that, then great, but the requirements are the only thing that <em>have</em> to be achieved and they override anything else. That said, any of those things could be made a requirement of the project, but it&rsquo;s quite rare that they would actually be requirements let alone high priority ones.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

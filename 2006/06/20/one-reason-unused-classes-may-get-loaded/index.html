@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>One Reason Unused Classes May Get Loaded | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="In general, Java classes are lazily loaded into the system, so if you have something like1:
+if (System.getProperty(&#34;java.version&#34;).equals(&#34;1.4&#34;))&#160;{
+    Java14OnlyClass.doStuff();
+} else {
+&#160;&#160;&#160;&#160;AlwaysAvailableAlternative.doStuff();
+}
+
+The code will have to be compiled on Java 1.4, but will actually run on Java 1.3 without throwing a ClassNotFoundException. This trick however can be dangerous, there isn&rsquo;t any guarantee that class loaders will always use lazy loading and even with current class loaders, there are occasionally some surprises.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/06/20/one-reason-unused-classes-may-get-loaded/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/06/20/one-reason-unused-classes-may-get-loaded/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="One Reason Unused Classes May Get Loaded">
+	<meta property="og:description" content="In general, Java classes are lazily loaded into the system, so if you have something like1:
+if (System.getProperty(&#34;java.version&#34;).equals(&#34;1.4&#34;)) {Java14OnlyClass.doStuff();} else {    AlwaysAvailableAlternative.doStuff();}The code will have to be compiled on Java 1.4, but will actually run on Java 1.3 without throwing a ClassNotFoundException. This trick however can be dangerous, there isn’t any guarantee that class loaders will always use lazy loading and even with current class loaders, there are occasionally some surprises.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-06-20T10:41:28+00:00">
+		<meta property="article:modified_time" content="2006-06-20T10:41:28+00:00">
+
+	<meta itemprop="name" content="One Reason Unused Classes May Get Loaded">
+	<meta itemprop="description" content="In general, Java classes are lazily loaded into the system, so if you have something like1:
+if (System.getProperty(&#34;java.version&#34;).equals(&#34;1.4&#34;)) {Java14OnlyClass.doStuff();} else {    AlwaysAvailableAlternative.doStuff();}The code will have to be compiled on Java 1.4, but will actually run on Java 1.3 without throwing a ClassNotFoundException. This trick however can be dangerous, there isn’t any guarantee that class loaders will always use lazy loading and even with current class loaders, there are occasionally some surprises.">
+	<meta itemprop="datePublished" content="2006-06-20T10:41:28+00:00">
+	<meta itemprop="dateModified" content="2006-06-20T10:41:28+00:00">
+	<meta itemprop="wordCount" content="447">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="One Reason Unused Classes May Get Loaded">
+	<meta name="twitter:description" content="In general, Java classes are lazily loaded into the system, so if you have something like1:
+if (System.getProperty(&#34;java.version&#34;).equals(&#34;1.4&#34;)) {Java14OnlyClass.doStuff();} else {    AlwaysAvailableAlternative.doStuff();}The code will have to be compiled on Java 1.4, but will actually run on Java 1.3 without throwing a ClassNotFoundException. This trick however can be dangerous, there isn’t any guarantee that class loaders will always use lazy loading and even with current class loaders, there are occasionally some surprises.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">One Reason Unused Classes May Get Loaded</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">One Reason Unused Classes May Get Loaded</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-06-20T10:41:28Z">June 20, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>In general, Java classes are lazily loaded into the system, so if you have something like<a id="footlink1" class="footnote" href="#footnote1" name="footlink1">1</a>:</p>
+<pre>if (System.getProperty("java.version").equals("1.4"))&#160;{
+    Java14OnlyClass.doStuff();
+} else {
+&#160;&#160;&#160;&#160;AlwaysAvailableAlternative.doStuff();
+}
+</pre>
+<p>The code will have to be compiled on Java 1.4, but will actually run on Java 1.3 without throwing a ClassNotFoundException. This trick however can be dangerous, there isn&rsquo;t any guarantee that class loaders will always use lazy loading and even with current class loaders, there are occasionally some surprises.</p>
+<p>For instance, if we take that same code and add a try catch statement:</p>
+<pre>if (System.getProperty("java.version").equals("1.4"))&#160;{
+    try {
+        Java14OnlyClass.doStuff();
+    } catch (Exception e) { e.printStackTrace(); }
+} else {
+&#160;&#160;&#160;&#160;AlwaysAvailableAlternative.doStuff();
+}
+</pre>
+<p>whenever the enclosing class is loaded on Java 1.3, it will throw a ClassNotFoundException claiming that Java14OnlyClass could not be found, even though that code is never run. The reason is that the class loader will automatically load any classes referenced in a try/catch block instead of using lazy loading.</p>
+<p>Somewhat surprisingly though, this search for references doesn&rsquo;t descend into method calls. So to make it work with the exception handling, we could use something like:</p>
+<pre>private void doStuff() {
+    if (System.getProperty("java.version").equals("1.4"))&#160;{
+        try {
+            doJava14Stuff();
+        } catch (Exception e) { e.printStackTrace(); }
+    } else {
+    &#160;&#160;&#160;&#160;AlwaysAvailableAlternative.doStuff();
+    }
+}
+private void doJava14Stuff() throws Exception {
+    Java14OnlyClass.doStuff();
+}
+</pre>
+<p>Useful to know if you suddenly start seeing ClassNotFoundExceptions for class references that are surrounded by a specific version check like this. My best guess is that the VM optimizes the exception handling code somehow which makes the class get loaded immediately. Why it would do so or exactly what it&rsquo;s doing goes beyond my understanding of the VM&rsquo;s internals.</p>
+<p>One other surprising case I&rsquo;ve run into, calling setPreferredSize on a component caused unused classes to be loaded which triggered a ClassCastException. I ran into that a number of years ago so my memory of the exact details are somewhat sketchy, but I&rsquo;m quite confident that it was a call to setPreferredSize that triggered all the classes referenced by the current class to be loaded immediately. It couldn&rsquo;t have been because setPreferredSize triggered a layout and the knock-on method calls triggered a reference to the class because there&rsquo;s no way I could have created an instance of it and added it to the layout.</p>
+<p>In general, a much better approach is to define an interface that is always available and load the required implementation via Class.forName, that way there is no reference to the class in bytecode at all and nothing the classloader can do will cause it to be loaded ahead of time, saving an awful lot of hassle.</p>
+<p class="footnote">
+  <a id="footnote1" name="footnote1" href="#footlink1">1</a> &#8211; Ignoring the fact that this is a really brittle check for Java 1.4. <a href="#footlink1">&#8617;</a>
+</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Modernising Our JavaScript – Why Angular 2 Didn’t Work | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we&rsquo;ve historically kept away from JavaScript frameworks. Instead we&rsquo;ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we&rsquo;ve built ourselves. Mostly this has worked very well for us.
+Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Modernising Our JavaScript – Why Angular 2 Didn’t Work">
+	<meta property="og:description" content="At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we’ve historically kept away from JavaScript frameworks. Instead we’ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we’ve built ourselves. Mostly this has worked very well for us.
+Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2017-06-18T19:00:51+00:00">
+		<meta property="article:modified_time" content="2017-06-18T19:00:51+00:00">
+
+	<meta itemprop="name" content="Modernising Our JavaScript – Why Angular 2 Didn’t Work">
+	<meta itemprop="description" content="At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we’ve historically kept away from JavaScript frameworks. Instead we’ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we’ve built ourselves. Mostly this has worked very well for us.
+Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.">
+	<meta itemprop="datePublished" content="2017-06-18T19:00:51+00:00">
+	<meta itemprop="dateModified" content="2017-06-18T19:00:51+00:00">
+	<meta itemprop="wordCount" content="825">
+	<meta itemprop="keywords" content="Code and Geek Stuff,JavaScript,LMAX">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Modernising Our JavaScript – Why Angular 2 Didn’t Work">
+	<meta name="twitter:description" content="At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we’ve historically kept away from JavaScript frameworks. Instead we’ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we’ve built ourselves. Mostly this has worked very well for us.
+Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Modernising Our JavaScript – Why Angular 2 Didn’t Work</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Modernising Our JavaScript – Why Angular 2 Didn’t Work</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2017-06-18T19:00:51Z">June 18, 2017</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we&rsquo;ve historically kept away from JavaScript frameworks. Instead we&rsquo;ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we&rsquo;ve built ourselves. Mostly this has worked very well for us.</p>
+<p>Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.</p>
+<p>Some side projects had used Angular and a few people were familiar with it so we started out trialling Angular 2.0. While it was much better for those complex cases the framework itself introduced so much complexity and cost it was unpleasant to work with.  Predominately we had two main issues:</p>
+<ol>
+<li>Build times were too slow</li>
+<li>It wasn&rsquo;t well suited for dropping an Angular 2 component into an existing system rather than having everything live in Angular 2 world</li>
+</ol>
+<h2 id="build-times">Build Times</h2>
+<p>This was the most surprising problem – Angular 2 build times were painfully slow. We found we could build all of the java parts of the exchange before npm could even finish installing the dependencies for an Angular 2 project – even with all the dependencies in a local cache and using npm 5&rsquo;s –offline option. We use <a href="https://buckbuild.com/">buck</a> for our build system and it does an excellent job of only building what needs to be changed and caching results so most of the time we could avoid the long npm install step, but it still needs to run often enough that it was a significant drain on the team&rsquo;s productivity.</p>
+<p>We did evaluate yarn and pnpm but neither were workable in our particular situation. They were both faster at installing dependencies but still far too slow.</p>
+<p>The lingering question here is whether the npm install was so slow because of the sheer number of dependencies or because something about those dependencies was slow. Anecdotally it seemed like rxjs took forever to install but other issues led us away from angular before we fully understood this.</p>
+<p>Even when the npm install could be avoided, the actual compile step was still slow enough to be a drain on the team. The projects we were using angular on were quite new with a fairly small amount of code. Running through the development server was fast, but a production mode build was slow.</p>
+<h2 id="existing-system-integration">Existing System Integration</h2>
+<p>The initial projects we used angular 2 on were completely from scratch so could do everything the angular 2 way. On those projects productivity was excellent and angular 2 was generally a joy to use. When we tried to build onto our existing systems using angular 2 things were much less pleasant.</p>
+<p>Technically it was possible to build a single component on a page using angular 2 with other parts of the page using our older approach, but doing so felt fairly unnatural. The angular 2 way is significantly different to how we had been working and since angular 2 provides a full-suite of functionality it often felt like we were working against the framework rather than with it. Re-using our existing code within an angular 2 component felt wrong so we were being pushed towards duplicating code that worked perfectly well and we were happy with just to make it fit “the angular 2 way”.</p>
+<p>If we intended to rewrite all our existing code using angular 2 that would be fine, but we&rsquo;re not doing that. We have a heap of functionality that&rsquo;s already built, working great and will be unlikely to need changes for quite some time. It would be a huge waste of time for us to go back and rewrite everything just to use the shiny new tool.</p>
+<h2 id="angular-2-is-still-great">Angular 2 is Still Great</h2>
+<p>None of this means that angular 2 has irretrievable faults, it&rsquo;s actually a pretty great tool to develop with. It just happens to shine most if you&rsquo;re all-in with angular 2 and that&rsquo;s never going to be our situation. I strongly suspect that even the build time issues would disappear if we could approach the build differently, but changing large parts of our build system and the development practices that work with it just doesn&rsquo;t make sense when we have other options.</p>
+<p>I can&rsquo;t see any reason why a project built with angular 2 would need or want to migrate away. Nor would I rule out angular 2 for a new project. It&rsquo;s a pretty great library, provides a ton of functionality that you can just run with and has excellent tooling. Just work out how your build works and if it&rsquo;s going to be too slow early on.</p>
+<p>For us though, Angular 2 didn&rsquo;t turn out to be the wonderful new world we hoped it would be.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

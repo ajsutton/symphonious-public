@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Improving The Applet Startup Experience | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve spent most of this week working on making the start up experience for our applet better. It should look better, take longer and most importantly feel fast to the user. The first step is obviously to profile and optimize – the faster the start up time actually is, the easier it is to make it feel fast for users. There were a few things we could do to help out there, but nothing that really made a dramatic difference.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/04/20/improving-the-applet-startup-experience-2/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/04/20/improving-the-applet-startup-experience-2/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Improving The Applet Startup Experience">
+	<meta property="og:description" content="I’ve spent most of this week working on making the start up experience for our applet better. It should look better, take longer and most importantly feel fast to the user. The first step is obviously to profile and optimize – the faster the start up time actually is, the easier it is to make it feel fast for users. There were a few things we could do to help out there, but nothing that really made a dramatic difference.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-04-20T04:35:36+00:00">
+		<meta property="article:modified_time" content="2007-04-20T04:35:36+00:00">
+
+	<meta itemprop="name" content="Improving The Applet Startup Experience">
+	<meta itemprop="description" content="I’ve spent most of this week working on making the start up experience for our applet better. It should look better, take longer and most importantly feel fast to the user. The first step is obviously to profile and optimize – the faster the start up time actually is, the easier it is to make it feel fast for users. There were a few things we could do to help out there, but nothing that really made a dramatic difference.">
+	<meta itemprop="datePublished" content="2007-04-20T04:35:36+00:00">
+	<meta itemprop="dateModified" content="2007-04-20T04:35:36+00:00">
+	<meta itemprop="wordCount" content="709">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Editors,Ephox,Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Improving The Applet Startup Experience">
+	<meta name="twitter:description" content="I’ve spent most of this week working on making the start up experience for our applet better. It should look better, take longer and most importantly feel fast to the user. The first step is obviously to profile and optimize – the faster the start up time actually is, the easier it is to make it feel fast for users. There were a few things we could do to help out there, but nothing that really made a dramatic difference.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Improving The Applet Startup Experience</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Improving The Applet Startup Experience</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-04-20T04:35:36Z">April 20, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve spent most of this week working on making the start up experience for our applet better. It should look better, take longer and most importantly feel fast to the user. The first step is obviously to profile and optimize – the faster the start up time actually is, the easier it is to make it feel fast for users. There were a few things we could do to help out there, but nothing that really made a dramatic difference.</p>
+<p>The next thing to do is to make it look pretty. Time flys when your having fun, and it really drags when you&rsquo;re looking at a boring start up screen. There was a lot of debate about what this should entail. It&rsquo;s all fancy and Web 2.0 to copy OS X&rsquo;s round, indeterminate spinner. From a usability perspective that&rsquo;s an absolute nightmare because it doesn&rsquo;t give the user any indication about how much longer the process will take. So you really need a determinate progress bar, but apparently their old and boring. Sigh. In the end a few different ideas combined to come up with:</p>
+<p><img src="http://www.symphonious.net/wp-content/uploads/2007/04/progressspinner.PNG" alt=""></p>
+<p>The outside bit spins in a very Web 2.0ish manner, but the text in the middle gives users an idea of how much longer before the editor&rsquo;s ready. Given how much effort went into this it&rsquo;s somewhat annoying that you really only get to see it the first time the editor loads – from the second use the editor loads so fast you hardly get to see the progress bar at all. Of course, looking at the static image I&rsquo;ve been distracted and gone off to make more tweaks – who knows what it will look like by the time it ships…</p>
+<p>The final challenge is making things pretty while the applet initially downloads the required Jar files and while Java itself starts up. Obviously, we can&rsquo;t use Java code there and most disappointingly there&rsquo;s just no way to know how long the jar download is going to take so we need a different approach. Sun&rsquo;s heavy-handed branding of Java makes it extremely difficult to display anything more than their hideous loading screen (now bright orange!) or a static image. You can&rsquo;t even get the image to resize to fit the applet area or center it within the applet. It just sits there in the top left corner and hopefully it loads before your applet does.</p>
+<p>Looking at a bunch of other applets and even JavaScript based editors, the start up sequence is generally really lame. I&rsquo;ve seen everything from a little animated GIF pretending to be a progress bar sitting just above the applet and slightly throwing out the layout of the page to greying out the entire screen and putting an animated GIF in the middle. Never mind the fact that users might have wanted to change values in other form fields, not just the editor itself. Of course, the standard technique for JavaScript editors is just not to worry about it and render in whatever order the browser manages to get toolbar icons. Usually this shows good progress to the user but it looks pretty hideous as toolbar icons randomly appear on the toolbar and the page layout shifts around during different stages of loading.</p>
+<p>As far as I&rsquo;ve seen what we&rsquo;ll have once the final few tweaks are done is the best startup sequence I&rsquo;ve seen – the page layout remains stable, it looks elegant, fills the space of the editor enough that the loading progress is clearly the current center of attention instead of just a progress bar off at the side somewhere and still allows the user to just ignore the editor and work with other parts of the page uninhibited. It&rsquo;s also easy to modify if the default style doesn&rsquo;t work with the actual site layout it winds up embedded in. I&rsquo;ll be very interested to see what our clients think of it.</p>
+<p>One thing I am really happy with is that in the last couple of days, this has been deployed to our internal systems and suddenly everyone is <a href="http://blog.ephox.com/weblog/2007/04/who_said_applet.html">hugely impressed with the start up speed of our applet</a>. The actual speed improvement is actually quite minor, but the resulting impression on the user is huge.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

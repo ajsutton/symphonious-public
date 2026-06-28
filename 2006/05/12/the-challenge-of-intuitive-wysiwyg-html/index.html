@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Challenge Of Intuitive WYSIWYG HTML | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I stumbled across the article This Is What You See, This Is What You Get the other day and it points out a number of common pitfalls for HTML editors that have relatively simple solutions, as well as repeating a number of common misconceptions about WYSIWYG editors – primarily that Word or Outlook should be considered good examples of how to do it.
+
+Perhaps an obvious point. At least, the web is not WYSIWIG. What you see on your browser is almost certainly not what I see on mine due to many factors. Differing font sets, typographic capabilities of the OS, use of subpixel rendering, browser rendering engine/version, user display preferences such as screen resolution/depth, display gamma, as so on.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/05/12/the-challenge-of-intuitive-wysiwyg-html/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/05/12/the-challenge-of-intuitive-wysiwyg-html/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Challenge Of Intuitive WYSIWYG HTML">
+	<meta property="og:description" content="I stumbled across the article This Is What You See, This Is What You Get the other day and it points out a number of common pitfalls for HTML editors that have relatively simple solutions, as well as repeating a number of common misconceptions about WYSIWYG editors – primarily that Word or Outlook should be considered good examples of how to do it.
+Perhaps an obvious point. At least, the web is not WYSIWIG. What you see on your browser is almost certainly not what I see on mine due to many factors. Differing font sets, typographic capabilities of the OS, use of subpixel rendering, browser rendering engine/version, user display preferences such as screen resolution/depth, display gamma, as so on.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-05-12T04:54:01+00:00">
+		<meta property="article:modified_time" content="2006-05-12T04:54:01+00:00">
+
+	<meta itemprop="name" content="The Challenge Of Intuitive WYSIWYG HTML">
+	<meta itemprop="description" content="I stumbled across the article This Is What You See, This Is What You Get the other day and it points out a number of common pitfalls for HTML editors that have relatively simple solutions, as well as repeating a number of common misconceptions about WYSIWYG editors – primarily that Word or Outlook should be considered good examples of how to do it.
+Perhaps an obvious point. At least, the web is not WYSIWIG. What you see on your browser is almost certainly not what I see on mine due to many factors. Differing font sets, typographic capabilities of the OS, use of subpixel rendering, browser rendering engine/version, user display preferences such as screen resolution/depth, display gamma, as so on.">
+	<meta itemprop="datePublished" content="2006-05-12T04:54:01+00:00">
+	<meta itemprop="dateModified" content="2006-05-12T04:54:01+00:00">
+	<meta itemprop="wordCount" content="2423">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Challenge Of Intuitive WYSIWYG HTML">
+	<meta name="twitter:description" content="I stumbled across the article This Is What You See, This Is What You Get the other day and it points out a number of common pitfalls for HTML editors that have relatively simple solutions, as well as repeating a number of common misconceptions about WYSIWYG editors – primarily that Word or Outlook should be considered good examples of how to do it.
+Perhaps an obvious point. At least, the web is not WYSIWIG. What you see on your browser is almost certainly not what I see on mine due to many factors. Differing font sets, typographic capabilities of the OS, use of subpixel rendering, browser rendering engine/version, user display preferences such as screen resolution/depth, display gamma, as so on.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Challenge Of Intuitive WYSIWYG HTML</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Challenge Of Intuitive WYSIWYG HTML</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-05-12T04:54:01Z">May 12, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I stumbled across the article <a href="http://girtby.net/archives/2005/06/13/this-is-what-you-see-this-is-what-you-get/">This Is What You See, This Is What You Get</a> the other day and it points out a number of common pitfalls for HTML editors that have relatively simple solutions, as well as repeating a number of common misconceptions about WYSIWYG editors – primarily that Word or Outlook should be considered good examples of how to do it.</p>
+<blockquote>
+<p>Perhaps an obvious point. At least, the web is not WYSIWIG. What you see on your browser is almost certainly not what I see on mine due to many factors. Differing font sets, typographic capabilities of the OS, use of subpixel rendering, browser rendering engine/version, user display preferences such as screen resolution/depth, display gamma, as so on.</p>
+</blockquote>
+<p>Actually, for most people things render pretty close to the same – most people don&rsquo;t notice any significant difference between a document that uses subpixel rendering and one that doesn&rsquo;t, screen resolution and display gamma are consistent enough as to not cause problems anyway. Besides which, none of these things are specific to the web, try transferring plain text documents between Windows and the Mac and you&rsquo;ll see the same difference, same with Word documents, pictures and pretty much any other type of file. The same problems occur when you try to print. The fact is whenever you change display devices you are going to see things slightly differently – heck the time of day and lighting conditions with the same device will cause differences. That doesn&rsquo;t mean you can&rsquo;t edit in a WYSIWYG editor and be satisfied with the results.</p>
+<p>The fact is, WYSIWYG makes it easy to get close to what you wanted and that&rsquo;s close enough for most people. I edit all my posts for this blog in a WYSIWYG editor and view the result on many different devices, with many different browsers and operating systems and have never had a problem with the way it looks. If I had a reason to be exceptionally pedantic about the way things came out I wouldn&rsquo;t be using HTML.</p>
+<blockquote>
+<p>However, consider the case where a user has their default typeface set to Arial Bold, and the author of a page has chosen to use the same typeface for emphasis. In this case the emphasised words are no longer visually distinct from the remainder of the body text, and hence the emphasis is removed, potentially changing the message.</p>
+</blockquote>
+<p>The user could just as easily make this mistake without a WYSIWYG editor, and in fact they are just as likely to – most people tend to use the I tag instead of EM because they want italic and not emphasis. Any decent HTML editor will use (or at least have an option to use) EM when the user clicks the italic button, thus preserving intent and displaying correctly in nearly every situation.</p>
+<blockquote>
+<p>This is why HTML emphasises structural markup. You, as an author of a web page, have to understand the difference between using a bold typeface and the correct markup for emphasised text: the former is one possible representation of the latter. Web authoring is not word processing. The more you make your web authoring environment look like a word processor, the more likely it is that users will treat it as such.</p>
+</blockquote>
+<p>Web authoring is content creation and styling, just as word processing is content creation and styling. You&rsquo;ll find Word more pleasant to use if you use it&rsquo;s styles features instead of manually specifying the way you want things to look, similarly if you use the (CSS) styles features of any good HTML editor you&rsquo;ll find it&rsquo;s easier and you&rsquo;ll get semantic markup instead of mixing style and content together.</p>
+<blockquote>
+<p>You may be thinking OK, so why don&rsquo;t we get wise to this structural markup stuff, then adopt a visual editor (I&rsquo;m going to shy away from the term WYSIWYG at this point) because although we understand the concepts, we still don&rsquo;t like all the angle brackets. Can we justify a visual editor in this case? In other words an editor that allows manipulation of structural markup without requiring the user to delve into the markup language syntax; sometimes known as WYSIWYM. I am hopeful, and there are some promising developments, but I have yet to see it done.</p>
+</blockquote>
+<p>This is in fact precisely what any good HTML editor does – it uses structural markup whenever possible and designs it&rsquo;s user interface so that applying the right mark-up is intuitive for the user. Even better, is with editors that allow you to remove UI elements that are display specific (things like the font face selector and font size selectors) and limit the options only to semantic markup.</p>
+<blockquote>
+<p>It&rsquo;s not an easy ask. The reason is that some markup elements affect the visual representation in subtle ways. Consider the difference between the<br>
+and</p>
+<p>constructs in XHTML for example. Each is a good way of terminating a line of text, but it&rsquo;s not always easy to see on the screen which is actually present, under the covers. A more obivous example might be the <a id="blah"></a>tag which has no visual representation.</p>
+</blockquote>
+<p>Actually, these problems are both easy to solve – give them a visual representation. In the first case, make enter insert a new paragraph – that&rsquo;s nearly always what users want when they hit enter. Make shift-enter insert a br. Then provide an option to display makers that make it clear what type of line break was used. Note that these markers are <em>not</em> hidden markup tags in the document, the document model should never include hidden markup and it&rsquo;s quite simple to avoid this if you move away from thinking in terms of a DOM to thinking in terms of an attributed character array. The markers are provided just to make clear what the displayed whitespace is called for – most users will never need or want them, but they should be available just in case.</p>
+<p>The <a id="blah"> tag is even easier – give it a visual representation. We use a dashed blue underline and users seem to understand it immediately. Again, no hidden markup for the a tag anywhere, it exists only as attributes attached to the characters it wraps around. If it is an empty tag as in this example, display a glyph there so the user can see it. WYSIWYG is not and has never really been What You See Is EXACTLY What You Get, it&rsquo;s simply about making the display match the user&rsquo;s mental model of the document instead of making the user visualize the effects of arcane markup in their head.</a></p>
+<blockquote>
+<p>These types of problems multiply when it comes time to edit. Consider the (probably) most widely-used HTML editor today: Microsoft Outlook.</p>
+</blockquote>
+<p>Ugh. Let&rsquo;s not hold Outlook up as if it were even a reasonable attempt at an editor. It&rsquo;s probably the most awful editing experience you are ever likely to find. If you use Outlook, stick to plain text emails. Regarding the hyperlink complaint, that&rsquo;s most likely because Outlook automatically applies hyperlinks when you type an URL – this annoys a lot of people so they made it easy to remove the hyperlink again, by hitting backspace at the end of the hyperlink. This is just caused by the fact that Outlook&rsquo;s editor hasn&rsquo;t been carefully thought through and is just a bad example of a WYSIWYG editor – there&rsquo;s no reason it has to be like that.</p>
+<blockquote>
+<p>An article at atpm.com describes some other limitations of WYSIWYG editors, including certain descriptive types of layout that can only be achieved by a powerful markup language. I&rsquo;m sure it is still the case that the 15 year-old LaTeX can do things that state-of-the-art WYSIWYG page layout tools like Adobe InDesign cannot do. I think the situation is similar for XHTML editing; the advanced techniques described at a list apart (for example) aren&rsquo;t going to be available in a visual editing environment any time soon.</p>
+</blockquote>
+<p>It&rsquo;s true, hand coding HTML allows you to do more than WYSIWYG editors can. So what? The vast majority of users don&rsquo;t care. If you are editing a wiki page, a business document, a blog entry or pretty much any of the really common content creation tasks, you are concerned about content, not advanced layout techniques. The fact is that most users can do more with a WYSIWYG editor than with any markup language – the fact that technically minded people could do more doesn&rsquo;t matter, because the majority of people aren&rsquo;t technically minded and don&rsquo;t read A List Apart.</p>
+<p>If you do however want to step outside the capabilities of the WYSIWYG editor, switch to the code tab and edit the HTML by hand. Outlook doesn&rsquo;t let you do it, but any half decent editor will.</p>
+<blockquote>
+<p>So far I&rsquo;ve just talked about the limitations of single-user visual editing. Remember this topic came up in the context of Wikis, where, like most multi-user authoring systems, differencing and merging are required operations. The types of problems mentioned previously become significantly more difficult when multiple users are editing at the same time.</p>
+</blockquote>
+<p>Diffing HTML is hard, very, very hard. However, it&rsquo;s not the HTML that makes it hard – it&rsquo;s the fact that the content is generally natural language. I don&rsquo;t think I&rsquo;ve ever seen a wiki that can do a decent diff of content – they don&rsquo;t understand the natural language to be able to determine what the intent of the changes were and display them appropriately. Amusingly the best diff ability I&rsquo;ve seen is in a WYSIWYG editor – Microsoft Word. It has track changes so it knows exactly what you changed and how it happened so it displays the changes very accurately and doesn&rsquo;t lose the meaning of the changes in doing so. So if you want to improve the diff capabilities of your wiki, try an editor that will track changes to a document while it&rsquo;s being edited and forget about trying to diff after the fact. Your users will thank you for it.</p>
+<blockquote>
+<p>I am typing this using the markdown syntax which I find very <span style=" text-decoration: line-through;">natural</span> easy to read and write, but there are lots of others and not all of them are as elegant. Certainly more work is needed but I think the progress will be quicker in this area than with WYSIWYM editing tools.</p>
+</blockquote>
+<p>Actually, even a very simplified syntax is going to turn users away. It&rsquo;s all about <a href="http://headrush.typepad.com/creating_passionate_users/2005/10/getting_users_p.html">The Suck Threshold</a>. If you force your users to learn a new syntax before they can use your wiki properly, they will feel incompetent and avoid it. If you give them a friendly user interface that they can immediately pick up and start creating great looking documents, you hoist them over the suck threshold and into the kick-ass range really quickly. Advanced users can still flick to the code view to do more, but everyone can get going without thinking about it. No learning time trumps a low learning curve. In fact, the original idea for wikis was to lower the barrier to entry – now the wiki syntax is the biggest barrier and it&rsquo;s simple to remove by putting in a good quality WYSIWYG editor. Just don&rsquo;t think you can put any old editor in and get the same benefit. It has to be reliable, intuitive and just do what the user means.</p>
+<blockquote>
+<p>Clever text syntax rules only get you so far. Obviously the full range of possible XHTML tags can&rsquo;t be easily, or intuitively, represented by text syntax. So it&rsquo;s not a general solution to the problem of editing XHTML. However for fragments of XHTML embedded within a larger content management system, and for which a site-wide styling is provided, providing only a restricted subset of XHTML for authors is actually a good thing.</p>
+</blockquote>
+<p>Apart from the fact that not being able to exercise the full power of XHTML was considered a weakness of WYSIWYG earlier in the article, most WYSIWYG editors that are designed to be embedded in content management systems allow you to select what is available to the user – you can remove everything except the CSS styles selector and force the user to just use your predefined CSS styles if you want. It&rsquo;s generally a lot easier to tailor to the specific needs of a system as well instead of designing a syntax language that includes what you need and nothing more.</p>
+<blockquote>
+<p><a href="http://www.techweb.com/encyclopedia/defineterm.jhtml?term=ransom+note+typography">Ransom note typography</a> is rampant amongst the technical documents that I see on most days. By providing maximum flexibility the existing WYSIWYG tools are also providing no incentive for the authors to use the tools within the boundaries of readability, or good taste. Sometimes it&rsquo;s unintentional, as when copy-n-pasting from other sources.</p>
+</blockquote>
+<p>Fortunately most WYSIWYG editors have options about how to paste content – you can paste as plain text and strip out the formatting if you want. In fact, with editors designed to be embedded in content management systems (as opposed to desktop apps where what the user wants, the user gets), you can usually configure them to strip formatting when pasting (but preserve structural markup, or just paste as plain old text).</p>
+<blockquote>
+<p>I&rsquo;m sure there are places in the world for WYSIWYG editors. But not for documents that are intended to be delivered to the web first (as most should be by now). Hopefully when WYSIWYM editors become more mainstream we&rsquo;ll see WYSIWYG die out except for use by professional typesetters. One can only hope.</p>
+</blockquote>
+<p>The distinction between WYSIWYG and WYSIWYM is an awful lot smaller than you think. In fact, I can&rsquo;t think of a single example of strict WYSIWYG - every editor I know has some form of special marking that doesn&rsquo;t display in the final output. I think you&rsquo;ll find there is already a very strong movement towards using structural markup in WYSIWYG editors over just formatting operations and particularly in making it easier for users to use styles which is where the really big payoff comes. The problem however is not entirely with the tools, if user&rsquo;s don&rsquo;t understand the benefits of separating content from display, they aren&rsquo;t going to put in the effort to do it, no matter how small a hurdle we make it. The only chance then is to make it unavoidable and that requires mind reading so while we may get it right some or even most of the time, it&rsquo;s not going to be perfect. The trade off though is that users don&rsquo;t contribute the content so what&rsquo;s worse – content that is mixed with formatting or no content at all?</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

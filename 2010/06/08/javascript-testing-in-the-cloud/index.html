@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JavaScript Testing in the Cloud | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="One of the things Ephox is contributing to TinyMCE is a build farm to run the automated tests in various browsers which winds up publishing it’s results for all to see. This has been pretty interesting to set up and there are a range of different approaches. Matt Raible posted recently about his experiences using Selenium with Sauce Labs. I had initially looked into that as well, but was worried about a few of the issues Matt hit and TinyMCE had already written a lot of tests using QUnit rather than Selenium.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/06/08/javascript-testing-in-the-cloud/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/06/08/javascript-testing-in-the-cloud/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JavaScript Testing in the Cloud">
+	<meta property="og:description" content="One of the things Ephox is contributing to TinyMCE is a build farm to run the automated tests in various browsers which winds up publishing it’s results for all to see. This has been pretty interesting to set up and there are a range of different approaches. Matt Raible posted recently about his experiences using Selenium with Sauce Labs. I had initially looked into that as well, but was worried about a few of the issues Matt hit and TinyMCE had already written a lot of tests using QUnit rather than Selenium.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-06-08T17:25:30+00:00">
+		<meta property="article:modified_time" content="2010-06-08T17:25:30+00:00">
+
+	<meta itemprop="name" content="JavaScript Testing in the Cloud">
+	<meta itemprop="description" content="One of the things Ephox is contributing to TinyMCE is a build farm to run the automated tests in various browsers which winds up publishing it’s results for all to see. This has been pretty interesting to set up and there are a range of different approaches. Matt Raible posted recently about his experiences using Selenium with Sauce Labs. I had initially looked into that as well, but was worried about a few of the issues Matt hit and TinyMCE had already written a lot of tests using QUnit rather than Selenium.">
+	<meta itemprop="datePublished" content="2010-06-08T17:25:30+00:00">
+	<meta itemprop="dateModified" content="2010-06-08T17:25:30+00:00">
+	<meta itemprop="wordCount" content="998">
+	<meta itemprop="keywords" content="Build Systems,JavaScript">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JavaScript Testing in the Cloud">
+	<meta name="twitter:description" content="One of the things Ephox is contributing to TinyMCE is a build farm to run the automated tests in various browsers which winds up publishing it’s results for all to see. This has been pretty interesting to set up and there are a range of different approaches. Matt Raible posted recently about his experiences using Selenium with Sauce Labs. I had initially looked into that as well, but was worried about a few of the issues Matt hit and TinyMCE had already written a lot of tests using QUnit rather than Selenium.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JavaScript Testing in the Cloud</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JavaScript Testing in the Cloud</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-06-08T17:25:30Z">June 8, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>One of the things <a href="http://tinymce.ephox.com">Ephox is contributing to TinyMCE</a> is a build farm to run the automated tests in various browsers which <a href="http://tinymce.ephox.com/test-results">winds up publishing it’s results for all to see</a>. This has been pretty interesting to set up and there are a range of different approaches. Matt Raible posted recently about <a href="http://raibledesigns.com/rd/entry/running_selenium_tests_on_sauce">his experiences using Selenium with Sauce Labs</a>. I had initially looked into that as well, but was worried about a few of the issues Matt hit and TinyMCE had already written a lot of tests using <a href="http://docs.jquery.com/QUnit">QUnit</a> rather than Selenium.</p>
+<p>Instead I’ve wound up with quite a neat little set up based around Hudson. The master Hudson server is running on an EC2 instance, so the configuration and control interface is easily available from anywhere. However, EC2 can only run specific Windows server versions so it can’t provide all the browsers we need. Instead, the slaves are run as VMWare instances back behind the firewall in our UK office. They use Hudson’s webstart slave support so they connect out to the master, avoiding the need to punch a hole in the firewall. At this stage we have Windows XP, Vista and Windows 7 running a suite of browsers (roughly grouped as “old”, “previous version” and “latest” on each of those VMs). We’re also using the master server to run the Linux browser tests.</p>
+<p>The next challenge was to get QUnit working with continuous integration so it’s results are reported back correctly. Unlike JSUnit or Selenium, QUnit doesn’t really have anything like this built in, though it does provide some hooks to make it possible. I simply took the JSUnit server, which is completely agnostic about what actually runs in the browser, and a simple HTML and JavaScript harness to marshall the QUnit test results and submit them back to the server.</p>
+<p>Finally we want to set up a workflow so tests on different VMs can run in parallel but builds are only published if they actually pass all the tests. To achieve that, I’ve split the build into three parts:</p>
+<ol>
+<li>The build itself. Minifies the JavaScript and various other stuff to build the zip package that would be distributed. At this stage, that zip is just left on the Hudson server and not published anywhere. It may be possible to do this using the “touchstone build” option for the configuration matrix type but I haven’t investigated that yet.</li>
+<li>The test project is set up as a configuration matrix type, so Hudson automatically duplicates the build on any slaves that are chosen (in this case, all of them plus the master to cover Linux). Each slave then downloads the zip package from the previous build phase and runs the tests. If any of the VM builds fail the test project is considered to fail and the process stops.</li>
+<li>Finally if the tests all pass the packaging project starts which simply publishes the zips to various places. It uses the workspace clone plugin to effectively pick up where the build step left off.</li>
+</ol>
+<p>With this approach we are essentially building a full release candidate, testing it and then finally releasing it. While the tests don’t exercise it fully enough, this has the advantage of actually testing that the intended files are making it into the zip. Most unit test setups run the tests based on just the compiled classes with no guarantee that they’ll come out the same way after being packaged up. While I was just grabbing the full zip out of pure convenience, it is nice to know that catastrophic packaging problems would be picked up by the tests now and I can quite easily build out more tests to pick up smaller errors as well.</p>
+<p>Current issues:</p>
+<ul>
+<li>The slaves are extremely good at reconnecting after the server reboots, but if the slaves themselves reboot sometimes their authentication has timed out and they can’t re-download the JNLP file without help. It would be nice if I could specify authentication credentials for Java WebStart on the command line.</li>
+<li>The test project is mostly triggered by the build project completing, but it also polls for changes in the git repository of the test harness. That way if we change the harness it verifies that all the projects that test harness is used by will still build and pass successfully rather than giving us a surprise failure on a later, unrelated change. Unfortunately you can’t decide which Hudson instance will be the one polling for updates and winds up distributing it out to the remote slaves (in itself a pretty stupid thing to do in this particular setup). When you restart the server though it takes a few moments for the slaves to reconnect and in the mean time Hudson moves the polling back to the master server, which has an out of date workspace for that project so it almost always detects a change. The net result is that restarting the server causes all the tests to run for no reason.</li>
+<li>The matrix project type basically makes a set of sub-projects for each VM so things like Twitter notifications report on multiple cryptic projects rather than just reporting on the overall project (hence I’ve given up on the twitter notifications).</li>
+</ul>
+<p>Things to improve:</p>
+<ul>
+<li>Add a Mac into the mix – Safari is covered from the Windows builds anyway but there can be subtle differences between versions on different OS’s and since it’s all automated, we may as well be thorough.</li>
+<li>Make the slaves redundant. I’d like to effectively duplicate each of the slave VMs so that I have a “latest browser” VM pool rather than a specific VM. That way if one of the VM fails to reconnect or isn’t available for some reason, there is a reasonable chance that the other one will be available. If they’re both up and running it gives extra throughput which is always good too.</li>
+</ul>
+<p>Overall, I’m quite pleased with the setup and look forward to growing the test coverage for TinyMCE.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Ampersand Redux | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="It seems I wasn&rsquo;t clear enough with my ampersand related comments. I&rsquo;m not talking about standards here, the standards are very clear – &amp; should always be escaped as &amp;, no ifs no buts. However, we live in the real world and many things don&rsquo;t follow standards correctly. So while David is correct that the validator will complain if you don&rsquo;t escape ampersands in HTML documents, some browsers will get it wrong if you do escape them in some cases (it&rsquo;s exotic and the actual test cases are at work not here unfortunately). In XHTML however, you really seriously have to escape them because a) browsers get it right when kicked into XHTML mode, and b) XML parsers barf if you don&rsquo;t. Byron also chimes in with a comment:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/09/09/ampersand-redux/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/09/09/ampersand-redux/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Ampersand Redux">
+	<meta property="og:description" content="It seems I wasn’t clear enough with my ampersand related comments. I’m not talking about standards here, the standards are very clear – &amp; should always be escaped as &amp;, no ifs no buts. However, we live in the real world and many things don’t follow standards correctly. So while David is correct that the validator will complain if you don’t escape ampersands in HTML documents, some browsers will get it wrong if you do escape them in some cases (it’s exotic and the actual test cases are at work not here unfortunately). In XHTML however, you really seriously have to escape them because a) browsers get it right when kicked into XHTML mode, and b) XML parsers barf if you don’t. Byron also chimes in with a comment:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-09-09T06:47:05+00:00">
+		<meta property="article:modified_time" content="2004-09-09T06:47:05+00:00">
+
+	<meta itemprop="name" content="Ampersand Redux">
+	<meta itemprop="description" content="It seems I wasn’t clear enough with my ampersand related comments. I’m not talking about standards here, the standards are very clear – &amp; should always be escaped as &amp;, no ifs no buts. However, we live in the real world and many things don’t follow standards correctly. So while David is correct that the validator will complain if you don’t escape ampersands in HTML documents, some browsers will get it wrong if you do escape them in some cases (it’s exotic and the actual test cases are at work not here unfortunately). In XHTML however, you really seriously have to escape them because a) browsers get it right when kicked into XHTML mode, and b) XML parsers barf if you don’t. Byron also chimes in with a comment:">
+	<meta itemprop="datePublished" content="2004-09-09T06:47:05+00:00">
+	<meta itemprop="dateModified" content="2004-09-09T06:47:05+00:00">
+	<meta itemprop="wordCount" content="433">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Ampersand Redux">
+	<meta name="twitter:description" content="It seems I wasn’t clear enough with my ampersand related comments. I’m not talking about standards here, the standards are very clear – &amp; should always be escaped as &amp;, no ifs no buts. However, we live in the real world and many things don’t follow standards correctly. So while David is correct that the validator will complain if you don’t escape ampersands in HTML documents, some browsers will get it wrong if you do escape them in some cases (it’s exotic and the actual test cases are at work not here unfortunately). In XHTML however, you really seriously have to escape them because a) browsers get it right when kicked into XHTML mode, and b) XML parsers barf if you don’t. Byron also chimes in with a comment:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Ampersand Redux</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Ampersand Redux</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-09-09T06:47:05Z">September 9, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>It seems I wasn&rsquo;t clear enough with my <a href="http://www.intencha.com/adrian/000221.php">ampersand related comments</a>. I&rsquo;m not talking about standards here, the standards are very clear – &amp; should always be escaped as &amp;, no ifs no buts. However, we live in the real world and many things don&rsquo;t follow standards correctly. So while <a href="http://www.dbs.id.au/blog/misc/html-escaping-ampersands.html">David</a> is correct that the validator will complain if you don&rsquo;t escape ampersands in HTML documents, some browsers will get it wrong if you do escape them in some cases (it&rsquo;s exotic and the actual test cases are at work not here unfortunately). In XHTML however, you really seriously have to escape them because a) browsers get it right when kicked into XHTML mode, and b) XML parsers barf if you don&rsquo;t. Byron also chimes in with a comment:</p>
+<blockquote>
+<p>Neither, actually. A space is not a valid character in a URI, and an ampersand is not a valid character in an attribute value. You should use: <a href=&#8221;Me%20&%20You&#8221;> Which is mostly true though pedantic (Yes you should escape spaces like that, no it&rsquo;s not what I was talking about). However, it is very much incorrect to say that “ampersand is not a valid character in an attribute value”. Ampersand is in fact a perfectly valid character in attribute values, otherwise it would be impossible to link to:</p>
+</blockquote>
+<pre><code>mt.cgi?__mode=view&amp;_type=entry&amp;blogid=2 which is the page I'm currently on. What Byron meant to say was that when serializing an attribute value that contains an ampersand, the ampersand must be represented using an entity such as &amp;. The distinction is largely just being pedantic, but it is important if you ever work with a DOM as &amp; is resolved to &amp; by the time you see it (though technically it doesn't have to be as it could be left as an 
+</code></pre>
+<p><code>Entity</code> element. As a side note, the main reason an entity would be put into a DOM as an Entity element instead of being resolved to a character is when the character set used for strings in the DOM doesn&rsquo;t support that character. You don&rsquo;t generally run into that problem with Java-based XML parsers because Java uses Unicode to store strings, thus any character that can be represented in an XML entity can be represented directly as a character in a Java string. There are exceptions and complications to this though and there&rsquo;s differences between Java 1.5 and Java 1.4 in this regard as well. The XHTML standard has a <a href="http://www.w3.org/TR/xhtml1/#C_12">comment</a> about the use of ampersands in URLs too (it says to escape them despite the fact that you could usually get away with not doing it in HTML).</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

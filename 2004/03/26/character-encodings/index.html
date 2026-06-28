@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Character Encodings | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Jim Winstead has posted a couple of entries on character encodings (1, 2). Some good info in there. My three big tips for dealing with character encodings is this: 1. Know your character encoding and make sure you&rsquo;re using that encoding everywhere. No look again because you probably missed a place where you didn&rsquo;t think about encoding. Particularly don&rsquo;t forget that printing something to System.err or System.out in Java uses the platform default encoding and so characters that can&rsquo;t be represented in that encoding become question marks. 2. When practical, use US-ASCII and escaped characters for anything outside of it&rsquo;s range. Most formats which support different encodings also provide a way to represent a character which isn&rsquo;t in the current encoding through something like HTML&rsquo;s entities or java&rsquo;s escape codes (\u8222 etc). Most encodings are compatible with US-ASCII (EBDIC being a notable exception) so even if people forget to use the right encoding they can generally get away with it. 3. Remember that character encodings, despite their name do not apply to characters – they apply to byte sequences which represent characters. If you have a char variable in Java it has no character encoding as far as you are concerned, it&rsquo;s just that character. The JVM can choose any representation it likes for that character in physical memory and you shouldn&rsquo;t care (it actually happens to choose UTF-16 I think but you still shouldn&rsquo;t care). You *do* however have to worry about character encodings when you convert from characters (or Strings which are really just a fancy array of chars) to byte streams. This happens when you use String.getBytes(), or print the characters to any kind of output stream. You also have to worry about the reverse process, new String(byte[]) and reading from an input stream. The first two items should be pretty clear to you if you&rsquo;ve done any work with character encodings, the third may seem unimportant, but it will help stop you from expecting code like the following to work:
+String str = new String(&quot;my string&quot;); byte[] utf8Bytes = str.getBytes(&quot;UTF-8&quot;); String strISO88591 = new String(utf8Bytes, &quot;ISO-8859-1&quot;); Naturally this won&rsquo;t work because of rules 1 and 3. Rule 1 is broken in that you used a different encoding when working with the same data and 3 is broken because you expected strISO88591 to be a String using ISO-8859-1 character encoding, but it doesn&rsquo;t because String objects don&rsquo;t have a character encoding (as far as you should be concerned). The big exception to rule 3 is when you&rsquo;re using a language which doesn&rsquo;t guarantee it will support whatever characters you throw at it, in which case you basically either have to work only with byte arrays and never let the language string functions near them. In general though I&rsquo;d suggest you find a better language or a better library. If I were to add fourth suggestion, it would be: remember that just because your character is valid, doesn&rsquo;t mean the font you&rsquo;re using can display it. Most fonts can&rsquo;t display anything more than the characters in ISO-8859-1 and a few select others so if you&rsquo;re working with mathematical symbols or characters from other languages you&rsquo;ll need to find a special font that supports them. BTW, yes I have spent far too much time working with character encodings and tracking down where people stuffed up with character encodings.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/03/26/character-encodings/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/03/26/character-encodings/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Character Encodings">
+	<meta property="og:description" content="Jim Winstead has posted a couple of entries on character encodings (1, 2). Some good info in there. My three big tips for dealing with character encodings is this: 1. Know your character encoding and make sure you’re using that encoding everywhere. No look again because you probably missed a place where you didn’t think about encoding. Particularly don’t forget that printing something to System.err or System.out in Java uses the platform default encoding and so characters that can’t be represented in that encoding become question marks. 2. When practical, use US-ASCII and escaped characters for anything outside of it’s range. Most formats which support different encodings also provide a way to represent a character which isn’t in the current encoding through something like HTML’s entities or java’s escape codes (\u8222 etc). Most encodings are compatible with US-ASCII (EBDIC being a notable exception) so even if people forget to use the right encoding they can generally get away with it. 3. Remember that character encodings, despite their name do not apply to characters – they apply to byte sequences which represent characters. If you have a char variable in Java it has no character encoding as far as you are concerned, it’s just that character. The JVM can choose any representation it likes for that character in physical memory and you shouldn’t care (it actually happens to choose UTF-16 I think but you still shouldn’t care). You *do* however have to worry about character encodings when you convert from characters (or Strings which are really just a fancy array of chars) to byte streams. This happens when you use String.getBytes(), or print the characters to any kind of output stream. You also have to worry about the reverse process, new String(byte[]) and reading from an input stream. The first two items should be pretty clear to you if you’ve done any work with character encodings, the third may seem unimportant, but it will help stop you from expecting code like the following to work: String str = new String(&#34;my string&#34;); byte[] utf8Bytes = str.getBytes(&#34;UTF-8&#34;); String strISO88591 = new String(utf8Bytes, &#34;ISO-8859-1&#34;); Naturally this won’t work because of rules 1 and 3. Rule 1 is broken in that you used a different encoding when working with the same data and 3 is broken because you expected strISO88591 to be a String using ISO-8859-1 character encoding, but it doesn’t because String objects don’t have a character encoding (as far as you should be concerned). The big exception to rule 3 is when you’re using a language which doesn’t guarantee it will support whatever characters you throw at it, in which case you basically either have to work only with byte arrays and never let the language string functions near them. In general though I’d suggest you find a better language or a better library. If I were to add fourth suggestion, it would be: remember that just because your character is valid, doesn’t mean the font you’re using can display it. Most fonts can’t display anything more than the characters in ISO-8859-1 and a few select others so if you’re working with mathematical symbols or characters from other languages you’ll need to find a special font that supports them. BTW, yes I have spent far too much time working with character encodings and tracking down where people stuffed up with character encodings.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-03-26T07:32:49+00:00">
+		<meta property="article:modified_time" content="2004-03-26T07:32:49+00:00">
+
+	<meta itemprop="name" content="Character Encodings">
+	<meta itemprop="description" content="Jim Winstead has posted a couple of entries on character encodings (1, 2). Some good info in there. My three big tips for dealing with character encodings is this: 1. Know your character encoding and make sure you’re using that encoding everywhere. No look again because you probably missed a place where you didn’t think about encoding. Particularly don’t forget that printing something to System.err or System.out in Java uses the platform default encoding and so characters that can’t be represented in that encoding become question marks. 2. When practical, use US-ASCII and escaped characters for anything outside of it’s range. Most formats which support different encodings also provide a way to represent a character which isn’t in the current encoding through something like HTML’s entities or java’s escape codes (\u8222 etc). Most encodings are compatible with US-ASCII (EBDIC being a notable exception) so even if people forget to use the right encoding they can generally get away with it. 3. Remember that character encodings, despite their name do not apply to characters – they apply to byte sequences which represent characters. If you have a char variable in Java it has no character encoding as far as you are concerned, it’s just that character. The JVM can choose any representation it likes for that character in physical memory and you shouldn’t care (it actually happens to choose UTF-16 I think but you still shouldn’t care). You *do* however have to worry about character encodings when you convert from characters (or Strings which are really just a fancy array of chars) to byte streams. This happens when you use String.getBytes(), or print the characters to any kind of output stream. You also have to worry about the reverse process, new String(byte[]) and reading from an input stream. The first two items should be pretty clear to you if you’ve done any work with character encodings, the third may seem unimportant, but it will help stop you from expecting code like the following to work: String str = new String(&#34;my string&#34;); byte[] utf8Bytes = str.getBytes(&#34;UTF-8&#34;); String strISO88591 = new String(utf8Bytes, &#34;ISO-8859-1&#34;); Naturally this won’t work because of rules 1 and 3. Rule 1 is broken in that you used a different encoding when working with the same data and 3 is broken because you expected strISO88591 to be a String using ISO-8859-1 character encoding, but it doesn’t because String objects don’t have a character encoding (as far as you should be concerned). The big exception to rule 3 is when you’re using a language which doesn’t guarantee it will support whatever characters you throw at it, in which case you basically either have to work only with byte arrays and never let the language string functions near them. In general though I’d suggest you find a better language or a better library. If I were to add fourth suggestion, it would be: remember that just because your character is valid, doesn’t mean the font you’re using can display it. Most fonts can’t display anything more than the characters in ISO-8859-1 and a few select others so if you’re working with mathematical symbols or characters from other languages you’ll need to find a special font that supports them. BTW, yes I have spent far too much time working with character encodings and tracking down where people stuffed up with character encodings.">
+	<meta itemprop="datePublished" content="2004-03-26T07:32:49+00:00">
+	<meta itemprop="dateModified" content="2004-03-26T07:32:49+00:00">
+	<meta itemprop="wordCount" content="559">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Character Encodings">
+	<meta name="twitter:description" content="Jim Winstead has posted a couple of entries on character encodings (1, 2). Some good info in there. My three big tips for dealing with character encodings is this: 1. Know your character encoding and make sure you’re using that encoding everywhere. No look again because you probably missed a place where you didn’t think about encoding. Particularly don’t forget that printing something to System.err or System.out in Java uses the platform default encoding and so characters that can’t be represented in that encoding become question marks. 2. When practical, use US-ASCII and escaped characters for anything outside of it’s range. Most formats which support different encodings also provide a way to represent a character which isn’t in the current encoding through something like HTML’s entities or java’s escape codes (\u8222 etc). Most encodings are compatible with US-ASCII (EBDIC being a notable exception) so even if people forget to use the right encoding they can generally get away with it. 3. Remember that character encodings, despite their name do not apply to characters – they apply to byte sequences which represent characters. If you have a char variable in Java it has no character encoding as far as you are concerned, it’s just that character. The JVM can choose any representation it likes for that character in physical memory and you shouldn’t care (it actually happens to choose UTF-16 I think but you still shouldn’t care). You *do* however have to worry about character encodings when you convert from characters (or Strings which are really just a fancy array of chars) to byte streams. This happens when you use String.getBytes(), or print the characters to any kind of output stream. You also have to worry about the reverse process, new String(byte[]) and reading from an input stream. The first two items should be pretty clear to you if you’ve done any work with character encodings, the third may seem unimportant, but it will help stop you from expecting code like the following to work: String str = new String(&#34;my string&#34;); byte[] utf8Bytes = str.getBytes(&#34;UTF-8&#34;); String strISO88591 = new String(utf8Bytes, &#34;ISO-8859-1&#34;); Naturally this won’t work because of rules 1 and 3. Rule 1 is broken in that you used a different encoding when working with the same data and 3 is broken because you expected strISO88591 to be a String using ISO-8859-1 character encoding, but it doesn’t because String objects don’t have a character encoding (as far as you should be concerned). The big exception to rule 3 is when you’re using a language which doesn’t guarantee it will support whatever characters you throw at it, in which case you basically either have to work only with byte arrays and never let the language string functions near them. In general though I’d suggest you find a better language or a better library. If I were to add fourth suggestion, it would be: remember that just because your character is valid, doesn’t mean the font you’re using can display it. Most fonts can’t display anything more than the characters in ISO-8859-1 and a few select others so if you’re working with mathematical symbols or characters from other languages you’ll need to find a special font that supports them. BTW, yes I have spent far too much time working with character encodings and tracking down where people stuffed up with character encodings.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Character Encodings</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Character Encodings</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-03-26T07:32:49Z">March 26, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Jim Winstead has posted a couple of entries on character encodings (<a href="http://trainedmonkey.com/entry/1678">1</a>, <a href="http://trainedmonkey.com/entry/1680">2</a>). Some good info in there. My three big tips for dealing with character encodings is this: 1. Know your character encoding and make sure you&rsquo;re using that encoding everywhere. No look again because you probably missed a place where you didn&rsquo;t think about encoding. Particularly don&rsquo;t forget that printing something to System.err or System.out in Java uses the platform default encoding and so characters that can&rsquo;t be represented in that encoding become question marks. 2. When practical, use US-ASCII and escaped characters for anything outside of it&rsquo;s range. Most formats which support different encodings also provide a way to represent a character which isn&rsquo;t in the current encoding through something like HTML&rsquo;s entities or java&rsquo;s escape codes (\u8222 etc). Most encodings are compatible with US-ASCII (EBDIC being a notable exception) so even if people forget to use the right encoding they can generally get away with it. 3. Remember that character encodings, despite their name do not apply to characters – they apply to byte sequences which represent characters. If you have a char variable in Java it has no character encoding as far as you are concerned, it&rsquo;s just that character. The JVM can choose any representation it likes for that character in physical memory and you shouldn&rsquo;t care (it actually happens to choose UTF-16 I think but you still shouldn&rsquo;t care). You *do* however have to worry about character encodings when you convert from characters (or Strings which are really just a fancy array of chars) to byte streams. This happens when you use String.getBytes(), or print the characters to any kind of output stream. You also have to worry about the reverse process, new String(byte[]) and reading from an input stream. The first two items should be pretty clear to you if you&rsquo;ve done any work with character encodings, the third may seem unimportant, but it will help stop you from expecting code like the following to work:
+<code>String str = new String(&quot;my string&quot;); byte[] utf8Bytes = str.getBytes(&quot;UTF-8&quot;); String strISO88591 = new String(utf8Bytes, &quot;ISO-8859-1&quot;);</code> Naturally this won&rsquo;t work because of rules 1 and 3. Rule 1 is broken in that you used a different encoding when working with the same data and 3 is broken because you expected strISO88591 to be a String using ISO-8859-1 character encoding, but it doesn&rsquo;t because String objects don&rsquo;t have a character encoding (as far as you should be concerned). The big exception to rule 3 is when you&rsquo;re using a language which doesn&rsquo;t guarantee it will support whatever characters you throw at it, in which case you basically either have to work only with byte arrays and never let the language string functions near them. In general though I&rsquo;d suggest you find a better language or a better library. If I were to add fourth suggestion, it would be: remember that just because your character is valid, doesn&rsquo;t mean the font you&rsquo;re using can display it. Most fonts can&rsquo;t display anything more than the characters in ISO-8859-1 and a few select others so if you&rsquo;re working with mathematical symbols or characters from other languages you&rsquo;ll need to find a special font that supports them. BTW, yes I have spent far too much time working with character encodings and tracking down where people stuffed up with character encodings.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

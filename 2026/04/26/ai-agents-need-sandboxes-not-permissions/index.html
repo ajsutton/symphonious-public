@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>AI Agents Need Sandboxes, Not Permissions | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="AI agents like Claude Code and Codex try to be &ldquo;safe&rdquo; by limiting what the agent can do to a small set of operations and asking the user to approve everything else. In practice, the approval flow is so noisy and the requests so complex that it provides almost no real protection. We&rsquo;ve reinvented Windows Vista&rsquo;s never-ending UAC dialogs, and just like Vista, the only thing it actually trains users to do is click through.
+The permission model is fundamentally broken. The fix isn&rsquo;t a better dialog — it&rsquo;s a sandbox.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2026/04/26/ai-agents-need-sandboxes-not-permissions/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2026/04/26/ai-agents-need-sandboxes-not-permissions/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="AI Agents Need Sandboxes, Not Permissions">
+	<meta property="og:description" content="AI agents like Claude Code and Codex try to be “safe” by limiting what the agent can do to a small set of operations and asking the user to approve everything else. In practice, the approval flow is so noisy and the requests so complex that it provides almost no real protection. We’ve reinvented Windows Vista’s never-ending UAC dialogs, and just like Vista, the only thing it actually trains users to do is click through.
+The permission model is fundamentally broken. The fix isn’t a better dialog — it’s a sandbox.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-04-26T18:19:00+10:00">
+		<meta property="article:modified_time" content="2026-04-26T18:19:00+10:00">
+
+	<meta itemprop="name" content="AI Agents Need Sandboxes, Not Permissions">
+	<meta itemprop="description" content="AI agents like Claude Code and Codex try to be “safe” by limiting what the agent can do to a small set of operations and asking the user to approve everything else. In practice, the approval flow is so noisy and the requests so complex that it provides almost no real protection. We’ve reinvented Windows Vista’s never-ending UAC dialogs, and just like Vista, the only thing it actually trains users to do is click through.
+The permission model is fundamentally broken. The fix isn’t a better dialog — it’s a sandbox.">
+	<meta itemprop="datePublished" content="2026-04-26T18:19:00+10:00">
+	<meta itemprop="dateModified" content="2026-04-26T18:19:00+10:00">
+	<meta itemprop="wordCount" content="1001">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="AI Agents Need Sandboxes, Not Permissions">
+	<meta name="twitter:description" content="AI agents like Claude Code and Codex try to be “safe” by limiting what the agent can do to a small set of operations and asking the user to approve everything else. In practice, the approval flow is so noisy and the requests so complex that it provides almost no real protection. We’ve reinvented Windows Vista’s never-ending UAC dialogs, and just like Vista, the only thing it actually trains users to do is click through.
+The permission model is fundamentally broken. The fix isn’t a better dialog — it’s a sandbox.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">AI Agents Need Sandboxes, Not Permissions</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">AI Agents Need Sandboxes, Not Permissions</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-04-26T18:19:00+10:00">April 26, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>AI agents like <a href="https://claude.ai/claude-code">Claude Code</a> and <a href="https://openai.com/codex/">Codex</a> try to be &ldquo;safe&rdquo; by limiting what the agent can do to a small set of operations and asking the user to approve everything else. In practice, the approval flow is so noisy and the requests so complex that it provides almost no real protection. We&rsquo;ve reinvented Windows Vista&rsquo;s never-ending UAC dialogs, and just like Vista, the only thing it actually trains users to do is click through.</p>
+<p>The permission model is fundamentally broken. The fix isn&rsquo;t a better dialog — it&rsquo;s a sandbox.</p>
+<h2 id="the-approval-treadmill">The Approval Treadmill</h2>
+<p>When the agent edits a file, the permission UI can show you the exact diff. Approving that is fine. The problem is that most of what an agent actually wants to do isn&rsquo;t a clean file edit. It&rsquo;s a multi-step bash invocation chaining <code>find</code> into <code>xargs</code> into <code>sed</code>, or an inline Python script, or a <code>jq</code> pipeline that the UI truncates after the first couple of hundred characters.</p>
+<p>Reviewing those properly takes real time. Reading a 30-line shell pipeline, working out what each step does, checking that nothing is being deleted that shouldn&rsquo;t be, tracing where stdout is going to end up — that&rsquo;s not a click, that&rsquo;s a code review. And the agent fires off another one twenty seconds later.</p>
+<p>There are two outcomes. Either you do the careful review every time and spend more time vetting the agent than the agent saves you, or you stop reading and click yes. In practice everyone ends up at &ldquo;click yes&rdquo; within a couple of hours of real use (if that). That&rsquo;s exactly where Vista left users — except now the thing on the other side of the dialog is actively generating novel commands you&rsquo;ve never seen before.</p>
+<h2 id="sandboxes-over-approvals">Sandboxes Over Approvals</h2>
+<p>The alternative is to give the agent access to a safe but sufficient set of resources up front, and then let it work freely inside that boundary. No prompts, no review of every command — this is the box, do whatever you need inside it.</p>
+<p><a href="https://github.com/ajsutton/claude-docker">claude-docker</a> is one way to do this — run the agent in a container so the side effects are contained on a layer you can throw away. There are plenty of other options, many/most of them more polished and with much finer-grained controls over what the agent can reach. The built-in sandbox features in agent executors could work just as well too, but they all seem to default to &ldquo;ask permission&rdquo; rather than &ldquo;deny&rdquo;, and the sandbox they create is usually too small to actually get work done. So you end up turning the protections off or whitelisting things case by case, and you&rsquo;re back where you started.</p>
+<p>The bar to set is: everything the agent has access to should be safe enough that you&rsquo;d happily run it under <code>--dangerously-skip-permissions</code> without a second thought. And the sandbox needs to be big enough that the agent rarely runs out of room to operate. When it does hit the wall, doing the missing step yourself outside the sandbox should be fine — because the alternative, loosening the sandbox so it doesn&rsquo;t have to ask, defeats the whole point.</p>
+<h2 id="hooks-arent-a-security-boundary">Hooks Aren&rsquo;t a Security Boundary</h2>
+<p>A tempting middle ground is to use hooks to inspect the bash commands the agent is about to run and reject the dangerous ones. This seems like a terribly insecure approach because there are too many ways to write the same operation. <code>git push</code>, <code>git -c remote.origin.pushurl=… push</code>, <code>git push origin HEAD:main</code>, a shell variable expansion that hides the word entirely, a Python script that calls the GitHub API directly, a local helper invoked through <code>bash -c</code>. A hook that searches for <code>git push</code> will miss most of these, and a malicious agent — or a benign agent that has been prompt-injected — will find a route through.</p>
+<p>Hooks are still useful, just not as security. If you want the agent to be able to push but want a confirmation step on the way out, a hook will catch the common case and that&rsquo;s a perfectly nice workflow as long as you don&rsquo;t mind it failing every now and then. The mistake is treating that workflow nicety as a boundary that holds against an adversary. Anything that needs a real boundary needs to live at the sandbox layer, not in a regex over command lines.</p>
+<h2 id="fine-grained-tokens">Fine-Grained Tokens</h2>
+<p>For sandboxes to be genuinely useful, the things the agent reaches into them — GitHub, CI, package registries, chat — need to support narrow credentials. &ldquo;Read&rdquo; and &ldquo;write&rdquo; aren&rsquo;t enough resolution. What can be read, what can be written?</p>
+<p>I want to be able to give an agent a token that can create issues but not push to protected branches. Or one that can read CircleCI build results from a couple of specific projects but not change their settings or look at unrelated repos. Or a Slack token that can post to one channel and nowhere else. The granularity I&rsquo;d give a junior engineer for a focused task is roughly the granularity I want to give an agent — and that&rsquo;s much finer than most platforms expose today.</p>
+<p>GitHub&rsquo;s fine-grained personal access tokens are a step in the right direction, but the granularity is uneven and the UI is painful enough that most people fall back to broad-scope tokens anyway. If we want agents to operate inside a tight sandbox without the human constantly stepping in to do the bits the sandbox can&rsquo;t reach, the platforms the agent talks to need to make narrow, scoped credentials easy to issue and obvious to use.</p>
+<p>The &ldquo;ask permission for everything&rdquo; model isn&rsquo;t going to get fixed with a nicer dialog — it&rsquo;s the wrong shape. Real protection looks like a sandbox the agent can move freely inside and credentials that can&rsquo;t do much damage even if the agent goes off the rails. The sandbox tooling is rough today and the credential story is worse, but those are the levers worth pushing on, not another permission prompt.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

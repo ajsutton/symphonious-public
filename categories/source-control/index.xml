@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Source Control on Symphonious</title>
+    <link>https://www.symphonious.net/categories/source-control/</link>
+    <description>Recent content in Source Control on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Tue, 21 Jun 2016 20:58:02 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/source-control/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Make –rebase The Default For git pull</title>
+      <link>https://www.symphonious.net/2016/06/22/make-rebase-the-default-for-git-pull/</link>
+      <pubDate>Tue, 21 Jun 2016 20:58:02 +0000</pubDate>
+      <guid>https://www.symphonious.net/2016/06/22/make-rebase-the-default-for-git-pull/</guid>
+      <description>&lt;p&gt;So I can find this again easily in the future, to avoid introducing merge commits git pull –rebase is a great idea and you can make it the default behaviour with:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global pull.rebase true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Found on &lt;a href=&#34;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&#34;&gt;Coderwall&lt;/a&gt; which has some further details.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ignoring Changes to Tracked Files in Git</title>
+      <link>https://www.symphonious.net/2012/03/27/ignoring-changes-to-tracked-files-in-git/</link>
+      <pubDate>Tue, 27 Mar 2012 06:25:49 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/03/27/ignoring-changes-to-tracked-files-in-git/</guid>
+      <description>&lt;p&gt;I’m going to want to remember this one day, so here’s a pointer to &lt;a href=&#34;http://archive.robwilkerson.org/2010/03/02/git-tip-ignore-changes-to-tracked-files/&#34;&gt;Rob Wilderson’s Ignore Changes to Tracked Files in Git&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’m especially going to want to remember the bit about how to find which files I’ve ignored in this way.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Resolving SVN Tree Conflicts</title>
+      <link>https://www.symphonious.net/2012/03/19/resolving-svn-tree-conflicts/</link>
+      <pubDate>Mon, 19 Mar 2012 23:19:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/03/19/resolving-svn-tree-conflicts/</guid>
+      <description>&lt;p&gt;SVN tree conflicts can be insanely annoying – especially when they occur because you’ve deleted something locally and then an incoming change also deletes it. They can also be hard to resolve from most IDEs.&lt;/p&gt;
+&lt;p&gt;The trick is to resolve them from the command line.  Edit/create/delete the files to get things into the state they should be and then from the command line run:&lt;/p&gt;
+&lt;pre&gt;svn resolve --accept working &amp;#60;path&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;No more tree conflict.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Commit Messages as Communication Mechanism</title>
+      <link>https://www.symphonious.net/2010/12/06/commit-messages-as-communication-mechanism/</link>
+      <pubDate>Mon, 06 Dec 2010 08:39:34 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/12/06/commit-messages-as-communication-mechanism/</guid>
+      <description>&lt;p&gt;I think &lt;a href=&#34;http://www.jroller.com/otis/entry/commit_messages_as_communication_mechanism&#34;&gt;Otis Gospodnetić has it spot on&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IMHO, commit messages are an important piece of the communication puzzle, and I feel they are often neglected or completely not even seen that way. Commit messages (that are distributed/delivered to co-developers via email or some other mechanism) help a developer keep others in the loop. They help co-developers stay up to date mostly passively, without having to proactively look for information about recent changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is especially true with distributed teams but I’ve always found it really useful for co-located teams as well. Being co-located you can provide updates verbally but it’s so much more efficient for people to keep track of the commit messages in their own time. It’s like the interruptions of IM vs the when-you’re-ready of email.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Big Forking Problem</title>
+      <link>https://www.symphonious.net/2010/09/06/a-big-forking-problem/</link>
+      <pubDate>Mon, 06 Sep 2010 13:00:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/06/a-big-forking-problem/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/groupevent-coloured2_43793.png&#34; style=&#34; float: right;&#34; /&gt;Back when git and GitHub were relatively new to the mainstream, there was a &lt;a href=&#34;http://www.symphonious.net/2009/05/05/communities-and-git/&#34;&gt;big discussion about how it promoted forking and was potentially bad for community building&lt;/a&gt;. Since then GitHub has well and truly proven that it can successfully support significant community and very successful projects. Looking around GitHub though, it’s clear that not every project successfully builds community there and the tendency to fork can still become a problem.&lt;/p&gt;
+&lt;p&gt;The big difference that I see between projects thriving with GitHub and those where forking looks like more of a problem is that thriving projects have a “&lt;a href=&#34;http://enthusiasm.cozy.org/archives/2009/05/git-balene-for-knowledge&#34;&gt;campfire&lt;/a&gt;” other than the source code for people to gather around. Often that’s a mailing list, other times it’s IRC and various other technologies but there’s always one common place where the community can build. GitHub by itself is unlikely to build up such a community because there isn’t a really good way to engage everyone in conversation. As such, you get a lot of forks and people making improvements, but not really working together and often the various forks never get folded back into the original.&lt;/p&gt;
+&lt;p&gt;The good news is that despite all the forks often remaining off on their own, it doesn’t seem to be detrimental to the original project. People find the main GitHub repository through other means, mostly links on the web, so there doesn’t seem to be confusion over which fork is the “main” one. On the other hand, most of those forks represent a wasted effort which could have pushed the project forward if only there had been some communication.&lt;/p&gt;
+&lt;p&gt;Finally, it’s interesting that the GitHub model of anyone creating a fork is &lt;em&gt;far&lt;/em&gt; more successful for projects which don’t need a contributor agreement to be signed. In that case, any fork that looks promising can be pulled in without needing extra permissions, so even without the extra communication channel the effort can be utilised. With a contributor agreement, you have to reach out and get the author to sign, which is a significant barrier.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Who’s Committed in my Git Repository?</title>
+      <link>https://www.symphonious.net/2010/06/30/whos-committed-in-my-git-repository/</link>
+      <pubDate>Wed, 30 Jun 2010 10:54:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/06/30/whos-committed-in-my-git-repository/</guid>
+      <description>&lt;p&gt;Note to self: if you ever want to get a simple list of people who have committed to a git repository, the command you want is:&lt;/p&gt;
+&lt;pre&gt;git log --format=&amp;#39;%aN &amp;#60;%ae&amp;#62;&amp;#39; | sort -u | uniq
+&lt;/pre&gt;
+&lt;p&gt;Or for just the e-mail address:&lt;/p&gt;
+&lt;pre&gt;git log --format=&amp;#39;%ae&amp;#39; | sort -u | uniq
+&lt;/pre&gt;
+&lt;p&gt;Or for just the name:&lt;/p&gt;
+&lt;pre&gt;git log --format=&amp;#39;%aN&amp;#39; | sort -u | uniq
+&lt;/pre&gt;
+&lt;p&gt;This is in the help manual but it’s way down the bottom so takes ages to read through to find it.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

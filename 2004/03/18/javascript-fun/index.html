@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JavaScript Fun | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Nick Chalko talks about setting onsubmit dynamically. The solution he received from Alan Gutierrez which is good, but overly complicated. Since I work for a company that just so happens to do some amazingly funky stuff with JavaScript, here&rsquo;s some fun you can have with it. Firstly, lets take the original solution:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39;
+    action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt;
+&lt;script&gt;
+  document.findApplication.onsubmit = function() {return checkForm();}
+&lt;/script&gt;
+and simplify it to:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39;
+        action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt;
+&lt;script&gt;
+ &amp;#160;document.findApplication.onsubmit = checkForm;
+&lt;/script&gt;
+JavaScript functions are just string variables so you can pass them around by just dropping the () at the end. Here&rsquo;s how you could store the existing onsubmit function:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/03/18/javascript-fun/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/03/18/javascript-fun/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JavaScript Fun">
+	<meta property="og:description" content="Nick Chalko talks about setting onsubmit dynamically. The solution he received from Alan Gutierrez which is good, but overly complicated. Since I work for a company that just so happens to do some amazingly funky stuff with JavaScript, here’s some fun you can have with it. Firstly, lets take the original solution:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39; action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt; &lt;script&gt; document.findApplication.onsubmit = function() {return checkForm();} &lt;/script&gt; and simplify it to:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39; action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt; &lt;script&gt; &amp;#160;document.findApplication.onsubmit = checkForm; &lt;/script&gt; JavaScript functions are just string variables so you can pass them around by just dropping the () at the end. Here’s how you could store the existing onsubmit function:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-03-18T06:47:37+00:00">
+		<meta property="article:modified_time" content="2004-03-18T06:47:37+00:00">
+
+	<meta itemprop="name" content="JavaScript Fun">
+	<meta itemprop="description" content="Nick Chalko talks about setting onsubmit dynamically. The solution he received from Alan Gutierrez which is good, but overly complicated. Since I work for a company that just so happens to do some amazingly funky stuff with JavaScript, here’s some fun you can have with it. Firstly, lets take the original solution:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39; action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt; &lt;script&gt; document.findApplication.onsubmit = function() {return checkForm();} &lt;/script&gt; and simplify it to:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39; action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt; &lt;script&gt; &amp;#160;document.findApplication.onsubmit = checkForm; &lt;/script&gt; JavaScript functions are just string variables so you can pass them around by just dropping the () at the end. Here’s how you could store the existing onsubmit function:">
+	<meta itemprop="datePublished" content="2004-03-18T06:47:37+00:00">
+	<meta itemprop="dateModified" content="2004-03-18T06:47:37+00:00">
+	<meta itemprop="wordCount" content="264">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JavaScript Fun">
+	<meta name="twitter:description" content="Nick Chalko talks about setting onsubmit dynamically. The solution he received from Alan Gutierrez which is good, but overly complicated. Since I work for a company that just so happens to do some amazingly funky stuff with JavaScript, here’s some fun you can have with it. Firstly, lets take the original solution:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39; action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt; &lt;script&gt; document.findApplication.onsubmit = function() {return checkForm();} &lt;/script&gt; and simplify it to:
+&lt;form name=&amp;#39;CDiceComponent_0&amp;#39; id=&amp;#39;findApplication&amp;#39; action=&amp;#39;/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt; &lt;script&gt; &amp;#160;document.findApplication.onsubmit = checkForm; &lt;/script&gt; JavaScript functions are just string variables so you can pass them around by just dropping the () at the end. Here’s how you could store the existing onsubmit function:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JavaScript Fun</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JavaScript Fun</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-03-18T06:47:37Z">March 18, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Nick Chalko <a href="http://nick.chalko.com/smc2/blog/tech/?permalink=HowtoDynamicOnSubmit.txt">talks about setting onsubmit dynamically</a>. The solution he received from <a href="http://engrm.com/">Alan Gutierrez</a> which is good, but overly complicated. Since I work for a company that just so happens to do some amazingly funky stuff with JavaScript, here&rsquo;s some fun you can have with it. Firstly, lets take the original solution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">CDiceComponent_0</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>; <span style="color:#a6e22e">id</span><span style="color:#f92672">=&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">findApplication</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">action</span><span style="color:#f92672">=&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  document.<span style="color:#a6e22e">findApplication</span>.<span style="color:#a6e22e">onsubmit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">checkForm</span>();}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span></code></pre></div><p>and simplify it to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">CDiceComponent_0</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>; <span style="color:#a6e22e">id</span><span style="color:#f92672">=&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">findApplication</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">action</span><span style="color:#f92672">=&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">/cdiceWebApp/custom/component/bridge.jsp&amp;#39; method=&amp;#39;post&amp;#39;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">160</span>;document.<span style="color:#a6e22e">findApplication</span>.<span style="color:#a6e22e">onsubmit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkForm</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span></code></pre></div><p>JavaScript functions are just string variables so you can pass them around by just dropping the () at the end. Here&rsquo;s how you could store the existing onsubmit function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oldOnSubmit</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">oldOnSubmit</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">findApplication</span>.<span style="color:#a6e22e">onsubmit</span>;
+</span></span></code></pre></div><p>Then you can execute it later with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">oldOnSubmit</span>();
+</span></span></code></pre></div><p>Cool huh? Why stop there? Lets say the old handler contained a call to form.submit() that you wanted to remove. You could do it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">oldOnSubmit</span> <span style="color:#f92672">=</span> eval(String(<span style="color:#a6e22e">oldOnSubmit</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/form\.submit\(\)/gi</span>, <span style="color:#e6db74">&#34;&#34;</span>));
+</span></span></code></pre></div><p>Then execute oldOnSubmit like before, or set it back as the current form onsubmit handler. Note the use of String() to convert the function to a string and the use of eval() to convert it back to a function. Here&rsquo;s an example of this coming together (probably without the typos and omissions in the above snippets).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span> <span style="color:#a6e22e">language</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;JavaScript&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">change</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oldOnClick</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">oldOnClick</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">findApplication</span>.<span style="color:#a6e22e">doStuff</span>.<span style="color:#a6e22e">onclick</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">oldOnClick</span> <span style="color:#f92672">=</span> String(<span style="color:#a6e22e">oldOnClick</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newOnClick</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">newOnClick</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldOnClick</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/form\.submit\(\)/gi</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alert(&amp;#39;Submitting the form.&amp;#39;);&#34;</span>);
+</span></span><span style="display:flex;"><span>  document.<span style="color:#a6e22e">findApplication</span>.<span style="color:#a6e22e">doStuff</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> eval(<span style="color:#a6e22e">newOnClick</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;findApplication&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;findApplication&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;doStuff&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;doStuff&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Submit&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form.submit();&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;preventSubmit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Prevent Submit&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;change();&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/form&gt;</span>
+</span></span></code></pre></div><p>Note: This entry has been reformatted as a previous blog migration seems to have messed it up.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

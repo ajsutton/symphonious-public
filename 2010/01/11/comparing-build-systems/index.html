@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Comparing Build Systems | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="After spending some time thinking about and using different build systems, I can’t say I really like any of them all that much. I know have a reasonably complex project, using submodules that can be built with ant, buildr, maven and gradle – with varying degrees of support for the Ephox specific requirements and reporting.
+Maven
+Ah, the Java world’s favorite whipping boy. The more I play with Maven, the more I start to understand why it gets such a bad wrap: it’s too easy to get started and do it all wrong. Maven is not a build tool that is quick to start using – it requires planning, common conventions, a number of extras systems such as repository servers be set up and templates to be designed. However, Maven does an unfortunately good job of working if you just create a simple pom.xml and run mvn.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/01/11/comparing-build-systems/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/01/11/comparing-build-systems/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Comparing Build Systems">
+	<meta property="og:description" content="After spending some time thinking about and using different build systems, I can’t say I really like any of them all that much. I know have a reasonably complex project, using submodules that can be built with ant, buildr, maven and gradle – with varying degrees of support for the Ephox specific requirements and reporting.
+Maven Ah, the Java world’s favorite whipping boy. The more I play with Maven, the more I start to understand why it gets such a bad wrap: it’s too easy to get started and do it all wrong. Maven is not a build tool that is quick to start using – it requires planning, common conventions, a number of extras systems such as repository servers be set up and templates to be designed. However, Maven does an unfortunately good job of working if you just create a simple pom.xml and run mvn.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-01-11T12:58:10+00:00">
+		<meta property="article:modified_time" content="2010-01-11T12:58:10+00:00">
+
+	<meta itemprop="name" content="Comparing Build Systems">
+	<meta itemprop="description" content="After spending some time thinking about and using different build systems, I can’t say I really like any of them all that much. I know have a reasonably complex project, using submodules that can be built with ant, buildr, maven and gradle – with varying degrees of support for the Ephox specific requirements and reporting.
+Maven Ah, the Java world’s favorite whipping boy. The more I play with Maven, the more I start to understand why it gets such a bad wrap: it’s too easy to get started and do it all wrong. Maven is not a build tool that is quick to start using – it requires planning, common conventions, a number of extras systems such as repository servers be set up and templates to be designed. However, Maven does an unfortunately good job of working if you just create a simple pom.xml and run mvn.">
+	<meta itemprop="datePublished" content="2010-01-11T12:58:10+00:00">
+	<meta itemprop="dateModified" content="2010-01-11T12:58:10+00:00">
+	<meta itemprop="wordCount" content="2327">
+	<meta itemprop="keywords" content="Build Systems">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Comparing Build Systems">
+	<meta name="twitter:description" content="After spending some time thinking about and using different build systems, I can’t say I really like any of them all that much. I know have a reasonably complex project, using submodules that can be built with ant, buildr, maven and gradle – with varying degrees of support for the Ephox specific requirements and reporting.
+Maven Ah, the Java world’s favorite whipping boy. The more I play with Maven, the more I start to understand why it gets such a bad wrap: it’s too easy to get started and do it all wrong. Maven is not a build tool that is quick to start using – it requires planning, common conventions, a number of extras systems such as repository servers be set up and templates to be designed. However, Maven does an unfortunately good job of working if you just create a simple pom.xml and run mvn.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Comparing Build Systems</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Comparing Build Systems</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-01-11T12:58:10Z">January 11, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>After spending some time <a href="http://www.symphonious.net/2010/01/04/on-build-systems/">thinking about</a> and using different build systems, I can’t say I really like any of them all that much. I know have a reasonably complex project, using submodules that can be built with ant, buildr, maven and gradle – with varying degrees of support for the Ephox specific requirements and reporting.</p>
+<h3 id="maven"><a href="http://maven.apache.org/">Maven</a></h3>
+<p>Ah, the Java world’s favorite whipping boy. The more I play with Maven, the more I start to understand why it gets such a bad wrap: it’s too easy to get started and do it all wrong. Maven is not a build tool that is quick to start using – it requires planning, common conventions, a number of extras systems such as repository servers be set up and templates to be designed. However, Maven does an unfortunately good job of working if you just create a simple pom.xml and run mvn.</p>
+<p>If you want Maven to work reliably though, you need to set up a bunch of stuff:</p>
+<ul>
+<li>Private repository servers, including vetting all the meta-data that goes into it. Don’t just import the central Maven repository.</li>
+<li>A company specific parent POM. This should specify explicit versions for each Maven plugin, point the project at the private repository servers and anything else that is standard across the company.</li>
+<li>Build plugins for anything custom you need. Real Maven plugins are the best way to extend things – trying to put it all in your pom.xml or similar build scripts rapidly gets too complex and unmaintainable.</li>
+<li>Strictly follow the Maven way.</li>
+</ul>
+<p>Make no mistake, that’s a lot of work, but it sets up a very robust, enterprise build system and most of it only needs to be done once for the entire company, so starting a project from then on does become pretty simple.</p>
+<p>All in all, it’s more work than I really want to take on – especially the building of custom plugins. Ephox doesn’t follow the Maven way strictly enough either – the most problematic area being how to release and version snapshots.</p>
+<h3 id="buildr"><a href="http://buildr.apache.org/">Buildr</a></h3>
+<p>Lots of people talk about using rake to build Java projects, but rake by itself simple doesn’t know enough about Java to really shine. Buildr is a layer over rake that adds Java knowledge. I actually quite like Buildr and think it has a fair bit of promise.</p>
+<p>It can use the Maven repository for dependencies, so if you go that way you need to set up your own private repository again. Support for Thankfully, Buildr can also use plain jar files so if you don’t want to go the repository route, you don’t have to. The big downside is how complex it can be to get transitive dependencies working – partly by design and partly due to bugs and current limitations.</p>
+<p>Buildr can run on either C-Ruby or JRuby. Start-up is faster on C-Ruby, but JRuby can run things like Javac without spawning a new JVM, so it fairly quickly starts to make up the time difference. Installing either version is quite easy.</p>
+<p>It is a little odd to be writing the build script for a Java project in Ruby. The language difference doesn’t really matter, but having a different set of libraries for things like IO and file system stuff is an unfortunate overhead. If you’re using Ruby in some other form, it’s no problem, otherwise it’s extra training and ramp-up cost.</p>
+<p>I also had a <em>lot</em> of problems because Buildr was including stuff on the test classpath by default. Some version of JUnit and JMock are meant to be included, but it varies between versions and the documentation doesn’t always match up with what happens. Given that JMock 2 is very much incompatible with JMock 1.3, it didn’t go so well. The odd thing is that Buildr can be quite flexible – it supports TestNG and a few other libraries, but with JUnit it really wants to also use JMock. There is a way to specify a different version, but the group name is hard coded, so you can’t go back to JMock 1.3 because it has a different group name<a href="#footnote1:1263215332489">1</a>{#footlink1:1263215332489.footnote}. It would be far better for Buildr to just leave the mock framework as a dependency the project developer has to add if they want it.</p>
+<p>Overall, Buildr is a pretty good solution, it’s quick and easy to get up and running (beware the central repository though) but it’s still fairly immature which caused me a fair few problems. The good news is that every issue I ran into was already a known problem that the Buildr team is working on resolving, so it’s pretty likely to become a very good option in the future.</p>
+<h3 id="gradle"><a href="http://www.gradle.org/">Gradle</a></h3>
+<p>Gradle is a particularly interesting project. It feels a lot like a Java-oriented version of Rake with elements of Buildr, Maven and Ant mixed in. It has the best ant integration story of any of the non-ant build tools. Like Buildr it can pretty seamlessly utilise ant tasks but within the scripting language rather than with XML. Gradle can also import an existing ant build file and use the targets it defines as if they were native. That’s surprisingly powerful and useful, especially if you already have various build scripts and utilities written in ant.</p>
+<p>Gradle also has a really nice approach to multi-project builds, allowing you to inherit configuration from the parent build script and pull in project dependencies easily. However, it’s not all smooth sailing. The main project build file starts to get pretty complex because it winds up configuring both itself and the sub-modules in the one file. The inheritance doesn’t really make sense if you have a mix of sub-module types, say some Java, some Scala and some just web resources. In hindsight, it would probably be better to ignore the built-in inheritance and just use normal file import functionality within each module to select the default module behavior to use.</p>
+<p>Sadly, the multi-project stuff really came crashing down because of some pretty unexpected behavior about what the current project actually was. Depending on when a particular bit of script gets accessed, it might take project() to mean the current sub-module or it might wind up referring to the last sub-module that gets processed. It made sense when you think through the way the code works, but it’s far from intuitive when you’re just trying to build your project. I really couldn’t see myself recommending Gradle until this is significantly simplified and made intuitive.</p>
+<p>Gradle also handles transitive dependencies much better than Buildr, though I had some confusion of when dependencies were transitive and when they weren’t. Gradle is one of the most flexible tools in terms of how dependencies are handled – using either the maven repository, ivy or defining dependencies as groups directly in the build files, allowing you to check jar files directly into svn if you prefer.</p>
+<p>Gradle was also one of the slowest of the tools I tried. Once it’s up and running, build times are equivalent to ant, but a do-nothing target took just over 4 seconds whereas ant took well under a second. For a full build, that’s not a big deal – a project that ant builds in 2 minutes would take gradle 2 minutes and 4 seconds. The problem is when you’re running a really simple task as part of some development (e.g. trying to remove duplication that simian had flagged).</p>
+<h3 id="ant"><a href="http://ant.apache.org/">Ant</a></h3>
+<p>I’m beginning to think Ant should have been called Cockroach instead – at the end of the build tool war, you can bet ant will still be there going strong. It’s really quite scary that it’s been around for about 10 years now and is up to version 1.8, and not for lack of maintainers. Ant doesn’t use convention over configuration – you have to code up your entire build by piecing together the task building blocks it provides. That said, the tasks ant provides are it’s key strength – powerful, flexible and in almost every case very well designed – piecing together a build process from ant tasks is <em>much</em> simpler than piecing together one from scratch or with command line stuff like make would use.</p>
+<p>Since you’re writing the whole build script yourself though, ant files can become very long winded and hard to maintain. If you want to use ant successfully, you have to build a set of base scripts that provide the kind of standard project system that tools like Maven and Gradle give you. The benefit being that you can build it the way you want, not the way the tools want you to, without ever having to fight the tool.</p>
+<p>Thankfully, Ant actually has some pretty powerful tools to build up that project system. It’s simple to import other build files so you can break your script up, and it’s simple to use extension points by overriding targets in the actual project build file. Ant 1.8 adds ‘extension-point’ to make this even easier, but it’s quite good even without that. It’s not quick to build up the right structure but like the infrastructure required for Maven, you can probably share your ant templates company wide (or perhaps much further). <a href="http://www.easyant.org/">Easyant</a> seems to be an attempt to provide a ready-made project convention on top of ant, but I think it went a bit too far and buried the ant functionality too deeply.</p>
+<p>What I wound up with is a set of build scripts that define various useful macros and targets – version numbering, tagging in subversion, working with dependencies on sub-modules – and a set of scripts that define module types such as jar, war and the parent project. Frankly, that approach has revolutionised the way I work with ant.</p>
+<p>The build scripts are now basically a first class project in and of themselves. They can be re-used across multiple projects and improved over time as different projects have various needs. Those improvements can then be easily shared back with the original projects since the scripts aren’t being copied into every project, just treated like any other dependency.</p>
+<p>The build files in the project and sub-module are then very short and simple, since they only have to define any non-standard behavior and the required dependencies. This makes the build process for the project much simpler to maintain and understand. It obviously makes it much easier to start a new project or module as well.</p>
+<p>I also found it really useful to define macros to make things more readable. For example, many but not all projects need to include a copy of EditLive! so there’s a set of predefined targets to grab the right version and make it available. Targets that need EditLive! just depend on the “editlive” predefined target, but that doesn’t allow a specific version of EditLive! to be requested. So there’s also a macro defined, editlive-version, that lets you set the version to use. All it does is set a few properties that control where to get EditLive! from, but the final syntax is much easier to read the the previous method of putting them directly in a properties file allowed. I may be overusing the technique at the moment, but it’s quite useful<a href="#footnote2:1263216861633">2</a>{#footlink2:1263216861633.footnote}.</p>
+<p>However, there are some drawbacks. It got fairly difficult to keep track of which properties were declared at which points in the build – especially as the number of build files being imported increased. There were a few builds tagged as ${version-major}.${version-minor} because of that. Fortunately, that confusion was limited to within the build framework I was building – not the actual build files for the project itself, and I found that it was mostly caused by my habit of defining every variable in a properties file that’s included at the top of the build script. For build frameworks, it’s a lot better to declare properties as late as possible, within targets. That way, the property is set at the same time as the first work related to it is being done and any dependent information would already be set. Essentially, it uses the target dependencies to work out the right order for setting properties.</p>
+<p>The downside of building this framework is that now we have to maintain it ourselves as well – it would be much nicer to use something like Maven or Gradle and have their dev teams deal with the on-going maintenance. However, since we do have some Ephox specific stuff, we’ll always be maintaining some amount of build infrastructure and since we’re currently maintaining it separate for every project, this approach is a lot better than the status quo.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Ultimately, I think that ant is still the best choice, but it really is vital to set up a build framework that you can reuse, rather than doing everything from scratch for each project. Buildr and Gradle look like they have some huge potential in the future though, but they need some more time to improve stability, simplicity and consistency. I’d guess that their version 2.0’s will be something pretty serious to reckon with. Maven is an awesome tool but it just requires too much effort to get it working right. However, the consistency in how a project is built that the Maven project has brought to the Java would is absolutely revolutionary – neither Buildr or Gradle could be anywhere near as simple as they are if it weren’t for the work and evangelism of the Maven team to embed the Maven way in to the Java world’s consciousness. Sure we’re still fighting over many parts of it, but <a href="http://www.symphonious.net/2010/01/06/project-directory-structure/">the Maven project structure is now well established and a very powerful convention</a>.</p>
+<p class="footnote">
+  <a href="#footlink1:1263215332489" id="footnote1:1263215332489">1</a> &#8211; that pesky Maven 1 to Maven 2 transition again…<a class="footnotereturn" href="#footlink1:1263215332489">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1263216861633" id="footnote2:1263216861633">2</a> &#8211; I would also note that the greatest improvement ever added to ant is the <em>else</em> attribute on the condition task (in ant 1.6.2). Makes it much easier and more maintainable to set a property value to one of two options. <a class="footnotereturn" href="#footlink2:1263216861633"><em>↩</em></a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

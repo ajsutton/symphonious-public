@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blockchain on Symphonious</title>
+    <link>https://www.symphonious.net/categories/blockchain/</link>
+    <description>Recent content in Blockchain on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Wed, 06 Apr 2022 01:32:36 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploring Eth2: Cost of Adding Validators</title>
+      <link>https://www.symphonious.net/2022/04/06/exploring-eth2-cost-of-adding-validators/</link>
+      <pubDate>Wed, 06 Apr 2022 01:32:36 +0000</pubDate>
+      <guid>https://www.symphonious.net/2022/04/06/exploring-eth2-cost-of-adding-validators/</guid>
+      <description>&lt;p&gt;Yesterday I spun up two new nodes on Prater, and sent deposits for 5000 validators to run on each. Due to the restrictions on how many new validators can activate per epoch (currently 4 for Prater), the number of active validators are currently gradually increasing giving a really nice insight into the cost of adding new validators.&lt;/p&gt;
+&lt;p&gt;This is most clearly seen by graphing the number of active validators and CPU usage on a single chart.  Here the green is CPU usage and the yellow the number of active validators.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; class=&#34;alignnone wp-image-2362 size-large&#34; src=&#34;https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-1024x600.png&#34; alt=&#34;CPU vs active validator count graph&#34; width=&#34;565&#34; height=&#34;331&#34; srcset=&#34;https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-1024x600.png 1024w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-300x176.png 300w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators-768x450.png 768w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidators.png 1095w&#34; sizes=&#34;(max-width: 565px) 100vw, 565px&#34; /&gt;&lt;img /&gt;&lt;img /&gt;&lt;/p&gt;
+&lt;p&gt;Once validators start activating we see CPU usage increase which is what we&amp;rsquo;d intuitively expect and for the first 60-70 validators there&amp;rsquo;s a clear correlation between adding validators and increasing CPU usage. However beyond about 70 validators the CPU usage flattens out even while the active validator count keeps increasing – why?&lt;/p&gt;
+&lt;p&gt;The answer lies in the way attestations are handled. To allow the beacon chain to scale to hundreds of thousands of validators, validators are assigned to separate committees. This sets not only which slot of the epoch they attest in (thus each slot only has 1/32 of the total validators attesting) but also which committee within that slot they are grouped into. There are a maximum of 64 committees per slot and each committee publishes their unaggregated attestations into a separate gossip topic. Then a subset of the validators in the committee are assigned to collect up those unaggregated attestations and publish an aggregated attestation which combines them.&lt;/p&gt;
+&lt;p&gt;Nodes with no active validators have no reason to subscribe to the gossip topics for unaggregated attestations so only process the aggregates. As validators activate though, each one is required to randomly select an attestation gossip topic to subscribe to long term and if they&amp;rsquo;re a validator need to subscribe to the topic they are aggregating for a period so they can collect and aggregate the individual attestations.&lt;/p&gt;
+&lt;p&gt;So for the first 64 validators the node winds up subscribing to an additional attestation gossip topic and processing 1/32 * total_validators individual attestations every slot. For prater that&amp;rsquo;s nearly 9,000 additional attestations per slot, for each active validator. No surprise then that CPU usage increases as we have to validate all of those attestations.&lt;/p&gt;
+&lt;p&gt;We see roughly the same correlation in the rate of gossip messages we receive. Here we&amp;rsquo;ve added gossip messages per second to the graph shown in blue.&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; class=&#34;alignnone size-large wp-image-2363&#34; src=&#34;https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-1024x585.png&#34; alt=&#34;CPU Usage vs Active Validator Count vs Gossip Messages/sec&#34; width=&#34;565&#34; height=&#34;323&#34; srcset=&#34;https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-1024x585.png 1024w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-300x171.png 300w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip-768x439.png 768w, https://www.symphonious.net/wp-content/uploads/2022/04/cpuValidatorsGossip.png 1139w&#34; sizes=&#34;(max-width: 565px) 100vw, 565px&#34; /&gt; 
+&lt;p&gt;There&amp;rsquo;s a somewhat unexpected dip in gossip messages as the number of validators are ramping up – I think that&amp;rsquo;s actually a point where I restarted the node to apply some updates, somewhat ruining my pretty pictures…&lt;/p&gt;
+&lt;p&gt;Even so, we can see the very clear growth in gossip messages as the first validators activate, along with the increased CPU. Once we get to 64 validators activated both the CPU usage and gossip message rate levels off even as the validators continue to grow. At that point, we&amp;rsquo;re already subscribed to every gossip topic and processing every individual attestation. Adding more validators after that doesn&amp;rsquo;t take very much – they need to calculate their duties and produce one attestation per epoch, plus sometimes creating a block but that&amp;rsquo;s very cheap compared to validating all that attestation gossip.&lt;/p&gt;
+&lt;p&gt;So the first 64 validators you add to a node are quite expensive in terms of CPU usage and network traffic, but if you can run 64 validators well, then you can likely run thousands of validators well because you&amp;rsquo;re already processing the bulk of the attestations.&lt;/p&gt;
+&lt;p&gt;Of course, as the total number of validators continues to increase, nodes that are subscribed to all attestation gossip topics will have to process more and more attestations – they don&amp;rsquo;t get the benefit of the aggregation which is such a key part of the beacon chain scaling. For now it&amp;rsquo;s still quite manageable and there&amp;rsquo;s a fair bit of headroom left, but eventually large staking providers may need to start being smarter about how they manage attestation gossip requirements by spreading the duties across their fleet of nodes rather than having each node work independently. There&amp;rsquo;s a few ways that could work but that&amp;rsquo;s a story for another day…&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ethereum Merge Local Testnet Demo</title>
+      <link>https://www.symphonious.net/2021/10/08/ethereum-merge-local-testnet-demo/</link>
+      <pubDate>Fri, 08 Oct 2021 03:45:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/10/08/ethereum-merge-local-testnet-demo/</guid>
+      <description>&lt;p&gt;The merge is at the point where real interop testing can begin with testnets spun up involving multiple clients. This video shows a testnet running locally with four nodes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Teku &amp;amp; Geth&lt;/li&gt;
+&lt;li&gt;Teku &amp;amp; Besu&lt;/li&gt;
+&lt;li&gt;Lighthouse &amp;amp; Geth&lt;/li&gt;
+&lt;li&gt;Lighthouse &amp;amp; Besu&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each node has 1/4 of the validators and the network transitioned through from the initial phase0, to Altair and then then merge after which the two chains merge into one.  Also shows sending transactions with MetaMask post-merge and how the user experience is largely unchained. Ethereum keeps on being Ethereum but now with PoS instead of PoW.&lt;/p&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+			&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/bXTC7sy1UtA?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
+		&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>What Happens If Beacon Chain Consensus Fails?</title>
+      <link>https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/</link>
+      <pubDate>Thu, 23 Sep 2021 00:50:58 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/</guid>
+      <description>&lt;p&gt;Over on Twitter, there was &lt;a href=&#34;https://twitter.com/L_Nakaghini/status/1440771303745540096&#34;&gt;an interesting discussion about the importance of client diversity&lt;/a&gt; for the beacon chain. As part of that &lt;a href=&#34;https://twitter.com/cyber_hokie/status/1440775367929712642&#34;&gt;cyber_hokie asks&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cyber_hokie – @cyber_hokie: As the majority client, isn&amp;rsquo;t it more likely that issues with Prysm would cause more severe financial penalties for minority clients voting on an alternative chain under accountable safety given Prysm validators likely hold the 2/3 threshold?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s important to note up front that this isn&amp;rsquo;t a Prysm specific issue. This isn&amp;rsquo;t a criticism of Prysm at all. All the major beacon chain clients are great – the issue here is &lt;em&gt;any&lt;/em&gt; one client getting too large a share of validators. How much is too large? In an ideal world every client would have less than 1/3rd of validators. Then a bug in a single client doesn&amp;rsquo;t prevent the chain from continuing to finalise. More than 2/3rds majority is a &lt;em&gt;really&lt;/em&gt; big problem because of the potential for those clients to finalise on an incorrect fork.&lt;/p&gt;
+&lt;p&gt;As &lt;a href=&#34;https://twitter.com/dankrad/status/1440786246251397122&#34;&gt;Dankrad explains&lt;/a&gt;, if a client with 2/3rd of validators has a consensus affecting bug, it will fork off to its own chain &lt;em&gt;and&lt;/em&gt; finalise that chain. That becomes an unrecoverable situation for those validators. If they fix the bug and switch back to the correct chain they will be slashed for creating surround votes – the correct chain&amp;rsquo;s justified checkpoint is earlier than the incorrect one. The only option for them is to send a voluntary exit and watch their balance drain until it takes effect. Given 2/3rds of validators are trying to exit, the exit queue is going to be extremely long and thus costly for majority client validators.&lt;/p&gt;
+&lt;p&gt;Which brings us to cyber_hokie&amp;rsquo;s question. If 2/3rds of validators are on the incorrect chain and they can&amp;rsquo;t switch, why wouldn&amp;rsquo;t we just accept that chain as the canonical one? Minority client users would then take the hit for inactivity on the majority chain but could switch over. Sounds simple and obvious right? Sadly, it&amp;rsquo;s not.&lt;/p&gt;
+&lt;p&gt;Firstly, &lt;a href=&#34;https://twitter.com/dankrad/status/1440788036594192386&#34;&gt;again as Dankrad points out&lt;/a&gt;, we&amp;rsquo;ve been very clear that it&amp;rsquo;s bad for the network for clients to have more than 1/3rd share and dangerous for validators to centralise on a client or provider that has such large share. Most validator penalties ramp up as more validators have the same issue, so if you use a majority client or a majority cloud provider or a majority staking service you run the risk of incurring large penalties if they have an issue, due to it affecting so many validators at once. It would be extremely unfair to validators who heeded these warnings to then be penalised for doing the right thing.&lt;/p&gt;
+&lt;p&gt;Secondly, if you remember back to &lt;a href=&#34;https://www.symphonious.net/2021/02/13/hard-truths-for-eth-stakers/&#34;&gt;hard truths for ETH stakers&lt;/a&gt;, Ethereum doesn&amp;rsquo;t exist to make stakers rich. Stakers are service providers to Ethereum, highly interchangeable and largely quite replaceable. Stakers are not the target market for Ethereum or its reason to exist. The service they provide is necessary and they are paid for that service but they shouldn&amp;rsquo;t expect to be treated any differently to a miner and definitely shouldn&amp;rsquo;t expect the Ethereum community to bail them out when they mess up.&lt;/p&gt;
+&lt;p&gt;Which leads to the third and most important point. A client with a majority of validators, doesn&amp;rsquo;t necessarily have a majority of users or “value”. Even on the beacon chain today there are already some applications following the chain and making decisions based on that state. Those users don&amp;rsquo;t necessarily show up in validator numbers and so could all follow the chain with a minority of validators. So while a chain may be a majority from a consensus point of view it may simultaneously be the minority chain from a network value point of view.&lt;/p&gt;
+&lt;p&gt;Once we get to the merge, it becomes much more clear that the weight of DApps, exchanges and other users is going to be far more important than the number of validators. Unless you&amp;rsquo;re willing to argue that we should accept whatever chain Infura follows as canonical today (and you shouldn&amp;rsquo;t be), you shouldn&amp;rsquo;t argue that we should accept whatever chain a majority consensus client follows.&lt;/p&gt;
+&lt;p&gt;Finally, accepting the incorrect chain as canonical would mean embedding whatever bug happened to occur as the expected behaviour. That creates significant technical debt and may even introduce security flaws into the specification. It may not even be fully deterministic given that many consensus bugs have been caused by incorrect caching behaviour so nodes follow different chains depending on whether they were online or offline at a particular point in time or based on when they got a particular network message.&lt;/p&gt;
+&lt;p&gt;And that&amp;rsquo;s before we start on the political/governance challenges of a bail out. The DAO fork didn&amp;rsquo;t cost normal users anything and it still caused a chain split.&lt;/p&gt;
+&lt;p&gt;The days of Ethereum bailing people out are long gone.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Exploring Eth2 – Why Open Ports Matter</title>
+      <link>https://www.symphonious.net/2021/08/14/exploring-eth2-why-open-ports-matter/</link>
+      <pubDate>Sat, 14 Aug 2021 08:07:14 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/08/14/exploring-eth2-why-open-ports-matter/</guid>
+      <description>&lt;p&gt;One of the most commonly overlooked steps when setting up a beacon node is to setup port forwarding on your router to ensure that other nodes can connect in to yours. This is often overlooked, or not done correctly, because there are so many different routers, all with different, fiddly interfaces that providing simple instructions is essentially impossible and because your node will generally work even without it by connecting outbound to other peers even though none can connect inbound.&lt;/p&gt;
+&lt;p&gt;Unfortunately, this means a lot of nodes on the beacon chain don&amp;rsquo;t accept incoming connections and that&amp;rsquo;s bad for the health of the network in two ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Reduced efficiency&lt;/li&gt;
+&lt;li&gt;Increased risk of censorship&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The efficiency of the beacon chain&amp;rsquo;s gossip network is reduced because two nodes with closed ports can never connect to each other. So as the percentage of nodes with open ports drops, the network gradually morphs from a mesh topology to a star topology. Gossip messages then have to route through a relatively small number of &amp;ldquo;super nodes&amp;rdquo; (those with open ports) which then forward it on to the nodes. It works, but messages propagate slower.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s also much harder for nodes to join the network because they need to find nodes that have open ports to connect to, and most of those are already at their peer limit so are rejecting connections. That causes a lot more discovery traffic and connection attempts than necessary.&lt;/p&gt;
+&lt;p&gt;The move towards a star topology also increases the risk of censorship. With messages having to route through a smaller number of nodes, censorships only need to target those nodes with open ports rather than needing to disrupt communications of all nodes on the network. The fewer nodes with open ports, the easier such attacks are.&lt;/p&gt;
+&lt;p&gt;So if you&amp;rsquo;re running a beacon node, ensure that your ports are correctly forwarded and remember that both TCP and UDP need to be forwarded to correctly allow incoming connections. While there are only tools to check TCP connectivity, I don&amp;rsquo;t know of any that will correctly check UDP connectivity because the discovery system deliberately won&amp;rsquo;t reply to invalid packets. Since most UDP tests just send a random packet and report success if it isn&amp;rsquo;t explicitly rejected, they don&amp;rsquo;t confirm that the packet actually reached the discovery system and will pass even if the packet was silently dropped by a firewall which is very common.&lt;/p&gt;
+&lt;p&gt;The most definitive way to check your port forwarding is working is to check that you have a mix of incoming and outgoing peer connections. For clients supporting the standard REST API (all of them now I think 🎉) you can run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl http:/localhost:5051/eth/v1/node/peers | jq
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see at least some peers reported with &lt;code&gt;&amp;quot;direction&amp;quot;: &amp;quot;inbound&amp;quot;&lt;/code&gt;. If not, your port forwarding is not working correctly and peers can&amp;rsquo;t initiate connections to your node.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PEEPanEIP – Altair in Teku</title>
+      <link>https://www.symphonious.net/2021/07/02/peepaneip-altair-in-teku/</link>
+      <pubDate>Fri, 02 Jul 2021 00:21:47 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/07/02/peepaneip-altair-in-teku/</guid>
+      <description>&lt;p&gt;I got the chance to talk with Pooja Ranjan and Alita Moore from the Ethereum Cat Herders as part of their PEEPanEIP series last week: &lt;a href=&#34;https://www.youtube.com/watch?v=Kv643dgRmMI&amp;amp;list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F&amp;amp;index=1&#34;&gt;PEEPanEIP #38: Altair in Teku with Adrian Sutton&lt;/a&gt;. It was a chance to talk through the actual implementation details required to support the Altair fork.&lt;/p&gt;
+&lt;p&gt;Mostly listing here for my own record, but if you haven&amp;rsquo;t seen it and you care at all about Ethereum hopefully it will be interesting.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why Miners Can Be Simultaneously Paid Too Much and Struggling to Survive</title>
+      <link>https://www.symphonious.net/2021/02/15/why-miners-can-be-simultaneously-paid-too-much-and-struggling-to-survive/</link>
+      <pubDate>Mon, 15 Feb 2021 07:48:40 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/02/15/why-miners-can-be-simultaneously-paid-too-much-and-struggling-to-survive/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Note: This post is deliberately high level. It doesn&amp;rsquo;t attempt to be an economic proof or go into the gory details of exactly how the difficulty adjustment works. The aim is just to see the high level effects of how the system pans out without getting lost in the nitty gritty details of what is ultimately a very complex system.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Pretty much every time the word “miner” is mentioned in an Ethereum discussion someone will claim that miners are paid too much and miners will respond saying they&amp;rsquo;re struggling to survive. Turns out, both can be simultaneously true and in fact it&amp;rsquo;s pretty much the expected case.&lt;/p&gt;
+&lt;p&gt;The reason lies ultimately in the way the difficulty automatically adjusts. Without going into too much detail, Ethereum maintains a (very) roughly consistent block time by making it easier or harder to find the next block depending on whether the latest block was found too quickly or too slowly.&lt;/p&gt;
+&lt;p&gt;The other side of that equation is the total hash power. When there is a lot of hash power being used to find the next block, it will generally be found faster and when there&amp;rsquo;s less it will be found slower. Net result, as there&amp;rsquo;s more hash power, it gets harder to find the next block.&lt;/p&gt;
+&lt;h4 id=&#34;why-miners-are-always-struggling&#34;&gt;Why Miners Are Always Struggling&lt;/h4&gt;
+&lt;p&gt;So even when a miner has a consistent amount of mining power, when the total hash power increases the rate that they find blocks (ie the rate they get paid) will reduce. Similarly if the total hash power decreases, the rate they find blocks and get paid will increase. When mining is profitable, more people will start mining to get a share of those sweet, sweet block rewards. That increases the total hash power and each individual miner winds up earning less.&lt;/p&gt;
+&lt;p&gt;That process will continue until there&amp;rsquo;s about the same amount of hash power being added by people investing in mining as there is hash power being turned off because it&amp;rsquo;s just not worth it. That balance appears to be just a little bit above break even, so individual miners will always wind up only just making a profit.&lt;/p&gt;
+&lt;h4 id=&#34;why-miners-are-paid-too-much&#34;&gt;Why Miners Are Paid Too Much&lt;/h4&gt;
+&lt;p&gt;Since the difficulty adjustments are aiming to have, on average, blocks a consistent distance apart each day about the same number of blocks are created regardless of how much hash power is thrown at the problem. So roughly the same amount of new ETH is created and paid out as block rewards each day. While this ETH is created out of nowhere it is effectively paid for by all ETH holders because increased issuance puts downward pressure on prices.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s only so much hash power required to keep the Ethereum chain secure. People will argue about how much that is but the exact number isn&amp;rsquo;t important here. So if the total hash power is more than that threshold we could in theory reduce the total amount paid to miners. That wound result in miners earning less both individually and in aggregate which will make some of them unprofitable and they&amp;rsquo;ll stop mining. That will then reduce the hash rate (which is what we wanted because we didn&amp;rsquo;t need that much) and each individual miner will become more profitable again. Once the equilibrium is found again there&amp;rsquo;ll be less paid out in total to miners but each individual miner will wind up earning about as much as they did before the change. The opposite process can be used if more hash power is required – increasing the block reward would temporarily make individual miners more profitable, but that would incentivise the addition of more hash power until miners are individually about as profitable as they were before.&lt;/p&gt;
+&lt;p&gt;Transaction fees and the price of ETH in various fiat currencies are other variables that affect how much miners are paid. They can add a lot of variability, but the process is still essentially the same. Having higher transaction fees or a higher price of ETH is just like increasing the block reward, just much less controllable or predictable.&lt;/p&gt;
+&lt;p&gt;Since it&amp;rsquo;s hard to determine exactly how much hash power is required to secure the chain, and it&amp;rsquo;s better to err on the side of more hash power, the typical case is that miners will be overpaid. We could theoretically pay less and still have a secure chain but the variability in the price of ETH and uncertainty in exactly how much hash power is enough means reducing the total payments to miners is too difficult and we just accept some amount of over payment.&lt;/p&gt;
+&lt;h4 id=&#34;resolving-the-oxymoron&#34;&gt;Resolving The Oxymoron&lt;/h4&gt;
+&lt;p&gt;Hopefully you&amp;rsquo;ve seen the key distinction here that makes it logical that miners are both paid too much and are struggling to survive. They&amp;rsquo;re paid too much &lt;em&gt;in aggregate&lt;/em&gt; and struggling to survive &lt;em&gt;individually&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Miners quite understandably are very focussed on their &lt;em&gt;individual&lt;/em&gt; profitability, but as we&amp;rsquo;ve seen it doesn&amp;rsquo;t matter how much is paid in total to miners, the hash rate will just adjust back to the equilibrium where they&amp;rsquo;re struggling to survive again. To change that we&amp;rsquo;d have to continuously increase block rewards, trying to stay ahead of the new hash power that would attract. But even if we could stay ahead, the massive inflation would destroy the price of ETH so the cost of electricity and mining equipment relative to ETH would spike and miners may well end up worse off overall.&lt;/p&gt;
+&lt;p&gt;ETH holders on the other hand are concerned about the amount paid to miners &lt;em&gt;in aggregate&lt;/em&gt; and whether that&amp;rsquo;s buying us too little, the right amount or too much hash power. That doesn&amp;rsquo;t mean they don&amp;rsquo;t care about individual miners, just that as explained above, paying more in total won&amp;rsquo;t make individual miners more profitable in the long run anyway.&lt;/p&gt;
+&lt;h4 id=&#34;the-complication-of-lag-and-averages&#34;&gt;The Complication of Lag and Averages&lt;/h4&gt;
+&lt;p&gt;In all this, there&amp;rsquo;s a lot of mentions of “on average” or “eventually”. That&amp;rsquo;s because while there are clear economic functions at play, there is also a lot of probability and lag in finding the new equilibrium. It takes time for people to decide to invest in mining and to order the components required, so if the block reward doubled tomorrow, the hash rate wouldn&amp;rsquo;t suddenly double. For a while miners would in fact make a lot more money but it would gradually reduce as the new hash power came online until the equilibrium is found. Similarly, if the block reward is halved the hash power doesn&amp;rsquo;t suddenly drop – miners wind up earning less for a while until the equilibrium is found again.&lt;/p&gt;
+&lt;p&gt;Throw in the variability from changing ETH prices and transaction fees and it can take even longer to find that equilibrium because the uncertainty causes people to put off new investment to see if high prices last or continue mining while unprofitable hoping the price or transaction fees will come back up.&lt;/p&gt;
+&lt;p&gt;While that lag does affect some details and needs to be factored into various decisions, it doesn&amp;rsquo;t change the fundamental economics. The equilibrium will wind up being found, even if it takes a long time and miners will be back to that average amount of individual income – likely just managing to be profitable.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hard Truths for ETH Stakers</title>
+      <link>https://www.symphonious.net/2021/02/13/hard-truths-for-eth-stakers/</link>
+      <pubDate>Sat, 13 Feb 2021 04:16:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/02/13/hard-truths-for-eth-stakers/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;re getting into staking ETH on the beacon chain, it&amp;rsquo;s important to know what you&amp;rsquo;re actually signing up for. There&amp;rsquo;s lots of articles about how easy it is and how awesome, intelligent and good looking stakers are, so here&amp;rsquo;s a few hard truths you should make sure you&amp;rsquo;re ok with…&lt;/p&gt;
+&lt;h3 id=&#34;short-term-stuff&#34;&gt;Short Term Stuff&lt;/h3&gt;
+&lt;p&gt;Most people know this stuff so I&amp;rsquo;m just going to skim over it.&lt;/p&gt;
+&lt;h4 id=&#34;no-withdrawals-yet&#34;&gt;No Withdrawals Yet&lt;/h4&gt;
+&lt;p&gt;You can&amp;rsquo;t withdraw staked ETH or rewards yet. There isn&amp;rsquo;t a fixed timeline on when you will be able to.&lt;/p&gt;
+&lt;h4 id=&#34;penalties&#34;&gt;Penalties&lt;/h4&gt;
+&lt;p&gt;Rewards on the beacon chain are not automatic – you actually have to run a node and perform the assigned duties. If you fail to perform the duties, instead of a reward you&amp;rsquo;ll actually get a small penalty.&lt;/p&gt;
+&lt;p&gt;If lots of validators aren&amp;rsquo;t performing their duties well at the same time and the chain stops finalising, those small rewards will gradually get bigger and bigger.&lt;/p&gt;
+&lt;h4 id=&#34;slashings&#34;&gt;Slashings&lt;/h4&gt;
+&lt;p&gt;If your validator signs something that&amp;rsquo;s self-conflicting (ie not just wrong but disagreeing with what you&amp;rsquo;ve previously said) it can be slashed. This is a bigger penalty and your validator is immediately deactivated so you can&amp;rsquo;t earn any more rewards (and still can&amp;rsquo;t withdraw). How big depends on how many other validators are slashed at the same time – it can be anything from 0.5ETH to your entire stake).&lt;/p&gt;
+&lt;h4 id=&#34;rewards-automatically-reduce-as-validators-activate&#34;&gt;Rewards Automatically Reduce as Validators Activate&lt;/h4&gt;
+&lt;p&gt;As more validators begin staking, the rewards paid are automatically reduced. So while you might have earned 0.00004 ETH for a correct attestation last week, this week it may be only 0.00003 ETH, and next week it may be even less.&lt;/p&gt;
+&lt;p&gt;Which brings us to the first key principal you should be ok with…&lt;/p&gt;
+&lt;h3 id=&#34;key-principals&#34;&gt;Key Principals&lt;/h3&gt;
+&lt;h4 id=&#34;pay-the-minimum-amount-possible-to-secure-the-chain&#34;&gt;Pay the Minimum Amount Possible to Secure the Chain&lt;/h4&gt;
+&lt;p&gt;The philosophy of Ethereum is to pay the minimum amount possible to ensure the chain remains secure. This applies equally to miners in Eth1 and stakers in Eth2. That&amp;rsquo;s why rewards automatically reduce when there are more active validators – the chain has enough validators to be secure so it doesn&amp;rsquo;t need to provide as much incentive for staking. But it goes well beyond that.&lt;/p&gt;
+&lt;p&gt;The algorithm for determining those rewards may itself be changed to further reduce them if in the future it&amp;rsquo;s deemed that security would still be sufficient. There is absolutely no guarantee of any rate of reward.&lt;/p&gt;
+&lt;p&gt;In fact, there is already one proposal that could reduce rewards which was considered for the first protocol upgrade but ultimately seen as unnecessary. Specifically &lt;a href=&#34;https://github.com/ethereum/eth2.0-specs/issues/2137&#34;&gt;the proposal&lt;/a&gt; was to cap the number of validators that can actually be active at any one time, with the rest being dormant (so not earning any rewards) and randomly cycle which validators are dormant. It was seen as unnecessary because even if we continued activating validators at the maximum possible rate, it wouldn&amp;rsquo;t hit the cap and activate these changes for at least another year. At some point though it&amp;rsquo;s likely to be implemented as it provides important reduction in the load required for nodes following the chain.&lt;/p&gt;
+&lt;p&gt;Which brings us to…&lt;/p&gt;
+&lt;h4 id=&#34;ethereum-puts-itself-first&#34;&gt;Ethereum Puts Itself First&lt;/h4&gt;
+&lt;p&gt;Whenever there is a trade off being individuals or groups and the safety, security and reliability of the Ethereum chain, the Ethereum protocol and Ethereum developers will always prioritise the chain first. After all, if the chain isn&amp;rsquo;t working no one can benefit from it.&lt;/p&gt;
+&lt;p&gt;Some examples of this in the beacon chain are the long delays before deposits activate – the chain is ensuring the validator set doesn&amp;rsquo;t change too fast because that&amp;rsquo;s a security risk. The fact that you have to wait 2+ weeks for your validator to activate is just unfortunate for you.&lt;/p&gt;
+&lt;p&gt;Note though, that this isn&amp;rsquo;t intentionally capricious. If the chain would function just as well either way, then sure, make the protocol as nice to people in any role as possible. This also ties into paying the minimum amount for security – if we can make the staking experience better in some way (that doesn&amp;rsquo;t reduce security) then people will likely be prepared to stake for less money and rewards can be reduced.&lt;/p&gt;
+&lt;h4 id=&#34;ethereum-does-not-exist-to-make-stakers-rich&#34;&gt;Ethereum Does Not Exist To Make Stakers Rich&lt;/h4&gt;
+&lt;p&gt;This is really just an extension of the previous two, but it&amp;rsquo;s worth being extra clear. Staking is fun for the whole family and everything but it really is just a means to an end – providing security for the Ethereum chain. You can lose sight of that because at the moment the beacon chain&amp;rsquo;s only function is staking but that&amp;rsquo;s just a temporary thing. Ultimately Eth1 will merge in and all that staking will just be to provide security for contracts and transactions on the chain.&lt;/p&gt;
+&lt;p&gt;Remember, stakers are service providers to the network and they&amp;rsquo;re paid for their services with rewards.&lt;/p&gt;
+&lt;p&gt;Different people have different views on exactly what the point of Ethereum is (world computer, digital asset, money, all of the above?) but it&amp;rsquo;s definitely not to make stakers rich. Don&amp;rsquo;t expect any sympathy if it winds up being hard to make a profit – unless security is at risk, rewards won&amp;rsquo;t be increased (“Pay the Minimum Amount Possible to Secure the Chain” remember?).&lt;/p&gt;
+&lt;h4 id=&#34;change-is-inevitable&#34;&gt;Change Is Inevitable&lt;/h4&gt;
+&lt;p&gt;Ethereum is a blockchain that has always and will continue to change and upgrade. There are an unusually large number of big changes coming as the collection of technologies referred to as Eth2 roll out, but it won&amp;rsquo;t ever stop. There will always be new ideas to take advantage of and new problems to solve.&lt;/p&gt;
+&lt;p&gt;Those changes will be (or at least are intended to be) great for Ethereum overall, but they might not be for any particular person or group. They might mean stakers need more resources to keep up (e.g. the merge requiring running a full Eth1 node), they might affect reward rates or any number of other things. Just because something is true today, doesn&amp;rsquo;t mean it always will be.&lt;/p&gt;
+&lt;h3 id=&#34;the-good-news&#34;&gt;The Good News&lt;/h3&gt;
+&lt;p&gt;That all sounds pretty doom and gloom, but the good news is that staking is entirely optional. There are plenty of other places you can put your money if you don&amp;rsquo;t like the deal that staking is offering.&lt;/p&gt;
+&lt;p&gt;Most importantly, once withdrawals are possible, it&amp;rsquo;s also really easy to stop staking and get your stake back (assuming you didn&amp;rsquo;t go getting yourself slashed badly…). It&amp;rsquo;s like if you could buy a mining rig with a guarantee that it could be sold for the original price when you&amp;rsquo;re done with it and you get to keep whatever profit or loss you&amp;rsquo;ve earned.&lt;/p&gt;
+&lt;p&gt;PS: I&amp;rsquo;ve been informed that staking also doesn&amp;rsquo;t guarantee to make you awesome, intelligent or good looking.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Exploring Eth2: Attestation Rewards and Validator Performance</title>
+      <link>https://www.symphonious.net/2021/01/10/exploring-eth2-attestation-rewards-and-validator-performance/</link>
+      <pubDate>Sun, 10 Jan 2021 01:41:02 +0000</pubDate>
+      <guid>https://www.symphonious.net/2021/01/10/exploring-eth2-attestation-rewards-and-validator-performance/</guid>
+      <description>&lt;p&gt;Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward &lt;a href=&#34;https://www.attestant.io/posts/defining-attestation-effectiveness/&#34;&gt;defining attestation effectiveness&lt;/a&gt; which focuses on the inclusion distance for attestations. That revealed &lt;a href=&#34;https://www.symphonious.net/2020/09/08/exploring-eth2-attestation-inclusion/&#34;&gt;a bunch of opportunities for clients to improve the attestation inclusion distance&lt;/a&gt; and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.&lt;/p&gt;
+&lt;p&gt;But then &lt;a href=&#34;https://beaconcha.in&#34;&gt;beaconcha.in&lt;/a&gt; added a view of how much was earned for each attestation. Suddenly people were left wondering why some of their “rewards” were negative even though the attestation was included quickly. It became obvious that inclusion distance was only one part of attestation rewards.&lt;/p&gt;
+&lt;h3 id=&#34;how-attestation-rewards-work&#34;&gt;How Attestation Rewards Work&lt;/h3&gt;
+&lt;p&gt;There are four parts in total:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reward based on inclusion distance&lt;/li&gt;
+&lt;li&gt;Reward or penalty for getting the source correct&lt;/li&gt;
+&lt;li&gt;Reward or penalty for getting the target correct&lt;/li&gt;
+&lt;li&gt;Reward or penalty for getting the head correct&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It turns out that inclusion distance is the smaller of these components. Ben Edgington explains all the detail very well in &lt;a href=&#34;https://benjaminion.xyz/eth2-annotated-spec/phase0/beacon-chain/#get_attestation_deltas&#34;&gt;his annotated spec&lt;/a&gt;. First we calculate the base reward, which is the component which factors in the validator&amp;rsquo;s effective balance (lower rewards if your effective balance is less than the maximum 32ETH) and the total staked ETH (reducing rewards as the number of validators increase).&lt;/p&gt;
+&lt;p&gt;Then for the source, target and head attestations, a reward or penalty is applied depending on whether the attestation gets them right. A missed attestation is penalised for all three. The penalty is 1 * base reward. The reward however factors in a protection against &lt;a href=&#34;https://github.com/ethereum/research/blob/master/papers/discouragement/discouragement.pdf&#34;&gt;discouragement attacks&lt;/a&gt; so is actually base reward * percentage of eth that attested correctly. This provides incentive for your validator to do whatever it can, like relaying gossip well, to help everyone stay in sync well.&lt;/p&gt;
+&lt;p&gt;Finally the inclusion distance reward is added. There&amp;rsquo;s no penalty associated with this, missed attestations just don&amp;rsquo;t get the reward. 1/8th of this reward is actually given to the block proposer as reward for including the attestation, so the maximum available reward for the attester is 7/8th of the base reward. So it winds up being (7/8 * base reward) / inclusion distance.&lt;/p&gt;
+&lt;p&gt;So inclusion distance is actually the smallest component of the reward – not only is it only 7/8th of base reward, there&amp;rsquo;s no penalty attached. The most important is actually getting source right as attestations with incorrect source can&amp;rsquo;t be included at all, resulting in a 3*base reward penalty. Fortunately getting source right is also the easiest because it&amp;rsquo;s back at the justified checkpoint so quite hard to get wrong.&lt;/p&gt;
+&lt;h3 id=&#34;evaluating-validators&#34;&gt;Evaluating Validators&lt;/h3&gt;
+&lt;p&gt;If we&amp;rsquo;re trying to evaluate how well our validator is doing, these calculations add quite a lot of noise that makes it difficult. Especially if we want to know if our validator is doing better this week than it was last week. If you just look at the change in validator balance, how many block proposals you were randomly assigned dominates and even just looking at rewards for attestations is affected by the number of validators and how well other people are doing.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d propose that we really want to measure what percentage of available awards were earned. That gives us a nice simple percentage and is highly comparable across different validators and time periods.&lt;/p&gt;
+&lt;p&gt;The first step is to think in terms of the number of base rewards earned which eliminates variance from the validator&amp;rsquo;s balance and total eth staked. Then we can ignore the discouragement attack factor and say that each of source, target and head results in either plus or minus 1 base reward. Inclusion distance is up to 7/8th of a base reward, scaling with distance like normal. Like for attestation effectiveness, we&amp;rsquo;d ideally also use the optimal inclusion distance – only counting the distance from the first block after the attestation slot to avoid penalising the validator for empty slots they couldn&amp;rsquo;t control. In practice this doesn&amp;rsquo;t make a big difference on MainNet as there aren&amp;rsquo;t too many missed slots.&lt;/p&gt;
+&lt;p&gt;So each attestation duty can wind up scoring between -3 and +3.875 (3 and 7/8ths). For any missed attestation, the score is -3. For any included attestation, we calculate the 4 components of the score with:&lt;/p&gt;
+&lt;p&gt;Inclusion distance score: (0.875 / optimal_inclusion_distance)&lt;/p&gt;
+&lt;p&gt;Source score: 1 (must be correct)&lt;/p&gt;
+&lt;p&gt;Target and head scores: 1 if correct, -1 if incorrect&lt;/p&gt;
+&lt;p&gt;And to get a combined score, we need to add them together.&lt;/p&gt;
+&lt;p&gt;We can actually do this with the metrics available in Teku today:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(
+  validator_performance_correct_head_block_count - (validator_performance_expected_attestations - validator_performance_correct_head_block_count) +
+  
+  validator_performance_correct_target_count - (validator_performance_expected_attestations - validator_performance_correct_target_count) +
+  
+  validator_performance_included_attestations - (validator_performance_expected_attestations - validator_performance_included_attestations) +
+  
+  (0.875 * validator_performance_included_attestations / validator_performance_inclusion_distance_average)
+) / validator_performance_expected_attestations / 3.875
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which is essentially :&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(
+  (correct_head_count - incorrect_head_count + 
+  correct_target_count - incorrect_target_count + 
+  included_attestation_count - missed_attestation_count
+  ) / expected_attestation_count +
+  0.875 / inclusion_distance_average
+) / 3.875
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To give a score between 0 and 1 pretty closely approximating the percentage of possible attestation rewards that were earned. With the discouragement attack factor ignored, we are slightly overvaluing the source, target and head rewards but it&amp;rsquo;s very minimal. On MainNet currently they should be +0.99 when correct instead of +1 so doesn&amp;rsquo;t seem worth worrying about.&lt;/p&gt;
+&lt;p&gt;You can also calculate this fairly well for any validator using a &lt;a href=&#34;https://github.com/wealdtech/chaind&#34;&gt;chaind&lt;/a&gt; database with a &lt;a href=&#34;https://gist.github.com/ajsutton/92881c19ae2da8facc3bae6c6f1eb691&#34;&gt;very long and slow SQL query&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;evaluating-the-results&#34;&gt;Evaluating the Results&lt;/h3&gt;
+&lt;p&gt;Looking at the numbers for a bunch of validators on MainNet, generally validators are scoring in the high 90% range with scores over 99% being common but over anything more than a day it&amp;rsquo;s hard to find a validator with 100% which generally matches what we&amp;rsquo;d expect given the high participation rates of MainNet but knowing that some blocks do turn up late which will likely result in at least the head being wrong.&lt;/p&gt;
+&lt;p&gt;One key piece of randomness that&amp;rsquo;s still creeping into these scores though are that its significantly more likely to get the target wrong if you&amp;rsquo;re attesting to the first slot of the epoch – because then target and head are the same and those first blocks are tending to come quite late. There are spec changes coming which should solve this but it is still affecting results at the moment.&lt;/p&gt;
+&lt;h3 id=&#34;what-about-block-rewards&#34;&gt;What About Block Rewards?&lt;/h3&gt;
+&lt;p&gt;For now I&amp;rsquo;m just looking at what percentage of blocks are successfully proposed when scheduled (should be 100%). There are a lot of factors that affect the maximum reward available for blocks – while blocks aren&amp;rsquo;t reaching the limit on number of attestations that can be included, I&amp;rsquo;d expect that all the variation in rewards comes down to luck. Definitely an area that could use some further research though.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Exploring Ethereum 2: Weak Subjectivity Period</title>
+      <link>https://www.symphonious.net/2019/11/27/exploring-ethereum-2-weak-subjectivity-period/</link>
+      <pubDate>Wed, 27 Nov 2019 05:08:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2019/11/27/exploring-ethereum-2-weak-subjectivity-period/</guid>
+      <description>&lt;p&gt;Occasionally the term “weak subjectivity period” pops up in Eth2 discussions. It&amp;rsquo;s a weird concept that you can usually just watch fly by and not miss too much. But when you&amp;rsquo;re talking about how to sync an existing Eth2 chain it becomes quite important. Probably the best resource for it is Vitalik&amp;rsquo;s post: &lt;a href=&#34;https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity/&#34;&gt;Proof of Stake: How I Learned to Love Weak Subjectivity&lt;/a&gt; I&amp;rsquo;ve struggled to get my head around it and why it matters so am writing up my current understanding. There is almost certainly at least one mistake in here somewhere…&lt;/p&gt;
+&lt;p&gt;So what is the weak subjectivity period? It&amp;rsquo;s the period that a client can be offline for and when it comes back online be able to completely reliably process blocks to get to the consensus chain head. For proof of work you can always do this, but not for proof of stake. To see why not, let&amp;rsquo;s look at an example.&lt;/p&gt;
+&lt;p&gt;Say we have an Eth2 network chugging away. Once 2/3 of those validators have attested to a particular epoch it&amp;rsquo;s considered finalised and no re-orgs can change it. In order to finalise two conflicting epoch&amp;rsquo;s you&amp;rsquo;d need at least 1/3 of validators to sign conflicting attestations but doing so is a slashable offence so there&amp;rsquo;s a very strong economic incentive to not do that. That incentive is essentially what crypto-economics are all about, whether you&amp;rsquo;re talking PoW or PoS it&amp;rsquo;s not that it&amp;rsquo;s mathematically impossible to break the chain, but that it costs you more money than anyone is willing or able to spend.&lt;/p&gt;
+&lt;p&gt;At this point it sounds like you should be able to just process blocks reliably, confirm the attestations and signatures all line up and it all works out. What&amp;rsquo;s the catch?&lt;/p&gt;
+&lt;p&gt;The catch is that validators can withdraw their staked funds and stop being a validator. There are limits on how fast those withdrawals can happen but once the money is out the economic incentive to not misbehave is gone. Critically despite the validator having withdrawn the money, they still have their private key and can sign things – with no staked funds anymore they can&amp;rsquo;t be slashed for it. Nodes fully sync&amp;rsquo;d to the chain know they are no longer a validator and reject those signatures but nodes further behind don&amp;rsquo;t yet have that information and see the signature as valid.&lt;/p&gt;
+&lt;p&gt;So, if we have 1/3 of validators which have withdrawn their stake, if my node is far enough back on the chain to have not seen the withdrawal of any of those nodes, then 1/3 of the validators you currently think are valid have no incentive to be honest and can sign any blocks or attestations with complete impunity and potentially form a chain which conflicts with the finalised state but is otherwise entirely valid. They can feed you those blocks to lead you down the wrong chain.&lt;/p&gt;
+&lt;p&gt;However if your node was further along the chain to see one or more of those validators exit, you&amp;rsquo;d reject their attestations leaving less than 1/3 of the validators as dishonest and allowing you to reliably reach the real chain head.&lt;/p&gt;
+&lt;p&gt;So the weak subjectivity period is essentially how far behind your node can be before 1/3 of validators can have exited without you knowing about it. Once you fall behind more than that, you need to confirm the chain you want to sync to out of band.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>EIP 2159: Common Prometheus Metrics Names for Clients</title>
+      <link>https://www.symphonious.net/2019/07/03/eip-2159-common-prometheus-metrics-names-for-clients/</link>
+      <pubDate>Wed, 03 Jul 2019 01:04:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2019/07/03/eip-2159-common-prometheus-metrics-names-for-clients/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve written up a simple little EIP to specify some standard names and meanings for Prometheus metrics that are common across Ethereum clients: &lt;a href=&#34;http://eips.ethereum.org/EIPS/eip-2159&#34;&gt;EIP-2159&lt;/a&gt;.&lt;br&gt;
+It&amp;rsquo;s pretty simple and only defines four metrics but that&amp;rsquo;s enough to create quite powerful &lt;a href=&#34;https://grafana.com/dashboards/10273&#34;&gt;overview dashboards&lt;/a&gt; that would work across multiple clients.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

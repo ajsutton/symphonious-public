@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Testing@LMAX – Introducing ElementSpecification | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Today LMAX Exchange has released ElementSpecification, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:
+
+Make it easier to understand selectors by using a very English-like syntax
+Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests
+Strongly discourage writing overly complicated selectors.
+
+Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2015/12/04/testinglmax-introducing-elementspecification/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2015/12/04/testinglmax-introducing-elementspecification/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Testing@LMAX – Introducing ElementSpecification">
+	<meta property="og:description" content="Today LMAX Exchange has released ElementSpecification, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:
+Make it easier to understand selectors by using a very English-like syntax Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests Strongly discourage writing overly complicated selectors. Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2015-12-04T03:26:30+00:00">
+		<meta property="article:modified_time" content="2015-12-04T03:26:30+00:00">
+
+	<meta itemprop="name" content="Testing@LMAX – Introducing ElementSpecification">
+	<meta itemprop="description" content="Today LMAX Exchange has released ElementSpecification, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:
+Make it easier to understand selectors by using a very English-like syntax Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests Strongly discourage writing overly complicated selectors. Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.">
+	<meta itemprop="datePublished" content="2015-12-04T03:26:30+00:00">
+	<meta itemprop="dateModified" content="2015-12-04T03:26:30+00:00">
+	<meta itemprop="wordCount" content="424">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Java,LMAX,Testing">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Testing@LMAX – Introducing ElementSpecification">
+	<meta name="twitter:description" content="Today LMAX Exchange has released ElementSpecification, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:
+Make it easier to understand selectors by using a very English-like syntax Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests Strongly discourage writing overly complicated selectors. Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Testing@LMAX – Introducing ElementSpecification</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Testing@LMAX – Introducing ElementSpecification</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-12-04T03:26:30Z">December 4, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Today LMAX Exchange has released <a href="https://github.com/LMAX-Exchange/elementspec">ElementSpecification</a>, a very small library we built to make working with selectors in selenium/WebDriver tests easier. It has three main aims:</p>
+<ul>
+<li>Make it easier to understand selectors by using a very English-like syntax</li>
+<li>Avoid common pitfalls when writing selectors that lead to either brittle or intermittent tests</li>
+<li>Strongly discourage writing overly complicated selectors.</li>
+</ul>
+<p>Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.</p>
+<p>Making selectors easier to understand doesn&rsquo;t mean making locators shorter – CSS is already a very terse language. We actually want to use more characters to express our intent so that future developers can read the specification without having to decode CSS. For example, the CSS:</p>
+<pre>#data-table tr[data-id='78'] .name</pre>
+<p>becomes:</p>
+<pre>anElementWithId("data-table")<br />    .thatContainsA("tr").withAttributeValue("data-id", "78")<br />    .thatContainsAnElementWithClass("name")</pre>
+<p>Much longer, but if you were to read the CSS selector to yourself, it would come out a lot like the ElementSpecification syntax. That allows you to stay focussed on what the test is doing instead of pausing to decode the CSS. It&rsquo;s also reduces the likelihood of misreading a vital character and misunderstanding the selector.</p>
+<p>With ElementSpecification essentially acting as an adapter layer between the test author and the actual CSS, it&rsquo;s also able to avoid some common intermittency pitfalls. In fact, the reason ElementSpecification was first built was because really smart people kept attempting to locate an element with a classname using:</p>
+<pre>//*[contains(@class, 'valid')]</pre>
+<p>which looks ok, but incorrectly also matches an element with the class ‘invalid&rsquo;. Requiring the class attribute to exactly match ‘valid&rsquo; is too brittle because it will fail if an additional class is added to the element. Instead, ElementSpecification would generate:</p>
+<pre>contains(concat(' ', @class, ' '), ' valid ')</pre>
+<p>which is decidedly unpleasant to have to write by hand.</p>
+<p>The biggest benefit we&rsquo;ve seen from ElementSpecification though is that fact that it has a deliberately limited set of abilities. You can only descend down the DOM tree, never back up and never across to siblings. That makes selectors <em>far</em> easier to understand and avoids a lot of unintended coupling between the tests and incidental properties of the DOM. Sometimes it means augmenting the DOM to make it more semantic – things like adding a “data-id” attribute to rows as in the example above. It&rsquo;s surprisingly rare how often we need to do that and surprising how useful those extra semantics wind up being for a whole variety of reasons anyway.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

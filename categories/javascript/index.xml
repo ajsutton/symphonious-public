@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on Symphonious</title>
+    <link>https://www.symphonious.net/categories/javascript/</link>
+    <description>Recent content in JavaScript on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Tue, 24 Sep 2019 23:41:12 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moolah Diaries: Making inject-loader and vuetify-loader play nice</title>
+      <link>https://www.symphonious.net/2019/09/25/moolah-diaries-making-inject-loader-and-vuetify-loader-play-nice/</link>
+      <pubDate>Tue, 24 Sep 2019 23:41:12 +0000</pubDate>
+      <guid>https://www.symphonious.net/2019/09/25/moolah-diaries-making-inject-loader-and-vuetify-loader-play-nice/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been upgrading Moolah after a long period of neglect. One of the tasks is to update it to WebPack 4. Mostly this went smoothly by just creating a new project with vue-cli and bringing its generated build setup over to replace the old one. Then a bunch of tweaking.&lt;/p&gt;
+&lt;p&gt;One thing that did bite however, was tests using inject-loader started failing as soon as I added vuetify-loader to the project with:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Error: Module parse failed: &amp;#39;import&amp;#39; and &amp;#39;export&amp;#39; may only appear at the top level
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;There may be a better way to fix this in config, but the simple answer is to adjust the inject-loader import line from something like:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;categoryStoreLoader&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inject-loader!categoryStore&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;to:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;categoryStoreLoader&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inject-loader!babel-loader!categoryStore&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Adding in the extra babel-loader ensures the imports are processed and replaced by require and everything works.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Internationalising Vue Components</title>
+      <link>https://www.symphonious.net/2017/08/29/internationalising-vue-components/</link>
+      <pubDate>Tue, 29 Aug 2017 03:28:18 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/08/29/internationalising-vue-components/</guid>
+      <description>&lt;p&gt;As Vue gradually spreads through our JavaScript, it&amp;rsquo;s reached the point where we need to support internationalisation. We already have a system for localising numbers and dates that we can reuse easily enough with Vue filters. We also have an existing system for translations, but it&amp;rsquo;s tied into the mustache templates we&amp;rsquo;ve used to date so we&amp;rsquo;ll need to adapt or change it somehow to work with Vue.&lt;/p&gt;
+&lt;p&gt;In mustache we simply wrap any strings to be translated with {{#i18n}}…{{/i18n}} markers and a webpack loader takes care of providing a translation function as the i18n property of the state for the compiled template.&lt;/p&gt;
+&lt;p&gt;There are a number of vue translations plugins around all of which tend to take one of two approaches:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;a directive that automatically pulls out the element text (e.g. &lt;a href=&#34;https://www.npmjs.com/package/vue-translate&#34;&gt;vue-translate&lt;/a&gt;)&lt;br&gt;
+&lt;span class=&#34;meta tag block any html&#34;&gt;&lt;span class=&#34;punctuation definition tag begin html&#34;&gt;&amp;laquo;/span&amp;gt;&lt;span class=&#34;entity name tag block any html&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;entity other attribute-name html&#34;&gt;v-trans&lt;/span&gt; &lt;span class=&#34;entity other attribute-name html&#34;&gt;title&lt;/span&gt;=&lt;span class=&#34;string quoted double html&#34;&gt;&lt;span class=&#34;punctuation definition string begin html&#34;&gt;“&lt;/span&gt;hello&lt;span class=&#34;punctuation definition string end html&#34;&gt;“&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;punctuation definition tag end html&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;hello&lt;span class=&#34;meta tag block any html&#34;&gt;&lt;span class=&#34;punctuation definition tag begin html&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;entity name tag block any html&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;punctuation definition tag end html&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;a method you call (e.g. &lt;a href=&#34;https://www.npmjs.com/package/vue-i18n-mixin&#34;&gt;vue-i18n-mixin&lt;/a&gt;)&lt;br&gt;
+&amp;lt;h1 v-text=”t(‘header.title&amp;rsquo;, ‘fr&amp;rsquo;)”&amp;gt;&lt;/h1&gt;&lt;br&gt;
+&lt;h1&gt;{{ t(‘header.title&amp;rsquo;) }}&lt;/h1&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Using a directive is nice and simple but doesn&amp;rsquo;t work if the text is dynamic (any {{data}} values are already resolved in the element text). Explicitly calling a function to perform the translation leads to pretty unwieldy templates.&lt;/p&gt;
+&lt;p&gt;What we&amp;rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use &lt;i18n&gt;&lt;/i18n&gt; instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&amp;rsquo;s not. So a simple example might be:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello world!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello world!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.&lt;/p&gt;
+&lt;p&gt;When the string includes parameters we write them in the same way as a normal Vue template, for example:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello {{name}}!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;And our pre-loader translates it in exactly the same way:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello {{name\}\}!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.&lt;/p&gt;
+&lt;p&gt;At this point, Vue won&amp;rsquo;t replace {{name}} with the actual value of name because it&amp;rsquo;s part of a JavaScript string, not part of the template. The good part of that is that our translation function will now be looking up the string to translate prior to variable substitution.  So it will look for a translation for “Hello {{name}}!” rather than needing translations for every possible name. Once we find the translation, the translate function then uses a regex to find and replace each placeholder with the actual value from the vue instance. &lt;/p&gt;
+&lt;p&gt;Notably, this process means that you can&amp;rsquo;t use anything but a simple variable name in placeholders within translated strings (though it can refer to a computed property). This is actually a good thing because we don&amp;rsquo;t want to send a string off to the translators that contains complex JavaScript they won&amp;rsquo;t understand. In fact, we have tests that place additional restrictions on strings to translate to ensure they are easily manageable through the translation process.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – The Moment Dilemma</title>
+      <link>https://www.symphonious.net/2017/08/11/moolah-diaries-the-moment-dilemma/</link>
+      <pubDate>Fri, 11 Aug 2017 11:48:22 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/08/11/moolah-diaries-the-moment-dilemma/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://momentjs.com/&#34;&gt;moment&lt;/a&gt; is one of those javascript libraries that just breaks my heart. It does &lt;em&gt;so&lt;/em&gt; much right – nearly every date function you&amp;rsquo;d want right at your finger tips, no major gotchas causing bugs, clean API and good docs. I&amp;rsquo;ve used moment in some pretty hard code, very date/time orientated apps and been very happy.&lt;/p&gt;
+&lt;p&gt;But it breaks my heart because when you pull it in via webpack, it winds up being a giant monolithic blob. I only need a couple of date functions but with moment I wind up getting every possible date function you can imagine &lt;em&gt;plus&lt;/em&gt; translations into a huge range of languages I don&amp;rsquo;t need. If I use moment, about 80% of Moolah&amp;rsquo;s client javascript is moment.&lt;/p&gt;
+&lt;p&gt;So I was quite pleased to find &lt;a href=&#34;https://date-fns.org/&#34;&gt;date-fns&lt;/a&gt; which also provides every date function you can imagine but is specifically design to be modular so you only pull in what you actually need. Works a treat, so Moolah uses that for the date operations it needs and it barely adds any size at all.&lt;/p&gt;
+&lt;p&gt;Except then when I went to use a graph library, it turns out that &lt;a href=&#34;http://www.chartjs.org/&#34;&gt;Chart.js&lt;/a&gt; which I was keen to try depends on moment. Sigh.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Tracking Account Balances</title>
+      <link>https://www.symphonious.net/2017/07/19/moolah-diaries-tracking-account-balances/</link>
+      <pubDate>Tue, 18 Jul 2017 21:18:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/19/moolah-diaries-tracking-account-balances/</guid>
+      <description>&lt;p&gt;Moolah has two separate Vuex modules, transactions and accounts. That&amp;rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&amp;rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account.  As a result, accounts have their own current balance property because they can&amp;rsquo;t always calculate it off of their transactions.&lt;/p&gt;
+&lt;p&gt;That means that sometimes the transaction Vuex module needs to make changes to state owned by the account module which is a rather unpleasant breach of module separation. While we ensured transaction balances remained consistent inside each mutation, we can&amp;rsquo;t do that for account balances because Vuex (presumably deliberately) makes it impossible for a mutation to access or change state outside of the module itself. Instead, I&amp;rsquo;ve used a simple Vuex plugin that watches the balance on the most recent transaction and notifies the account module when it changes:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;import&lt;/span&gt; {mutations as accountsMutations} from &lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;./accountsStore&#39;&lt;/span&gt;;
+&lt;p&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;default&lt;/span&gt; store &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; store.watch(
+(state) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
+&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; state.transactions.transactions.length &lt;span style=&#34;color: #333333;&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt; &lt;br /&gt;&lt;span style=&#34;color: #333333;&#34;&gt;                                 ?&lt;/span&gt; state.transactions.transactions[&lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt;].balance &lt;br /&gt;&lt;span style=&#34;color: #333333;&#34;&gt;                                 :&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt;;
+},
+(newValue, oldValue) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
+&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;if&lt;/span&gt; (store.getters[&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&amp;ldquo;accounts/selectedAccount&amp;rdquo;&lt;/span&gt;] &lt;span style=&#34;color: #333333;&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt; &lt;span style=&#34;color: #333333;&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;br /&gt;           newValue &lt;span style=&#34;color: #333333;&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt;) {
+store.commit(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&amp;lsquo;accounts/&amp;rsquo;&lt;/span&gt; &lt;span style=&#34;color: #333333;&#34;&gt;+&lt;/span&gt; accountsMutations.updateAccount, {
+id&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; store.state.selectedAccountId, &lt;br /&gt;                patch&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; {balance&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; newValue}
+});
+}
+});
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Most of the complexity there is dealing with the case where we don&amp;rsquo;t yet have transaction or don&amp;rsquo;t have a selected account. This essentially makes the syncing between transaction balances and account balances a separate responsibility that belongs to this plugin.&lt;/p&gt;
+&lt;p&gt;The plugin doesn&amp;rsquo;t completely handle transfers between accounts. The balance for the account currently being edited updates correctly, but the balance for the account on the other side of the transfer doesn&amp;rsquo;t update. I&amp;rsquo;m not particularly happy with the solution, but at least for now the responsibility of reacting to transfer changes is in the transaction module&amp;rsquo;s actions. The action can easily calculate the effects of transaction changes on the balances of other accounts and use Vuex&amp;rsquo;s dispatch to send a notification over to the account module to perform the update. Mutations can&amp;rsquo;t dispatch events so it has to be the action that does it.&lt;/p&gt;
+&lt;p&gt;This leaves responsibility for updating the current account&amp;rsquo;s balance with the plugin and the responsibility for updating other account&amp;rsquo;s balances with the transaction module which is ugly. Perhaps the transaction module actions should be responsible for all account balances. Probably the right answer is to extract a separate class/function that the transaction module notifies at the end of each action with the state of the transaction before and after. Then that new class/function is responsible for updating account balances. Will need to prod the code a bit to see if that really can be done…&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Maintaining Invariants with Vuex Mutations</title>
+      <link>https://www.symphonious.net/2017/07/12/moolah-diaries-maintaining-invariants-with-vuex-mutations/</link>
+      <pubDate>Wed, 12 Jul 2017 06:52:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/12/moolah-diaries-maintaining-invariants-with-vuex-mutations/</guid>
+      <description>&lt;p&gt;Previously on the Moolah Diaries I had plans to recalculate the current balance at each transaction as part of any Vuex action that changed a transaction. Tracking balances is a good example of an invariant – at the completion of any atomic change, the balance for a transaction should be the initial balance plus the sum of all transaction amounts &lt;em&gt;prior&lt;/em&gt; to the current transaction.&lt;/p&gt;
+&lt;p&gt;The other invariant around transactions is that they should be sorted in reverse chronological order. To make the order completely deterministic, transactions with the same dates are then sorted by ID. This isn&amp;rsquo;t strictly necessary, but it avoids having transactions jump around unexpectedly.&lt;/p&gt;
+&lt;p&gt;My original plan was to ensure both of these invariants were preserved as part of each Vuex action, but actions aren&amp;rsquo;t the atomic operations in Vuex – mutations are. So we should update balances and adjust sort order as part of any mutation that affects transactions. Since only mutations can change state in Vuex, we can be sure that if our mutations preserve the invariants then they will always hold true. With actions, there&amp;rsquo;s always the risk that something would use mutations directly and break the invariants.&lt;/p&gt;
+&lt;p&gt;So lesson number 1 – in Vuex, it should be mutations that are responsible for maintaining invariants. That&amp;rsquo;s probably not news to anyone who&amp;rsquo;s used Vuex for long.&lt;/p&gt;
+&lt;p&gt;We could take that a step further and verify that the invariants always hold true using a vuex plugin:&lt;/p&gt;
+&lt;pre&gt;const invariantPlugin = store =&amp;gt; {&lt;br /&gt;    if (process.env.NODE_ENV !== &#39;production&#39;) {&lt;br /&gt;        store.subscribe((mutation, state) =&amp;gt; {&lt;br /&gt;            // Verify invariants&lt;br /&gt;        });&lt;br /&gt;    }&lt;br /&gt;};&lt;/pre&gt;
+&lt;p&gt;However, the way vuex recommends testing actions and mutations means registered plugins don&amp;rsquo;t get loaded. Tests that cover views that use the store will most likely stub out the actions since they&amp;rsquo;ll usually make HTTP requests.  So mostly the invariant check will only run during manual testing. That may still be worth it, but I&amp;rsquo;m not entirely sure yet…&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Moolah Diaries – Vuex for Front End State</title>
+      <link>https://www.symphonious.net/2017/07/07/moolah-diaries-vuex-for-front-end-state/</link>
+      <pubDate>Thu, 06 Jul 2017 20:38:35 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/07/moolah-diaries-vuex-for-front-end-state/</guid>
+      <description>&lt;p&gt;Most of the work I&amp;rsquo;ve done on Moolah so far has been on the server side – primarily fairly boring setup work and understanding the best way to use any number of libraries that were new to me sensibly. The most interesting work however has been on the front-end. I&amp;rsquo;ve been using &lt;a href=&#34;https://vuejs.org/&#34;&gt;Vue.js&lt;/a&gt; and &lt;a href=&#34;https://vuetifyjs.com/&#34;&gt;Vuetify&lt;/a&gt; for the UI after &lt;a href=&#34;https://www.symphonious.net/2017/07/04/modernising-our-javascript-vue-js-to-the-rescue/&#34;&gt;Vue&amp;rsquo;s success in the day job&lt;/a&gt;. The Moolah UI has much more data-interdependence between components than what we&amp;rsquo;ve needed at work though so I&amp;rsquo;ve introduced &lt;a href=&#34;https://github.com/vuejs/vuex&#34;&gt;Vuex&lt;/a&gt; to manage the state in a centralised and more managed way.&lt;/p&gt;
+&lt;p&gt;I really quite like the flow – Vue components still own any state related directly to the UI like whether a dialog is shown or hidden etc but all the business model is stored in and managed by the Vuex store. The Vue components dispatch actions which perform computation, make requests to the backend or whatever is required then commit any changes to the store (via mutations). The usual Vue data-binding then kicks in to update the UI to reflect those changes.&lt;/p&gt;
+&lt;p&gt;The big advantage of this is that it naturally pulls business logic out of .vue files, preventing them getting to big. Without Vuex that basically depends on having the discipline to notice when a .vue file is doing too much and then untangling and splitting out the business logic.  Vuex provides a much clearer and more consistent way to delineate business logic from view code because you can&amp;rsquo;t modify state directly from the Vue component and it then becomes natural to split out an action.&lt;/p&gt;
+&lt;p&gt;Vuex&amp;rsquo;s module support also makes it easy to avoid your Vuex store from becoming the big ball of mud that does everything.&lt;/p&gt;
+&lt;p&gt;However, I&amp;rsquo;m still searching for a good, efficient way to calculate and update the current balance for each transaction. The actual calculation is simple enough – the balance for any transaction is the sum of the amount of every transaction before it in the account. Simplistically we could just start from the first transaction and iterate through calculating all the balances in a single O(n) pass. However, recalculating the balance for every transaction on each change is incredibly wasteful and is a big part of why the original version of Moolah takes so long to get started – it&amp;rsquo;s calculating all those balances. Each transaction balance actually only depends on two things, the transaction amount and the balance of the previous transaction. Since most new or changed transactions are at or near the very end of the transaction list, we should be able to avoid recalculating most of the balances.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t think Vue/Vuex&amp;rsquo;s lazy evaluation will be able to avoid doing a lot of extra recalculation, not least of all because the only way to represent this would be a transactionsWithBalances computed view and it would output the entire list of transactions so would recalculate every balance on every change.&lt;/p&gt;
+&lt;p&gt;However, it&amp;rsquo;s reasonably straight forward to build the lazy evaluation manually, but where does that sit in the Vuex system? I&amp;rsquo;m guessing pre-calculated balance is just a property of every transaction in the state and actions take responsibility for updating any balances they might have affected.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m leaning towards having a dedicated ‘updateBalances&amp;rsquo; action that can be triggered at the end of any action that changes transactions and is given the first transaction that requires it&amp;rsquo;s balance recalculated. Since every transaction after that depends on the balance of the one before they&amp;rsquo;ll also need updating.&lt;/p&gt;
+&lt;p&gt;I think that works and am now reminded about how useful it is to write a diary like this as a way to think through issues like this.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Modernising Our JavaScript – Vue.js To The Rescue</title>
+      <link>https://www.symphonious.net/2017/07/04/modernising-our-javascript-vue-js-to-the-rescue/</link>
+      <pubDate>Tue, 04 Jul 2017 03:44:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/07/04/modernising-our-javascript-vue-js-to-the-rescue/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve previously written about &lt;a href=&#34;https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/&#34;&gt;how Angular 2 didn&amp;rsquo;t work out for us&lt;/a&gt;, our second attempt was to use &lt;a href=&#34;https://vuejs.org/&#34;&gt;Vue.js&lt;/a&gt; which has much far more successful. The biggest difference with Angular is that it&amp;rsquo;s a much smaller library. It has far less functionality included in the box but a wide range of plugins to flesh out functionality as needed. That avoided the two big issues we had with Angular 2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build times were faster because there were &lt;em&gt;way&lt;/em&gt; fewer dependencies to install, manage and bundle together. Not using Typescript may have also helped but I never had a clear indication of how much that affected build time.&lt;/li&gt;
+&lt;li&gt;It integrated much more easily with our existing system because it didn&amp;rsquo;t try to do everything. We just kept using the bits of our system that worked well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;rsquo;ve been so happy with how Vue.js fits in for us, we&amp;rsquo;re now in the process of replacing the things we had built in Angular 2 with Vue.js versions.&lt;/p&gt;
+&lt;p&gt;We set out looking for a more modern UI framework primarily because we wanted the data binding functionality they provide. As expected, that&amp;rsquo;s been a very big benefit for any parts of the UI that are even slightly more than simple CRUD. We were using mustache for our templates and the extra power and flexibility of Vue&amp;rsquo;s templating has been a big advantage. There is a risk of making the templates too complex and hard to understand, but that&amp;rsquo;s mitigated by how easy it is to break out separate components that are narrowly focused.&lt;/p&gt;
+&lt;p&gt;In fact, the component model has turned out to be the single biggest advantage of Vue over jquery. We did have some patterns built up around jquery that enabled component like behaviour but they were very primitive compared to what Vue provides. We&amp;rsquo;ve got a growing library of reusable components already that all fit in nicely with the existing look and feel of the UI.&lt;/p&gt;
+&lt;p&gt;The benefit of components is so great that I&amp;rsquo;d use Vue even for very straight-forward UIs where jquery by itself could handle it simply. Vue adds almost no overhead in terms of complexity and makes the delineation of responsibilities between components very clear which leads to often unexpected re-usability. With mixins it&amp;rsquo;s also possible to reuse cross-cutting concerns easily.&lt;/p&gt;
+&lt;p&gt;All those components wind up being built in .vue files which combine HTML, JavaScript and styles for the component into one file. I was quite sceptical of this at first but &lt;a href=&#34;https://vuejs.org/v2/guide/single-file-components.html#What-About-Separation-of-Concerns&#34;&gt;Vue provides a good justification for the decision&lt;/a&gt; and in practice it works really well as long as you are a bit disciplined at splitting things out into separate files if they become at all complex. Typically I try to have the code in the .vue file entirely focused on managing the component state and split out the details of interacting with anything external (e.g. calling server APIs and parsing responses) into helper files.&lt;/p&gt;
+&lt;p&gt;Ultimately, it&amp;rsquo;s the component system that is really bringing us the most value which is a bit of a surprise given we had expected data-binding to be the real powerhouse. And data-binding is great, but it&amp;rsquo;s got nothing on the advantages of a clear component system that&amp;rsquo;s at just the right level of opinionated-ness for our system. We&amp;rsquo;re not only building UIs faster, but the UIs we build are better because any time we spend polishing a component applies everywhere it&amp;rsquo;s used.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m really struggling to think of a case where I wouldn&amp;rsquo;t use Vue now, and if I found one it would likely only be because one of the other similar options (e.g. Angular 2) was a better fit for that case.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Modernising Our JavaScript – Why Angular 2 Didn’t Work</title>
+      <link>https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/</link>
+      <pubDate>Sun, 18 Jun 2017 19:00:51 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/06/19/modernising-our-javascript-why-angular-2-didnt-work/</guid>
+      <description>&lt;p&gt;At LMAX we value simplicity very highly and since most of the UI we need for the exchange is fairly straight forward settings and reports we&amp;rsquo;ve historically kept away from JavaScript frameworks. Instead we&amp;rsquo;ve stuck with jQuery and bootstrap along with some very simple common utilities and patterns we&amp;rsquo;ve built ourselves. Mostly this has worked very well for us.&lt;/p&gt;
+&lt;p&gt;Sometimes though we have more complex UIs where things dynamically change or state is more complex. In those cases things start to breakdown and get very messy. The simplicity of our libraries winds up causing complexity in our code instead of avoiding it. We needed something better.&lt;/p&gt;
+&lt;p&gt;Some side projects had used Angular and a few people were familiar with it so we started out trialling Angular 2.0. While it was much better for those complex cases the framework itself introduced so much complexity and cost it was unpleasant to work with.  Predominately we had two main issues:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Build times were too slow&lt;/li&gt;
+&lt;li&gt;It wasn&amp;rsquo;t well suited for dropping an Angular 2 component into an existing system rather than having everything live in Angular 2 world&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;build-times&#34;&gt;Build Times&lt;/h2&gt;
+&lt;p&gt;This was the most surprising problem – Angular 2 build times were painfully slow. We found we could build all of the java parts of the exchange before npm could even finish installing the dependencies for an Angular 2 project – even with all the dependencies in a local cache and using npm 5&amp;rsquo;s –offline option. We use &lt;a href=&#34;https://buckbuild.com/&#34;&gt;buck&lt;/a&gt; for our build system and it does an excellent job of only building what needs to be changed and caching results so most of the time we could avoid the long npm install step, but it still needs to run often enough that it was a significant drain on the team&amp;rsquo;s productivity.&lt;/p&gt;
+&lt;p&gt;We did evaluate yarn and pnpm but neither were workable in our particular situation. They were both faster at installing dependencies but still far too slow.&lt;/p&gt;
+&lt;p&gt;The lingering question here is whether the npm install was so slow because of the sheer number of dependencies or because something about those dependencies was slow. Anecdotally it seemed like rxjs took forever to install but other issues led us away from angular before we fully understood this.&lt;/p&gt;
+&lt;p&gt;Even when the npm install could be avoided, the actual compile step was still slow enough to be a drain on the team. The projects we were using angular on were quite new with a fairly small amount of code. Running through the development server was fast, but a production mode build was slow.&lt;/p&gt;
+&lt;h2 id=&#34;existing-system-integration&#34;&gt;Existing System Integration&lt;/h2&gt;
+&lt;p&gt;The initial projects we used angular 2 on were completely from scratch so could do everything the angular 2 way. On those projects productivity was excellent and angular 2 was generally a joy to use. When we tried to build onto our existing systems using angular 2 things were much less pleasant.&lt;/p&gt;
+&lt;p&gt;Technically it was possible to build a single component on a page using angular 2 with other parts of the page using our older approach, but doing so felt fairly unnatural. The angular 2 way is significantly different to how we had been working and since angular 2 provides a full-suite of functionality it often felt like we were working against the framework rather than with it. Re-using our existing code within an angular 2 component felt wrong so we were being pushed towards duplicating code that worked perfectly well and we were happy with just to make it fit “the angular 2 way”.&lt;/p&gt;
+&lt;p&gt;If we intended to rewrite all our existing code using angular 2 that would be fine, but we&amp;rsquo;re not doing that. We have a heap of functionality that&amp;rsquo;s already built, working great and will be unlikely to need changes for quite some time. It would be a huge waste of time for us to go back and rewrite everything just to use the shiny new tool.&lt;/p&gt;
+&lt;h2 id=&#34;angular-2-is-still-great&#34;&gt;Angular 2 is Still Great&lt;/h2&gt;
+&lt;p&gt;None of this means that angular 2 has irretrievable faults, it&amp;rsquo;s actually a pretty great tool to develop with. It just happens to shine most if you&amp;rsquo;re all-in with angular 2 and that&amp;rsquo;s never going to be our situation. I strongly suspect that even the build time issues would disappear if we could approach the build differently, but changing large parts of our build system and the development practices that work with it just doesn&amp;rsquo;t make sense when we have other options.&lt;/p&gt;
+&lt;p&gt;I can&amp;rsquo;t see any reason why a project built with angular 2 would need or want to migrate away. Nor would I rule out angular 2 for a new project. It&amp;rsquo;s a pretty great library, provides a ton of functionality that you can just run with and has excellent tooling. Just work out how your build works and if it&amp;rsquo;s going to be too slow early on.&lt;/p&gt;
+&lt;p&gt;For us though, Angular 2 didn&amp;rsquo;t turn out to be the wonderful new world we hoped it would be.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Unit Testing JavaScript Promises with Synchronous Tests</title>
+      <link>https://www.symphonious.net/2017/06/15/unit-testing-javascript-promises-with-synchronous-tests/</link>
+      <pubDate>Wed, 14 Jun 2017 22:33:52 +0000</pubDate>
+      <guid>https://www.symphonious.net/2017/06/15/unit-testing-javascript-promises-with-synchronous-tests/</guid>
+      <description>&lt;p&gt;With Promise/A+ spreading through the world of JavaScript at a rapid pace, there&amp;rsquo;s one little detail that makes them very hard to unit test: any chained actions (via .then()) are only called when the execution stack contains only platform code. That&amp;rsquo;s a good thing in the real world but it makes unit testing much more complex because resolving a promise isn&amp;rsquo;t enough – you also need to empty the execution stack.&lt;/p&gt;
+&lt;p&gt;The first, and best, way to address these challenges is to take advantage of your test runner&amp;rsquo;s asynchronous test support. Mocha for example allows you to return a promise from your test and waits for it to be either resolved to indicate success or rejected to indicate failure. For example:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;it(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;should pass asynchronously&#39;&lt;/span&gt;, &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;new&lt;/span&gt; Promise((resolve, reject) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
+        setTimeout(resolve, &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;100&lt;/span&gt;);
+    })
+});
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This works well when you&amp;rsquo;re testing code that returns the promise to you so you can chain any assertions you need and then return the final promise to the test runner. However, there are often cases where promises are used internally to a component which this approach can&amp;rsquo;t solve. For example, a UI component that periodically makes requests to the server to update the data it displays. &lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://sinonjs.org/&#34;&gt;Sinon.js&lt;/a&gt; makes it easy to stub out the HTTP request using it&amp;rsquo;s fake server and the periodic updates using a fake clock, but if promises are used sinon&amp;rsquo;s clock.tick() isn&amp;rsquo;t enough to trigger chained actions. They&amp;rsquo;ll only execute after your test method returns and since there&amp;rsquo;s no reason, and often no way, for the UI component to pass a promise for it&amp;rsquo;s updates out of the component we can&amp;rsquo;t just depend on the test runner. That&amp;rsquo;s where &lt;a href=&#34;https://github.com/taylorhakes/promise-mock&#34;&gt;promise-mock&lt;/a&gt; comes in. It replaces the normal Promise implementation with one that allows your unit test to trigger callbacks at any point.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s avoid all the clock and HTTP stubbing by testing this very simple example of code using a Promise internally:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;let&lt;/span&gt; value &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt;;
+module.exports &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; {
+    setValueViaImmediatePromise&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt; (newValue) {
+        &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;new&lt;/span&gt; Promise((resolve, reject) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; resolve(newValue))
+                .then(result &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; value &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; result);
+    },
+&lt;pre&gt;&lt;code&gt;getValue&amp;lt;span style=&amp;quot;color: #333333;&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt; () {
+    &amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;return&amp;lt;/span&amp;gt; value;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;};
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Our test is then:&lt;/p&gt;
+&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
+  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;const&lt;/span&gt; asyncThing &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;./asyncThing&#39;&lt;/span&gt;);
+&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;const&lt;/span&gt; PromiseMock &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;promise-mock&#39;&lt;/span&gt;);
+&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;const&lt;/span&gt; expect &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;expect.js&#39;&lt;/span&gt;);
+describe.only(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;with promise-mock&#39;&lt;/span&gt;, &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt;() {
+    beforeEach(&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt;() {
+        PromiseMock.install();
+    });
+&lt;pre&gt;&lt;code&gt;afterEach(&amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt;() {
+    PromiseMock.uninstall();
+});
+
+it(&amp;lt;span style=&amp;quot;background-color: #fff0f0;&amp;quot;&amp;gt;&#39;should set value asynchronously and keep internals to itself&#39;&amp;lt;/span&amp;gt;, &amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt;() {
+    asyncThing.setValueViaImmediatePromise(&amp;lt;span style=&amp;quot;color: #0000dd; font-weight: bold;&amp;quot;&amp;gt;3&amp;lt;/span&amp;gt;);
+    Promise.runAll();
+    expect(asyncThing.getValue()).to.be(&amp;lt;span style=&amp;quot;color: #0000dd; font-weight: bold;&amp;quot;&amp;gt;3&amp;lt;/span&amp;gt;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;});
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We have a beforeEach and afterEach to install and uninstall the mocked promise, then when we want the promise callbacks to execute in our test, we simply call Promise.runAll().  In most cases, promise-mock combined with sinon&amp;rsquo;s fake HTTP server and stub clock is enough to let us write easy-to-follow, synchronous tests that cover asynchronous behaviour.&lt;/p&gt;
+&lt;p&gt;Keeping our tests synchronous isn&amp;rsquo;t just about making them easy to read though – it also means we&amp;rsquo;re in control of how asynchronous callbacks interleave. So we can write tests to check what happens if action A finishes before action B &lt;em&gt;and&lt;/em&gt; tests for what happens if it&amp;rsquo;s the other way around. Lots and lots of bugs hide in those areas.&lt;/p&gt;
+&lt;h3 id=&#34;promisemockinstall-not-working&#34;&gt;PromiseMock.install() Not Working&lt;/h3&gt;
+&lt;p&gt;All that sounds great, but I spent a long time trying to work out why PromiseMock.install() didn&amp;rsquo;t ever seem to change the Promise implementation. I could see that window.Promise === PromiseMock was true, but without the window prefix I was still getting the original promise implementation (Promise !== PromiseMock).&lt;/p&gt;
+&lt;p&gt;It turns out, that&amp;rsquo;s because we were using babel&amp;rsquo;s transform-runtime plugin which was very helpfully rewriting references to Promise to use babel&amp;rsquo;s polyfill version without the polyfill needing to pollute the global namespace. The transform-runtime plugin has an option to disable this:&lt;/p&gt;
+&lt;pre&gt;[&#39;transform-runtime&#39;, {polyfill: false}]&lt;/pre&gt;
+&lt;p&gt;With that promise-mock worked as expected.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Safely Encoding Any String Into JavaScript Code Using JavaScript</title>
+      <link>https://www.symphonious.net/2014/09/26/safely-encoding-any-string-into-javascript-code-using-javascript/</link>
+      <pubDate>Fri, 26 Sep 2014 01:21:26 +0000</pubDate>
+      <guid>https://www.symphonious.net/2014/09/26/safely-encoding-any-string-into-javascript-code-using-javascript/</guid>
+      <description>&lt;p&gt;When generating a JavaScript file dynamically it&amp;rsquo;s not uncommon to have to embed an arbitrary string into the resulting code so it can be operated on. For example:&lt;/p&gt;
+&lt;pre&gt;function createCode(inputValue) {&lt;br /&gt;  return &#34;function getValue() { return &#39;&#34; + inputValue + &#34;&#39;; }&#34;&lt;br /&gt;}&lt;/pre&gt;
+&lt;p&gt;This simplistic version works great for simple strings:&lt;/p&gt;
+&lt;pre&gt;createCode(&#34;Hello world!&#34;);&lt;br /&gt;// Gives: function getValue() { return &#39;Hello world!&#39;; }&lt;/pre&gt;
+&lt;p&gt;But breaks as soon as inputValue contains a special character, e.g.&lt;/p&gt;
+&lt;pre&gt;createCode(&#34;Hello &#39;quotes&#39;!&#34;);&lt;br /&gt;// Gives: function getValue() { return &#39;Hello &#39;quotes&#39; !&#39;; }&lt;/pre&gt;
+&lt;p&gt;You can escape single quotes but it still breaks if the input contains a \ character. The easiest way to fully escape the string is to use JSON.stringify:&lt;/p&gt;
+&lt;pre&gt;function createCode(inputValue) {&lt;br /&gt;  return &#34;function getValue() { return &#34; + &lt;br /&gt;           JSON.stringify(String(inputValue)) + &lt;br /&gt;         &#34;; }&#34;&lt;br /&gt;}&lt;/pre&gt;
+&lt;p&gt;Note that JSON.stringify even adds the quotes for us. This works because a JSON string is a JavaScript string, so if you pass a string to JSON.stringify it will return a perfectly valid JavaScript string complete with quotes that is guaranteed to evaluate back to the original string.&lt;/p&gt;
+&lt;p&gt;The one catch is that JSON.stringify will happily JavaScript objects and numbers, not just strings, so we need to force the value to be a string first – hence, String(inputValue).&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Benefits Of Open Sourcing Java For Developers | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there&rsquo;s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what&rsquo;s the benefit?">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/05/11/the-benefits-of-open-sourcing-java-for-developers/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/05/11/the-benefits-of-open-sourcing-java-for-developers/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Benefits Of Open Sourcing Java For Developers">
+	<meta property="og:description" content="There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there’s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what’s the benefit?">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-05-11T01:51:35+00:00">
+		<meta property="article:modified_time" content="2007-05-11T01:51:35+00:00">
+
+	<meta itemprop="name" content="The Benefits Of Open Sourcing Java For Developers">
+	<meta itemprop="description" content="There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there’s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what’s the benefit?">
+	<meta itemprop="datePublished" content="2007-05-11T01:51:35+00:00">
+	<meta itemprop="dateModified" content="2007-05-11T01:51:35+00:00">
+	<meta itemprop="wordCount" content="962">
+	<meta itemprop="keywords" content="Ephox,Java,JavaOne">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Benefits Of Open Sourcing Java For Developers">
+	<meta name="twitter:description" content="There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there’s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what’s the benefit?">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Benefits Of Open Sourcing Java For Developers</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Benefits Of Open Sourcing Java For Developers</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-05-11T01:51:35Z">May 11, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>There was an interesting panel discussion at JavaOne today about the open sourcing of Java. The panel was made up of folks developing open source JVMs and a representative from Sun. Compatibility is obviously a common theme to these discussions and there were a number of mentions to just how bug for bug compatible the alternative JVMs are trying to be. It occurs to me though that if all the implementations wind up behaving in precisely the same way, there&rsquo;s not really any point to having multiple implementations. Yes multiple licenses are nice for particular niches but for the average Java developer, what&rsquo;s the benefit?</p>
+<p>A reporter came up to me after the session (apparently I&rsquo;d made some good comments) and asked about what benefits I saw. Her first question was about how useful having the source code would be. The trouble is, the source code for the standard Java class library has been available for as long as I can remember and open sourcing Java doesn&rsquo;t change the legality of copying and pasting code (unless your product is GPL) so there&rsquo;s no real advantage in source access. There are a few sun.* classes that now have source code available and didn&rsquo;t previously which can be useful but not overly so.</p>
+<p>The other advantage is that was mentioned by the panel is that you can fix bugs for clients *now* instead of having to wait for the next release of Java. Of course, for the average developer this isn&rsquo;t really an option either because it would involve deploying the fixed JVM to all their customers. It might be feasible for people running controlled servers that just run their apps but it&rsquo;s unlikely to be practical very often. You could however add a workaround to your application for now and contribute a fix back to the JDK for the future which is likely to happen a fair bit.</p>
+<p>One interesting aspect of contributing fixes back is that in a lot of ways, there is an incentive for companies not to contribute the fix back – they now have one less bug than their competitors. If the fix requires significant maintenance contributing it back is a pretty clear win, but many work arounds don&rsquo;t have any real need for maintenance. They might be in areas of code that are very infrequently changed, they might be modular enough to be quite separate etc.  Ephox products have a lot of work around for bugs in various browsers, JREs and OSs, many of which receive so little attention and maintenance that we can be surprised to find them years later, still working perfectly and still working around an unfixed bug (we do report these to Sun, but few people run into them so they tend to be low priority). The other consideration is that even if future versions of the JRE include the fix, you still can&rsquo;t remove the work around because the older JVMs are still in use by various clients, so you pay the maintenance price anyway.</p>
+<p>There are other business considerations involved with the decision to contribute to the JDK as well – you have to sign the copyright on the code over to Sun which can be a sticking point with a lot of companies. After all, why should Sun get to sell the code that you paid to have developed? (And Sun does still sell the code, they have a bunch of different licenses for the Java code including commercial ones, not just the GPL). You also have to go to the expense of reviewing the various legal agreements for contributors and going through the patch review process etc. It&rsquo;s not just a simple matter of putting the patch on your blog and it being magically part of the JDK.</p>
+<p>It will be really important for the OpenJDK team to work hard to limit these barriers to contribution if they want to attract contributions. I&rsquo;m certain it&rsquo;s something that they&rsquo;re already thinking about, but how it pans out with the lawyers will be interesting to see.</p>
+<p>The other potential benefit that an open source JVM may provide is the ability to port it to other OSs and architectures. People are already suggesting that this will mean OS X will always have up to date Java just by recompiling. Unfortunately, it&rsquo;s just not that simple, you first have to port the JITC to output PPC code instead of x86 which is a huge job, then you have to rewrite the AWT toolkit implementation to work with Quartz. Then you have to write a plugin that works with OS X browsers and deal with all the Cocoa vs Java threading issues. Then you have a working JVM, but still no native L&amp;F, no tie ins to the OS (Apple provide some reasonably simple but very powerful features like being able to put the menubar at the top of the screen and handle dropping files onto the application etc). It&rsquo;s good that it&rsquo;s possible to port, but it won&rsquo;t happen soon and it won&rsquo;t be easy. Judging by the number of Apple laptops here at JavaOne there may just be enough interest to get it done though. BSD is also a likely candidate for a porting project and that should be a lot simpler.</p>
+<p>Beyond that, Java developers aren&rsquo;t going to see much difference except possibly that they have to stop making assumptions that if it works with Sun&rsquo;s JRE it will work anywhere. Of course, that&rsquo;s never been true anyway, particularly from a performance perspective, as people who have brought apps over to OS X have found out. It&rsquo;s a huge change for the Java community, but one that only a very, very small subset of the community is going to be affected by.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

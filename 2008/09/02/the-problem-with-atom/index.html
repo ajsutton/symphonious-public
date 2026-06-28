@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Problem With Atom | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I’ve always liked the Atom spec. It’s neat and tidy with strict rules about what’s valid and what’s not with all those rough corners and incompatibilities of RSS sorted out (well, mostly). If I run into one of the silly sites that offer both RSS and Atom I pick Atom just because it feels right even though both would work perfectly well for me. So it came as quite a surprise to me to discover a major weakness in the Atom spec – it’s a right pain to generate. Let me explain…">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/09/02/the-problem-with-atom/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/09/02/the-problem-with-atom/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Problem With Atom">
+	<meta property="og:description" content="I’ve always liked the Atom spec. It’s neat and tidy with strict rules about what’s valid and what’s not with all those rough corners and incompatibilities of RSS sorted out (well, mostly). If I run into one of the silly sites that offer both RSS and Atom I pick Atom just because it feels right even though both would work perfectly well for me. So it came as quite a surprise to me to discover a major weakness in the Atom spec – it’s a right pain to generate. Let me explain…">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-09-01T20:09:21+00:00">
+		<meta property="article:modified_time" content="2008-09-01T20:09:21+00:00">
+
+	<meta itemprop="name" content="The Problem With Atom">
+	<meta itemprop="description" content="I’ve always liked the Atom spec. It’s neat and tidy with strict rules about what’s valid and what’s not with all those rough corners and incompatibilities of RSS sorted out (well, mostly). If I run into one of the silly sites that offer both RSS and Atom I pick Atom just because it feels right even though both would work perfectly well for me. So it came as quite a surprise to me to discover a major weakness in the Atom spec – it’s a right pain to generate. Let me explain…">
+	<meta itemprop="datePublished" content="2008-09-01T20:09:21+00:00">
+	<meta itemprop="dateModified" content="2008-09-01T20:09:21+00:00">
+	<meta itemprop="wordCount" content="536">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Problem With Atom">
+	<meta name="twitter:description" content="I’ve always liked the Atom spec. It’s neat and tidy with strict rules about what’s valid and what’s not with all those rough corners and incompatibilities of RSS sorted out (well, mostly). If I run into one of the silly sites that offer both RSS and Atom I pick Atom just because it feels right even though both would work perfectly well for me. So it came as quite a surprise to me to discover a major weakness in the Atom spec – it’s a right pain to generate. Let me explain…">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Problem With Atom</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Problem With Atom</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-09-01T20:09:21Z">September 1, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I’ve always liked the Atom spec. It’s neat and tidy with strict rules about what’s valid and what’s not with all those rough corners and incompatibilities of RSS sorted out (well, mostly). If I run into one of the silly sites that offer both RSS and Atom I pick Atom just because it feels right even though both would work perfectly well for me. So it came as quite a surprise to me to discover a major weakness in the Atom spec – it’s a right pain to generate. Let me explain…</p>
+<p>For various reasons, I’ve spent a fair bit of time over the last few months converting <a href="http://liveworks.ephox.com/">LiveWorks!</a> from being hosted on WordPress to being a “real” website running on Lotus Web Content Management (IWWCM – yes I know the acronym doesn’t match the current name).</p>
+<p>Anyway, one of the things that’s baked into WordPress because of it’s blogging culture is the concepts of RSS/Atom feeds. IWWCM comes from an entirely different world so the concept of feeds is quite foreign to it. Fortunately, it’s a very flexible system and has some simple tools you can throw at the problem. All you do is use a “menu”, which allows you select content from the repository according to certain criteria and order them any way you want. In this case, we simply order by published date. Menus in IWWCM have a head, a bit that’s repeated for each item and a footer. So you throw all the XML from before the first item in the head, a template for each item in the repeated bit and close off any remaining tags in the footer.  Simple enough.</p>
+<p>The problem is, Atom doesn’t follow that structure. Atom includes one key piece of the content items below in the head: the most recent update time. In order to generate that head section of the XML, you have to have the meta data about the most recent item in the system. In most cases that’s fine and having that element makes parsing an awful lot simpler, but it’s a surprisingly annoying requirement. The IWWCM menu structure, simply can’t handle this and so can’t generate a valid Atom feed.</p>
+<p>RSS on the other hand wasn’t as nicely designed to make detecting changes simple. It doesn’t have to have that updated element in the head section and so it’s perfectly suited to the IWWCM menu structure. So, LiveWorks! has now switched over to RSS 2.0 and apart from an implausible date due to some weird leaps around time zones and an article publishing a day early, it’s feed validates.</p>
+<p>This isn’t the first time I’ve cursed Atom for this either – at least for me, it just seems so natural to follow the simple iterator pattern that IWWCM’s menus use so I’ve run into this a few times. Mostly it just takes an extra if statement or similar to special case the first item but every so often it requires some major reworking and in cases like this, it’s just about impossible to do.</p>
+<p>That’s trade offs for you though. If that updated element wasn’t required, there’s a whole bunch of cool stuff on the consumer side that wouldn’t work. Oh well.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

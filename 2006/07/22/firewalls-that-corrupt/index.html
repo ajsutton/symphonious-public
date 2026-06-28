@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Firewalls That Corrupt | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A few days ago I did a clean reinstall of my Windows machine to clean up the mess of partitions and OS boot menus that had developed from trying out different OS&rsquo;s. While reinstalling drivers, I discovered that my computer came with Norton Internet Security so I figured I may as well install it1, I also discovered an nVidia firewall tool and installed that too. Then I started downloading programs to install – firefox, Java etc. Everything I downloaded was corrupt. I disabled both firewalls and everything was still getting corrupted, even though I could download them on my Mac just fine. Even JavaScript files and applets were being corrupted while downloading.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/07/22/firewalls-that-corrupt/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/07/22/firewalls-that-corrupt/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Firewalls That Corrupt">
+	<meta property="og:description" content="A few days ago I did a clean reinstall of my Windows machine to clean up the mess of partitions and OS boot menus that had developed from trying out different OS’s. While reinstalling drivers, I discovered that my computer came with Norton Internet Security so I figured I may as well install it1, I also discovered an nVidia firewall tool and installed that too. Then I started downloading programs to install – firefox, Java etc. Everything I downloaded was corrupt. I disabled both firewalls and everything was still getting corrupted, even though I could download them on my Mac just fine. Even JavaScript files and applets were being corrupted while downloading.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-07-22T01:44:41+00:00">
+		<meta property="article:modified_time" content="2006-07-22T01:44:41+00:00">
+
+	<meta itemprop="name" content="Firewalls That Corrupt">
+	<meta itemprop="description" content="A few days ago I did a clean reinstall of my Windows machine to clean up the mess of partitions and OS boot menus that had developed from trying out different OS’s. While reinstalling drivers, I discovered that my computer came with Norton Internet Security so I figured I may as well install it1, I also discovered an nVidia firewall tool and installed that too. Then I started downloading programs to install – firefox, Java etc. Everything I downloaded was corrupt. I disabled both firewalls and everything was still getting corrupted, even though I could download them on my Mac just fine. Even JavaScript files and applets were being corrupted while downloading.">
+	<meta itemprop="datePublished" content="2006-07-22T01:44:41+00:00">
+	<meta itemprop="dateModified" content="2006-07-22T01:44:41+00:00">
+	<meta itemprop="wordCount" content="322">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Firewalls That Corrupt">
+	<meta name="twitter:description" content="A few days ago I did a clean reinstall of my Windows machine to clean up the mess of partitions and OS boot menus that had developed from trying out different OS’s. While reinstalling drivers, I discovered that my computer came with Norton Internet Security so I figured I may as well install it1, I also discovered an nVidia firewall tool and installed that too. Then I started downloading programs to install – firefox, Java etc. Everything I downloaded was corrupt. I disabled both firewalls and everything was still getting corrupted, even though I could download them on my Mac just fine. Even JavaScript files and applets were being corrupted while downloading.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Firewalls That Corrupt</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Firewalls That Corrupt</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-07-22T01:44:41Z">July 22, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>A few days ago I did a clean reinstall of my Windows machine to clean up the mess of partitions and OS boot menus that had developed from trying out different OS&rsquo;s. While reinstalling drivers, I discovered that my computer came with Norton Internet Security so I figured I may as well install it<a id="footlink1" class="footnote" name="footlink1" href="#footnote1">1</a>, I also discovered an nVidia firewall tool and installed that too. Then I started downloading programs to install – firefox, Java etc. Everything I downloaded was corrupt. I disabled both firewalls and everything was still getting corrupted, even though I could download them on my Mac just fine. Even JavaScript files and applets were being corrupted while downloading.</p>
+<p>Eventually, I uninstalled both the nVidia firewall tool and Norton Internet Security and suddenly all my downloads worked fine. Now I can kind of understand problems arising from having two internet security apps filtering and messing with downloads at the same time, but I can&rsquo;t understand why they would still cause problems when they were supposed to be disabled. If you&rsquo;re going to mess with my downloads there are some key things you need to do:</p>
+<ol>
+<li>Tell me that you&rsquo;re changing the contents of my download. Don&rsquo;t do this through a pop-up dialog, that will drive me nuts – a task bar icon would do.</li>
+<li>Give me the option to disable it temporarily or permanently and actually disable.</li>
+<li>Give me a way to undo the changes you made to my downloads without having to redownload them. It&rsquo;s really annoying to download 150Mb of JDK and Netbeans just to discover it&rsquo;s corrupt and then have to download it all again.</li>
+</ol>
+<p>Better yet, just don&rsquo;t mess with my data. If there&rsquo;s a security issue tell me about it and let me choose what to do, otherwise get out of the way.</p>
+<p class="footnote">
+  <a id="footnote1" name="footnote1" href="#footlink1">1</a> &#8211; I do all my web browsing, email etc on my Mac so internet security on my PC&#160;isn't a concern<a href="#footlink1">&#8617;</a>
+</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Good Deployment Practices Pay Off | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A couple of years back I went on a crusade against manual deployment of pretty much everything in Ephox. It was originally driven by a desire to “dog food” our products so we needed to automatically deploy each nightly build to our internal systems. From there it went out to automatic releases (still problematic due to a dodgy FTP server at our hosting provider) and got a fancy webapp front end that let you pick which version to deploy.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/08/22/good-deployment-practices-pay-off/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/08/22/good-deployment-practices-pay-off/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Good Deployment Practices Pay Off">
+	<meta property="og:description" content="A couple of years back I went on a crusade against manual deployment of pretty much everything in Ephox. It was originally driven by a desire to “dog food” our products so we needed to automatically deploy each nightly build to our internal systems. From there it went out to automatic releases (still problematic due to a dodgy FTP server at our hosting provider) and got a fancy webapp front end that let you pick which version to deploy.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-08-22T10:09:49+00:00">
+		<meta property="article:modified_time" content="2008-08-22T10:09:49+00:00">
+
+	<meta itemprop="name" content="Good Deployment Practices Pay Off">
+	<meta itemprop="description" content="A couple of years back I went on a crusade against manual deployment of pretty much everything in Ephox. It was originally driven by a desire to “dog food” our products so we needed to automatically deploy each nightly build to our internal systems. From there it went out to automatic releases (still problematic due to a dodgy FTP server at our hosting provider) and got a fancy webapp front end that let you pick which version to deploy.">
+	<meta itemprop="datePublished" content="2008-08-22T10:09:49+00:00">
+	<meta itemprop="dateModified" content="2008-08-22T10:09:49+00:00">
+	<meta itemprop="wordCount" content="281">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Good Deployment Practices Pay Off">
+	<meta name="twitter:description" content="A couple of years back I went on a crusade against manual deployment of pretty much everything in Ephox. It was originally driven by a desire to “dog food” our products so we needed to automatically deploy each nightly build to our internal systems. From there it went out to automatic releases (still problematic due to a dodgy FTP server at our hosting provider) and got a fancy webapp front end that let you pick which version to deploy.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Good Deployment Practices Pay Off</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Good Deployment Practices Pay Off</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-08-22T10:09:49Z">August 22, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>A couple of years back I went on a crusade against manual deployment of pretty much everything in Ephox. It was originally driven by a desire to “dog food” our products so we needed to automatically deploy each nightly build to our internal systems. From there it went out to automatic releases (still problematic due to a dodgy FTP server at our hosting provider) and got a fancy webapp front end that let you pick which version to deploy.</p>
+<p>It’s really paid off by giving us up to date, real world feedback on the quality of our products and by saving us a lot of time in deployment but every so often it pays off big time by letting us roll back to a working version.</p>
+<p>We have a new product coming out early next year which we’re already using on our intranet. The team working on it added in a really important initial configuration step today which will make deploying it much easier for our clients – great step forward. Except of course that our intranet is on a variant of the architecture for a variety of technical and historical reasons and that initial configuration step just doesn’t apply there. Thus, our entire intranet was suddenly replaced by a “Welcome to the intranet, please configure me” page which couldn’t actually configure anything and wouldn’t go away. Simple mistake to make and it turns out easy to fix, but it was really nice to just push a big red button (literally) and have a working version automatically deployed and everything go back to normal.</p>
+<p>It’s days like these I think I’m starting to get the hang of this sysadmin thing… :)</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

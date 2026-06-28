@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Accessibility on Symphonious</title>
+    <link>https://www.symphonious.net/categories/accessibility/</link>
+    <description>Recent content in Accessibility on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Mon, 20 Dec 2010 11:44:30 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/accessibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What’s the Point of Browser Colour Settings?</title>
+      <link>https://www.symphonious.net/2010/12/20/whats-the-point-of-browser-colour-settings/</link>
+      <pubDate>Mon, 20 Dec 2010 11:44:30 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/12/20/whats-the-point-of-browser-colour-settings/</guid>
+      <description>&lt;p&gt;Many browsers include user preferences to select preferred colours for text, backgrounds and links. This is intended as an accessibility feature so that people with limited vision, dyslexia or other disabilities can choose a colour scheme that makes it easier for them to read web pages. In theory it’s a great idea. In practice however it seems to be nearly useless.&lt;/p&gt;
+&lt;p&gt;There are two “modes” these colour preferences can be used in:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;As preferences that web sites can override.&lt;/li&gt;
+&lt;li&gt;As forced settings, where website specified colours and background images are completely ignored.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;preference-mode&#34;&gt;Preference Mode&lt;/h2&gt;
+&lt;p&gt;In the first case, there are a vast number of sites which become unusable because they specify a specific background colour without also specifying a foreground colour. So if you happen to set your preferences to have light coloured text on a black background, then try to log into Google you get:&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; alt=&#34;Screenshot: Google login with light blue text on a light blue background.&#34; height=&#34;205&#34; width=&#34;289&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.14.38_7085508824482788683.png&#34; /&gt; 
+&lt;p&gt;Choosing white text on a black background would make half the text on the internet disappear.&lt;/p&gt;
+&lt;p&gt;Clearly this is poorly coded websites causing accessibility programs and they should get with the program and specify foreground and background colours in pairs. Which of course makes that dialog box look like:&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; alt=&#34;Screenshot: Google login with black text on light blue background.&#34; height=&#34;209&#34; width=&#34;290&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.17.25_3272472547583060649.png&#34; /&gt; 
+&lt;p&gt;Much better. Except now there is no sign that I ever changed my browser preferences rendering them completely useless. So now designers have a choice between respecting browser preferences or largely designing a black and white site.&lt;/p&gt;
+&lt;p&gt;The net result is that changing your browser colour preferences will have no effect on well coded sites and break a large number of sites. So why bother?&lt;/p&gt;
+&lt;h2 id=&#34;forced-mode&#34;&gt;Forced Mode&lt;/h2&gt;
+&lt;p&gt;So we’re left with forcing our preferred colours on web sites. This actually gives us high contrast and is most likely very useful for people with limited visibility. However, for people with dyslexia who wanted more readable colours&lt;a href=&#34;#footnote1:1292840774264&#34;&gt;1&lt;/a&gt;{#footlink1:1292840774264.footnote} rather than just high contrast now tend to struggle because so much visual context is lost from the page. Sure, on a well coded site all the information is there, but different background colours is a really useful indicator for the various sections. That extra context and readability is now lost. That’s a disaster for someone with good vision who was trying to make the page more readable.&lt;/p&gt;
+&lt;p&gt;Compare the very well coded BBC website with preferred colours vs with forced colours.&lt;/p&gt;
+&lt;figure&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;Background colours on the BBC website make the sections on the page easier to distinguish.&#34; height=&#34;584&#34; width=&#34;986&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.27.52_4614989502413934317.png&#34; /&gt; &lt;figcaption&gt;BBC website with preferred colours. Note the colour preferences make no difference.&lt;/figcaption&gt; &lt;/figure&gt; 
+&lt;figure&gt;&lt;img loading=&#34;lazy&#34; alt=&#34;Without the background colours sections are much harder to distinguish&#34; height=&#34;577&#34; width=&#34;984&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.27.32_7374171245263605621.png&#34; /&gt; &lt;figcaption&gt;BBC website with forced colours. Preferred colours are now visible but decerning the boundaries of sections is much harder due to the lack of differentiating colours.&lt;/figcaption&gt; &lt;/figure&gt; 
+&lt;p&gt;It’s important to note that the BBC website is actually quite well coded – all the information is still available when you force the preferred colours, the designers simply have a significantly reduced ability to provide context and delineation, so inevitably the page becomes harder to read.&lt;/p&gt;
+&lt;h2 id=&#34;what-to-do-about-it&#34;&gt;What to do About it?&lt;/h2&gt;
+&lt;p&gt;Frankly, I have very little idea. The never properly implemented and now deprecated CSS system colours would have helped a lot in some cases. Design heavy websites would have still wanted their own colour set but web applications could have at least used them. Perhaps some way to specify a colour along with a fallback system colour could have worked. Then in the forced colour mode, the system colours would be used.&lt;/p&gt;
+&lt;p&gt;Beyond that it would be really nice if browsers were smarter about the options they provide. Instead of just a default colour setting, have a minimum contrast setting – the browser automatically increases the contrast between background and foreground colours to a specified point. Then you could combine that with a preference that text is always blue – if the website specifies black text on a white background it comes out blue text on a white background. If it’s white on black then it comes out as blue on suitably contrasting gray.&lt;/p&gt;
+&lt;p&gt;I don’t doubt that there are huge challenges here and I certainly can’t suggest the answers, but it seems like it’s about time we started putting pressure on user agents to do more to support accessibility rather than expecting website designers to do the impossible and create great designs that work with such limited accessibility tools.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1292840774264&#34; id=&#34;footnote1:1292840774264&#34;&gt;1&lt;/a&gt; &amp;#8211; blue on white is actually much more readable than black on white &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1292840774264&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>aria-labelledby vs aria-label</title>
+      <link>https://www.symphonious.net/2010/12/07/aria-labelledby-vs-aria-label/</link>
+      <pubDate>Tue, 07 Dec 2010 17:59:28 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/12/07/aria-labelledby-vs-aria-label/</guid>
+      <description>&lt;p&gt;In ARIA, there are two ways that you can attach a label to an element, &lt;a href=&#34;http://www.w3.org/TR/wai-aria/states_and_properties#aria-label&#34;&gt;aria-label&lt;/a&gt; and &lt;a href=&#34;http://www.w3.org/TR/wai-aria/states_and_properties#aria-labelledby&#34;&gt;aria-labelledby&lt;/a&gt;. In theory, you should use aria-labelledby if the text is visually on-screen somewhere and this form is preferable. You should only use aria-label when it’s not possible to have the label visible on screen. This makes a lot of sense because generally sighted users like to be able to see the label as well and it prevents the visual and non-visual cues from getting out of sync.&lt;/p&gt;
+&lt;p&gt;However, with current support, you should &lt;em&gt;always&lt;/em&gt; use aria-labelledby, even if you need the label to be hidden. While at least JAWS 12 and VoiceOver both read the aria-label as expected, it turns out that VoiceOver doesn’t correctly read the hierarchy if aria-label is in use. For example:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p id=&#34;group1&#34;&amp;#62;Outer group&amp;#60;/p&amp;#62;
+&amp;#60;p id=&#34;item1&#34;&amp;#62;First item&amp;#60;/p&amp;#62;
+&amp;#60;div role=&#34;group&#34; aria-labelledby=&#34;group1&#34;&amp;#62;
+&amp;#60;a href=&#34;javascript:&#34; role=&#34;button&#34; aria-labelledby=&#34;item1&#34;&amp;#62;Item Content&amp;#60;/a&amp;#62;
+&amp;#60;/div&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;everything here is using aria-labelledby and VoiceOver will read the button as “First item Outer group button”. In other words, the button label, the group label and then the type of object.&lt;/p&gt;
+&lt;p&gt;However, if you change any of the elements to use aria-label, for example:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;p id=&#34;item1&#34;&amp;#62;First item&amp;#60;/p&amp;#62;
+&amp;#60;div role=&#34;group&#34; aria-label=&#34;Outer group&#34;&amp;#62;
+&amp;#60;a href=&#34;javascript:&#34; role=&#34;button&#34; aria-labelledby=&#34;item1&#34;&amp;#62;Item Content&amp;#60;/a&amp;#62;
+&amp;#60;/div&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;VoiceOver will now read the button as simple “First item button”. It doesn’t seem to matter which item uses aria-label, if it’s anywhere in the hierarchy, only the label for the button itself will be read out.&lt;/p&gt;
+&lt;div class=&#34;update&#34;&gt;
+  &lt;h2&gt;
+    Update
+  &lt;/h2&gt;
+  &lt;p&gt;
+    With JAWS on IE8 (and probably earlier versions) if you use aria-label instead of labelledby, it will read the text content of the item followed by the label (with no hierarchy), though intermittently it seems to omit the content. This creates a particularly bad experience if you’re labelled something like a DIV which has a lot of text content.
+  &lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Re: Tricks for ARIA on the iPad/iOS</title>
+      <link>https://www.symphonious.net/2010/12/02/re-tricks-for-aria-on-the-ipad-ios/</link>
+      <pubDate>Thu, 02 Dec 2010 09:43:12 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/12/02/re-tricks-for-aria-on-the-ipad-ios/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.codinginparadise.org/2010/12/tricks-for-aria-on-ipadios.html&#34;&gt;Brad Neuberg has a post up about ARIA on the iPad&lt;/a&gt; and some of the tricks he’s used to bend it to his will. Blogger won’t accept my OpenID to comment on the post for some reason so I’ll add some thoughts here.&lt;/p&gt;
+&lt;h2 id=&#34;tabindex&#34;&gt;tabindex&lt;/h2&gt;
+&lt;p&gt;As Brad notes, you can set tabindex=”-1” to prevent an item in HTML from appearing in the tab order. Also as Brad notes, this won’t stop the VoiceOver cursor from moving to that element. It’s important to remember that the VoiceOver cursor is not linked to the keyboard focus, it’s linked to what is being read out to the user. This can be very confusing but it’s an important concept, allowing you to review parts of a document without losing the current caret position where you want to continue editing. Most screen readers seem to have this distinction between the text input focus and the screen reader cursor.&lt;/p&gt;
+&lt;p&gt;tabindex=”-1” also won’t prevent the user from moving keyboard focus to an element by means other than the tab key. For example, clicking on a textarea will move the keyboard focus to it even if it has a tabindex of -1.&lt;/p&gt;
+&lt;h2 id=&#34;aria-hidden&#34;&gt;aria-hidden&lt;/h2&gt;
+&lt;p&gt;As a work-around to try and prevent VoiceOver from focusing an element, Brad then added aria-hidden=”true”. To his credit, Brad notes this isn’t a good situation and indeed it’s not. Now we have an element which is available to sighted users, but completely hidden to the screen reader. This is almost never what you want.&lt;/p&gt;
+&lt;p&gt;If something shouldn’t be a landmark, it probably shouldn’t be a heading element and if it shouldn’t be read by a screen reader it should generally be either not there at all or &lt;em&gt;both&lt;/em&gt; aria-hidden=”true” &lt;em&gt;and&lt;/em&gt; display:none; That way the element disappears for everyone, not just those using a screen reader.&lt;/p&gt;
+&lt;p&gt;I’m not quite sure what Brad was trying to achieve so I can’t really suggest the right workaround for his use case but it sounds like there may be a need to go back and get the basic semantics of the HTML right.&lt;/p&gt;
+&lt;h2 id=&#34;aria-labelledby&#34;&gt;aria-labelledby&lt;/h2&gt;
+&lt;p&gt;I’m not entirely sure what Brad’s aiming for here again but it’s a bit unusual to try and add extra audible information to a heading which isn’t available to sighted users. Normally labelledby would be used for form elements to link them with the text that describes what they’re for. My first thought here is to adjust the HTML to make it more semantic rather than trying to fix it up with ARIA. For the example HTML:&lt;/p&gt;
+&lt;pre&gt;&amp;#60;div aria-labelledby=&#34;testH1 testH2 testDIV1&#34;&amp;#62;
+&amp;#60;h1 id=&#34;testH1&#34; tabindex=&#34;-1&#34;&amp;#62;
+This is an H1
+&amp;#60;/h1&amp;#62;
+&amp;#60;h2 id=&#34;testH2&#34; tabindex=&#34;-1&#34;&amp;#62;
+This is an H2
+&amp;#60;/h2&amp;#62;
+&amp;#60;div id=&#34;testDIV1&#34; tabindex=&#34;-1&#34;&amp;#62;
+This is a div
+&amp;#60;/div&amp;#62;
+&amp;#60;/div&amp;#62;
+&lt;/pre&gt;
+&lt;p&gt;I would say the right thing is to not have any ARIA attributes (or tabindex) at all. h1,h2 and div all default to the equivalent of tabindex=”-1” anyway and if a sighted user would see this as two separate headings and a normal paragraph, a screen ready probably should too. If it’s intended to be read as a single sentence then as a signted user, I’d appreciate it being laid out that way.&lt;/p&gt;
+&lt;h2 id=&#34;aria-label&#34;&gt;aria-label&lt;/h2&gt;
+&lt;p&gt;As a side note, aria-lablledby is only one option for adding information and it’s useful if the extra information you need to present is already available in a textual form somewhere on the page. However, if the content isn’t available (for example because it’s using an icon instead of text) you can use aria-label=”The label you want” to directly specify the label text rather than referring to some other HTML element.&lt;/p&gt;
+&lt;h2 id=&#34;more-info&#34;&gt;More Info?&lt;/h2&gt;
+&lt;p&gt;It would be great to get some better background information on what’s being attempted here so that better solutions could be proposed. Right now it looks a bit like trying to use ARIA to hammer a square peg into a round hole which not surprisingly isn’t a lot of fun and doesn’t work very well.&lt;/p&gt;
+&lt;p&gt;The bottom line is that ARIA isn’t the answer to accessibility, it’s just a smattering of extra information to help out in complex cases where HTML and JavaScript are being used to create custom widgets. The first and most important tool for creating accessible web pages is still to use appropriate semantic HTML – especially for the “document” parts of a page as opposed to interactive widgets. If that foundation isn’t set, ARIA won’t save you.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New US Accessibility Laws</title>
+      <link>https://www.symphonious.net/2010/09/30/new-us-accessibility-laws/</link>
+      <pubDate>Thu, 30 Sep 2010 08:30:24 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/30/new-us-accessibility-laws/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://blogs.wsj.com/digits/2010/09/29/new-rules-to-make-technology-more-accessible-for-blind-deaf/&#34;&gt;Wall Street Journal has an article on a new bill just passed by US Congress that updates accessibility requirements&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The &lt;a href=&#34;http://thomas.loc.gov/cgi-bin/cpquery/R?cp111:FLD010:@1(hr563)&#34;&gt;legislation&lt;/a&gt;, called the 21st Century Communications and Video Accessibility Act, covers things like captions on Internet video, Internet phone services that work with hearing aids, television menus that can be seen by people with vision loss and even touch screens that the blind can use. The bill, which passed by voice vote and will now go to President Obama for approval, updates existing regulations to bring them in line with the Internet age.
+I haven’t taken the time to decipher the details from the actual legislation text as yet, so it’s hard to say exactly what implications this will have. It is at least good to see improvements to US laws – to date it has really been civil threats, such as the suit against Target, which have been the main legal avenue to ensure accessibility. This is generally under the American&amp;rsquo;s with Disabilities Act which was written in terms of physical accessibility for public places, but has been deemed to also apply to the web. As I understand it, this new legislation will provide some more teeth on the criminal&lt;a href=&#34;#footnote1:1285835355912&#34;&gt;1&lt;/a&gt;{#footlink1:1285835355912.footnote} side.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1285835355912&#34; id=&#34;footnote1:1285835355912&#34;&gt;1&lt;/a&gt; &amp;#8211; as in, Government-led as opposed to civil. I’m not sure I’m using the term right. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1285835355912&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Canvas-based Editors</title>
+      <link>https://www.symphonious.net/2010/09/29/canvas-based-editors/</link>
+      <pubDate>Wed, 29 Sep 2010 09:05:46 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/29/canvas-based-editors/</guid>
+      <description>&lt;p&gt;Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.&lt;/p&gt;
+&lt;p&gt;What disturbs me is that incredibly few people realise just how much work is involved in implementing caret and selection handling correctly, let alone most of the other infrastructure provided by contentEditable. I wound up talking to &lt;a href=&#34;http://twitter.com/novemberborn&#34;&gt;Mark Wubben&lt;/a&gt; who actually does have a pretty good idea – he implemented a DOM based selection system for the &lt;a href=&#34;http://xopus.com/&#34;&gt;Xopus editor&lt;/a&gt;. Needless to say he had quite the war story to tell, but despite doing what sounded like a very impressive bit of work, the selection code is still very broken in a couple of key ways: accessibility and international inputs&lt;a href=&#34;#footnote1:1285748951881&#34;&gt;1&lt;/a&gt;{#footlink1:1285748951881.footnote}.&lt;/p&gt;
+&lt;h3 id=&#34;accessibility&#34;&gt;Accessibility&lt;/h3&gt;
+&lt;p&gt;Accessibility support was my first response to anyone suggesting using canvas as an editor – no-one had considered it. If you play around with a screen reader for a while, you start to realise just how important the selection is to accessibility. Selecting text generally causes it to be read out for example. It’s not just screen readers either, screen magnifiers will move the screen along to keep up with the caret, ensuring the user can see what they’re typing. If the caret is fake, none of these features will work and the editor becomes inaccessible.&lt;/p&gt;
+&lt;h3 id=&#34;international-inputs&#34;&gt;International Inputs&lt;/h3&gt;
+&lt;p&gt;Even I’d forgotten about this one, but it’s likely an even bigger problem to solve than accessibility. The array of input devices, keyboard shortcuts and other ways that people input characters is pretty amazing when you start exploring it. People in English speaking countries don’t tend to notice this because they have quite a small number of characters in use which all fit on the keyboard. Even Western European countries have the vast majority of characters required available with a direct key sequence. However there are far more complex types of inputs around. The simplest of these is the use of “dead keys” such as acute on a US or British keyboard. To type é actually takes multiple keystrokes on a UK Mac keyboard:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Option-e. This is a dead-key so only a placeholder appears in the output (&lt;img src=&#34;http://www.symphonious.net/wp-content/uploads/2010/09/acutePlaceholder.png&#34; alt=&#34;Placeholder for acute shown with a yellow background.&#34;&gt;).&lt;/li&gt;
+&lt;li&gt;e. Now the e-acute character actually appears and is inserted into the document content.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Not to pick on Xopus but at least in Firefox on Mac, I can’t type é at all in the editor because it doesn’t correctly support dead-keys&lt;a href=&#34;#footnote2:1285750195458&#34;&gt;2&lt;/a&gt;{#footlink2:1285750195458.footnote}.&lt;/p&gt;
+&lt;p&gt;Asian languages can have even more keystrokes required to type a character and much more complex input methods that to be usable, require changes to the caret, underlining content etc. Plus the methods and UI is different on different OS’s. While users can handle some variation, they shouldn’t have to learn a whole new input method to be able to use your application&lt;a href=&#34;#footnote3:1285750501513&#34;&gt;3&lt;/a&gt;{#footlink3:1285750501513.footnote}.&lt;/p&gt;
+&lt;h3 id=&#34;the-way-forward&#34;&gt;The Way Forward&lt;/h3&gt;
+&lt;p&gt;Instead of trying to work around the limitations in contentEditable we need to be pushing browser vendors to fix it and make it usable. Where the current APIs aren’t good enough, standardise better ones – we’re dealing with multiple incompatible APIs already so the backwards compatibility problems are limited. This needs to be a focus so that we don’t wind up in a world where online editors only work for fully-abled, English speaking users. Most if not all of what’s required is already there, it just needs some love and care to remove the bugs and better handle corner-cases.&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1285748951881&#34; id=&#34;footnote1:1285748951881&#34;&gt;1&lt;/a&gt; &amp;#8211; There is some &lt;a href=&#34;http://lists.w3.org/Archives/Public/public-canvas-api/2010JulSep/0040.html&#34;&gt;good discussion of the complexities involved here from the W3C canvas list&lt;/a&gt; as they struggle with the accessibility implications of canvas.&lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1285748951881&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink2:1285750195458&#34; id=&#34;footnote2:1285750195458&#34;&gt;2&lt;/a&gt; &amp;#8211; and to be completely fair, EditLive! fails to paint the placeholder, though the character does type correctly. &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink2:1285750195458&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink3:1285750501513&#34; id=&#34;footnote3:1285750501513&#34;&gt;3&lt;/a&gt; &amp;#8211; So no, &lt;a href=&#34;http://code.google.com/apis/ajaxlanguage/documentation/referenceKeyboard.html&#34;&gt;Google Virtual Keyboard&lt;/a&gt; is not a real solution, however good an idea it is for people using things like internet kiosks with foreign keyboard layouts. Besides, would you like to be stuck typing only with your mouse? &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink3:1285750501513&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Cost of Accessibility</title>
+      <link>https://www.symphonious.net/2010/09/22/the-cost-of-accessibility/</link>
+      <pubDate>Wed, 22 Sep 2010 08:03:09 +0000</pubDate>
+      <guid>https://www.symphonious.net/2010/09/22/the-cost-of-accessibility/</guid>
+      <description>&lt;p&gt;Austin Seraphin’s posts on his experiences using the Voice Over technology in &lt;a href=&#34;http://behindthecurtain.us/2010/06/12/my-first-week-with-the-iphone/&#34;&gt;iPhone&lt;/a&gt; and &lt;a href=&#34;http://behindthecurtain.us/2010/09/11/rejoining-the-apple-family/&#34;&gt;Mac OS&lt;/a&gt; has been mentioned fairly widely and they are definitely worth reading. Many people understand that blind users, and people with other forms of disabilities, are dependent on screen readers to interact with computers, but what is likely to come as a shock is just how expensive high quality screen readers can be:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I joyfully look forward to the day when blind people finally catch on and realize that for $700, &lt;em&gt;HALF&lt;/em&gt; the cost of JAWS for Windows, the most popular software used or rather pushed on the blind, they can get a fully functional computer that delivers a superior experience and comes with a superior screen reader with superior speech.
+JAWS standard edition turns out to be $895 on &lt;a href=&#34;http://sales.freedomscientific.com/category.aspx?categoryID=11&#34;&gt;the online store&lt;/a&gt;, professional $1095 but that still doubles the cost of a computer for users who need a screen reader. There are open source screen readers and my understanding is that some of them are quite good, but the defacto-standard is very much JAWS. Most accessibility testing that is done is with JAWS and so it’s an up-hill battle to use anything else.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you keep that cost in mind, you can understand why old versions of screen reader software are so common. It also brings a new understanding to the &lt;a href=&#34;http://blogs.msdn.com/b/ie/archive/2010/09/20/user-experiences-accessibility-in-ie9-beta.aspx&#34;&gt;blog post from the IE9 team indicating that screen readers would need to be updated to work with it&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IE9 fundamentally changes &lt;a href=&#34;http://blogs.msdn.com/b/ie/archive/2010/09/15/user-experiences-site-centric-browsing-on-windows.aspx&#34;&gt;how users interact with the browser&lt;/a&gt; and &lt;a href=&#34;http://blogs.msdn.com/b/ie/archive/2010/09/10/the-architecture-of-full-hardware-acceleration-of-all-web-page-content.aspx&#34;&gt;how the browser takes advantage of the entire PC&lt;/a&gt;. Those changes also impact how assistive technology interacts with IE, which necessitates updates from some assistive technology. For example, the new notification model is not read by many screen readers, and screen readers can no longer depend on the GDI display subsystem since IE9 uses Windows Direct2D and DirectWrite as part of enabling hardware-accelerated HTML5.
+The move to Direct2D and DirectWrite may well make sense, though it’s disappointing that screen readers felt the need to depend on a display sub-system instead of proper accessibility APIs for some reason. However, I find it quite appalling that the new notification model is inaccessible. Surely there is, or should be, a standard set of Windows APIs that can provide this kind of notification in a way that is also accessible to screen readers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It seems to me that having the full screen reader API built in to the OS and maintained, as a priority, by the OS team is a pretty revolutionary step forward in terms of both reducing the cost of accessibility and improving it’s quality. It sounds like we still have an awfully long way to go though.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Should You Publish Crap Code?</title>
+      <link>https://www.symphonious.net/2009/04/27/should-you-publish-crap-code/</link>
+      <pubDate>Mon, 27 Apr 2009 09:07:11 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/04/27/should-you-publish-crap-code/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; width=&#34;61&#34; style=&#34; float: right;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/04/ear_-_body_part_nicu_buc_2283.png&#34; height=&#34;88&#34; alt=&#34;Ear&#34; /&gt;I spent the weekend discovering just how poorly thought out and poorly supported closed captioning is in online video. Some highlights (based on the SRT format because that was the only one I could find any information about syntax for):&lt;/p&gt;
+&lt;ul class=&#34;blueArrow&#34;&gt;
+  &lt;li&gt;
+    Definitive guides to the format either don’t exist or are so poorly used that they don’t appear in the first 3-4 pages of a Google search.
+  &lt;/li&gt;
+  &lt;li&gt;
+    Timestamps use a non-standard format. The inventor was apparently French so instead of the usual hh:mm:ss.ttt the period is replaced with a comma. I sympathise with everything being US-centric, but the number of people who were making this mistake on forums etc and the number of players who support period but not comma (and visa-versa) is scary.
+  &lt;/li&gt;
+  &lt;li&gt;
+    Only DOS line endings are supported. \r\n is fine as part of the standard, but why can’t players be a little liberal in what they accept? It’s not like \n or \r by itself within the caption is going to work anyway…
+  &lt;/li&gt;
+  &lt;li&gt;
+    No standard font, so no way to know if the caption will fit or not.
+  &lt;/li&gt;
+  &lt;li&gt;
+    Absolutely zero feedback from any player I found about why it was ignoring the captions.
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;em&gt;Really, really poor tooling support for creating captions.&lt;/em&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, coming around to the real point of this post, I wound up writing my own tool to help take a script, synchronize it to the spoken voice and output the right format. Worked a treat, and now I have working captions on my video. I suspect it would be useful to others and there’s certainly plenty to do to improve it that would be great if others jumped in and helped with.&lt;/p&gt;
+&lt;p&gt;The trouble is, to make playing the video easier, I used Cocoa and Objective-C. Great decision, got me up and running in no time – with really, really, &lt;em&gt;really&lt;/em&gt;, lousy code. See, I haven’t done anything more than vaguely dabble in Objective-C and I’ve only used XCode back when it was Project Builder and I suspect OS X was in beta. Needless to say, the resulting code is terrible. I didn’t want to learn all the ins and outs of the Cocoa document system and where I’d have to change the names of things so the main document class is still called “MyDocument”. I think I turned on the Objective-C garbage collection, but if not it will leak like a sieve (it might anyway, not sure).&lt;/p&gt;
+&lt;p&gt;If you look at it one way, it’s pretty impressive to pick up a completely new tool set and get a useful application out in a morning, but more likely you’d look at the code and decide I was incompetent. So the great dilemma, should I push this rubbish code up to GitHub and hope someone comes along to refactor it, or will it just sit there waiting to appear in a Google search when I next wind up applying for a job, thus killing all my hopes and dreams?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Devices Have Disabilities Too</title>
+      <link>https://www.symphonious.net/2009/03/26/devices-have-disabilities-too/</link>
+      <pubDate>Thu, 26 Mar 2009 10:30:39 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/03/26/devices-have-disabilities-too/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/03/accessibility.png&#34; alt=&#34;Accessibility Icon&#34; height=&#34;215&#34; width=&#34;200&#34; style=&#34; float: right;&#34; /&gt;The &lt;a href=&#34;http://www.australianit.news.com.au/story/0,24897,25231165-5013040,00.html&#34;&gt;Australian brings news of the growing battle for mobile banking leadership among Australian banks&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Brisbane-based Suncorp launched the first mobile browser-based banking service and last week made it compatible with iPhone and Google Android handsets.&lt;/p&gt;
+&lt;p&gt;The Commonwealth Bank has similarly updated its mobile service, which will work on any internet-enabled mobile phone, and has additional functionality for the iPhone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;People have been talking about the coming mobile revolution for a long time. In fact, as the article mentions, the Commonwealth Bank had previously tried to jump on the mobile banking wagon as early as 1999 via a WAP interface. So what’s changed and what does this have to do with accessibility?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The capabilities and affordability of mobile phones with Internet access has dramatically improved. Firstly with the iPhone and now a top-notch browser is a must have feature in a smart phone.&lt;/li&gt;
+&lt;li&gt;WAP is out, users want the real web. It’s not ok to provide a text only WAP interface that works on phones, users want the full functionality and they want it to look pretty too. Modern phones support HTML, CSS and JavaScript and most of the time you should be writing just one site that works everywhere rather than a separate mobile site.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It’s that second point that really brings accessibility in. If you design your site so that it can be used with a range of disabilities, there’s a much better chance that it will also work on devices with a range of capabilities. In other words, someone using an iPhone to view the site is just a user with a particular type of disability.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They have a small screen so the site needs to scale properly (use relative units, not absolute). If your site can handle users changing the size of the font, it can probably scale pretty well to fit on an iPhone.&lt;/li&gt;
+&lt;li&gt;If the networks slow, they may not be able to see images. If you have good alt tags, they won’t need to.&lt;/li&gt;
+&lt;li&gt;They can’t see flash. While you can design accessible flash, most people don’t so surfing without flash is often very similar to what a screen reader would see (at least for the flash side of things).&lt;/li&gt;
+&lt;li&gt;They can’t use a keyboard very fast and can’t drag and drop anything.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There’s also plenty of unique things about various disabilities and the iPhone as well as different limitations on different handsets, but there’s also a lot of overlap.&lt;/p&gt;
+&lt;p&gt;Accessibility isn’t a cost centre – it’s a competitive advantage.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Accessibility is About Real People</title>
+      <link>https://www.symphonious.net/2009/03/25/accessibility-is-about-real-people/</link>
+      <pubDate>Wed, 25 Mar 2009 11:32:49 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/03/25/accessibility-is-about-real-people/</guid>
+      <description>&lt;p&gt;When I wrote &lt;a href=&#34;http://www.symphonious.net/2009/03/23/access-enablement-or-accessibility/&#34;&gt;my post on accessibility the other day&lt;/a&gt;, what I really meant to say is what basically &lt;a href=&#34;http://www.northtemple.com/2009/03/24/accessibility-to-the-face&#34;&gt;what Rob Foster wrote&lt;/a&gt;. Very roughly summarized, accessibility is about real people, not checklists.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The issues of accessibility are a daily reality for my family. For us, it’s not a political issue at all. Our oldest daughter, Ramona, has cerebral palsy and uses a wheelchair to get around.&lt;/p&gt;
+&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;Here’s my point–if your brother or sister had a disability, you would give a crap. But you don’t have to have a sibling in a wheelchair to genuinely care, even if it’s only in your work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;And from my perspective, accessibility is about giving a crap.&lt;/p&gt;
+&lt;p&gt;Accessibility is NOT a checklist.&lt;/p&gt;
+&lt;p&gt;Accessibility is about usability.&lt;/p&gt;
+&lt;p&gt;Accessibility is a paradigm shift.&lt;/p&gt;
+&lt;p&gt;Accessibility is a personal issue.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Checklists and accessibility reports are just tools to help you make things accessible – they can be really powerful if they’re used with the right intent, but they’re not the answer.&lt;/p&gt;
+&lt;p&gt;That’s why I’m so glad to see Ephox adding not just more and better accessibility checking and reporting into their products, but also tools to make it easier for authors to get accessibility right. We need to do more though, so much more, but at least it’s a start and we can start taking this message out to all the web content administrators that we talk to and try and get them to care.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Access Enablement or Accessibility?</title>
+      <link>https://www.symphonious.net/2009/03/23/access-enablement-or-accessibility/</link>
+      <pubDate>Mon, 23 Mar 2009 17:29:01 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/03/23/access-enablement-or-accessibility/</guid>
+      <description>&lt;p&gt;Mark Pilgrim and Sam Ruby have been going &lt;a href=&#34;http://twitter.com/diveintomark/status/1351150955&#34;&gt;back&lt;/a&gt; and &lt;a href=&#34;http://www.intertwingly.net/blog/2009/03/20/Accessible&#34;&gt;forth&lt;/a&gt; and &lt;a href=&#34;http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress&#34;&gt;back again&lt;/a&gt; about accessibility and in particular the SVG images on Sam’s blog. In Mark’s latest post he explains the somewhat crazy world of access enablement:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Long answer: As far as I know, none of the commercially available screenreaders support &lt;code&gt;svg&lt;/code&gt; in any way, much less reading the title of an &lt;code&gt;svg&lt;/code&gt; image included inline in an xhtml page (as opposed to, say, linked from the &lt;code&gt;src&lt;/code&gt; attribute of an &lt;code&gt;&amp;amp;#60;img&amp;amp;#62;&lt;/code&gt; element, or embedded in an &lt;code&gt;&amp;amp;#60;object&amp;amp;#62;&lt;/code&gt; element). Nonetheless, you have provided a text alternative for the image, and &lt;em&gt;theoretically&lt;/em&gt;, that &lt;em&gt;could&lt;/em&gt; be presented to a user in place of (or in addition to) the image. You have therefore fulfilled your moral duty, even though no one &lt;em&gt;actually&lt;/em&gt; benefits from it. Welcome to the wacky world of &lt;em&gt;access enablement&lt;/em&gt;.
+Mark’s right – in many companies and other organizations you have to tick the boxes for accessibility rules and they are quite often just plain stupid. Mark calls that access enablement, I call it beurocracy or perhaps more kindly, the only effective way to get a large organization to meet difficult to understand objectives.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;However, in the case of Sam’s blog, there really isn’t any loss of information if you can’t see the image. They act as a kind of category logo, and when you can see them, provide a quick way to scan the page for a particular topic. &lt;em&gt;It would not be quick to scan the page if the images were displayed as a text alternative.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In fact, it could well be argued that adding the text alternative makes the page &lt;em&gt;less&lt;/em&gt; accessible, not more. Compare:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Accessible&lt;/p&gt;
+&lt;p&gt;accessible&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://twitter.com/diveintomark/status/1351150955&#34;&gt;Mark Pilgrim&lt;/a&gt;: &lt;em&gt;Deep thought: every post on @&lt;a href=&#34;http://twitter.com/samruby&#34;&gt;samruby&lt;/a&gt; &amp;rsquo;s blog since June 2006 contains an image without a text alternative.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Accessible&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://twitter.com/diveintomark/status/1351150955&#34;&gt;Mark Pilgrim&lt;/a&gt;: &lt;em&gt;Deep thought: every post on @&lt;a href=&#34;http://twitter.com/samruby&#34;&gt;samruby&lt;/a&gt; &amp;rsquo;s blog since June 2006 contains an image without a text alternative.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you were a blind user accessing the page with a screen reader (the mythical one that supports titles in SVG), your screen reader would say the word “accessible” twice – once as a header and once as the alternate text for the image. You might get “Heading: Accessible, Image: Accessible” read to you but it’s still not useful. The single most useful thing that could be done with that image when encountered by screen readers is to simply ignore it.&lt;/p&gt;
+&lt;p&gt;One of the biggest challenges about accessibility is convincing people that it’s &lt;em&gt;not&lt;/em&gt; just about adding alt tags to images, it’s about allowing people with disabilities to access the page. Following the rules to the letter is neither the absolute right answer nor a silver bullet. What you need to do is actually test with real world tools. That’s why the actual rules, particularly in WCAG 2.0, are so incredibly vague. The techniques are more detailed and more descriptive but the rules themselves are very high level.&lt;/p&gt;
+&lt;p&gt;The same thing applies in the real world. You have to provide ramps or elevators so that people in wheelchairs can get everywhere they need to go, but you don’t have to provide ramps everywhere. There are plenty of shopping malls and other public places that provide a normal set of stairs in the most convenient place and an elevator off to one side. Sam’s blog is a perfect example of that concept applied to software. &lt;em&gt;I&lt;/em&gt; read Sam’s blog without seeing those SVG images all the time because they don’t come through to my feed reader, yet I can still tell what the post is about because it has a descriptive title.&lt;/p&gt;
+&lt;p&gt;If you’re asking yourself “does my site meet WCAG 2.0?” you’re doing it all wrong. You &lt;em&gt;should&lt;/em&gt; be asking “is my site accessible?” Just meeting WCAG won’t necessarily make your site accessible – do it if that’s what is required to get paid, but don’t fool yourself into thinking that it’s the real aim.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

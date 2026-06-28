@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JavaScript Libraries Suck | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="JavaScript libraries are awesome – they make it possible to develop cross browser coolness without going completely insane working around all the incompatibilities. The trouble is, we’re talking about JavaScript libraries. Instead of working around differences in browsers, now you work around differences and incompatibilities in JavaScript libraries.
+While the simple response is to just pick one and stick with it, there are some problems with that:
+
+  If you’re developing a library, you will very likely have users who are already committed to a particular library.
+
+
+  If you’re using libraries, sooner or later one will require the other library. You know, the one you didn’t pick.
+
+
+  The new banner on the Ephox.com homepage is a good example1. The site was really simple so I went ahead and picked the JavaScript library I knew best &#8211; Scriptaculous and Prototype. I developed the script to get a nice cross fade between the two images and went to put it up on the live site. At that point, I discovered someone else at one point had decided to use a lightbox library. As Murphy would have it, it depended on JQuery.
+">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/04/28/javascript-libraries-suck/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/04/28/javascript-libraries-suck/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="JavaScript Libraries Suck">
+	<meta property="og:description" content="JavaScript libraries are awesome – they make it possible to develop cross browser coolness without going completely insane working around all the incompatibilities. The trouble is, we’re talking about JavaScript libraries. Instead of working around differences in browsers, now you work around differences and incompatibilities in JavaScript libraries.
+While the simple response is to just pick one and stick with it, there are some problems with that:
+If you’re developing a library, you will very likely have users who are already committed to a particular library. If you’re using libraries, sooner or later one will require the other library. You know, the one you didn’t pick. The new banner on the Ephox.com homepage is a good example1. The site was really simple so I went ahead and picked the JavaScript library I knew best – Scriptaculous and Prototype. I developed the script to get a nice cross fade between the two images and went to put it up on the live site. At that point, I discovered someone else at one point had decided to use a lightbox library. As Murphy would have it, it depended on JQuery.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-04-28T14:11:17+00:00">
+		<meta property="article:modified_time" content="2009-04-28T14:11:17+00:00">
+
+	<meta itemprop="name" content="JavaScript Libraries Suck">
+	<meta itemprop="description" content="JavaScript libraries are awesome – they make it possible to develop cross browser coolness without going completely insane working around all the incompatibilities. The trouble is, we’re talking about JavaScript libraries. Instead of working around differences in browsers, now you work around differences and incompatibilities in JavaScript libraries.
+While the simple response is to just pick one and stick with it, there are some problems with that:
+If you’re developing a library, you will very likely have users who are already committed to a particular library. If you’re using libraries, sooner or later one will require the other library. You know, the one you didn’t pick. The new banner on the Ephox.com homepage is a good example1. The site was really simple so I went ahead and picked the JavaScript library I knew best – Scriptaculous and Prototype. I developed the script to get a nice cross fade between the two images and went to put it up on the live site. At that point, I discovered someone else at one point had decided to use a lightbox library. As Murphy would have it, it depended on JQuery.">
+	<meta itemprop="datePublished" content="2009-04-28T14:11:17+00:00">
+	<meta itemprop="dateModified" content="2009-04-28T14:11:17+00:00">
+	<meta itemprop="wordCount" content="571">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="JavaScript Libraries Suck">
+	<meta name="twitter:description" content="JavaScript libraries are awesome – they make it possible to develop cross browser coolness without going completely insane working around all the incompatibilities. The trouble is, we’re talking about JavaScript libraries. Instead of working around differences in browsers, now you work around differences and incompatibilities in JavaScript libraries.
+While the simple response is to just pick one and stick with it, there are some problems with that:
+If you’re developing a library, you will very likely have users who are already committed to a particular library. If you’re using libraries, sooner or later one will require the other library. You know, the one you didn’t pick. The new banner on the Ephox.com homepage is a good example1. The site was really simple so I went ahead and picked the JavaScript library I knew best – Scriptaculous and Prototype. I developed the script to get a nice cross fade between the two images and went to put it up on the live site. At that point, I discovered someone else at one point had decided to use a lightbox library. As Murphy would have it, it depended on JQuery.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">JavaScript Libraries Suck</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">JavaScript Libraries Suck</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-04-28T14:11:17Z">April 28, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>JavaScript libraries are awesome – they make it possible to develop cross browser coolness without going completely insane working around all the incompatibilities. The trouble is, we’re talking about JavaScript librar<strong>ies</strong>. Instead of working around differences in browsers, now you work around differences and incompatibilities in JavaScript libraries.</p>
+<p>While the simple response is to just pick one and stick with it, there are some problems with that:</p>
+<li class="danger">
+  If you’re developing a library, you will very likely have users who are already committed to a particular library.
+</li>
+<li class="danger">
+  If you’re using libraries, sooner or later one will require the <em>other</em> library. You know, the one you didn’t pick.
+</li>
+<p class="danger">
+  The new banner on the <a href="http://www.ephox.com">Ephox.com homepage</a> is a good example<a id="footlink1:1240927171479" class="footnote" name="footlink1:1240927171479" href="#footnote1:1240927171479">1</a>. The site was really simple so I went ahead and picked the JavaScript library I knew best &#8211; Scriptaculous and Prototype. I developed the script to get a nice cross fade between the two images and went to put it up on the live site. At that point, I discovered someone else at one point had decided to use a lightbox library. As Murphy would have it, it depended on JQuery.
+</p>
+<p class="danger">
+  Of course, since I’m rather keen to keep the JavaScript nice and generic so it can be reused in other places (like say our <a href="http://liveworks.ephox.com/">LiveWorks!</a> site which <em>does</em> use Prototype), I was going to wind up having to support both JQuery and Scriptaculous at some point anyway, but I was hoping to put that off for another day.
+</p>
+<p class="danger">
+  In the end I nearly doubled my development time as I had to factor out all the bits of code that used one of the libraries and make them switch dynamically depending on what was available. So now the libraries are taking care of the tricky browser differences, but instead of making development easier, they’re actively making it much harder and slower again.
+</p>
+<p class="danger">
+  So what’s the answer? Well, one answer would be for these libraries to play nice with each other and in fact JQuery has an option that does exactly that, but there’s no guarantee that the libraries will actually work with it in that mode, and you give up a bunch of it’s shortcuts.
+</p>
+<p class="danger">
+  You can namespace everything (effectively what JQuery’s compatibility mode does) but again, that makes code more long winded again. I guess that’s the best available option beyond standardising some of the base level elements. So define what the $ and $$ functions are (or just ban their use and actually remove them from libraries so you know they aren’t being depended on). Then you have the various things like Prototype’s .parseJSON function it adds to strings and various other really handy functions which you could standardise but there will always be some functions that are currently in the innovation phase and wind up clashing.
+</p>
+<p class="danger">
+  So I don’t know what the answer is, but right now the JavaScript language is effectively forking in many different directions. You don’t code in JavaScript anymore, you code in Prototype, JQuery, Dojo or YUI. It’s a bit like picking Struts 1, Struts 2, Spring or whatever MVC library in the Java world but with more far reaching consequences.
+</p>
+<p class="danger">
+  It seems to be that all this innovation and reuse in JavaScript is really starting to inhibit innovation and reuse in JavaScript.
+</p>
+<p class="footnote">
+  <a id="footnote1:1240927171479" name="footnote1:1240927171479" href="#footlink1:1240927171479">1</a> &#8211; you may need to watch for about 10 seconds to see the JavaScript kick in and cross fade the main banner. <a class="footnotereturn" href="#footlink1:1240927171479">↩</a>
+</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

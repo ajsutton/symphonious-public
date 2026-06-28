@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Moolah Diaries: Letting AI Analyse Its Own Work | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I used custom software called Moolah to track my personal finances for many years now. Originally it was written in JavaScript with moolah-server providing the backend and moolah the frontend. This holidays I&rsquo;ve been vibe coding a replacement written entirely in Swift. It seems like a somewhat useful experiment to learn more about the trade offs of extreme AI usage, so I had Claude dig into the available stats from GitHub and its session logs to compare the two projects and see what we can learn. It&rsquo;s not a controlled experiment so lots of room for interpretation, but an interesting data point none the less.
+The initial version it came out with was a bit absurdly positive about AI, along the lines of I wrote 10x the lines of code in 0.2% of the time - more code is better! But with a bit of prompting and providing additional background it came out with the report below. I&rsquo;ll write up some more human thoughts on the experience later, but I think the AI-crunched numbers are worth sharing by themselves to set the scene and because the key learnings are genuinely useful.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2026/04/13/moolah-diaries-letting-ai-analyse-its-own-work/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2026/04/13/moolah-diaries-letting-ai-analyse-its-own-work/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Moolah Diaries: Letting AI Analyse Its Own Work">
+	<meta property="og:description" content="I used custom software called Moolah to track my personal finances for many years now. Originally it was written in JavaScript with moolah-server providing the backend and moolah the frontend. This holidays I’ve been vibe coding a replacement written entirely in Swift. It seems like a somewhat useful experiment to learn more about the trade offs of extreme AI usage, so I had Claude dig into the available stats from GitHub and its session logs to compare the two projects and see what we can learn. It’s not a controlled experiment so lots of room for interpretation, but an interesting data point none the less.
+The initial version it came out with was a bit absurdly positive about AI, along the lines of I wrote 10x the lines of code in 0.2% of the time - more code is better! But with a bit of prompting and providing additional background it came out with the report below. I’ll write up some more human thoughts on the experience later, but I think the AI-crunched numbers are worth sharing by themselves to set the scene and because the key learnings are genuinely useful.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-04-13T09:42:42+10:00">
+		<meta property="article:modified_time" content="2026-04-13T09:42:42+10:00">
+
+	<meta itemprop="name" content="Moolah Diaries: Letting AI Analyse Its Own Work">
+	<meta itemprop="description" content="I used custom software called Moolah to track my personal finances for many years now. Originally it was written in JavaScript with moolah-server providing the backend and moolah the frontend. This holidays I’ve been vibe coding a replacement written entirely in Swift. It seems like a somewhat useful experiment to learn more about the trade offs of extreme AI usage, so I had Claude dig into the available stats from GitHub and its session logs to compare the two projects and see what we can learn. It’s not a controlled experiment so lots of room for interpretation, but an interesting data point none the less.
+The initial version it came out with was a bit absurdly positive about AI, along the lines of I wrote 10x the lines of code in 0.2% of the time - more code is better! But with a bit of prompting and providing additional background it came out with the report below. I’ll write up some more human thoughts on the experience later, but I think the AI-crunched numbers are worth sharing by themselves to set the scene and because the key learnings are genuinely useful.">
+	<meta itemprop="datePublished" content="2026-04-13T09:42:42+10:00">
+	<meta itemprop="dateModified" content="2026-04-13T09:42:42+10:00">
+	<meta itemprop="wordCount" content="2421">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Moolah Diaries: Letting AI Analyse Its Own Work">
+	<meta name="twitter:description" content="I used custom software called Moolah to track my personal finances for many years now. Originally it was written in JavaScript with moolah-server providing the backend and moolah the frontend. This holidays I’ve been vibe coding a replacement written entirely in Swift. It seems like a somewhat useful experiment to learn more about the trade offs of extreme AI usage, so I had Claude dig into the available stats from GitHub and its session logs to compare the two projects and see what we can learn. It’s not a controlled experiment so lots of room for interpretation, but an interesting data point none the less.
+The initial version it came out with was a bit absurdly positive about AI, along the lines of I wrote 10x the lines of code in 0.2% of the time - more code is better! But with a bit of prompting and providing additional background it came out with the report below. I’ll write up some more human thoughts on the experience later, but I think the AI-crunched numbers are worth sharing by themselves to set the scene and because the key learnings are genuinely useful.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Moolah Diaries: Letting AI Analyse Its Own Work</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Moolah Diaries: Letting AI Analyse Its Own Work</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-04-13T09:42:42+10:00">April 13, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I used custom software called Moolah to track my personal finances for many years now. Originally it was written in JavaScript with moolah-server providing the backend and moolah the frontend. This holidays I&rsquo;ve been vibe coding a replacement written entirely in Swift. It seems like a somewhat useful experiment to learn more about the trade offs of extreme AI usage, so I had Claude dig into the available stats from GitHub and its session logs to compare the two projects and see what we can learn. It&rsquo;s not a controlled experiment so lots of room for interpretation, but an interesting data point none the less.</p>
+<p>The initial version it came out with was a bit absurdly positive about AI, along the lines of I wrote 10x the lines of code in 0.2% of the time - more code is better! But with a bit of prompting and providing additional background it came out with the report below. I&rsquo;ll write up some more human thoughts on the experience later, but I think the AI-crunched numbers are worth sharing by themselves to set the scene and because the key learnings are genuinely useful.</p>
+<hr>
+<h2 id="the-cast">The Cast</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Project</th>
+					<th>Tech</th>
+					<th>Purpose</th>
+					<th>Active dev days</th>
+					<th>Commits</th>
+					<th>LOC (prod)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><a href="https://github.com/ajsutton/moolah/"><strong>moolah</strong></a> (web)</td>
+					<td>Vue.js</td>
+					<td>Web frontend</td>
+					<td>149 days over 8.7 yrs</td>
+					<td>763</td>
+					<td>~8,400</td>
+			</tr>
+			<tr>
+					<td><a href="https://github.com/ajsutton/moolah-server/"><strong>moolah-server</strong></a></td>
+					<td>Node.js/Hapi</td>
+					<td>REST API backend</td>
+					<td>87 days over 8.8 yrs</td>
+					<td>405</td>
+					<td>~2,800</td>
+			</tr>
+			<tr>
+					<td><a href="https://github.com/ajsutton/moolah-server-go/"><strong>moolah-server-go</strong></a></td>
+					<td>Go</td>
+					<td>Learning exercise, abandoned</td>
+					<td>5 days</td>
+					<td>21</td>
+					<td>~500</td>
+			</tr>
+			<tr>
+					<td><a href="https://github.com/ajsutton/moolah-native/"><strong>moolah-native</strong></a></td>
+					<td>SwiftUI</td>
+					<td>Native iOS/macOS app</td>
+					<td><strong>8 days</strong></td>
+					<td>369</td>
+					<td>~20,600</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>Active dev days = days with at least one non-dependency-maintenance commit. The web and server are one project across two repos — 70 days overlap — so combined unique effort is 180 days.</em></p>
+<hr>
+<h2 id="how-each-project-was-built">How Each Project Was Built</h2>
+<p><strong>moolah &amp; moolah-server</strong> were started June 24, 2017 by Adrian Sutton, with Brett Henderson contributing the initial web import. Every line across 1,168 combined commits was written by hand with zero AI involvement. Adrian had deep JavaScript experience and was inventing the domain model, API, database schema, and UX simultaneously — greenfield design work. The code is self-documenting: no significant documentation exists because none is needed. The code speaks for itself, making the projects easy to pick up after months of absence with no risk of stale docs.</p>
+<p><strong>moolah-native</strong> was <strong>entirely AI-generated</strong> starting April 5, 2026. Adrian directed the work but has not read the code and has no Swift, SwiftUI, iOS, or macOS experience. Multiple AI agents were used, switching between them as rate limits were hit. 327 of 369 commits carry a Claude co-author tag; the remaining 42 &ldquo;solo&rdquo; commits are manual commits of AI-written code. Effectively 100% AI-authored by someone with no ability to review the output.</p>
+<p><strong>moolah-server-go</strong> was a 5-day learning exercise started during the holiday between jobs — a way to learn Go before a new role that required it. The goal was achieved regardless of the project being abandoned.</p>
+<hr>
+<h2 id="the-effort-question">The Effort Question</h2>
+<p>Raw calendar span is misleading for side projects with multi-month dormancy periods. Active development days varied enormously in intensity:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Session type</th>
+					<th>Web+Server (combined)</th>
+					<th>Native</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Full day (6+ hrs)</td>
+					<td>22 days</td>
+					<td>8 days</td>
+			</tr>
+			<tr>
+					<td>Half day (3-5 hrs)</td>
+					<td>55 days</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td>Quick (1-2 hrs)</td>
+					<td>140 days</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td><strong>Estimated total hours</strong></td>
+					<td><strong>~600 hrs</strong></td>
+					<td><strong>~84 commit-hours</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p>But these numbers aren&rsquo;t comparable. The web+server hours are a developer actively writing and reasoning about code. The native app&rsquo;s commit-hours are largely the AI working autonomously.</p>
+<h3 id="what-the-session-logs-reveal">What the Session Logs Reveal</h3>
+<p>Claude Code keeps local session logs, giving a clearer picture:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Metric</th>
+					<th>Value</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Sessions</td>
+					<td>105</td>
+			</tr>
+			<tr>
+					<td>Human prompts</td>
+					<td>1,496</td>
+			</tr>
+			<tr>
+					<td>AI responses</td>
+					<td>15,019</td>
+			</tr>
+			<tr>
+					<td><strong>AI responses per human prompt</strong></td>
+					<td><strong>10:1</strong></td>
+			</tr>
+			<tr>
+					<td>Hours with 2+ concurrent sessions</td>
+					<td>79%</td>
+			</tr>
+			<tr>
+					<td>Peak concurrent sessions</td>
+					<td>12</td>
+			</tr>
+	</tbody>
+</table>
+<p>For every human prompt, the AI averaged 10 responses — reading files, writing code, running tests, fixing issues, committing. Claude Code&rsquo;s remote-control functionality allowed multiple agents to work in parallel while the human directed new sessions and reviewed completed ones.</p>
+<p><strong>Estimated human effort: 37-75 hours</strong> (at 1.5–3 minutes per prompt for reading output, thinking, and typing). That&rsquo;s <strong>6-12% of the web+server&rsquo;s ~600 hours for 1.8x the code output</strong> — though the 600 hours produced code the developer understood and could maintain, while the 37-75 hours produced code no human has read.</p>
+<hr>
+<h2 id="development-patterns">Development Patterns</h2>
+<h3 id="the-original-build-power-law-decay">The Original Build: Power-Law Decay</h3>
+<pre tabindex="0"><code>2017  ████████████████████████████  Explosive start (363 web / 134 server)
+2018  ████████████                  Feature completion (154 web / 73 server)
+2019  █████                         Category reports sprint, then silence
+2020  ▌                             Near-dormant (6 web / 14 server)
+2021  ██                            Sporadic revivals
+2022  █                             Sporadic
+2023  ██                            Investment features
+2024  ████                          Vue 3 migration / server modernization
+2025  █                             Maintenance mode
+2026  ▌ (web) / █████ (native)      The native app takes over
+</code></pre><p>~50% of web commits in the first 6 months, ~70% in the first 18 months. Dormancy periods align across both repos — both go quiet and revive together, driven by holidays and life.</p>
+<h3 id="moolah-native-an-accelerating-curve">moolah-native: An Accelerating Curve</h3>
+<pre tabindex="0"><code>Day 1 (Apr 5)   ██                    20 commits — scaffolding, CI, auth
+Day 2 (Apr 6)   █                     10 commits — accounts, transactions
+Day 3 (Apr 7)   █                     13 commits — currency, categories
+Day 4 (Apr 8)   ███                   28 commits — planning, CRUD, iCloud
+Day 5 (Apr 9)   ██████                57 commits — profiles, investments, UI
+Day 6 (Apr 10)  ███████               68 commits — contract tests, backend alignment
+Day 7 (Apr 11)  ███████               70 commits — stock prices, performance
+Day 8 (Apr 12)  ██████████            103 commits — crypto, multi-instrument, analysis
+</code></pre><p>Each day produced more than the last. Day 8 alone exceeds most entire months of the original projects.</p>
+<h3 id="are-ai-commits-just-more-granular">Are AI Commits Just More Granular?</h3>
+<p>No — they&rsquo;re actually larger. The median native commit is 93 lines vs. 24 (web) and 36 (server). Squashing all commits within 1-hour windows gives 66 logical sessions, compared to 90 for the web app&rsquo;s first 2 months. The high commit count reflects real throughput, not artificial granularity.</p>
+<p>28 fix commits changed fewer than 10 lines — micro-patches a human would fold into the parent commit. These represent ~8% of commits. But even excluding them, the fix rate remains high, and the question of how many bugs were introduced and fixed <em>within</em> a session (never appearing in commit history) remains unanswered.</p>
+<hr>
+<h2 id="is-it-bloated-language-vs-real-bloat">Is It Bloated? Language vs. Real Bloat</h2>
+<p>The native app is 1.8x the size of web+server combined. How much is language overhead vs. genuine bloat?</p>
+<p><strong>API calls show the starkest language difference:</strong></p>
+<table>
+	<thead>
+			<tr>
+					<th>Operation</th>
+					<th>Swift (repo + DTO)</th>
+					<th>JS (client.js)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Fetch all accounts</td>
+					<td>~67 lines</td>
+					<td>5 lines</td>
+			</tr>
+			<tr>
+					<td>Create account</td>
+					<td>~32 lines</td>
+					<td>6 lines</td>
+			</tr>
+	</tbody>
+</table>
+<p>Swift requires DTO structs, Codable conformance, explicit mapping functions, typed error handling, and an explicit decode step. JS just calls <code>fetch()</code>.</p>
+<p><strong>Models are closer than expected</strong> — Swift models are only ~30% larger than server DAOs. Web stores are sometimes <em>larger</em> because they mix model shape with mutation logic.</p>
+<h3 id="breaking-down-the-20600-lines">Breaking Down the 20,600 Lines</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Category</th>
+					<th>Lines</th>
+					<th>%</th>
+					<th>Notes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Language/platform overhead</td>
+					<td>~5,400</td>
+					<td>26%</td>
+					<td>Types, inits, DTOs, CodingKeys, <code>#Preview</code>, platform conditionals</td>
+			</tr>
+			<tr>
+					<td>CloudKit offline backend</td>
+					<td>~2,990</td>
+					<td>14%</td>
+					<td>Offline-first local computation; no web equivalent</td>
+			</tr>
+			<tr>
+					<td>Native-only features</td>
+					<td>~1,750</td>
+					<td>9%</td>
+					<td>Crypto prices, data export, multi-platform layout</td>
+			</tr>
+			<tr>
+					<td>Equivalent application logic</td>
+					<td>~10,460</td>
+					<td>51%</td>
+					<td>Would be ~6,500-7,500 lines in JS</td>
+			</tr>
+	</tbody>
+</table>
+<p>Rewriting only the web-equivalent functionality in JS would yield ~8,000-9,000 lines — close to the actual 11,200. The 1.8x multiplier is mostly language overhead and the offline backend, not AI-generated bloat.</p>
+<p>The Remote backend is properly thin: 1,490 lines, of which only ~40 are business logic (2.7%). It constructs requests, decodes responses, maps to domain models. The CloudKit backend (2,990 lines) necessarily contains real logic — it must replicate server-side computation for offline use.</p>
+<hr>
+<h2 id="defect-rates">Defect Rates</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Project</th>
+					<th>Fix Commits</th>
+					<th>Fix Rate</th>
+					<th>Organic Fix Rate</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>moolah-native</strong></td>
+					<td>126</td>
+					<td><strong>31%</strong></td>
+					<td>31%</td>
+			</tr>
+			<tr>
+					<td><strong>moolah</strong> (web)</td>
+					<td>80</td>
+					<td>10.5%</td>
+					<td><strong>6.2%</strong> (excl. migration breakage)</td>
+			</tr>
+			<tr>
+					<td><strong>moolah-server</strong></td>
+					<td>15</td>
+					<td>3.5%</td>
+					<td><strong>2.6%</strong> (logic bugs only)</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="what-drives-each-projects-bugs">What Drives Each Project&rsquo;s Bugs</h3>
+<p><strong>Native — the generate-and-patch cycle.</strong> CategoryPicker: 7 fix commits + 2 complete rewrites in one day. Budget API: two consecutive fixes (wrong endpoint, then wrong UUID format). Empty budget: fixed to &ldquo;top&rdquo; alignment, immediately re-fixed to &ldquo;center&rdquo;. The pattern: AI generates → breaks → fixes → fix is wrong → fixes the fix. This can consume 5-10 commits for one feature.</p>
+<p><strong>Web — dependency breakage.</strong> 22 of 80 fixes from the 2024 Vue 3 migration. 7 of 10 reverts were failed dependency upgrades. Organic fix rate excluding migrations: 6.2%.</p>
+<p><strong>Server — remarkably stable.</strong> 11 logic fixes in 8.8 years, 5 in the same file (<code>dailyBalances.js</code>). Simple CRUD has essentially zero bugs.</p>
+<h3 id="the-unvalidated-iceberg">The Unvalidated Iceberg</h3>
+<p>The 31% fix rate only counts bugs found during development. Much functionality remains unvalidated with no production usage and no human code review. The original projects have been in actual use for years — their bugs are known quantities.</p>
+<hr>
+<h2 id="can-we-trust-ai-written-tests">Can We Trust AI-Written Tests?</h2>
+<p>The native app&rsquo;s test suite is large (13,653 lines, 0.66:1 ratio) but size doesn&rsquo;t equal value. When AI writes both implementation and tests, both can encode the same wrong assumption.</p>
+<h3 id="five-cases-where-tests-validated-bugs">Five Cases Where Tests Validated Bugs</h3>
+<ol>
+<li><strong>Expense sign convention</strong> — Tests asserted expenses as positive; server uses negative. Both implementation and test had to change.</li>
+<li><strong>Investment daily balances</strong> — Tests computed from value snapshots; correct behavior is cumulative from transactions. Entire test rewritten. The AI built a wrong mental model and tests faithfully encoded it.</li>
+<li><strong>Scheduled transaction filtering</strong> — Tests expected scheduled transactions in regular lists. They should be excluded.</li>
+<li><strong>Category deletion</strong> — Tests expected child reparenting; server orphans them. AI guessed &ldquo;reasonable&rdquo; behavior instead of checking.</li>
+<li><strong>Return type mismatch</strong> — Tests asserted <code>Int</code>; API returns <code>MonetaryAmount</code>.</li>
+</ol>
+<p><strong>33 fix commits (27% of fixes)</strong> required changing test expectations alongside the production fix — 33 times the test suite said &ldquo;this is correct&rdquo; when it wasn&rsquo;t.</p>
+<h3 id="the-tdd-that-wasnt">The TDD That Wasn&rsquo;t</h3>
+<p>TDD was instructed from day 1. The AI ignored this for 5 days. Actual test-first behavior only appeared on day 6, when structured &ldquo;superpowers&rdquo; skills were installed — enforcement mechanisms stricter than plain-text instructions. Even then, TDD doesn&rsquo;t help when the AI&rsquo;s understanding of correct behavior is wrong: it just writes a wrong test first instead of second.</p>
+<h3 id="where-confidence-actually-comes-from">Where Confidence Actually Comes From</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Source</th>
+					<th>Confidence</th>
+					<th>Why</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>The server</strong></td>
+					<td>High</td>
+					<td>8.8 years of human-written tests and real-world use. When the native app talks to the server, correctness comes from the server.</td>
+			</tr>
+			<tr>
+					<td><strong>Test architecture</strong></td>
+					<td>Medium</td>
+					<td>Real backends (CloudKitBackend + in-memory SwiftData), not mocks. Structurally sound, but can still assert wrong expected values.</td>
+			</tr>
+			<tr>
+					<td><strong>Manual testing</strong></td>
+					<td>Medium</td>
+					<td>60% of fixes were production-only (no test changes), meaning bugs were found through use, not tests.</td>
+			</tr>
+			<tr>
+					<td><strong>Test expectations</strong></td>
+					<td>Low-Medium</td>
+					<td>Strong regression protection, weak correctness verification. At least 33 demonstrated cases of tests encoding wrong behavior.</td>
+			</tr>
+			<tr>
+					<td><strong>CloudKit backend</strong></td>
+					<td>Low</td>
+					<td>Reimplements server logic with no human review. All 5 test-encoding-bugs were in this layer.</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h2 id="the-dependency-divide">The Dependency Divide</h2>
+<p>The native app has <strong>zero third-party packages</strong>. Everything comes from Apple&rsquo;s SDK: SwiftUI, SwiftData, CloudKit, URLSession, Charts, XCTest, etc.</p>
+<p>The JS projects have ~570 installed packages across ~25 direct dependencies, and <strong>259 commits (22%) touch package.json</strong>. Libraries get abandoned (Vuex → Pinia, webpack → Vite, moment → date-fns), major versions break APIs (Vuetify 1→2→3→4 required 8+ commits with reverts), and transitive vulnerabilities create perpetual maintenance.</p>
+<p>This directly killed momentum. The 287-day dormancy starting Dec 2018 follows a reverted dependency upgrade. The 303-day gap after Oct 2019 follows a failed migration. A weekend producing only a partially-working upgrade with no new features makes it hard to come back.</p>
+<p>The native app avoids this entirely — for now. Apple&rsquo;s SDK evolves on a predictable annual cycle, not the constant churn of the JS ecosystem.</p>
+<hr>
+<h2 id="the-rhythm-of-a-side-project">The Rhythm of a Side Project</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Time Pattern</th>
+					<th>Web+Server</th>
+					<th>Native</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Weekend commits</td>
+					<td>37-51%</td>
+					<td>52%</td>
+			</tr>
+			<tr>
+					<td>Longest gap</td>
+					<td>303-331 days</td>
+					<td>13 hours (sleep)</td>
+			</tr>
+	</tbody>
+</table>
+<p>The dormancy periods align across web and server — both go quiet and revive together, driven by holidays. The native app hasn&rsquo;t hit its first dormancy yet.</p>
+<p>The question isn&rsquo;t whether it will slow down, but what happens when it does. The original projects are self-documenting — you pick them up after 10 months and the code tells you how it works. The native app is AI-generated and unread. AI might make re-entry easier (it can explain the codebase), but the owner has no independent ability to verify those explanations.</p>
+<hr>
+<h2 id="key-insights">Key Insights</h2>
+<h3 id="1-ai-changed-who-can-build-not-what-gets-built">1. AI Changed Who Can Build, Not What Gets Built</h3>
+<p>The native app was built by someone with zero platform experience. AI made platform expertise optional for initial construction — but the resulting codebase is opaque to its owner in a way the original projects never were.</p>
+<h3 id="2-speed-and-quality-traded-off-at-121">2. Speed and Quality Traded Off at 12:1</h3>
+<p>31% fix rate (native) vs. 2.6% (server). The generate-and-patch cycle reflects genuine instability, not just frequent commits.</p>
+<h3 id="3-ai-ignores-instructions-without-enforcement">3. AI Ignores Instructions Without Enforcement</h3>
+<p>TDD was instructed from day 1, ignored for 5 days. Only structured skill enforcement changed actual behavior. Plain-text instructions are suggestions, not constraints.</p>
+<h3 id="4-ai-written-tests-can-validate-bugs">4. AI-Written Tests Can Validate Bugs</h3>
+<p>33 fix commits required changing test expectations — the tests were asserting buggy behavior was correct. When AI writes both sides from the same wrong model, tests provide false confidence. Good test architecture (real backends, no mocks) helps but doesn&rsquo;t solve the problem.</p>
+<h3 id="5-the-18x-size-ratio-is-mostly-language-not-bloat">5. The 1.8x Size Ratio Is Mostly Language, Not Bloat</h3>
+<p>~26% is Swift type system overhead, ~14% is the offline CloudKit backend (which the web app doesn&rsquo;t have), ~9% is native-only features. The Remote backend is properly thin. Feature-level code is comparable to the web equivalents.</p>
+<h3 id="6-plans-are-a-supervision-mechanism-not-documentation">6. Plans Are a Supervision Mechanism, Not Documentation</h3>
+<p>The original projects need no documentation — the code is self-documenting. The native app has 46,700 lines of plans because AI-directed development needs an external record of intent. The AI frequently fails to fully execute plans, so keeping them lets you audit completeness. Plans aren&rsquo;t documentation — they&rsquo;re a quality control mechanism for an unreliable implementer.</p>
+<h3 id="7-the-js-dependency-treadmill-is-a-real-cost">7. The JS Dependency Treadmill Is a Real Cost</h3>
+<p>22% of all web+server commits are dependency maintenance. Failed upgrades killed momentum and contributed to dormancy. The native app&rsquo;s zero-dependency approach avoids this entirely, though Apple&rsquo;s evolution will eventually impose its own (more predictable) tax.</p>
+<h3 id="8-the-risk-is-opacity-not-size">8. The Risk Is Opacity, Not Size</h3>
+<p>20,600 lines is a manageable codebase. The risk is that zero of those lines have been read by a human. If AI tools remain capable, this may work. If they don&rsquo;t — or the codebase outgrows what AI can reason about — the project is stranded. The original projects carry no such risk: self-documenting code that anyone with JS experience can pick up.</p>
+<h3 id="9-side-projects-have-a-heartbeat-regardless-of-tooling">9. Side Projects Have a Heartbeat Regardless of Tooling</h3>
+<p>Dormancy cycles are driven by life, not technology. AI may change the revival cost, but it doesn&rsquo;t change the fundamental constraint that side projects compete with the rest of life for time and energy.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

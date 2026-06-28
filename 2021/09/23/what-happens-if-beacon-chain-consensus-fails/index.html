@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>What Happens If Beacon Chain Consensus Fails? | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Over on Twitter, there was an interesting discussion about the importance of client diversity for the beacon chain. As part of that cyber_hokie asks:
+
+cyber_hokie – @cyber_hokie: As the majority client, isn&rsquo;t it more likely that issues with Prysm would cause more severe financial penalties for minority clients voting on an alternative chain under accountable safety given Prysm validators likely hold the 2/3 threshold?
+
+It&rsquo;s important to note up front that this isn&rsquo;t a Prysm specific issue. This isn&rsquo;t a criticism of Prysm at all. All the major beacon chain clients are great – the issue here is any one client getting too large a share of validators. How much is too large? In an ideal world every client would have less than 1/3rd of validators. Then a bug in a single client doesn&rsquo;t prevent the chain from continuing to finalise. More than 2/3rds majority is a really big problem because of the potential for those clients to finalise on an incorrect fork.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="What Happens If Beacon Chain Consensus Fails?">
+	<meta property="og:description" content="Over on Twitter, there was an interesting discussion about the importance of client diversity for the beacon chain. As part of that cyber_hokie asks:
+cyber_hokie – @cyber_hokie: As the majority client, isn’t it more likely that issues with Prysm would cause more severe financial penalties for minority clients voting on an alternative chain under accountable safety given Prysm validators likely hold the 2/3 threshold?
+It’s important to note up front that this isn’t a Prysm specific issue. This isn’t a criticism of Prysm at all. All the major beacon chain clients are great – the issue here is any one client getting too large a share of validators. How much is too large? In an ideal world every client would have less than 1/3rd of validators. Then a bug in a single client doesn’t prevent the chain from continuing to finalise. More than 2/3rds majority is a really big problem because of the potential for those clients to finalise on an incorrect fork.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-09-23T00:50:58+00:00">
+		<meta property="article:modified_time" content="2021-09-23T00:50:58+00:00">
+
+	<meta itemprop="name" content="What Happens If Beacon Chain Consensus Fails?">
+	<meta itemprop="description" content="Over on Twitter, there was an interesting discussion about the importance of client diversity for the beacon chain. As part of that cyber_hokie asks:
+cyber_hokie – @cyber_hokie: As the majority client, isn’t it more likely that issues with Prysm would cause more severe financial penalties for minority clients voting on an alternative chain under accountable safety given Prysm validators likely hold the 2/3 threshold?
+It’s important to note up front that this isn’t a Prysm specific issue. This isn’t a criticism of Prysm at all. All the major beacon chain clients are great – the issue here is any one client getting too large a share of validators. How much is too large? In an ideal world every client would have less than 1/3rd of validators. Then a bug in a single client doesn’t prevent the chain from continuing to finalise. More than 2/3rds majority is a really big problem because of the potential for those clients to finalise on an incorrect fork.">
+	<meta itemprop="datePublished" content="2021-09-23T00:50:58+00:00">
+	<meta itemprop="dateModified" content="2021-09-23T00:50:58+00:00">
+	<meta itemprop="wordCount" content="804">
+	<meta itemprop="keywords" content="Blockchain,Ethereum">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="What Happens If Beacon Chain Consensus Fails?">
+	<meta name="twitter:description" content="Over on Twitter, there was an interesting discussion about the importance of client diversity for the beacon chain. As part of that cyber_hokie asks:
+cyber_hokie – @cyber_hokie: As the majority client, isn’t it more likely that issues with Prysm would cause more severe financial penalties for minority clients voting on an alternative chain under accountable safety given Prysm validators likely hold the 2/3 threshold?
+It’s important to note up front that this isn’t a Prysm specific issue. This isn’t a criticism of Prysm at all. All the major beacon chain clients are great – the issue here is any one client getting too large a share of validators. How much is too large? In an ideal world every client would have less than 1/3rd of validators. Then a bug in a single client doesn’t prevent the chain from continuing to finalise. More than 2/3rds majority is a really big problem because of the potential for those clients to finalise on an incorrect fork.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">What Happens If Beacon Chain Consensus Fails?</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">What Happens If Beacon Chain Consensus Fails?</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-09-23T00:50:58Z">September 23, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Over on Twitter, there was <a href="https://twitter.com/L_Nakaghini/status/1440771303745540096">an interesting discussion about the importance of client diversity</a> for the beacon chain. As part of that <a href="https://twitter.com/cyber_hokie/status/1440775367929712642">cyber_hokie asks</a>:</p>
+<blockquote>
+<p>cyber_hokie – @cyber_hokie: As the majority client, isn&rsquo;t it more likely that issues with Prysm would cause more severe financial penalties for minority clients voting on an alternative chain under accountable safety given Prysm validators likely hold the 2/3 threshold?</p>
+</blockquote>
+<p>It&rsquo;s important to note up front that this isn&rsquo;t a Prysm specific issue. This isn&rsquo;t a criticism of Prysm at all. All the major beacon chain clients are great – the issue here is <em>any</em> one client getting too large a share of validators. How much is too large? In an ideal world every client would have less than 1/3rd of validators. Then a bug in a single client doesn&rsquo;t prevent the chain from continuing to finalise. More than 2/3rds majority is a <em>really</em> big problem because of the potential for those clients to finalise on an incorrect fork.</p>
+<p>As <a href="https://twitter.com/dankrad/status/1440786246251397122">Dankrad explains</a>, if a client with 2/3rd of validators has a consensus affecting bug, it will fork off to its own chain <em>and</em> finalise that chain. That becomes an unrecoverable situation for those validators. If they fix the bug and switch back to the correct chain they will be slashed for creating surround votes – the correct chain&rsquo;s justified checkpoint is earlier than the incorrect one. The only option for them is to send a voluntary exit and watch their balance drain until it takes effect. Given 2/3rds of validators are trying to exit, the exit queue is going to be extremely long and thus costly for majority client validators.</p>
+<p>Which brings us to cyber_hokie&rsquo;s question. If 2/3rds of validators are on the incorrect chain and they can&rsquo;t switch, why wouldn&rsquo;t we just accept that chain as the canonical one? Minority client users would then take the hit for inactivity on the majority chain but could switch over. Sounds simple and obvious right? Sadly, it&rsquo;s not.</p>
+<p>Firstly, <a href="https://twitter.com/dankrad/status/1440788036594192386">again as Dankrad points out</a>, we&rsquo;ve been very clear that it&rsquo;s bad for the network for clients to have more than 1/3rd share and dangerous for validators to centralise on a client or provider that has such large share. Most validator penalties ramp up as more validators have the same issue, so if you use a majority client or a majority cloud provider or a majority staking service you run the risk of incurring large penalties if they have an issue, due to it affecting so many validators at once. It would be extremely unfair to validators who heeded these warnings to then be penalised for doing the right thing.</p>
+<p>Secondly, if you remember back to <a href="https://www.symphonious.net/2021/02/13/hard-truths-for-eth-stakers/">hard truths for ETH stakers</a>, Ethereum doesn&rsquo;t exist to make stakers rich. Stakers are service providers to Ethereum, highly interchangeable and largely quite replaceable. Stakers are not the target market for Ethereum or its reason to exist. The service they provide is necessary and they are paid for that service but they shouldn&rsquo;t expect to be treated any differently to a miner and definitely shouldn&rsquo;t expect the Ethereum community to bail them out when they mess up.</p>
+<p>Which leads to the third and most important point. A client with a majority of validators, doesn&rsquo;t necessarily have a majority of users or “value”. Even on the beacon chain today there are already some applications following the chain and making decisions based on that state. Those users don&rsquo;t necessarily show up in validator numbers and so could all follow the chain with a minority of validators. So while a chain may be a majority from a consensus point of view it may simultaneously be the minority chain from a network value point of view.</p>
+<p>Once we get to the merge, it becomes much more clear that the weight of DApps, exchanges and other users is going to be far more important than the number of validators. Unless you&rsquo;re willing to argue that we should accept whatever chain Infura follows as canonical today (and you shouldn&rsquo;t be), you shouldn&rsquo;t argue that we should accept whatever chain a majority consensus client follows.</p>
+<p>Finally, accepting the incorrect chain as canonical would mean embedding whatever bug happened to occur as the expected behaviour. That creates significant technical debt and may even introduce security flaws into the specification. It may not even be fully deterministic given that many consensus bugs have been caused by incorrect caching behaviour so nodes follow different chains depending on whether they were online or offline at a particular point in time or based on when they got a particular network message.</p>
+<p>And that&rsquo;s before we start on the political/governance challenges of a bail out. The DAO fork didn&rsquo;t cost normal users anything and it still caused a chain split.</p>
+<p>The days of Ethereum bailing people out are long gone.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

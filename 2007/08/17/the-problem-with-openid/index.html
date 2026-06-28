@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>The Problem With OpenID | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Flow|State has an excellent semi-rant about how poor the user experience is when using OpenID – both signing up and logging in. In particularly the question of what happens to all your accounts when your OpenID provider disappears is a particularly good one.
+It so happens that I was looking into this just today since I needed a user friendly but secure authentication mechanism. OpenID seemed like a natural choice since I was effectively starting from scratch anyway, why not use a standard? The main problem I had with OpenID didn&rsquo;t really come through clearly in the Flow|State article though – OpenID requires users to log in twice. The first log in requires them to enter a URI, the second log in requires them to enter their password (or in some cases a username and a password). It&rsquo;s bad enough that most URIs are much longer than most usernames or even email addresses, but there&rsquo;s actually a page reload between the URi and the password. When was the last time you saw a webapp display the username and passwords fields on separate pages?">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2007/08/17/the-problem-with-openid/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2007/08/17/the-problem-with-openid/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="The Problem With OpenID">
+	<meta property="og:description" content="Flow|State has an excellent semi-rant about how poor the user experience is when using OpenID – both signing up and logging in. In particularly the question of what happens to all your accounts when your OpenID provider disappears is a particularly good one.
+It so happens that I was looking into this just today since I needed a user friendly but secure authentication mechanism. OpenID seemed like a natural choice since I was effectively starting from scratch anyway, why not use a standard? The main problem I had with OpenID didn’t really come through clearly in the Flow|State article though – OpenID requires users to log in twice. The first log in requires them to enter a URI, the second log in requires them to enter their password (or in some cases a username and a password). It’s bad enough that most URIs are much longer than most usernames or even email addresses, but there’s actually a page reload between the URi and the password. When was the last time you saw a webapp display the username and passwords fields on separate pages?">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2007-08-17T06:26:55+00:00">
+		<meta property="article:modified_time" content="2007-08-17T06:26:55+00:00">
+
+	<meta itemprop="name" content="The Problem With OpenID">
+	<meta itemprop="description" content="Flow|State has an excellent semi-rant about how poor the user experience is when using OpenID – both signing up and logging in. In particularly the question of what happens to all your accounts when your OpenID provider disappears is a particularly good one.
+It so happens that I was looking into this just today since I needed a user friendly but secure authentication mechanism. OpenID seemed like a natural choice since I was effectively starting from scratch anyway, why not use a standard? The main problem I had with OpenID didn’t really come through clearly in the Flow|State article though – OpenID requires users to log in twice. The first log in requires them to enter a URI, the second log in requires them to enter their password (or in some cases a username and a password). It’s bad enough that most URIs are much longer than most usernames or even email addresses, but there’s actually a page reload between the URi and the password. When was the last time you saw a webapp display the username and passwords fields on separate pages?">
+	<meta itemprop="datePublished" content="2007-08-17T06:26:55+00:00">
+	<meta itemprop="dateModified" content="2007-08-17T06:26:55+00:00">
+	<meta itemprop="wordCount" content="324">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="The Problem With OpenID">
+	<meta name="twitter:description" content="Flow|State has an excellent semi-rant about how poor the user experience is when using OpenID – both signing up and logging in. In particularly the question of what happens to all your accounts when your OpenID provider disappears is a particularly good one.
+It so happens that I was looking into this just today since I needed a user friendly but secure authentication mechanism. OpenID seemed like a natural choice since I was effectively starting from scratch anyway, why not use a standard? The main problem I had with OpenID didn’t really come through clearly in the Flow|State article though – OpenID requires users to log in twice. The first log in requires them to enter a URI, the second log in requires them to enter their password (or in some cases a username and a password). It’s bad enough that most URIs are much longer than most usernames or even email addresses, but there’s actually a page reload between the URi and the password. When was the last time you saw a webapp display the username and passwords fields on separate pages?">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">The Problem With OpenID</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">The Problem With OpenID</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2007-08-17T06:26:55Z">August 17, 2007</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://miksovsky.blogs.com/flowstate/2007/08/openid-great-id.html">Flow|State has an excellent semi-rant about how poor the user experience is when using OpenID</a> – both signing up and logging in. In particularly the question of what happens to all your accounts when your OpenID provider disappears is a particularly good one.</p>
+<p>It so happens that I was looking into this just today since I needed a user friendly but secure authentication mechanism. OpenID seemed like a natural choice since I was effectively starting from scratch anyway, why not use a standard? The main problem I had with OpenID didn&rsquo;t really come through clearly in the Flow|State article though – OpenID requires users to log in twice. The first log in requires them to enter a URI, the second log in requires them to enter their password (or in some cases a username and a password). It&rsquo;s bad enough that most URIs are much longer than most usernames or even email addresses, but there&rsquo;s actually a page reload between the URi and the password. When was the last time you saw a webapp display the username and passwords fields on separate pages?</p>
+<p>You can do a lot to make things easier on users of OpenID, but the whole protocol is based around the idea of having an extra page load between the URI and the password. You can avoid the problem sometimes if the OpenID provider&rsquo;s session hasn&rsquo;t expired yet but you can&rsquo;t have those sessions hanging around too long or they become a security hole.</p>
+<p>So in the end, the best thing we can do is to ignore OpenID and use the old fashioned username and password per site. If we want to have a consistent online identity, provide a way to set your homepage URL and link to it where ever the username appears. You can still impersonate people but OpenID doesn&rsquo;t really stop that anyway – worst case, use OpenID just to verify that the person&rsquo;s homepage is really theirs.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

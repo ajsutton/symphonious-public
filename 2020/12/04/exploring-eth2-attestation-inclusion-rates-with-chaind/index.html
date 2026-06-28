@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exploring Eth2: Attestation Inclusion Rates with chaind | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="For the beacon chain MainNet, I&rsquo;ve setup an instance of chaind – a handle little utility that connects to a beacon node (like Teku) and dumps out the chain data to a database so its easy to run various queries against. While you can do this with various REST API queries and custom code, having it all accessible by SQL makes ad-hoc queries a lot easier and lets you add it as a datasource for Grafana to display lots of powerful metrics.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2020/12/04/exploring-eth2-attestation-inclusion-rates-with-chaind/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2020/12/04/exploring-eth2-attestation-inclusion-rates-with-chaind/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Exploring Eth2: Attestation Inclusion Rates with chaind">
+	<meta property="og:description" content="For the beacon chain MainNet, I’ve setup an instance of chaind – a handle little utility that connects to a beacon node (like Teku) and dumps out the chain data to a database so its easy to run various queries against. While you can do this with various REST API queries and custom code, having it all accessible by SQL makes ad-hoc queries a lot easier and lets you add it as a datasource for Grafana to display lots of powerful metrics.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2020-12-04T05:08:11+00:00">
+		<meta property="article:modified_time" content="2020-12-04T05:08:11+00:00">
+
+	<meta itemprop="name" content="Exploring Eth2: Attestation Inclusion Rates with chaind">
+	<meta itemprop="description" content="For the beacon chain MainNet, I’ve setup an instance of chaind – a handle little utility that connects to a beacon node (like Teku) and dumps out the chain data to a database so its easy to run various queries against. While you can do this with various REST API queries and custom code, having it all accessible by SQL makes ad-hoc queries a lot easier and lets you add it as a datasource for Grafana to display lots of powerful metrics.">
+	<meta itemprop="datePublished" content="2020-12-04T05:08:11+00:00">
+	<meta itemprop="dateModified" content="2020-12-04T05:08:11+00:00">
+	<meta itemprop="wordCount" content="1504">
+	<meta itemprop="keywords" content="General">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exploring Eth2: Attestation Inclusion Rates with chaind">
+	<meta name="twitter:description" content="For the beacon chain MainNet, I’ve setup an instance of chaind – a handle little utility that connects to a beacon node (like Teku) and dumps out the chain data to a database so its easy to run various queries against. While you can do this with various REST API queries and custom code, having it all accessible by SQL makes ad-hoc queries a lot easier and lets you add it as a datasource for Grafana to display lots of powerful metrics.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Eth2: Attestation Inclusion Rates with chaind</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Exploring Eth2: Attestation Inclusion Rates with chaind</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-12-04T05:08:11Z">December 4, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>For the beacon chain MainNet, I&rsquo;ve setup an instance of <a href="https://github.com/wealdtech/chaind">chaind</a> – a handle little utility that connects to a beacon node (like <a href="https://consensys.net/knowledge-base/ethereum-2/teku/">Teku</a>) and dumps out the chain data to a database so its easy to run various queries against. While you can do this with various REST API queries and custom code, having it all accessible by SQL makes ad-hoc queries a lot easier and lets you add it as a datasource for Grafana to display lots of powerful metrics.</p>
+<p>Herewith, a few useful queries and snippets that make life easier. I&rsquo;ve setup my dashboard with two variables – genesisTime (1606824023 for MainNet) and perfValidators – a list of validator indices that I often want to monitor (e.g. 1,1234,5533,2233).</p>
+<p>Filter an epoch based table to the current Grafana time range:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> f_epoch <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span> <span style="color:#66d9ef">AND</span> f_epoch <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span>
+</span></span></code></pre></div><p>Filter a slot based table to the current Grafana time range:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> f_slot <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">AND</span> f_slot <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span>
+</span></span></code></pre></div><p>Average balance, in ETH, of a set of validators for the latest epoch:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>f_epoch <span style="color:#f92672">*</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#34;time&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">AVG</span>(f_balance) <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000000000</span>.<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;balance&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> t_validator_balances
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span>
+</span></span><span style="display:flex;"><span>f_epoch <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span> <span style="color:#66d9ef">AND</span> f_epoch <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span> <span style="color:#66d9ef">AND</span>
+</span></span><span style="display:flex;"><span>f_validator_index <span style="color:#66d9ef">IN</span> (<span style="color:#960050;background-color:#1e0010">$</span>perfValidators)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> f_epoch
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> f_epoch <span style="color:#66d9ef">DESC</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Balances by validator, by epoch suitable for graphing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>CONCAT(f_validator_index, <span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#66d9ef">AS</span> metric,
+</span></span><span style="display:flex;"><span>f_epoch <span style="color:#f92672">*</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#34;time&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">MAX</span>(f_balance) <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000000000</span>.<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;balance&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> t_validator_balances
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span>
+</span></span><span style="display:flex;"><span>f_epoch <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span> <span style="color:#66d9ef">AND</span> f_epoch <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span> <span style="color:#66d9ef">AND</span>
+</span></span><span style="display:flex;"><span>f_validator_index <span style="color:#66d9ef">IN</span> (<span style="color:#960050;background-color:#1e0010">$</span>perfValidators)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> f_epoch, f_validator_index
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> f_epoch 
+</span></span></code></pre></div><p>Calculate the percentage of blocks successfully produced and included on the canonical chain:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SUM</span>(<span style="color:#ae81ff">1</span>) FILTER (<span style="color:#66d9ef">WHERE</span> b.f_root <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>) <span style="color:#f92672">/</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;value&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> t_proposer_duties <span style="color:#66d9ef">AS</span> d
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">JOIN</span> t_blocks <span style="color:#66d9ef">AS</span> b <span style="color:#66d9ef">ON</span> d.f_slot <span style="color:#f92672">=</span> d.f_slot
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span>
+</span></span><span style="display:flex;"><span>d.f_slot <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">AND</span> d.f_slot <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">AND</span>
+</span></span><span style="display:flex;"><span>d.f_validator_index <span style="color:#66d9ef">IN</span> (<span style="color:#960050;background-color:#1e0010">$</span>perfValidators)
+</span></span></code></pre></div><p>And then we come to attestations… They&rsquo;re a special kind of fun because they can be aggregated and the validator is identified by its position in a committee rather than by its validator index directly. We&rsquo;re going to build up to having a query that calculates the inclusion rate for attestations but we&rsquo;ll take it a step at a time with a bunch of useful queries and snippets along the way.</p>
+<p>Firstly, we need to deal with the fact that attestations for the committee may have been spread across multiple aggregates when included in blocks and recombine them into one set of aggregation bits that represents every validator from that slot and committee which was included in any attestation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> x.f_slot, x.f_committee_index, bit_or(<span style="color:#66d9ef">RIGHT</span>(x.f_aggregation_bits::text, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)::varbit) <span style="color:#66d9ef">AS</span> f_aggregation_bits 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> t_attestations x 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> x.f_slot, x.f_committee_index
+</span></span></code></pre></div><p>Note: you may want to add a WHERE clause to constrain this to the relevant time rage to improve performance.</p>
+<p>The aggregation bits are stored as a bytea, so we first have to convert it to a varbit with a weird RIGHT(x.f_aggregation_bits::text, -1)::varbit because the internet said to and then we can do a bitwise or to combine them all.</p>
+<p>Now we have slot, committee index and a long binary string indicating which validators in the committee attested. So we can identify the validators we&rsquo;re interested in, we want to convert that binary string to an array of validator indices. I don&rsquo;t know of a function that can do that in Postgres, but we can write one:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">replace</span> <span style="color:#66d9ef">function</span> get_indices(varbit, bigint[]) <span style="color:#66d9ef">returns</span> bigint[] <span style="color:#66d9ef">as</span> <span style="color:#960050;background-color:#1e0010">$$</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">declare</span> i int;
+</span></span><span style="display:flex;"><span>        l int;
+</span></span><span style="display:flex;"><span>        s int;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">c</span> bigint[];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>:<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{}&#39;</span>;
+</span></span><span style="display:flex;"><span>    l:<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    loop
+</span></span><span style="display:flex;"><span>      exit <span style="color:#66d9ef">when</span> get_bit(<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">bit_length</span>(<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> l)<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      l:<span style="color:#f92672">=</span>l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span> loop;
+</span></span><span style="display:flex;"><span>    s:<span style="color:#f92672">=</span>(<span style="color:#ae81ff">7</span> <span style="color:#f92672">-</span> l) <span style="color:#f92672">+</span> (<span style="color:#66d9ef">octet_length</span>(<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>:<span style="color:#f92672">=</span><span style="color:#66d9ef">c</span><span style="color:#f92672">||</span>l::bigint<span style="color:#f92672">||</span>s::bigint;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> reverse s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>..<span style="color:#ae81ff">0</span> loop
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> get_bit(<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>, (i <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">-</span>(i<span style="color:#f92672">%</span><span style="color:#ae81ff">8</span>))<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">c</span>:<span style="color:#f92672">=</span><span style="color:#66d9ef">c</span><span style="color:#f92672">||</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span> loop;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">c</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#66d9ef">language</span> plpgsql;
+</span></span></code></pre></div><p>UPDATE: The initial version of this function was incorrect. Endianness strikes again… The updated version fully parses the SSZ bitlist format, using the marker bit to calculate the exact list size.</p>
+<p>This takes the binary string we had as the first argument (varbit) and the f_committee field from the t_beacon_committees table which is an array of validator indices. It iterates through each bit in the binary string and if it&rsquo;s set adds the validator index from the same position in the beacon committee to the result.</p>
+<p>Combining the two, we can get the list of validator indices that were included by slot and committee index:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">c</span>.f_slot, <span style="color:#66d9ef">c</span>.f_index, get_indices(a.f_aggregation_bits, <span style="color:#66d9ef">c</span>.f_committee)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">FROM</span> t_beacon_committees <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">JOIN</span> (<span style="color:#66d9ef">SELECT</span> x.f_slot, x.f_committee_index, bit_or(<span style="color:#66d9ef">RIGHT</span>(x.f_aggregation_bits::text, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)::varbit) <span style="color:#66d9ef">AS</span> f_aggregation_bits
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">FROM</span> t_attestations x
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> x.f_slot, x.f_committee_index) a <span style="color:#66d9ef">ON</span> a.f_slot <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#66d9ef">AND</span> a.f_committee_index <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_index
+</span></span></code></pre></div><p>If we just want to know how many validators attested from that committee and slot, we&rsquo;d change the get_indices call to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">cardinality</span>(get_indices(a.f_aggregation_bits, <span style="color:#66d9ef">c</span>.f_committee))
+</span></span></code></pre></div><p>But we really only want to know how many of our validators attested so we need to find the intersection of our validators and the validators that attested.  That part of the select then becomes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>icount(get_indices(a.f_aggregation_bits, <span style="color:#66d9ef">c</span>.f_committee)::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>::int[])
+</span></span></code></pre></div><p>Since we&rsquo;re ultimately wanting just the total number of attestations included from our validators we can aggregate all those rows with the SUM function and our query becomes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(icount(get_indices(a.f_aggregation_bits, <span style="color:#66d9ef">c</span>.f_committee)::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>::int[]))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">FROM</span> t_beacon_committees <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">JOIN</span> (<span style="color:#66d9ef">SELECT</span> x.f_slot, x.f_committee_index, bit_or(<span style="color:#66d9ef">RIGHT</span>(x.f_aggregation_bits::text, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)::varbit) <span style="color:#66d9ef">AS</span> f_aggregation_bits
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">FROM</span> t_attestations x
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> x.f_slot, x.f_committee_index) a <span style="color:#66d9ef">ON</span> a.f_slot <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#66d9ef">AND</span> a.f_committee_index <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_index
+</span></span></code></pre></div><p>But that&rsquo;s only have the story (fortunately its the more complicated half) – we also want to know how many attestations we <em>should</em> have produced. That means counting the number of times our validators appear in committees:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(icount(<span style="color:#66d9ef">c</span>.f_committee::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">FROM</span> t_beacon_committees <span style="color:#66d9ef">c</span>
+</span></span></code></pre></div><p>It&rsquo;s tempting to just use a COUNT(*) but that will find the number of committees any validator is in, but undercount the number of expected attestations if two of our validators are in the same committee. So we have to apply the same trick as we did for counting the number of attestations – find the intersection and then count.</p>
+<p>We can filter the number of rows we have to inspect by only including committees containing our validators with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">c</span>.f_committee <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>
+</span></span></code></pre></div><p>So putting it all together we can get the percentage of included attestations in the current time range with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(icount(get_indices(a.f_aggregation_bits, <span style="color:#66d9ef">c</span>.f_committee)::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>::int[]))::double <span style="color:#66d9ef">precision</span> <span style="color:#f92672">/</span> <span style="color:#66d9ef">SUM</span>(icount(<span style="color:#66d9ef">c</span>.f_committee::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">FROM</span> t_beacon_committees <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">JOIN</span> (<span style="color:#66d9ef">SELECT</span> x.f_slot, x.f_committee_index, bit_or(<span style="color:#66d9ef">RIGHT</span>(x.f_aggregation_bits::text, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)::varbit) <span style="color:#66d9ef">AS</span> f_aggregation_bits
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">FROM</span> t_attestations x
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> x.f_slot, x.f_committee_index) a <span style="color:#66d9ef">ON</span> a.f_slot <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#66d9ef">AND</span> a.f_committee_index <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_index
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">c</span>.f_committee <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>;
+</span></span></code></pre></div><p>Which is up there with the least comprehensible SQL I&rsquo;ve ever written. But it works and it says Teku is awesome.</p>
+<p>But why stop there? What if we wanted to know the number of correct attestations?</p>
+<p>Remember way back up when we were first aggregating attestations? If we just filtered the attestations to the ones which have the right beacon block root, our aggregate will only count validators that attested to the correct head. A straight join to t_blocks will do the trick:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(icount(get_indices(a.f_aggregation_bits, <span style="color:#66d9ef">c</span>.f_committee)::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>::int[]))::double <span style="color:#66d9ef">precision</span> <span style="color:#f92672">/</span> <span style="color:#66d9ef">SUM</span>(icount(<span style="color:#66d9ef">c</span>.f_committee::int[] <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">FROM</span> t_beacon_committees <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">JOIN</span> (<span style="color:#66d9ef">SELECT</span> x.f_slot, x.f_committee_index, bit_or(<span style="color:#66d9ef">RIGHT</span>(x.f_aggregation_bits::text, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)::varbit) <span style="color:#66d9ef">AS</span> f_aggregation_bits 
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">FROM</span> t_attestations x 
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">JOIN</span> t_blocks b <span style="color:#66d9ef">ON</span> x.f_beacon_block_root <span style="color:#f92672">=</span> b.f_root <span style="color:#66d9ef">AND</span> b.f_slot <span style="color:#f92672">=</span> (<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MAX</span>(b2.f_slot) <span style="color:#66d9ef">FROM</span> t_blocks b2 <span style="color:#66d9ef">WHERE</span> b2.f_slot <span style="color:#f92672">&lt;=</span> x.f_slot)
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">WHERE</span> x.f_slot <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">AND</span> x.f_slot <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> x.f_slot, x.f_committee_index) a <span style="color:#66d9ef">ON</span> a.f_slot <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#66d9ef">AND</span> a.f_committee_index <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.f_index
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#f92672">&gt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochFrom() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">c</span>.f_slot <span style="color:#f92672">&lt;=</span> (<span style="color:#960050;background-color:#1e0010">$</span>__unixEpochTo() <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span>genesisTime) <span style="color:#f92672">/</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">c</span>.f_committee <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#39;{$perfValidators}&#39;</span>;
+</span></span></code></pre></div><p>It&rsquo;s tempting to just test that the block root and slot matches, but then attestations that correctly pointed to empty slots wouldn&rsquo;t be included. So we have to check that the block root is the last one at or before the attestation slot.</p>
+<p>Or would could change that join to check if the target root (it points to the block root at the first slot of the epoch):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">JOIN</span> t_blocks b <span style="color:#66d9ef">ON</span> x.f_target_root <span style="color:#f92672">=</span> b.f_root <span style="color:#66d9ef">AND</span> b.f_slot <span style="color:#f92672">=</span> (<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MAX</span>(b2.f_slot) <span style="color:#66d9ef">FROM</span> t_blocks b2 <span style="color:#66d9ef">WHERE</span> b2.f_slot <span style="color:#f92672">&lt;=</span> x.f_target_epoch <span style="color:#f92672">*</span> <span style="color:#ae81ff">32</span>)
+</span></span></code></pre></div><p>And hey look, we made that incomprehensible SQL even worse!</p>
+<p>This may not be the best use of chaind but it&rsquo;s fun and the snippets of SQL here can be remixed and combined to do quite a lot of things as part of what&rsquo;s investigating what happened with a chain. I suspect it would be a lot easier to have a denormalised table that recorded the first time a validator&rsquo;s attestation was included to save all the bit twiddling and array intersections. It may come at a fairly large cost of disk space though.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

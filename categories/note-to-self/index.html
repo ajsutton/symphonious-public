@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/categories/note-to-self/index.xml" rel="alternate" type="application/rss+xml" title="Symphonious" />
+      <link href="/categories/note-to-self/index.xml" rel="feed" type="application/rss+xml" title="Symphonious" />
+      
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/categories/note-to-self/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/categories/note-to-self/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Note to Self">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+
+	<meta itemprop="name" content="Note to Self">
+	<meta itemprop="datePublished" content="2020-11-16T23:22:37+00:00">
+	<meta itemprop="dateModified" content="2020-11-16T23:22:37+00:00">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Note to Self">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          Note to Self
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Note to Self”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 16, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/11/17/creating-validator-password-files/" class="link black dim">
+        Creating validator password files
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Teku requires a password file for each individual keystore, with the same relative path as the keystore but a <code>.txt</code>extension. If all the keystores have the same password, you can copy a single <code>password.txt</code>file for all the keystores with the command below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> keyFile in keys/*; <span style="color:#66d9ef">do</span> cp password.txt <span style="color:#e6db74">&#34;secrets/</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$keyFile<span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/keys\/\(.*\)\.json/\1/&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">.txt&#34;</span>; <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Note that the <code>keys</code> directory is specified twice in that command so if the keys are in a different directory name, make sure to update both places.</p>
+    </div>
+  <a href="/2020/11/17/creating-validator-password-files/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 23, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2020/01/23/archunit/" class="link black dim">
+        ArchUnit
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Stumbled across <a href="https://www.archunit.org/">ArchUnit</a> today which looks useful. In particular I think there&rsquo;s power in being able to assert that certain packages really never depend on each other. Although gradle/maven modules would probably be a better level to assert at. It&rsquo;s depressingly common for code bases to be split into separate modules with the intention that they be a clear separation of concerns only for a web of dependencies to be added because someone wanted to reuse some class and didn&rsquo;t refactor to a common module.</p>
+    </div>
+  <a href="/2020/01/23/archunit/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 7, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2019/08/07/adding-a-dco-signed-off-by-to-every-commit-in-a-git-repo/" class="link black dim">
+        Adding a DCO Signed-off-by to every commit in a git repo
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you&rsquo;re switching from a CLA model to a DCO model you may want to add a Signed-off-by line to every existing commit so that you can run automated DCO checks over the entire repository. Doing this obviously assumes that your CLA sets things up so that you are actually in a position to provide a DCO sign-off.</p>
+<p>Once you&rsquo;re happy with all the legalities, the change is a single command using git filter-branch:</p>
+    </div>
+  <a href="/2019/08/07/adding-a-dco-signed-off-by-to-every-commit-in-a-git-repo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 6, 2016
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/" class="link black dim">
+        Fun with Nvidia Drivers and Fedora Upgrades
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>After any major Fedora upgrade my system loses the proprietary nvidia drivers that make X actually work (I&rsquo;ve never successfully gotten the nouveau drivers to handle my card and multi-monitor setup) so the system reboots and simply presents an “oops, something went wrong” screen.</p>
+<p>The issue seems to be that the nvidia driver doesn&rsquo;t recompile for the new kernel, despite the fact that I&rsquo;m using akmod packages which should in theory automatically recompile for new kernels.</p>
+    </div>
+  <a href="/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 21, 2016
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2016/06/22/make-rebase-the-default-for-git-pull/" class="link black dim">
+        Make –rebase The Default For git pull
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>So I can find this again easily in the future, to avoid introducing merge commits git pull –rebase is a great idea and you can make it the default behaviour with:</p>
+<pre><code>git config --global pull.rebase true
+</code></pre>
+<p>Found on <a href="https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull">Coderwall</a> which has some further details.</p>
+    </div>
+  <a href="/2016/06/22/make-rebase-the-default-for-git-pull/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 25, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/08/25/miller-command-line-csv-tool/" class="link black dim">
+        Miller – Command Line CSV Tool
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <blockquote>
+<p><a href="http://johnkerl.org/miller/doc/index.html">Miller</a> is like sed, awk, cut, join, and sort for name-indexed data such as CSV.
+Leaving this here for the next time I have to work with CSV files on the command line.  It can do a lot more than just CSVs of course, but that&rsquo;s likely to be the most useful to me.</p>
+</blockquote>
+    </div>
+  <a href="/2015/08/25/miller-command-line-csv-tool/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 8, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/08/09/display-port-monitor-wakes-up-a-few-seconds-after-being-suspending-on-linux/" class="link black dim">
+        Display Port Monitor Wakes Up a Few Seconds After Being Suspending on Linux
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I have a dual monitor setup with Linux where one display is connected via DisplayPort and the other via DVI, both from an Nvidia graphics card. When the screen is locked both displays go black, the DVI monitor says it&rsquo;s entering power save mode and the DisplayPort monitor says “No input” at which point both monitors turn back on displaying the unlock screen.</p>
+<p>Playing with xset dpms force standby|suspend|off gave a variety of effects, sometimes the DisplayPort stayed off but the DVI turned back on, sometimes the DisplayPort went black but didn&rsquo;t turn off etc.</p>
+    </div>
+  <a href="/2015/08/09/display-port-monitor-wakes-up-a-few-seconds-after-being-suspending-on-linux/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 9, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/04/09/emoji-one-open-source-emoji-designed-for-the-web/" class="link black dim">
+        Emoji One – Open source emoji designed for the web.
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Mostly so I can find this again later when I inevitably need it, <a href="http://emojione.com/">Emoji One</a> is a creative commons licensed collection of Emoji and related tools for the web.</p>
+    </div>
+  <a href="/2015/04/09/emoji-one-open-source-emoji-designed-for-the-web/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 3, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/02/03/mounting-a-time-capsule-drive-in-linux/" class="link black dim">
+        Mounting a Time Capsule Drive In Linux
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Lots of articles out there that have almost the right solution here but nearly all of them miss one critical component, so for my future sanity, here&rsquo;s what works for me:</p>
+<p>sudo mount.cifs //timecapsule.local/Data/ /mnt/directory/ -o “pass=password,sec=ntlm”</p>
+<p>If you don&rsquo;t have zeroconf working in your Linux install you&rsquo;ll have to use the time capsule&rsquo;s IP instead of it&rsquo;s .local name.  The “Data” part is the name of the disk you want to mount as shown in Airport Utility (make sure you escape any spaces with backslash.</p>
+    </div>
+  <a href="/2015/02/03/mounting-a-time-capsule-drive-in-linux/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 12, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/05/13/combining-output-of-multiple-bash-commands-into-one-line/" class="link black dim">
+        Combining Output of Multiple Bash Commands Into One Line
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I wanted to create a CSV file showing the number of JUnit tests in our codebase vs the number of Spock tests over time. I can count the number of tests, along with the revision pretty easily with:</p>
+<pre>git svn find-rev HEAD<br />find src/test -name '*Test.java' | wc -l<br />find src/test -name '*Spec.groovy' | wc -l</pre>
+<p>But that outputs the results on three separate lines and I really want them on one line with some separator (comma, space or tab). The simplest way to achieve that is:</p>
+    </div>
+  <a href="/2014/05/13/combining-output-of-multiple-bash-commands-into-one-line/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 6, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/01/06/proper-scrolling-direction-in-linux-on-macbook-pro/" class="link black dim">
+        “Proper” Scrolling Direction in Linux on MacBook Pro
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you&rsquo;ve gotten used to your trackpad scrolling the same way as on iOS and (by default) OS X but you&rsquo;re using Linux you&rsquo;ll want to go to the “Mouse &amp; Touchpad” settings panel and tick “Content sticks to fingers”.</p>
+<p>Yeah I know,shockingly simple but for whatever reason I had assumed “Content sticks to fingers” related to some weird drag and drop system…</p>
+    </div>
+  <a href="/2014/01/06/proper-scrolling-direction-in-linux-on-macbook-pro/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 16, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/12/16/why-are-my-junit-tests-running-so-slow/" class="link black dim">
+        Why Are My JUnit Tests Running So Slow?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This is mostly a note to myself, but often when I setup a new Linux install, I find that JUnit tests run significantly slower than usual. The CPU is nearly entirely idle and there&rsquo;s almost no IO-wait making it hard to work out what&rsquo;s going on.</p>
+<p>The problem is that JUnit (or something in our tests or test runner) is doing a DNS lookup on the machine&rsquo;s hostname. That lookup should be really fast, but if you&rsquo;re connected to a VPN it may search the remote DNS server which takes time and makes the tests take much longer than they should.</p>
+    </div>
+  <a href="/2013/12/16/why-are-my-junit-tests-running-so-slow/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 13, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/09/13/uglifyuglify2-rickshaw-requirejs-and-minification/" class="link black dim">
+        Uglify/Uglify2, Rickshaw, Requirejs and Minification
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you have:</p>
+<ul>
+<li>A javascript project using require.js</li>
+<li>Which is optimised using r.js</li>
+<li>Includes Rickshaw or any other library that uses the prototype class system</li>
+</ul>
+<p>Then you are very likely here because you&rsquo;re trying to enable JavaScript optimization (minification) and finding that suddenly stuff breaks.</p>
+<p>The problem is that the prototype class system allows overriding methods to call the original method by adding a $super as the first parameter to the function. From <a href="http://prototypejs.org/learn/class-inheritance">the prototype docs</a>:</p>
+    </div>
+  <a href="/2013/09/13/uglifyuglify2-rickshaw-requirejs-and-minification/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 24, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/07/24/javascript-drag-and-drop-events/" class="link black dim">
+        JavaScript Drag and Drop Events
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Note to self: when you next need to handle drag and drop events in javascript, just use <a href="http://threedubmedia.com/code/event/drag">jquery.event.drag from ThreeDubMedia</a>. Simple jquery based API and automatically handles the most annoying part of javascript drag handlers – dealing with cases where the user starts dragging inside an element, drags right out of the element and then releases the mouse.</p>
+    </div>
+  <a href="/2013/07/24/javascript-drag-and-drop-events/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 27, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/03/27/ignoring-changes-to-tracked-files-in-git/" class="link black dim">
+        Ignoring Changes to Tracked Files in Git
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I’m going to want to remember this one day, so here’s a pointer to <a href="http://archive.robwilkerson.org/2010/03/02/git-tip-ignore-changes-to-tracked-files/">Rob Wilderson’s Ignore Changes to Tracked Files in Git</a>.</p>
+<p>I’m especially going to want to remember the bit about how to find which files I’ve ignored in this way.</p>
+    </div>
+  <a href="/2012/03/27/ignoring-changes-to-tracked-files-in-git/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 28, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/02/28/how-to-round-trip-data-via-ssh/" class="link black dim">
+        How To Round-Trip Data Via SSH
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I keep forgetting this so for the record, you can use SSH to round trip data out to a remote server and back to your own box.  This is most useful for adding latency and bandwidth limitations to a connection when doing website testing.  The trick is to use both local and remote port forwards:</p>
+<pre>ssh -L 9090:localhost:9091 -R 9091:localhost:80 remote.server.com
+</pre>
+<p>The -L argument starts listening on port 9090 locally and sends all that traffic to port 9091 on the remote server (the domain name, localhost, is resolved by the remote server so it refers to the remote server, not your local machine).  Then the -R argument listens on port 9091 of the remote server and forwards all that traffic back to your machine’s port 80 (here localhost is resolved on your local machine).</p>
+    </div>
+  <a href="/2012/02/28/how-to-round-trip-data-via-ssh/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 30, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/06/30/whos-committed-in-my-git-repository/" class="link black dim">
+        Who’s Committed in my Git Repository?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Note to self: if you ever want to get a simple list of people who have committed to a git repository, the command you want is:</p>
+<pre>git log --format=&#39;%aN &#60;%ae&#62;&#39; | sort -u | uniq
+</pre>
+<p>Or for just the e-mail address:</p>
+<pre>git log --format=&#39;%ae&#39; | sort -u | uniq
+</pre>
+<p>Or for just the name:</p>
+<pre>git log --format=&#39;%aN&#39; | sort -u | uniq
+</pre>
+<p>This is in the help manual but it’s way down the bottom so takes ages to read through to find it.</p>
+    </div>
+  <a href="/2010/06/30/whos-committed-in-my-git-repository/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 7, 2010
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/" class="link black dim">
+        RightScale AWS Amazon EC2 Library for Ruby
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I’ve always known you could do a lot of programmatic stuff with Amazon but I’ve simultaneously been too lazy to actually look into it in detail and never really needed to. However, I’ve stumbled across <a href="http://www.ioncannon.net/system-administration/199/automounting-amazon-ebs-volumes-on-ec2-instances/">instructions for auto-mounting an EBS volume</a> which turns out to be very handy, and leads on to the particularly awesome <a href="http://rightscale.rubyforge.org/">right_aws ruby gem</a>.</p>
+<p>Lots of useful looking stuff for working with EC2, S3 and EBS volumes that I can see me taking a lot more advantage of in the future.</p>
+    </div>
+  <a href="/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 12, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/06/12/stuff-i-might-need-someday/" class="link black dim">
+        Stuff I Might Need Someday
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>A few things I’ve discovered today that look potentially useful in the future:</p>
+<ul>
+<li><a href="http://www.antennahouse.com/product/ahf50/ahf5top.htm">Antenna House Formatter V5</a> – converts HTML and CSS to PDF, including support for MathML. Heck, supporting CSS well is a plus – most HTML to PDF conversions don’t. Hat tip to one of our clients for finding that.</li>
+<li><a href="http://flowplayer.org/tools/index.html">jQuery Tools</a> – there are plenty of JavaScript UI libraries around, but this one looks better componentized than most. It’s also a good, small set of components that normal web pages are likely to want, rather than being more specifically useful in web applications, though it could be used there too.</li>
+<li><a href="http://flowplayer.org/index.html">FlowPlayer</a> – actually I knew about this one but only just got around to looking at the details. Handy looking open source flash video player. They’ve somehow converted the GPL into a license that requires attribution which is really odd, most likely to keep their commercial licensing option open. It’s their license so they can do what they want with it but I would have thought there’d be a better fitting license.</li>
+</ul>
+    </div>
+  <a href="/2009/06/12/stuff-i-might-need-someday/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 16, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/04/16/xmlserializer-class-for-sax-events/" class="link black dim">
+        XmlSerializer Class for SAX Events
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Note to self: <a href="http://about.validator.nu/htmlparser/apidocs/nu/validator/htmlparser/sax/XmlSerializer.html">the nu.validator has a really handy looking SAX handler that serializes the XML</a>.</p>
+<p>Hat tip to Henri Sivonen for pointing this out along with a <a href="http://hsivonen.iki.fi/producing-xml/">bunch of other useful XML generating tips</a>.</p>
+    </div>
+  <a href="/2009/04/16/xmlserializer-class-for-sax-events/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 3, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/04/03/installing-ibm-portal-on-linux/" class="link black dim">
+        Installing IBM Portal on Linux
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>When installing most if not all versions of IBM Portal on Linux, to get the installer to run you need to install a couple of extra packages:</p>
+<ul>
+<li>openmotif</li>
+<li>compat-libstdc++</li>
+</ul>
+<p>Depending on the options you chose when first installing Linux there may be more – the easiest way to find them is to know that the graphical installer sends it’s error messages to /tmp/wpinstalllog.txt. It’s usually fairly easy to match the error messages up to the package you need to install to fix it.</p>
+    </div>
+  <a href="/2009/04/03/installing-ibm-portal-on-linux/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 23, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/02/23/useful-link-roundup/" class="link black dim">
+        Useful Link Roundup
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I have far more tabs open in NetNewsWire than I can handle, so here’s all the stuff that’s open more so I can find them again if I need them than because I actually want to comment on them or do something with them right now:</p>
+<p><a href="http://a.deveria.com/caniuse/#agents=All&amp;cats=All&amp;eras=All&amp;statuses=All">When Can I Use?</a> – Useful page for getting a rough idea of the current state of support for web stuff in browsers.  Not perfect but definitely a very good starting point.</p>
+    </div>
+  <a href="/2009/02/23/useful-link-roundup/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 20, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/02/20/vmware-web-access-cant-login-after-upgrading-to-debian-lenny/" class="link black dim">
+        VMWare Web Access Can’t Login After Upgrading to Debian Lenny
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This one should be obvious but well, it wasn’t… When you upgrade to the latest Debian stable (Lenny at time of writing which was released 14 Feb 2009), it will upgrade PAM and a few other really important login-type modules.  At the time it will tell you that you have to restart any services that use PAM or they mightn’t authenticate properly and offer to restart a number of services for you so everything seems happy.</p>
+    </div>
+  <a href="/2009/02/20/vmware-web-access-cant-login-after-upgrading-to-debian-lenny/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 5, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/02/05/useful-wcm-ifix-nullpointerexception-in-cmpntutilssetsourceidandname/" class="link black dim">
+        Useful WCM iFix – NullPointerException in CmpntUtils.setSourceIDAndName
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you happen to try and import a WCM library and have it fail, then later find that some HTML components trigger errors in the WCM interface when you try to view or edit them – you need iFix <a href="http://www-01.ibm.com/support/docview.wss?uid=swg1PK60048">6.0.1.3-WCM-PK60048</a>.</p>
+    </div>
+  <a href="/2009/02/05/useful-wcm-ifix-nullpointerexception-in-cmpntutilssetsourceidandname/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        November 11, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/11/11/gradient-buttons-and-hsl/" class="link black dim">
+        Gradient Buttons and HSL
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>For future reference, James Tauber has a very useful article on <a href="http://jtauber.com/blog/2008/10/17/hsl_gradients/">using the HSL color scheme to create shiny gradient buttons</a>.  It’s worth knowing that in Java HSL is actually called HSB (brightness instead of luminosity) and there are various methods on the java.awt.Color class for converting between HSB and RGB as well as creating color objects directly from HSB.</p>
+<p> <img src="http://www.symphonious.net/wp-content/uploads/2008/11/button19811.png" alt="The Results Are Cool!"></p>
+    </div>
+  <a href="/2008/11/11/gradient-buttons-and-hsl/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 14, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/10/14/new-dutch-accessibility-laws/" class="link black dim">
+        “New” Dutch Accessibility Laws
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>They aren’t really new anymore, but I just discovered them.  Apparently the <a href="http://www.quirksmode.org/blog/archives/2007/01/new_dutch_acces.html">Dutch accessibility laws go beyond just the WCAG standard</a> and require a whole range of best practices for web sites.  Good stuff.</p>
+    </div>
+  <a href="/2008/10/14/new-dutch-accessibility-laws/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 15, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/09/16/loading-pict-images-in-java/" class="link black dim">
+        Loading PICT Images In Java
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Since the search function for Apple’s mailing lists is pretty much useless, I’m making a note of the <a href="http://lists.apple.com/archives/Java-dev/2008/Sep/thrd2.html#00154">Reading PICT Images</a> thread which contains numerous options for rendering PICT images in Java on OS X.</p>
+    </div>
+  <a href="/2008/09/16/loading-pict-images-in-java/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 11, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/09/11/name-your-intranet/" class="link black dim">
+        Name Your Intranet
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://www.steptwo.com.au/columntwo/naming-the-intranet/">James Robertson</a>:</p>
+<blockquote>
+<p>Having a catchy and memorable intranet name is a great way of promoting the intranet.</p>
+<p>A name can help build an identity, even give the intranet a personality, removing that ‘techy’ edge. This is useful when trying to build staff awareness and engagement with a new or relaunched intranet.</p>
+<p>It is an opportunity to leverage off the organisation’s brand or simply to differentiate the intranet from the organisation’s internet site.</p>
+    </div>
+  <a href="/2008/09/11/name-your-intranet/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 26, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/08/26/url-timeouts/" class="link black dim">
+        java.net.URL Timeouts
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://bluxte.net/blog/2008-08/25-27-10.html">Sylvain Wallez</a>:</p>
+<blockquote>
+<p>If your application uses <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/net/URL.html">java.net.URL</a>, and chances it does are very high, and you are using Sun&rsquo;s JVM (since 1.4.2), you should set the <code>sun.net.client.defaultConnectTimeout</code> and <code>sun.net.client.defaultReadTimeout</code> <a href="http://java.sun.com/javase/6/docs/technotes/guides/net/properties.html">system properties</a> to a reasonable value. Otherwise, if a remote site hangs, your application or server will also hang.
+Useful to know…</p>
+</blockquote>
+    </div>
+  <a href="/2008/08/26/url-timeouts/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 18, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/08/18/exporting-and-importing-a-portal-wcm-library/" class="link black dim">
+        Exporting and Importing a Portal WCM Library
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I’m going to need this soon and I’ll never find the link again in the IBM forums so I’m putting it here.</p>
+<p><a href="http://publib.boulder.ibm.com/infocenter/wpdoc/v6r0/index.jsp?topic=/com.ibm.wp.ent.doc/wcm/wcm_config_wcmlibrary_export.html">Exporting and Importing a Web Content Library</a></p>
+<p>It should let you move web content (minus drafts and previous versions unfortunately) from one IWWCM server to another.</p>
+    </div>
+  <a href="/2008/08/18/exporting-and-importing-a-portal-wcm-library/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 25, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/07/25/neat-looking-iphone-html-ui-framework/" class="link black dim">
+        Neat Looking iPhone HTML UI Framework
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://code.google.com/p/iui/">iUI</a> looks like a promising library for making the development of iPhone webapps much simpler.  Worth keeping an eye on since there’s no barrier to entry for iPhone webapps unlike with native iPhone apps.</p>
+    </div>
+  <a href="/2008/07/25/neat-looking-iphone-html-ui-framework/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 11, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/06/12/html-5-differences-from-html-4/" class="link black dim">
+        HTML 5 Differences From HTML 4
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>More a bookmark for myself than anything – the W3C has published a preliminary <a href="http://www.w3.org/TR/2008/WD-html5-diff-20080610/">guide to differences between HTML 5 and HTML 4</a>. Quite useful for anyone planning to update their products for HTML 5.</p>
+    </div>
+  <a href="/2008/06/12/html-5-differences-from-html-4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 4, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/06/04/tomcat-os-x-safari-and-godaddy-ssl-certificates/" class="link black dim">
+        Tomcat, OS X, Safari and GoDaddy SSL Certificates
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>There’s already a lot of stuff written on the internet about how GoDaddy SSL certificates aren’t recognized by Mac but are by Windows, all of it pointing to “a configuration problem”. I’m not sure how we got such special treatment but none of the instructions I’ve seen work in our particular case.</p>
+<p>In case you’re not familiar with it, the problem is that on Mac OS X connecting to the site displays a dialog saying that the certificate could not be validated for an unknown reason. Thanks a heap for that OS X… On Windows it works just fine. The problem turns out to be that the server isn’t configured to provide the <em>full</em> issuing certificate chain all the way back to the root SSL certificate (which is in OS X’s set of trusted roots by default). All around the internet you’ll get instructions saying to make sure that the SSLCertificateChainFile is set to point at <a href="https://certs.godaddy.com/repository/gd_bundle.crt">gd_bundle.crt</a> (available from <a href="https://certs.godaddy.com/Repository.go">GoDaddy’s repository</a>). This doesn’t work with our certificate, not sure why.</p>
+    </div>
+  <a href="/2008/06/04/tomcat-os-x-safari-and-godaddy-ssl-certificates/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 1, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/05/01/mac-adoption-stats/" class="link black dim">
+        Mac Adoption Stats
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Something I’m sure I’ll want to find again in the future: the OmniGroup provide <a href="http://update.omnigroup.com/">statistics from their update app</a> showing what OS, CPU, Graphics and various other hardware stats their user base has. Very useful for getting a rough guide of adoption rates.</p>
+    </div>
+  <a href="/2008/05/01/mac-adoption-stats/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 29, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/29/rss-feed-for-product-pages/" class="link black dim">
+        RSS Feed For Product Pages
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve noticed something I&rsquo;ve been doing with some consistency lately – when I come across a product that I have some interest in, but can&rsquo;t or don&rsquo;t want to start using straight away, I try to add the product page to my RSS feeds. With the proliferation of RSS support in browsers these days it seems to me that every product page should include a link tag pointing to the product updates feed. Ephox doesn&rsquo;t currently do this, but its something that we should fix pretty quickly to help people find the <a href="http://releases.ephox.com">Releases Blog</a> and stay up to date with all the latest features and fixes.</p>
+    </div>
+  <a href="/2007/04/29/rss-feed-for-product-pages/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 23, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/23/remember-to-turn-on-antialiasing/" class="link black dim">
+        Remember To Turn On Antialiasing
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>If you&rsquo;re doing some graphic work in Java that you want to look pretty (as opposed to most UI stuff where this doesn&rsquo;t make any real difference), you probably want to make sure antialiasing is on for the graphics object. By default Java usually honors the OS settings for antialiasing, particularly for text, but you can get much smoother antialiasing by setting the appropriate rendering hint.</p>
+<p>For example, originally <a href="http://www.symphonious.net/2007/04/20/improving-the-applet-startup-experience-2/">the new progress bar I added last week</a> didn&rsquo;t have antialiasing on, but in the tweaks I&rsquo;ve done this morning (now live on our internal systems) antialiasing is on and it looks much better. It&rsquo;s also changed to be more dots than lines since the last post too. However, setting the antialias rendering hint for all the components in the editor simply slows everything down (rather dramatically) and doesn&rsquo;t actually improve the appearance anyway. Definitely a setting to be aware of but be cautious in its use.</p>
+    </div>
+  <a href="/2007/04/23/remember-to-turn-on-antialiasing/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 14, 2007
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2007/04/15/moving-wordpress-to-a-new-url/" class="link black dim">
+        Moving WordPress To A New URL
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Every so often I want to play around with something new on my blog without trashing the public site. I have a local instance of WordPress that I do most of my playing around on but it generally doesn&rsquo;t have the some database configuration as symphonious.net so I can&rsquo;t be sure that things I develop there will work here.</p>
+<p>It is however simple to completely clone a WordPress instance to a new URL – but I never remember precisely how, so this is a note to myself so that next time I&rsquo;ll remember.</p>
+    </div>
+  <a href="/2007/04/15/moving-wordpress-to-a-new-url/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 13, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/09/14/setting-up-a-fallback-font/" class="link black dim">
+        Setting Up A Fallback Font
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This seems to be the simplest description of setting up a fallback font I&rsquo;ve found: <a href="http://weblogs.java.net/blog/joconner/archive/2006/09/internationaliz.html">http://weblogs.java.net/blog/joconner/archive/2006/09/internationaliz.html</a></p>
+<p>We occasionally come across clients with the problem of fonts not rendering correctly in the JRE so in future I&rsquo;ll be able to point them to this article. Fortunately, with Java 1.5 a pretty good fallback font is already provided so it&rsquo;s pretty rare that you need to do this these days.</p>
+    </div>
+  <a href="/2006/09/14/setting-up-a-fallback-font/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 2, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/05/03/smooth-jlist-dnd-animation/" class="link black dim">
+        Smooth JList DnD Animation
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>The Rabbit Hole: <a href="http://rabbit-hole.blogspot.com/2006/04/smooth-jlist-drop-target-animation.html">Smooth JList Target Animation</a></p>
+<p>There&rsquo;s a JTree animation in the next post too. Cool, but the code is awful so it&rsquo;s probably better to just reimplement the generic technique.</p>
+    </div>
+  <a href="/2006/05/03/smooth-jlist-dnd-animation/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 17, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/04/18/performance-tests/" class="link black dim">
+        Performance Tests
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Useful tool for writing performance tests: <a href="http://weblogs.java.net/blog/spericas/archive/2006/04/performance_tra.html">Japex</a>.  Must remember to use that when we do our next round of profiling. Doug&rsquo;s suggestion is that once we identify a bottleneck in the code, we write a performance test for it with Japex then try to optimize it until we reach the desired performance level. I&rsquo;m not sure that our codebase is likely to see performance regressions in the same area again (I can&rsquo;t ever recall having to reoptimize the same section of code), however having the test would be able to quantify how much of a performance benefit we get which would be a useful metric to know.</p>
+    </div>
+  <a href="/2006/04/18/performance-tests/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 5, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/04/06/delta-web/" class="link black dim">
+        Delta Web
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Note to self: I must read up on <a href="http://andyroberts007.blogspot.com/2006/04/delta-web_03.html">Andy Roberts&rsquo; Delta Web proposal</a> and get involved. It looks decidedly useful.</p>
+    </div>
+  <a href="/2006/04/06/delta-web/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 12, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/03/13/477/" class="link black dim">
+        Chuq On Tagging
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://chuqui.typepad.com/teal_sunglasses/">Chuq Von Rospach</a> has <a href="http://chuqui.typepad.com/teal_sunglasses/2006/03/how_can_tagging.html">some interesting thoughts on tagging</a> – must come back to this and have more of a think about it.</p>
+    </div>
+  <a href="/2006/03/13/477/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

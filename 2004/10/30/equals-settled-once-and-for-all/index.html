@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Equals (Settled Once And For All) | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Andraes Schaefer finally comes up with a solution to the great equals debate. It turns out that in fact it is possible to implement equals in such a way that it works well with subclasses that add additional constraints to equals.
+Andraes&rsquo; solution is still not great though because of the restrictions he mentions:
+
+
+All sub class must overwrite and adjust the equals() method otherwise line 8 in the base class will create an endless loop
+The equals() method in the sub class cannot call the equals() method in the base class otherwise it ends up in an endless loop, too
+Line 11 in the Complex class cannot check against a sub class of Irrational in a different branch (meaning it is not a sub class of Complex, too)
+
+
+I think we can solve the first two of those problems by throwing more code at it (I&rsquo;m not sure we want to but I think we can). Here&rsquo;s how, in the base class we have:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/10/30/equals-settled-once-and-for-all/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/10/30/equals-settled-once-and-for-all/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Equals (Settled Once And For All)">
+	<meta property="og:description" content="Andraes Schaefer finally comes up with a solution to the great equals debate. It turns out that in fact it is possible to implement equals in such a way that it works well with subclasses that add additional constraints to equals.
+Andraes’ solution is still not great though because of the restrictions he mentions:
+All sub class must overwrite and adjust the equals() method otherwise line 8 in the base class will create an endless loop The equals() method in the sub class cannot call the equals() method in the base class otherwise it ends up in an endless loop, too Line 11 in the Complex class cannot check against a sub class of Irrational in a different branch (meaning it is not a sub class of Complex, too) I think we can solve the first two of those problems by throwing more code at it (I’m not sure we want to but I think we can). Here’s how, in the base class we have:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-10-30T00:35:41+00:00">
+		<meta property="article:modified_time" content="2004-10-30T00:35:41+00:00">
+
+	<meta itemprop="name" content="Equals (Settled Once And For All)">
+	<meta itemprop="description" content="Andraes Schaefer finally comes up with a solution to the great equals debate. It turns out that in fact it is possible to implement equals in such a way that it works well with subclasses that add additional constraints to equals.
+Andraes’ solution is still not great though because of the restrictions he mentions:
+All sub class must overwrite and adjust the equals() method otherwise line 8 in the base class will create an endless loop The equals() method in the sub class cannot call the equals() method in the base class otherwise it ends up in an endless loop, too Line 11 in the Complex class cannot check against a sub class of Irrational in a different branch (meaning it is not a sub class of Complex, too) I think we can solve the first two of those problems by throwing more code at it (I’m not sure we want to but I think we can). Here’s how, in the base class we have:">
+	<meta itemprop="datePublished" content="2004-10-30T00:35:41+00:00">
+	<meta itemprop="dateModified" content="2004-10-30T00:35:41+00:00">
+	<meta itemprop="wordCount" content="745">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Equals (Settled Once And For All)">
+	<meta name="twitter:description" content="Andraes Schaefer finally comes up with a solution to the great equals debate. It turns out that in fact it is possible to implement equals in such a way that it works well with subclasses that add additional constraints to equals.
+Andraes’ solution is still not great though because of the restrictions he mentions:
+All sub class must overwrite and adjust the equals() method otherwise line 8 in the base class will create an endless loop The equals() method in the sub class cannot call the equals() method in the base class otherwise it ends up in an endless loop, too Line 11 in the Complex class cannot check against a sub class of Irrational in a different branch (meaning it is not a sub class of Complex, too) I think we can solve the first two of those problems by throwing more code at it (I’m not sure we want to but I think we can). Here’s how, in the base class we have:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Equals (Settled Once And For All)</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Equals (Settled Once And For All)</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-10-30T00:35:41Z">October 30, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><a href="http://weblogs.java.net/blog/schaefa/archive/2004/10/all_equals_are.html">Andraes Schaefer</a> finally comes up with a solution to the <a href="http://www.intencha.com/adrian/000214.php">great equals debate</a>. It turns out that in fact it <em>is</em> possible to implement equals in such a way that it works well with subclasses that add additional constraints to equals.</p>
+<p>Andraes&rsquo; solution is still not great though because of the restrictions he mentions:</p>
+<blockquote>
+<ul>
+<li>All sub class must overwrite and adjust the equals() method otherwise line 8 in the base class will create an endless loop</li>
+<li>The equals() method in the sub class cannot call the equals() method in the base class otherwise it ends up in an endless loop, too</li>
+<li>Line 11 in the Complex class cannot check against a sub class of Irrational in a different branch (meaning it is not a sub class of Complex, too)</li>
+</ul>
+</blockquote>
+<p>I think we can solve the first two of those problems by throwing more code at it (I&rsquo;m not sure we <em>want</em> to but I think we can). Here&rsquo;s how, in the base class we have:</p>
+<pre><code>public class PlainNumber {
+
+    private int value;
+
+    public PlainNumber(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof PlainNumber) {
+            if (o.getClass() == getClass()) {
+                return equalsImpl((PlainNumber)o);
+            } else if (o.getClass().isAssignableFrom(getClass())) {
+                return equalsImpl((PlainNumber)o);
+            } else if (getClass().isAssignableFrom(o.getClass())) {
+                return ((PlainNumber)o).equalsImpl(this);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    protected boolean equalsImpl(PlainNumber n) {
+        return getValue() == n.getValue();
+    }
+}
+</code></pre>
+<p>Then in the ComplexNumber subclass:</p>
+<pre><code>public class ComplexNumber extends PlainNumber {
+
+    private int complexPart;
+
+    public ComplexNumber(int rational, int complex) {
+        super(rational);
+        complexPart = complex;
+    }
+
+    public int getComplexPart() {
+        return complexPart;
+    }
+
+    protected boolean equalsImpl(PlainNumber n) {
+        int nComplexPart = 0;
+        if (n instanceof ComplexNumber) {
+            nComplexPart = ((ComplexNumber)n).getComplexPart();
+        }
+        return super.equalsImpl(n) &amp;&amp;
+            getComplexPart() == nComplexPart;
+    }
+}
+</code></pre>
+<p>Additionally for our tests we also create a NoChangePlainNumber class which extends Number but doesn&rsquo;t override anything:</p>
+<pre><code>public class NoChangePlainNumber extends PlainNumber {
+
+    public NoChangePlainNumber(int value) {
+        super(value);
+    }
+}
+</code></pre>
+<p>You can now test semetricality, reflexivity and transitivity between any of these and it holds true. The only problem I have is that <code>new NoChangePlainNumber(1).equals(new ComplexNumber(1, 0)) == false</code> which, while meeting the requirements for transitivity and semetricality, doesn&rsquo;t match the mathematical definition. There is a way to solve this though, it&rsquo;s just so hideously ugly that it may cause you to want to rip your eyeballs out after seeing it. Look below at your own peril:</p>
+<pre><code>import java.lang.reflect.*;
+
+public class PlainNumber {
+
+    private int value;
+
+    public PlainNumber(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        Class thisClass = getClass();
+        Class otherClass = o.getClass();
+        // Try to find the classes that actually declare the equals
+        // method.
+        try {
+            Method equals = thisClass.getMethod(&quot;equalsImpl&quot;,
+                    new Class[] { PlainNumber.class });
+            thisClass = equals.getDeclaringClass();
+        } catch (Exception e) {
+            // There's probably a good case for aborting here instead of
+            // trying to continue.
+            thisClass = getClass();
+            e.printStackTrace();
+        }
+        try {
+            Method equals = otherClass.getMethod(&quot;equalsImpl&quot;,
+                    new Class[] { PlainNumber.class });
+            otherClass = equals.getDeclaringClass();
+        } catch (Exception e) {
+            // Again, probably should just abort here.
+            otherClass = o.getClass();
+            e.printStackTrace();
+        }
+        if (o instanceof PlainNumber) {
+            if (otherClass == thisClass) {
+                return equalsImpl((PlainNumber)o);
+            } else if (otherClass.isAssignableFrom(thisClass)) {
+                return equalsImpl((PlainNumber)o);
+            } else if (thisClass.isAssignableFrom(otherClass)) {
+                return ((PlainNumber)o).equalsImpl(this);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean equalsImpl(PlainNumber n) {
+        return getValue() == n.getValue();
+    }
+}
+</code></pre>
+<p>Note that I have change equalsImpl to be public (which is bad) simply for convenience. Without that change you&rsquo;d have to use <code>getDeclaredMethod</code> instead of <code>getMethod</code> and that requires you to iterate up the superclass hierarchy yourself which just adds more messy code. I think the concept should be pretty clear though. I would generally suggest that you don&rsquo;t attempt this firstly because it&rsquo;s really ugly and hard to understand but more importantly because it&rsquo;s so unpredictable. If we added the following to NoChangePlainNumber, it&rsquo;s equals behavior would unexpectedly change:</p>
+<pre><code>public boolean equalsImpl(PlainNumber n) {
+    return super.equalsImpl(n);
+}
+</code></pre>
+<p>Since NoChangePlainNumber now overrides equalsImpl it is assumed that it has changed the semantics and so NoChangePlainNumber can no longer be compared with ComplexNumber despite the fact that there has been no effective change to the equalsImpl method.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

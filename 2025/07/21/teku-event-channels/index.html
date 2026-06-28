@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Teku Event Channels | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Teku uses a really nice framework for separating different components - Event Channels. It&rsquo;s based on similar patterns
+in the Sail library used at LMAX for sending network messages between services. In Teku though, it&rsquo;s designed to work
+in-process while still decoupling the components in the system. Turns out I never wrote about it here, so I&rsquo;m very belatedly catching up.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2025/07/21/teku-event-channels/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2025/07/21/teku-event-channels/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Teku Event Channels">
+	<meta property="og:description" content="Teku uses a really nice framework for separating different components - Event Channels. It’s based on similar patterns in the Sail library used at LMAX for sending network messages between services. In Teku though, it’s designed to work in-process while still decoupling the components in the system. Turns out I never wrote about it here, so I’m very belatedly catching up.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2025-07-21T07:37:09+10:00">
+		<meta property="article:modified_time" content="2025-07-21T07:37:09+10:00">
+
+	<meta itemprop="name" content="Teku Event Channels">
+	<meta itemprop="description" content="Teku uses a really nice framework for separating different components - Event Channels. It’s based on similar patterns in the Sail library used at LMAX for sending network messages between services. In Teku though, it’s designed to work in-process while still decoupling the components in the system. Turns out I never wrote about it here, so I’m very belatedly catching up.">
+	<meta itemprop="datePublished" content="2025-07-21T07:37:09+10:00">
+	<meta itemprop="dateModified" content="2025-07-21T07:37:09+10:00">
+	<meta itemprop="wordCount" content="1062">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Teku Event Channels">
+	<meta name="twitter:description" content="Teku uses a really nice framework for separating different components - Event Channels. It’s based on similar patterns in the Sail library used at LMAX for sending network messages between services. In Teku though, it’s designed to work in-process while still decoupling the components in the system. Turns out I never wrote about it here, so I’m very belatedly catching up.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Teku Event Channels</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Teku Event Channels</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-07-21T07:37:09+10:00">July 21, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Teku uses a really nice framework for separating different components - Event Channels. It&rsquo;s based on similar patterns
+in the Sail library used at LMAX for sending network messages between services. In Teku though, it&rsquo;s designed to work
+in-process while still decoupling the components in the system. Turns out I never wrote about it here, so I&rsquo;m very belatedly catching up.</p>
+<p>Event channels are defined by declaring a pretty standard interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SlotEventsChannel</span> <span style="color:#66d9ef">extends</span> VoidReturningChannelInterface {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onSlot</span>(UInt64 slot);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>There are a few simple restrictions:</p>
+<ul>
+<li>It must extend from <a href="https://github.com/ConsenSys/teku/blob/839a13b1a9bb98b3ed1928d1b4f4a36c2d6eeee3/infrastructure/events/src/main/java/tech/pegasys/teku/infrastructure/events/VoidReturningChannelInterface.java#L21"><code>VoidReturningChannelInterface</code></a> (or <a href="https://github.com/ConsenSys/teku/blob/839a13b1a9bb98b3ed1928d1b4f4a36c2d6eeee3/infrastructure/events/src/main/java/tech/pegasys/teku/infrastructure/events/ChannelInterface.java#L24"><code>ChannelInterface</code></a> but we&rsquo;ll get to non-void returning cases later)</li>
+<li>All methods must return <code>void</code></li>
+<li>Methods cannot throw any exceptions</li>
+</ul>
+<p>There can be any number of methods on the same interface and any number of subscribers to the channel.</p>
+<p>The implementing side simply implements the interface and the calling side simply has an implementation of the interface injected and calls it as normal.
+So far, this isn&rsquo;t actually providing any real separation - it&rsquo;s just using a Java interface. You can pass the concrete implementation of the interface
+to the calling side and it will all work. The interface provides some decoupling between the caller and receiver, but they&rsquo;re still coupled temporally
+because the call is synchronous, and exceptions on the receiving side would propagate back up through the calling side. Both can be fixed to isolate
+the components fully, but then you have to do that at every call-site.</p>
+<p>Instead, the event channel system uses reflection to generate an implementation of the interface that ensures complete isolation between caller and
+receiver. The generated implementation is passed to the caller and it implements each method by passing the work to a thread pool, then calling the actual
+implementation. It also provides error handling and records metrics to give visibility into the event system. While reflection is used to generate the
+implementation most of the code is in abstract classes that the generated implementations extend so it&rsquo;s easy to maintain. Importantly, the complexity of
+that reflection is abstracted away from the code using them framework - it&rsquo;s just like an interface where part of the API contract is that calls are always
+asynchronous and never throw any exceptions. The code for the framework is quite small, all in the <a href="https://github.com/ConsenSys/teku/tree/f09c0be064435216397d81d608a1316f15b93237/infrastructure/events/src/main/java/tech/pegasys/teku/infrastructure/events"><code>infrastructure.events</code> package</a>.</p>
+<p>Calls to the interface are added to the queue the thread pool takes work from in call order. So if the thread pool has a single thread, the calls will all be processed in exactly the same order they were made. In most cases there are multiple threads in the thread pool so processing happens in parallel (but starts in order), but
+for cases like the <a href="https://github.com/ConsenSys/teku/blob/839a13b1a9bb98b3ed1928d1b4f4a36c2d6eeee3/storage/api/src/main/java/tech/pegasys/teku/storage/api/StorageUpdateChannel.java#L31"><code>StorageUpdateChannel</code></a> where event order is important, a single thread is used.</p>
+<p>The <code>VoidReturningChannelInterface</code> is an ideal case for maximum decoupling of components - the sender is just notifying when events happen and forgetting about them.
+But often we need to request data from another component or be able to handle failures. The storage system in Teku is a decoupled component for example. In that case
+we use an interface that just extends <code>ChannelInterface</code>. Then methods are allowed to return <a href="https://github.com/ConsenSys/teku/blob/7856340dafe93975281c89fdd321447a458296dc/infrastructure/async/src/main/java/tech/pegasys/teku/infrastructure/async/SafeFuture.java#L35"><code>SafeFuture</code></a> - the promise type used in Teku.
+Exceptions are still not allowed, but the returned <code>SafeFuture</code> can be used to return error information as part of the result. The same implementation applies,
+reflection is used to generate an implementation that calls the real implementation via a thread pool, but now when the real implementation completes, the result
+is used to complete the originally returned <code>SafeFuture</code>. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Eth1DepositStorageChannel</span> <span style="color:#66d9ef">extends</span> ChannelInterface {
+</span></span><span style="display:flex;"><span>  SafeFuture<span style="color:#f92672">&lt;</span>ReplayDepositsResult<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">replayDepositEvents</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  SafeFuture<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">removeDepositEvents</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note that the actual implementation still provides a method that returns <code>SafeFuture</code> which allows it to use an asynchronous implementation when suitable. It
+can also just use <code>SafeFuture.completedFuture(value)</code> to return a value synchronously easily. The event system will now only allow a single subscriber to the
+topic to ensure it knows where the result value should come from. Since publishers and subscribers are created at startup, if multiple subscribers are added
+it means Teku fails to start, a lot of tests fail and it won&rsquo;t go unnoticed.</p>
+<p>There&rsquo;s a bunch of nice things about this framework:</p>
+<ul>
+<li>EventChannels have &ldquo;click-throughability&rdquo;. You can easily jump from a call to the interface to the actual implementation (or see all implementations) using the
+go to implementation functionality of an IDE. The details of how the decoupling is implemented are all abstracted away.</li>
+<li>The ability to return a value asynchronously is <em>much</em> easier to reason about than having to send responses via a separate event. The request/response is clearly coupled together in the interface rather than piecing together two independent events.</li>
+<li>For testing, the channel interface can be easily mocked, a synchronous event channel passed or a custom stub provided.</li>
+</ul>
+<p>One particularly neat trick in Teku is that the validator client can run either within the Teku beacon node process or as a separate process. It&rsquo;s the event
+channel system that makes that work. The validator client was originally built in-process but as it&rsquo;s own component so all calls to or from it were completely
+asynchronous and decoupled through the event channel interfaces. To make it run as an external process we simply wrote an implementation of the channels it called
+that worked by sending HTTP requests to the beacon node API rather than using the in-process generated ones. The calls to the validator client were all
+timing information like the <code>SlotEventsChannel</code> above. For most of those we simply wrote a new publisher that ran on an independent timer inside the validator
+client. The few that actually depended on the state of the beacon node were produced by subscribing to the beacon node API event stream and sending events
+based off of that.</p>
+<p>The main downside is that the asynchronicity of the call isn&rsquo;t visible in the actual code (only in the reflection generated implementation). That&rsquo;s why by
+convention in Teku channel interfaces and the variables for them are always suffixed with <code>Channel</code> so it is clear that asynchronicity is part of the API contract.
+It isn&rsquo;t immediately obvious to people new to the codebase, but it&rsquo;s quick to learn and easy to remember so I don&rsquo;t recall it ever causing any problems in
+practice.</p>
+<p>Ultimately event channels are a pretty simple system that provides a lot of power and flexibility.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

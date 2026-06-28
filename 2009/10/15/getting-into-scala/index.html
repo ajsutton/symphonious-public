@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Getting Into Scala | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="When I was in Australia visiting Ephox’s awesome engineering team recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to the new cross platform problem1{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely2{#footlink2:1255615348893.footnote}.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2009/10/15/getting-into-scala/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2009/10/15/getting-into-scala/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Getting Into Scala">
+	<meta property="og:description" content="When I was in Australia visiting Ephox’s awesome engineering team recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to the new cross platform problem1{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely2{#footlink2:1255615348893.footnote}.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2009-10-15T15:23:16+00:00">
+		<meta property="article:modified_time" content="2009-10-15T15:23:16+00:00">
+
+	<meta itemprop="name" content="Getting Into Scala">
+	<meta itemprop="description" content="When I was in Australia visiting Ephox’s awesome engineering team recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to the new cross platform problem1{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely2{#footlink2:1255615348893.footnote}.">
+	<meta itemprop="datePublished" content="2009-10-15T15:23:16+00:00">
+	<meta itemprop="dateModified" content="2009-10-15T15:23:16+00:00">
+	<meta itemprop="wordCount" content="1997">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Scala">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Getting Into Scala">
+	<meta name="twitter:description" content="When I was in Australia visiting Ephox’s awesome engineering team recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to the new cross platform problem1{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely2{#footlink2:1255615348893.footnote}.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Getting Into Scala</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Getting Into Scala</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2009-10-15T15:23:16Z">October 15, 2009</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>When I was in Australia visiting <a href="http://www.symphonious.net/2009/10/01/a-great-team/">Ephox’s awesome engineering team</a> recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to <a href="http://www.symphonious.net/2009/09/25/the-new-cross-platform/">the new cross platform problem</a><a href="#footnote1:1255615173985">1</a>{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely<a href="#footnote2:1255615348893">2</a>{#footlink2:1255615348893.footnote}.</p>
+<p>So I read through the <a href="http://programming-scala.labs.oreilly.com/">O’Reilly Programming Scala</a> book on the plane ride home<a href="#footnote3:1255615446418">3</a>{#footlink3:1255615446418.footnote}, then jumped in and built a small but real-world project with Scala and integrated it into a Java servlet project. I think it’s given me a pretty good grounding in what Scala can do, the benefits it brings and the general state of play.</p>
+<h3 id="the-language">The Language</h3>
+<p>The Scala language is fantastic. Easy to learn if you have a solid programming background and just a smidgeon of functional programming knowledge<a href="#footnote4:1255615598614">4</a>{#footlink4:1255615598614.footnote}. I’ve always been on the fence between compile time and runtime typing, but I think Scala strikes the perfect balance. It’s strictly typed at compile time, but uses a lot of inference so you don’t have to constantly declare types. I quickly came to find that there are two places where it’s incredibly handy to always specify types:</p>
+<ol>
+<li>Parameters. Scala requires it anyway, but it is vital documentation for anyone who wants to call that method.</li>
+<li>Return types. Not usually required by Scala, but by being explicit you can catch quite a lot of weird errors that crop up and isolate them to the right method. If you leave the return type as inferred, the compile error you get usually comes out on the caller of a method and can be somewhat confusing. The most common error here is effectively not returning something or returning two different types by accident (usually because you expected a different return type from a method you called). This isn’t hard and fast – short, simple methods are usually best left inferred.</li>
+</ol>
+<p>Having closures is definitely handy, but the benefit isn’t really in closures themselves. What really makes a difference is the libraries designed to be used with closures<a href="#footnote5:1255616107622">5</a>{#footlink5:1255616107622.footnote}, and the functional programming style that comes naturally in Scala. Looking back at the code I’ve written, the structure really looks like something that would make sense as a mathematical equation – each method does one thing, consistently and without side-effects. More importantly though, the breakdown of methods that results winds up being quite logical and helps reusability a lot. I find that getting the split points for methods right in Java is much harder and requires more conscious thought.</p>
+<p>Traits – wow do I ever love these things. The first key benefit I found for them was unit testing. In Java, one class would tend to be responsible for loading and processing it’s data. In Scala, traits make it so easy for the class to declare an abstract variable for the data and just provide the processing. Traits then step in to provide the loading part and provide a concrete implementation of the variable. It becomes obvious to have a <em>LoadFromDatabase</em> trait, a <em>HardCodedString</em> trait or a <em>LoadFromFile</em> trait – now where the data comes from is clearly separated. In tests you just use a HardCodedString trait and there’s no need for Mocks or Stubs.</p>
+<p>Interestingly, there is a wonderful synergy between traits and JNDI. Traits can’t accept constructor arguments and even if they could it’s ideal to just declare that you want a <em>new Widget() with DatabaseLoading</em> and have it just work. JNDI gives you that ability – the DatabaseLoading trait just grabs the datasource from JNDI and there’s no need to tunnel parameters through to it like you would otherwise.</p>
+<p>I’m also a big fan of the uniform access principle that Scala uses. Essentially, from the caller’s perspective, there is no visible difference between accessing a public variable and accessing a public method. So you can have a base class that declares an abstract variable, then implement it with a concrete method in a subclass and visa-versa. It’s an incredibly simple concept that gives a lot of flexibility and avoids a ton of boilerplate code.</p>
+<h3 id="the-tools">The Tools</h3>
+<p>This is the weak point of Scala, but it shows some promise.</p>
+<h4 id="testing-libraries">Testing Libraries</h4>
+<p>There are actually quite a few testing libraries in Scala – all of them somewhat difficult to get working inside an IDE or Ant build, but all quite solid and stable if you use their test runners. The xUnit equivalent is <a href="http://www.scalatest.org/">ScalaTest</a>, I never got it working with Ant or Eclipse so gave up and moved on to <a href="http://code.google.com/p/specs/">Specs</a>. I love it<a href="#footnote6:1255617559659">6</a>{#footlink6:1255617559659.footnote}. The Aussie dev team recently switched from CamelCase test method names to using underscores<a href="#footnote7:1255617589258">7</a>{#footlink7:1255617589258.footnote} for readability, but Specs takes that a few steps further by letting you use strings. For example:</p>
+<pre>“Administrator users” should {
+    “have a password at least 8 characters long” in { …code goes here… }
+    “be in the admin group” in { …code goes here… }
+}
+</pre>
+<p>The test output is really easy to read using the Specs runner, but it gets much less readable when using JUnit to run the tests via ant. You can avoid the outer ‘should’ block which helps readability in JUnit but it’s still not great. Fortunately, IntelliJ has support for Specs directly and lays things out pretty well, plus the normal runner isn’t bad.</p>
+<h4 id="standard-toolchain">Standard Toolchain</h4>
+<p>The Scala distribution comes with a good set of tools. A scala command for executing scripts and scalac for compiling classes are the main two. Both work really nicely and the scala tool is particular good for experimenting with things – especially when you’re trying to learn the type inference system.</p>
+<p>The single biggest drawback is that scalac can’t compile Java code, so you can either have Scala code depending on Java code or Java code depending on Scala code, but can’t do both easily. This isn’t all bad, as it really encourages you to break the project down into independent libraries and reduce coupling but it would be nice to more easily mix languages.</p>
+<h4 id="ides">IDEs</h4>
+<p>Wow, these are terrible. The Eclipse plugin is incredibly buggy and is practically unusable. NetBeans seemed to work well but is very short on features. IntelliJ has a good set of features but has overall stability issues since you need to use an early access build of the IDE – the plugin itself seems quite stable. IntelliJ also has some support for Specs and ScalaTest rather than having to run them through JUnit which is quite nice, but it didn’t seem able to just find all the tests in my project and run them – it was limited to one package at a time. Getting Scala working in IntelliJ is an absolute nightmare and you’ll spend forever searching Google for answers. There are magic libraries you need to put in place and very cryptic error messages if you don’t have them – at least it’s a once off. Once the Scala plugin works with a released version of IntelliJ I think that will be the winner, otherwise I may have to deal with NetBeans<a href="#footnote8:1255618541437">8</a>{#footlink8:1255618541437.footnote}.</p>
+<h4 id="java-libraries">Java Libraries</h4>
+<p>They work really nicely, except that Scala doesn’t use the normal java.util Collections framework. Scala has it’s own collections framework with equivalents and they are dramatically better but it does make it difficult to inter-operate with Java libraries that use Java Collections. Fortunately, Scala provides wrappers for the Java Collection types to make them act like Scala collections, but it doesn’t have wrappers for going the other way. It’s definitely not the end of the world, but does make you think a bit more about where the Java to Scala leap should be – sometimes writing a few key classes in Java can make things dramatically easier. Judicious use of implicit conversions, a scary but powerful feature of Scala, can be a big help too.</p>
+<p>I do like the ability to specify values in Scala as @BeanProperty and have the compiler automatically generate JavaBean compliant getters and setters (or just getters if it’s a read-only value as is common in Scala).</p>
+<p>There can also be problems with tools that manipulate bytecode since the bytecode Scala generates is compliant with the JVM specs, but often quite different to what javac would product.</p>
+<h3 id="the-performance">The Performance</h3>
+<p>I can’t tell the difference between Java code and Scala code. That’s roughly what other people are saying too. There are an awful lot of classes that come out of Scala code because of all the closures and traits and the like so it’s not going to work if you are tight on space such as in applets. Server side where processes are long-running and JAR size isn’t a critical concern, it will work perfectly. I would guess<a href="#footnote9:1255619251560">9</a>{#footlink9:1255619251560.footnote}, that there are a very large number of short-lived objects being created and discarded with Scala due to the use of implicit conversions and all those closures, but garbage collectors are so heavily optimised for that use case that I can’t see any evidence that it makes a difference and the performance testing I’ve read about bears that out.</p>
+<p>The Scala compiler implements tail-recursive optimisation and even supports an annotation so that you can mark a method as tail-recursive and get a compile error if it’s not.</p>
+<p>In terms of scalability – Scala advocates claim that functional programming and immutable data structures that are heavily used in Scala are a key tool, if not the solution, for scalability. I don’t know and don’t really care – the applications I’m likely to write will fit nicely into the “scale by handling many requests at once” model rather than having to break up the work of each individual request over multiple threads. The problem will come in the database or web server level, not my application code. I’m watching <a href="http://www.tbray.org/ongoing/When/200x/2009/09/27/Concur-dot-next">Tim Bray’s Concur.next series</a> with interest though.</p>
+<h3 id="overall">Overall</h3>
+<p>Scala is very much a tool I’m glad to now have in my toolkit. It’s not yet ready for prime time purely because of the poor IDE support, but it is excruciatingly close. I can see me advocating it’s use in Ephox quite heavily if it deploys to .NET smoothly as the cross-deployment is a massive benefit and would be worth the pain of sorting out the tooling, but it would be hard to justify if that isn’t viable yet – especially given the potential for Ruby or Python to work on both J2EE and .NET.</p>
+<p>I don’t think it will be long before the Scala toolsets catch up and it becomes an extremely compelling option for Java server-side development.</p>
+<p class="footnote">
+  <a href="#footlink1:1255615173985" id="footnote1:1255615173985">1</a> &#8211; it remains to be seen how stable/useful the .NET version of Scala is &#8211; I’ve been focussed on the Java side of things for now <a href="#footlink1:1255615173985" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1255615348893" id="footnote2:1255615348893">2</a> &#8211; this adds to the scepticism around the .NET version until I find time to really test it out though <a href="#footlink2:1255615348893" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote3:1255615446418" href="#footlink3:1255615446418">3</a> &#8211; yay for power points in cattle-class <a href="#footlink3:1255615446418" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote4:1255615598614" href="#footlink4:1255615598614">4</a> &#8211; a few months of Haskell in uni counts if you paid attention. In fact, Haskell is a particularly useful background to have as it is a very pure functional language and uses a similar static typing with inference system as Scala does. <a href="#footlink4:1255615598614" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote5:1255616107622" href="#footlink5:1255616107622">5</a> &#8211; thus I question how useful closures would be in Java <a href="#footlink5:1255616107622" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote6:1255617559659" href="#footlink6:1255617559659">6</a> &#8211; Actually, I think ScalaTest can do the same style of tests but I got Specs working first. <a href="#footlink6:1255617559659" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote7:1255617589258" href="#footlink7:1255617589258">7</a> &#8211; sacrilege! <a href="#footlink7:1255617589258" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote8:1255618541437" href="#footlink8:1255618541437">8</a> &#8211; I love the concept of it’s ant based build system, yet somehow the implementation drives me nuts every time I try to use it <a href="#footlink8:1255618541437" class="footnotereturn">↩</a>
+</p>
+<p class="footnote">
+  <a id="footnote9:1255619251560" href="#footlink9:1255619251560">9</a> &#8211; I’m too lazy to profile this at the moment <a href="#footlink9:1255619251560" class="footnotereturn">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

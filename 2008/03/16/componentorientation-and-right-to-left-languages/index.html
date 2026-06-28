@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>ComponentOrientation and Right To Left Languages | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="For some time, we&rsquo;ve had an Arabic translation in EditLive! and the editor pane itself fully supports bidirectional text, but we&rsquo;ve never updated the UI to flip over to a mirror image when a right to left language is in use. Java actually has pretty reasonable support for this via the ComponentOrientation property in AWT (and inherited through to Swing) but there are a couple of annoying limitations:
+
+It applies on a per component basis, so there isn&rsquo;t a single place you can apply the orientation and be done with it.
+Various components still don&rsquo;t flip, eg JSplitPane.
+The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode.
+
+For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2008/03/16/componentorientation-and-right-to-left-languages/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2008/03/16/componentorientation-and-right-to-left-languages/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="ComponentOrientation and Right To Left Languages">
+	<meta property="og:description" content="For some time, we’ve had an Arabic translation in EditLive! and the editor pane itself fully supports bidirectional text, but we’ve never updated the UI to flip over to a mirror image when a right to left language is in use. Java actually has pretty reasonable support for this via the ComponentOrientation property in AWT (and inherited through to Swing) but there are a couple of annoying limitations:
+It applies on a per component basis, so there isn’t a single place you can apply the orientation and be done with it. Various components still don’t flip, eg JSplitPane. The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode. For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2008-03-15T23:20:21+00:00">
+		<meta property="article:modified_time" content="2008-03-15T23:20:21+00:00">
+
+	<meta itemprop="name" content="ComponentOrientation and Right To Left Languages">
+	<meta itemprop="description" content="For some time, we’ve had an Arabic translation in EditLive! and the editor pane itself fully supports bidirectional text, but we’ve never updated the UI to flip over to a mirror image when a right to left language is in use. Java actually has pretty reasonable support for this via the ComponentOrientation property in AWT (and inherited through to Swing) but there are a couple of annoying limitations:
+It applies on a per component basis, so there isn’t a single place you can apply the orientation and be done with it. Various components still don’t flip, eg JSplitPane. The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode. For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.">
+	<meta itemprop="datePublished" content="2008-03-15T23:20:21+00:00">
+	<meta itemprop="dateModified" content="2008-03-15T23:20:21+00:00">
+	<meta itemprop="wordCount" content="458">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Java">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="ComponentOrientation and Right To Left Languages">
+	<meta name="twitter:description" content="For some time, we’ve had an Arabic translation in EditLive! and the editor pane itself fully supports bidirectional text, but we’ve never updated the UI to flip over to a mirror image when a right to left language is in use. Java actually has pretty reasonable support for this via the ComponentOrientation property in AWT (and inherited through to Swing) but there are a couple of annoying limitations:
+It applies on a per component basis, so there isn’t a single place you can apply the orientation and be done with it. Various components still don’t flip, eg JSplitPane. The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode. For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">ComponentOrientation and Right To Left Languages</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">ComponentOrientation and Right To Left Languages</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-03-15T23:20:21Z">March 15, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>For some time, we&rsquo;ve had an Arabic translation in EditLive! and the editor pane itself fully supports bidirectional text, but we&rsquo;ve never updated the UI to flip over to a mirror image when a right to left language is in use. Java actually has pretty reasonable support for this via the ComponentOrientation property in AWT (and inherited through to Swing) but there are a couple of annoying limitations:</p>
+<ol>
+<li>It applies on a per component basis, so there isn&rsquo;t a single place you can apply the orientation and be done with it.</li>
+<li>Various components still don&rsquo;t flip, eg JSplitPane.</li>
+<li>The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode.</li>
+</ol>
+<p>For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.</p>
+<p>The second issue really just means more special case code to deal with which is a shame. In some cases you just need to change the way you use the classes like using LINE_START and LINE_END instead of EAST and WEST with BorderLayout, in others you really need special case code.</p>
+<p>The bugs in the Aqua L&amp;F are annoying – editable JComboBoxes are probably the worst, the text field winds up aligned right but the combo drop down button stays on the right so they overlap. The new capsule button styles that are applied by client properties don&rsquo;t handle right to left either so you have to manually track the component orientation and flip the &ldquo;first&rdquo; to &ldquo;last&rdquo; and visa versa.</p>
+<p>All that said, supporting right to left languages is never just a flick of the switch and I&rsquo;m yet to really get into the details of how it all should work (this was just an afternoon&rsquo;s investigation) so Java&rsquo;s done a pretty good job at supporting it and getting things this far. It will be interesting to hear from people who actually speak Arabic and get their feedback about how it should work and where all the little details we need to take care of are. If you happen to be an Arabic EditLive! user, please get in touch, it would be great to get some individual feedback before we roll out an update to everyone.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

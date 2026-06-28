@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>QA in XP | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I&rsquo;ve seen a misconception a number of times where people believe that the regular release cycles and TDD practices in XP mean that you don&rsquo;t need a standard QA process – that the developers are responsible for writing perfect code, first time every time. It&rsquo;s true that XP practices can significantly improve quality, both of the code and the final product, but that doesn&rsquo;t excuse the team from properly testing their work.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/11/06/qa-in-xp/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/11/06/qa-in-xp/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="QA in XP">
+	<meta property="og:description" content="I’ve seen a misconception a number of times where people believe that the regular release cycles and TDD practices in XP mean that you don’t need a standard QA process – that the developers are responsible for writing perfect code, first time every time. It’s true that XP practices can significantly improve quality, both of the code and the final product, but that doesn’t excuse the team from properly testing their work.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-11-06T07:39:04+00:00">
+		<meta property="article:modified_time" content="2006-11-06T07:39:04+00:00">
+
+	<meta itemprop="name" content="QA in XP">
+	<meta itemprop="description" content="I’ve seen a misconception a number of times where people believe that the regular release cycles and TDD practices in XP mean that you don’t need a standard QA process – that the developers are responsible for writing perfect code, first time every time. It’s true that XP practices can significantly improve quality, both of the code and the final product, but that doesn’t excuse the team from properly testing their work.">
+	<meta itemprop="datePublished" content="2006-11-06T07:39:04+00:00">
+	<meta itemprop="dateModified" content="2006-11-06T07:39:04+00:00">
+	<meta itemprop="wordCount" content="716">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="QA in XP">
+	<meta name="twitter:description" content="I’ve seen a misconception a number of times where people believe that the regular release cycles and TDD practices in XP mean that you don’t need a standard QA process – that the developers are responsible for writing perfect code, first time every time. It’s true that XP practices can significantly improve quality, both of the code and the final product, but that doesn’t excuse the team from properly testing their work.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">QA in XP</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">QA in XP</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-11-06T07:39:04Z">November 6, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>I&rsquo;ve seen a misconception a number of times where people believe that the regular release cycles and TDD practices in XP mean that you don&rsquo;t need a standard QA process – that the developers are responsible for writing perfect code, first time every time. It&rsquo;s true that XP practices can significantly improve quality, both of the code and the final product, but that doesn&rsquo;t excuse the team from properly testing their work.</p>
+<p>It&rsquo;s important to note that TDD is a design process, not a testing process. It will only test the cases that the initial developer thought of. For changing code or when the developer can&rsquo;t keep all the relevant cases in their head, the tests will eliminate regressions, but by definition they won&rsquo;t cover any cases the developer didn&rsquo;t expect. Somewhere along the line you need someone who&rsquo;s not as close to the code to really test the code and cover all the cases – not just the ones the developer thought of. Pairing helps with this, but the pair is still too close to the code. To do it properly and ensure you&rsquo;re releasing a quality product, you need an actual QA process.</p>
+<p>Regular releases in XP make traditional QA processes impossible to work with – you can&rsquo;t finish all the features, throw them over the wall to QA, fix all the bugs and repeat inside a one week iteration. Instead, QA has to be an ongoing process where the QA department works alongside the development team. Straight after the planning game, QA should assist the client in writing acceptance tests that provide in-depth testing of the story requirements to ensure all the corner cases are covered. Clients often don&rsquo;t think of corner cases off the top of their heads so having someone with decent QA skills will make the acceptance tests much more detailed and ensure that when the story is signed off it actually does what was needed.</p>
+<p>As the developers work on stories, QA needs to keep an eye out for any clarifications to requirements and extra cases that the user explains to the developers while they work and make sure they are reflected in acceptance tests.</p>
+<p>Finally, once a story is completed by the developers, QA should become an advocate for the client and test out the feature for anything that looks wrong while the client goes through and checks that it meets their requirements. This is where anything that can&rsquo;t be covered by an automated test gets tested and the testing requirements documented so those tests can be run manually regularly.</p>
+<p>During their slack time, the QA department should research ways to automate the currently manual tests, go back and run the manual tests to make sure they still pass.</p>
+<p>The QA department might be a group of specialists or they might be the same people as in the development team – it&rsquo;s the process and the allocation of time that matters more than the people. However, QA requires a distinct set of skills to development and a lot of developers aren&rsquo;t much good at doing QA. If your development team doesn&rsquo;t have QA skills you need to either train them up or get in QA specialists. My general inclination is that it&rsquo;s best to have QA specialists who have a real passion and talent for testing software, but that your regular development team should regularly pair with them on QA work (and them with developers on non-QA work) to make sure that the team values and understands the work they do. It&rsquo;s also important to avoid a divide between developers and QA – both teams are there to deliver value to the client, not to fight about whether a behavior is a bug or a feature request etc. QA and development need to be one team that works together and sits together.</p>
+<p>One other advantage of keeping QA and development working together, is that developers fix the bugs that QA finds straight away instead of building up a big backlog that then delays the release while all those bugs are fixed and verified. Keep on top of your bug list and QA processes and you can ship top quality software in predictable timelines without the death march of bug fixing that traditionally happens at the end of projects.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

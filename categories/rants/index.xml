@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rants on Symphonious</title>
+    <link>https://www.symphonious.net/categories/rants/</link>
+    <description>Recent content in Rants on Symphonious</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Adrian Sutton 2004 -</copyright>
+    <lastBuildDate>Wed, 25 Jan 2012 21:25:34 +0000</lastBuildDate><atom:link href="https://www.symphonious.net/categories/rants/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Business of Standards</title>
+      <link>https://www.symphonious.net/2012/01/25/the-business-of-standards/</link>
+      <pubDate>Wed, 25 Jan 2012 21:25:34 +0000</pubDate>
+      <guid>https://www.symphonious.net/2012/01/25/the-business-of-standards/</guid>
+      <description>&lt;p&gt;Recently I’ve been getting spam from the “standards organisation” OASIS inviting a company that I don’t work for&lt;a href=&#34;#footnote1:1327526703777&#34;&gt;1&lt;/a&gt;{#footlink1:1327526703777.footnote} to join a new standards initiative. There’s no pretense that I’m being invited because of my clearly superior knowledge of the area involved, merely that the company could get great advertising exposure by participating – including being listed on a press release! Naturally we’d need to become OASIS members and pay the appropriate fee, and to be in the press release you’d have to be at minimum a “sponsor level member”.&lt;/p&gt;
+&lt;p&gt;On the one hand it’s nice that they aren’t pretending to be anything other than a for-profit marketing company, but isn’t it a bit sad that we think standards are just a marketing tool?&lt;/p&gt;
+&lt;p class=&#34;footnote&#34;&gt;
+  &lt;a href=&#34;#footlink1:1327526703777&#34; id=&#34;footnote1:1327526703777&#34;&gt;1&lt;/a&gt; &amp;#8211; yes, they’ve done so much research into how much I have to contribute that they’ve got the company wrong &lt;a class=&#34;footnotereturn&#34; href=&#34;#footlink1:1327526703777&#34;&gt;↩&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Don’t Blame The User, Blame The Editor</title>
+      <link>https://www.symphonious.net/2009/10/23/dont-blame-the-user-blame-the-editor/</link>
+      <pubDate>Fri, 23 Oct 2009 09:50:05 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/10/23/dont-blame-the-user-blame-the-editor/</guid>
+      <description>&lt;p&gt;I swear, some days you just want to reach into the screen and strangle the blogger on the other end. &lt;a href=&#34;http://www.codinghorror.com/blog/archives/001306.html&#34;&gt;Jeff Atwood complains that his users commonly fail to read all the helpful hints on how to use their overly complicated, what you see isn’t what you get editor on Stack Overflow&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The ask question page is already dangerously close to cluttered with helpful tips, but apparently these helpful buttons, links, and text are all but invisible to a large segment of the user population. Sure, you could argue that &lt;a href=&#34;http://superuser.com/&#34;&gt;Super User&lt;/a&gt; tends to attract less sophisticated users, but I see the exact same problem with programmers on &lt;a href=&#34;http://stackoverflow.com/&#34;&gt;Stack Overflow&lt;/a&gt;. As new users, a significant percentage of them can&amp;rsquo;t figure out how to format code, even though there&amp;rsquo;s not only a toolbar button that does it for you, but help text on the right explicitly describing how to do it manually. (Just indent 4 spaces. Spoiler alert!)
+So essentially, users don’t find the editor intuitive and the solution they’ve gone with up until now is to add more and more help text to try and teach the user how to use the unintuitive editor. It’s not working. The obvious solution is to escalate the arms race:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;More and more, I&amp;rsquo;m thinking we need to put the formatting help — for new users only — &lt;strong&gt;directly in their line of sight&lt;/strong&gt;. That is, pre-populate the question entry area with some example formatting that is typical of the average question. Nothing complicated. But at least then it&amp;rsquo;d be in the one — and apparently the &lt;em&gt;only&lt;/em&gt; one — place myopic users are willing to look. Right in front of their freakin&amp;rsquo; faces.
+Thankfully the comments are full of people suggesting the right answer – fix the editor so you don’t &lt;em&gt;need&lt;/em&gt; instructions to use it. You can always provide a source view for geeks who like to type in markup, but make the default something that just works.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If the mark of a poor tradesman is that they always blames their tools, the mark of a bad UI designer is that they always blame the users. It’s not them, it’s you.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Google Really Gets Enterprise Software</title>
+      <link>https://www.symphonious.net/2009/07/30/google-really-gets-enterprise-software/</link>
+      <pubDate>Thu, 30 Jul 2009 13:16:07 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/07/30/google-really-gets-enterprise-software/</guid>
+      <description>&lt;p&gt;I really don’t understand why companies don’t think Google has made their apps enterprise ready. I’ve been playing with the premium version of Google Apps the last few days and it shows all the important characteristics of enterprise software:&lt;/p&gt;
+&lt;h3 id=&#34;innocent-looking-settings-that-break-everything&#34;&gt;Innocent Looking Settings That Break Everything&lt;/h3&gt;
+&lt;p&gt;Google has this in spades. My favorite is the fact that if you happen to disable a service such as e-mail, all the settings &lt;em&gt;continue to apply&lt;/em&gt;, but disappear from the admin dashboard. The net result for me was that all the Google Apps suddenly failed to send any e-mail (but e-mail from every other source worked perfectly).&lt;/p&gt;
+&lt;h3 id=&#34;a-fully-integrated-service-where-nothing-works-together&#34;&gt;A Fully Integrated Service Where Nothing Works Together&lt;/h3&gt;
+&lt;p&gt;Check! You’d think that the list of users in the domain would show through in applications like Chat or for sharing documents right? Nope, you have to manually type them in as if the domain users didn’t exist.&lt;/p&gt;
+&lt;h3 id=&#34;overly-destructive-user-management&#34;&gt;Overly Destructive User Management&lt;/h3&gt;
+&lt;p&gt;Oh yes. Delete a user and all the documents they created disappear, regardless of how many other people happen to be sharing them at the time.&lt;/p&gt;
+&lt;h3 id=&#34;ridiculous-limitations&#34;&gt;Ridiculous Limitations&lt;/h3&gt;
+&lt;p&gt;Want to change the owner of a document? No problems, as long as they’re a member of the domain. Want to change the owner of a spreadsheet? Nope – can’t do that. Spreadsheets are special.&lt;/p&gt;
+&lt;h3 id=&#34;whats-missing&#34;&gt;What’s Missing?&lt;/h3&gt;
+&lt;p&gt;They managed to respond to a support case within 24 hours which is a major no-no for true enterprise software. It should take at least a week. To be fair, I made it very difficult by solving my own problem (the invisible settings I mentioned above) before they responded.&lt;/p&gt;
+&lt;p&gt;Hopefully now that Google has been enterprise ready they can start working towards actually making useful software for business…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Stupidity</title>
+      <link>https://www.symphonious.net/2009/06/29/stupidity/</link>
+      <pubDate>Mon, 29 Jun 2009 15:08:56 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/06/29/stupidity/</guid>
+      <description>&lt;p&gt;&lt;img style=&#34; float: left;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/06/IMG_3105400823141273717.png&#34; alt=&#34;Screwdriver packaging that requires a screwdriver to open.&#34; /&gt;I think this photo more than any other symbolizes stupidity. It was taken quickly on a first generation iPhone so if you can’t see clearly what’s wrong, it’s a photo of our new screw driver set. The packaging includes a clear plastic overlay which, you guessed it, is screwed down.&lt;/p&gt;
+&lt;p&gt;That would be just normal stupidity except for the fact that the package is advertised as a DIY getting started pack, containing the essentials to get you started. Except of course, now you need the DIY getting started pack, opener pack. It’s beginning to sound like an enterprise software sale…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHP Libraries Hate Ram</title>
+      <link>https://www.symphonious.net/2009/05/25/php-libraries-hate-ram/</link>
+      <pubDate>Mon, 25 May 2009 08:17:59 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/05/25/php-libraries-hate-ram/</guid>
+      <description>&lt;p&gt;I’ve come to the conclusion that PHP libraries are simply designed to eat up RAM and do their very best to never spit it back out. There seems to be an assumption that everything will be done in RAM and then at the last possible moment dump everything out to the browser.&lt;/p&gt;
+&lt;p&gt;Sadly, this doesn’t work if what you’re building in RAM happens to be a zip file containing a whole heap of images. There are a few zip libraries around for PHP but none of them can directly stream the created zip file back out to the browser. Most of them create the entire zip file in RAM and then tell you to just ‘echo zip-&amp;gt;file();’ which is just plain crazy. Others can “stream” but only to disk where they have random access.&lt;/p&gt;
+&lt;p&gt;How has PHP gone this long without recreating the ever so useful &lt;a href=&#34;http://java.sun.com/j2se/1.4.2/docs/api/java/util/zip/ZipOutputStream.html&#34;&gt;ZipOutputStream&lt;/a&gt; from Java?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Migrate Feedburner to Google Without Adding Ads</title>
+      <link>https://www.symphonious.net/2009/02/18/migrate-feedburner-to-google-without-adding-ads/</link>
+      <pubDate>Wed, 18 Feb 2009 12:46:34 +0000</pubDate>
+      <guid>https://www.symphonious.net/2009/02/18/migrate-feedburner-to-google-without-adding-ads/</guid>
+      <description>&lt;p&gt;A while back a migrated my personal FeedBurner account over to using a Google account as a test run before migrating the Ephox feeds. Unfortunately, I then forgot about it and in the mean time Google added a self-serve migration tool that now requires you to set up an Adsense account to migrate to.&lt;/p&gt;
+&lt;p&gt;They have huge reams of documentation talking about how much better the monitization of your feed will be now that it’s with Google and they even suggest a few times that it’s possible to migrate to Google without adding advertising into your feed. Sadly, I’ve been unable to find a document that describes how to migrate feeds and make sure that ads don’t get inserted.&lt;/p&gt;
+&lt;p&gt;It’s really very annoying.&lt;/p&gt;
+&lt;p&gt;UPDATE: When you do convert feeds over the confirmation email tells you:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Finally, to set up AdSense for feeds, you now need to visit AdSense at &lt;a href=&#34;http://www.google.com/adsense&#34;&gt;http://www.google.com/adsense&lt;/a&gt; and choose the AdSense for feeds option under Manage Ads &amp;gt; Get Ads. (Ads won&amp;rsquo;t appear in your feeds unless you set up new ad units for them there.)
+ So it’s safe to convert feeds, even if it’s annoying to have to set up an AdSense account to do so. Seriously, why couldn’t they make that message clearer in all the posts trying to reassure people about the transition?&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Clients Decide Worth, Not You</title>
+      <link>https://www.symphonious.net/2008/09/27/clients-decide-worth-not-you/</link>
+      <pubDate>Sat, 27 Sep 2008 10:29:31 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/09/27/clients-decide-worth-not-you/</guid>
+      <description>&lt;p&gt;As part of a very good series on sustainable software, &lt;a href=&#34;http://boldlyopen.com/2008/09/25/sustainable-software-part-iv-commercial-open-source-redemption/&#34;&gt;Gianugo Rabellino writes&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The market couldn’t care less about your developers’ kids in need of new sneakers or your VC craving about his next Lambo: the argument that someone has to pay for software development is one of the biggest straw man of Open Source – the market pays for value, and if you build very little, guess what, you won’t get more than peanuts.
+This isn’t just limited to Open Source software or even software in general. Far too often people make the mistake of thinking that company expenses justify the price of goods and it’s simply not the case. Value to the consumer decides what something is worth and if that happens to be below the cost of manufacture that’s the company’s problem, not the consumer’s. If that means the company stops making the product, consumer’s won’t care because they’ve already decided to go without.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The base of this problem is the idea that everyone has the same point of view as yours, or that they can be made to care about your point of view. The reality is that they’re so busy dealing with their own point of view and the challenges that brings that they don’t have time or energy to care about yours too. This leads to a long line of misconceptions based on the same idea:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;It costs nothing to reproduce software/music/digital goods so all companies should provide them for free.&lt;/em&gt; This is effectively the opposite point of view from Gianugo – the idea that it didn’t cost the company much to produce doesn’t inherently make it less valuable to consumers. Maybe you individually don’t value it that much, but if enough other people do, you’d better be willing to go without. Cost of production simply has no relationship to value for consumers.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The company had a bad year so employees get reduced or no bonuses.&lt;/em&gt; This might be important for the business to survive, but it doesn’t mean employees will be at all happy about it. If they did their best, met their goals etc, why shouldn’t they get rewarded for it, if they’d wanted to bear the risks of business they would have started their own. The key to understanding this is not to think that business should pay bonuses even if it sends them broke or that you can’t have compensation tied to overall company performance (e.g. stock options) but that employees view this from a very different perspective to your own and you need to make it worthwhile and justified from your employee’s perspective, not your own.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;DRM restricts user’s rights.&lt;/em&gt; Not really, DRM reduces the value to clients but if they’re happy to pay it so be it. Consumers not only get to decide value, they get to decide what rights they want for their money too. Sometimes these rights get coded into law without the possibility of waving them, but not often. Many companies use the rights they offer as a key point of differentiation – car manufacturers offering longer warranties, stationary companies offer unconditional return policies, airlines providing more flexible tickets.&lt;/p&gt;
+&lt;p&gt;The key to successfully arguing for or against something is to understand who it is you’re trying to convince and arguing from &lt;em&gt;their&lt;/em&gt; point of view. Arguing from your own point of view is just whinging.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Problem With NewsGator Syncing</title>
+      <link>https://www.symphonious.net/2008/06/20/the-problem-with-newsgator-syncing/</link>
+      <pubDate>Fri, 20 Jun 2008 09:07:55 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/06/20/the-problem-with-newsgator-syncing/</guid>
+      <description>&lt;p&gt;I love the fact that I can read my feeds in NetNewsWire and on my iPhone seamlessly, but there’s one &lt;em&gt;really&lt;/em&gt; annoying aspect that’s almost driving me to turn off syncing for a large number of feeds: NewsGator is &lt;em&gt;days or weeks&lt;/em&gt; out of date for many feeds.&lt;/p&gt;
+&lt;p&gt;When syncing is enabled in NetNewsWire it &lt;a href=&#34;http://inessential.com/?comments=1&amp;amp;postid=3267&#34;&gt;no longer downloads feeds directly&lt;/a&gt;, but instead gets them from NewsGator which is how all the syncing magic works. This leads to much faster sync times but also means that you can’t actually refresh your feeds to find what’s new. All the refresh button does now is check NewsGator and there’s no way to check directly with the site itself.&lt;/p&gt;
+&lt;p&gt;A little while back I read, and now can’t find, an article about how NewsGator decides when to sync new feeds based on how often they change and how popular they are. This is a terrible algorithm to apply – any personalized feed winds up very out of date. Good luck to you if you happen to have something that’s important but infrequent coming through a personalized feed – I’ve seen it take a week or more to pick up new items.&lt;/p&gt;
+&lt;p&gt;It’s a real shame because the syncing is fantastic. Here’s hoping someone like Google buys them out and teaches them a thing or two about crawling the web at a reasonable speed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Is It Me Or Is Google Less Useful?</title>
+      <link>https://www.symphonious.net/2008/02/22/is-it-me-or-is-google-less-useful/</link>
+      <pubDate>Thu, 21 Feb 2008 15:37:20 +0000</pubDate>
+      <guid>https://www.symphonious.net/2008/02/22/is-it-me-or-is-google-less-useful/</guid>
+      <description>&lt;p&gt;Going through the process of setting up a new apartment in the UK, I&amp;rsquo;ve found myself Googling a whole bunch of things that normally I wouldn&amp;rsquo;t need to. For instance, where can I find a desk and chair to set up a home office? Back in Australia I know of a bunch of different stores that would have that kind of thing so I wouldn&amp;rsquo;t bother searching for it. Here though, I wind up searching for &amp;ldquo;home office furniture&amp;rdquo; and get a whole bunch of online only retailers of widely varying reliability. Even if they&amp;rsquo;re all completely legit – why doesn&amp;rsquo;t something like IKEA turn up when that&amp;rsquo;s what all the locals recommended (somewhat grudgingly admittedly)?&lt;/p&gt;
+&lt;p&gt;Now I&amp;rsquo;m trying to find a teleconferencing provider that offers at least UK dial-in numbers – preferably a range of European countries and all Google&amp;rsquo;s turning up is a bunch of &amp;ldquo;free&amp;rdquo; providers that seem to offer free calls if you just call into their premium number. Seems to be about as free as calling a psychic hotline… Maybe they could at least tell me where to find some decent furniture…&lt;/p&gt;
+&lt;p&gt;The impression I get is that if you&amp;rsquo;re looking to buy anything or are generally looking for information on anything commercial Google will just feed you a bunch of spam. I&amp;rsquo;d revert to the yellow pages but it doesn&amp;rsquo;t seem to know the difference between teleconferencing and telecommunications since it&amp;rsquo;s categories are so broad. I&amp;rsquo;ve found the same problem when I&amp;rsquo;ve been searching for information on various printers and digital cameras – nearly all the results were from online stores rather than less biased reviews and experiences using the products. I guess those SEO guys really do have an effect – sadly it seems to be a bad one.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Missing The Point</title>
+      <link>https://www.symphonious.net/2007/10/16/missing-the-point-2/</link>
+      <pubDate>Tue, 16 Oct 2007 06:58:25 +0000</pubDate>
+      <guid>https://www.symphonious.net/2007/10/16/missing-the-point-2/</guid>
+      <description>&lt;p&gt;The realization that there is valuable information in users attention data is a wonderful thing – it leads to so many really useful features like Amazon&amp;rsquo;s recommendation system. I&amp;rsquo;ve seen a lot of really good uses of this kind of data where systems use fuzzy logic to improve a users experience or make recommendations of things they&amp;rsquo;d like. It appears that Microsoft has noticed this trend as well, but somehow I think they missed the point:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.symphonious.net/wp-content/uploads/2007/10/RecommendedDownloads.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a number of things going horribly wrong here:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Despite having an automatic update system, Windows doesn&amp;rsquo;t actually apply useful updates. This is stupid – get control of your quality and ship patches to everyone instead of making users put up with bugs that Microsoft has actually fixed.&lt;/li&gt;
+&lt;li&gt;I&amp;rsquo;m really not sure that people are that interested in other updates that Microsoft were too chicken to send to automatic update.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Update for Windows Vista (KB9871987398274592759)&amp;rdquo; may mean something within Microsoft but it&amp;rsquo;s completely meaningless to users. Is it so hard to come up with a vaguely meaningful title for updates?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I think I&amp;rsquo;ll keep this as my quintessential example of try-hard Web 2.0. To commemorate I&amp;rsquo;ve added a fancy shadow to the screen shot – now this post is as Web 2.0 as Microsoft…&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

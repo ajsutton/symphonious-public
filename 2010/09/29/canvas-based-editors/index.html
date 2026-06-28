@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Canvas-based Editors | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/09/29/canvas-based-editors/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/09/29/canvas-based-editors/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Canvas-based Editors">
+	<meta property="og:description" content="Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-09-29T09:05:46+00:00">
+		<meta property="article:modified_time" content="2010-09-29T09:05:46+00:00">
+
+	<meta itemprop="name" content="Canvas-based Editors">
+	<meta itemprop="description" content="Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.">
+	<meta itemprop="datePublished" content="2010-09-29T09:05:46+00:00">
+	<meta itemprop="dateModified" content="2010-09-29T09:05:46+00:00">
+	<meta itemprop="wordCount" content="719">
+	<meta itemprop="keywords" content="Accessibility,Code and Geek Stuff,Editors,JavaScript">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Canvas-based Editors">
+	<meta name="twitter:description" content="Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Canvas-based Editors</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Canvas-based Editors</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-09-29T09:05:46Z">September 29, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.</p>
+<p>What disturbs me is that incredibly few people realise just how much work is involved in implementing caret and selection handling correctly, let alone most of the other infrastructure provided by contentEditable. I wound up talking to <a href="http://twitter.com/novemberborn">Mark Wubben</a> who actually does have a pretty good idea – he implemented a DOM based selection system for the <a href="http://xopus.com/">Xopus editor</a>. Needless to say he had quite the war story to tell, but despite doing what sounded like a very impressive bit of work, the selection code is still very broken in a couple of key ways: accessibility and international inputs<a href="#footnote1:1285748951881">1</a>{#footlink1:1285748951881.footnote}.</p>
+<h3 id="accessibility">Accessibility</h3>
+<p>Accessibility support was my first response to anyone suggesting using canvas as an editor – no-one had considered it. If you play around with a screen reader for a while, you start to realise just how important the selection is to accessibility. Selecting text generally causes it to be read out for example. It’s not just screen readers either, screen magnifiers will move the screen along to keep up with the caret, ensuring the user can see what they’re typing. If the caret is fake, none of these features will work and the editor becomes inaccessible.</p>
+<h3 id="international-inputs">International Inputs</h3>
+<p>Even I’d forgotten about this one, but it’s likely an even bigger problem to solve than accessibility. The array of input devices, keyboard shortcuts and other ways that people input characters is pretty amazing when you start exploring it. People in English speaking countries don’t tend to notice this because they have quite a small number of characters in use which all fit on the keyboard. Even Western European countries have the vast majority of characters required available with a direct key sequence. However there are far more complex types of inputs around. The simplest of these is the use of “dead keys” such as acute on a US or British keyboard. To type é actually takes multiple keystrokes on a UK Mac keyboard:</p>
+<ol>
+<li>Option-e. This is a dead-key so only a placeholder appears in the output (<img src="http://www.symphonious.net/wp-content/uploads/2010/09/acutePlaceholder.png" alt="Placeholder for acute shown with a yellow background.">).</li>
+<li>e. Now the e-acute character actually appears and is inserted into the document content.</li>
+</ol>
+<p>Not to pick on Xopus but at least in Firefox on Mac, I can’t type é at all in the editor because it doesn’t correctly support dead-keys<a href="#footnote2:1285750195458">2</a>{#footlink2:1285750195458.footnote}.</p>
+<p>Asian languages can have even more keystrokes required to type a character and much more complex input methods that to be usable, require changes to the caret, underlining content etc. Plus the methods and UI is different on different OS’s. While users can handle some variation, they shouldn’t have to learn a whole new input method to be able to use your application<a href="#footnote3:1285750501513">3</a>{#footlink3:1285750501513.footnote}.</p>
+<h3 id="the-way-forward">The Way Forward</h3>
+<p>Instead of trying to work around the limitations in contentEditable we need to be pushing browser vendors to fix it and make it usable. Where the current APIs aren’t good enough, standardise better ones – we’re dealing with multiple incompatible APIs already so the backwards compatibility problems are limited. This needs to be a focus so that we don’t wind up in a world where online editors only work for fully-abled, English speaking users. Most if not all of what’s required is already there, it just needs some love and care to remove the bugs and better handle corner-cases.</p>
+<p class="footnote">
+  <a href="#footlink1:1285748951881" id="footnote1:1285748951881">1</a> &#8211; There is some <a href="http://lists.w3.org/Archives/Public/public-canvas-api/2010JulSep/0040.html">good discussion of the complexities involved here from the W3C canvas list</a> as they struggle with the accessibility implications of canvas.<a class="footnotereturn" href="#footlink1:1285748951881">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1285750195458" id="footnote2:1285750195458">2</a> &#8211; and to be completely fair, EditLive! fails to paint the placeholder, though the character does type correctly. <a class="footnotereturn" href="#footlink2:1285750195458">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink3:1285750501513" id="footnote3:1285750501513">3</a> &#8211; So no, <a href="http://code.google.com/apis/ajaxlanguage/documentation/referenceKeyboard.html">Google Virtual Keyboard</a> is not a real solution, however good an idea it is for people using things like internet kiosks with foreign keyboard layouts. Besides, would you like to be stuck typing only with your mouse? <a class="footnotereturn" href="#footlink3:1285750501513">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

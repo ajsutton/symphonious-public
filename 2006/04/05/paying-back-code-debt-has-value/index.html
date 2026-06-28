@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Paying Back Code Debt Has Value | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Most code bases have some kind of code debt associated with them, legacy code bases tend to have lots of code debt. The good news is, paying back that code debt isn&rsquo;t a complete time sink – it has definite advantages too. Obviously, reducing code debt tends to make the team go faster, but it also tends to fix bugs.
+Quite often where there is debt, there is not just a lack of maintainability but actual bugs that are frustrating your users. By cleaning up the code, you will often fix those bugs without any special effort to do so – it just happens because of the simplified design.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2006/04/05/paying-back-code-debt-has-value/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2006/04/05/paying-back-code-debt-has-value/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Paying Back Code Debt Has Value">
+	<meta property="og:description" content="Most code bases have some kind of code debt associated with them, legacy code bases tend to have lots of code debt. The good news is, paying back that code debt isn’t a complete time sink – it has definite advantages too. Obviously, reducing code debt tends to make the team go faster, but it also tends to fix bugs.
+Quite often where there is debt, there is not just a lack of maintainability but actual bugs that are frustrating your users. By cleaning up the code, you will often fix those bugs without any special effort to do so – it just happens because of the simplified design.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2006-04-05T08:01:50+00:00">
+		<meta property="article:modified_time" content="2006-04-05T08:01:50+00:00">
+
+	<meta itemprop="name" content="Paying Back Code Debt Has Value">
+	<meta itemprop="description" content="Most code bases have some kind of code debt associated with them, legacy code bases tend to have lots of code debt. The good news is, paying back that code debt isn’t a complete time sink – it has definite advantages too. Obviously, reducing code debt tends to make the team go faster, but it also tends to fix bugs.
+Quite often where there is debt, there is not just a lack of maintainability but actual bugs that are frustrating your users. By cleaning up the code, you will often fix those bugs without any special effort to do so – it just happens because of the simplified design.">
+	<meta itemprop="datePublished" content="2006-04-05T08:01:50+00:00">
+	<meta itemprop="dateModified" content="2006-04-05T08:01:50+00:00">
+	<meta itemprop="wordCount" content="470">
+	<meta itemprop="keywords" content="XP">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Paying Back Code Debt Has Value">
+	<meta name="twitter:description" content="Most code bases have some kind of code debt associated with them, legacy code bases tend to have lots of code debt. The good news is, paying back that code debt isn’t a complete time sink – it has definite advantages too. Obviously, reducing code debt tends to make the team go faster, but it also tends to fix bugs.
+Quite often where there is debt, there is not just a lack of maintainability but actual bugs that are frustrating your users. By cleaning up the code, you will often fix those bugs without any special effort to do so – it just happens because of the simplified design.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Paying Back Code Debt Has Value</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Paying Back Code Debt Has Value</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2006-04-05T08:01:50Z">April 5, 2006</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Most code bases have some kind of code debt associated with them, legacy code bases tend to have lots of code debt. The good news is, paying back that code debt isn&rsquo;t a complete time sink – it has definite advantages too. Obviously, reducing code debt tends to make the team go faster, but it also tends to fix bugs.</p>
+<p>Quite often where there is debt, there is not just a lack of maintainability but actual bugs that are frustrating your users. By cleaning up the code, you will often fix those bugs without any special effort to do so – it just happens because of the simplified design.</p>
+<p>The other thing that I&rsquo;m noticing about areas of code that have heavy debt, is that the debt is usually caused by a lack of understanding when the code was written. As such, by taking the time to clean up the code, you tend to learn how to work with that area and suddenly things that were impossible because fairly trivial.</p>
+<p>As an example, the end of Swing text documents has some very unusual properties – the document is actually one character longer that it&rsquo;s content claims. The last character is a magical new line that suffice it to say, &ldquo;makes stuff work&rdquo;. I have no idea why that last character isn&rsquo;t reported, but it&rsquo;s not. Since the last block element in the document actually ends on that character, if you want to remove that block element you need to do some fancy footwork, since you can&rsquo;t remove the last character. We&rsquo;ve seen various bug reports come in about people not being able to remove the last table, list, div or whatever at the end of the document for quite some time.  Today while paying back some code debt to clear the way for a new feature, I came across our nasty mess of work-arounds for the end of the document and took the time to clean up the code. The result is about a hundred lines shorter and should fix the vast majority of end of document problems, including a whole bunch we&rsquo;re yet to discover. Paying back our code debt has made our editor better for users.</p>
+<p>It&rsquo;s really important though that you don&rsquo;t just pay back code debt – you need to keep adding features to keep your product alive and sales going forward too. It&rsquo;s not just a financial benefit though, if your engineers are spending all their time fixing the bad spots in your code, morale tends to go through the floor and you just stop caring. If you can mix in some debt repayments with interesting new features the team stays focussed and does better work. It&rsquo;s a form of sustainable pace – what you work on is as important as how much you&rsquo;re working.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

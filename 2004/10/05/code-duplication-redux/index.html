@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Code Duplication (Redux) | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Oliver Hutchinson commented on my last code duplication entry:
+
+Another way that duplication sneaks in is when people reimplementing something for which there is already a perfectly good library. For instance, your example of arranging dialog buttons in the appropriate order for the platform is taken care of very nicely by the JGoodies forms library.  Actually Oliver, this is the perfect example of when you should duplicate code. There are a few reasons for this, the most obvious one being that JGoodies depends on Java 1.4 and our software currently only requires Java 1.3. Dropping support for Java 1.3 (and thus IE on Mac) isn&rsquo;t really worth it to save writing 4 lines of code. Secondly (and far more importantly), the JGoodies forms library provides an entire library for laying out forms. We don&rsquo;t want an entire library for forms layout – we already have that problem solved using the standard classes in the JRE. The JGoodies jar file would add an extra 80k to our applet which while not awful, would be 79k or more we didn&rsquo;t need. Thirdly, adding an extra library increases the chances of a conflict occurring in our JavaBean version if one of our customers is using a different version of the JGoodies library. To avoid this we&rsquo;d have to rename the package which results in duplicated code again except now the entire library has been duplicated. Finally, the JGoodies code is significantly more complex than it needs to be. It&rsquo;s simply not a good implementation given the set of requirements we have. The JGoodies implementation uses a Factory class, a Builder class, an AbstractBuilder class and a custom layout manager as well as a host of other classes. Our implementation uses a JPanel and an if statement. Granted, the JGoodies implementation is capable of creating a wide range of different button dialogs that work in a much wider set of situations, however none of that provides any benefit to our project. Adding dependencies is a choice that has to be weighed up very carefully and should never be done just to avoid writing a few very simple lines of code. Furthermore, when replacing duplicated code with a common library, it is imperative that the requirements (as opposed to the implementation or results) of both pieces of code are the same. It is not enough that they be similar, they must be the same – they have to logically be the same function before they should be made actually the same function. On the other hand, if JGoodies had already been in use by our application, Oliver would have been completely correct that we should have used the existing function because it did meet all the requirements and despite the fact that it met a lot of requirements that weren&rsquo;t needed because we would have to test the custom layout manager etc so the complexity wouldn&rsquo;t matter so much.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/10/05/code-duplication-redux/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/10/05/code-duplication-redux/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Code Duplication (Redux)">
+	<meta property="og:description" content="Oliver Hutchinson commented on my last code duplication entry:
+Another way that duplication sneaks in is when people reimplementing something for which there is already a perfectly good library. For instance, your example of arranging dialog buttons in the appropriate order for the platform is taken care of very nicely by the JGoodies forms library. Actually Oliver, this is the perfect example of when you should duplicate code. There are a few reasons for this, the most obvious one being that JGoodies depends on Java 1.4 and our software currently only requires Java 1.3. Dropping support for Java 1.3 (and thus IE on Mac) isn’t really worth it to save writing 4 lines of code. Secondly (and far more importantly), the JGoodies forms library provides an entire library for laying out forms. We don’t want an entire library for forms layout – we already have that problem solved using the standard classes in the JRE. The JGoodies jar file would add an extra 80k to our applet which while not awful, would be 79k or more we didn’t need. Thirdly, adding an extra library increases the chances of a conflict occurring in our JavaBean version if one of our customers is using a different version of the JGoodies library. To avoid this we’d have to rename the package which results in duplicated code again except now the entire library has been duplicated. Finally, the JGoodies code is significantly more complex than it needs to be. It’s simply not a good implementation given the set of requirements we have. The JGoodies implementation uses a Factory class, a Builder class, an AbstractBuilder class and a custom layout manager as well as a host of other classes. Our implementation uses a JPanel and an if statement. Granted, the JGoodies implementation is capable of creating a wide range of different button dialogs that work in a much wider set of situations, however none of that provides any benefit to our project. Adding dependencies is a choice that has to be weighed up very carefully and should never be done just to avoid writing a few very simple lines of code. Furthermore, when replacing duplicated code with a common library, it is imperative that the requirements (as opposed to the implementation or results) of both pieces of code are the same. It is not enough that they be similar, they must be the same – they have to logically be the same function before they should be made actually the same function. On the other hand, if JGoodies had already been in use by our application, Oliver would have been completely correct that we should have used the existing function because it did meet all the requirements and despite the fact that it met a lot of requirements that weren’t needed because we would have to test the custom layout manager etc so the complexity wouldn’t matter so much.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-10-05T07:25:25+00:00">
+		<meta property="article:modified_time" content="2004-10-05T07:25:25+00:00">
+
+	<meta itemprop="name" content="Code Duplication (Redux)">
+	<meta itemprop="description" content="Oliver Hutchinson commented on my last code duplication entry:
+Another way that duplication sneaks in is when people reimplementing something for which there is already a perfectly good library. For instance, your example of arranging dialog buttons in the appropriate order for the platform is taken care of very nicely by the JGoodies forms library. Actually Oliver, this is the perfect example of when you should duplicate code. There are a few reasons for this, the most obvious one being that JGoodies depends on Java 1.4 and our software currently only requires Java 1.3. Dropping support for Java 1.3 (and thus IE on Mac) isn’t really worth it to save writing 4 lines of code. Secondly (and far more importantly), the JGoodies forms library provides an entire library for laying out forms. We don’t want an entire library for forms layout – we already have that problem solved using the standard classes in the JRE. The JGoodies jar file would add an extra 80k to our applet which while not awful, would be 79k or more we didn’t need. Thirdly, adding an extra library increases the chances of a conflict occurring in our JavaBean version if one of our customers is using a different version of the JGoodies library. To avoid this we’d have to rename the package which results in duplicated code again except now the entire library has been duplicated. Finally, the JGoodies code is significantly more complex than it needs to be. It’s simply not a good implementation given the set of requirements we have. The JGoodies implementation uses a Factory class, a Builder class, an AbstractBuilder class and a custom layout manager as well as a host of other classes. Our implementation uses a JPanel and an if statement. Granted, the JGoodies implementation is capable of creating a wide range of different button dialogs that work in a much wider set of situations, however none of that provides any benefit to our project. Adding dependencies is a choice that has to be weighed up very carefully and should never be done just to avoid writing a few very simple lines of code. Furthermore, when replacing duplicated code with a common library, it is imperative that the requirements (as opposed to the implementation or results) of both pieces of code are the same. It is not enough that they be similar, they must be the same – they have to logically be the same function before they should be made actually the same function. On the other hand, if JGoodies had already been in use by our application, Oliver would have been completely correct that we should have used the existing function because it did meet all the requirements and despite the fact that it met a lot of requirements that weren’t needed because we would have to test the custom layout manager etc so the complexity wouldn’t matter so much.">
+	<meta itemprop="datePublished" content="2004-10-05T07:25:25+00:00">
+	<meta itemprop="dateModified" content="2004-10-05T07:25:25+00:00">
+	<meta itemprop="wordCount" content="484">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Code Duplication (Redux)">
+	<meta name="twitter:description" content="Oliver Hutchinson commented on my last code duplication entry:
+Another way that duplication sneaks in is when people reimplementing something for which there is already a perfectly good library. For instance, your example of arranging dialog buttons in the appropriate order for the platform is taken care of very nicely by the JGoodies forms library. Actually Oliver, this is the perfect example of when you should duplicate code. There are a few reasons for this, the most obvious one being that JGoodies depends on Java 1.4 and our software currently only requires Java 1.3. Dropping support for Java 1.3 (and thus IE on Mac) isn’t really worth it to save writing 4 lines of code. Secondly (and far more importantly), the JGoodies forms library provides an entire library for laying out forms. We don’t want an entire library for forms layout – we already have that problem solved using the standard classes in the JRE. The JGoodies jar file would add an extra 80k to our applet which while not awful, would be 79k or more we didn’t need. Thirdly, adding an extra library increases the chances of a conflict occurring in our JavaBean version if one of our customers is using a different version of the JGoodies library. To avoid this we’d have to rename the package which results in duplicated code again except now the entire library has been duplicated. Finally, the JGoodies code is significantly more complex than it needs to be. It’s simply not a good implementation given the set of requirements we have. The JGoodies implementation uses a Factory class, a Builder class, an AbstractBuilder class and a custom layout manager as well as a host of other classes. Our implementation uses a JPanel and an if statement. Granted, the JGoodies implementation is capable of creating a wide range of different button dialogs that work in a much wider set of situations, however none of that provides any benefit to our project. Adding dependencies is a choice that has to be weighed up very carefully and should never be done just to avoid writing a few very simple lines of code. Furthermore, when replacing duplicated code with a common library, it is imperative that the requirements (as opposed to the implementation or results) of both pieces of code are the same. It is not enough that they be similar, they must be the same – they have to logically be the same function before they should be made actually the same function. On the other hand, if JGoodies had already been in use by our application, Oliver would have been completely correct that we should have used the existing function because it did meet all the requirements and despite the fact that it met a lot of requirements that weren’t needed because we would have to test the custom layout manager etc so the complexity wouldn’t matter so much.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Code Duplication (Redux)</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Code Duplication (Redux)</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-10-05T07:25:25Z">October 5, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Oliver Hutchinson commented on my <a href="http://www.intencha.com/adrian/000240.php">last code duplication entry</a>:</p>
+<blockquote>
+<p>Another way that duplication sneaks in is when people reimplementing something for which there is already a perfectly good library. For instance, your example of arranging dialog buttons in the appropriate order for the platform is taken care of very nicely by the JGoodies forms library.  Actually Oliver, this is the perfect example of when you <em>should</em> duplicate code. There are a few reasons for this, the most obvious one being that JGoodies depends on Java 1.4 and our software currently only requires Java 1.3. Dropping support for Java 1.3 (and thus IE on Mac) isn&rsquo;t really worth it to save writing 4 lines of code. Secondly (and far more importantly), the JGoodies forms library provides an entire library for laying out forms. We don&rsquo;t want an entire library for forms layout – we already have that problem solved using the standard classes in the JRE. The JGoodies jar file would add an extra 80k to our applet which while not awful, would be 79k or more we didn&rsquo;t need. Thirdly, adding an extra library increases the chances of a conflict occurring in our JavaBean version if one of our customers is using a different version of the JGoodies library. To avoid this we&rsquo;d have to rename the package which results in duplicated code again except now the entire library has been duplicated. Finally, the JGoodies code is significantly more complex than it needs to be. It&rsquo;s simply not a good implementation given the set of requirements we have. The JGoodies implementation uses a Factory class, a Builder class, an AbstractBuilder class and a custom layout manager as well as a host of other classes. Our implementation uses a JPanel and an if statement. Granted, the JGoodies implementation is capable of creating a wide range of different button dialogs that work in a much wider set of situations, however none of that provides any benefit to our project. Adding dependencies is a choice that has to be weighed up very carefully and should never be done just to avoid writing a few very simple lines of code. Furthermore, when replacing duplicated code with a common library, it is imperative that the requirements (as opposed to the implementation or results) of both pieces of code are the same. It is not enough that they be similar, they must be the same – they have to logically be the same function before they should be made actually the same function. On the other hand, if JGoodies had already been in use by our application, Oliver would have been completely correct that we should have used the existing function because it did meet all the requirements and despite the fact that it met a lot of requirements that weren&rsquo;t needed because we would have to test the custom layout manager etc so the complexity wouldn&rsquo;t matter so much.</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

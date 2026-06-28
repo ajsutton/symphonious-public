@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Printing Only Part of a grep Match | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:
+
+  grep &#39;^MemTotal:&#39; /proc/meminfo |   sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39;
+
+
+Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2015/04/15/printing-only-part-of-a-grep-match/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2015/04/15/printing-only-part-of-a-grep-match/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Printing Only Part of a grep Match">
+	<meta property="og:description" content="It’s not uncommon to want to find a particular line in a file and print just a part of it. For example, if we wanted to find the total memory on a machine we could use:
+grep &#39;^MemTotal:&#39; /proc/meminfo | sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39; Which does the job but duplicates a bunch of the matching regex. If you’re using a reasonably recent gnu grep, you can use it’s support for perl regex syntax and the \K operator:">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2015-04-14T23:02:25+00:00">
+		<meta property="article:modified_time" content="2015-04-14T23:02:25+00:00">
+
+	<meta itemprop="name" content="Printing Only Part of a grep Match">
+	<meta itemprop="description" content="It’s not uncommon to want to find a particular line in a file and print just a part of it. For example, if we wanted to find the total memory on a machine we could use:
+grep &#39;^MemTotal:&#39; /proc/meminfo | sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39; Which does the job but duplicates a bunch of the matching regex. If you’re using a reasonably recent gnu grep, you can use it’s support for perl regex syntax and the \K operator:">
+	<meta itemprop="datePublished" content="2015-04-14T23:02:25+00:00">
+	<meta itemprop="dateModified" content="2015-04-14T23:02:25+00:00">
+	<meta itemprop="wordCount" content="224">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Shell Scripting">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Printing Only Part of a grep Match">
+	<meta name="twitter:description" content="It’s not uncommon to want to find a particular line in a file and print just a part of it. For example, if we wanted to find the total memory on a machine we could use:
+grep &#39;^MemTotal:&#39; /proc/meminfo | sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39; Which does the job but duplicates a bunch of the matching regex. If you’re using a reasonably recent gnu grep, you can use it’s support for perl regex syntax and the \K operator:">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Printing Only Part of a grep Match</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Printing Only Part of a grep Match</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-04-14T23:02:25Z">April 14, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="https://www.symphonious.net/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
+<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;">grep <span style="color: #ba2121;">'^MemTotal:'</span> /proc/meminfo | <br />  sed -e <span style="color: #ba2121;">'s/^MemTotal:\s*\([0-9]*\).*/\1/'</span>
+</pre>
+</div>
+<p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p>
+<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;">grep -Po <span style="color: #ba2121;">'^(MemTotal:\s*)\K[0-9]*'</span> /proc/meminfo
+</pre>
+</div>
+<p>The -P is for perl regex, and the o option causes grep to output only what is matched. You can see though that we&rsquo;re actually matching the MemTotal: at the start of the line yet somehow it doesn&rsquo;t wind up in the output.  That&rsquo;s the magic of \K which excludes the token immediately prior to it from the matched text (without rewinding the stream and attempting a different match for that text).</p>
+<p><strong>Update</strong></p>
+<p>Alexandre Niveau emailed me to point out that in this particular case (and probably most others where I&rsquo;d be tempted to use \K with grep) grep is completely superfluous and we can just use sed with the -n flag:</p>
+<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
+  <pre style="margin: 0; line-height: 125%;">sed -n -e <span style="color: #ba2121;">'s/^MemTotal:\s*\([0-9]*\).*/\1/p'</span> /proc/meminfo
+</pre>
+</div>
+<p>The -n disables automatic printing of lines and the ‘p&rsquo; at the end of the regex prints the matching lines. Definitely good to know – thanks Alexandre.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

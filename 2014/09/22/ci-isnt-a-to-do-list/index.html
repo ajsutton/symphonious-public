@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>CI Isn’t a To-do List | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="When you have automated testing setup with a big display board to provide clear feedback, it&rsquo;s tempting to try and use it for things it wasn&rsquo;t intended for. One example of that is as a kind of reminder system – you identify a problem somewhere that can&rsquo;t be addressed immediately but needs to be handled at some point in the future. It&rsquo;s tempting to add a test that begins failing after a certain date (or the inverse, whitelisting errors until a certain date). Now the build is green and there&rsquo;s no risk of you forgetting to address the problem because it will fail again in the future. Perfect right?">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2014/09/22/ci-isnt-a-to-do-list/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2014/09/22/ci-isnt-a-to-do-list/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="CI Isn’t a To-do List">
+	<meta property="og:description" content="When you have automated testing setup with a big display board to provide clear feedback, it’s tempting to try and use it for things it wasn’t intended for. One example of that is as a kind of reminder system – you identify a problem somewhere that can’t be addressed immediately but needs to be handled at some point in the future. It’s tempting to add a test that begins failing after a certain date (or the inverse, whitelisting errors until a certain date). Now the build is green and there’s no risk of you forgetting to address the problem because it will fail again in the future. Perfect right?">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2014-09-21T23:59:26+00:00">
+		<meta property="article:modified_time" content="2014-09-21T23:59:26+00:00">
+
+	<meta itemprop="name" content="CI Isn’t a To-do List">
+	<meta itemprop="description" content="When you have automated testing setup with a big display board to provide clear feedback, it’s tempting to try and use it for things it wasn’t intended for. One example of that is as a kind of reminder system – you identify a problem somewhere that can’t be addressed immediately but needs to be handled at some point in the future. It’s tempting to add a test that begins failing after a certain date (or the inverse, whitelisting errors until a certain date). Now the build is green and there’s no risk of you forgetting to address the problem because it will fail again in the future. Perfect right?">
+	<meta itemprop="datePublished" content="2014-09-21T23:59:26+00:00">
+	<meta itemprop="dateModified" content="2014-09-21T23:59:26+00:00">
+	<meta itemprop="wordCount" content="412">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Productivity">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CI Isn’t a To-do List">
+	<meta name="twitter:description" content="When you have automated testing setup with a big display board to provide clear feedback, it’s tempting to try and use it for things it wasn’t intended for. One example of that is as a kind of reminder system – you identify a problem somewhere that can’t be addressed immediately but needs to be handled at some point in the future. It’s tempting to add a test that begins failing after a certain date (or the inverse, whitelisting errors until a certain date). Now the build is green and there’s no risk of you forgetting to address the problem because it will fail again in the future. Perfect right?">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">CI Isn’t a To-do List</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">CI Isn’t a To-do List</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2014-09-21T23:59:26Z">September 21, 2014</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>When you have automated testing setup with a big display board to provide clear feedback, it&rsquo;s tempting to try and use it for things it wasn&rsquo;t intended for. One example of that is as a kind of reminder system – you identify a problem somewhere that can&rsquo;t be addressed immediately but needs to be handled at some point in the future. It&rsquo;s tempting to add a test that begins failing after a certain date (or the inverse, whitelisting errors until a certain date). Now the build is green and there&rsquo;s no risk of you forgetting to address the problem because it will fail again in the future. Perfect right?</p>
+<p>The problem is that it sacrifices the ability to easily isolate the cause of a failure. You can no longer revert changes to get back to a working baseline because the current time is a factor in whether your tests pass or not. You can no longer run historical builds through CI which you may need to do as part of supporting clients on older versions.</p>
+<p>It also inevitably leads to false failures as the time points are almost always arbitrary and estimated time lines for completing tasks often slip. So the board goes red and the response is to just suppress it again.</p>
+<p>Continuous integration isn&rsquo;t there to remind you to do something – it&rsquo;s there to tell you if your build is ok to ship to production or not. It doesn&rsquo;t make sense to say that a build is ok to ship to production now but not ok to ship in a week&rsquo;s time. If production is going to blow up in the future because of a bug in the code you want to the board to be red now, not when production actually blows up. And if the client is prepared to accept the risk and leave the problem unfixed then it&rsquo;s not yet a requirement and doesn&rsquo;t need tests asserting it – just put a card in the backlog for the client to prioritise and play when required.</p>
+<p>If you need to remember to do something, either put a task in the backlog or on the current story board to do it or put a reminder in your calendar. Keep CI focussed on telling you about the state of your code right now – if it&rsquo;s broken it should be red, if it&rsquo;s not broken it should be green. Not broken until next week should never be an option.</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

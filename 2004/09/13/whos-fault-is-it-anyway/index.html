@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Who’s Fault Is It Anyway? | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="With the real planet humbug down, I&rsquo;m only occasionally checking the temporary planet humbug since it&rsquo;s not coming through my RSS feeds at the moment. While I wasn&rsquo;t looking, there seems to have been a little bit of a stink kicked up about Linux&rsquo;s security. The story as far as I can tell seems to be that Sandra Mansell had her Debian router compromised because the root password was a dictionary word, ssh was available to the world and root logins were allowed. She took responsibility for the compromise pointing out that it was “lazy” (I would have said careless or possibly even crazy) to use a dictionary word as the root password and then complained that Debian&rsquo;s default settings were to allow root logins over SSH. Brad Mashall and Greg Black then provided some useful advice on setting up SSH and security in general. However, from both posts (particularly Brad&rsquo;s) I got the impression that this was entirely the users fault. I&rsquo;d very strongly disagree with that. Was the user at fault? Absolutely, and Sandra acknowledged that. Was the software more at fault? Absolutely. It is very common knowledge that allowing root logins via ssh is an unsafe practice and should be avoided. It&rsquo;s completely inexcusable for the Debian developers to have root logins enabled by default and even worse that it (apparently) doesn&rsquo;t even display a warning about this. It is simply not good enough for an OS to ship with insecure settings and expect ordinary users to perform a full security audit and know all about arcane config files to make their system secure. The OS installer should always make the system as secure as possible given the features the users have indicated they need. Specifically, the installer should have disabled SSH by default (I think it did) then when told that SSH was required, it should have left root logins disabled. Better yet, it could have asked which accounts were required, from which networks and hosts and whether or not it could generate a key pair to be used for authentication and disable password authentication. All of that however does make the installation more complex so there&rsquo;s a balance to be reached, but since there&rsquo;s almost never a reason to allow remote root logins I&rsquo;d be quite prepared to criticize the developer responsible for that configuration being the default. I&rsquo;d then set about making sure that the users understands where they went wrong and how to avoid similar problems in the future (most likely by pointing them at Brad and Greg&rsquo;s comments, which I definitely suggest you read). Why is it that in commerce the customer&rsquo;s always right but in software the user&rsquo;s always wrong?">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2004/09/13/whos-fault-is-it-anyway/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2004/09/13/whos-fault-is-it-anyway/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="Who’s Fault Is It Anyway?">
+	<meta property="og:description" content="With the real planet humbug down, I’m only occasionally checking the temporary planet humbug since it’s not coming through my RSS feeds at the moment. While I wasn’t looking, there seems to have been a little bit of a stink kicked up about Linux’s security. The story as far as I can tell seems to be that Sandra Mansell had her Debian router compromised because the root password was a dictionary word, ssh was available to the world and root logins were allowed. She took responsibility for the compromise pointing out that it was “lazy” (I would have said careless or possibly even crazy) to use a dictionary word as the root password and then complained that Debian’s default settings were to allow root logins over SSH. Brad Mashall and Greg Black then provided some useful advice on setting up SSH and security in general. However, from both posts (particularly Brad’s) I got the impression that this was entirely the users fault. I’d very strongly disagree with that. Was the user at fault? Absolutely, and Sandra acknowledged that. Was the software more at fault? Absolutely. It is very common knowledge that allowing root logins via ssh is an unsafe practice and should be avoided. It’s completely inexcusable for the Debian developers to have root logins enabled by default and even worse that it (apparently) doesn’t even display a warning about this. It is simply not good enough for an OS to ship with insecure settings and expect ordinary users to perform a full security audit and know all about arcane config files to make their system secure. The OS installer should always make the system as secure as possible given the features the users have indicated they need. Specifically, the installer should have disabled SSH by default (I think it did) then when told that SSH was required, it should have left root logins disabled. Better yet, it could have asked which accounts were required, from which networks and hosts and whether or not it could generate a key pair to be used for authentication and disable password authentication. All of that however does make the installation more complex so there’s a balance to be reached, but since there’s almost never a reason to allow remote root logins I’d be quite prepared to criticize the developer responsible for that configuration being the default. I’d then set about making sure that the users understands where they went wrong and how to avoid similar problems in the future (most likely by pointing them at Brad and Greg’s comments, which I definitely suggest you read). Why is it that in commerce the customer’s always right but in software the user’s always wrong?">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2004-09-13T07:31:47+00:00">
+		<meta property="article:modified_time" content="2004-09-13T07:31:47+00:00">
+
+	<meta itemprop="name" content="Who’s Fault Is It Anyway?">
+	<meta itemprop="description" content="With the real planet humbug down, I’m only occasionally checking the temporary planet humbug since it’s not coming through my RSS feeds at the moment. While I wasn’t looking, there seems to have been a little bit of a stink kicked up about Linux’s security. The story as far as I can tell seems to be that Sandra Mansell had her Debian router compromised because the root password was a dictionary word, ssh was available to the world and root logins were allowed. She took responsibility for the compromise pointing out that it was “lazy” (I would have said careless or possibly even crazy) to use a dictionary word as the root password and then complained that Debian’s default settings were to allow root logins over SSH. Brad Mashall and Greg Black then provided some useful advice on setting up SSH and security in general. However, from both posts (particularly Brad’s) I got the impression that this was entirely the users fault. I’d very strongly disagree with that. Was the user at fault? Absolutely, and Sandra acknowledged that. Was the software more at fault? Absolutely. It is very common knowledge that allowing root logins via ssh is an unsafe practice and should be avoided. It’s completely inexcusable for the Debian developers to have root logins enabled by default and even worse that it (apparently) doesn’t even display a warning about this. It is simply not good enough for an OS to ship with insecure settings and expect ordinary users to perform a full security audit and know all about arcane config files to make their system secure. The OS installer should always make the system as secure as possible given the features the users have indicated they need. Specifically, the installer should have disabled SSH by default (I think it did) then when told that SSH was required, it should have left root logins disabled. Better yet, it could have asked which accounts were required, from which networks and hosts and whether or not it could generate a key pair to be used for authentication and disable password authentication. All of that however does make the installation more complex so there’s a balance to be reached, but since there’s almost never a reason to allow remote root logins I’d be quite prepared to criticize the developer responsible for that configuration being the default. I’d then set about making sure that the users understands where they went wrong and how to avoid similar problems in the future (most likely by pointing them at Brad and Greg’s comments, which I definitely suggest you read). Why is it that in commerce the customer’s always right but in software the user’s always wrong?">
+	<meta itemprop="datePublished" content="2004-09-13T07:31:47+00:00">
+	<meta itemprop="dateModified" content="2004-09-13T07:31:47+00:00">
+	<meta itemprop="wordCount" content="449">
+	<meta itemprop="keywords" content="Code and Geek Stuff">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Who’s Fault Is It Anyway?">
+	<meta name="twitter:description" content="With the real planet humbug down, I’m only occasionally checking the temporary planet humbug since it’s not coming through my RSS feeds at the moment. While I wasn’t looking, there seems to have been a little bit of a stink kicked up about Linux’s security. The story as far as I can tell seems to be that Sandra Mansell had her Debian router compromised because the root password was a dictionary word, ssh was available to the world and root logins were allowed. She took responsibility for the compromise pointing out that it was “lazy” (I would have said careless or possibly even crazy) to use a dictionary word as the root password and then complained that Debian’s default settings were to allow root logins over SSH. Brad Mashall and Greg Black then provided some useful advice on setting up SSH and security in general. However, from both posts (particularly Brad’s) I got the impression that this was entirely the users fault. I’d very strongly disagree with that. Was the user at fault? Absolutely, and Sandra acknowledged that. Was the software more at fault? Absolutely. It is very common knowledge that allowing root logins via ssh is an unsafe practice and should be avoided. It’s completely inexcusable for the Debian developers to have root logins enabled by default and even worse that it (apparently) doesn’t even display a warning about this. It is simply not good enough for an OS to ship with insecure settings and expect ordinary users to perform a full security audit and know all about arcane config files to make their system secure. The OS installer should always make the system as secure as possible given the features the users have indicated they need. Specifically, the installer should have disabled SSH by default (I think it did) then when told that SSH was required, it should have left root logins disabled. Better yet, it could have asked which accounts were required, from which networks and hosts and whether or not it could generate a key pair to be used for authentication and disable password authentication. All of that however does make the installation more complex so there’s a balance to be reached, but since there’s almost never a reason to allow remote root logins I’d be quite prepared to criticize the developer responsible for that configuration being the default. I’d then set about making sure that the users understands where they went wrong and how to avoid similar problems in the future (most likely by pointing them at Brad and Greg’s comments, which I definitely suggest you read). Why is it that in commerce the customer’s always right but in software the user’s always wrong?">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Who’s Fault Is It Anyway?</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Who’s Fault Is It Anyway?</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2004-09-13T07:31:47Z">September 13, 2004</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>With the <a href="http://planet.humbug.org.au">real planet humbug</a> down, I&rsquo;m only occasionally checking the <a href="http://quark.humbug.org.au/planethumbug/">temporary planet humbug</a> since it&rsquo;s not coming through my RSS feeds at the moment. While I wasn&rsquo;t looking, there seems to have been a little bit of a stink kicked up about Linux&rsquo;s security. The story as far as I can tell seems to be that Sandra Mansell <a href="http://www.livejournal.com/users/silne/97528.html">had her Debian router compromised</a> because the root password was a dictionary word, ssh was available to the world and root logins were allowed. She took responsibility for the compromise pointing out that it was “lazy” (I would have said careless or possibly even crazy) to use a dictionary word as the root password and then complained that Debian&rsquo;s default settings were to allow root logins over SSH. <a href="http://quark.humbug.org.au/blog/index.cgi/2004/09/12#20040912140255">Brad Mashall</a> and <a href="http://www.gbch.net/gjb/blog/technology/security-confusion.html">Greg Black</a> then provided some useful advice on setting up SSH and security in general. However, from both posts (particularly Brad&rsquo;s) I got the impression that this was entirely the users fault. I&rsquo;d very strongly disagree with that. Was the user at fault? Absolutely, and Sandra acknowledged that. Was the software more at fault? Absolutely. It is very common knowledge that allowing root logins via ssh is an unsafe practice and should be avoided. It&rsquo;s completely inexcusable for the Debian developers to have root logins enabled by default and even worse that it (apparently) doesn&rsquo;t even display a warning about this. It is simply not good enough for an OS to ship with insecure settings and expect ordinary users to perform a full security audit and know all about arcane config files to make their system secure. The OS installer should always make the system as secure as possible given the features the users have indicated they need. Specifically, the installer should have disabled SSH by default (I think it did) then when told that SSH was required, it should have left root logins disabled. Better yet, it could have asked which accounts were required, from which networks and hosts and whether or not it could generate a key pair to be used for authentication and disable password authentication. All of that however does make the installation more complex so there&rsquo;s a balance to be reached, but since there&rsquo;s almost never a reason to allow remote root logins I&rsquo;d be quite prepared to criticize the developer responsible for that configuration being the default. I&rsquo;d then set about making sure that the users understands where they went wrong and how to avoid similar problems in the future (most likely by pointing them at Brad and Greg&rsquo;s comments, which I definitely suggest you read). Why is it that in commerce the customer&rsquo;s always right but in software the user&rsquo;s always wrong?</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

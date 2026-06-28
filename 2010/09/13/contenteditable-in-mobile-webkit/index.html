@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>contentEditable in Mobile WebKit | Symphonious</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="What Is contentEditable?
+JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly1{#footlink1:1278939007857.footnote}:
+
+Selection – allowing the user to position a text caret in the content and select various parts of it.
+Content entry and deletion – allowing the user to type basic text and to delete selected content.
+
+Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Adrian Sutton">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+
+
+
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/">
+    
+
+    <meta property="og:url" content="https://www.symphonious.net/2010/09/13/contenteditable-in-mobile-webkit/">
+	<meta property="og:site_name" content="Symphonious">
+	<meta property="og:title" content="contentEditable in Mobile WebKit">
+	<meta property="og:description" content="What Is contentEditable? JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly1{#footlink1:1278939007857.footnote}:
+Selection – allowing the user to position a text caret in the content and select various parts of it. Content entry and deletion – allowing the user to type basic text and to delete selected content. Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2010-09-13T13:12:21+00:00">
+		<meta property="article:modified_time" content="2010-09-13T13:12:21+00:00">
+
+	<meta itemprop="name" content="contentEditable in Mobile WebKit">
+	<meta itemprop="description" content="What Is contentEditable? JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly1{#footlink1:1278939007857.footnote}:
+Selection – allowing the user to position a text caret in the content and select various parts of it. Content entry and deletion – allowing the user to type basic text and to delete selected content. Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.">
+	<meta itemprop="datePublished" content="2010-09-13T13:12:21+00:00">
+	<meta itemprop="dateModified" content="2010-09-13T13:12:21+00:00">
+	<meta itemprop="wordCount" content="635">
+	<meta itemprop="keywords" content="Code and Geek Stuff,Content Management,Editors,JavaScript">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="contentEditable in Mobile WebKit">
+	<meta name="twitter:description" content="What Is contentEditable? JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly1{#footlink1:1278939007857.footnote}:
+Selection – allowing the user to position a text caret in the content and select various parts of it. Content entry and deletion – allowing the user to type basic text and to delete selected content. Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.">
+
+      
+    
+	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
+<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
+<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
+<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Symphonious
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
+              About Me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
+              CV
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
+              Testing@LMAX
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">contentEditable in Mobile WebKit</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">contentEditable in Mobile WebKit</h1>
+      
+      <p class="tracked">
+         <strong>Adrian Sutton</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2010-09-13T13:12:21Z">September 13, 2010</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><h3 id="what-is-contenteditable">What Is contentEditable?</h3>
+<p>JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly<a href="#footnote1:1278939007857">1</a>{#footlink1:1278939007857.footnote}:</p>
+<ul>
+<li>Selection – allowing the user to position a text caret in the content and select various parts of it.</li>
+<li>Content entry and deletion – allowing the user to type basic text and to delete selected content.</li>
+</ul>
+<p>Without these two key components of contentEditable it’s impossible to create a high-quality, WYSIWYG editor with JavaScript. Despite some variations in how things work, this functionality is available on all common desktop browsers and has been for quite a few years.</p>
+<h3 id="the-problem">The Problem</h3>
+<p>On mobile WebKit, for both iOS and Android, the basics of contentEditable support aren’t working correctly. The problem is two fold:</p>
+<ol>
+<li>While the user can position a text caret and change the selection, the actual caret (the blinking vertical line), never renders so users don’t know where their typing will appear.</li>
+<li>The on-screen keyboard doesn’t appear when the caret is placed in an editable section. On devices without a real keyboard it’s then impossible to type.</li>
+</ol>
+<p>WebKit is actually surprisingly close to getting this working, with a lot of the underpinning functionality appearing to work but these two issues prevent editors from being usable<a href="#footnote2:1278940183669">2</a>{#footlink2:1278940183669.footnote}.</p>
+<h3 id="why-does-it-matter">Why Does It Matter?</h3>
+<p>While geeks may feel at home writing HTML code by hand or using a markup language like markdown or textile, non-technical users find it significantly easier to use a WYSIWYG editor. Currently, it’s not possible to offer such an editor on mobile devices due to the lack of contentEditable support.</p>
+<p>Even worse is that many sites are already using a WYSIWYG editor which then prevents users on a mobile devices from contributing content – even when the rest of the site works perfectly. With mobile browsers improving so rapidly, most sites now work without needing special adjustments so the lack of contentEditable support is one of the few major incompatibilities.</p>
+<h3 id="how-might-it-be-fixed">How Might it be Fixed?</h3>
+<p>To be honest, I don’t know and don’t have the experience with the code involved to find the source of the problem and fix it. However, with both the source to WebKit and Android being open, hopefully someone does have the experience knowledge and a bit of time to solve this.</p>
+<p>With WebKit being the browser engine of choice on so many devices, the fix may even flow around to a bunch of mobile OS’s.</p>
+<h3 id="relevant-bug-reports">Relevant Bug Reports</h3>
+<h4 id="android">Android</h4>
+<ul>
+<li><a href="http://code.google.com/p/android/issues/detail?id=9515">9515 – No onscreen keyboard when inside a contentEditable area</a></li>
+<li><a href="http://code.google.com/p/android/issues/detail?id=9513">9513 – Unable to select text in contentEditable field</a></li>
+<li><a href="http://code.google.com/p/android/issues/detail?id=9512">9512 – contentEditable field shows no caret</a></li>
+<li>For some background see also: <a href="http://code.google.com/p/android/issues/detail?id=8253">8253 – isContentEditable returns true even if the browser doesn’t really support it</a></li>
+</ul>
+<h4 id="iphone">iPhone</h4>
+<p>Apple don’t provide a public bug list, but this issue is logged as Radar #8399288. Apple do use the number of bug reports for an issue to adjust priority so if this issue is important to you, please do log an issue and cite Radar #8399288.</p>
+<h4 id="others">Others</h4>
+<p>I don’t currently have bug reports against other systems but would appreciate pointers to any relevant bugs for other systems (whether they use WebKit or not) so they can be tracked.</p>
+<p class="footnote">
+  <a id="footnote1:1278939007857" href="#footlink1:1278939007857">1</a> &#8211; The other major component is the execCommand function which provides built-in implementations of a number of common commands like bold, italic, etc. While it’s certainly useful to have these, they can generally be replaced by pure-JavaScript implementations without sacrificing quality or performance. <a class="footnotereturn" href="#footlink1:1278939007857">↩</a>
+</p>
+<p class="footnote">
+  <a href="#footlink2:1278940183669" id="footnote2:1278940183669">2</a> &#8211; I’m unaware of any mobile browser that supports contentEditable well enough to make an editor feasible. In fact, WebKit appears to be the closest to that milestone. <a class="footnotereturn" href="#footlink2:1278940183669">↩</a>
+</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
+    &copy;  Adrian Sutton 2004 - 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
