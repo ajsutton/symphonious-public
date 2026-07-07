@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="This is mostly a note to myself, but often when I setup a new Linux install, I find that JUnit tests run significantly slower than usual. The CPU is nearly entirely idle and there&rsquo;s almost no IO-wait making it hard to work out what&rsquo;s going on.
 The problem is that JUnit (or something in our tests or test runner) is doing a DNS lookup on the machine&rsquo;s hostname. That lookup should be really fast, but if you&rsquo;re connected to a VPN it may search the remote DNS server which takes time and makes the tests take much longer than they should.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ The problem is that JUnit (or something in our tests or test runner) is doing a 
 <h1 class="f1 athelas mt3 mb1">Why Are My JUnit Tests Running So Slow?</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I&rsquo;ve been developing a fairly dynamic website using Ruby on Rails for the past week and I&rsquo;m really quite impressed.  I&rsquo;d had no experience with Ruby before so I had to learn a new programming language and a new webapp framework but I&rsquo;ve gotten going without too many problems and am already at least as productive as I would be with J2EE (possibly more so).
 Like most things though, it&rsquo;s definitely very possible to create really awful looking code in RoR though most of the time the easiest way is very maintainable.  I was quite surprised to see how big a mess the code created by the salted_login generator was.  It appears that instead of putting in effort to keep the views to purely display, the author tried to minimize the amount of stuff in the views.  Thus, instead of using HTML to create form elements which would have been simple, readable, maintainable and work in WYSIWYG editors, a helper function was used that output a complete table row with localized label and the form field.  What&rsquo;s worse though is that the helper function is about as readable as a perl script.  It&rsquo;s pretty simple to rewrite the view using plain HTML and then the helper function can be deleted entire without understanding exactly what it does.  One would hope you don&rsquo;t need to write code like that to achieve internationalization – this project doesn&rsquo;t make sense to localize anyway.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ Like most things though, it’s definitely very possible to create really awful 
 <h1 class="f1 athelas mt3 mb1">Playing With Ruby On Rails</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

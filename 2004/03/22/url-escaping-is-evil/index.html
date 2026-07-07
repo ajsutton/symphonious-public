@@ -7,7 +7,7 @@
     <title>URL Escaping is Evil | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I have come to the conclusion that URL escaping is evil and must be banished from the face of the earth. I&rsquo;ve got no idea how it manages to work at all – every implementation seems to be different and the support for different character sets is a major hit and miss affair. Take for instance the string: &amp;copy; Adrian Sutton It looks like a pretty simple string and all. It should be encoded as: %C2%A9%20Adrian%20Sutton assuming UTF-8 character encoding (and I literally mean assuming since there&rsquo;s no possible way to know for sure). If however you were to use the javascript escape() function you could get any one of: %u00A9&#43;Adrian&#43;Sutton %C2%A9%20Adrian&#43;Sutton %u00A9%29Adrian%20Sutton It&rsquo;s impossible to tell if the &#43; sign in the first two is an encoded space or an actual plus sign (there&rsquo;s no requirement for &#43; to be escaped in URIs so many implementations leave it as is). Then you have to deal with the rather odd %u00A9 syntax which seems to be half URI escaping, half HTML entity and finally you get to worry about which character set was in use. For the record, here&rsquo;s what your browser makes of it:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">URL Escaping is Evil</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

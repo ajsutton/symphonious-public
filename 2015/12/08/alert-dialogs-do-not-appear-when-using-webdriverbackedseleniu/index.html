@@ -9,7 +9,7 @@
     <meta name="description" content="With Selenium 1, JavaScript alert and confirmation dialogs were intercepted by the Selenium JavaScript library so they never appeared on-screen and were accessed using selenium.isAlertPresent(), selenium.isConfirmationPresent(), selenium.chooseOkOnNextConfirmation() and similar methods.
 With Selenium 2 aka WebDriver, the dialogs do appear on screen and you access them with webDriver.switchTo().alert() which returns an Alert instance for further interactions.
 However, when you use WebDriverBackedSelenium to mix Selenium 1 and WebDriver APIs – for example, during migrations from one to the other – the alerts don&rsquo;t appear on screen and webDriver.switchTo().alert() always throws a NoAlertPresentException. This makes migration problematic because selenium.chooseOkOnNextConfirmation() doesn&rsquo;t have any effect if the next confirmation is triggered by an action performed directly through Web Driver.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -146,7 +146,7 @@ However, when you use WebDriverBackedSelenium to mix Selenium 1 and WebDriver AP
 <h1 class="f1 athelas mt3 mb1">Alert Dialogs Do Not Appear When Using WebDriverBackedSeleniu</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

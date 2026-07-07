@@ -7,7 +7,7 @@
     <title>Dependencies | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I&rsquo;ve never understood Java programmers attitudes to dependencies. The Java runtime and libraries was designed specifically to allow cross-platform deployment and increase compatibility. Write once, run anywhere. What confuses me then is this obsession Java developers seem to have with being incompatible or rather, using the absolute bleeding-edge, never released, not available anywhere version of stuff – particularly the JRE. Now certainly Java is unusual in that it is rapidly developing. Not only that but the language, the runtime and the libraries are all tied in together so if you want to live on the bleeding edge with one you have to live on the bleeding edge with them all. Contrast this with the C world where the language is effectively static, the standard library is minimal and evolving relatively slowly and the “runtime” (I&rsquo;m thinking of the ABI) is fairly static (if platform specific). It&rsquo;s not often that C programmers have to make a decision to update to the latest version and it rarely impacts deployability if they do. Most of the time if a C program requires a specific version of a library it just statically compiles it. In the Java world however, people are always pining for the latest enhancements. Suddenly generics are a huge deal when everyone&rsquo;s been getting by without them just fine for years. Suddenly it&rsquo;s too much effort to work around bugs in the libraries and it&rsquo;s better to just force users to upgrade. Frankly, that&rsquo;s simply not good enough. If I develop an application for Windows, I have to decide which versions of Windows I&rsquo;ll support. I could use APIs that are new to Windows XP and thus tie my application specifically to it, or I could not use those APIs and let any Windows version run it. Better yet, I could design my system in such a way that I can optionally use those APIs if they&rsquo;re available and fail gracefully otherwise. C programmers are really good at this, most likely because they&rsquo;ve spent so much time trying to write C code that&rsquo;s cross platform (it&rsquo;s possible, but you have to be good at doing this kind of thing). Unlike C, Java actually makes it easy to optionally use APIs because everything is dynamically bound. Consider the class:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">Dependencies</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

@@ -7,7 +7,7 @@
     <title>XSLT Support | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I&rsquo;ve been wanting to develop a “dashboard” style system to information from a bunch of different systems at work. Since we use an awful lot of XML around the place at work the easiest way to do that is most likely to use XSLT to transform the various XML feeds into HTML to be displayed and piece it all together into one page. Systems that don&rsquo;t speak XML could have a gateway developed for them easily enough. Anyway, I figured I&rsquo;d write a few simple perl scripts to piece the various XSTLs together and make it all work, hopefully develop something fairly pluggable so that it&rsquo;s easy to add new feeds as required. So I went looking for XSLT processors for perl and wasn&rsquo;t particularly impressed with anything I found. The XSLT I had been using and that worked with both XAlan and MSXML but barfed with XML::XSLT. The other XSLT libraries I found either failed to compile on OS X or failed to run once installed. Now admittedly that&rsquo;s mostly going to be my lack of knowledge of C and perl but I was surprised there wasn&rsquo;t a simple, standard XSLT processor. So then I tried PHP and while it has XSLT commands that looked promising, they weren&rsquo;t compiled in to my copy of PHP. It appears to be off by default in PHP because it depends on a bunch of native libraries that may not be present on most systems. So in the end, I think I&rsquo;ll write the system in Java simply because it&rsquo;s actually good at handling XSLT. Why isn&rsquo;t XSLT straight forward in other languages? It seems that they&rsquo;re trying to leverage off existing C libraries to save having to write a complete XML parser and XSLT processor natively in the language. Unfortunately, that seems to introduce a number of headaches when actually trying to use the libraries. I guess Java makes communicating with C libraries more difficult than with languages like perl or PHP and that in combination with it&rsquo;s dedication to cross-platform support seems to have given it an big advantage in situations like this by not encouraging the reuse of existing code in another language. It certainly makes it a heck of a lot easier for users of the language. So what am I missing? Is there a simple way to get a fully compliant XSLT processor in an effective scripting language? Is there another scripting language that&rsquo;s good for piecing together simple systems that does have straight-forward XSLT support? Python? Ruby? Help!">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">XSLT Support</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

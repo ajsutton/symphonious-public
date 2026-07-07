@@ -9,7 +9,7 @@
     <meta name="description" content="I realized an unintentional side effect of deciding to not use the ternary if (a ? b : c) – there&rsquo;s a bunch of code that we don&rsquo;t duplicate that we otherwise probably would have. In particular, when working with views there&rsquo;s a very common pattern to convert between a Shape and a Rectangle1:
 Rectangle bounds = shape instanceof Rectange ? (Rectangle)shape : shape.getBounds();
 The reason for this is that getBounds() on a Rectangle will create a new Rectangle instance so if you happen to be getting the bounds a few thousand times every time you go to paint the text pane, you generate an awful lot of useless rectangles. Since every shape passed in is in fact a Rectangle, you can eliminate all of that junk without risking a ClassCastException if at some point you do get a different type of shape.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -146,7 +146,7 @@ The reason for this is that getBounds() on a Rectangle will create a new Rectan
 <h1 class="f1 athelas mt3 mb1">Ternary If Hiding Duplicate Code</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

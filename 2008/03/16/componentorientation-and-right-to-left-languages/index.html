@@ -13,7 +13,7 @@ Various components still don&rsquo;t flip, eg JSplitPane.
 The Aqua L&amp;F on OS X has some annoying bugs when in right to left mode.
 
 For the first issue, you can use applyComponentOrientation which will automatically traverse the component hierarchy and make the changes but it still misses things like combo box renderers, dialogs or components that are generated later. For an application that loads its UI incrementally instead of blocking the swing thread while it loads in one go this is a significant annoyance. Even beyond that, all the dialogs need to be updated as well. While it is good that you can override the orientation on a per-component basis, it seems more intelligent to have a simple way to change the default value in one place without all the work.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -147,7 +147,7 @@ It applies on a per component basis, so there isn’t a single place you can app
 <h1 class="f1 athelas mt3 mb1">ComponentOrientation and Right To Left Languages</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

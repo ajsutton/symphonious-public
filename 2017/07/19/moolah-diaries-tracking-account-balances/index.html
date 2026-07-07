@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Moolah has two separate Vuex modules, transactions and accounts. That&rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account.  As a result, accounts have their own current balance property because they can&rsquo;t always calculate it off of their transactions.
 That means that sometimes the transaction Vuex module needs to make changes to state owned by the account module which is a rather unpleasant breach of module separation. While we ensured transaction balances remained consistent inside each mutation, we can&rsquo;t do that for account balances because Vuex (presumably deliberately) makes it impossible for a mutation to access or change state outside of the module itself. Instead, I&rsquo;ve used a simple Vuex plugin that watches the balance on the most recent transaction and notifies the account module when it changes:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ That means that sometimes the transaction Vuex module needs to make changes to s
 <h1 class="f1 athelas mt3 mb1">Moolah Diaries – Tracking Account Balances</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

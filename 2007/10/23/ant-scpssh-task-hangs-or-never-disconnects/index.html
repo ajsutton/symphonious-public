@@ -12,7 +12,7 @@ The scp problem is almost certainly caused by using ant 1.7.0 or below and jsch 
 If the command you&rsquo;re executing with the ssh task starts a background service or otherwise leaves a process running, that may be the cause of the problem. You can add &lsquo;shopt -s huponexit&rsquo; to your /etc/profile, .bashrc or somewhere like that. I must admit, I&rsquo;m somewhat vague on the exact details of what that does but the basic idea seems to be to signal any background processes that bash is exiting and then not wait for them to complete (which allows your ssh connection to close). If you&rsquo;re starting a server they&rsquo;ll probably ignore the hup signal it sends and if not, use the nohup command.
 
 Hopefully that will be the last I&rsquo;ll see of that issue.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -146,7 +146,7 @@ The scp problem is almost certainly caused by using ant 1.7.0 or below and jsch 
 <h1 class="f1 athelas mt3 mb1">Ant SCP/SSH Task Hangs Or Never Disconnects</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

@@ -7,7 +7,7 @@
     <title>Who’s Fault Is It Anyway? | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="With the real planet humbug down, I&rsquo;m only occasionally checking the temporary planet humbug since it&rsquo;s not coming through my RSS feeds at the moment. While I wasn&rsquo;t looking, there seems to have been a little bit of a stink kicked up about Linux&rsquo;s security. The story as far as I can tell seems to be that Sandra Mansell had her Debian router compromised because the root password was a dictionary word, ssh was available to the world and root logins were allowed. She took responsibility for the compromise pointing out that it was “lazy” (I would have said careless or possibly even crazy) to use a dictionary word as the root password and then complained that Debian&rsquo;s default settings were to allow root logins over SSH. Brad Mashall and Greg Black then provided some useful advice on setting up SSH and security in general. However, from both posts (particularly Brad&rsquo;s) I got the impression that this was entirely the users fault. I&rsquo;d very strongly disagree with that. Was the user at fault? Absolutely, and Sandra acknowledged that. Was the software more at fault? Absolutely. It is very common knowledge that allowing root logins via ssh is an unsafe practice and should be avoided. It&rsquo;s completely inexcusable for the Debian developers to have root logins enabled by default and even worse that it (apparently) doesn&rsquo;t even display a warning about this. It is simply not good enough for an OS to ship with insecure settings and expect ordinary users to perform a full security audit and know all about arcane config files to make their system secure. The OS installer should always make the system as secure as possible given the features the users have indicated they need. Specifically, the installer should have disabled SSH by default (I think it did) then when told that SSH was required, it should have left root logins disabled. Better yet, it could have asked which accounts were required, from which networks and hosts and whether or not it could generate a key pair to be used for authentication and disable password authentication. All of that however does make the installation more complex so there&rsquo;s a balance to be reached, but since there&rsquo;s almost never a reason to allow remote root logins I&rsquo;d be quite prepared to criticize the developer responsible for that configuration being the default. I&rsquo;d then set about making sure that the users understands where they went wrong and how to avoid similar problems in the future (most likely by pointing them at Brad and Greg&rsquo;s comments, which I definitely suggest you read). Why is it that in commerce the customer&rsquo;s always right but in software the user&rsquo;s always wrong?">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">Who’s Fault Is It Anyway?</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

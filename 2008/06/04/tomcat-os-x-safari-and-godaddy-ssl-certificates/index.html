@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="There’s already a lot of stuff written on the internet about how GoDaddy SSL certificates aren’t recognized by Mac but are by Windows, all of it pointing to “a configuration problem”. I’m not sure how we got such special treatment but none of the instructions I’ve seen work in our particular case.
 In case you’re not familiar with it, the problem is that on Mac OS X connecting to the site displays a dialog saying that the certificate could not be validated for an unknown reason. Thanks a heap for that OS X… On Windows it works just fine. The problem turns out to be that the server isn’t configured to provide the full issuing certificate chain all the way back to the root SSL certificate (which is in OS X’s set of trusted roots by default). All around the internet you’ll get instructions saying to make sure that the SSLCertificateChainFile is set to point at gd_bundle.crt (available from GoDaddy’s repository). This doesn’t work with our certificate, not sure why.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ In case you’re not familiar with it, the problem is that on Mac OS X connect
 <h1 class="f1 athelas mt3 mb1">Tomcat, OS X, Safari and GoDaddy SSL Certificates</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

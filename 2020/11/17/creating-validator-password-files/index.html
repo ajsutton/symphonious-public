@@ -9,7 +9,7 @@
     <meta name="description" content="Teku requires a password file for each individual keystore, with the same relative path as the keystore but a .txtextension. If all the keystores have the same password, you can copy a single password.txtfile for all the keystores with the command below:
 for keyFile in keys/*; do cp password.txt &#34;secrets/$(echo &#34;$keyFile&#34; | sed -e &#39;s/keys\/\(.*\)\.json/\1/&#39;).txt&#34;; done
 Note that the keys directory is specified twice in that command so if the keys are in a different directory name, make sure to update both places.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -143,7 +143,7 @@ for keyFile in keys/*; do cp password.txt &#34;secrets/$(echo &#34;$keyFile&#34;
 <h1 class="f1 athelas mt3 mb1">Creating validator password files</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

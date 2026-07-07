@@ -9,7 +9,7 @@
     <meta name="description" content="Java.Net is having conversations about removing stuff from the standard Java libraries because they&rsquo;re getting too big. The comment below really stuck out at me:
 
 Combine that with a program to remove redundant functionality (by declaring it deprecated so it gets killed 2 releases later) and you have a powerful tool to get people to stop using old stuff like Vector and StringTokenizer.” Vector and StringTokenizer aren&rsquo;t “old stuff” – they&rsquo;re extremely useful classes with a specific purpose. Vector is a guaranteed thread safe implementation of List – something you can&rsquo;t possibly get other than declaring that you want a Vector. To clarify that, consider the method signature public void doStuff(List items) what are the thread safe requirements on items? There&rsquo;s no way to know and the default assumption would be that it doesn&rsquo;t have to be thread-safe. Whereas with: public void doStuff(Vector items) the code may be less flexible now but the compiler now guarantees that you&rsquo;ll get something that at least claims to be thread safe. It is still possible to extend Vector and perform non-thread safe operations but that would be a bug in the extending class because it failed to live up to the contract of the parent class. StringTokenizer is a particularly useful class in that it provides the simplest way to break a String down into tokens. You could iterator of the characters yourself or you could use regex to do this but manually iterating is reinventing the wheel and regex are highly inefficient for doing what StringTokenizer does. Furthermore, nothing in StringTokenizer is marked as deprecated in my copy of the Java 1.4 API, nor anything in Vector. Seriously, just because you don&rsquo;t find something useful doesn&rsquo;t mean it&rsquo;s not useful.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -143,7 +143,7 @@ Combine that with a program to remove redundant functionality (by declaring it d
 <h1 class="f1 athelas mt3 mb1">Java Deprecation</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

@@ -9,7 +9,7 @@
     <meta name="description" content="I&rsquo;ve been using Claude Code a lot lately. It&rsquo;s become a core part of how I work — planning changes, exploring unfamiliar codebases, writing and reviewing code. But giving an AI agent the ability to run arbitrary shell commands on your machine does make you think a bit more carefully about what&rsquo;s happening on your host system.
 The natural answer is to run it in a container. Not as a security boundary — Claude still needs access to your code, your git config, a GitHub token, and the internet — but as a way to keep all the side effects contained. If it installs random packages, creates temp files, or leaves build artifacts scattered around, that&rsquo;s all happening inside the container rather than on your actual machine. It also makes the environment completely reproducible and disposable. Something goes wrong? Tear it down and rebuild.
 So I built claude-docker to do exactly that.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -145,7 +145,7 @@ So I built claude-docker to do exactly that.">
 <h1 class="f1 athelas mt3 mb1">Claude Docker</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

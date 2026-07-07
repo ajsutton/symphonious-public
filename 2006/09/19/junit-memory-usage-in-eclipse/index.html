@@ -7,7 +7,7 @@
     <title>JUnit Memory Usage In Eclipse | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="If you happen to run a lot of JUnit tests in one go with Eclipse, you may find that towards the end they start to slow down or throw OutOfMemoryExceptions. They do that because the Eclipse JUnit plugin creates a new instance of the TestCase for each test method, calls setup, test method, tearDown and then for some reason keeps the object around. This means that if your tearDown doesn&rsquo;t null out all the fields in the test class you can wind up with a whole lot of wasted memory.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">JUnit Memory Usage In Eclipse</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

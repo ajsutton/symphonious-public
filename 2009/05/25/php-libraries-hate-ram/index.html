@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I’ve come to the conclusion that PHP libraries are simply designed to eat up RAM and do their very best to never spit it back out. There seems to be an assumption that everything will be done in RAM and then at the last possible moment dump everything out to the browser.
 Sadly, this doesn’t work if what you’re building in RAM happens to be a zip file containing a whole heap of images. There are a few zip libraries around for PHP but none of them can directly stream the created zip file back out to the browser. Most of them create the entire zip file in RAM and then tell you to just ‘echo zip-&gt;file();’ which is just plain crazy. Others can “stream” but only to disk where they have random access.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ Sadly, this doesn’t work if what you’re building in RAM happens to be a zip 
 <h1 class="f1 athelas mt3 mb1">PHP Libraries Hate Ram</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

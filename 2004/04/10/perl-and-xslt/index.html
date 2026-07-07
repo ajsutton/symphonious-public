@@ -9,7 +9,7 @@
     <meta name="description" content="Following my complaints yesterday I think I&rsquo;ve finally managed to get XSLT working correctly in perl. The secret: ignore the obvious choice (XML::XSLT) and use XML::LibXML and XML::LibXSLT in combination. Then use fink heavily as well. Try to avoid using CPAN or installing perl modules by hand until you don&rsquo;t have a choice. Step 1: Install expat, libxml, libxslt and sablotron using fink. Install anything else that looks vaguely XML related while you&rsquo;re there too. Step 2: Using fink, install every XML or XSLT related perl package you can find. Step 3: Using CPAN run: install XML::LibXML. Step 4: Using CPAN run: install XML::LibXSLT Then use code similar to: `my $parser = XML::LibXML-&gt;new();
 my $xslt = XML::LibXSLT-&gt;new();
 my $stylesheet = $xslt-&gt;parse_stylesheet_file($xsl);">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -140,7 +140,7 @@ my $stylesheet = $xslt-&gt;parse_stylesheet_file($xsl);">
 <h1 class="f1 athelas mt3 mb1">Perl and XSLT</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

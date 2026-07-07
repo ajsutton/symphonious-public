@@ -7,7 +7,7 @@
     <title>The Rumours Of XML’s Death Have Been Greatly Exaggerated | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Mark Pilgrim posts an interesting article entitled XML on the Web Has Failed and he&rsquo;s right to some degree. Character sets remain a huge mess on the internet, but I think he&rsquo;s pinning the failure on the wrong technology. It&rsquo;s not XML that&rsquo;s failed, but RFC3023 which specifies a set of rules for detecting the XML charset when combined with HTTP. The reason RFC3023 fails is because noone likes the way it works and it&rsquo;s just not implemented anywhere. The one part of the specification that causes problems is what to do when XML is transferred over HTTP with no Charset header and a Content-Type of text/xml. The one reason that rule is so screwed up (it says to ignore the charset in the XML file) is because a bunch of proxies translate the character encoding without knowing anything about the content being transferred (except that it&rsquo;s text/something). So what&rsquo;s the solution? Put some common sense back into the mix, if there&rsquo;s no charset in the HTTP headers and a charset declared in the XML file, use the charset from the XML file, then fix the proxies that are destroying content – they&rsquo;re probably destroying a lot of HTML files as well since they wouldn&rsquo;t pay attention to the content type specified in a meta tag. Claiming that XML has failed is throwing the baby out with the bath water, the problem is just that there&rsquo;s some stupid proxies doing things that, while currently allowed, are pretty obviously going to destroy content at least some of the time. So I propose a very simple solution to this problem. Add one new rule to the HTTP spec:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">The Rumours Of XML’s Death Have Been Greatly Exaggerated</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

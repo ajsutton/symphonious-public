@@ -7,7 +7,7 @@
     <title>XSLT in Context | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Well I learnt something new today. All this time that I&rsquo;ve been doing some extremely funky stuff with XSLT (and I do mean funky), I never actually had the idea of the context node quite right. I discovered this because of a bug I ran into with our updating of XPath expressions that use position(). Essentially in the XML editor I&rsquo;m developing, we pick out the XPath expressions in the XSLT used to lay out the data for editing so that as their input values change we can update the result like it was a spreadsheet. When the input values change we identify which XPath expressions need to be recalculated and rerun them (using Jaxen) by passing in the context node from the document we&rsquo;ve been editing. The trouble hit when we started using position() because it always evaluated to 0. As it turns out the position() function counts the position of the current node in the current context, not necessarily it&rsquo;s position in it&rsquo;s parent node. So where I&rsquo;d been passing in a single node as the context, I should have been passing in a set of all the child nodes from the parent and pointing to the appropriate node in the list as the “current” one we&rsquo;re processing. As it is, it&rsquo;s still not actually implemented correctly because we always use the parent nodes children as the context but the actual context may have been different. For instance given the template: &lt;template match=&quot;item&quot;&gt; &lt;value-of select=&quot;position()&quot; /&gt; &lt;/template&gt; The context is actually the list of child elements of the current context node whose name is “item”. It wouldn&rsquo;t include any text nodes and it wouldn&rsquo;t include any elements that weren&rsquo;t “items”. So for the XML snippet: &lt;parent&gt; &lt;item /&gt; &lt;other /&gt; &lt;item /&gt; &lt;other /&gt; &lt;/parent&gt; The context would be the two item elements, but not the text nodes and not the other elements. Fortunately, for our purposes the approximation we&rsquo;re using (all child elements, excluding text nodes) is good enough for what any of our users will need to do and significantly more accurate than anything the visual design accompanying our product will actually produce. I&rsquo;ll be interested to see if the testing guys pick up on it though.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">XSLT in Context</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

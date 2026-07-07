@@ -7,7 +7,7 @@
     <title>Static Imports are Evil | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Michael Santos explores a few features of Java 1.5. As part of it he uses the new static import feature and asks what people think of it. I think it&rsquo;s the most evil invention in coding I&rsquo;ve seen since while (&#43;&#43;i &lt; 5) type statements. If you saw the line of code: long time = nanoTime(); where is the nanoTime() function? In 1.4 and below it is obviously in the current class – in 1.5 it could be anywhere and the only way to find out is to scroll all the way back up to the top of the file and read through every import statement. Then consider something like: err.println(&quot;Hello world.&quot;); Where&rsquo;s the print statement? Everyone knows about System.err.println so that must be it, unless err was a debug statement declared at the top of the file… Is it really that difficult to type System.nanoTime() instead of just nanoTime()? Programmers seriously need to learn some more discipline instead of always taking the easy way out and forgetting about the guy who has to read the code after them. In about 3 years time when I actually get to use Java 1.5&rsquo;s features (backwards compatibility being as important as it is), the first thing that will be added to my coding guidelines will be no static imports – right next to no &#43;&#43;i or i&#43;&#43; embedded in other statements.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">Static Imports are Evil</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

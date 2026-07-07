@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I&rsquo;m going to show my ignorance of the actual differences between URLs and URIs here, but I was a bit surprised by the fact that java.net.URL didn&rsquo;t extend from java.net.URI. Along those lines URL.toURI() suggests that some URLs can&rsquo;t be converted to URIs. Is this just in the context of the URLs that Java previously successfully parsed or is this a generic constraint?
 My main reason for asking is I&rsquo;m trying to determine, when implementing an HTTP caching library, I should be using java.net.URI or java.net.URL to identify the source of resources. My original thought was to use java.net.URL because that&rsquo;s what pretty much everything uses and besides I&rsquo;m used to support Java 1.3 (URI was only added in Java 1.4). Somehow that seemed overly specific and I should use URI instead. Partly this is because it felt more generic and partly because it just seemed to have more geek cred. I must admit though I really don&rsquo;t have a firm grasp on which I should use when and why. So dear lazy web, can you help?">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ My main reason for asking is I’m trying to determine, when implementing an HTT
 <h1 class="f1 athelas mt3 mb1">java.net.URL or java.net.URI?</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

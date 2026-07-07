@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="One subtle detail in the way Ethereum works is that there is a difference between Ommers and Non-Canonical Blocks. It&rsquo;s common for people to use the term Ommer for both of these and most of the time the difference doesn&rsquo;t matter but sometimes it does.
 So what is a non-canonical block? Non-canonical blocks are ones which a client imports but which don&rsquo;t wind up on the canonical chain. Maybe they were on the canonical chain for a while and then a re-org switched to a different chain or maybe they were imported to a fork and spent their entire life languishing there. Either way, they don&rsquo;t form part of the current consensus chain and have absolutely no effect on the world state. It&rsquo;s like their transactions have never been executed and no one gets any form of miner reward for them. Non-canonical blocks must be entirely valid blocks that could form part of the canonical chain, but weren&rsquo;t because we found a better chain.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ So what is a non-canonical block? Non-canonical blocks are ones which a client i
 <h1 class="f1 athelas mt3 mb1">Exploring Ethereum: Ommers vs Non-Canonical Blocks</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

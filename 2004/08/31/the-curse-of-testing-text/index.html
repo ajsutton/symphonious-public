@@ -12,7 +12,7 @@
     
        The problems start at the unit testing level. Try taking the standard JTextPane class and writing unit tests for it. How do you test that it can render a HTML list correctly? You could write a test to make sure that the list numbering at least comes out in order and in the right format but that still won&#39;t guarantee that the list numbers actually paint correctly. For instance, we recently had a bug where the list numbers painted correctly if the list fit on screen, but if it required scrolling, whatever item was at the top of the screen was numbered 1 even if it was actually the third item in the list. Our list numbering unit tests had no way of picking up on that because it was the actual rendering code (which we didn&#39;t write) that was wrong.
     ">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -143,7 +143,7 @@
 <h1 class="f1 athelas mt3 mb1">The Curse Of Testing Text</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

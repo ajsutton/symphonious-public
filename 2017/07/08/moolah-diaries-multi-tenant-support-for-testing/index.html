@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Experience at LMAX has very clearly demonstrated the benefits of good test isolation, so one of the first things I added to Moolah was multi-tenant support. Each account is a completely isolated little world which is perfect for testing.
 Given that I&rsquo;ve completely punted on storing passwords by delegating authentication to Google (and potentially other places in the future since it&rsquo;s using bell to handle third party authentication), there&rsquo;s actually no user creation step at all which makes it even easier. As a result it&rsquo;s not just acceptance tests that are benefiting from the isolation but also the database tests which no longer need to delete everything in the database to give themselves a clear workspace.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ Given that I’ve completely punted on storing passwords by delegating authentic
 <h1 class="f1 athelas mt3 mb1">Moolah Diaries – Multi-tenant Support for Testing</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

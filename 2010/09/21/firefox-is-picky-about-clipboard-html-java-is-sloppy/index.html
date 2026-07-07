@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Windows uses a particularly ugly format for putting HTML on the clipboard, called CF_HTML. Basically, it adds a header to the content with pretty useless information essentially declaring how many bytes in the header (and yes you have to pad the byte counts since they themselves are included in the count).
 The problem between Java and Firefox is that Java always sets the ‘StartHTML’ and ‘EndHTML’ fields to -1 to indicate there is no context and Firefox will refuse to paste HTML from the clipboard if StartHTML or EndHTML is set to -1. As such, if you copy HTML from Java it will be impossible to paste into Firefox. It works perfectly with Word and IE.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ The problem between Java and Firefox is that Java always sets the ‘StartHTML�
 <h1 class="f1 athelas mt3 mb1">FireFox is Picky About Clipboard HTML, Java is Sloppy</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

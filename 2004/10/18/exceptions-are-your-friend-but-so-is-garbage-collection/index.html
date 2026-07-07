@@ -9,7 +9,7 @@
     <meta name="description" content="Benjamine Carlyle and I have been discussing exceptions. Put simply, he hates them, I love them. I think I know why now.
 
 Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don&rsquo;t know about you, but I&rsquo;m a stubborn bastard who needs to be right all the time. I&rsquo;ve picked a fight, and I plan to win it ;) I&rsquo;m also a stubborn bastard (just ask Byron about ampersands), so let the death match begin! Actually, as I mentioned in this case I think we&rsquo;re arguing different things so we might be able to resolve this amicably. Benjamin&rsquo;s biggest problem with exceptions is that code in between the throwing of the exception and the handling of the exception “gets hurt”. The answer here is called abstraction. Abstraction in this context has a very simple tenant: when I call a method, it does stuff and I don&rsquo;t care how it does it. In other words, if I call the method doStuff(), I don&rsquo;t care if an exception is thrown in a deeply nested function call or directly by doStuff, to me doStuff simply through an exception. This is then true for doStuff, it only cares about each method it calls and not any methods under that and so on. So for any given piece of code we only think about one level. Methods and classes provide abstraction. Now that we&rsquo;ve abstracted things, there simply is no code left in the middle to get hurt. Each method should handle whatever exceptions it may cause in whatever way it needs to. It&rsquo;s the whatever way it needs to that differentiates Benjamin&rsquo;s viewpoint and mine. Benjamin has been talking about exceptions in C&#43;&#43; whereas I have been talking about exceptions in Java. In C&#43;&#43; when an exception is thrown you have to carefully sort out what memory you had already allocated and not freed then make sure you free it etc etc etc. In other words, an unexpected failure is catastrophic and pretty much unrecoverable. In Java however, it&rsquo;s no big deal at all. Objects will happily be garbage collected when no longer required, it&rsquo;s simple to tell if objects have been created and it&rsquo;s also really simple to clean up any allocated resources. So in Java if we were working with a database, we&rsquo;d do something like:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -143,7 +143,7 @@ Adrian Sutton argues that exceptions are not in fact harmful but helpful. I don�
 <h1 class="f1 athelas mt3 mb1">Exceptions Are Your Friend (but so is garbage collection)</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

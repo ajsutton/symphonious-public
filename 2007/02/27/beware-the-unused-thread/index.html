@@ -7,7 +7,7 @@
     <title>Beware The Unused Thread | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Many people think that because Java has garbage collection, that memory leaks aren&rsquo;t possible – this is totally and utterly wrong. One really good way to introduce leaks into Java programs without blatantly holding on to object references is to create a new thread and then not use it. Once you create a thread, it is added to the list of runnable threads. I&rsquo;m not sure why, but even before the thread is actually started, Java treats it as a running thread and holds on to it. Obviously threads that are currently running shouldn&rsquo;t be garbage collected, but it seems like an unfortunate side effect that newly created threads also can&rsquo;t be garbage collected. Once you know about it, the solution is simple – only ever create a thread immediately before you call its start method.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">Beware The Unused Thread</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

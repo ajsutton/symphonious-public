@@ -10,7 +10,7 @@
 System.setSecurityManager(null);
 
 Having set a null security manager though, you will start to get NullPointerExceptions in Firefox on OS X when you try to call Java methods from JavaScript (via LiveConnect). Basically, Firefox is assuming that there will always be a security manager in place. To get LiveConnect working again, rather than setting the security manager to null, simply create a new security manager that allows everything:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -144,7 +144,7 @@ System.setSecurityManager(null);Having set a null security manager though, you 
 <h1 class="f1 athelas mt3 mb1">Null Security Manager Breaks LiveConnect in OS X Firefox</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

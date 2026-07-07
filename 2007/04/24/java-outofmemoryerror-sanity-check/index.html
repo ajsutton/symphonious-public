@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Just for my sanity, before an OutOfMemoryError is thrown, the garbage collector should do everything it can to free up more memory right? What I&rsquo;m seeing now is that the JVM does a partial GC, throws an OutOfMemoryError and then decides to actually do a full GC which frees up enough RAM to get things working again.
 Very annoying and I&rsquo;m not sure what I can do about it. There are definitely no remaining references, but I still can&rsquo;t get that memory back.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ Very annoying and I’m not sure what I can do about it. There are definitely no
 <h1 class="f1 athelas mt3 mb1">Java OutOfMemoryError – Sanity Check</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

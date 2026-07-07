@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="There has been a fair bit of discussion on the WHATWG HTML 5 list around whether or not browsers should ‘sniff’ for video types instead of relying on the HTTP Content-Type header. There are some reasonable arguments on both sides, sniffing is unreliable and can introduce security problems, but a lot of servers default to incorrect Content-Type headers and it’s too hard to configure them.
 Having watched that debate go on for a week or more, I found it quite interesting and timely to see a support case come in specifically complaining that we’d gotten one of our Content-Type headers wrong. It turns out that we’d been serving up a JavaScript file as text/html but since it was included via a script tag, browsers always treated it as text/javascript anyway and everything worked. The catch is, Tivoli Access Manager was then set up between the client and the server of this JavaScript and it actively filters all HTML pages. Naturally, filtering JavaScript as if it was HTML tends to break stuff.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ Having watched that debate go on for a week or more, I found it quite interestin
 <h1 class="f1 athelas mt3 mb1">Content Types Matter</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

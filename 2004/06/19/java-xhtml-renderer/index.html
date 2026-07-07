@@ -7,7 +7,7 @@
     <title>Java XHTML Renderer | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Joshua Marinacci has started writing a new XHTML renderer in Java. He&rsquo;s done a pretty impressive job at getting started but I get the impression that he has no idea what he&rsquo;s in for. At the moment the rendering is pretty good but the speed is absolutely awful. While you shouldn&rsquo;t ever optimize too early, it&rsquo;s certainly possible to optimize too late and HTML rendering is one of those areas where you suffer death by a thousand cuts. I wouldn&rsquo;t be at all surprised if he has to rework large parts of his architecture to reduce the number of string comparisons to speed things up. That&rsquo;s the kind of thing that you probably should think about before hand (note that I haven&rsquo;t even looked at the code so he may have already considered that). The other thing that I notice is that it doesn&rsquo;t seem to support incremental layout yet so it has to wait for all the images to download before it can do anything. In an HTML editor that pretty easy to do because you&rsquo;ve already got the code to update the layout quickly in response to changes but I&rsquo;m not sure if there&rsquo;s an easy and efficient way to do it without having to implement all that. The big complaint I have though is that there doesn&rsquo;t seem to be any licensing information which is something you really should sort out at the very start of the project so people know what they&rsquo;re getting themselves in for. Anyway, it will be interesting to see how the project goes. Update: The project page says the license is LGPL. Oh well, guess I won&rsquo;t be having anything to do with it then.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">Java XHTML Renderer</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

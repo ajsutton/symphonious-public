@@ -10,7 +10,7 @@
 public void doStuff(byte actionId) {&lt;br /&gt;  switch (actionId) {&lt;br /&gt;    case 0: doOneThing(); break;&lt;br /&gt;    case 1: doSomethingElse(); break;&lt;br /&gt;    default: &lt;br /&gt;      throw new IllegalArgumentException(&quot;Unknown action: &quot; &#43; actionId);&lt;br /&gt;  }&lt;br /&gt;}
 
 This works perfectly fine on Java 6 and Java 7 but fails on Java 8.  It turns out the problematic part is &quot;Unknown action: &quot; &#43; actionId. When run on Java 8 that throws “java.io.IOException: invalid constant type: 15” in javassist.bytecode.ConstPool.readOne.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -144,7 +144,7 @@ public void doStuff(byte actionId) {&lt;br /&gt; switch (actionId) {&lt;br /&gt;
 <h1 class="f1 athelas mt3 mb1">Javassist &amp; Java 8 – invalid constant type: 15</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

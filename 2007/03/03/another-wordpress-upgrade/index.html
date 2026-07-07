@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="So WordPress let a nasty hacker modify their download and I&rsquo;ve got to go around upgrading everything again. Now upgrading WordPress isn&rsquo;t difficult except that every time you do, it puts back all the useless crap on the dashboard that I remove. I have a perfectly good feed reader, I don&rsquo;t need my dashboard showing me old posts from the WordPress development blog and irrelevant posts from Planet WordPress.
 With one blog that would be bearable, but I&rsquo;m currently maintaining five WordPress installs and I&rsquo;m sick of it. So after way too long I&rsquo;ve cottoned on to the fact that the index-extra.php file that causes all the problems is unlikely to change very often and I can probably just store a patch file and then quickly reapply it. That patch is here if anyone else wants it. It simply replaces the downloading and parsing of the RSS feeds with creating an empty array and it removes the mysterious &ldquo;partner=wordpress&rdquo; from the end of the call to Technorati to get the incoming links. Why is that there? If there were an upfront and honest explanation of it I probably wouldn&rsquo;t mind but I really don&rsquo;t like secret partnering deals going on in software that I run locally1.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ With one blog that would be bearable, but I’m currently maintaining five WordP
 <h1 class="f1 athelas mt3 mb1">Another WordPress Upgrade…</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

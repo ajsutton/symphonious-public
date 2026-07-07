@@ -10,7 +10,7 @@
 &lt;target name=&#34;A&#34; dependencies=&#34;B, C&#34;/&gt;&lt;target name=&#34;B&#34; dependencies=&#34;D&#34;/&gt;&lt;target name=&#34;C&#34; dependencies=&#34;D&#34;/&gt;&lt;target name=&#34;D&#34;/&gt;
  
 When we run ‘ant A&rsquo;, we expect each task to execute once, D first, then B  and C, ending with A. Since there is no dependency between B and C, they may execute in any order, so we might also get D, C, B, A. All pretty straight forward.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -153,7 +153,7 @@ When we run ‘ant A&rsquo;, we expect each task to execute once, D first, then 
 <h1 class="f1 athelas mt3 mb1">Ant Dependencies Running Twice</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

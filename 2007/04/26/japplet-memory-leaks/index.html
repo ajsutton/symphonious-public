@@ -7,7 +7,7 @@
     <title>JApplet Memory Leaks | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I mentioned the other day that I was having trouble with OutOfMemoryErrors being thrown when there shouldn&rsquo;t have been any references left around. We&rsquo;ve done a fair bit more investigation into the cause of this and have wound up reporting a bug to Sun (still awaiting review so it&rsquo;s not in the public bug database yet). It turns out that you can cause OutOfMemoryErrors with an applet as simple as the one below if you just refresh the page a few times – but apparently only if you&rsquo;re using a dual-cpu or dual-core system.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">JApplet Memory Leaks</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

@@ -7,7 +7,7 @@
     <title>JDNC | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I&rsquo;ve been looking into creating an editor for the JDNC XML descriptor file using EditLive! for XML partly as a test case for ELX using a big and complex schema, partly as a way to contribute to that community and partly as a marketing effort (it would make for a good example of what you can do with ELX). Sadly, the JDNC schema is completely invalid so it causes a whole heap of errors to be output by Xerces and finally causes Xerces to throw an ArrayOutOfBoundsException. Since we use the schema heavily and use Xerces to parse it, that makes the JDNC schema pretty much a no-go for ELX right now (not to mention making it completely useless for anything else). I&rsquo;ll have to check a few things before I can be completely sure it&rsquo;s the JDNC schema that&rsquo;s causing the problems (obviously the exception from Xerces should never happen either) but I&rsquo;m pretty sure it&rsquo;s missing some imports for schemas it references. The schema also seems to override types in a way that isn&rsquo;t supported (attempting to change mixed content types to element only).">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">JDNC</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

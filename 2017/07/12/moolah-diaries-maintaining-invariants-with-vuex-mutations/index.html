@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Previously on the Moolah Diaries I had plans to recalculate the current balance at each transaction as part of any Vuex action that changed a transaction. Tracking balances is a good example of an invariant – at the completion of any atomic change, the balance for a transaction should be the initial balance plus the sum of all transaction amounts prior to the current transaction.
 The other invariant around transactions is that they should be sorted in reverse chronological order. To make the order completely deterministic, transactions with the same dates are then sorted by ID. This isn&rsquo;t strictly necessary, but it avoids having transactions jump around unexpectedly.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ The other invariant around transactions is that they should be sorted in reverse
 <h1 class="f1 athelas mt3 mb1">Moolah Diaries – Maintaining Invariants with Vuex Mutations</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

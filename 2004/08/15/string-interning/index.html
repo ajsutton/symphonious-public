@@ -7,7 +7,7 @@
     <title>String Interning | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Elan Meng investigates the behaviours of string constants, interning and == compared to .equals. Very informative. The question remaining is, why would anyone ever use == instead of .equals on a String considering how likely it is to cause confusion and the potential for disaster if one of the strings for some reason isn&rsquo;t interned. The answer is performance. In the average case, the performance difference between == and .equals is pretty much non-existent. The first thing .equals does (like any good equals method) is check if the objects are == and returns true immediately if they are. The second thing .equals does is check that the strings have the same length (in Java the length of the string is a constant field and so requires no computation). If an answer still hasn&rsquo;t been found, the characters of each String are iterated over and as soon as they differ, false is returned. Now, consider the possible cases:">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">String Interning</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

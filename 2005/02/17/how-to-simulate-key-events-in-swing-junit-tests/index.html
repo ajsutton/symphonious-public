@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Gianugo Rabellino has been playing with unit testing in Swing – an area that I&rsquo;ve spent a lot of time complaining about in the past.  In his particular case he&rsquo;s trying to send key events to Swing components programmatically so that his JUnit tests can run automatically.  As Gianugo discovered you can&rsquo;t just create a KeyEvent and send it to Component.dispatchEvent() because it gets rerouted to the focus manager.
 Gianugo&rsquo;s solution was to display the component on screen in a JFrame and make sure it has focus.  However, we can go one better – we can simulate the component having focus.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ Gianugo’s solution was to display the component on screen in a JFrame and make
 <h1 class="f1 athelas mt3 mb1">How To Simulate Key Events In Swing JUnit Tests</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

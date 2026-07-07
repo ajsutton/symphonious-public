@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Flow|State has an excellent semi-rant about how poor the user experience is when using OpenID – both signing up and logging in. In particularly the question of what happens to all your accounts when your OpenID provider disappears is a particularly good one.
 It so happens that I was looking into this just today since I needed a user friendly but secure authentication mechanism. OpenID seemed like a natural choice since I was effectively starting from scratch anyway, why not use a standard? The main problem I had with OpenID didn&rsquo;t really come through clearly in the Flow|State article though – OpenID requires users to log in twice. The first log in requires them to enter a URI, the second log in requires them to enter their password (or in some cases a username and a password). It&rsquo;s bad enough that most URIs are much longer than most usernames or even email addresses, but there&rsquo;s actually a page reload between the URi and the password. When was the last time you saw a webapp display the username and passwords fields on separate pages?">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ It so happens that I was looking into this just today since I needed a user fri
 <h1 class="f1 athelas mt3 mb1">The Problem With OpenID</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

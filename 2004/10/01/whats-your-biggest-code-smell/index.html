@@ -7,7 +7,7 @@
     <title>What’s Your Biggest Code Smell? | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="What&rsquo;s the thing that most stands out as “gee, this is going to bite me later” code? For me it&rsquo;s without a doubt code duplication. I really hate seeing duplicate code even if it has slightly different behavior (it should put the common behavior into a parent class or utility methods etc and then just have different code where the behavior is actually different). Every time I see code duplicated I just know that a bug will turn up in it at some point and it will wind up only being fixed in one of the copies. I also tend to design using generic plugins a lot. Sometimes I probably take it a bit too far but most of the time the generic approach winds up being much more flexible and robust, plus it&rsquo;s usually easier to understand generic plugin style designs because they separate out functionality a lot more clearly – this plugin does this, that plugin does that. Of course, generic non-plugin type designs tend to have the opposite effect. There&rsquo;s also this really messy middle ground between a plugin style design and a non-plugin design where things just wind up coming out ugly. Usually you get into that area when the functionality hasn&rsquo;t been split up carefully enough or when the desired functionality is different enough to require separate functionality. One of the areas I haven&rsquo;t found a design I&rsquo;m happy with yet is for menu and toolbar code – particularly when the menu and toolbar is configurable. It&rsquo;s exceptionally clumsy to manually create each menubar and toolbar as if they were completely different things (they&rsquo;re not – they&rsquo;re just buttons of different styles that wind up firing an event) but it can also get very messy if you try for an MVC approach because the behaviors can become disturbingly complex (think submenus, comboboxes, toggle buttons, radio buttons, enabled and disabled etc). I&rsquo;ve tried out a number of ways to handle this and I&rsquo;m not quite happy with any of them. I&rsquo;d like to try out a design where each menu is created from a particular definition (a set of properties that describe how it behaves) but that there are separate categories for the different types – so there&rsquo;d be a toggle button MVC, a plain button MVC, a sub menu MVC, radio button MVC etc all integrated somehow (an overarching MVC kind of pattern?). I don&rsquo;t know, I&rsquo;ll have to find a project that will let me put it into code at some point and see what comes out of the concept.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">What’s Your Biggest Code Smell?</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

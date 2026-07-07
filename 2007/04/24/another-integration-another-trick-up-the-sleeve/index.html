@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="It seems every time I do some work integrating EditLive! I find a new technique that makes it easier, simpler and more future proof. It&rsquo;s not so much inventing new patterns as finding creative ways to apply them.
 For instance, tonight I wanted to get the upload manager in WordPress working with my EditLive! WordPress plugin. There&rsquo;s a whole bunch of logic and implementation detail in the JavaScript that WordPress outputs and it expects the editor to be TinyMCE. Fortunately, earlier on the plugin had drugged TinyMCE, taken it out back and shot it1, so it wasn&rsquo;t available. Fortunately, it&rsquo;s pretty straight forward to create an adapter for the TinyMCE runtime api that works with EditLive! and drop it in by assigning it to window.tinyMCE. Simple stuff and very similar to techniques I&rsquo;ve used in other situations, but extremely powerful and easy to not think of. In fact, I&rsquo;d tied into the autosave by manipulating JavaScript classes and all that became redundant now that I have the TinyMCE adapter.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ For instance, tonight I wanted to get the upload manager in WordPress working w
 <h1 class="f1 athelas mt3 mb1">Another Integration, Another Trick Up The Sleeve</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

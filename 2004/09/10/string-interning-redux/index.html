@@ -7,7 +7,7 @@
     <title>String Interning (Redux) | Symphonious</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="A long time ago I made some comments about String interning and Anton Tagunov made some interesting comments. It turns out he was very much right and that I was smoking something…. There are definitely still times when string interning will improve performance, even in multithreaded situations (XML parsing turns out to be one) but my comments on threading and synchronization should probably be ignored unless you&rsquo;ve got the mythical hardware I had in mind when talking about it. Essentially, to achieve what I was talking about you need to be able to add a map entry (not create the entry, just add it) as an atomic operation. You would have to be able to replace the existing map with a new one as an atomic operation as well (don&rsquo;t add the new entry until the expanded map is in place), however with multi cpu systems, such assignments are likely to wind up in a single processors cache and not be available to other processors. You&rsquo;d need the ability to tell the processor to put this straight into RAM (reads could still come from cache but the main memory version would have to be checked in a synchronized block before creating a new entry). In Java it is definitely not possible to tell the CPU to put just one variable directly into main memory and I haven&rsquo;t found any reference to this algorithm even theoretically working on any common computer system. Shame, it seems like such a good way to do it…. Good sounding design trumps working design right?">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -138,7 +138,7 @@
 <h1 class="f1 athelas mt3 mb1">String Interning (Redux)</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       

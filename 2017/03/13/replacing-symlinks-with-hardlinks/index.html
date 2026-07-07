@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Symlinks have been causing me grief lately.  Our build tool, buck, loves creating symlinks but publishes corrupt cache artefacts for any build rule that includes a symlink amongst it&rsquo;s output.
 We also wind up calling out to npm to manage JavaScript dependencies and it has an annoying (for us) habit of resolving symlinks when processing files and then failing to find required libraries because the node_modules folder was back where the symlink was, not with the original file. Mostly this problem is caused by buck creating so many symlinks.">
-    <meta name="generator" content="Hugo 0.163.3">
+    <meta name="generator" content="Hugo 0.164.0">
     
     
     
@@ -142,7 +142,7 @@ We also wind up calling out to npm to manage JavaScript dependencies and it has 
 <h1 class="f1 athelas mt3 mb1">Replacing Symlinks with Hardlinks</h1>
       
       <p class="tracked">
-         <strong>Adrian Sutton</strong>
+        By <strong>Adrian Sutton</strong>
       </p>
       
       
