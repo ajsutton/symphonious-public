@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,26 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 18, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/05/18/features-vs-stories/" class="link black dim">
+        Features vs Stories
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I realized today that I hadn&rsquo;t made explicit the difference in my mind between features and stories and it&rsquo;s an important difference. Essentially, a feature is a group of stories that are related and deliver a package of functionality that end users would generally expect to get all at once. For instance, inline table resizing is a feature (note: this is the ability to drag to resize tables, rows and columns – try it in Word). In the first pass, you&rsquo;d probably have a single story for inline resizing of tables, but it would be too big to estimate. So you break it down into three stories, resize columns, resize rows and resize the table itself.</p>
+    </div>
+  <a href="/2006/05/18/features-vs-stories/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -354,36 +374,6 @@
 <p>Hey Andrew (CEO of Ephox and a big fan of offline editing), can I have some time to try and prototype this on Ephox&rsquo;s internal wiki? You could edit your wiki pages offline easily…</p>
     </div>
   <a href="/2006/05/02/derby-as-offline-storage/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 29, 2006
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2006/04/29/how-to-test-exception-handling-when-setting-the-system-look-and-feel/" class="link black dim">
-        How To Test Exception Handling When Setting The System Look And Feel
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Setting the system look and feel is a common task in applications and if you&rsquo;re shooting for 100% test coverage, it&rsquo;s problematic because it uses two static methods and has checked exceptions. Typically you have something like:</p>
-<pre>void setNativeLookAndFeel() {<br />
- &#160;&#160;&#160;try {<br />
- &#160;&#160;&#160;&#160;&#160;&#160;&#160;UIManager.setLookAndFeel(<br />
- &#160;&#160;&#160;&#160;&#160;&#160;&#160;UIManager.getSystemLookAndFeelClassName());<br />
- &#160;&#160;&#160;} catch (Exception e) {<br />
- &#160;&#160;&#160;&#160;&#160;&#160;&#160;// Handle exception somehow.<br />
-&#160;&#160;&#160;&#160;}<br />
-}
-</pre>
-<p>As far as I know, there&rsquo;s no way to write a test that doesn&rsquo;t also exercise UIManager, so we&rsquo;ll have to live with that, but we can test that the UI is set and the exception handled.</p>
-    </div>
-  <a href="/2006/04/29/how-to-test-exception-handling-when-setting-the-system-look-and-feel/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

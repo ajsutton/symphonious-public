@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 25, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/05/25/php-libraries-hate-ram/" class="link black dim">
+        PHP Libraries Hate Ram
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I’ve come to the conclusion that PHP libraries are simply designed to eat up RAM and do their very best to never spit it back out. There seems to be an assumption that everything will be done in RAM and then at the last possible moment dump everything out to the browser.</p>
+<p>Sadly, this doesn’t work if what you’re building in RAM happens to be a zip file containing a whole heap of images. There are a few zip libraries around for PHP but none of them can directly stream the created zip file back out to the browser. Most of them create the entire zip file in RAM and then tell you to just ‘echo zip-&gt;file();’ which is just plain crazy. Others can “stream” but only to disk where they have random access.</p>
+    </div>
+  <a href="/2009/05/25/php-libraries-hate-ram/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -402,27 +423,6 @@
 <p>So, coming around to the real point of this post, I wound up writing my own tool to help take a script, synchronize it to the spoken voice and output the right format. Worked a treat, and now I have working captions on my video. I suspect it would be useful to others and there’s certainly plenty to do to improve it that would be great if others jumped in and helped with.</p>
     </div>
   <a href="/2009/04/27/should-you-publish-crap-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 24, 2009
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2009/04/24/bugs-can-be-painful/" class="link black dim">
-        Bugs Can Be Painful
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img loading="lazy" style=" float: left;" width="204" src="http://www.symphonious.net/wp-content/uploads/2009/04/pain_45712.png" height="194" alt="Argggh!" />Most developers think of software bugs as annoying but ultimately harmless. Sadly, as I found out today, that isn’t always true. It turns out that due to a bug in ScreenFlow, occasionally it will suddenly and inexplicably start playing extremely loud random noise instead of the soft, dulcet tones of the screen cast you were aiming for<a id="footlink1:1240582584035" name="footlink1:1240582584035" class="footnote" href="#footnote1:1240582584035">1</a>.</p>
-<p>I was wearing headphones at the time and even though the volume was turned down to just one click above mute, it didn’t seem to pay any attention to that and just about blew my eardrums out. I still have a headache from it.</p>
-    </div>
-  <a href="/2009/04/24/bugs-can-be-painful/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

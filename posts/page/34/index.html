@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 4, 2008
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2008/06/04/tomcat-os-x-safari-and-godaddy-ssl-certificates/" class="link black dim">
+        Tomcat, OS X, Safari and GoDaddy SSL Certificates
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>There’s already a lot of stuff written on the internet about how GoDaddy SSL certificates aren’t recognized by Mac but are by Windows, all of it pointing to “a configuration problem”. I’m not sure how we got such special treatment but none of the instructions I’ve seen work in our particular case.</p>
+<p>In case you’re not familiar with it, the problem is that on Mac OS X connecting to the site displays a dialog saying that the certificate could not be validated for an unknown reason. Thanks a heap for that OS X… On Windows it works just fine. The problem turns out to be that the server isn’t configured to provide the <em>full</em> issuing certificate chain all the way back to the root SSL certificate (which is in OS X’s set of trusted roots by default). All around the internet you’ll get instructions saying to make sure that the SSLCertificateChainFile is set to point at <a href="https://certs.godaddy.com/repository/gd_bundle.crt">gd_bundle.crt</a> (available from <a href="https://certs.godaddy.com/Repository.go">GoDaddy’s repository</a>). This doesn’t work with our certificate, not sure why.</p>
+    </div>
+  <a href="/2008/06/04/tomcat-os-x-safari-and-godaddy-ssl-certificates/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -364,30 +385,6 @@ On the face of it, identifying what language an author is using looks a lot like
 <p>The only conclusion I can draw is that building a compelling application is far more important than choice of language. While PHP wouldn&rsquo;t be my choice, and if pressed, I might argue that it should never be the choice for any rational human being sitting in front of a computer, I can&rsquo;t argue with the results.</p>
     </div>
   <a href="/2008/05/22/results-matter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 20, 2008
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2008/05/20/why-is-desktop-software-hard-to-install/" class="link black dim">
-        Why Is Desktop Software Hard To Install?
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="http://nick.typepad.com/blog/2008/05/world-wide-tele.html">Nick Bradbury</a>:</p>
-<blockquote>
-<p>Those of us who believe that desktop software is still relevant in a browser-based world should be up in arms about how hard it is to install software (on Windows, at least – it&rsquo;s easier on the Mac). Multiple security warnings, required OS updates, and tech-heavy language make downloading and installing software too scary a prospect for non-technical users.</p>
-</blockquote>
-<p>Desktop software on all platforms can and should be really easy to install. All it requires is for the user to click a link, click “Run” and the application should be up and running. In future they should be able to access it directly from their hard drive (start menu, Applications folder, command line, whatever is appropriate for the platform). Anything more complex is purely because the developer chose to make it more complex.</p>
-    </div>
-  <a href="/2008/05/20/why-is-desktop-software-hard-to-install/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

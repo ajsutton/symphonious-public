@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 12, 2017
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2017/07/12/moolah-diaries-maintaining-invariants-with-vuex-mutations/" class="link black dim">
+        Moolah Diaries – Maintaining Invariants with Vuex Mutations
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Previously on the Moolah Diaries I had plans to recalculate the current balance at each transaction as part of any Vuex action that changed a transaction. Tracking balances is a good example of an invariant – at the completion of any atomic change, the balance for a transaction should be the initial balance plus the sum of all transaction amounts <em>prior</em> to the current transaction.</p>
+<p>The other invariant around transactions is that they should be sorted in reverse chronological order. To make the order completely deterministic, transactions with the same dates are then sorted by ID. This isn&rsquo;t strictly necessary, but it avoids having transactions jump around unexpectedly.</p>
+    </div>
+  <a href="/2017/07/12/moolah-diaries-maintaining-invariants-with-vuex-mutations/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -353,27 +374,6 @@
       <p>I have three Benq GW2765 monitors which periodically report “No Signal Detected” for DisplayPort even when the computer it&rsquo;s attached to recognises the monitor is present (displaying it in the monitors/displays list etc). Changing  the DisplayPort cable or plugging it into a different computer doesn&rsquo;t help (I tried with both Mac OS X and Linux/Fedora machines), but HDMI and D-Sub connections work perfectly (but can&rsquo;t support the full screen resolution). I can even disconnect a cable from a working monitor, plug it into a non-working monitor and it will continue to complain about no signal, but plug the cable back into the working monitor and it carries on working fine.</p>
     </div>
   <a href="/2017/01/09/benq-gw2765-monitor-display-port-no-signal-detected/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        December 6, 2016
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/" class="link black dim">
-        Fun with Nvidia Drivers and Fedora Upgrades
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>After any major Fedora upgrade my system loses the proprietary nvidia drivers that make X actually work (I&rsquo;ve never successfully gotten the nouveau drivers to handle my card and multi-monitor setup) so the system reboots and simply presents an “oops, something went wrong” screen.</p>
-<p>The issue seems to be that the nvidia driver doesn&rsquo;t recompile for the new kernel, despite the fact that I&rsquo;m using akmod packages which should in theory automatically recompile for new kernels.</p>
-    </div>
-  <a href="/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

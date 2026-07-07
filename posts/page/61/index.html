@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,36 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 29, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/04/29/how-to-test-exception-handling-when-setting-the-system-look-and-feel/" class="link black dim">
+        How To Test Exception Handling When Setting The System Look And Feel
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Setting the system look and feel is a common task in applications and if you&rsquo;re shooting for 100% test coverage, it&rsquo;s problematic because it uses two static methods and has checked exceptions. Typically you have something like:</p>
+<pre>void setNativeLookAndFeel() {<br />
+ &#160;&#160;&#160;try {<br />
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;UIManager.setLookAndFeel(<br />
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;UIManager.getSystemLookAndFeelClassName());<br />
+ &#160;&#160;&#160;} catch (Exception e) {<br />
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;// Handle exception somehow.<br />
+&#160;&#160;&#160;&#160;}<br />
+}
+</pre>
+<p>As far as I know, there&rsquo;s no way to write a test that doesn&rsquo;t also exercise UIManager, so we&rsquo;ll have to live with that, but we can test that the UI is set and the exception handled.</p>
+    </div>
+  <a href="/2006/04/29/how-to-test-exception-handling-when-setting-the-system-look-and-feel/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -346,26 +376,6 @@
       <p>In an effort to reduce the ridiculous amount of time wasted on April Fools day, the USA will be separated from Canada and Mexico and towed westward across the international date line, thus making April fools day start <em>first</em> in the US and letting them post all the pointless drivel to the internet prior to the rest of the world waking up. With the current location of the US, Australians have to put up not only with 24 hours of their own stupid April fools jokes but with an extra 12-16 hours of the US&rsquo;s jokes the next morning.</p>
     </div>
   <a href="/2006/04/02/usa-to-be-towed-across-international-date-line/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 31, 2006
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2006/04/01/how-to-block-annoying-referrer-spammers/" class="link black dim">
-        How To Block Annoying Referrer Spammers?
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>There&rsquo;s a very persistent (and very stupid) referrer spammer pummelling my blog and I&rsquo;m getting sick of it – not least of all because at one point it actually managed to completely overwhelm the tiny little virtual server my blog runs on so that nothing else could access it. Given that I&rsquo;m using WordPress with Apache, what&rsquo;s the easiest way to block it?</p>
-    </div>
-  <a href="/2006/04/01/how-to-block-annoying-referrer-spammers/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

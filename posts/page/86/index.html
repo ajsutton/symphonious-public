@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,26 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 5, 2004
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2004/08/05/language-bigotry/" class="link black dim">
+        Language Bigotry
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;m getting really tired of the amount of <a href="http://dictionary.reference.com/search?q=bigotry">bigotry</a> in regards to programming languages. First let me admit that I&rsquo;m certainly guilty of technology bigotry – I&rsquo;m definitely biased towards Mac OS and Java to name a couple of things, but I&rsquo;m at least aware of it and willing to admit it. Furthermore I can provide reasonable explanations as to why I like them if not actually explain in every situation why I favor them (read: at times I&rsquo;m just being bigoted about it). When it comes to programming languages and in fact most things in technology, there are few things that are not the best choice in at least some situation – even if it is only one incredibly specific situation. This is even more true when you only take into account the things that are widely used. Lately Java has been coping it (more than usual) with people actually booing at demonstrations that used Java and a lot of fairly immature comments being made. Lets take the view point that Java is a pathetically hopeless, good for nothing language. Everything about it sucks, the people who use it are obviously idiots and it&rsquo;s too slow to do anything useful with. Obviously the company I work for made a massive mistake implementing their product in Java and at long last we&rsquo;ve realized it and want to reimplement it in a good language (we&rsquo;ll probably have to fire all those stupid java developers too but one step at a time). Lets look at the (highly informal) requirements for these products:</p>
+    </div>
+  <a href="/2004/08/05/language-bigotry/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -356,26 +376,6 @@
       <p>Mark Pilgrim posts an interesting article entitled <a href="http://www.xml.com/pub/a/2004/07/21/dive.html">XML on the Web Has Failed</a> and he&rsquo;s right to some degree. Character sets remain a huge mess on the internet, but I think he&rsquo;s pinning the failure on the wrong technology. It&rsquo;s not XML that&rsquo;s failed, but RFC3023 which specifies a set of rules for detecting the XML charset when combined with HTTP. The reason RFC3023 fails is because noone likes the way it works and it&rsquo;s just not implemented anywhere. The one part of the specification that causes problems is what to do when XML is transferred over HTTP with no Charset header and a Content-Type of text/xml. The one reason that rule is so screwed up (it says to ignore the charset in the XML file) is because a bunch of proxies translate the character encoding without knowing anything about the content being transferred (except that it&rsquo;s text/something). So what&rsquo;s the solution? Put some common sense back into the mix, if there&rsquo;s no charset in the HTTP headers and a charset declared in the XML file, use the charset from the XML file, then fix the proxies that are destroying content – they&rsquo;re probably destroying a lot of HTML files as well since they wouldn&rsquo;t pay attention to the content type specified in a meta tag. Claiming that XML has failed is throwing the baby out with the bath water, the problem is just that there&rsquo;s some stupid proxies doing things that, while currently allowed, are pretty obviously going to destroy content at least some of the time. So I propose a very simple solution to this problem. Add one new rule to the HTTP spec:</p>
     </div>
   <a href="/2004/07/23/the-rumours-of-xmls-death-have-been-greatly-exaggerated/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 23, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/07/23/haiku/" class="link black dim">
-        Haiku
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>During the week I wrote some documentation to help people write XSLTs that work really well with EditLive! for XML. Generally any given XSLT will work but there are some techniques you can use to make them work better with the augmentation process we use to add editable fields into your XSLT&rsquo;s output. Our official document writing took exception to one sentence about where the best place to put “action buttons” is in an XSLT. Action buttons are clickable things that are a cross between a hyperlink and a button which perform operations like adding another element or attribute or moving things up and down in the document. The sentence was apparently too confusing but contained a subtle but important point which couldn&rsquo;t just be removed. I still think the clearest way to phrase the sentence was as a haiku: most cases intuition used button works Sadly, they won&rsquo;t let me put that in the docs. So now the challenge goes out – what is the subtle but important point that the haiku so eloquently reveals? Maybe if enough people get it I&rsquo;ll be allowed to put it in….</p>
-    </div>
-  <a href="/2004/07/23/haiku/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

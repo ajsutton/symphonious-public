@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-06-18T12:48:00+10:00">
-	<meta itemprop="dateModified" content="2026-06-18T12:48:00+10:00">
+	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 6, 2016
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/" class="link black dim">
+        Fun with Nvidia Drivers and Fedora Upgrades
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>After any major Fedora upgrade my system loses the proprietary nvidia drivers that make X actually work (I&rsquo;ve never successfully gotten the nouveau drivers to handle my card and multi-monitor setup) so the system reboots and simply presents an “oops, something went wrong” screen.</p>
+<p>The issue seems to be that the nvidia driver doesn&rsquo;t recompile for the new kernel, despite the fact that I&rsquo;m using akmod packages which should in theory automatically recompile for new kernels.</p>
+    </div>
+  <a href="/2016/12/07/fun-with-nvidia-drivers-and-fedora-upgrades/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -362,30 +383,6 @@
 <p>It turns out the last time I played with it was <a href="https://www.symphonious.net/2005/06/19/playing-with-ruby-on-rails/">back in 2005</a> and slightly amusingly my thoughts on it haven&rsquo;t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what&rsquo;s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I&rsquo;m still using TextMate and it&rsquo;s still annoying that I can&rsquo;t click a method name to jump to it&rsquo;s definition – I hear good things about RubyMine but I&rsquo;m not keen to invest that kind of money in what may be a very short-lived experiment.</p>
     </div>
   <a href="/2015/09/30/playing-with-ruby-on-rails-2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        August 27, 2015
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2015/08/27/testinglmax-replacements-in-dsl/" class="link black dim">
-        Testing@LMAX – Replacements in DSL
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Given our DSL makes heavy use of <a href="https://www.symphonious.net/2015/06/08/testinglmax-aliases/">aliases</a>, we often have to provide a way to include the real name or ID as part of some string. For example, an audit record for a new account might be:</p>
-<pre>Created account 127322 with username someUser123.</pre>
-<p>But in our acceptance test we&rsquo;d create the user with:</p>
-<pre>registrationAPI.createUser("someUser");</pre>
-<p>someUser is just an alias, the DSL creates a unique username to use and the system assigns a unique account ID that the DSL keeps track of for us. So to write a test that the new account audit record is written correctly, we need a way to build the expected audit string.</p>
-    </div>
-  <a href="/2015/08/27/testinglmax-replacements-in-dsl/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
