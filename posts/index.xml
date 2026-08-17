@@ -7,7 +7,73 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Adrian Sutton 2004 -</copyright>
-    <lastBuildDate>Tue, 07 Jul 2026 15:49:13 +1000</lastBuildDate><atom:link href="https://www.symphonious.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Aug 2026 19:22:52 +1000</lastBuildDate><atom:link href="https://www.symphonious.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Just Vibe Code It Yourself</title>
+      <link>https://www.symphonious.net/2026/08/16/just-vibe-code-it-yourself/</link>
+      <pubDate>Sun, 16 Aug 2026 19:22:52 +1000</pubDate>
+      <guid>https://www.symphonious.net/2026/08/16/just-vibe-code-it-yourself/</guid>
+      <description>&lt;p&gt;When I started Moolah, I built it as a vibe coded, but &amp;ldquo;serious&amp;rdquo; project. I
+spent time planning features, thinking through design and setting up systems to
+make sure it was high quality. That takes a fair bit of time and effort, so
+while it comes together faster than if I wrote it by hand, it still &lt;em&gt;felt&lt;/em&gt; like
+a software project. For many things, that level of engineering isn&amp;rsquo;t required
+and you can truly build something that is just for yourself. By other people&amp;rsquo;s
+standards it would be AI slop, but because it is perfectly tailored to your
+needs, for you it&amp;rsquo;s great. That presents quite a challenge for the wide range of
+small development shops building high quality, but relatively small software.
+More and more, people really can just build it for themselves and get exactly
+what they want. It won&amp;rsquo;t &lt;em&gt;out sell&lt;/em&gt; your product, but if enough people start
+doing it, you still wind up without any customers.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s plenty of software that&amp;rsquo;s still safe from this. Vibe-coding Microsoft
+Word or Excel would be pretty crazy. The basics generally work extremely well
+for people and they have a large depth of functionality that usually scratches
+whatever itch people typically have. Plus compatibility is a very big deal - a
+vibe coded word processor that either doesn&amp;rsquo;t support Word documents or renders
+them slightly differently is not generally useful. Free software also has an
+advantage because if it does what you need for free, why bother rewriting it?&lt;/p&gt;
+&lt;p&gt;The software I can see being most affected are the more niche products, often by
+indie developers. For example I use Paprika for tracking recipes - it&amp;rsquo;s very
+good but has a few things that I wish worked slightly differently. On iOS it&amp;rsquo;s
+priced pretty reasonably so I bought it there. The problem is, you have to buy
+each platform separately and the Mac prices are way higher than I&amp;rsquo;m willing to
+pay for it. That&amp;rsquo;s not a complaint really, the business model seems to work for
+them and I hope it keeps them in business. However, it makes me wonder if I
+could just vibe code a web based solution that, while probably way worse than
+Paprika overall, would work perfectly for me. The main thing that has made me
+hold off is that Paprika is very good at scraping recipes from any website and
+then being able to display it in a standard format - much easier for cooking
+with. Building that scraping code itself is hard, but shelling out to
+&lt;code&gt;claude -p&lt;/code&gt; would probably do the trick just fine. Beyond that, recipe
+management is a pretty standard CRUD database app.&lt;/p&gt;
+&lt;p&gt;The thing is, a &lt;em&gt;lot&lt;/em&gt; of software is a pretty standard CRUD database. At LMAX
+maybe 5% of the code was really smart, high performance, exchange specific code.
+The other 95% was just loading the resulting data, transforming it and spitting
+out a report. Moolah is just a database with a highly customised UI. My wife&amp;rsquo;s
+colleague vibe coded a system for tracking all the music student&amp;rsquo;s private
+lessons and the tutor&amp;rsquo;s time sheeting.&lt;/p&gt;
+&lt;p&gt;A lot of software that looks &amp;ldquo;big&amp;rdquo; and complex to replace is actually just a lot
+of smaller, simple systems hooked up together. And often augmenting that central
+system are hundreds of spreadsheets that are the inputs and outputs and that get
+tweaked to scratch the itches people have. Even those big systems are at risk of
+gradually being eaten by smaller, more personally tailored systems as people
+find they can solve their needs better with something they vibe coded. And they
+can generally still integrate with the bigger system because the UI was really
+all those spreadsheets anyway and they&amp;rsquo;re easy to generate.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s going to be a ton of security, reliability and accuracy problems with
+these new systems, but the reliability and accuracy are likely to get ironed out
+pretty quickly because the developers &lt;em&gt;are&lt;/em&gt; the users and they&amp;rsquo;re the experts in
+their field. It&amp;rsquo;s the ultimate form of XP&amp;rsquo;s on-site customer. Security will be
+much harder to solve, but given how poorly professional software is holding up
+to AI analysis these days, maybe the answer to that is just good AI tooling and
+analysis, plus a few really solid foundational libraries.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s probably not the end of software development as a career, but it will
+certainly take a large chunk out of it. That&amp;rsquo;s a little scary, but as someone
+who go into programming as a hobby and then turned that hobby into a career, I&amp;rsquo;m
+kind of excited to see the true power of computing be opened up to a much
+broader range of people.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>My New Best Friend Is ChatGPT</title>
       <link>https://www.symphonious.net/2026/07/07/my-new-best-friend-is-chatgpt/</link>
@@ -855,44 +921,6 @@ Day 8 (Apr 12)  ██████████            103 commits — crypto
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;what-i-learned&#34;&gt;What I Learned&lt;/h2&gt;
 &lt;p&gt;The interesting constraint here is that Claude Code&amp;rsquo;s extensibility points — status line scripts, hooks, and bash tool calls — all run as separate processes with no shared environment. There&amp;rsquo;s no session ID in the environment, no shared memory, no IPC channel. The process tree walk is a hack, but it&amp;rsquo;s a reliable one. Every subprocess of a Claude Code session shares a common &lt;code&gt;claude&lt;/code&gt; ancestor, even if the paths diverge.&lt;/p&gt;
 &lt;p&gt;The other lesson is that CLAUDE.md instructions alone aren&amp;rsquo;t enough for &amp;ldquo;always do X&amp;rdquo; behaviors. Claude follows them inconsistently, especially across sessions. Hooks that inject reminders into the conversation context are much more reliable. The CLAUDE.md instruction tells Claude &lt;em&gt;what&lt;/em&gt; to do; the hook makes sure it actually does it.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Claude Docker</title>
-      <link>https://www.symphonious.net/2026/03/07/claude-docker/</link>
-      <pubDate>Sat, 07 Mar 2026 11:20:58 +1000</pubDate>
-      <guid>https://www.symphonious.net/2026/03/07/claude-docker/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been using &lt;a href=&#34;https://claude.ai/claude-code&#34;&gt;Claude Code&lt;/a&gt; a lot lately. It&amp;rsquo;s become a core part of how I work — planning changes, exploring unfamiliar codebases, writing and reviewing code. But giving an AI agent the ability to run arbitrary shell commands on your machine does make you think a bit more carefully about what&amp;rsquo;s happening on your host system.&lt;/p&gt;
-&lt;p&gt;The natural answer is to run it in a container. Not as a security boundary — Claude still needs access to your code, your git config, a GitHub token, and the internet — but as a way to keep all the side effects contained. If it installs random packages, creates temp files, or leaves build artifacts scattered around, that&amp;rsquo;s all happening inside the container rather than on your actual machine. It also makes the environment completely reproducible and disposable. Something goes wrong? Tear it down and rebuild.&lt;/p&gt;
-&lt;p&gt;So I built &lt;a href=&#34;https://github.com/ajsutton/claude-docker&#34;&gt;claude-docker&lt;/a&gt; to do exactly that.&lt;/p&gt;
-&lt;h2 id=&#34;how-it-works&#34;&gt;How It Works&lt;/h2&gt;
-&lt;p&gt;An Ubuntu container runs an SSH server. Your code directory is bind-mounted at the same path inside the container so file references are identical on both sides — Claude can say &amp;ldquo;edit &lt;code&gt;/Users/aj/Documents/code/foo/bar.go&lt;/code&gt;&amp;rdquo; and it works whether you&amp;rsquo;re looking at it from inside or outside the container. Your git config, Claude config, and known hosts are all mounted in too, so everything just works as expected.&lt;/p&gt;
-&lt;p&gt;The container comes pre-loaded with the usual development tools: Go, Node.js, mise, gopls, gh, ripgrep, fzf, tmux, and a bunch of others. There&amp;rsquo;s an &lt;code&gt;EXTRA_PACKAGES&lt;/code&gt; option if you need anything else — set it in your &lt;code&gt;.env&lt;/code&gt; and it gets installed on the next build.&lt;/p&gt;
-&lt;p&gt;A &lt;code&gt;be-claude&lt;/code&gt; helper script SSHs into the container and launches Claude Code in whatever directory you&amp;rsquo;re currently in. Symlink it onto your PATH and it works from anywhere. It automatically passes through a GitHub token (from &lt;code&gt;gh auth token&lt;/code&gt; or the environment) so Claude can interact with GitHub inside the container.&lt;/p&gt;
-&lt;h2 id=&#34;build-caches&#34;&gt;Build Caches&lt;/h2&gt;
-&lt;p&gt;One thing I wanted to get right was build cache persistence. Rebuilding the container shouldn&amp;rsquo;t mean re-downloading every Go module and Cargo crate. A single named Docker volume is mounted at &lt;code&gt;~/.cache&lt;/code&gt; and environment variables redirect the various tool caches into it:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Go module cache via &lt;code&gt;GOMODCACHE&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Cargo registry via &lt;code&gt;CARGO_HOME&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Solc binaries via &lt;code&gt;SVM_HOME&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Foundry and mise already use &lt;code&gt;~/.cache&lt;/code&gt; by default&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So you get fast rebuilds without the volume shadowing any binaries installed in the image (like gopls). The distinction matters — you want caches persisted but binaries to come fresh from each build.&lt;/p&gt;
-&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
-&lt;p&gt;The setup is pretty minimal:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone git@github.com:ajsutton/claude-docker.git
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd claude-docker
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp .env.example .env
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Edit .env — set CODE_PATH to your code directory&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./run.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./be-claude
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you have SSH keys loaded in your agent, you don&amp;rsquo;t even need to configure &lt;code&gt;SSH_AUTHORIZED_KEYS&lt;/code&gt; — &lt;code&gt;run.sh&lt;/code&gt; picks them up automatically.&lt;/p&gt;
-&lt;p&gt;If your network requires custom root CAs (corporate proxies, internal domains, etc.), drop &lt;code&gt;.crt&lt;/code&gt; files into the &lt;code&gt;certs/&lt;/code&gt; directory and they get installed into the container&amp;rsquo;s trust store on the next build. The directory is gitignored so your certificates stay local.&lt;/p&gt;
-&lt;h2 id=&#34;what-it-isnt&#34;&gt;What It Isn&amp;rsquo;t&lt;/h2&gt;
-&lt;p&gt;This is a convenience layer, not a security sandbox. Claude has read/write access to your mounted code, a GitHub token, and unrestricted network access. It&amp;rsquo;s useful for keeping your host system clean and making the environment reproducible, but don&amp;rsquo;t treat the container boundary as a trust boundary.&lt;/p&gt;
-&lt;p&gt;The code is up at &lt;a href=&#34;https://github.com/ajsutton/claude-docker&#34;&gt;github.com/ajsutton/claude-docker&lt;/a&gt; — it&amp;rsquo;s intentionally simple and easy to customise for your own setup.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Yes, I was too lazy to write this post myself and got Claude to do it for me. The whole world is just AI slop now.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

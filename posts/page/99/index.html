@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,29 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 1, 2004
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2004/03/01/java-coding-style/" class="link black dim">
+        Java Coding Style
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>java.net blogger Malcom Davis <a href="http://weblogs.java.net/pub/wlg/1069">comments</a> on why you should use the Sun Java coding style. The first comment is the perfect example of “ego” that he talks about:</p>
+<blockquote>
+<p>Why not adopt the Sun coding conventions? Simple – because they are derived from an antiquated and BAD way of coding.<br>
+There are very good reasons why C programmers moved away from the coding styles used by Sun, and the excuse that ‘modern IDEs have code colouring and brace matcing, etc.&rsquo; is NOT a good reason to have to rely on it. Gah! Could there be a more reactionary, inflammatory and unsubstantiated comment? How does the poster know what the Java coding convention was derived from. What makes it “bad”? Why is an antiquated coding style not a good thing? Why exactly did C programmers move away from the coding styles used by Sun? What evidence is there that C programmers actually did start of such a coding style and move away from it? What problem does code colouring and brace matching supposedly not overcome? In other words, why should I believe some random comment on a web page which provides no solid argument, no reasoning, no attempt at justification and absolutely no facts? As Malcom noted:</p>
+    </div>
+  <a href="/2004/03/01/java-coding-style/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -355,26 +378,6 @@
       <p>Well I learnt something new today. All this time that I&rsquo;ve been doing some extremely funky stuff with XSLT (and I do mean funky), I never actually had the idea of the context node quite right. I discovered this because of a bug I ran into with our updating of XPath expressions that use <code>position()</code>. Essentially in the XML editor I&rsquo;m developing, we pick out the XPath expressions in the XSLT used to lay out the data for editing so that as their input values change we can update the result like it was a spreadsheet. When the input values change we identify which XPath expressions need to be recalculated and rerun them (using <a href="http://jaxen.org/">Jaxen</a>) by passing in the context node from the document we&rsquo;ve been editing. The trouble hit when we started using <code>position()</code> because it always evaluated to 0. As it turns out the <code>position()</code> function counts the position of the current node in the current context, <em>not</em> necessarily it&rsquo;s position in it&rsquo;s parent node. So where I&rsquo;d been passing in a single node as the context, I should have been passing in a set of all the child nodes from the parent and pointing to the appropriate node in the list as the “current” one we&rsquo;re processing. As it is, it&rsquo;s still not actually implemented correctly because we always use the parent nodes children as the context but the actual context may have been different. For instance given the template: <code>&lt;template match=&quot;item&quot;&gt; &lt;value-of select=&quot;position()&quot; /&gt; &lt;/template&gt;</code> The context is actually the list of child elements of the current context node whose name is “item”. It wouldn&rsquo;t include any text nodes and it wouldn&rsquo;t include any elements that weren&rsquo;t “items”. So for the XML snippet: <code>&lt;parent&gt; &lt;item /&gt; &lt;other /&gt; &lt;item /&gt; &lt;other /&gt; &lt;/parent&gt;</code> The context would be the two <code>item</code> elements, but not the text nodes and not the <code>other</code> elements. Fortunately, for our purposes the approximation we&rsquo;re using (all child elements, excluding text nodes) is good enough for what any of our users will need to do and significantly more accurate than anything the visual design accompanying our product will actually produce. I&rsquo;ll be interested to see if the testing guys pick up on it though.</p>
     </div>
   <a href="/2004/02/19/xslt-in-context/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 19, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/02/19/eclipse-m7/" class="link black dim">
-        Eclipse M7
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="http://www.eclipse.org/">Weeeeeee!</a> Eclipse is finally usable on my powerbook. M7 hit the streets a few days ago (or that&rsquo;s when I noticed it anyway) and the performance improvements are quite nice, particularly on OS X. My plans for getting debian installed on my laptop can now take a bit of a back seat as I don&rsquo;t need a Linux or Windows box to run Eclipse on anymore. This is actually a major relief since my PC has died recently and the state of Java on Linux for PPC is absolutely abysmal. I can&rsquo;t seem to find a fully complete version of 1.3 let alone 1.4 – in this context fully complete requires a functional JIT. Maybe people should stop winging about Apple taking too long to release new Java updates.</p>
-    </div>
-  <a href="/2004/02/19/eclipse-m7/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

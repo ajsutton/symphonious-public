@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,26 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 11, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/10/11/track-changes-beta-released/" class="link black dim">
+        Track Changes Beta Released
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img loading="lazy" alt="Track Changes UI" align="left" vspace="0" hspace="10" height="189" src="http://www.symphonious.net/wp-content/uploads/2006/10/trackchangesui_sm.gif" width="250" />After much hard work and gnashing of teeth, the beta of our next major release is finally out, including the new productivity pack and track changes. The internet Gods tried to stop us by cutting off our oxygen, er internet supply but the files finally made it across the pacific to our main servers. You can check it all out in <a href="http://www.ephox.com/products/productivity/">the productivity pack section of Ephox.com</a>. It&rsquo;s a real beta in that we haven&rsquo;t done any real testing on it and so it&rsquo;s likely to have stability problems that we&rsquo;ll iron out before the final release. We&rsquo;re very keen to get feedback on the release, both in terms of any bugs you find and in terms of how to improve the UI, extra APIs to add for integrating it into backend systems etc.</p>
+    </div>
+  <a href="/2006/10/11/track-changes-beta-released/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -356,27 +376,6 @@ In the end, what it means is that TDD is documenting a lot of what I would other
       <p>If you happen to run a lot of JUnit tests in one go with Eclipse, you may find that towards the end they start to slow down or throw OutOfMemoryExceptions. They do that because the Eclipse JUnit plugin creates a new instance of the TestCase for each test method, calls setup, test method, tearDown and then for some reason keeps the object around. This means that if your tearDown doesn&rsquo;t null out all the fields in the test class you can wind up with a whole lot of wasted memory.</p>
     </div>
   <a href="/2006/09/19/junit-memory-usage-in-eclipse/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        September 18, 2006
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2006/09/18/encapsulating-understanding-in-code/" class="link black dim">
-        Encapsulating Understanding In Code
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>In most software projects, there are a few areas that are just really complex to get your head around. It&rsquo;s not something that refactoring can solve, the underlying concepts are just difficult to work out. Fortunately as software developers, we can learn that information once and encapsulate it in code that will understand it for us and even apply it in new situations that we didn&rsquo;t originally consider.</p>
-<p>Recently, we&rsquo;ve developed a really neat, simple example of this – the PushAndPopCalulator. A surprisingly simple class that determines the appropriate values for popDepth and pushDepth when inserting in Swing text components. The push and pop depth is a way to manipulate the element hierarchy of styled documents to precisely determine where the inserted content works out. Once you understand the details, it&rsquo;s a reasonably simple concept but working out exactly what values you need for a particular insert requires a break in focus on the actual problem to divert into working out details of using the underlying APIs. It takes a little more time to generalize that to cover all the possible situations you might need.</p>
-    </div>
-  <a href="/2006/09/18/encapsulating-understanding-in-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

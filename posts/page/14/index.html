@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,29 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 10, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/05/10/ant-dependencies-running-twice/" class="link black dim">
+        Ant Dependencies Running Twice
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Most people believe that ant will only ever execute a target once per execution of ant. So if we have targets A, B, C and D, where A depends on B and C and C and D both depend on D.</p>
+<pre>&lt;target name="A" dependencies="B, C"/&gt;<br />&lt;target name="B" dependencies="D"/&gt;<br />&lt;target name="C" dependencies="D"/&gt;<br />&lt;target name="D"/&gt;</pre>
+<p> </p>
+<p>When we run ‘ant A&rsquo;, we expect each task to execute once, D first, then B  and C, ending with A. Since there is no dependency between B and C, they may execute in any order, so we might also get D, C, B, A. All pretty straight forward.</p>
+    </div>
+  <a href="/2013/05/10/ant-dependencies-running-twice/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -370,26 +393,6 @@
 <p>I thus think (= hope) that it’s a mistake to extrapolate from today’s crappy input systems on tablets to a future of tablet-based couch potatoes still watching Hollywood crap. We’re one innovation away from lowering the creativity hurdle on tablets. Maybe it’ll be a truly responsive keyboard. Or something that translates sub-vocalizations into text (because I’m too embarrassed to dictate into my table while in public places). Or, well, something. via <a href="http://www.hyperorg.com/blogger/2012/05/21/will-tablets-always-make-us-non-social-consumers/">Joho the Blog » Will tablets always make us non-social consumers?</a>. I suspect that the idea that input systems on tablets are crappy will rapidly become a tell-tale sign of age. Feature phones have “crappy” input systems and yet with learning, and some rather unfortunate adaptations of language, people quite happily chat away via SMS. The same process will happen with tablets – people will simply learn to type on on-screen keyboards fast enough that they don&rsquo;t consider them crappy. It&rsquo;s also important to remember that the vast majority of people can&rsquo;t type particularly fast on a full size desktop keyboard so the bar for satisfaction is significantly lower than geeks would expect.</p>
     </div>
   <a href="/2012/05/21/joho-the-blog-will-tablets-always-make-us-non-social-consumers/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 17, 2012
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2012/05/17/so-long-editlive-and-thanks-for-all-the-fish-with-rounded-corners-and-drop-shadows/" class="link black dim">
-        So Long EditLive! and Thanks For All The Fish (with rounded corners and drop shadows)
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Since the very early days of my blogging, I&rsquo;ve integrated a copy of EditLive! to make the editing pleasant and more powerful. For many, many years there was simply no way I could bring myself to use anything else. Lately though, Apple have been making Java applets less and less appealing while browsers have been continuously improving their content editable suport and JavaScript editors have gotten better at working around the remaining quirks and smoothing off the rough edges on the editing experience.  The final straw for me though was that the current early access release of EditLive! 8.0, which appears to include a lot of fixes for the latest OS X, breaks backwards compatibility with a number of APIs I use to integrate it into this blog.</p>
-    </div>
-  <a href="/2012/05/17/so-long-editlive-and-thanks-for-all-the-fish-with-rounded-corners-and-drop-shadows/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,28 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 30, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/08/30/ternary-if-hiding-duplicate-code/" class="link black dim">
+        Ternary If Hiding Duplicate Code
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I realized an unintentional side effect of deciding to not use the ternary if (a ? b : c) – there&rsquo;s a bunch of code that we don&rsquo;t duplicate that we otherwise probably would have. In particular, when working with views there&rsquo;s a very common pattern to convert between a Shape and a Rectangle<a name="footlink1-1156938047359" class="footnote" id="footlink1-1156938047359" href="#footnote1-1156938047359">1</a>:</p>
+<p><code>Rectangle bounds = shape instanceof Rectange ? (Rectangle)shape : shape.getBounds();</code></p>
+<p>The reason for this is that getBounds() on a Rectangle will create a new Rectangle instance so if you happen to be getting the bounds a few thousand times every time you go to paint the text pane, you generate an awful lot of useless rectangles. Since every shape passed in is in fact a Rectangle, you can eliminate all of that junk without risking a ClassCastException if at some point you do get a different type of shape.</p>
+    </div>
+  <a href="/2006/08/30/ternary-if-hiding-duplicate-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -363,30 +385,6 @@
 <p>We&rsquo;ve come up against a very tight, very important deadline for a really big, really difficult new feature and at the same time we lost our entire support department so all support fell into the engineer&rsquo;s laps. Support is just one of those things you have to do as a software company and our first impression was that the extra support load would reduce our velocity but we&rsquo;d be able to share the load around the team, get the day&rsquo;s cases out of the way and get back to developing. What actually happened was the entire engineering team wound up doing support all day and development stopped. Worse still, the team felt drained and tired all the time. We should have been able to get support out of the way faster and get developing, but for some reason we couldn&rsquo;t.</p>
     </div>
   <a href="/2006/08/12/dealing-with-trouble-while-adopting-xp/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        August 9, 2006
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2006/08/09/one-more-thing-on-the-ecensus/" class="link black dim">
-        One More Thing On The eCensus
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I found it rather amusing that while filling out my census online it asked me:</p>
-<blockquote>
-<p>Question 59: Can the internet be accessed at this dwelling?
-To be fair, the options provided to answer included a description of what type of connection you had so the question couldn&rsquo;t just be assumed, but it&rsquo;s funny none the less.</p>
-</blockquote>
-    </div>
-  <a href="/2006/08/09/one-more-thing-on-the-ecensus/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

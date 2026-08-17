@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,28 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 3, 2015
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2015/02/03/mounting-a-time-capsule-drive-in-linux/" class="link black dim">
+        Mounting a Time Capsule Drive In Linux
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Lots of articles out there that have almost the right solution here but nearly all of them miss one critical component, so for my future sanity, here&rsquo;s what works for me:</p>
+<p>sudo mount.cifs //timecapsule.local/Data/ /mnt/directory/ -o “pass=password,sec=ntlm”</p>
+<p>If you don&rsquo;t have zeroconf working in your Linux install you&rsquo;ll have to use the time capsule&rsquo;s IP instead of it&rsquo;s .local name.  The “Data” part is the name of the disk you want to mount as shown in Airport Utility (make sure you escape any spaces with backslash.</p>
+    </div>
+  <a href="/2015/02/03/mounting-a-time-capsule-drive-in-linux/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -364,26 +386,6 @@
       <p>Ever since the public beta of OS X I&rsquo;ve been meaning to get around to learning Objective-C but for one reason or another never found a real reason to. I&rsquo;ve picked up bits and pieces of it and even written a couple of working utilities but those were pretty much entirely copy/paste from various sources. Essentially they were small enough and short-lived enough that I only needed the barest grasp of Objective-C syntax and no understanding of the core philosophies and idioms that really make a language what it is. This is probably best exemplified by the approach to memory management those utilities took: it won&rsquo;t run for long, so just let it leak.</p>
     </div>
   <a href="/2014/07/20/from-java-to-swift/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 3, 2014
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2014/06/03/swift/" class="link black dim">
-        Swift
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Apple have released Swift, their new programming language – designed to be familiar to Objective-C programmers and work well with the existing Cocoa frameworks. It&rsquo;s far too soon to make substantial judgements about the language – that can only come after actually using it in real projects for some time. However, there&rsquo;s nothing that stands out as incredibly broken, so with Apple&rsquo;s backing it&rsquo;s extremely unlikely that it won&rsquo;t become a very commonly used language. After all, there&rsquo;s plenty wrong with every other programming language and we manage to make do with them.</p>
-    </div>
-  <a href="/2014/06/03/swift/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

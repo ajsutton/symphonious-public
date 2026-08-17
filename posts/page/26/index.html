@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,47 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 27, 2009
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2009/04/27/should-you-publish-crap-code/" class="link black dim">
+        Should You Publish Crap Code?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img loading="lazy" width="61" style=" float: right;" src="http://www.symphonious.net/wp-content/uploads/2009/04/ear_-_body_part_nicu_buc_2283.png" height="88" alt="Ear" />I spent the weekend discovering just how poorly thought out and poorly supported closed captioning is in online video. Some highlights (based on the SRT format because that was the only one I could find any information about syntax for):</p>
+<ul class="blueArrow">
+  <li>
+    Definitive guides to the format either don’t exist or are so poorly used that they don’t appear in the first 3-4 pages of a Google search.
+  </li>
+  <li>
+    Timestamps use a non-standard format. The inventor was apparently French so instead of the usual hh:mm:ss.ttt the period is replaced with a comma. I sympathise with everything being US-centric, but the number of people who were making this mistake on forums etc and the number of players who support period but not comma (and visa-versa) is scary.
+  </li>
+  <li>
+    Only DOS line endings are supported. \r\n is fine as part of the standard, but why can’t players be a little liberal in what they accept? It’s not like \n or \r by itself within the caption is going to work anyway…
+  </li>
+  <li>
+    No standard font, so no way to know if the caption will fit or not.
+  </li>
+  <li>
+    Absolutely zero feedback from any player I found about why it was ignoring the captions.
+  </li>
+  <li>
+    <em>Really, really poor tooling support for creating captions.</em>
+  </li>
+</ul>
+<p>So, coming around to the real point of this post, I wound up writing my own tool to help take a script, synchronize it to the spoken voice and output the right format. Worked a treat, and now I have working captions on my video. I suspect it would be useful to others and there’s certainly plenty to do to improve it that would be great if others jumped in and helped with.</p>
+    </div>
+  <a href="/2009/04/27/should-you-publish-crap-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -373,29 +414,6 @@ I really must remember that phrase – just brilliant. Doug, you’d probably be
 <p>Here’s my point–if your brother or sister had a disability, you would give a crap. But you don’t have to have a sibling in a wheelchair to genuinely care, even if it’s only in your work.</p>
     </div>
   <a href="/2009/03/25/accessibility-is-about-real-people/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 23, 2009
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2009/03/23/access-enablement-or-accessibility/" class="link black dim">
-        Access Enablement or Accessibility?
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Mark Pilgrim and Sam Ruby have been going <a href="http://twitter.com/diveintomark/status/1351150955">back</a> and <a href="http://www.intertwingly.net/blog/2009/03/20/Accessible">forth</a> and <a href="http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress">back again</a> about accessibility and in particular the SVG images on Sam’s blog. In Mark’s latest post he explains the somewhat crazy world of access enablement:</p>
-<blockquote>
-<p>Long answer: As far as I know, none of the commercially available screenreaders support <code>svg</code> in any way, much less reading the title of an <code>svg</code> image included inline in an xhtml page (as opposed to, say, linked from the <code>src</code> attribute of an <code>&amp;#60;img&amp;#62;</code> element, or embedded in an <code>&amp;#60;object&amp;#62;</code> element). Nonetheless, you have provided a text alternative for the image, and <em>theoretically</em>, that <em>could</em> be presented to a user in place of (or in addition to) the image. You have therefore fulfilled your moral duty, even though no one <em>actually</em> benefits from it. Welcome to the wacky world of <em>access enablement</em>.
-Mark’s right – in many companies and other organizations you have to tick the boxes for accessibility rules and they are quite often just plain stupid. Mark calls that access enablement, I call it beurocracy or perhaps more kindly, the only effective way to get a large organization to meet difficult to understand objectives.</p>
-    </div>
-  <a href="/2009/03/23/access-enablement-or-accessibility/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

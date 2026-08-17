@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        September 18, 2006
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2006/09/18/encapsulating-understanding-in-code/" class="link black dim">
+        Encapsulating Understanding In Code
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>In most software projects, there are a few areas that are just really complex to get your head around. It&rsquo;s not something that refactoring can solve, the underlying concepts are just difficult to work out. Fortunately as software developers, we can learn that information once and encapsulate it in code that will understand it for us and even apply it in new situations that we didn&rsquo;t originally consider.</p>
+<p>Recently, we&rsquo;ve developed a really neat, simple example of this – the PushAndPopCalulator. A surprisingly simple class that determines the appropriate values for popDepth and pushDepth when inserting in Swing text components. The push and pop depth is a way to manipulate the element hierarchy of styled documents to precisely determine where the inserted content works out. Once you understand the details, it&rsquo;s a reasonably simple concept but working out exactly what values you need for a particular insert requires a break in focus on the actual problem to divert into working out details of using the underlying APIs. It takes a little more time to generalize that to cover all the possible situations you might need.</p>
+    </div>
+  <a href="/2006/09/18/encapsulating-understanding-in-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -351,28 +372,6 @@ Just ran into a bug caused because of it – fortunately it was picked up by the
       <p>Why is it that a hugely database dependent framework, that&rsquo;s meant to be extremely quick to get up and running with is so infuriating when it comes to get it actually talking to the database? I know cross-language interfaces are always difficult, particularly when you try to make them work cross platform but if I can get Java, PHP and perl all talking to MySQL easily, why does it have to be so damn hard for ruby?</p>
     </div>
   <a href="/2006/09/02/i-thought-rails-was-meant-to-be-productive/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        August 30, 2006
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2006/08/30/ternary-if-hiding-duplicate-code/" class="link black dim">
-        Ternary If Hiding Duplicate Code
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I realized an unintentional side effect of deciding to not use the ternary if (a ? b : c) – there&rsquo;s a bunch of code that we don&rsquo;t duplicate that we otherwise probably would have. In particular, when working with views there&rsquo;s a very common pattern to convert between a Shape and a Rectangle<a name="footlink1-1156938047359" class="footnote" id="footlink1-1156938047359" href="#footnote1-1156938047359">1</a>:</p>
-<p><code>Rectangle bounds = shape instanceof Rectange ? (Rectangle)shape : shape.getBounds();</code></p>
-<p>The reason for this is that getBounds() on a Rectangle will create a new Rectangle instance so if you happen to be getting the bounds a few thousand times every time you go to paint the text pane, you generate an awful lot of useless rectangles. Since every shape passed in is in fact a Rectangle, you can eliminate all of that junk without risking a ClassCastException if at some point you do get a different type of shape.</p>
-    </div>
-  <a href="/2006/08/30/ternary-if-hiding-duplicate-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

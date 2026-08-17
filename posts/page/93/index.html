@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,30 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 4, 2004
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2004/05/04/import-flamewar/" class="link black dim">
+        import flamewar.*;
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Marc Portier <a href="http://blogs.cocoondev.org/mpo/archives/001895.html">discusses</a> the current recommended practices for import statements in Java. This is a never ending argument that is so completely irrelevant to development that only fools get involved in it. So let me jump into the argument. The rule is very simple, always use .* until you hit a conflict then add the appropriate specific import. Mostly with my code that means you wind up with:</p>
+<pre><code>import java.util.*;
+import java.util.List;
+import java.awt.*; Why is this rule in place? Because my time is more important than some fool who doesn't either use a half decent IDE or know the APIs well enough to guess where a class is. I don't think about import statements when I'm coding &amp;#8211; I've got better things to think about. Every time I hit compile and get an error back (or get a red squiggly underline in the code) that amounts to &amp;#8220;You're missing an import statement&amp;#8221; it's a waste of my time. I hit control-shift-O the import is added and I get back to being productive. If I use specific imports that interruption happens every time I use a new class, if I use .* imports, that interruption happens every time I use a new package. The interruption is even worse for the people who don't use an IDE because they have to manually navigate to the top of the file, add the import and then find where they were again. I'm doing them a favor! If you don't like my rule, that's fine. Just hit control-shift-O or your IDEs equivalent and it will reformat the imports to however you prefer them. While you're there you may want to hit the reformat button and the position of braces will be what you want too. What? Your IDE doesn't do that? Tough.
+</code></pre>
+    </div>
+  <a href="/2004/05/04/import-flamewar/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -352,26 +376,6 @@
       <p><a href="http://blog.holsman.net/archives/000010.html">Ian Holsman comments</a> on a vacation responder that deletes all incoming email to avoid their mailbox overflowing while they&rsquo;re away and asks if email is dead. The answer is a clear no. Email is now a critical system, it just can&rsquo;t be killed, perhaps morphed into a different set of protocols but the concept of sending mail electronically just can&rsquo;t die, unless you count being replaced with sending video messages electronically as killing email. However, email is no longer a time saver, it&rsquo;s a great time waster. It&rsquo;s a chore that you have to put up with to stay in business or to stay in touch with your widely dispersed friends. With the recent demise of our exchange mail server I&rsquo;ve had to change the way I filter out spam which requires training up a new spam filter and in the process receiving massive amounts of spam. I honestly never realised just how much spam I received until I suddenly didn&rsquo;t have a filter in place to get rid of it. Without that filter, email is completely unusable and with a poorly trained filter it&rsquo;s a great waste of time. We&rsquo;ve now outsourced our exchange server and I can go back to happily using SpamBayes with Outlook. I&rsquo;ve run it over the 14000 stored spam messages that I managed to recover from our dead exchange box (massive amounts of real email got nuked, but the spam survived….) and trained up the new filter, but it&rsquo;s still not as good. I&rsquo;m not sure why. I&rsquo;ve also found that when you receive large amounts of spam the best thing you can do for your productivity is turn off the new email notification. Noone notices if it takes you 30 mins to reply to an email instead of 5 mins and by turning off that notification you&rsquo;re no longer interrupted by spam messages (or real messages) every 1-5 minutes. You check you&rsquo;re email when you want not when it wants. Also, by leaving your email open you still have a reminder on screen to pay attention to email every so often and it&rsquo;s quick and easy to bring the window back up and check if you have new email. The other thing you need to do is have a really huge amount of space available in your mailbox, whether that&rsquo;s achieved by actually having a large mailbox or just having a fetchmail (or similar) process running to constantly download your mail to your own computer for storage, it&rsquo;s got to be there. That avoids the problem of spam filling up your in box. Finally, train your spam filter to treat any bounce message as spam and discard it. At least 50% of the unwanted email I get is actually bounce messages either for incorrect addresses or virus detection notifications. If you&rsquo;re a system administrator, turn off all bounce messages, they no longer serve any useful purpose and are just clogging up people&rsquo;s inboxes.</p>
     </div>
   <a href="/2004/04/23/spam/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 22, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/04/22/mailapps-spam-filter/" class="link black dim">
-        Mail.app’s Spam Filter
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>It&rsquo;s crap. Total and utter crap. When I last depended on Mail.app&rsquo;s filtering I got practically no spam. Now I get about 3 spam messages a minute and Mail.app hasn&rsquo;t picked up a single one, despite having been trained on a weeks worth of spam. SpamBayes was handling it perfectly even back when it first started. I&rsquo;m really not sure how much longer I can put up with this before I&rsquo;m motivated enough to divert my work email through my home server and filter it with spamassassin.</p>
-    </div>
-  <a href="/2004/04/22/mailapps-spam-filter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

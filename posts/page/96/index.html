@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,26 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 9, 2004
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2004/04/09/applescript-is-cool/" class="link black dim">
+        AppleScript is cool
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I hate how slow Entourage is when accessing an imap server. Most of it&rsquo;s problems stem from the fact that it only downloads things from the server when you actually ask for them. While that&rsquo;s great for saving bandwidth, it means a lot of latency between clicking on a message and actually getting to see it – particularly since Entourage and imapd don&rsquo;t seem to get on much and occassionally just hang the connection.</p>
+    </div>
+  <a href="/2004/04/09/applescript-is-cool/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -349,27 +369,6 @@
       <p>I noticed <a href="http://weblogs.java.net/pub/wlg/1150">this</a> on <a href="http://java.net/">Java.net</a>. In it, Eitan Suez suggests that having open source J2SE libraries would rapidly increase their quality because of all the developers contributing patches. The major problem with this argument is that the source for the Java standard libraries is already available and in fact is included in pretty much every J2SDK. It&rsquo;s right there, in a format that can be used to create patches against and submit them to the publicly available bug parade for java. How many people do you see actually doing this though? Some, but very few. Sure people are going to be more inclined to submit patches if Java becomes buzz word compliant and gets a mickey mouse badge from the FSF, but there will still be far more people demanding improvements than there will be fixing them. Open source isn&rsquo;t this magical bullet that suddenly makes life easy and gives perfect quality – there are plenty of extremely buggy opensource programs with too few developers and there always will be. Maybe I&rsquo;m just more careful in choosing which commercial software I use, but on average I&rsquo;ve found opensource software to be lower quality than commercial software, however opensource is more towards the extremes – it&rsquo;s either really great or really bad. I&rsquo;m sure that&rsquo;s going to start a massive flame war but so be it. Opensource isn&rsquo;t always better quality because generalisations are always false. Finally I&rsquo;d like to draw attention to what I consider the best rebuttal I&rsquo;ve heard in a long time:</p>
     </div>
   <a href="/2004/03/26/javas-code-is-available/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 26, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/03/26/character-encodings/" class="link black dim">
-        Character Encodings
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Jim Winstead has posted a couple of entries on character encodings (<a href="http://trainedmonkey.com/entry/1678">1</a>, <a href="http://trainedmonkey.com/entry/1680">2</a>). Some good info in there. My three big tips for dealing with character encodings is this: 1. Know your character encoding and make sure you&rsquo;re using that encoding everywhere. No look again because you probably missed a place where you didn&rsquo;t think about encoding. Particularly don&rsquo;t forget that printing something to System.err or System.out in Java uses the platform default encoding and so characters that can&rsquo;t be represented in that encoding become question marks. 2. When practical, use US-ASCII and escaped characters for anything outside of it&rsquo;s range. Most formats which support different encodings also provide a way to represent a character which isn&rsquo;t in the current encoding through something like HTML&rsquo;s entities or java&rsquo;s escape codes (\u8222 etc). Most encodings are compatible with US-ASCII (EBDIC being a notable exception) so even if people forget to use the right encoding they can generally get away with it. 3. Remember that character encodings, despite their name do not apply to characters – they apply to byte sequences which represent characters. If you have a char variable in Java it has no character encoding as far as you are concerned, it&rsquo;s just that character. The JVM can choose any representation it likes for that character in physical memory and you shouldn&rsquo;t care (it actually happens to choose UTF-16 I think but you still shouldn&rsquo;t care). You *do* however have to worry about character encodings when you convert from characters (or Strings which are really just a fancy array of chars) to byte streams. This happens when you use String.getBytes(), or print the characters to any kind of output stream. You also have to worry about the reverse process, new String(byte[]) and reading from an input stream. The first two items should be pretty clear to you if you&rsquo;ve done any work with character encodings, the third may seem unimportant, but it will help stop you from expecting code like the following to work:
-<code>String str = new String(&quot;my string&quot;); byte[] utf8Bytes = str.getBytes(&quot;UTF-8&quot;); String strISO88591 = new String(utf8Bytes, &quot;ISO-8859-1&quot;);</code> Naturally this won&rsquo;t work because of rules 1 and 3. Rule 1 is broken in that you used a different encoding when working with the same data and 3 is broken because you expected strISO88591 to be a String using ISO-8859-1 character encoding, but it doesn&rsquo;t because String objects don&rsquo;t have a character encoding (as far as you should be concerned). The big exception to rule 3 is when you&rsquo;re using a language which doesn&rsquo;t guarantee it will support whatever characters you throw at it, in which case you basically either have to work only with byte arrays and never let the language string functions near them. In general though I&rsquo;d suggest you find a better language or a better library. If I were to add fourth suggestion, it would be: remember that just because your character is valid, doesn&rsquo;t mean the font you&rsquo;re using can display it. Most fonts can&rsquo;t display anything more than the characters in ISO-8859-1 and a few select others so if you&rsquo;re working with mathematical symbols or characters from other languages you&rsquo;ll need to find a special font that supports them. BTW, yes I have spent far too much time working with character encodings and tracking down where people stuffed up with character encodings.</p>
-    </div>
-  <a href="/2004/03/26/character-encodings/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

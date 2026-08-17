@@ -49,8 +49,8 @@
 	<meta property="og:type" content="website">
 
 	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-07-07T15:49:13+10:00">
-	<meta itemprop="dateModified" content="2026-07-07T15:49:13+10:00">
+	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
+	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Posts">
 
@@ -124,6 +124,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 10, 2018
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2018/05/11/exploring-ethereum-whats-on-the-blockchain/" class="link black dim">
+        Exploring Ethereum – What’s on the Blockchain?
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>To understand the details of how Ethereum works I&rsquo;ve been working my way through <a href="https://ethereum.github.io/yellowpaper/paper.pdf"><em>the yellow paper</em></a>. And since there&rsquo;s no better way to really understand things than to explain them, I thought I&rsquo;d write up my own explanation for some of the things that stood out to me.</p>
+<p><strong>Fair warning</strong>: I&rsquo;m no expert, there&rsquo;s guaranteed to be sloppy usage of terminology and a high likelihood of mistakes. If you&rsquo;re just looking for an easier to read version of the yellow paper, try <a href="https://github.com/chronaeon/beigepaper/blob/master/beigepaper.pdf">the beige paper</a>, it&rsquo;s had some actually knowledgable people look it over. Comments and corrections are most welcome either via <a href="mailto:adrian@symphonious.net">email</a> or <a href="https://twitter.com/ajsutton">@ajsutton</a> on twitter.</p>
+    </div>
+  <a href="/2018/05/11/exploring-ethereum-whats-on-the-blockchain/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -359,27 +380,6 @@
 <p>The bad:</p>
     </div>
   <a href="/2017/07/22/moolah-diaries-data-parity/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 18, 2017
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2017/07/19/moolah-diaries-tracking-account-balances/" class="link black dim">
-        Moolah Diaries – Tracking Account Balances
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Moolah has two separate Vuex modules, transactions and accounts. That&rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account.  As a result, accounts have their own current balance property because they can&rsquo;t always calculate it off of their transactions.</p>
-<p>That means that sometimes the transaction Vuex module needs to make changes to state owned by the account module which is a rather unpleasant breach of module separation. While we ensured transaction balances remained consistent inside each mutation, we can&rsquo;t do that for account balances because Vuex (presumably deliberately) makes it impossible for a mutation to access or change state outside of the module itself. Instead, I&rsquo;ve used a simple Vuex plugin that watches the balance on the most recent transaction and notifies the account module when it changes:</p>
-    </div>
-  <a href="/2017/07/19/moolah-diaries-tracking-account-balances/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
