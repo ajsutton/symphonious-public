@@ -21,6 +21,12 @@ reasonably high confidence in, but getting that means working through a lot of
 scenarios and potential designs which is best done on a whiteboard. We found a
 really powerful way of using AI to help without winding up with a giant pile of
 AI slop.&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://www.symphonious.net/images/posts/whiteboarding-a-spec.webp&#34;
+			alt=&#34;Whiteboard sketches becoming a structured specification, with a hand making pencil corrections.&#34; width=&#34;1480&#34; height=&#34;740&#34;&gt;&lt;figcaption&gt;
+			&lt;p&gt;The thinking happens in the room. AI helps get it onto the page.&lt;/p&gt;
+		&lt;/figcaption&gt;
+&lt;/figure&gt;
+
 &lt;p&gt;Prior to getting together in person, there was a good idea of the customer
 requirements and a steel-man approach we could use. That was pretty much
 entirely AI slop, but AI slop is a great way to play around with a PoC and try
