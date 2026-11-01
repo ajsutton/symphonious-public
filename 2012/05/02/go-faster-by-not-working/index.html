@@ -5,11 +5,13 @@
 <title>Go Faster By Not Working · Symphonious</title>
 <meta name="description" content="We all know by now that continuous integration is part of good software development – check in regularly and have a suite of automated tests run to confirm that …">
 <link rel="canonical" href="https://www.symphonious.net/2012/05/02/go-faster-by-not-working/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -36,11 +38,11 @@ But what happens when something goes wrong in a way that can’t be fixed quickl
 <p>But what happens when something goes wrong in a way that can’t be fixed quickly? For example, the build server has a hardware fault or runs out of disk space. You can’t just rollback the faulty change, its going to take time to get the build back to green. As your CI system grows, it may take time just to understand what went wrong. If your team is small they may all be taken up fixing the problem, but if the team is larger a pair focusses on fixing the build as quickly as possible and the other developers carry on working. Now you have two problems.</p>
 <p>You still have the build problem, but now you also have a process problem because you’re no longer doing continuous integration. When things are working well in continuous integration, you have a continuous stream of commits proceeding through the build pipeline. If a bug is introduced the build quickly picks it up and you can identify the problem change easily because it can only be one of a few commits.</p>
 <p style=" text-align: center;">
-  <img alt="Continuous integration working well - a stream of commits passing through the pipeline." src="http://www.symphonious.net/wp-content/uploads/2012/05/image2965046030390348857_1222225160557456570.png" />
+  <img alt="Continuous integration working well - a stream of commits passing through the pipeline." src="/wp-content/uploads/2012/05/image2965046030390348857_1222225160557456570.png" />
 </p>
 <p>On the other hand, if developers keep working while the build is broken, they build up a large backlog of commits which makes it more difficult to identify which revision broke the build. It also makes it significantly harder to resolve the build problem because the code keeps changing and you can easily wind up with multiple build breakages starting to overlap and interact.</p>
 <p style=" text-align: center;">
-  <img alt="Broken continuous integration - a huge pile of commits building up." src="http://www.symphonious.net/wp-content/uploads/2012/05/image7545922542583712524_8080554261800327154.png" />
+  <img alt="Broken continuous integration - a huge pile of commits building up." src="/wp-content/uploads/2012/05/image7545922542583712524_8080554261800327154.png" />
 </p>
 <p>To avoid this problem, many companies put up an embargo on commits or close the source tree to prevent any further changes from being committed. This controls change in the build environment and makes it easier to resolve the problem, but it doesn’t prevent the build-up of changes. The result is that when the embargo is lifted, there is a huge swarm of incoming changes all at once, introducing merging problems and making it difficult to identify the culprit if any of them introduce another problem. There could well be multiple problems introduced by that batch of changes with their effects overlapping and interacting making it even harder. Essentially, the longer an embargo is up the greater the chance that it will need to be put back up because of problems in the batch of changes developed during the embargo.</p>
 <p>So what’s the answer? Simple – stop working. The team as a whole will go faster if developers simply stop writing code once they reach the point where they would normally commit but can’t because there’s an embargo. For short embargos, most developers won’t be affected at all, but as the embargo lasts longer more and more developers will have to stop work. This feels really bad, but it ensures we keep doing continuous integration and overall benefits the team’s productivity. For build problems that are hard to understand, it also means that gradually more and more developers are available to spitball ideas about what’s wrong and to pick up lines of investigation to help get the build working again.</p>

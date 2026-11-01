@@ -5,11 +5,13 @@
 <title>Where’s Java 1.5? (Redux) · Symphonious</title>
 <meta name="description" content="It appears the java.net crowd picked up on my labeling some of them wingers – the response has been much more polite than I would have expected (or deserved …">
 <link rel="canonical" href="https://www.symphonious.net/2004/10/06/wheres-java-15-redux/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -34,141 +36,129 @@
 "><header class="article-heading"><h1 data-pagefind-meta="title">Where’s Java 1.5? (Redux)</h1><p class="article-meta"><time datetime="2004-10-05">5 October 2004</time> <span aria-hidden="true">·</span> 10 min read</p></header><div class="prose"><p>It appears the <a href="http://java.net">java.net</a> crowd picked up on my <a href="http://www.intencha.com/adrian/000238.php">labeling some of them wingers</a> – the response has been much more polite than I would have expected (or deserved really). The most well reasoned response so far is from <a href="http://weblogs.java.net/blog/invalidname/archive/2004/10/why_mac_develop.html">Chris Adamson</a> who points out the history of Java releases lagging behind on Mac as a reason for people to be worried. Before I go into Chris&rsquo;s comments, let me point out that there are two main groups of people:</p>
 <ol>
 <li>Those that are concerned that Apple will take too long porting the JVM and they will have problems working on their projects that move to Java 1.5. These are the people Chris seems to have in mind.</li>
-<li>Those that are complaining that Apple doesn&rsquo;t have a JVM out right now. These people are expecting <em>way</em> too much and were mostly who I was directing my whingers comment at. To be clear, I was directing my wingers comment at both groups because I&rsquo;m sick to death of hearing “when is Apple going to release X?” where X is anything Apple may or may not ever release. The answer is always “Apple doesn&rsquo;t comment on future products unless it suits their purposes”. I&rsquo;ve known that since I was 7 (in that case it was related to the ill-fated HyperCard – the best anyone&rsquo;s gotten in the 15 years or so since that they&rsquo;ve been pestering Apple is a comment about drinking Clorox) so I don&rsquo;t think it should be too hard for people to work it out. It also shouldn&rsquo;t be hard to work out that the question has been asked a million times on the Apple Java-Dev list nor should it be hard to work out that the Apple Java-Dev list is not an official feedback channel (it says so in the list description). In fact, anyone who&rsquo;s been dealing with Apple should know by now that the only way to get Apple engineering to get anything done is to
-<a href="http://bugreporter.apple.com">log a bug</a>. Apple judge the priority of issues based on the number of times they are reported. This applies both for actual bugs as well as feature requests. Apple also has an official contact page on their web site – it&rsquo;s much more effective than your blog for getting Apple&rsquo;s attention. All up, people who find themselves complaining that Apple doesn&rsquo;t already have a version of Java 1.5 publicly available hasn&rsquo;t done their homework. If you follow Java development on Mac these repeatedly misdirected complaints about Apple&rsquo;s Java support become extremely annoying and hence should be labeled <a href="http://dictionary.reference.com/search?r=2&amp;q=whinging">whinging</a>. To provide some examples of the second group of people, let&rsquo;s take some of the comments from my last entry:</li>
+<li>Those that are complaining that Apple doesn&rsquo;t have a JVM out right now. These people are expecting <em>way</em> too much and were mostly who I was directing my whingers comment at.</li>
 </ol>
+<p>To be clear, I was directing my wingers comment at both groups because I&rsquo;m sick to death of hearing “when is Apple going to release X?” where X is anything Apple may or may not ever release. The answer is always “Apple doesn&rsquo;t comment on future products unless it suits their purposes”. I&rsquo;ve known that since I was 7 (in that case it was related to the ill-fated HyperCard – the best anyone&rsquo;s gotten in the 15 years or so since that they&rsquo;ve been pestering Apple is a comment about drinking Clorox) so I don&rsquo;t think it should be too hard for people to work it out. It also shouldn&rsquo;t be hard to work out that the question has been asked a million times on the Apple Java-Dev list nor should it be hard to work out that the Apple Java-Dev list is not an official feedback channel (it says so in the list description). In fact, anyone who&rsquo;s been dealing with Apple should know by now that the only way to get Apple engineering to get anything done is to
+<a href="http://bugreporter.apple.com">log a bug</a>.</p>
+<p>Apple judge the priority of issues based on the number of times they are reported. This applies both for actual bugs as well as feature requests. Apple also has an official contact page on their web site – it&rsquo;s much more effective than your blog for getting Apple&rsquo;s attention.</p>
+<p>All up, people who find themselves complaining that Apple doesn&rsquo;t already have a version of Java 1.5 publicly available hasn&rsquo;t done their homework. If you follow Java development on Mac these repeatedly misdirected complaints about Apple&rsquo;s Java support become extremely annoying and hence should be labeled <a href="http://dictionary.reference.com/search?r=2&amp;q=whinging">whinging</a>.</p>
+<p>To provide some examples of the second group of people, let&rsquo;s take some of the comments from my last entry:</p>
 <blockquote>
-<p>If you install Tiger (java) on Tiger (OS X) then copy the binaries onto OS X (Panther) it works fine. So Apple totally could have released Java 5 (beta) for Panther a very long time ago. Sigh. — James Strachan No James, it won&rsquo;t run perfectly – in fact it won&rsquo;t run anything that uses Swing or AWT at all. I imagine it would be somewhat difficult to pass the JCK if you didn&rsquo;t have any support for GUIs. Furthermore, as far as I&rsquo;m aware noone has done any comprehensive testing of the Java 5 prerelease on Panther at all so it&rsquo;s quite possible that even what has been implemented doesn&rsquo;t actually work in all cases. It&rsquo;s fairly unlikely that the entire JRE suddenly became dependent on Tiger, but it is quite possible that some part might be and that that part simply hasn&rsquo;t been discovered by someone running it on Panther yet. The real idiocy however comes from “Gili”. He said:</p>
+<p>If you install Tiger (java) on Tiger (OS X) then copy the binaries onto OS X (Panther) it works fine. So Apple totally could have released Java 5 (beta) for Panther a very long time ago. Sigh. — James Strachan</p>
 </blockquote>
+<p>No James, it won&rsquo;t run perfectly – in fact it won&rsquo;t run anything that uses Swing or AWT at all. I imagine it would be somewhat difficult to pass the JCK if you didn&rsquo;t have any support for GUIs. Furthermore, as far as I&rsquo;m aware noone has done any comprehensive testing of the Java 5 prerelease on Panther at all so it&rsquo;s quite possible that even what has been implemented doesn&rsquo;t actually work in all cases. It&rsquo;s fairly unlikely that the entire JRE suddenly became dependent on Tiger, but it is quite possible that some part might be and that that part simply hasn&rsquo;t been discovered by someone running it on Panther yet.</p>
+<p>The real idiocy however comes from “Gili”. He said:</p>
 <blockquote>
-<p>Again, had Apple made this a priority they could have released a port of JDK 1.5 GA within a month of Sun&rsquo;s release. which <em>might</em> have been reasonable if a month had actually passed since JDK 1.5 was released. It hadn&rsquo;t. In fact, it was less than 72 hours afterwards (some of which was the weekend). From statements by some of Apple&rsquo;s Java engineers on the Apple Java-Dev list, you can&rsquo;t even run Apple&rsquo;s full suite of tests for their Java runtime in 72 hours because the stress testing involves running a Java process for insanely long periods of time. Sun in fact ran servers for 5 weeks prior to releasing their JVM: The QA team runs some heavy-duty stress tests, where the “pass” criteria is that the systems stay up for a certain number of days. Well, at this point all those tests systems have been running for five weeks and they look like staying up until we decide to pull the power cord. — <a href="http://weblogs.java.net/blog/kgh/archive/2004/09/j2se_50_tiger_i.html">Graham Hamilton</a> So anyone complaining that Apple hasn&rsquo;t released Java 1.5 prior to at least 5 weeks after Sun released theirs (ie: early November) is asking Apple to do less testing than Sun did. Personally, I&rsquo;d prefer to get a stable JVM even a year later than to get a half-baked implementation now. Sure I&rsquo;d prefer it if I could get a stable JVM before then (6 months is probably the best I&rsquo;d expect), but if it took a year then so be it. And now back to the main point: Cris Adamson&rsquo;s comments. Chris provides a very informative table in his entry, here&rsquo;s a slightly different way of looking at it:</p>
+<p>Again, had Apple made this a priority they could have released a port of JDK 1.5 GA within a month of Sun&rsquo;s release.</p>
 </blockquote>
+<p>which <em>might</em> have been reasonable if a month had actually passed since JDK 1.5 was released. It hadn&rsquo;t. In fact, it was less than 72 hours afterwards (some of which was the weekend). From statements by some of Apple&rsquo;s Java engineers on the Apple Java-Dev list, you can&rsquo;t even run Apple&rsquo;s full suite of tests for their Java runtime in 72 hours because the stress testing involves running a Java process for insanely long periods of time. Sun in fact ran servers for 5 weeks prior to releasing their JVM:</p>
+<blockquote>
+<p>The QA team runs some heavy-duty stress tests, where the “pass” criteria is that the systems stay up for a certain number of days. Well, at this point all those tests systems have been running for five weeks and they look like staying up until we decide to pull the power cord. — <a href="http://weblogs.java.net/blog/kgh/archive/2004/09/j2se_50_tiger_i.html">Graham Hamilton</a></p>
+</blockquote>
+<p>So anyone complaining that Apple hasn&rsquo;t released Java 1.5 prior to at least 5 weeks after Sun released theirs (ie: early November) is asking Apple to do less testing than Sun did. Personally, I&rsquo;d prefer to get a stable JVM even a year later than to get a half-baked implementation now. Sure I&rsquo;d prefer it if I could get a stable JVM before then (6 months is probably the best I&rsquo;d expect), but if it took a year then so be it.</p>
+<p>And now back to the main point: Cris Adamson&rsquo;s comments. Chris provides a very informative table in his entry, here&rsquo;s a slightly different way of looking at it:</p>
 <table border="1">
   <tr>
     <td>
       Version
     </td>
-<pre><code>&lt;td&gt;
-  Released
-&lt;/td&gt;
-
-&lt;td&gt;
-  Mac version
-&lt;/td&gt;
-
-&lt;td&gt;
-  Lag
-&lt;/td&gt;
-
-&lt;td&gt;
-  Excuse
-&lt;/td&gt;
-</code></pre>
+    <td>
+      Released
+    </td>
+    <td>
+      Mac version
+    </td>
+    <td>
+      Lag
+    </td>
+    <td>
+      Excuse
+    </td>
   </tr>
   <tr>
     <td>
       1.0
     </td>
-<pre><code>&lt;td&gt;
-  Jan 1996
-&lt;/td&gt;
-
-&lt;td&gt;
-  May 1996
-&lt;/td&gt;
-
-&lt;td&gt;
-  4 months
-&lt;/td&gt;
-
-&lt;td&gt;
-  Sun didn't give a damn about supporting MacOS and produced a very poorly integrated JVM. 4 months however is a pretty good turn around time and this was mostly achieved by not taking advantage of or accomodating Mac specific features (like the screen menubar).
-&lt;/td&gt;
-</code></pre>
+    <td>
+      Jan 1996
+    </td>
+    <td>
+      May 1996
+    </td>
+    <td>
+      4 months
+    </td>
+    <td>
+      Sun didn't give a damn about supporting MacOS and produced a very poorly integrated JVM. 4 months however is a pretty good turn around time and this was mostly achieved by not taking advantage of or accomodating Mac specific features (like the screen menubar).
+    </td>
   </tr>
   <tr>
     <td>
       1.1
     </td>
-<pre><code>&lt;td&gt;
-  Feb 1997
-&lt;/td&gt;
-
-&lt;td&gt;
-  Dec 1997
-&lt;/td&gt;
-
-&lt;td&gt;
-  10 months
-&lt;/td&gt;
-
-&lt;td&gt;
-  Development of the JVM changed organisations. Moving a product between organizations never helps the product schedule. 10 months is still okay though (within the 1 year I said I'd be happy with). Still no integration with the OS like screen menubars or a native look and feel (AWT used native widgets though I think).
-&lt;/td&gt;
-</code></pre>
+    <td>
+      Feb 1997
+    </td>
+    <td>
+      Dec 1997
+    </td>
+    <td>
+      10 months
+    </td>
+    <td>
+      Development of the JVM changed organisations. Moving a product between organizations never helps the product schedule. 10 months is still okay though (within the 1 year I said I'd be happy with). Still no integration with the OS like screen menubars or a native look and feel (AWT used native widgets though I think).
+    </td>
   </tr>
   <tr>
     <td>
       1.2
     </td>
-<pre><code>&lt;td&gt;
-  Dec 1998
-&lt;/td&gt;
-
-&lt;td&gt;
-  &lt;i&gt;never&lt;/i&gt;
-&lt;/td&gt;
-
-&lt;td&gt;
-  &lt;i&gt;N/A&lt;/i&gt;
-&lt;/td&gt;
-
-&lt;td&gt;
-  Wrote a new OS. This was down right annoying and if I'd had a blog then I would have been whinging about it. Apple didn't put much effort into non-core technologies on OS 9 around this time anyway because they were focusing on getting OS X out the door so I don't think I'd put this down to a lack of focus on Java &amp;#8211; in fact it was in this time period that Apple actually made a big deal about the Java support OS X would have.
-&lt;/td&gt;
-</code></pre>
+    <td>
+      Dec 1998
+    </td>
+    <td>
+      <i>never</i>
+    </td>
+    <td>
+      <i>N/A</i>
+    </td>
+    <td>
+      Wrote a new OS. This was down right annoying and if I'd had a blog then I would have been whinging about it. Apple didn't put much effort into non-core technologies on OS 9 around this time anyway because they were focusing on getting OS X out the door so I don't think I'd put this down to a lack of focus on Java &#8211; in fact it was in this time period that Apple actually made a big deal about the Java support OS X would have.
+    </td>
   </tr>
   <tr>
     <td>
       1.3
     </td>
-<pre><code>&lt;td&gt;
-  May 2000
-&lt;/td&gt;
-
-&lt;td&gt;
-  March 2001
-&lt;/td&gt;
-
-&lt;td&gt;
-  11 months
-&lt;/td&gt;
-
-&lt;td&gt;
-  See above. With the delay of Mac OS X, could jump straight to 1.3.1. (Didn't Mac OS X 10.0.0 ship with Java 1.3.0 though and not long after it was updated to 1.3.1?)
-&lt;/td&gt;
-</code></pre>
+    <td>
+      May 2000
+    </td>
+    <td>
+      March 2001
+    </td>
+    <td>
+      11 months
+    </td>
+    <td>
+      See above. With the delay of Mac OS X, could jump straight to 1.3.1. (Didn't Mac OS X 10.0.0 ship with Java 1.3.0 though and not long after it was updated to 1.3.1?)
+    </td>
   </tr>
   <tr>
     <td>
       1.4
     </td>
-<pre><code>&lt;td&gt;
-  May 2001
-&lt;/td&gt;
-
-&lt;td&gt;
-  March 2003
-&lt;/td&gt;
-
-&lt;td&gt;
-  23 months
-&lt;/td&gt;
-
-&lt;td&gt;
-  Discovered major design flaws in the JVM port as the AWT threading model just didn't fit well with the Carbon thread model. Rewrote AWT to use Cocoa instead. This was annoying and the results were pretty poor as well (Java 1.4 on Mac is still much slower than Java 1.3 for GUI work).
-&lt;/td&gt;
-</code></pre>
+    <td>
+      May 2001
+    </td>
+    <td>
+      March 2003
+    </td>
+    <td>
+      23 months
+    </td>
+    <td>
+      Discovered major design flaws in the JVM port as the AWT threading model just didn't fit well with the Carbon thread model. Rewrote AWT to use Cocoa instead. This was annoying and the results were pretty poor as well (Java 1.4 on Mac is still much slower than Java 1.3 for GUI work).
+    </td>
   </tr>
   <tr>
     <td colspan="5">
@@ -182,8 +172,13 @@
 </ol>
 <p><em>you</em> bought a Mac just because of it&rsquo;s Java support (silly you) and maybe even a thousand other developers you&rsquo;ve heard from did. Who cares, there&rsquo;s millions of Mac users out there and most of them have no idea what Java is let alone why they would want it. Finally, Chris really hits gold when he talks about Windows Bigot Java Programmers:</p>
 <blockquote>
-<p>The Windows Bigot Java Programmer seems like it should be a contradiction in terms – if you like Windows so much, why not program in Active X or .NET or whatever Redmond&rsquo;s flavor of the month is – but in reality, I think this actually accounts for a massive percentage of Java programmers.  Absolutely. If you&rsquo;re a long time Mac user who&rsquo;s used to things being Mac-like and then try and run most Java applications you&rsquo;ll realize just how bad Java programmers are at writing cross-platform code. Most of the time the code does run, but it&rsquo;s very rare to find a program that looks and feels like a Mac program. It&rsquo;s not the fault of the look and feel either, most Java programmers don&rsquo;t even do simple things like make sure the OK and Cancel buttons are in the right order. Even GUI guru Karsten Lentzsch falls into the trap of creating Windows looking GUIs, for example his <a href="http://www.jgoodies.com/freeware/forms/images/login.png">log in screen example</a> is a replica of the Windows login screen. Looks fantastic on Windows, okay on Linux – <em>very</em> out of place on Mac. More commonly though, people fall into traps that don&rsquo;t even require special coding, like using new BufferedImage(…); instead of createCompatibleImage(…) – using new BufferedImage makes an assumption that the type you pick will perform acceptably on all platforms, but depending on the windowing system it may actually perform very badly. createCompatibleImage on the other hand creates an image type that is guaranteed to be the best representation for the current platform. So if you&rsquo;re in a development team that&rsquo;s madly rushing to find all the bugs in Java 5 as soon as possible by betting their project on it and thus you run the risk of not being able to use your Mac to develop, I pity you but I still don&rsquo;t want to hear another whine about Apple not having released Java 1.5. For those like me who are sick and tired of hearing the complaints, the news is all bad. Even if Apple ship Java 5 tomorrow, the complaints will just move on to the next thing that developers just absolutely have to have and can&rsquo;t live without (despite the fact that they have done so for ages) but before that you&rsquo;ll have to put up with the barrage of complaints about all the bugs in Apple&rsquo;s Java 5 implementation first. Oh and if for any reason people run out of things to complain about, they&rsquo;ll start up the complaints about the Java-Dev list archives again or maybe the fact that Apple doesn&rsquo;t publicly list reported bugs… Of course, people like me won&rsquo;t be whinging about any of that, we&rsquo;ll be whinging about all the whinging that&rsquo;s going on.</p>
+<p>The Windows Bigot Java Programmer seems like it should be a contradiction in terms – if you like Windows so much, why not program in Active X or .NET or whatever Redmond&rsquo;s flavor of the month is – but in reality, I think this actually accounts for a massive percentage of Java programmers.  Absolutely.</p>
 </blockquote>
+<p>If you&rsquo;re a long time Mac user who&rsquo;s used to things being Mac-like and then try and run most Java applications you&rsquo;ll realize just how bad Java programmers are at writing cross-platform code. Most of the time the code does run, but it&rsquo;s very rare to find a program that looks and feels like a Mac program. It&rsquo;s not the fault of the look and feel either, most Java programmers don&rsquo;t even do simple things like make sure the OK and Cancel buttons are in the right order. Even GUI guru Karsten Lentzsch falls into the trap of creating Windows looking GUIs, for example his <a href="http://www.jgoodies.com/freeware/forms/images/login.png">log in screen example</a> is a replica of the Windows login screen. Looks fantastic on Windows, okay on Linux – <em>very</em> out of place on Mac.</p>
+<p>More commonly though, people fall into traps that don&rsquo;t even require special coding, like using new BufferedImage(…); instead of createCompatibleImage(…) – using new BufferedImage makes an assumption that the type you pick will perform acceptably on all platforms, but depending on the windowing system it may actually perform very badly. createCompatibleImage on the other hand creates an image type that is guaranteed to be the best representation for the current platform.</p>
+<p>So if you&rsquo;re in a development team that&rsquo;s madly rushing to find all the bugs in Java 5 as soon as possible by betting their project on it and thus you run the risk of not being able to use your Mac to develop, I pity you but I still don&rsquo;t want to hear another whine about Apple not having released Java 1.5.</p>
+<p>For those like me who are sick and tired of hearing the complaints, the news is all bad. Even if Apple ship Java 5 tomorrow, the complaints will just move on to the next thing that developers just absolutely have to have and can&rsquo;t live without (despite the fact that they have done so for ages) but before that you&rsquo;ll have to put up with the barrage of complaints about all the bugs in Apple&rsquo;s Java 5 implementation first.</p>
+<p>Oh and if for any reason people run out of things to complain about, they&rsquo;ll start up the complaints about the Java-Dev list archives again or maybe the fact that Apple doesn&rsquo;t publicly list reported bugs… Of course, people like me won&rsquo;t be whinging about any of that, we&rsquo;ll be whinging about all the whinging that&rsquo;s going on.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2004/10/05/code-duplication-redux/"><span>← Earlier</span>Code Duplication (Redux)</a><a href="/2004/10/10/javadoc/"><span>Later →</span>JavaDoc</a></nav>
 </main>

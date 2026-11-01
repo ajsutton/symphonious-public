@@ -20,13 +20,9 @@ existing system? Ultimately we want to create a specification that we have a
 reasonably high confidence in, but getting that means working through a lot of
 scenarios and potential designs which is best done on a whiteboard. We found a
 really powerful way of using AI to help without winding up with a giant pile of
-AI slop.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://www.symphonious.net/images/posts/whiteboarding-a-spec.webp&#34;
-			alt=&#34;Whiteboard sketches becoming a structured specification, with a hand making pencil corrections.&#34; width=&#34;1480&#34; height=&#34;740&#34;&gt;&lt;figcaption&gt;
-			&lt;p&gt;The thinking happens in the room. AI helps get it onto the page.&lt;/p&gt;
-		&lt;/figcaption&gt;
+AI slop.&lt;/p&gt;&lt;figure class=&#34;feature-image&#34; data-pagefind-ignore&gt;
+  &lt;img src=&#34;https://www.symphonious.net/images/posts/whiteboarding-a-spec.webp&#34; srcset=&#34;https://www.symphonious.net/images/posts/whiteboarding-a-spec_hu_c1432b92bd4dad0c.webp 480w, https://www.symphonious.net/images/posts/whiteboarding-a-spec_hu_e2613579dc82eebf.webp 740w, https://www.symphonious.net/images/posts/whiteboarding-a-spec_hu_ca5532145c8ddcd.webp 1100w, https://www.symphonious.net/images/posts/whiteboarding-a-spec.webp 1480w&#34; sizes=&#34;(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 96px), 740px&#34; width=&#34;1480&#34; height=&#34;740&#34; alt=&#34;Whiteboard sketches becoming a structured specification, with a hand making pencil corrections.&#34; decoding=&#34;async&#34;&gt;&lt;figcaption&gt;The thinking happens in the room. AI helps get it onto the page.&lt;/figcaption&gt;
 &lt;/figure&gt;
-
 &lt;p&gt;Prior to getting together in person, there was a good idea of the customer
 requirements and a steel-man approach we could use. That was pretty much
 entirely AI slop, but AI slop is a great way to play around with a PoC and try

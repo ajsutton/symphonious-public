@@ -5,11 +5,13 @@
 <title>Unit Testing JavaScript Promises with Synchronous Tests · Symphonious</title>
 <meta name="description" content="With Promise/A&#43; spreading through the world of JavaScript at a rapid pace, there&rsquo;s one little detail that makes them very hard to unit test: any chained …">
 <link rel="canonical" href="https://www.symphonious.net/2017/06/15/unit-testing-javascript-promises-with-synchronous-tests/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -31,56 +33,47 @@
 </div></header>
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="With Promise/A&#43; spreading through the world of JavaScript at a rapid pace, there&rsquo;s one little detail that makes them very hard to unit test: any chained actions (via .then()) are only called when the execution stack contains only platform code. That&rsquo;s a good thing in the real world but it makes unit testing much more complex because resolving a promise isn&rsquo;t enough – you also need to empty the execution stack.
-"><header class="article-heading"><h1 data-pagefind-meta="title">Unit Testing JavaScript Promises with Synchronous Tests</h1><p class="article-meta"><time datetime="2017-06-14">14 June 2017</time> <span aria-hidden="true">·</span> 4 min read</p></header><div class="prose"><p>With Promise/A+ spreading through the world of JavaScript at a rapid pace, there&rsquo;s one little detail that makes them very hard to unit test: any chained actions (via .then()) are only called when the execution stack contains only platform code. That&rsquo;s a good thing in the real world but it makes unit testing much more complex because resolving a promise isn&rsquo;t enough – you also need to empty the execution stack.</p>
+"><header class="article-heading"><h1 data-pagefind-meta="title">Unit Testing JavaScript Promises with Synchronous Tests</h1><p class="article-meta"><time datetime="2017-06-14">14 June 2017</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>With Promise/A+ spreading through the world of JavaScript at a rapid pace, there&rsquo;s one little detail that makes them very hard to unit test: any chained actions (via .then()) are only called when the execution stack contains only platform code. That&rsquo;s a good thing in the real world but it makes unit testing much more complex because resolving a promise isn&rsquo;t enough – you also need to empty the execution stack.</p>
 <p>The first, and best, way to address these challenges is to take advantage of your test runner&rsquo;s asynchronous test support. Mocha for example allows you to return a promise from your test and waits for it to be either resolved to indicate success or rejected to indicate failure. For example:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">it(<span style="background-color: #fff0f0;">'should pass asynchronously'</span>, <span style="color: #008800; font-weight: bold;">function</span>() {
-    <span style="color: #008800; font-weight: bold;">return</span> <span style="color: #008800; font-weight: bold;">new</span> Promise((resolve, reject) <span style="color: #333333;">=&gt;</span> {
-        setTimeout(resolve, <span style="color: #0000dd; font-weight: bold;">100</span>);
-    })
-});
-</pre>
-</div>
-<p>This works well when you&rsquo;re testing code that returns the promise to you so you can chain any assertions you need and then return the final promise to the test runner. However, there are often cases where promises are used internally to a component which this approach can&rsquo;t solve. For example, a UI component that periodically makes requests to the server to update the data it displays. </p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>it(&#39;should pass asynchronously&#39;, function() {
+</span></span><span style="display:flex;"><span>    return new Promise((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span>        setTimeout(resolve, 100);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>This works well when you&rsquo;re testing code that returns the promise to you so you can chain any assertions you need and then return the final promise to the test runner. However, there are often cases where promises are used internally to a component which this approach can&rsquo;t solve. For example, a UI component that periodically makes requests to the server to update the data it displays. </p>
 <p><a href="http://sinonjs.org/">Sinon.js</a> makes it easy to stub out the HTTP request using it&rsquo;s fake server and the periodic updates using a fake clock, but if promises are used sinon&rsquo;s clock.tick() isn&rsquo;t enough to trigger chained actions. They&rsquo;ll only execute after your test method returns and since there&rsquo;s no reason, and often no way, for the UI component to pass a promise for it&rsquo;s updates out of the component we can&rsquo;t just depend on the test runner. That&rsquo;s where <a href="https://github.com/taylorhakes/promise-mock">promise-mock</a> comes in. It replaces the normal Promise implementation with one that allows your unit test to trigger callbacks at any point.</p>
 <p>Let&rsquo;s avoid all the clock and HTTP stubbing by testing this very simple example of code using a Promise internally:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">let</span> value <span style="color: #333333;">=</span> <span style="color: #0000dd; font-weight: bold;"></span>;
-module.exports <span style="color: #333333;">=</span> {
-    setValueViaImmediatePromise<span style="color: #333333;">:</span> <span style="color: #008800; font-weight: bold;">function</span> (newValue) {
-        <span style="color: #008800; font-weight: bold;">return</span> <span style="color: #008800; font-weight: bold;">new</span> Promise((resolve, reject) <span style="color: #333333;">=&gt;</span> resolve(newValue))
-                .then(result <span style="color: #333333;">=&gt;</span> value <span style="color: #333333;">=</span> result);
-    },
-<pre><code>getValue&lt;span style=&quot;color: #333333;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #008800; font-weight: bold;&quot;&gt;function&lt;/span&gt; () {
-    &lt;span style=&quot;color: #008800; font-weight: bold;&quot;&gt;return&lt;/span&gt; value;
-}
-</code></pre>
-<p>};
-</pre></p>
-</div>
-<p>Our test is then:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">const</span> asyncThing <span style="color: #333333;">=</span> require(<span style="background-color: #fff0f0;">'./asyncThing'</span>);
-<span style="color: #008800; font-weight: bold;">const</span> PromiseMock <span style="color: #333333;">=</span> require(<span style="background-color: #fff0f0;">'promise-mock'</span>);
-<span style="color: #008800; font-weight: bold;">const</span> expect <span style="color: #333333;">=</span> require(<span style="background-color: #fff0f0;">'expect.js'</span>);
-describe.only(<span style="background-color: #fff0f0;">'with promise-mock'</span>, <span style="color: #008800; font-weight: bold;">function</span>() {
-    beforeEach(<span style="color: #008800; font-weight: bold;">function</span>() {
-        PromiseMock.install();
-    });
-<pre><code>afterEach(&lt;span style=&quot;color: #008800; font-weight: bold;&quot;&gt;function&lt;/span&gt;() {
-    PromiseMock.uninstall();
-});
-
-it(&lt;span style=&quot;background-color: #fff0f0;&quot;&gt;'should set value asynchronously and keep internals to itself'&lt;/span&gt;, &lt;span style=&quot;color: #008800; font-weight: bold;&quot;&gt;function&lt;/span&gt;() {
-    asyncThing.setValueViaImmediatePromise(&lt;span style=&quot;color: #0000dd; font-weight: bold;&quot;&gt;3&lt;/span&gt;);
-    Promise.runAll();
-    expect(asyncThing.getValue()).to.be(&lt;span style=&quot;color: #0000dd; font-weight: bold;&quot;&gt;3&lt;/span&gt;);
-});
-</code></pre>
-<p>});
-</pre></p>
-</div>
-<p>We have a beforeEach and afterEach to install and uninstall the mocked promise, then when we want the promise callbacks to execute in our test, we simply call Promise.runAll().  In most cases, promise-mock combined with sinon&rsquo;s fake HTTP server and stub clock is enough to let us write easy-to-follow, synchronous tests that cover asynchronous behaviour.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>let value = ;
+</span></span><span style="display:flex;"><span>module.exports = {
+</span></span><span style="display:flex;"><span>    setValueViaImmediatePromise: function (newValue) {
+</span></span><span style="display:flex;"><span>        return new Promise((resolve, reject) =&gt; resolve(newValue))
+</span></span><span style="display:flex;"><span>                .then(result =&gt; value = result);
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    getValue: function () {
+</span></span><span style="display:flex;"><span>        return value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Our test is then:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>const asyncThing = require(&#39;./asyncThing&#39;);
+</span></span><span style="display:flex;"><span>const PromiseMock = require(&#39;promise-mock&#39;);
+</span></span><span style="display:flex;"><span>const expect = require(&#39;expect.js&#39;);
+</span></span><span style="display:flex;"><span>describe.only(&#39;with promise-mock&#39;, function() {
+</span></span><span style="display:flex;"><span>    beforeEach(function() {
+</span></span><span style="display:flex;"><span>        PromiseMock.install();
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    afterEach(function() {
+</span></span><span style="display:flex;"><span>        PromiseMock.uninstall();
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    it(&#39;should set value asynchronously and keep internals to itself&#39;, function() {
+</span></span><span style="display:flex;"><span>        asyncThing.setValueViaImmediatePromise(3);
+</span></span><span style="display:flex;"><span>        Promise.runAll();
+</span></span><span style="display:flex;"><span>        expect(asyncThing.getValue()).to.be(3);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>We have a beforeEach and afterEach to install and uninstall the mocked promise, then when we want the promise callbacks to execute in our test, we simply call Promise.runAll().  In most cases, promise-mock combined with sinon&rsquo;s fake HTTP server and stub clock is enough to let us write easy-to-follow, synchronous tests that cover asynchronous behaviour.</p>
 <p>Keeping our tests synchronous isn&rsquo;t just about making them easy to read though – it also means we&rsquo;re in control of how asynchronous callbacks interleave. So we can write tests to check what happens if action A finishes before action B <em>and</em> tests for what happens if it&rsquo;s the other way around. Lots and lots of bugs hide in those areas.</p>
 <h3 id="promisemockinstall-not-working">PromiseMock.install() Not Working</h3>
 <p>All that sounds great, but I spent a long time trying to work out why PromiseMock.install() didn&rsquo;t ever seem to change the Promise implementation. I could see that window.Promise === PromiseMock was true, but without the window prefix I was still getting the original promise implementation (Promise !== PromiseMock).</p>

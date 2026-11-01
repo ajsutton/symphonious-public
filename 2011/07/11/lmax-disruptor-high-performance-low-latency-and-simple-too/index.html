@@ -5,11 +5,13 @@
 <title>LMAX Disruptor – High Performance, Low Latency and Simple Too · Symphonious</title>
 <meta name="description" content="The LMAX disruptor is an ultra-high performance, low-latency message exchange between threads. It&rsquo;s a bit like a queue on steroids (but quite a lot of …">
 <link rel="canonical" href="https://www.symphonious.net/2011/07/11/lmax-disruptor-high-performance-low-latency-and-simple-too/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -33,7 +35,7 @@
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="The LMAX disruptor is an ultra-high performance, low-latency message exchange between threads. It&rsquo;s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the LMAX exchange run so fast. There is a rapidly growing set of information about what the disruptor is, why it&rsquo;s important and how it works – a good place to start is the list of articles and for the on-going stuff, follow LMAX Blogs. For really detailed stuff, there&rsquo;s also the white paper (PDF).
 "><header class="article-heading"><h1 data-pagefind-meta="title">LMAX Disruptor – High Performance, Low Latency and Simple Too</h1><p class="article-meta"><time datetime="2011-07-11">11 July 2011</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>The <a href="http://code.google.com/p/disruptor/">LMAX disruptor</a> is an ultra-high performance, low-latency message exchange between threads. It&rsquo;s a bit like a queue on steroids (but quite a lot of steroids) and is one of the key innovations used to make the <a href="http://www.lmaxtrader.co.uk/">LMAX exchange</a> run so fast. There is a rapidly growing set of information about what the disruptor is, why it&rsquo;s important and how it works – a good place to start is the <a href="http://code.google.com/p/disruptor/wiki/BlogsAndArticles">list of articles</a> and for the on-going stuff, follow <a href="http://blogs.lmax.com/">LMAX Blogs</a>. For really detailed stuff, there&rsquo;s also the <a href="http://disruptor.googlecode.com/files/Disruptor-1.0.pdf">white paper</a> (PDF).</p>
 <p>While the disruptor pattern is ultimately very simple to work with, setting up multiple consumers with the dependencies between them can require a bit too much boilerplate code for my liking. To make it quick and easy for 99% of cases, I&rsquo;ve whipped up a <a href="http://github.com/ajsutton/disruptorWizard">simple DSL for the disruptor pattern</a>. For example, to wire up a &ldquo;diamond pattern&rdquo; of consumers:</p>
-<img loading="lazy" src="http://www.symphonious.net/wp-content/uploads/2011/07/1P3C-Diamond.png" alt="Diamond pattern of consumers. C3 depends on both C1 and C2 completing." width="400" height="265" /> 
+<img loading="lazy" src="/wp-content/uploads/2011/07/1P3C-Diamond.png" alt="Diamond pattern of consumers. C3 depends on both C1 and C2 completing." width="400" height="265" />
 <p>(Image blatantly stolen from <a href="http://mechanitis.blogspot.com/2011/07/dissecting-disruptor-wiring-up.html">Trisha Gee&rsquo;s excellent series explaining the disruptor pattern</a>)</p>
 <p>In this scenario, consumers C1 and C2 can process entries as soon as the producer (P1) puts them on the ring buffer (in parallel). However, consumer C3 has to wait for <em>both</em> C1 and C2 to complete before it processes the entries. In real life this might be because we need to both journal the data to disk (C1) and validate the data (C2) before we do the actual business logic (C3).</p>
 <p>With the raw disruptor syntax, these consumers would be created with the following code:</p>
@@ -71,7 +73,7 @@ dw.consumeWith(handler1, handler2).then(handler3);
 
 ProducerBarrier producerBarrier = dw.createProducerBarrier();
 </pre>
-<p>We can even build parallel chains of consumers in a diamond pattern:<img loading="lazy" title="Disruptor Dependency Chains" width="764" height="378" src="http://www.symphonious.net/wp-content/uploads/2011/07/disruptorChains-300x225.png" alt="Two chains of consumers running in parallel with a final consumer dependent on both." /></p>
+<p>We can even build parallel chains of consumers in a diamond pattern:<img loading="lazy" title="Disruptor Dependency Chains" width="764" height="378" src="/wp-content/uploads/2011/07/disruptorChains-300x225.png" alt="Two chains of consumers running in parallel with a final consumer dependent on both." /></p>
 <p>(Thanks to Trish for using her fancy graphics tablet to create a decent version of this image instead of my original finger painting on an iPad…)</p>
 <pre>dw.consumeWith(handler1a, handler2a);
 dw.after(handler1a).consumeWith(handler1b);

@@ -5,11 +5,13 @@
 <title>How To Simulate Key Events In Swing JUnit Tests · Symphonious</title>
 <meta name="description" content="Gianugo Rabellino has been playing with unit testing in Swing – an area that I&rsquo;ve spent a lot of time complaining about in the past. In his particular …">
 <link rel="canonical" href="https://www.symphonious.net/2005/02/17/how-to-simulate-key-events-in-swing-junit-tests/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -36,8 +38,13 @@
 <p>The interactions between Component.dispatchEvent() and the FocusManager are somewhat odd.  Component.dispatchEvent() sends the request to the FocusManager without actually checking if it has focus or not.  The FocusManager picks the component that has focus and sends the event to it&rsquo;s Component.dispatchEvent() method.  It&rsquo;s an infinite loop except that the Swing team so helpfully created a package private (read: totally hidden and inaccessible) variable in KeyEvent called focusManagerIsDispatching which tells the Component.dispatchEvent() method not to redirect the event over to the FocusManager but to actually process it like the JavaDoc suggests it will.</p>
 <p> </p>
 <p>So, to make key strokes work with Swing components in JUnit tests we just have to set that variable to true using reflection before we pass the event into Component.dispatchEvent().  The code winds up looking something like (excusing any typos or misremembered method names – I haven&rsquo;t bothered to compile this):</p>
-<p><code>public void simulateKey(KeyEvent e, Component c) {&lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;Field f = KeyEvent.class.getField(&quot;focusManagerIsDispatching&quot;);&lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;f.setAccessible(true);&lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;f.set(e, Boolean.TRUE);&lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;c.dispatchEvent(e);&lt;br /&gt; }</code></p>
-<p>If that&rsquo;s not quite right, check the code for KeyEvent and Component.dispatchEvent to make sure the variable names are right and check the JavaDoc for java.lang.reflect.Field in case I&rsquo;ve misremembered a method in there somewhere.  The concept is definitely sound though.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">simulateKey</span>(KeyEvent e, Component c) {
+</span></span><span style="display:flex;"><span>   Field f <span style="color:#f92672">=</span> KeyEvent.<span style="color:#a6e22e">class</span>.<span style="color:#a6e22e">getField</span>(<span style="color:#e6db74">&#34;focusManagerIsDispatching&#34;</span>);
+</span></span><span style="display:flex;"><span>   f.<span style="color:#a6e22e">setAccessible</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>   f.<span style="color:#a6e22e">set</span>(e, Boolean.<span style="color:#a6e22e">TRUE</span>);
+</span></span><span style="display:flex;"><span>   c.<span style="color:#a6e22e">dispatchEvent</span>(e);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If that&rsquo;s not quite right, check the code for KeyEvent and Component.dispatchEvent to make sure the variable names are right and check the JavaDoc for java.lang.reflect.Field in case I&rsquo;ve misremembered a method in there somewhere.  The concept is definitely sound though.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2005/02/12/book-list/"><span>← Earlier</span>Book List</a><a href="/2005/02/17/evangelists-and-koolaid/"><span>Later →</span>Evangelists and Koolaid</a></nav>
 </main>

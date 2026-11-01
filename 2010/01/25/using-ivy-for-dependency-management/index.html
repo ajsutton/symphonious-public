@@ -5,11 +5,13 @@
 <title>Using Ivy for Dependency Management · Symphonious</title>
 <meta name="description" content="At first glance, Ivy looks like a re-implementation of Maven’s dependency management that works nicely with ant, and to some degree it is, but it also adds some …">
 <link rel="canonical" href="https://www.symphonious.net/2010/01/25/using-ivy-for-dependency-management/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -44,143 +46,121 @@ Maven Compatibility Firstly, Ivy is compatible with Maven repositories, so if yo
     <th id="id_6273">
       Name
     </th>
-<pre><code>&lt;th id=&quot;id_6274&quot;&gt;
-  Description
-&lt;/th&gt;
-
-&lt;th id=&quot;id_6275&quot;&gt;
-  Example Library
-&lt;/th&gt;
-</code></pre>
+    <th id="id_6274">
+      Description
+    </th>
+    <th id="id_6275">
+      Example Library
+    </th>
   </tr>
   <tr>
     <td headers="id_6273">
       default
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  runtime dependencies and master artifact can be used with this conf
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      runtime dependencies and master artifact can be used with this conf
+    </td>
+    <td headers="id_6275">
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       master
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  contains only the artifact published by this module itself, with no transitive dependencies
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  The project’s jar itself
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      contains only the artifact published by this module itself, with no transitive dependencies
+    </td>
+    <td headers="id_6275">
+      The project’s jar itself
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       compile
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this is the default scope, used if none is specified. Compile dependencies are available in all classpaths
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  commons-lang
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this is the default scope, used if none is specified. Compile dependencies are available in all classpaths
+    </td>
+    <td headers="id_6275">
+      commons-lang
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       provided
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  Servlet APIs
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive
+    </td>
+    <td headers="id_6275">
+      Servlet APIs
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       runtime
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  An AOP runtime library?
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath
+    </td>
+    <td headers="id_6275">
+      An AOP runtime library?
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       test
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  JUnit
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases
+    </td>
+    <td headers="id_6275">
+      JUnit
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       system
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  ??
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository
+    </td>
+    <td headers="id_6275">
+      ??
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       sources
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this configuration contains the source artifact of this module, if any
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  Source for the project
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this configuration contains the source artifact of this module, if any
+    </td>
+    <td headers="id_6275">
+      Source for the project
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       javadoc
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  this configuration contains the javadoc artifact of this module, if any
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  JavaDoc for the project
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      this configuration contains the javadoc artifact of this module, if any
+    </td>
+    <td headers="id_6275">
+      JavaDoc for the project
+    </td>
   </tr>
   <tr>
     <td headers="id_6273">
       optional
     </td>
-<pre><code>&lt;td headers=&quot;id_6274&quot;&gt;
-  contains all optional dependencies
-&lt;/td&gt;
-
-&lt;td headers=&quot;id_6275&quot;&gt;
-  Anything optional
-&lt;/td&gt;
-</code></pre>
+    <td headers="id_6274">
+      contains all optional dependencies
+    </td>
+    <td headers="id_6275">
+      Anything optional
+    </td>
   </tr>
 </table>
 <p>The three most commonly used configurations for dependencies are compile, provided and test – most projects will only ever need to add dependencies in those categories. The master, sources and javadoc configurations typically don’t contain any dependencies, they are used for publishing the results of the build into – the same configurations defined here are used by other projects that depend on this one. The default configuration is provided to make this easy, by including all the runtime dependencies and the project’s jar itself in one configuration.</p>

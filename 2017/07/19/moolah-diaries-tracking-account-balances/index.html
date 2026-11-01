@@ -5,11 +5,13 @@
 <title>Moolah Diaries – Tracking Account Balances · Symphonious</title>
 <meta name="description" content="Moolah has two separate Vuex modules, transactions and accounts. That&rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&rsquo;s not a …">
 <link rel="canonical" href="https://www.symphonious.net/2017/07/19/moolah-diaries-tracking-account-balances/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -33,22 +35,24 @@
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Moolah has two separate Vuex modules, transactions and accounts. That&rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account. As a result, accounts have their own current balance property because they can&rsquo;t always calculate it off of their transactions.
 "><header class="article-heading"><h1 data-pagefind-meta="title">Moolah Diaries – Tracking Account Balances</h1><p class="article-meta"><time datetime="2017-07-18">18 July 2017</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>Moolah has two separate Vuex modules, transactions and accounts. That&rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account.  As a result, accounts have their own current balance property because they can&rsquo;t always calculate it off of their transactions.</p>
 <p>That means that sometimes the transaction Vuex module needs to make changes to state owned by the account module which is a rather unpleasant breach of module separation. While we ensured transaction balances remained consistent inside each mutation, we can&rsquo;t do that for account balances because Vuex (presumably deliberately) makes it impossible for a mutation to access or change state outside of the module itself. Instead, I&rsquo;ve used a simple Vuex plugin that watches the balance on the most recent transaction and notifies the account module when it changes:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008800; font-weight: bold;">import</span> {mutations as accountsMutations} from <span style="background-color: #fff0f0;">'./accountsStore'</span>;
-<p><span style="color: #008800; font-weight: bold;">export</span> <span style="color: #008800; font-weight: bold;">default</span> store <span style="color: #333333;">=&gt;</span> store.watch(
-(state) <span style="color: #333333;">=&gt;</span> {
-<span style="color: #008800; font-weight: bold;">return</span> state.transactions.transactions.length <span style="color: #333333;">&gt;</span> <span style="color: #0000dd; font-weight: bold;"></span> <br /><span style="color: #333333;">                                 ?</span> state.transactions.transactions[<span style="color: #0000dd; font-weight: bold;"></span>].balance <br /><span style="color: #333333;">                                 :</span> <span style="color: #008800; font-weight: bold;">undefined</span>;
-},
-(newValue, oldValue) <span style="color: #333333;">=&gt;</span> {
-<span style="color: #008800; font-weight: bold;">if</span> (store.getters[<span style="background-color: #fff0f0;">&ldquo;accounts/selectedAccount&rdquo;</span>] <span style="color: #333333;">!==</span> <span style="color: #008800; font-weight: bold;">undefined</span> <span style="color: #333333;">&amp;&amp;</span> <br />           newValue <span style="color: #333333;">!==</span> <span style="color: #008800; font-weight: bold;">undefined</span>) {
-store.commit(<span style="background-color: #fff0f0;">&lsquo;accounts/&rsquo;</span> <span style="color: #333333;">+</span> accountsMutations.updateAccount, {
-id<span style="color: #333333;">:</span> store.state.selectedAccountId, <br />                patch<span style="color: #333333;">:</span> {balance<span style="color: #333333;">:</span> newValue}
-});
-}
-});
-</pre></p>
-</div>
-<p>Most of the complexity there is dealing with the case where we don&rsquo;t yet have transaction or don&rsquo;t have a selected account. This essentially makes the syncing between transaction balances and account balances a separate responsibility that belongs to this plugin.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>import {mutations as accountsMutations} from &#39;./accountsStore&#39;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>export default store =&gt; store.watch(
+</span></span><span style="display:flex;"><span>    (state) =&gt; {
+</span></span><span style="display:flex;"><span>        return state.transactions.transactions.length &gt;
+</span></span><span style="display:flex;"><span>                                 ? state.transactions.transactions[].balance
+</span></span><span style="display:flex;"><span>                                 : undefined;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    (newValue, oldValue) =&gt; {
+</span></span><span style="display:flex;"><span>        if (store.getters[&#34;accounts/selectedAccount&#34;] !== undefined &amp;&amp;
+</span></span><span style="display:flex;"><span>           newValue !== undefined) {
+</span></span><span style="display:flex;"><span>            store.commit(&#39;accounts/&#39; + accountsMutations.updateAccount, {
+</span></span><span style="display:flex;"><span>                id: store.state.selectedAccountId,
+</span></span><span style="display:flex;"><span>                patch: {balance: newValue}
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></div><p>Most of the complexity there is dealing with the case where we don&rsquo;t yet have transaction or don&rsquo;t have a selected account. This essentially makes the syncing between transaction balances and account balances a separate responsibility that belongs to this plugin.</p>
 <p>The plugin doesn&rsquo;t completely handle transfers between accounts. The balance for the account currently being edited updates correctly, but the balance for the account on the other side of the transfer doesn&rsquo;t update. I&rsquo;m not particularly happy with the solution, but at least for now the responsibility of reacting to transfer changes is in the transaction module&rsquo;s actions. The action can easily calculate the effects of transaction changes on the balances of other accounts and use Vuex&rsquo;s dispatch to send a notification over to the account module to perform the update. Mutations can&rsquo;t dispatch events so it has to be the action that does it.</p>
 <p>This leaves responsibility for updating the current account&rsquo;s balance with the plugin and the responsibility for updating other account&rsquo;s balances with the transaction module which is ugly. Perhaps the transaction module actions should be responsible for all account balances. Probably the right answer is to extract a separate class/function that the transaction module notifies at the end of each action with the state of the transaction before and after. Then that new class/function is responsible for updating account balances. Will need to prod the code a bit to see if that really can be done…</p>
 <p> </p>

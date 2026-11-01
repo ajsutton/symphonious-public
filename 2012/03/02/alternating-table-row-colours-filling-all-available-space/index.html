@@ -5,11 +5,13 @@
 <title>Alternating Table Row Colours Filling All Available Space · Symphonious</title>
 <meta name="description" content="CSS3 makes it trivial to have alternating row colours for tables, but when the table is in a fixed height scroll panel, it’s much more difficult to have those …">
 <link rel="canonical" href="https://www.symphonious.net/2012/03/02/alternating-table-row-colours-filling-all-available-space/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -34,186 +36,184 @@
 First let’s start with a simple table with alternating colours in a scroll panel:
 "><header class="article-heading"><h1 data-pagefind-meta="title">Alternating Table Row Colours Filling All Available Space</h1><p class="article-meta"><time datetime="2012-03-02">2 March 2012</time> <span aria-hidden="true">·</span> 4 min read</p></header><div class="prose"><p>CSS3 makes it trivial to have alternating row colours for tables, but when the table is in a fixed height scroll panel, it’s much more difficult to have those alternating row colours extend beyond the bottom of the table content to fill the available space. Here’s the approach I use.</p>
 <p>First let’s start with a simple table with alternating colours in a scroll panel:</p>
-<noscript>
-  <pre><code class="language-html html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=UTF-8&gt;
-&lt;title&gt;Alternating Rows Example&lt;/title&gt;
-&lt;style&gt;
-* { margin: 0; padding: 0; }
-table {
-  border-collapse: collapse;
-  width: 100%;
-  height: 100%;
-}
-.scroll {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  overflow-x: auto;
-}
-.scroll tr {
-  height: 20px;
-}
-.striped tr:nth-child(odd) {
-  background-color: #EAEAEA;
-}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class="scroll"&gt;
-&lt;table class="striped"&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Row 1&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 2&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 3&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 4&lt;br&gt;With an extra line&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 5&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</noscript>
-<p>That gets us alternating row colours where there is table content. To get it to extend beyond the table content we need to add a filler row:</p>
-<noscript>
-  <pre><code class="language-html html">&lt;div class="scroll"&gt;
-&lt;table class="striped"&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Row 1&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 2&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 3&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 4&lt;br&gt;With an extra line&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 5&lt;/td&gt;&lt;/tr&gt;
-&lt;tr class="filler"&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;</code></pre>
-</noscript>
-<p>This gives us an extra row in the table that we know will always start immediately after the last row of content in the table and line up. We can now set a <a href="http://www.symphonious.net/wp-content/uploads/2012/03/stripes.png">prepared image</a> as the background of that row that preserves the alternating colours and stretch it out to take up the remaining space:</p>
-<noscript>
-  <pre><code class="language-css css">.striped .filler {
-  line-height: 0;
-  background: url(stripes.png) repeat top left;
-  height: 100%;
-  padding: 0;
-}
-<p>.striped .filler td {
-padding: 0;
-}</p>
-<p>.striped .filler:nth-child(even) {
-background-position: 0 20px;
-}</code></pre>
-</noscript></p>
-<p>Apart from the background image, we set the height to 100% so that our filler row fills the remaining space. If the table is empty, the filler row will get 100% height and fill all available space, if however the table has other rows in it, the table rendering algorithm will shrink our filler row down so that it can fit within the bounds of the table – preventing the filler row from overflowing the scroll container and activating the scroll bar.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">UTF-8</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">title</span>&gt;Alternating Rows Example&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> { <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#f92672">table</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-collapse</span>: <span style="color:#66d9ef">collapse</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">scroll</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bottom</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">right</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">overflow-y</span>: <span style="color:#66d9ef">scroll</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">overflow-x</span>: <span style="color:#66d9ef">auto</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">scroll</span> <span style="color:#f92672">tr</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> <span style="color:#f92672">tr</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">odd</span><span style="color:#f92672">)</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#EAEAEA</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;scroll&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;striped&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 1&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 2&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 3&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 4&lt;<span style="color:#f92672">br</span>&gt;With an extra line&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 5&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>That gets us alternating row colours where there is table content. To get it to extend beyond the table content we need to add a filler row:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;scroll&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;striped&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 1&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 2&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 3&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 4&lt;<span style="color:#f92672">br</span>&gt;With an extra line&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 5&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;filler&#34;</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><p>This gives us an extra row in the table that we know will always start immediately after the last row of content in the table and line up. We can now set a <a href="/wp-content/uploads/2012/03/stripes.png">prepared image</a> as the background of that row that preserves the alternating colours and stretch it out to take up the remaining space:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background</span>: url(<span style="color:#e6db74">stripes.png</span>) <span style="color:#66d9ef">repeat</span> <span style="color:#66d9ef">top</span> <span style="color:#66d9ef">left</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span> <span style="color:#f92672">td</span> {
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">even</span><span style="color:#f92672">)</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-position</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Apart from the background image, we set the height to 100% so that our filler row fills the remaining space. If the table is empty, the filler row will get 100% height and fill all available space, if however the table has other rows in it, the table rendering algorithm will shrink our filler row down so that it can fit within the bounds of the table – preventing the filler row from overflowing the scroll container and activating the scroll bar.</p>
 <p>Since our background image starts with an odd row colour, if the filler row is an even row, we use background-position to shift the background image down by the height of a stripe so it effectively starts with an odd row colour.</p>
 <p>We also add line-height: 0 and padding: 0 so that when the table content fills all available space (or starts scrolling), the filler row has no minimum height and disappears entirely.</p>
 <p>Note that this approach will adjust perfectly well even if the content rows vary in height, because the filler row will always start immediately after the last content row and fill the available space. The height of the alternating colours in our image will just provide the default row height in the filler space.</p>
 <p>If we’re only targeting modern browsers anyway, we can go ahead and replace the background image with a dynamically generated gradient:</p>
-<noscript>
-  <pre><code class="language-css css">.striped .filler {
-  line-height: 0;
-  height: 100%;
-  padding: 0;
-  background-image: linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -o-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-<p>background-image: -webkit-gradient(
-linear,
-left bottom,
-left top,
-color-stop(0.5, rgb(255,255,255)),
-color-stop(0.5, rgb(234,234,234))
-);</p>
-<p>-webkit-background-size: 40px 40px;
--moz-background-size: 40px 40px;
--ms-background-size: 40px 40px;
--o-background-size: 40px 40px;
-background-size: 40px 40px;
-}</code></pre>
-</noscript></p>
-<p>The final version of our page is:</p>
-<noscript>
-  <pre><code class="language-html html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=UTF-8&gt;
-&lt;title&gt;Alternating Rows Example&lt;/title&gt;
-&lt;style&gt;
-* { margin: 0; padding: 0; }
-table {
-  border-collapse: collapse;
-  width: 100%;
-  height: 100%;
-}
-.scroll {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  overflow-x: auto;
-}
-.scroll tr {
-  height: 20px;
-}
-.striped tr:nth-child(odd) {
-  background-color: #EAEAEA;
-}
-.striped .filler {
-  line-height: 0;
-  height: 100%;
-  padding: 0;
-  background-image: linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -o-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-  background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 50%, rgb(234,234,234) 50%);
-<p>background-image: -webkit-gradient(
-linear,
-left bottom,
-left top,
-color-stop(0.5, rgb(255,255,255)),
-color-stop(0.5, rgb(234,234,234))
-);</p>
-<p>-webkit-background-size: 40px 40px;
--moz-background-size: 40px 40px;
--ms-background-size: 40px 40px;
--o-background-size: 40px 40px;
-background-size: 40px 40px;
-}</p>
-<p>.striped .filler td {
-padding: 0;
-}</p>
-<p>.striped .filler:nth-child(even) {
-background-position: 0 20px;
-}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class=&ldquo;scroll&rdquo;&gt;
-&lt;table class=&ldquo;striped&rdquo;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Row 1&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 2&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 3&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 4&lt;br&gt;With an extra line&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Row 5&lt;/td&gt;&lt;/tr&gt;
-&lt;tr class=&ldquo;filler&rdquo;&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</noscript></p>
-<p>Or <a href="/alternating.html">try the demo</a> in your browser.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-o-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-moz-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-webkit-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-ms-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-webkit-</span><span style="color:#a6e22e">gradient</span>(
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">linear</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">left</span> <span style="color:#66d9ef">bottom</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">left</span> <span style="color:#66d9ef">top</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">color-stop</span>(<span style="color:#ae81ff">0.5</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>)),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">color-stop</span>(<span style="color:#ae81ff">0.5</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>))
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-moz-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-ms-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-o-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The final version of our page is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">UTF-8</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">title</span>&gt;Alternating Rows Example&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> { <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#f92672">table</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-collapse</span>: <span style="color:#66d9ef">collapse</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">scroll</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bottom</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">right</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">overflow-y</span>: <span style="color:#66d9ef">scroll</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">overflow-x</span>: <span style="color:#66d9ef">auto</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">scroll</span> <span style="color:#f92672">tr</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> <span style="color:#f92672">tr</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">odd</span><span style="color:#f92672">)</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#EAEAEA</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-o-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-moz-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-webkit-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-ms-</span>linear-gradient(<span style="color:#66d9ef">bottom</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>) <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: <span style="color:#66d9ef">-webkit-</span><span style="color:#a6e22e">gradient</span>(
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">linear</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">left</span> <span style="color:#66d9ef">bottom</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">left</span> <span style="color:#66d9ef">top</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">color-stop</span>(<span style="color:#ae81ff">0.5</span>, rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">255</span>)),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">color-stop</span>(<span style="color:#ae81ff">0.5</span>, rgb(<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">234</span>))
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-moz-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-ms-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-o-</span><span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-size</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span> <span style="color:#f92672">td</span> {
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">striped</span> .<span style="color:#a6e22e">filler</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">even</span><span style="color:#f92672">)</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-position</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;scroll&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;striped&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 1&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 2&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 3&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 4&lt;<span style="color:#f92672">br</span>&gt;With an extra line&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Row 5&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;filler&#34;</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>Or <a href="/alternating.html">try the demo</a> in your browser.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2012/02/28/how-to-round-trip-data-via-ssh/"><span>← Earlier</span>How To Round-Trip Data Via SSH</a><a href="/2012/03/19/resolving-svn-tree-conflicts/"><span>Later →</span>Resolving SVN Tree Conflicts</a></nav>
 </main>

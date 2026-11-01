@@ -5,11 +5,13 @@
 <title>What’s the Point of Browser Colour Settings? · Symphonious</title>
 <meta name="description" content="Many browsers include user preferences to select preferred colours for text, backgrounds and links. This is intended as an accessibility feature so that people …">
 <link rel="canonical" href="https://www.symphonious.net/2010/12/20/whats-the-point-of-browser-colour-settings/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -39,17 +41,17 @@
 </ol>
 <h2 id="preference-mode">Preference Mode</h2>
 <p>In the first case, there are a vast number of sites which become unusable because they specify a specific background colour without also specifying a foreground colour. So if you happen to set your preferences to have light coloured text on a black background, then try to log into Google you get:</p>
-<img loading="lazy" alt="Screenshot: Google login with light blue text on a light blue background." height="205" width="289" src="http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.14.38_7085508824482788683.png" /> 
+<img loading="lazy" alt="Screenshot: Google login with light blue text on a light blue background." height="205" width="289" src="/wp-content/uploads/2010/12/Screenshot2010-12-20at10.14.38_7085508824482788683.png" />
 <p>Choosing white text on a black background would make half the text on the internet disappear.</p>
 <p>Clearly this is poorly coded websites causing accessibility programs and they should get with the program and specify foreground and background colours in pairs. Which of course makes that dialog box look like:</p>
-<img loading="lazy" alt="Screenshot: Google login with black text on light blue background." height="209" width="290" src="http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.17.25_3272472547583060649.png" /> 
+<img loading="lazy" alt="Screenshot: Google login with black text on light blue background." height="209" width="290" src="/wp-content/uploads/2010/12/Screenshot2010-12-20at10.17.25_3272472547583060649.png" />
 <p>Much better. Except now there is no sign that I ever changed my browser preferences rendering them completely useless. So now designers have a choice between respecting browser preferences or largely designing a black and white site.</p>
 <p>The net result is that changing your browser colour preferences will have no effect on well coded sites and break a large number of sites. So why bother?</p>
 <h2 id="forced-mode">Forced Mode</h2>
 <p>So we’re left with forcing our preferred colours on web sites. This actually gives us high contrast and is most likely very useful for people with limited visibility. However, for people with dyslexia who wanted more readable colours<a href="#footnote1:1292840774264">1</a>{#footlink1:1292840774264.footnote} rather than just high contrast now tend to struggle because so much visual context is lost from the page. Sure, on a well coded site all the information is there, but different background colours is a really useful indicator for the various sections. That extra context and readability is now lost. That’s a disaster for someone with good vision who was trying to make the page more readable.</p>
 <p>Compare the very well coded BBC website with preferred colours vs with forced colours.</p>
-<figure><img loading="lazy" alt="Background colours on the BBC website make the sections on the page easier to distinguish." height="584" width="986" src="http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.27.52_4614989502413934317.png" /> <figcaption>BBC website with preferred colours. Note the colour preferences make no difference.</figcaption> </figure> 
-<figure><img loading="lazy" alt="Without the background colours sections are much harder to distinguish" height="577" width="984" src="http://www.symphonious.net/wp-content/uploads/2010/12/Screenshot2010-12-20at10.27.32_7374171245263605621.png" /> <figcaption>BBC website with forced colours. Preferred colours are now visible but decerning the boundaries of sections is much harder due to the lack of differentiating colours.</figcaption> </figure> 
+<figure><img loading="lazy" alt="Background colours on the BBC website make the sections on the page easier to distinguish." height="584" width="986" src="/wp-content/uploads/2010/12/Screenshot2010-12-20at10.27.52_4614989502413934317.png" /> <figcaption>BBC website with preferred colours. Note the colour preferences make no difference.</figcaption> </figure>
+<figure><img loading="lazy" alt="Without the background colours sections are much harder to distinguish" height="577" width="984" src="/wp-content/uploads/2010/12/Screenshot2010-12-20at10.27.32_7374171245263605621.png" /> <figcaption>BBC website with forced colours. Preferred colours are now visible but decerning the boundaries of sections is much harder due to the lack of differentiating colours.</figcaption> </figure>
 <p>It’s important to note that the BBC website is actually quite well coded – all the information is still available when you force the preferred colours, the designers simply have a significantly reduced ability to provide context and delineation, so inevitably the page becomes harder to read.</p>
 <h2 id="what-to-do-about-it">What to do About it?</h2>
 <p>Frankly, I have very little idea. The never properly implemented and now deprecated CSS system colours would have helped a lot in some cases. Design heavy websites would have still wanted their own colour set but web applications could have at least used them. Perhaps some way to specify a colour along with a fallback system colour could have worked. Then in the forced colour mode, the system colours would be used.</p>

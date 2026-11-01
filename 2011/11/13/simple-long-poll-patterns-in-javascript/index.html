@@ -5,11 +5,13 @@
 <title>Simple Long Poll Patterns in JavaScript · Symphonious</title>
 <meta name="description" content="A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d …">
 <link rel="canonical" href="https://www.symphonious.net/2011/11/13/simple-long-poll-patterns-in-javascript/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -31,78 +33,71 @@
 </div></header>
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d document them for posterity.
-Simple Long Poll Loop (function($) { var longPollUrl = &#39;/longpoll&#39;; var lastReceivedSequence; function poll() { $.ajax(longPollUrl, { data: { &#39;lastSequence&#39;: lastReceivedSequence }, dataType: &#39;json&#39;, timeout: 15000, success: function(data) { if (!data) return; lastReceivedSequence = data.sequenceNumber; $(window).trigger(&#39;onLongPollEvent&#39;, data); }, complete: poll }); } })(jQuery); "><header class="article-heading"><h1 data-pagefind-meta="title">Simple Long Poll Patterns in JavaScript</h1><p class="article-meta"><time datetime="2011-11-13">13 November 2011</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d document them for posterity.</p>
+Simple Long Poll Loop (function($) { var longPollUrl = &#39;/longpoll&#39;; var lastReceivedSequence; function poll() { $.ajax(longPollUrl, { data: { &#39;lastSequence&#39;: lastReceivedSequence }, dataType: &#39;json&#39;, timeout: 15000, success: function(data) { if (!data) return; lastReceivedSequence = data.sequenceNumber; $(window).trigger(&#39;onLongPollEvent&#39;, data); }, complete: poll }); } })(jQuery); There’s very little special about this – it basically just uses jQuery to do a standard long poll. The pattern that I like is that instead of calling a particular function directly to handle events it just uses the jQuery trigger function to fire an event that can be handled by any interested code, without introducing tight coupling between the two bits of code. Listeners would receive events with:
+"><header class="article-heading"><h1 data-pagefind-meta="title">Simple Long Poll Patterns in JavaScript</h1><p class="article-meta"><time datetime="2011-11-13">13 November 2011</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d document them for posterity.</p>
 <h2 id="simple-long-poll-loop">Simple Long Poll Loop</h2>
-<noscript>
-  <pre><code class="language-javascript javascript">(function($) {
-    var longPollUrl = '/longpoll';
-<pre><code>var lastReceivedSequence;
-
-function poll() {
-    $.ajax(longPollUrl, {
-        data: { 'lastSequence': lastReceivedSequence },
-        dataType: 'json',
-        timeout: 15000,
-        success: function(data) {
-            if (!data) return;
-            lastReceivedSequence = data.sequenceNumber;
-            $(window).trigger('onLongPollEvent', data);
-        },
-        complete: poll
-    });
-}
-</code></pre>
-<p>})(jQuery);</code></pre>
-</noscript></p>
-<p>There’s very little special about this – it basically just uses jQuery to do a standard long poll. The pattern that I like is that instead of calling a particular function directly to handle events it just uses the jQuery trigger function to fire an event that can be handled by any interested code, without introducing tight coupling between the two bits of code. Listeners would receive events with:</p>
-<noscript>
-  <pre><code class="language-javascript javascript">$(window).bind('onLongPollEvent', function(eve, longPollData) { ... });</code></pre>
-</noscript>
-<h2 id="automatically-reload-javascript-changes">Automatically Reload JavaScript Changes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">longPollUrl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/longpoll&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastReceivedSequence</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">poll</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ajax</span>(<span style="color:#a6e22e">longPollUrl</span>, {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;lastSequence&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">lastReceivedSequence</span> },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dataType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;json&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">timeout</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">15000</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lastReceivedSequence</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">sequenceNumber</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">trigger</span>(<span style="color:#e6db74">&#39;onLongPollEvent&#39;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">complete</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">poll</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})(<span style="color:#a6e22e">jQuery</span>);
+</span></span></code></pre></div><p>There’s very little special about this – it basically just uses jQuery to do a standard long poll. The pattern that I like is that instead of calling a particular function directly to handle events it just uses the jQuery trigger function to fire an event that can be handled by any interested code, without introducing tight coupling between the two bits of code. Listeners would receive events with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#39;onLongPollEvent&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">eve</span>, <span style="color:#a6e22e">longPollData</span>) { ... });
+</span></span></code></pre></div><h2 id="automatically-reload-javascript-changes">Automatically Reload JavaScript Changes</h2>
 <p>One of the internal tools I’ve been working on is our “big feedback” page for reporting build results. This page is displayed on a large monitor the whole team can see, so refreshing the page to load JavaScript changes requires actually getting up and walking over to it. Fortunately, there’s a simple pattern to get the JavaScript to reload itself:</p>
-<noscript>
-  <pre><code class="language-javascript javascript">var serverVersion;
-...
-if (data.serverVersion != serverVersion) {
-    window.location.reload();
-    return;
-}
-...</code></pre>
-</noscript>
-<p>Each long poll event sent down to the browser includes the server version – when it changes, the JavaScript reloads the page. There are two nice little details here:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">serverVersion</span>;
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">serverVersion</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">serverVersion</span>) {
+</span></span><span style="display:flex;"><span>    window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">reload</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>Each long poll event sent down to the browser includes the server version – when it changes, the JavaScript reloads the page. There are two nice little details here:</p>
 <ol>
 <li>Deploying a new version actually requires some downtime while the server restarts. Naive implementations will reload the page when the long poll request returns an error but that usually results in the page attempting to reload and also getting an error or no response from the server and now there’s no JavaScript running to recover. Instead, this will wait for the server to come back up and be answering requests again before reloading.</li>
 <li>So I don’t have to remember to update the server version, the server actually sends the UNIX time stamp from when it started up. Anytime the server restarts, that value changes and the JavaScript will reload. This can lead to some false positives but it’s extremely simple and effective. Another option would be for the build scripts to insert the SVN revision but that doesn’t work as well for development.</li>
 </ol>
 <p>Usually I insert this reload code directly into the long poll loop so that it is guaranteed to run first and avoid any potential problems with data formats changing. Even the serverVersion data format can change since it doesn’t try to parse it in any way – any change, including data.serverVersion no longer being present, will cause the page to reload.</p>
 <p>Put together the code comes out something like:</p>
-<noscript>
-  <pre><code class="language-javascript javascript">(function($) {
-    var longPollUrl = '/longpoll';
-<pre><code>var lastReceivedSequence;
-var serverVersion;
-
-function poll() {
-    $.ajax(longPollUrl, {
-        data: { 'lastSequence': lastReceivedSequence },
-        dataType: 'json',
-        timeout: 15000,
-        success: function(data) {
-            if (!data) return;
-            lastReceivedSequence = data.sequenceNumber;
-            if (data.serverVersion != serverVersion) {
-                window.location.reload();
-                return;
-            }
-            $(window).trigger('onLongPollEvent', data);
-        },
-        complete: poll
-    });
-}
-</code></pre>
-<p>})(jQuery);</code></pre>
-</noscript></p>
-<p>Nothing earth-shatteringly new, but handy little tools to have up your sleeve.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">longPollUrl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/longpoll&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastReceivedSequence</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">serverVersion</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">poll</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ajax</span>(<span style="color:#a6e22e">longPollUrl</span>, {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;lastSequence&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">lastReceivedSequence</span> },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dataType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;json&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">timeout</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">15000</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lastReceivedSequence</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">sequenceNumber</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">serverVersion</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">serverVersion</span>) {
+</span></span><span style="display:flex;"><span>                    window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">reload</span>();
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">trigger</span>(<span style="color:#e6db74">&#39;onLongPollEvent&#39;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">complete</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">poll</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})(<span style="color:#a6e22e">jQuery</span>);
+</span></span></code></pre></div><p>Nothing earth-shatteringly new, but handy little tools to have up your sleeve.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2011/09/26/background-logging-with-the-disruptor/"><span>← Earlier</span>Background Logging with the Disruptor</a><a href="/2011/11/27/looking-for-work-in-australia/"><span>Later →</span>Looking for Work In Australia</a></nav>
 </main>

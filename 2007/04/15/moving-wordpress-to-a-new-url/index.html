@@ -5,11 +5,13 @@
 <title>Moving WordPress To A New URL · Symphonious</title>
 <meta name="description" content="Every so often I want to play around with something new on my blog without trashing the public site. I have a local instance of WordPress that I do most of my …">
 <link rel="canonical" href="https://www.symphonious.net/2007/04/15/moving-wordpress-to-a-new-url/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -37,7 +39,7 @@
 <li>Copy over the WordPress files to the new location.</li>
 <li>Use <a href="http://www.skippy.net/blog/plugins/" title="Visit plugin homepage">WordPress Database Backup</a> to dump the database – or you could use mysqldump.</li>
 <li>Reload the database content into the test database and adjust the wp-config.php file if needed.</li>
-<li><code>update wp_options set option_value=&amp;#39;%TEST_SITE_URL%&amp;#39; where option_name like &amp;#39;siteurl&amp;#39;;</code></li>
+<li><code>update wp_options set option_value='%TEST_SITE_URL%' where option_name like 'siteurl';</code></li>
 </ol>
 <p>Step 4 is the bit I forget the details of – it lets you log in to your WordPress admin page instead of just being redirected back to the original blog. From there you can adjust the public URL in the options page and whatever other things you want to do.</p>
 </div></article>

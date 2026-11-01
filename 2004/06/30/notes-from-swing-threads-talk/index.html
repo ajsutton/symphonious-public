@@ -6,11 +6,13 @@
 <meta name="description" content="Notes from the session on Swing and Threads. Unchecked etc.
 ">
 <link rel="canonical" href="https://www.symphonious.net/2004/06/30/notes-from-swing-threads-talk/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -33,7 +35,126 @@
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Notes from the session on Swing and Threads. Unchecked etc.
 "><header class="article-heading"><h1 data-pagefind-meta="title">Notes from Swing &amp; Threads Talk</h1><p class="article-meta"><time datetime="2004-06-29">29 June 2004</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>Notes from the session on Swing and Threads. Unchecked etc.</p>
-<p>Using Threads Correctly And Effectively Todays modern application – many inherently latent sources. Talking to these sources nessecetates threads. Main thread – thread that calls main Event Dispatch Thread – dispatches java level AWT events Toolkit Thread – Dispatches events from windowing system In Applets: Multiple applets have multiple threads in teh same process. Actually depends on class loaders. Each applet has a dispatch thread. Also has an applet thread that calls start/stop/init Toolkit thread interfaces with native windowing system. Two Big Rules of Java Technology GUIs – Never invoke swing methods or swing code from anywhere but the EDT. – Swing is not thread safe. – AWT is thread safe. Can be called from multiple threads. – Avoid performing long operations (anything that may end up blocking, fileIO, socket IO etc) – Offload to a separate thread – SwingWorker will help do this. Recommended Application Structure public static void main(String[] args) { JFrame frame = … &lt;- Creating component on main thread not EDT. frame.pack(); frame.setVisible(true); } Recommend putting GUI loading into a runnable and call using invokeLater. Why you should creat eGUI on EDT Event dispatch thread is created as needed and is not under your control. Created when there are events on teh event thread. Don&rsquo;t know when events are created. Listeners may be notified before you have finished creating the GUI. Some JFC/Swing API-based components use invokeLater if not called on event dispatch thread, resultin gin multiple threads accessing same component. Advanced App Startup - Show splash screen immediately from main thread using only AWT. (AWT is thread safe) - Use invokeLater to load remainder of UI - Break loading into small pieces interspersed with paint calls to splash screen. - Consider loading classes that will be needed before you show the UI to improve perceived performance. - Use -verbose to determine classes that are required. - Update progress calls splashscreen&rsquo;s paint directly. Handling Lengthy Tasks Pushing too many runnables onto the EDT may get clogged. Can delay UI updates to coalase results. Can schedule updates to the user interface. Need to handle partial and final results on the event dispatch thread. notify property change listeners on EDT. Track status on EDT. Using java.lang.reflect.Proxy Can be used to seamlessly invoke methods on the EDT from another thread. spin.sourceforge.net is built on this. Can also be used to detect when the model is sending out a notification from threads other than event dispatch threads. Use proxy to generate implementation of interface. * Invocation handler will use invokeLater to invoke method on EDT * Consumers continue to directly invoke method on object without worrying abuot thread. Automating Use of ModelListener Can register a ComponentUI. UIManager.put(&ldquo;TableUI&rdquo;, &ldquo;ModelListener&rdquo;); public static ComponentuI createUI(JComponent c) { addListener(((JTable)c).getModeL()); // Attach a property change listener to listen for model changes etc. return UIManager.getLookAndFeelDefaults().getuI(c); } Threading Gotchas Avoid overwhelming event dispatch thread. Happens when invokeLater is called too often. Can create a coalescing runnable to avoid this. Can check for this happening by periodically posting a runnable to the event dispatch thread and checking how long it takes to execute. Suggested posting a Runnable every 1 minute. Future Combine Toolkit/EDT threads -Improve performance of event dispatching -Some toolkits require that painting occurs on the toolkit thread. This requires a bunch of thread synchronizations and can cause serious performance problems. Developer controlled event dispatching - Start event dispatch thread from main. Foxtrot/Spin - Both centre around how modal dialogs are implemented. Modal dialogs block EDT but spawn a new EDT. Splash screen helper - Provide a SplashScreen class or command line args to show a splash screen. - Possibly create an application class that you instantiate and call run on. Integrating SwingWorker into the core. foxtrot.sourceforge.net jdnc.dev.java.net javadesktop.org</p></div></article>
+<h2 id="using-threads-correctly-and-effectively">Using Threads Correctly And Effectively</h2>
+<p>Todays modern application – many inherently latent sources. Talking to these sources nessecetates threads.</p>
+<p>Main thread – thread that calls main</p>
+<p>Event Dispatch Thread – dispatches java level AWT events</p>
+<p>Toolkit Thread – Dispatches events from windowing system</p>
+<p>In Applets: Multiple applets have multiple threads in teh same process. Actually depends on class loaders. Each applet has a dispatch thread. Also has an applet thread that calls start/stop/init</p>
+<p>Toolkit thread interfaces with native windowing system.</p>
+<h2 id="two-big-rules-of-java-technology-guis">Two Big Rules of Java Technology GUIs</h2>
+<ul>
+<li>
+<p>Never invoke swing methods or swing code from anywhere but the EDT.</p>
+<ul>
+<li>
+<p>Swing is not thread safe.</p>
+</li>
+<li>
+<p>AWT is thread safe. Can be called from multiple threads.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Avoid performing long operations (anything that may end up blocking, fileIO, socket IO etc)</p>
+<ul>
+<li>
+<p>Offload to a separate thread</p>
+</li>
+<li>
+<p>SwingWorker will help do this.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="recommended-application-structure">Recommended Application Structure</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    JFrame frame <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#f92672">&lt;-</span> Creating component on main thread not EDT.
+</span></span><span style="display:flex;"><span>    frame.<span style="color:#a6e22e">pack</span>();
+</span></span><span style="display:flex;"><span>    frame.<span style="color:#a6e22e">setVisible</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Recommend putting GUI loading into a runnable and call using invokeLater.</p>
+<h2 id="why-you-should-creat-egui-on-edt">Why you should creat eGUI on EDT</h2>
+<p>Event dispatch thread is created as needed and is not under your control. Created when there are events on teh event thread. Don&rsquo;t know when events are created.</p>
+<p>Listeners may be notified before you have finished creating the GUI.</p>
+<p>Some JFC/Swing API-based components use invokeLater if not called on event dispatch thread, resultin gin multiple threads accessing same component.</p>
+<h2 id="advanced-app-startup">Advanced App Startup</h2>
+<ul>
+<li>
+<p>Show splash screen immediately from main thread using only AWT. (AWT is thread safe)</p>
+</li>
+<li>
+<p>Use invokeLater to load remainder of UI</p>
+</li>
+<li>
+<p>Break loading into small pieces interspersed with paint calls to splash screen.</p>
+</li>
+<li>
+<p>Consider loading classes that will be needed before you show the UI to improve perceived performance.</p>
+</li>
+<li>
+<p>Use -verbose to determine classes that are required.</p>
+</li>
+<li>
+<p>Update progress calls splashscreen&rsquo;s paint directly.</p>
+</li>
+</ul>
+<h2 id="handling-lengthy-tasks">Handling Lengthy Tasks</h2>
+<p>Pushing too many runnables onto the EDT may get clogged. Can delay UI updates to coalase results. Can schedule updates to the user interface.</p>
+<p>Need to handle partial and final results on the event dispatch thread. notify property change listeners on EDT. Track status on EDT.</p>
+<h2 id="using-javalangreflectproxy">Using java.lang.reflect.Proxy</h2>
+<p>Can be used to seamlessly invoke methods on the EDT from another thread. spin.sourceforge.net is built on this.</p>
+<p>Can also be used to detect when the model is sending out a notification from threads other than event dispatch threads.</p>
+<p>Use proxy to generate implementation of interface.</p>
+<ul>
+<li>
+<p>Invocation handler will use invokeLater to invoke method on EDT</p>
+</li>
+<li>
+<p>Consumers continue to directly invoke method on object without worrying abuot thread.</p>
+</li>
+</ul>
+<h2 id="automating-use-of-modellistener">Automating Use of ModelListener</h2>
+<p>Can register a ComponentUI.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>UIManager.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;TableUI&#34;</span>, <span style="color:#e6db74">&#34;ModelListener&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ComponentuI <span style="color:#a6e22e">createUI</span>(JComponent c) {
+</span></span><span style="display:flex;"><span>    addListener(((JTable)c).<span style="color:#a6e22e">getModeL</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Attach a property change listener to listen for model changes etc.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> UIManager.<span style="color:#a6e22e">getLookAndFeelDefaults</span>().<span style="color:#a6e22e">getuI</span>(c);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="threading-gotchas">Threading Gotchas</h2>
+<p>Avoid overwhelming event dispatch thread. Happens when invokeLater is called too often. Can create a coalescing runnable to avoid this. Can check for this happening by periodically posting a runnable to the event dispatch thread and checking how long it takes to execute. Suggested posting a Runnable every 1 minute.</p>
+<h2 id="future">Future</h2>
+<p>Combine Toolkit/EDT threads</p>
+<ul>
+<li>
+<p>Improve performance of event dispatching</p>
+</li>
+<li>
+<p>Some toolkits require that painting occurs on the toolkit thread. This requires a bunch of thread synchronizations and can cause serious performance problems.</p>
+</li>
+</ul>
+<p>Developer controlled event dispatching</p>
+<ul>
+<li>Start event dispatch thread from main.</li>
+</ul>
+<p>Foxtrot/Spin</p>
+<ul>
+<li>Both centre around how modal dialogs are implemented. Modal dialogs block EDT but spawn a new EDT.</li>
+</ul>
+<p>Splash screen helper</p>
+<ul>
+<li>
+<p>Provide a SplashScreen class or command line args to show a splash screen.</p>
+</li>
+<li>
+<p>Possibly create an application class that you instantiate and call run on.</p>
+</li>
+</ul>
+<p>Integrating SwingWorker into the core.</p>
+<p>foxtrot.sourceforge.net</p>
+<p>jdnc.dev.java.net</p>
+<p>javadesktop.org</p></div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2004/06/30/scott-mcnealy-keynote/"><span>← Earlier</span>Scott McNealy Keynote</a><a href="/2004/06/30/on-the-dashboard-thing/"><span>Later →</span>On The Dashboard Thing</a></nav>
 </main>
 <footer class="site-footer" data-pagefind-ignore><div class="page-shell"><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></div></footer>

@@ -4,13 +4,16 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Odd Bits Of HTML Behaviour · Symphonious</title>
 <meta name="description" content="If you wanted to create a hyperlink to a file called “Me &amp; You”, which of the following should you use?
-&lt;a href=&quot;Me &amp; You&quot;&gt; or &lt;a …">
+&lt;a href=&quot;Me &amp; You&quot;&gt; or
+&lt;a …">
 <link rel="canonical" href="https://www.symphonious.net/2004/09/08/odd-bits-of-html-behaviour/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -32,12 +35,15 @@
 </div></header>
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="If you wanted to create a hyperlink to a file called “Me &amp; You”, which of the following should you use?
-&lt;a href=&quot;Me &amp; You&quot;&gt; or &lt;a href=&quot;Me &amp;amp; You&quot;&gt; In other words, should you escape the ampersand or not? It depends. If you create a plain HTML page, you must not escape the ampersand or it won&#39;t work (browser dependent obviously), however if you leave it unescaped it will work in every browser. If however, you create an XHTML document you should escape the ampersand, otherwise XML parsers will break when parsing the document and browsers will get the link right as long as they are kicked into XHTML mode by the appropriate declaration at the top of the file. If you want to test this try linking to an URL with &amp;amp; in it (ie: the file name literally includes the HTML entity for ampersand). Better yet, don&rsquo;t put stupid characters in your URLs.
+&lt;a href=&quot;Me &amp; You&quot;&gt; or
+&lt;a href=&quot;Me &amp;amp; You&quot;&gt; In other words, should you escape the ampersand or not? It depends. If you create a plain HTML page, you must not escape the ampersand or it won&rsquo;t work (browser dependent obviously), however if you leave it unescaped it will work in every browser. If however, you create an XHTML document you should escape the ampersand, otherwise XML parsers will break when parsing the document and browsers will get the link right as long as they are kicked into XHTML mode by the appropriate declaration at the top of the file. If you want to test this try linking to an URL with
 "><header class="article-heading"><h1 data-pagefind-meta="title">Odd Bits Of HTML Behaviour</h1><p class="article-meta"><time datetime="2004-09-08">8 September 2004</time> <span aria-hidden="true">·</span> 1 min read</p></header><div class="prose"><p>If you wanted to create a hyperlink to a file called “Me &amp; You”, which of the following should you use?</p>
-<pre><code>&lt;a href=&quot;Me &amp; You&quot;&gt; or 
-
-&lt;a href=&quot;Me &amp;amp; You&quot;&gt; In other words, should you escape the ampersand or not? It depends. If you create a plain HTML page, you must not escape the ampersand or it won't work (browser dependent obviously), however if you leave it unescaped it will work in every browser. If however, you create an XHTML document you should escape the ampersand, otherwise XML parsers will break when parsing the document and browsers will get the link right as long as they are kicked into XHTML mode by the appropriate declaration at the top of the file. If you want to test this try linking to an URL with 
+<pre><code>&lt;a href=&quot;Me &amp; You&quot;&gt;
 </code></pre>
+<p>or</p>
+<pre><code>&lt;a href=&quot;Me &amp;amp; You&quot;&gt;
+</code></pre>
+<p>In other words, should you escape the ampersand or not? It depends. If you create a plain HTML page, you must not escape the ampersand or it won&rsquo;t work (browser dependent obviously), however if you leave it unescaped it will work in every browser. If however, you create an XHTML document you should escape the ampersand, otherwise XML parsers will break when parsing the document and browsers will get the link right as long as they are kicked into XHTML mode by the appropriate declaration at the top of the file. If you want to test this try linking to an URL with</p>
 <p><code>&amp;amp;</code> in it (ie: the file name literally includes the HTML entity for ampersand). Better yet, don&rsquo;t put stupid characters in your URLs.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2004/09/07/greg-im-well-aware-of-when-its-appropriate-to-use-an-apostrophe/"><span>← Earlier</span>Greg, Im Well Aware of When Its Appropriate To Use An Apostrophe</a><a href="/2004/09/09/ampersand-redux/"><span>Later →</span>Ampersand Redux</a></nav>

@@ -39,28 +39,16 @@
 &lt;h1&gt;{{ t(‘header.title&amp;rsquo;) }}&lt;/h1&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Using a directive is nice and simple but doesn&amp;rsquo;t work if the text is dynamic (any {{data}} values are already resolved in the element text). Explicitly calling a function to perform the translation leads to pretty unwieldy templates.&lt;/p&gt;
-&lt;p&gt;What we&amp;rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use &lt;i18n&gt;&lt;/i18n&gt; instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&amp;rsquo;s not. So a simple example might be:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello world!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello world!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.&lt;/p&gt;
+&lt;p&gt;What we&amp;rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use &lt;code&gt;&amp;lt;i18n&amp;gt;&amp;lt;/i18n&amp;gt;&lt;/code&gt; instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&amp;rsquo;s not. So a simple example might be:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;Hello world!&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;{{translate(&amp;#34;Hello world!&amp;#34;)}}&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.&lt;/p&gt;
 &lt;p&gt;When the string includes parameters we write them in the same way as a normal Vue template, for example:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello {{name}}!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;And our pre-loader translates it in exactly the same way:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello {{name\}\}!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;Hello {{name}}!&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And our pre-loader translates it in exactly the same way:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;{{translate(&amp;#34;Hello {{name\}\}!&amp;#34;)}}&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.&lt;/p&gt;
 &lt;p&gt;At this point, Vue won&amp;rsquo;t replace {{name}} with the actual value of name because it&amp;rsquo;s part of a JavaScript string, not part of the template. The good part of that is that our translation function will now be looking up the string to translate prior to variable substitution.  So it will look for a translation for “Hello {{name}}!” rather than needing translations for every possible name. Once we find the translation, the translate function then uses a regex to find and replace each placeholder with the actual value from the vue instance. &lt;/p&gt;
 &lt;p&gt;Notably, this process means that you can&amp;rsquo;t use anything but a simple variable name in placeholders within translated strings (though it can refer to a computed property). This is actually a good thing because we don&amp;rsquo;t want to send a string off to the translators that contains complex JavaScript they won&amp;rsquo;t understand. In fact, we have tests that place additional restrictions on strings to translate to ensure they are easily manageable through the translation process.&lt;/p&gt;
 </description>
@@ -121,17 +109,11 @@
       <guid>https://www.symphonious.net/2016/10/25/testinglmax-isolate-ui-tests-with-vncserver/</guid>
       <description>&lt;p&gt;One reason that automated UI tests can be unreliable is that they tend to be sensitive to what else is on screen at the time and even things like the current screen size. Developers running the tests locally also find it annoying to have windows opening and closing on their machine while the test runs and are unable to do anything else because their clicking might interfere with the test.&lt;/p&gt;
 &lt;p&gt;At LMAX we solve that by isolating tests in their own X session, created using vncserver. We simply start vncserver with:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;vncserver :20 -geometry 1600x1200
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Then set DISPLAY=:20 as an environment variable when starting WebDriver&amp;rsquo;s Firefox instance:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;FirefoxBinary firefoxBinary &lt;span style=&#34;color: #666666;&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;new&lt;/span&gt; FirefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;();&lt;/span&gt;
-firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;setEnvironmentProperty&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;DISPLAY&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;:20&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;The Firefox window then pops up in it&amp;rsquo;s own isolated X session. We can still use a vnc client to watch as the test runs but we can also let it run in the background and continue using the machine for other things. In CI it allows us to run UI tests on a headless server.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;vncserver :20 -geometry 1600x1200
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then set DISPLAY=:20 as an environment variable when starting WebDriver&amp;rsquo;s Firefox instance:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;FirefoxBinary firefoxBinary = new FirefoxBinary();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;firefoxBinary.setEnvironmentProperty(&amp;#34;DISPLAY&amp;#34;, &amp;#34;:20&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Firefox window then pops up in it&amp;rsquo;s own isolated X session. We can still use a vnc client to watch as the test runs but we can also let it run in the background and continue using the machine for other things. In CI it allows us to run UI tests on a headless server.&lt;/p&gt;
 &lt;p&gt;Since we run a number of tests in parallel, in CI we start a number of vncserver instances and allocate a different one to each running test to ensure they&amp;rsquo;re completely isolated.&lt;/p&gt;
 &lt;p&gt;Simple, but incredibly effective.&lt;/p&gt;
 </description>
@@ -145,11 +127,9 @@ firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span 
       <description>&lt;p&gt;When an automated UI test fails, it can be hard to tell exactly what went wrong just from the failure message. The failure message typically just says that some element the test was looking for wasn&amp;rsquo;t found, but it doesn&amp;rsquo;t tell you what was there.  Was there an error message displayed instead? Was the operation still executing? Did something completely unexpected happen instead?&lt;/p&gt;
 &lt;p&gt;To answer those questions our DSL automatically captures a screenshot when any UI operation fails and we include a link to it in the failure message. That way when someone reviews the test result they can see exactly what was on screen which typically makes it straight forward to identify what went wrong and fix it.&lt;/p&gt;
 &lt;p&gt;Until recently we&amp;rsquo;d been using the convenient and helpful looking &lt;code&gt;TakesScreenshot.getScreenshotAs&lt;/code&gt; method that WebDriver provides.  For example:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #666666;&#34;&gt;((&lt;/span&gt;TakesScreenshot&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt;webDriver&lt;span style=&#34;color: #666666;&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;getScreenshotAs&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;br /&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;    new&lt;/span&gt; SaveScreenshotOutputType&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;pngFilename&lt;span style=&#34;color: #666666;&#34;&gt;));&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;As expected, this creates a PNG image in the specified location that looks for all the world like a screenshot of the browser content. Unfortunately, it&amp;rsquo;s lying.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;((TakesScreenshot)webDriver).getScreenshotAs(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    new SaveScreenshotOutputType(pngFilename));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As expected, this creates a PNG image in the specified location that looks for all the world like a screenshot of the browser content. Unfortunately, it&amp;rsquo;s lying.&lt;/p&gt;
 &lt;p&gt;WebDriver actually does something very clever and gets the browser to render the page content into a canvas element and then saves that as the PNG file. This is an extremely close approximation of what the page looks like with two important exceptions:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;It doesn&amp;rsquo;t respect the viewport size so body content is never scrolled off-screen.&lt;/li&gt;
@@ -157,11 +137,8 @@ firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span 
 &lt;/ol&gt;
 &lt;p&gt;Both of these things can be an issue – the scrolled-off-screen one being the most problematic.  Modern WebDriver quite accurately simulates a user clicking and typing keys so if somethings not on screen it can&amp;rsquo;t be clicked. When your test fails because an element was “present but not visible” and the screenshot shows it as very clearly visible, hilarity ensues. Very frustrating hilarity.&lt;/p&gt;
 &lt;p&gt;To fix this we&amp;rsquo;ve started taking honest-to-goodness screenshots. Since all our tests get their own X session (courtesy of vncserver) their windows are completely isolated from each other and a dump of the entire screen will capture precisely what a real user would see, browser chrome and scrolling included. Linux provides an entertaining array of options for capturing screenshots from the command line but the one that happened to be already installed was import, part of the ImageMagick suite. We simply execute:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;import -display :20 -window root screenshot.png
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;where :20 is the X display this particular test has been allocated and screenshot.png is where we want the screenshot to wind up.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import -display :20 -window root screenshot.png
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where :20 is the X display this particular test has been allocated and screenshot.png is where we want the screenshot to wind up.&lt;/p&gt;
 &lt;p&gt;Since the WebDriver screenshot can be useful as well – for example finding out an error message is displayed at the top of the screen  we continue to grab that too.&lt;/p&gt;
 &lt;p&gt;Finally, for completeness we grab a dump of the DOM to a HTML file so we can later inspect what IDs, classes, attributes etc are present, including any hidden elements. &lt;code&gt;webDriver.getPageSource()&lt;/code&gt; makes that easy and we append an extra HTML comment that includes webDriver.getCurrentUrl() for good measure.&lt;/p&gt;
 </description>
@@ -189,18 +166,15 @@ firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span 
 &lt;p&gt;Obviously, finding issues only after production data has gone wrong is not something we ever want to do but it&amp;rsquo;s still a useful safety net if something slips through all our pre-release testing and the database schema constraints we use. Typically when we do find issues they are minor inconsistencies that don&amp;rsquo;t cause any issues now, but are like little time bombs just waiting for a future release to assume it can&amp;rsquo;t possibly happen. So even getting feedback that late in the process often allows us to avoid any user-noticeable effects.&lt;/p&gt;
 &lt;h3 id=&#34;making-them-easy&#34;&gt;Making Them Easy&lt;/h3&gt;
 &lt;p&gt;We have a base class we extend our compatibility tests from which makes it easy to get a connection to the database and has a few handy utilities for asserting things. By far the most useful however is the &lt;code&gt;assertNoRowsMatch&lt;/code&gt; method. It does exactly what it says – takes an SQL query and asserts that no rows match. If any do, it prints them out so you get really useful debug information to start investigating the problem. For example:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #aa22ff;&#34;&gt;@Test&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #b00040;&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #0000ff;&#34;&gt;shouldHaveAPrincipalForEveryAccount&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;{&lt;/span&gt;
-  assertNoRowsMatch&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
-    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;SELECT a.account_id, a.name &#34;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;+&lt;/span&gt;
-    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;FROM account a &#34;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;+&lt;/span&gt;
-    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;LEFT JOIN principal p ON a.principal_id = p.principal_id &#34;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;+&lt;/span&gt;
-    &lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;WHERE p.principal_id IS NULL&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;);&lt;/span&gt;
-&lt;span style=&#34;color: #666666;&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;If we&amp;rsquo;ve somehow wound up with an account with no principal that could log into it the test will print the account ID and name so we can investigate what happened and clean up the data.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Test
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;public void shouldHaveAPrincipalForEveryAccount() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  assertNoRowsMatch(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;#34;SELECT a.account_id, a.name &amp;#34; +
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;#34;FROM account a &amp;#34; +
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;#34;LEFT JOIN principal p ON a.principal_id = p.principal_id &amp;#34; +
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;#34;WHERE p.principal_id IS NULL&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we&amp;rsquo;ve somehow wound up with an account with no principal that could log into it the test will print the account ID and name so we can investigate what happened and clean up the data.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
     </item>
@@ -217,17 +191,14 @@ firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span 
 &lt;p&gt;All the key information we need is in that log statement – the alias, real name plus unique identifiers (externalId and internalId).&lt;/p&gt;
 &lt;h3 id=&#34;name-your-threads&#34;&gt;Name Your Threads&lt;/h3&gt;
 &lt;p&gt;We use a custom JUnit test runner (via the @RunWith annotation) so we can run tests within a test suite in parallel. With tests running in parallel all their output gets mixed up and becomes hard to read.  Recently we started setting the test thread names to the name of the test case. &lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #b00040;&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #0000ff;&#34;&gt;executeTest&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
-  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;final&lt;/span&gt; FrameworkMethod method&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; 
-  &lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;final&lt;/span&gt; Description description&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;{&lt;/span&gt;
-    Thread&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;currentThread&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;setName&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;
-      getThreadName&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;description&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;getMethodName&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;()));&lt;/span&gt;
-    methodBlock&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;method&lt;span style=&#34;color: #666666;&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;evaluate&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;();&lt;/span&gt;
-&lt;span style=&#34;color: #666666;&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;We actually trim the method name to 30 characters (cutting off the &lt;em&gt;start&lt;/em&gt; rather than the end which tends to work better with the way we name tests) so we get output like:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;private void executeTest(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  final FrameworkMethod method,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  final Description description) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Thread.currentThread().setName(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      getThreadName(description.getMethodName()));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    methodBlock(method).evaluate();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We actually trim the method name to 30 characters (cutting off the &lt;em&gt;start&lt;/em&gt; rather than the end which tends to work better with the way we name tests) so we get output like:&lt;/p&gt;
 &lt;pre&gt;21:28:47,356 INFO  …tityAndPriceAndNoStopLossOffset [TestContext] Created PartyCode XMCS (alias: marketMaker)&lt;br /&gt;&lt;br /&gt;21:28:47,356 INFO  …erWithZeroSuppliedInstructionId [TestContext] Created PartyCode U6HK (alias: marketMaker)&lt;br /&gt;&lt;br /&gt;21:28:47,356 INFO  …ctionIdIfFirstOrderHasCompleted [TestContext] Created PartyCode 3DS6 (alias: marketMaker)&lt;br /&gt;&lt;br /&gt;21:28:47,356 INFO  …StopLossOffsetAndAStopLossPrice [TestContext] Created PartyCode XFY8 (alias: marketMaker)&lt;/pre&gt;
 &lt;p&gt;There are a few cases where we spawn additional threads within a test (typically to pull data from long poll or other push event channels). In those cases we generally pass the thread name down with an additional prefix (e.g. LongPoll-…StopLossOffsetAndAStopLossPrice) so we can still associate that output with the right test.&lt;/p&gt;
 &lt;h3 id=&#34;time-traveller-names&#34;&gt;Time Traveller Names&lt;/h3&gt;
@@ -275,7 +246,7 @@ firefoxBinary&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span 
 &lt;p&gt;someUser is just an alias, the DSL creates a unique username to use and the system assigns a unique account ID that the DSL keeps track of for us. So to write a test that the new account audit record is written correctly, we need a way to build the expected audit string.&lt;/p&gt;
 &lt;p&gt;Our initial attempt was straight forward enough:&lt;/p&gt;
 &lt;pre&gt;adminAPI.verifyAuditEntry(&lt;br /&gt;  &#34;expression: Created account &amp;lt;accountId&amp;gt; with username &amp;lt;username&amp;gt;.&#34;,&lt;br /&gt; &#34;account: someUser&#34;,&lt;br /&gt;);&lt;/pre&gt;
-&lt;p&gt;The DSL substitutes &lt;accountId&gt; and &lt;username&gt; with the real values for us. Simple, neat, worked well for quite a while. Except that over time we kept finding more and more things that needed to be substituted and encountered situations where an audit log would reference to two different accounts or multiple instruments, leading us to have &lt;accountId2&gt; and &lt;accountId3&gt; replacements.&lt;/p&gt;
+&lt;p&gt;The DSL substitutes &lt;code&gt;&amp;lt;accountId&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;username&amp;gt;&lt;/code&gt; with the real values for us. Simple, neat, worked well for quite a while. Except that over time we kept finding more and more things that needed to be substituted and encountered situations where an audit log would reference to two different accounts or multiple instruments, leading us to have &lt;code&gt;&amp;lt;accountId2&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;accountId3&amp;gt;&lt;/code&gt; replacements.&lt;/p&gt;
 &lt;p&gt;So a little while back some of my clever colleagues changed things around to a slightly more complex but much more flexible syntax:&lt;/p&gt;
 &lt;pre&gt;adminAPI.verifyAuditEntry(&lt;br /&gt;  &#34;expression: Created account &amp;lt;accountId:someUser&amp;gt; with username &amp;lt;username:someUser&amp;gt;.&#34;&lt;br /&gt;);&lt;/pre&gt;
 &lt;p&gt;Essentially, the replacement now contains both the type of value to insert as well as the alias to look up. This has been a minor revolution for our DSL – it&amp;rsquo;s now much easier to handle all sorts of complex cases and it&amp;rsquo;s much clearer which alias is being used for each replacement.&lt;/p&gt;

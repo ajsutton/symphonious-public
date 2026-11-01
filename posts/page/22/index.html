@@ -5,11 +5,12 @@
 <title>Posts · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/posts/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -47,8 +48,8 @@
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-01-25">25 Jan 2010</time></div><div><h2><a href="/2010/01/25/using-ivy-for-dependency-management/">Using Ivy for Dependency Management</a></h2><div class="prose excerpt"><p>At first glance, <a href="http://ant.apache.org/ivy/">Ivy</a> looks like a re-implementation of Maven’s dependency management that works nicely with ant, and to some degree it is, but it also adds some pretty significant improvements and some pretty significant complexity.</p>
 <h3 id="maven-compatibility">Maven Compatibility</h3>
 <p>Firstly, Ivy is compatible with Maven repositories, so if you think the way Maven manages dependencies is perfect, but don’t want to buy into the rest of Maven, Ivy provides a good answer. The configuration is a little bit different and you’ll have to learn a little bit about Ivy’s configurations which are both more powerful and more complex than Maven’s dependency “scope”, but you won’t have to go too far into them.</p></div><a class="read-more" href="/2010/01/25/using-ivy-for-dependency-management/">Continue reading<span class="sr-only">: Using Ivy for Dependency Management</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-25">25 Jan 2010</time></div><div><h2><a href="/2010/01/25/ant-subant-and-basedir/">Ant, Subant and Basedir</a></h2><div class="prose excerpt"><p><img loading="lazy" alt="Apache Ant logo" width="115" height="75" src="http://www.symphonious.net/wp-content/uploads/2010/01/project-logo_6038245254255283799.gif" style=" float: left;" />Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the <ant> task with the <subant> task you’re probably in for a surprise.</p>
-<p>I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the <ant> task to build it. The ant task was:</p></div><a class="read-more" href="/2010/01/25/ant-subant-and-basedir/">Continue reading<span class="sr-only">: Ant, Subant and Basedir</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-25">25 Jan 2010</time></div><div><h2><a href="/2010/01/25/ant-subant-and-basedir/">Ant, Subant and Basedir</a></h2><div class="prose excerpt"><p><img loading="lazy" alt="Apache Ant logo" width="115" height="75" src="/wp-content/uploads/2010/01/project-logo_6038245254255283799.gif" style=" float: left;" />Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the <code>&lt;ant&gt;</code> task with the <code>&lt;subant&gt;</code> task you’re probably in for a surprise.</p>
+<p>I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the <code>&lt;ant&gt;</code> task to build it. The ant task was:</p></div><a class="read-more" href="/2010/01/25/ant-subant-and-basedir/">Continue reading<span class="sr-only">: Ant, Subant and Basedir</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-01-22">22 Jan 2010</time></div><div><h2><a href="/2010/01/22/three-types-of-ant-scripts/">Three Types of Ant Scripts</a></h2><div class="prose excerpt"><p><a href="http://bryanpendleton.blogspot.com/2010/01/ant-version-18-is-nearing-release.html">Bryan comments on the three types of ant scripts</a>:</p>
 <blockquote>
 <p>In my experience, there are three types of Ant scripts that you encounter &ldquo;in the wild&rdquo;:</p>

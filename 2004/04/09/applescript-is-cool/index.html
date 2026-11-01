@@ -5,11 +5,13 @@
 <title>AppleScript is cool · Symphonious</title>
 <meta name="description" content="I hate how slow Entourage is when accessing an imap server. Most of it&rsquo;s problems stem from the fact that it only downloads things from the server when …">
 <link rel="canonical" href="https://www.symphonious.net/2004/04/09/applescript-is-cool/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -36,15 +38,16 @@
 <p>The solution? Applescript. Originally I added the following line to my crontab and was happy:</p>
 <p><code>osascript -e 'tell application &quot;Mail&quot; to sychronize with account &quot;adrian@intencha.com&quot;'</code></p>
 <p>The trouble being that if I quit Mail, cron would start it again every minute. A little more applescript to the rescue:</p>
-<p><code style="white-space: pre">tell application &ldquo;Finder&rdquo;
-set appIsRunning to process &ldquo;Mail&rdquo; exists
-end tell</p>
-<p>if (appIsRunning) then
-tell application &ldquo;Mail&rdquo;
-synchronize with account &ldquo;<a href="mailto:adrian@intencha.com">adrian@intencha.com</a>&rdquo;
-end tell
-end if</code></p>
-<p>Now Mail will synchronize every mailbox in the IMAP account every minute (I&rsquo;ll probably drop that back to every 2 or 3 minutes) but do nothing if Mail isn&rsquo;t already running. Applescript is cool.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-applescript" data-lang="applescript"><span style="display:flex;"><span><span style="color:#66d9ef">tell</span> application <span style="color:#e6db74">&#34;Finder&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">set</span> appIsRunning <span style="color:#66d9ef">to</span> process <span style="color:#e6db74">&#34;Mail&#34;</span> exists
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span> <span style="color:#66d9ef">tell</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (appIsRunning) <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">tell</span> application <span style="color:#e6db74">&#34;Mail&#34;</span>
+</span></span><span style="display:flex;"><span>        synchronize <span style="color:#66d9ef">with</span> account <span style="color:#e6db74">&#34;adrian@intencha.com&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span> <span style="color:#66d9ef">tell</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span> <span style="color:#66d9ef">if</span>
+</span></span></code></pre></div><p>Now Mail will synchronize every mailbox in the IMAP account every minute (I&rsquo;ll probably drop that back to every 2 or 3 minutes) but do nothing if Mail isn&rsquo;t already running. Applescript is cool.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2004/04/09/leos-lost-it/"><span>← Earlier</span>Leo’s Lost It</a><a href="/2004/04/09/xslt-support/"><span>Later →</span>XSLT Support</a></nav>
 </main>

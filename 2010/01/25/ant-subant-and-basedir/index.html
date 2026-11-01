@@ -5,11 +5,13 @@
 <title>Ant, Subant and Basedir · Symphonious</title>
 <meta name="description" content="Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you …">
 <link rel="canonical" href="https://www.symphonious.net/2010/01/25/ant-subant-and-basedir/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -30,14 +32,14 @@
 
 </div></header>
 
-<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the task with the task you’re probably in for a surprise.
-I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the task to build it. The ant task was:
-"><header class="article-heading"><h1 data-pagefind-meta="title">Ant, Subant and Basedir</h1><p class="article-meta"><time datetime="2010-01-25">25 January 2010</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p><img loading="lazy" alt="Apache Ant logo" width="115" height="75" src="http://www.symphonious.net/wp-content/uploads/2010/01/project-logo_6038245254255283799.gif" style=" float: left;" />Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the <ant> task with the <subant> task you’re probably in for a surprise.</p>
-<p>I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the <ant> task to build it. The ant task was:</p>
-<pre><code>&amp;#60;ant antfile=&quot;build.xml&quot; target=&quot;dist&quot; dir=&quot;projectDir&quot; /&amp;#62;
+<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the &lt;ant&gt; task with the &lt;subant&gt; task you’re probably in for a surprise.
+I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the &lt;ant&gt; task to build it. The ant task was:
+"><header class="article-heading"><h1 data-pagefind-meta="title">Ant, Subant and Basedir</h1><p class="article-meta"><time datetime="2010-01-25">25 January 2010</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p><img loading="lazy" alt="Apache Ant logo" width="115" height="75" src="/wp-content/uploads/2010/01/project-logo_6038245254255283799.gif" style=" float: left;" />Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the <code>&lt;ant&gt;</code> task with the <code>&lt;subant&gt;</code> task you’re probably in for a surprise.</p>
+<p>I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the <code>&lt;ant&gt;</code> task to build it. The ant task was:</p>
+<pre><code>&lt;ant antfile=&quot;build.xml&quot; target=&quot;dist&quot; dir=&quot;projectDir&quot; /&gt;
 </code></pre>
 <p>As far as that main antfile is concerned, everything is perfect – the basedir is the directory that it’s build.xml is in and all is good with the world. However, if that build.xml happens to use subant, the basedir <em>will not be changed</em>. Basically, basedir is now a user configured property rather than a calculated value so it doesn’t get changed. However, if you instead use:</p>
-<pre><code>&amp;#60;ant antfile=&quot;projectDir/build.xml&quot; target=&quot;dist&quot; /&amp;#62;
+<pre><code>&lt;ant antfile=&quot;projectDir/build.xml&quot; target=&quot;dist&quot; /&gt;
 </code></pre>
 <p>It all works out. The main build.xml still gets the basedir as projectDir but when it uses subant, the basedir will be automatically changed to whatever directory the build file subant points to is in.</p>
 <p>The behavior is explained in <a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=29658">this bug report</a> which is closed as WONTFIX for backwards compatibility. Thankfully ant 1.8 adds a useNativeBasedir attribute which provides much more predictable basedir behavior for the ant task.</p>

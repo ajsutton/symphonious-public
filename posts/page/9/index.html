@@ -5,11 +5,12 @@
 <title>Posts · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/posts/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -49,11 +50,8 @@ Leaving this here for the next time I have to work with CSV files on the command
 <p>A large part of the speed boost is extra VM instances but also the increased RAM allocation available to each VM has allowed us to increase a number of limits in the system and we can now run more tests concurrently against each VM instance.</p></div><a class="read-more" href="/2015/06/24/end-to-end-tests-lmax-update/">Continue reading<span class="sr-only">: End to End Tests @ LMAX Update</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-06-08">8 Jun 2015</time></div><div><h2><a href="/2015/06/08/testinglmax-aliases/">Testing@LMAX – Aliases</a></h2><div class="prose excerpt"><p>Even after a <a href="https://www.symphonious.net/2015/06/05/testinglmax-abstraction-by-dsl/">magnum opus on the DSL</a> LMAX uses for acceptance tests, there&rsquo;s one crucial feature that I haven&rsquo;t mentioned: the use of aliases to allow tests to use simple, meaningful names while ensuring that uniqueness constraints are met.</p>
 <p>Creating a user with our DSL looks like:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">registrationAPI<span style="color: #666666;">.</span><span style="color: #7d9029;">createUser</span><span style="color: #666666;">(</span><span style="color: #ba2121;">"user"</span><span style="color: #666666;">);</span>
-</pre>
-</div>
-<p>You might expect this to create a user with the username ‘user&rsquo;, but then we&rsquo;d get conflicts between every test that wanted to call their user ‘user&rsquo; which would prevent tests from running safely against the same deployment of the exchange.</p></div><a class="read-more" href="/2015/06/08/testinglmax-aliases/">Continue reading<span class="sr-only">: Testing@LMAX – Aliases</span> <span aria-hidden="true">→</span></a></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>registrationAPI.createUser(&#34;user&#34;);
+</span></span></code></pre></div><p>You might expect this to create a user with the username ‘user&rsquo;, but then we&rsquo;d get conflicts between every test that wanted to call their user ‘user&rsquo; which would prevent tests from running safely against the same deployment of the exchange.</p></div><a class="read-more" href="/2015/06/08/testinglmax-aliases/">Continue reading<span class="sr-only">: Testing@LMAX – Aliases</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-06-05">5 Jun 2015</time></div><div><h2><a href="/2015/06/05/testinglmax-abstraction-by-dsl/">Testing@LMAX – Abstraction by DSL</a></h2><div class="prose excerpt"><p>At LMAX, all our acceptance tests are written using a high level DSL. This gives us two key advantages:</p>
 <ul>
 <li>Tests can focus on what they&rsquo;re testing with the details and mechanics hidden behind the DSL</li>
@@ -79,12 +77,10 @@ Leaving this here for the next time I have to work with CSV files on the command
 </ol>
 </blockquote>
 <p>If your idea of fantastic test infrastructure starts with the words “every night” and ends with an email being sent you&rsquo;re doomed. <a href="http://bryanpendleton.blogspot.com.au/2015/04/on-testing-strategies-and-end-to-end.html?m=1">Bryan Pendleton does a good job of analysing and correcting the details</a> so I won&rsquo;t recover that ground. Instead, let me provide a view of what reasonable test infrastructure looks like.</p></div><a class="read-more" href="/2015/04/30/making-end-to-end-tests-work/">Continue reading<span class="sr-only">: Making End-to-End Tests Work</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2015-04-14">14 Apr 2015</time></div><div><h2><a href="/2015/04/15/printing-only-part-of-a-grep-match/">Printing Only Part of a grep Match</a></h2><div class="prose excerpt"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="https://www.symphonious.net/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">grep <span style="color: #ba2121;">'^MemTotal:'</span> /proc/meminfo | <br />  sed -e <span style="color: #ba2121;">'s/^MemTotal:\s*\([0-9]*\).*/\1/'</span>
-</pre>
-</div>
-<p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p></div><a class="read-more" href="/2015/04/15/printing-only-part-of-a-grep-match/">Continue reading<span class="sr-only">: Printing Only Part of a grep Match</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2015-04-14">14 Apr 2015</time></div><div><h2><a href="/2015/04/15/printing-only-part-of-a-grep-match/">Printing Only Part of a grep Match</a></h2><div class="prose excerpt"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>grep &#39;^MemTotal:&#39; /proc/meminfo |
+</span></span><span style="display:flex;"><span>  sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39;
+</span></span></code></pre></div><p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p></div><a class="read-more" href="/2015/04/15/printing-only-part-of-a-grep-match/">Continue reading<span class="sr-only">: Printing Only Part of a grep Match</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-04-09">9 Apr 2015</time></div><div><h2><a href="/2015/04/09/emoji-one-open-source-emoji-designed-for-the-web/">Emoji One – Open source emoji designed for the web.</a></h2><div class="prose excerpt"><p>Mostly so I can find this again later when I inevitably need it, <a href="http://emojione.com/">Emoji One</a> is a creative commons licensed collection of Emoji and related tools for the web.</p></div><a class="read-more" href="/2015/04/09/emoji-one-open-source-emoji-designed-for-the-web/">Continue reading<span class="sr-only">: Emoji One – Open source emoji designed for the web.</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-03-11">11 Mar 2015</time></div><div><h2><a href="/2015/03/12/patterns-are-for-people/">Patterns are for People</a></h2><div class="prose excerpt"><p>Avdi Grimm in <a href="http://devblog.avdi.org/2015/03/11/patterns-are-for-people/">Patterns are for People</a>:</p>
 <blockquote>

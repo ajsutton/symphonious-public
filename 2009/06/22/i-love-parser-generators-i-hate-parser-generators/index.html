@@ -5,11 +5,13 @@
 <title>I Love Parser Generators, I Hate Parser Generators · Symphonious</title>
 <meta name="description" content="I was reminded on the weekend of how much I like working with parser generators – they’re just so pure and clean. You really feel like you’re working with a …">
 <link rel="canonical" href="https://www.symphonious.net/2009/06/22/i-love-parser-generators-i-hate-parser-generators/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -31,7 +33,7 @@
 </div></header>
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="I was reminded on the weekend of how much I like working with parser generators – they’re just so pure and clean. You really feel like you’re working with a grammar and all those CS lectures come flooding back. Writing code to parse the same content by hand just never has that feel. Plus they create incredibly accurate parsers in very little time at all.
-"><header class="article-heading"><h1 data-pagefind-meta="title">I Love Parser Generators, I Hate Parser Generators</h1><p class="article-meta"><time datetime="2009-06-22">22 June 2009</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p><img loading="lazy" width="185" src="http://www.symphonious.net/wp-content/uploads/2009/06/pitr_LEGO_smiley_-_scared.png" height="200" style=" float: left;" alt="Parsers drive me mad." />I was reminded on the weekend of how much I like working with parser generators – they’re just so pure and clean. You really feel like you’re working with a grammar and all those CS lectures come flooding back. Writing code to parse the same content by hand just never has that feel. Plus they create incredibly accurate parsers in very little time at all.</p>
+"><header class="article-heading"><h1 data-pagefind-meta="title">I Love Parser Generators, I Hate Parser Generators</h1><p class="article-meta"><time datetime="2009-06-22">22 June 2009</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p><img loading="lazy" width="185" src="/wp-content/uploads/2009/06/pitr_LEGO_smiley_-_scared.png" height="200" style=" float: left;" alt="Parsers drive me mad." />I was reminded on the weekend of how much I like working with parser generators – they’re just so pure and clean. You really feel like you’re working with a grammar and all those CS lectures come flooding back. Writing code to parse the same content by hand just never has that feel. Plus they create incredibly accurate parsers in very little time at all.</p>
 <p>I was also reminded of how much I hate parser generators. They generate very accurate code which is great when you have very accurate input. In the real world, it just means the parser craps out an awful lot on very minor syntax problems. So then you try to make the grammar more flexible to accept that input and the generator just complains that the language is no longer LL(1).</p>
 <p>Off we go into the deep dark depths of those CS lectures. Now all of a sudden you find yourself with pen and paper out drawing states and the paths between them. Pretty soon you want to migrate to A3 paper and then on to butchers paper. Eventually you find yourself writing on the wall.</p>
 <p>Real world content just isn’t sane. You can’t tokenize it first and then just use those tokens – characters in different places have all kinds of different meanings. You don’t really want to validate the content as you read it<a href="#footnote1:1245656519327">1</a>{#footlink1:1245656519327.footnote}, you just want to do the most brain dead simple thing to get that content in and in a form that you can work with<a href="#footnote2:1245656663583">2</a>{#footlink2:1245656663583.footnote}.</p>

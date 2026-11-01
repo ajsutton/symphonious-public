@@ -5,11 +5,13 @@
 <title>Testing@LMAX – Compatibility Tests · Symphonious</title>
 <meta name="description" content="Once an application goes live, it is absolutely essential that any future changes are able to be work with the existing data in production, typically by …">
 <link rel="canonical" href="https://www.symphonious.net/2016/03/13/testinglmax-compatibility-tests/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -48,18 +50,15 @@
 <p>Obviously, finding issues only after production data has gone wrong is not something we ever want to do but it&rsquo;s still a useful safety net if something slips through all our pre-release testing and the database schema constraints we use. Typically when we do find issues they are minor inconsistencies that don&rsquo;t cause any issues now, but are like little time bombs just waiting for a future release to assume it can&rsquo;t possibly happen. So even getting feedback that late in the process often allows us to avoid any user-noticeable effects.</p>
 <h3 id="making-them-easy">Making Them Easy</h3>
 <p>We have a base class we extend our compatibility tests from which makes it easy to get a connection to the database and has a few handy utilities for asserting things. By far the most useful however is the <code>assertNoRowsMatch</code> method. It does exactly what it says – takes an SQL query and asserts that no rows match. If any do, it prints them out so you get really useful debug information to start investigating the problem. For example:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #aa22ff;">@Test</span>
-<span style="color: #008000; font-weight: bold;">public</span> <span style="color: #b00040;">void</span> <span style="color: #0000ff;">shouldHaveAPrincipalForEveryAccount</span><span style="color: #666666;">()</span> <span style="color: #666666;">{</span>
-  assertNoRowsMatch<span style="color: #666666;">(</span>
-    <span style="color: #ba2121;">"SELECT a.account_id, a.name "</span> <span style="color: #666666;">+</span>
-    <span style="color: #ba2121;">"FROM account a "</span> <span style="color: #666666;">+</span>
-    <span style="color: #ba2121;">"LEFT JOIN principal p ON a.principal_id = p.principal_id "</span> <span style="color: #666666;">+</span>
-    <span style="color: #ba2121;">"WHERE p.principal_id IS NULL"</span><span style="color: #666666;">);</span>
-<span style="color: #666666;">}</span>
-</pre>
-</div>
-<p>If we&rsquo;ve somehow wound up with an account with no principal that could log into it the test will print the account ID and name so we can investigate what happened and clean up the data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>@Test
+</span></span><span style="display:flex;"><span>public void shouldHaveAPrincipalForEveryAccount() {
+</span></span><span style="display:flex;"><span>  assertNoRowsMatch(
+</span></span><span style="display:flex;"><span>    &#34;SELECT a.account_id, a.name &#34; +
+</span></span><span style="display:flex;"><span>    &#34;FROM account a &#34; +
+</span></span><span style="display:flex;"><span>    &#34;LEFT JOIN principal p ON a.principal_id = p.principal_id &#34; +
+</span></span><span style="display:flex;"><span>    &#34;WHERE p.principal_id IS NULL&#34;);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If we&rsquo;ve somehow wound up with an account with no principal that could log into it the test will print the account ID and name so we can investigate what happened and clean up the data.</p>
 <p> </p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2016/02/29/testinglmax-making-test-output-useful/"><span>← Earlier</span>Testing@LMAX – Making Test Output Useful</a><a href="/2016/06/17/fun-with-commonjs/"><span>Later →</span>Fun with CommonJS</a></nav>

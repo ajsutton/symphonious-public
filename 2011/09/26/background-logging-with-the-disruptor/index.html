@@ -5,11 +5,13 @@
 <title>Background Logging with the Disruptor · Symphonious</title>
 <meta name="description" content="Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation. He briefly compared it to the LMAX …">
 <link rel="canonical" href="https://www.symphonious.net/2011/09/26/background-logging-with-the-disruptor/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -48,92 +50,87 @@ Firstly, let’s revisit the very high level differences between the exchanger a
 <h2 id="the-code">The Code</h2>
 <p>First let’s start with the LogEntry class. This is a simple value object that is used as our entries on the ring buffer and passed from the producer thread over to the consumer thread.</p>
 <p>Peter’s Exchanger based implementation – the use of StringBuilder in the LogEntry class is actually a race condition and not thread safe. Both the publishing side and the consumer side are attempting to modify it and depending on how long it takes the publishing side to write the log message to the StringBuilder, it will potentially be processed and then reset by the consumer side before the publisher is complete. In this implementation I’m instead using a simple String to avoid that problem.</p>
-<noscript>
-  <pre><code class="language-java java">import com.lmax.disruptor.EventFactory;
-<p>class LogEntry
-{
-public static final EventFactory&lt;LogEntry&gt; FACTORY = new EventFactory&lt;LogEntry&gt;()
-{
-public LogEntry newInstance()
-{
-return new LogEntry();
-}
-};</p>
-<pre><code>long time;
-int level;
-String text;
-</code></pre>
-<p>}
-</code></pre>
-</noscript></p>
-<p>The one Disruptor-specific addition is that we create an EventFactory instance which the Disruptor uses to pre-populate the ring buffer entries.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.lmax.disruptor.EventFactory;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LogEntry</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> EventFactory<span style="color:#f92672">&lt;</span>LogEntry<span style="color:#f92672">&gt;</span> FACTORY <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> EventFactory<span style="color:#f92672">&lt;</span>LogEntry<span style="color:#f92672">&gt;</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> LogEntry <span style="color:#a6e22e">newInstance</span>()
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> LogEntry();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> time;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> level;
+</span></span><span style="display:flex;"><span>    String text;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The one Disruptor-specific addition is that we create an EventFactory instance which the Disruptor uses to pre-populate the ring buffer entries.</p>
 <p>Next, let’s look at the BackgroundLogger class that sets up the process and acts as the producer.</p>
-<noscript>
-  <pre><code class="language-java java">import com.lmax.disruptor.RingBuffer;
-import com.lmax.disruptor.dsl.Disruptor;
-<p>import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;</p>
-<p>public class BackgroundLogger
-{
-private static final int ENTRIES = 64;</p>
-<pre><code>private final ExecutorService executorService;
-private final Disruptor&amp;lt;LogEntry&amp;gt; disruptor;
-private final RingBuffer&amp;lt;LogEntry&amp;gt; ringBuffer;
-
-BackgroundLogger()
-{
-    executorService = Executors.newCachedThreadPool();
-    disruptor = new Disruptor&amp;lt;LogEntry&amp;gt;(LogEntry.FACTORY, ENTRIES, executorService);
-    disruptor.handleEventsWith(new LogEntryHandler());
-    disruptor.start();
-    ringBuffer = disruptor.getRingBuffer();
-}
-
-public void log(String text)
-{
-    final long sequence = ringBuffer.next();
-    final LogEntry logEntry = ringBuffer.get(sequence);
-
-    logEntry.time = System.currentTimeMillis();
-    logEntry.level = level;
-    logEntry.text = text;
-
-    ringBuffer.publish(sequence);
-}
-
-public void stop()
-{
-    disruptor.shutdown();
-    executorService.shutdownNow();
-}
-</code></pre>
-<p>}</p>
-<p></code></pre>
-</noscript></p>
-<p>In the constructor we create an ExecutorService which the Disruptor will use to execute the consumer threads (a single thread in this case), then the disruptor itself. We pass in the LogEntry.FACTORY instance for it to use to create the entries and a size for the ring buffer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.lmax.disruptor.RingBuffer;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.lmax.disruptor.dsl.Disruptor;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.concurrent.ExecutorService;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.concurrent.Executors;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BackgroundLogger</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> ENTRIES <span style="color:#f92672">=</span> 64;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ExecutorService executorService;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Disruptor<span style="color:#f92672">&lt;</span>LogEntry<span style="color:#f92672">&gt;</span> disruptor;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> RingBuffer<span style="color:#f92672">&lt;</span>LogEntry<span style="color:#f92672">&gt;</span> ringBuffer;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    BackgroundLogger()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        executorService <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newCachedThreadPool</span>();
+</span></span><span style="display:flex;"><span>        disruptor <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Disruptor<span style="color:#f92672">&lt;</span>LogEntry<span style="color:#f92672">&gt;</span>(LogEntry.<span style="color:#a6e22e">FACTORY</span>, ENTRIES, executorService);
+</span></span><span style="display:flex;"><span>        disruptor.<span style="color:#a6e22e">handleEventsWith</span>(<span style="color:#66d9ef">new</span> LogEntryHandler());
+</span></span><span style="display:flex;"><span>        disruptor.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        ringBuffer <span style="color:#f92672">=</span> disruptor.<span style="color:#a6e22e">getRingBuffer</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">log</span>(String text)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> sequence <span style="color:#f92672">=</span> ringBuffer.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> LogEntry logEntry <span style="color:#f92672">=</span> ringBuffer.<span style="color:#a6e22e">get</span>(sequence);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        logEntry.<span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>();
+</span></span><span style="display:flex;"><span>        logEntry.<span style="color:#a6e22e">level</span> <span style="color:#f92672">=</span> level;
+</span></span><span style="display:flex;"><span>        logEntry.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> text;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ringBuffer.<span style="color:#a6e22e">publish</span>(sequence);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stop</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        disruptor.<span style="color:#a6e22e">shutdown</span>();
+</span></span><span style="display:flex;"><span>        executorService.<span style="color:#a6e22e">shutdownNow</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the constructor we create an ExecutorService which the Disruptor will use to execute the consumer threads (a single thread in this case), then the disruptor itself. We pass in the LogEntry.FACTORY instance for it to use to create the entries and a size for the ring buffer.</p>
 <p>The log method is our producer method. Note the use of two-phase commit. First claim a slot with the ringBuffer.next() method, then copy our values into that slot’s entry and finally publish the slot, ready for the consumer to process. We could have also used the Disruptor.publish method which can make this simpler for many use cases by rolling the two phase commit into call.</p>
 <p>The producer doesn’t need to do any batching as the Disruptor will do that automatically if the consumer is falling behind, though there are also APIs that allow batching the producer which can improve the performance if it fits into your design (here it’s probably better to publish each log entry as it comes in).</p>
 <p>The stop method uses the new shutdown method on the Disruptor which takes care of waiting until all consumers have processed all available entries for you, <a href="http://groups.google.com/group/lmax-disruptor/browse_thread/thread/511cadc6383260aa/35e537304fc6439f?lnk=gst&amp;q=stop+disruptor#35e537304fc6439f">though the code for doing it yourself is quite straight-forward</a>. Finally we shut down the executor.</p>
 <p>Note that we don’t need a flush method since the Disruptor is always consuming log events as quickly as the consumer can.</p>
 <p>Last of all, the consumer which is almost entirely implementation logic:</p>
-<noscript>
-  <pre><code class="language-java java">
-import com.lmax.disruptor.EventHandler;
-<p>public class LogEntryHandler implements EventHandler&lt;LogEntry&gt;
-{</p>
-<pre><code>public LogEntryHandler()
-{
-}
-
-public void onEvent(final LogEntry logEntry, final long sequence, final boolean endOfBatch) throws Exception
-{
-    // Write
-}
-</code></pre>
-<p>}
-</code></pre>
-</noscript></p>
-<p>The consumer’s onEvent method is called for each LogEntry put into the Disruptor. The endOfBatch flag can be used as a signal to flush written content to disk, allowing very large buffer sizes to be used causing writes to disk to be batched when the consumer is running behind, yet also ensure that our valuable log messages get to disk as quickly as possible.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.lmax.disruptor.EventHandler;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LogEntryHandler</span> <span style="color:#66d9ef">implements</span> EventHandler<span style="color:#f92672">&lt;</span>LogEntry<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">LogEntryHandler</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onEvent</span>(<span style="color:#66d9ef">final</span> LogEntry logEntry, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> sequence, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">boolean</span> endOfBatch) <span style="color:#66d9ef">throws</span> Exception
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Write</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The consumer’s onEvent method is called for each LogEntry put into the Disruptor. The endOfBatch flag can be used as a signal to flush written content to disk, allowing very large buffer sizes to be used causing writes to disk to be batched when the consumer is running behind, yet also ensure that our valuable log messages get to disk as quickly as possible.</p>
 <p><a href="https://gist.github.com/1243275">The full code is available as a Gist</a>.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2011/08/13/the-disruptor-wizard-is-dead-long-live-the-disruptor-wizard/"><span>← Earlier</span>The Disruptor Wizard is Dead, Long Live the Disruptor Wizard!</a><a href="/2011/11/13/simple-long-poll-patterns-in-javascript/"><span>Later →</span>Simple Long Poll Patterns in JavaScript</a></nav>

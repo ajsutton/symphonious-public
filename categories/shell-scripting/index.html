@@ -5,11 +5,12 @@
 <title>Shell Scripting · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/categories/shell-scripting/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -32,12 +33,10 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>Shell Scripting</h1></header>
-<article class="post-summary"><div class="date-gutter"><time datetime="2015-04-14">14 Apr 2015</time></div><div><h2><a href="/2015/04/15/printing-only-part-of-a-grep-match/">Printing Only Part of a grep Match</a></h2><div class="prose excerpt"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="https://www.symphonious.net/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">grep <span style="color: #ba2121;">'^MemTotal:'</span> /proc/meminfo | <br />  sed -e <span style="color: #ba2121;">'s/^MemTotal:\s*\([0-9]*\).*/\1/'</span>
-</pre>
-</div>
-<p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p></div><a class="read-more" href="/2015/04/15/printing-only-part-of-a-grep-match/">Continue reading<span class="sr-only">: Printing Only Part of a grep Match</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2015-04-14">14 Apr 2015</time></div><div><h2><a href="/2015/04/15/printing-only-part-of-a-grep-match/">Printing Only Part of a grep Match</a></h2><div class="prose excerpt"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>grep &#39;^MemTotal:&#39; /proc/meminfo |
+</span></span><span style="display:flex;"><span>  sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39;
+</span></span></code></pre></div><p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p></div><a class="read-more" href="/2015/04/15/printing-only-part-of-a-grep-match/">Continue reading<span class="sr-only">: Printing Only Part of a grep Match</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2014-05-12">12 May 2014</time></div><div><h2><a href="/2014/05/13/combining-output-of-multiple-bash-commands-into-one-line/">Combining Output of Multiple Bash Commands Into One Line</a></h2><div class="prose excerpt"><p>I wanted to create a CSV file showing the number of JUnit tests in our codebase vs the number of Spock tests over time. I can count the number of tests, along with the revision pretty easily with:</p>
 <pre>git svn find-rev HEAD<br />find src/test -name '*Test.java' | wc -l<br />find src/test -name '*Spec.groovy' | wc -l</pre>
 <p>But that outputs the results on three separate lines and I really want them on one line with some separator (comma, space or tab). The simplest way to achieve that is:</p></div><a class="read-more" href="/2014/05/13/combining-output-of-multiple-bash-commands-into-one-line/">Continue reading<span class="sr-only">: Combining Output of Multiple Bash Commands Into One Line</span> <span aria-hidden="true">→</span></a></div></article>

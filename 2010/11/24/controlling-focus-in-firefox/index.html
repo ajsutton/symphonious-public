@@ -5,11 +5,13 @@
 <title>Controlling Focus in Firefox · Symphonious</title>
 <meta name="description" content="I have a bunch of JavaScript unit tests and for some of them I need to trigger a real keypress – one that activates the browser’s default functionality, not …">
 <link rel="canonical" href="https://www.symphonious.net/2010/11/24/controlling-focus-in-firefox/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -39,7 +41,7 @@
 <p>The normal Element.focus() doesn’t seem to be strong enough as I’m already calling that (and I’ve tried oh so many variations of it). I’m even ok with requiring that element to be of a specific type (e.g. a text input). JavaScript is ideal but if it can be done with a signed Java applet I’m ok with that too. Config options, browser plugins and maybe even native code would all be a possibility.</p>
 <h2 id="the-simple-answer-update">The Simple Answer (Update)</h2>
 <p>It turns out that the ineffectiveness of Element.focus() is a usability/security feature of Firefox which is configurable. In the “Content” tab of preferences, click the “Advanced…” button beside JavaScript and then ensure that “Raise or lower windows” is checked. Annoyingly simple after the amount of effort it took to work out what was going wrong.</p>
-<p><img src="http://www.symphonious.net/wp-content/uploads/2010/11/Screen-shot-2010-11-25-at-14.07.20.png" alt="Firefox advanced JavaScript preferences window"></p>
+<p><img src="/wp-content/uploads/2010/11/Screen-shot-2010-11-25-at-14.07.20.png" alt="Firefox advanced JavaScript preferences window"></p>
 <h2 id="the-detail">The Detail</h2>
 <p>Here’s what I know:</p>
 <ul>

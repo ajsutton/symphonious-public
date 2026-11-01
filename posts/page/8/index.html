@@ -5,11 +5,12 @@
 <title>Posts · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/posts/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -57,13 +58,10 @@
 </ul>
 <p>Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.</p></div><a class="read-more" href="/2015/12/04/testinglmax-introducing-elementspecification/">Continue reading<span class="sr-only">: Testing@LMAX – Introducing ElementSpecification</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-10-08">8 Oct 2015</time></div><div><h2><a href="/2015/10/09/use-more-magic-literals/">Use More Magic Literals</a></h2><div class="prose excerpt"><p>In programming courses one of the first thing you&rsquo;re taught is to avoid “magic literals” – numbers or strings that are hardcoded in the middle of an algorithm. The recommended solution is to extract them into a constant. Sometimes this is great advice, for example:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008000; font-weight: bold;">if</span> <span style="color: #666666;">(</span>amount <span style="color: #666666;">&gt;</span> <span style="color: #666666;">1000)</span> <span style="color: #666666;">{</span>
-  checkAdditionalAuthorization<span style="color: #666666;">();</span>
-<span style="color: #666666;">}</span>
-</pre>
-</div>
-<p>would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.</p></div><a class="read-more" href="/2015/10/09/use-more-magic-literals/">Continue reading<span class="sr-only">: Use More Magic Literals</span> <span aria-hidden="true">→</span></a></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>if (amount &gt; 1000) {
+</span></span><span style="display:flex;"><span>  checkAdditionalAuthorization();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.</p></div><a class="read-more" href="/2015/10/09/use-more-magic-literals/">Continue reading<span class="sr-only">: Use More Magic Literals</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/7/">← Newer posts</a><span>Page 8 of 102</span><a href="/posts/page/9/">Older posts →</a></nav>
 

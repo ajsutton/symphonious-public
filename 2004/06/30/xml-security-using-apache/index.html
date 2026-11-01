@@ -5,11 +5,13 @@
 <title>XML Security Using Apache · Symphonious</title>
 <meta name="description" content="Very incomplete notes from the XML Security using Apache session. The slides cover things better than my notes do but I thought I should save what I wrote down …">
 <link rel="canonical" href="https://www.symphonious.net/2004/06/30/xml-security-using-apache/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -32,7 +34,59 @@
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Very incomplete notes from the XML Security using Apache session. The slides cover things better than my notes do but I thought I should save what I wrote down anyway. I gave up taking notes half way through once I realized I wasn&rsquo;t really adding anything to the slides that should be available online anyway.
 "><header class="article-heading"><h1 data-pagefind-meta="title">XML Security Using Apache</h1><p class="article-meta"><time datetime="2004-06-30">30 June 2004</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p>Very incomplete notes from the XML Security using Apache session. The slides cover things better than my notes do but I thought I should save what I wrote down anyway. I gave up taking notes half way through once I realized I wasn&rsquo;t really adding anything to the slides that should be available online anyway.</p>
-<p>XML Security with Apache Signature JCP effort by Sun and IBM. Goal is to create an extensible provider based API DOM independent API Non-Goals Support for a higher level API Support user pluggable algorithms – no standard way for users to plugin extra algorithms. XML Specification Signature SignedInfo – all refs to data being signed. References Transforms KeyInfo – clues for how to find the key that was used. SignatureValue – the actual signature value. B asics: XMLSignatureFactory The entry point for the API. Has methods to create all elements requuired in the signature. Standard singleton pattern. Instantiated by: getInstance(); getInstance(“DOM”, new &lt;placeholder_provider&gt;()); Can create a signature out of the factory. The XMLSignature class is the main class for interaction. XMLSignatureFactory.newInstance(); or XMLSignatureFactory.unmarshalXMLSignature(); XMLSignatureFactory fac = XMLSignatureFactory.getInstance(); Reference ref= fac.newReference(“http://xml.apache.org/”, fac.newDigestMethod(DigestMethod.SHA1, null)); SignedInfo si = fac.newSignedInfo(fac.newCanonicalizationMethod(CanonicaalizationMetho.INCLUSIVE_WITH_COMMENTS, null), fac.newSignatureMethod(SignatureMethod.DSA_SHA1, null), Collections.signletonList(ref)); XMLSignature signature = fac.newXMLSignature(si, null); Use the Sign and ValidateContext to provide URIDerferencer, KeySelector and BaseURI. Also can set some generic properties – can be provider specific. Create a KeyPair kp Document do c= dbf.newDocumentBuilder().newDocument(); // We use document but can use any element as the root element to be signed. DOMSignContext signContext = new DOMSignContext(kp.getPrivate(), doc); signature.sign(signContext); Verifying Create an XMLSignature from XML Setup a KeySelector Create a XMLValidateContext Validate the Signature Parse the document. Document doc = dbf.newDocumentBuilder().parse(new FileInputStream(args[0])); // Find signature element. This only checks for a Signature root element. Can contain multiple signatures. Node signatureNode = doc.getElementsByTagN….. KeyInfos are created from their own factory. XMLSignatureFactory.getKeyInfoFactory(); Any XMLStructure is allowed inside a KeyInfo You can put anything in your key infos it doesn&rsquo; thave to be one of the predefined types in the spec. The KeyInfo is passed to the KeySelector on validation. When signing it is passed to the newXMLSignature method on XMLSignatureFactory for inclusion in the signature. Encryption Make sure you have a JCE provider. Remember to initialize the XML security library org.apache.xml.security.Init.init(); Not initializing will thow an Exception Overview Specify key algorithm – different than specifying an encryption algorithm Initialize KeyCipher Generate encryption keys Specify encryption algo … All algorithms specified in XMLCipher.</p></div></article>
+<h2 id="xml-security-with-apache">XML Security with Apache</h2>
+<h2 id="signature">Signature</h2>
+<p>JCP effort by Sun and IBM.</p>
+<p>Goal is to create an extensible provider based API</p>
+<p>DOM independent API</p>
+<h2 id="non-goals">Non-Goals</h2>
+<p>Support for a higher level API</p>
+<p>Support user pluggable algorithms – no standard way for users to plugin extra algorithms.</p>
+<h2 id="xml-specification">XML Specification</h2>
+<p>Signature SignedInfo – all refs to data being signed.</p>
+<p>References Transforms</p>
+<p>KeyInfo – clues for how to find the key that was used.</p>
+<p>SignatureValue – the actual signature value.</p>
+<h2 id="b-asics-xmlsignaturefactory">B asics: XMLSignatureFactory</h2>
+<p>The entry point for the API. Has methods to create all elements requuired in the signature. Standard singleton pattern.</p>
+<p>Instantiated by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>getInstance();
+</span></span><span style="display:flex;"><span>getInstance(<span style="color:#960050;background-color:#1e0010">“</span>DOM<span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#66d9ef">new</span> <span style="color:#f92672">&lt;</span>placeholder_provider<span style="color:#f92672">&gt;</span>());
+</span></span></code></pre></div><p>Can create a signature out of the factory.</p>
+<p>The XMLSignature class is the main class for interaction.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>XMLSignatureFactory.<span style="color:#a6e22e">newInstance</span>();
+</span></span><span style="display:flex;"><span>or XMLSignatureFactory.<span style="color:#a6e22e">unmarshalXMLSignature</span>();
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>XMLSignatureFactory fac <span style="color:#f92672">=</span> XMLSignatureFactory.<span style="color:#a6e22e">getInstance</span>();
+</span></span><span style="display:flex;"><span>Reference ref<span style="color:#f92672">=</span> fac.<span style="color:#a6e22e">newReference</span>(<span style="color:#960050;background-color:#1e0010">“</span>http:<span style="color:#75715e">//xml.apache.org/”, fac.newDigestMethod(DigestMethod.SHA1, null));</span>
+</span></span><span style="display:flex;"><span>SignedInfo si <span style="color:#f92672">=</span> fac.<span style="color:#a6e22e">newSignedInfo</span>(fac.<span style="color:#a6e22e">newCanonicalizationMethod</span>(CanonicaalizationMetho.<span style="color:#a6e22e">INCLUSIVE_WITH_COMMENTS</span>, <span style="color:#66d9ef">null</span>), fac.<span style="color:#a6e22e">newSignatureMethod</span>(SignatureMethod.<span style="color:#a6e22e">DSA_SHA1</span>, <span style="color:#66d9ef">null</span>), Collections.<span style="color:#a6e22e">signletonList</span>(ref));
+</span></span><span style="display:flex;"><span>XMLSignature signature <span style="color:#f92672">=</span> fac.<span style="color:#a6e22e">newXMLSignature</span>(si, <span style="color:#66d9ef">null</span>);
+</span></span></code></pre></div><p>Use the Sign and ValidateContext to provide URIDerferencer, KeySelector and BaseURI. Also can set some generic properties – can be provider specific.</p>
+<p>Create a KeyPair kp</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Document <span style="color:#66d9ef">do</span> c<span style="color:#f92672">=</span> dbf.<span style="color:#a6e22e">newDocumentBuilder</span>().<span style="color:#a6e22e">newDocument</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// We use document but can use any element as the root element to be signed.</span>
+</span></span><span style="display:flex;"><span>DOMSignContext signContext <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DOMSignContext(kp.<span style="color:#a6e22e">getPrivate</span>(), doc);
+</span></span><span style="display:flex;"><span>signature.<span style="color:#a6e22e">sign</span>(signContext);
+</span></span></code></pre></div><h2 id="verifying">Verifying</h2>
+<p>Create an XMLSignature from XML</p>
+<p>Setup a KeySelector</p>
+<p>Create a XMLValidateContext</p>
+<p>Validate the Signature</p>
+<p>Parse the document.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Document doc <span style="color:#f92672">=</span> dbf.<span style="color:#a6e22e">newDocumentBuilder</span>().<span style="color:#a6e22e">parse</span>(<span style="color:#66d9ef">new</span> FileInputStream(args<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Find signature element. This only checks for a Signature root element. Can contain multiple signatures.</span>
+</span></span><span style="display:flex;"><span>Node signatureNode <span style="color:#f92672">=</span> doc.<span style="color:#a6e22e">getElementsByTagN</span><span style="color:#960050;background-color:#1e0010">…</span>..
+</span></span></code></pre></div><p>KeyInfos are created from their own factory. XMLSignatureFactory.getKeyInfoFactory();</p>
+<p>Any XMLStructure is allowed inside a KeyInfo You can put anything in your key infos it doesn&rsquo; thave to be one of the predefined types in the spec.</p>
+<p>The KeyInfo is passed to the KeySelector on validation. When signing it is passed to the newXMLSignature method on XMLSignatureFactory for inclusion in the signature.</p>
+<h2 id="encryption">Encryption</h2>
+<p>Make sure you have a JCE provider.</p>
+<p>Remember to initialize the XML security library org.apache.xml.security.Init.init();</p>
+<p>Not initializing will thow an Exception</p>
+<h2 id="overview">Overview</h2>
+<p>Specify key algorithm – different than specifying an encryption algorithm</p>
+<p>Initialize KeyCipher</p>
+<p>Generate encryption keys</p>
+<p>Specify encryption algo … All algorithms specified in XMLCipher.</p></div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2004/06/30/how-to-start-a-riot/"><span>← Earlier</span>How To Start A Riot</a><a href="/2004/07/02/the-great-debate/"><span>Later →</span>The Great Debate</a></nav>
 </main>
 <footer class="site-footer" data-pagefind-ignore><div class="page-shell"><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></div></footer>

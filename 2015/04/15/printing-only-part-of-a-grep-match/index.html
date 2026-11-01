@@ -5,11 +5,13 @@
 <title>Printing Only Part of a grep Match · Symphonious</title>
 <meta name="description" content="It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it. For example, if we wanted to find the total memory on a machine …">
 <link rel="canonical" href="https://www.symphonious.net/2015/04/15/printing-only-part-of-a-grep-match/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -32,24 +34,16 @@
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it. For example, if we wanted to find the total memory on a machine we could use:
 grep &#39;^MemTotal:&#39; /proc/meminfo | sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39; Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:
-"><header class="article-heading"><h1 data-pagefind-meta="title">Printing Only Part of a grep Match</h1><p class="article-meta"><time datetime="2015-04-14">14 April 2015</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="https://www.symphonious.net/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">grep <span style="color: #ba2121;">'^MemTotal:'</span> /proc/meminfo | <br />  sed -e <span style="color: #ba2121;">'s/^MemTotal:\s*\([0-9]*\).*/\1/'</span>
-</pre>
-</div>
-<p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">grep -Po <span style="color: #ba2121;">'^(MemTotal:\s*)\K[0-9]*'</span> /proc/meminfo
-</pre>
-</div>
-<p>The -P is for perl regex, and the o option causes grep to output only what is matched. You can see though that we&rsquo;re actually matching the MemTotal: at the start of the line yet somehow it doesn&rsquo;t wind up in the output.  That&rsquo;s the magic of \K which excludes the token immediately prior to it from the matched text (without rewinding the stream and attempting a different match for that text).</p>
+"><header class="article-heading"><h1 data-pagefind-meta="title">Printing Only Part of a grep Match</h1><p class="article-meta"><time datetime="2015-04-14">14 April 2015</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p><img loading="lazy" class=" size-full wp-image-1991 alignright" src="/wp-content/uploads/2015/04/grep_med.png" alt="" width="64" height="64" />It&rsquo;s not uncommon to want to find a particular line in a file and print just a part of it.  For example, if we wanted to find the total memory on a machine we could use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>grep &#39;^MemTotal:&#39; /proc/meminfo |
+</span></span><span style="display:flex;"><span>  sed -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/&#39;
+</span></span></code></pre></div><p>Which does the job but duplicates a bunch of the matching regex. If you&rsquo;re using a reasonably recent gnu grep, you can use it&rsquo;s support for perl regex syntax and the \K operator:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>grep -Po &#39;^(MemTotal:\s*)\K[0-9]*&#39; /proc/meminfo
+</span></span></code></pre></div><p>The -P is for perl regex, and the o option causes grep to output only what is matched. You can see though that we&rsquo;re actually matching the MemTotal: at the start of the line yet somehow it doesn&rsquo;t wind up in the output.  That&rsquo;s the magic of \K which excludes the token immediately prior to it from the matched text (without rewinding the stream and attempting a different match for that text).</p>
 <p><strong>Update</strong></p>
 <p>Alexandre Niveau emailed me to point out that in this particular case (and probably most others where I&rsquo;d be tempted to use \K with grep) grep is completely superfluous and we can just use sed with the -n flag:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">sed -n -e <span style="color: #ba2121;">'s/^MemTotal:\s*\([0-9]*\).*/\1/p'</span> /proc/meminfo
-</pre>
-</div>
-<p>The -n disables automatic printing of lines and the ‘p&rsquo; at the end of the regex prints the matching lines. Definitely good to know – thanks Alexandre.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sed -n -e &#39;s/^MemTotal:\s*\([0-9]*\).*/\1/p&#39; /proc/meminfo
+</span></span></code></pre></div><p>The -n disables automatic printing of lines and the ‘p&rsquo; at the end of the regex prints the matching lines. Definitely good to know – thanks Alexandre.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2015/04/09/emoji-one-open-source-emoji-designed-for-the-web/"><span>← Earlier</span>Emoji One – Open source emoji designed for the web.</a><a href="/2015/04/30/making-end-to-end-tests-work/"><span>Later →</span>Making End-to-End Tests Work</a></nav>
 </main>

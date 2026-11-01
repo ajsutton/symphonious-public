@@ -5,11 +5,13 @@
 <title>Testing@LMAX – Making Test Output Useful · Symphonious</title>
 <meta name="description" content="Just like production code, you should assume things are going to go wrong in your tests and when it does you want good logging to help track down what happened …">
 <link rel="canonical" href="https://www.symphonious.net/2016/02/29/testinglmax-making-test-output-useful/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -38,17 +40,14 @@
 <p>All the key information we need is in that log statement – the alias, real name plus unique identifiers (externalId and internalId).</p>
 <h3 id="name-your-threads">Name Your Threads</h3>
 <p>We use a custom JUnit test runner (via the @RunWith annotation) so we can run tests within a test suite in parallel. With tests running in parallel all their output gets mixed up and becomes hard to read.  Recently we started setting the test thread names to the name of the test case. </p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008000; font-weight: bold;">private</span> <span style="color: #b00040;">void</span> <span style="color: #0000ff;">executeTest</span><span style="color: #666666;">(</span>
-  <span style="color: #008000; font-weight: bold;">final</span> FrameworkMethod method<span style="color: #666666;">,</span> 
-  <span style="color: #008000; font-weight: bold;">final</span> Description description<span style="color: #666666;">)</span> <span style="color: #666666;">{</span>
-    Thread<span style="color: #666666;">.</span><span style="color: #7d9029;">currentThread</span><span style="color: #666666;">().</span><span style="color: #7d9029;">setName</span><span style="color: #666666;">(</span>
-      getThreadName<span style="color: #666666;">(</span>description<span style="color: #666666;">.</span><span style="color: #7d9029;">getMethodName</span><span style="color: #666666;">()));</span>
-    methodBlock<span style="color: #666666;">(</span>method<span style="color: #666666;">).</span><span style="color: #7d9029;">evaluate</span><span style="color: #666666;">();</span>
-<span style="color: #666666;">}</span>
-</pre>
-</div>
-<p>We actually trim the method name to 30 characters (cutting off the <em>start</em> rather than the end which tends to work better with the way we name tests) so we get output like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>private void executeTest(
+</span></span><span style="display:flex;"><span>  final FrameworkMethod method,
+</span></span><span style="display:flex;"><span>  final Description description) {
+</span></span><span style="display:flex;"><span>    Thread.currentThread().setName(
+</span></span><span style="display:flex;"><span>      getThreadName(description.getMethodName()));
+</span></span><span style="display:flex;"><span>    methodBlock(method).evaluate();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We actually trim the method name to 30 characters (cutting off the <em>start</em> rather than the end which tends to work better with the way we name tests) so we get output like:</p>
 <pre>21:28:47,356 INFO  …tityAndPriceAndNoStopLossOffset [TestContext] Created PartyCode XMCS (alias: marketMaker)<br /><br />21:28:47,356 INFO  …erWithZeroSuppliedInstructionId [TestContext] Created PartyCode U6HK (alias: marketMaker)<br /><br />21:28:47,356 INFO  …ctionIdIfFirstOrderHasCompleted [TestContext] Created PartyCode 3DS6 (alias: marketMaker)<br /><br />21:28:47,356 INFO  …StopLossOffsetAndAStopLossPrice [TestContext] Created PartyCode XFY8 (alias: marketMaker)</pre>
 <p>There are a few cases where we spawn additional threads within a test (typically to pull data from long poll or other push event channels). In those cases we generally pass the thread name down with an additional prefix (e.g. LongPoll-…StopLossOffsetAndAStopLossPrice) so we can still associate that output with the right test.</p>
 <h3 id="time-traveller-names">Time Traveller Names</h3>

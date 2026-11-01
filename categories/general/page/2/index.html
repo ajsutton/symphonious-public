@@ -5,11 +5,12 @@
 <title>General · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/categories/general/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -34,11 +35,8 @@
 <header class="listing-heading"><h1>General</h1></header>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-06-08">8 Jun 2015</time></div><div><h2><a href="/2015/06/08/testinglmax-aliases/">Testing@LMAX – Aliases</a></h2><div class="prose excerpt"><p>Even after a <a href="https://www.symphonious.net/2015/06/05/testinglmax-abstraction-by-dsl/">magnum opus on the DSL</a> LMAX uses for acceptance tests, there&rsquo;s one crucial feature that I haven&rsquo;t mentioned: the use of aliases to allow tests to use simple, meaningful names while ensuring that uniqueness constraints are met.</p>
 <p>Creating a user with our DSL looks like:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">registrationAPI<span style="color: #666666;">.</span><span style="color: #7d9029;">createUser</span><span style="color: #666666;">(</span><span style="color: #ba2121;">"user"</span><span style="color: #666666;">);</span>
-</pre>
-</div>
-<p>You might expect this to create a user with the username ‘user&rsquo;, but then we&rsquo;d get conflicts between every test that wanted to call their user ‘user&rsquo; which would prevent tests from running safely against the same deployment of the exchange.</p></div><a class="read-more" href="/2015/06/08/testinglmax-aliases/">Continue reading<span class="sr-only">: Testing@LMAX – Aliases</span> <span aria-hidden="true">→</span></a></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>registrationAPI.createUser(&#34;user&#34;);
+</span></span></code></pre></div><p>You might expect this to create a user with the username ‘user&rsquo;, but then we&rsquo;d get conflicts between every test that wanted to call their user ‘user&rsquo; which would prevent tests from running safely against the same deployment of the exchange.</p></div><a class="read-more" href="/2015/06/08/testinglmax-aliases/">Continue reading<span class="sr-only">: Testing@LMAX – Aliases</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-03-05">5 Mar 2015</time></div><div><h2><a href="/2015/03/06/new-favourite-little-java-8-feature/">New Favourite Little Java 8 Feature</a></h2><div class="prose excerpt"><p>Pre-Java 8:</p>
 <pre>ThreadLocal&lt;Foo&gt; foo = new ThreadLocal() {<br />  @Override<br />  protected Foo initialValue() {<br />    return new Foo();<br />  }<br />};</pre>
 <p>Post-Java 8:</p>

@@ -5,11 +5,13 @@
 <title>The Curious Case of Vuetify Bug 2773 · Symphonious</title>
 <meta name="description" content="I ran into an issue with Vuetify recently where the 1.0 betas were constantly utilising a CPU core when run in Safari. It turned out, I wasn&rsquo;t alone and …">
 <link rel="canonical" href="https://www.symphonious.net/2018/01/10/the-curious-case-of-vuetify-bug-2773/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -48,22 +50,19 @@ There wasn&rsquo;t a lot to go on – the problem only happened in Safari and th
 <p>That and the max-height was all the CSS required to reproduce the problem when Vuetify created the DOM, but not enough when applied to a static HTML page.</p>
 <p>The ‘data-booted&rsquo; attribute is added dynamically by Vuetify when the component is loaded to trigger an enter animation on the element but I still couldn&rsquo;t reproduce the issue without Vuetify even if I wrote JavaScript to add that attribute after a delay.</p>
 <p>It turns out the third piece required to trigger the high CPU usage is that the element has to be created with document.createElement. If it&rsquo;s included in the page HTML or even created with el.outerHTML = ‘…&rsquo; there&rsquo;s no issue.  So it turns out to be a Safari/WebKit bug which can be reproduced with:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">  &lt;div</span> <span style="color: #0000cc;">id=</span><span style="background-color: #fff0f0;">"app"</span><span style="color: #007700;">&gt;</span>
-  <span style="color: #007700;">&lt;/div&gt;</span>
-  <span style="color: #007700;">&lt;script&gt;</span>
-    <span style="color: #008800; font-weight: bold;">const</span> nav <span style="color: #333333;">=</span> <span style="color: #007020;">document</span>.createElement(<span style="background-color: #fff0f0;">'aside'</span>);
-    nav.style.maxHeight <span style="color: #333333;">=</span> <span style="background-color: #fff0f0;">'calc(100% - 0px)'</span>;
-    <span style="color: #008800; font-weight: bold;">const</span> originalEl <span style="color: #333333;">=</span> <span style="color: #007020;">document</span>.getElementById(<span style="background-color: #fff0f0;">'app'</span>);
-    originalEl.parentElement.replaceChild(nav, originalEl);
-<pre><code>requestAnimationFrame(&lt;span style=&quot;color: #008800; font-weight: bold;&quot;&gt;function&lt;/span&gt;() {
-  nav.style.transitionDuration &lt;span style=&quot;color: #333333;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;background-color: #fff0f0;&quot;&gt;'1s'&lt;/span&gt;;
-});
-</code></pre>
-<p><span style="color: #007700;">&lt;/script&gt;</span>
-</pre></p>
-</div>
-<p>You can <a href="https://www.symphonious.net/bugs/vuetify2773/">try it out</a>.  With Safari 11.0.2 (and possibly other versions) you can see the Timelines tab in dev tools show the page constantly recalculating layout and Activity Monitor will show the process for that tab using around 100% CPU.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>  &lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>  &lt;/div&gt;
+</span></span><span style="display:flex;"><span>  &lt;script&gt;
+</span></span><span style="display:flex;"><span>    const nav = document.createElement(&#39;aside&#39;);
+</span></span><span style="display:flex;"><span>    nav.style.maxHeight = &#39;calc(100% - 0px)&#39;;
+</span></span><span style="display:flex;"><span>    const originalEl = document.getElementById(&#39;app&#39;);
+</span></span><span style="display:flex;"><span>    originalEl.parentElement.replaceChild(nav, originalEl);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    requestAnimationFrame(function() {
+</span></span><span style="display:flex;"><span>      nav.style.transitionDuration = &#39;1s&#39;;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  &lt;/script&gt;
+</span></span></code></pre></div><p>You can <a href="https://www.symphonious.net/bugs/vuetify2773/">try it out</a>.  With Safari 11.0.2 (and possibly other versions) you can see the Timelines tab in dev tools show the page constantly recalculating layout and Activity Monitor will show the process for that tab using around 100% CPU.</p>
 <p>The work around for Vuetify was to ensure that transition-property which was defaulting to ‘all&rsquo; (because lots of things about navigation drawers animate) doesn&rsquo;t include the ‘max-height&rsquo; property or anything else that uses ‘calc&rsquo;. <a href="https://github.com/vuetifyjs/vuetify/pull/2958">Hence pull request 2958</a>.</p>
 <p>The problem appears to have already been fixed in WebKit as I can&rsquo;t reproduce it in the current Safari Technology Preview build.</p>
 </div></article>

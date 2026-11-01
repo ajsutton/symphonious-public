@@ -247,24 +247,15 @@ Source: &lt;em&gt;&lt;a href=&#34;https://allenpike.com/2018/the-great-bug-hunt/
       <pubDate>Thu, 08 Oct 2015 21:40:19 +0000</pubDate>
       <guid>https://www.symphonious.net/2015/10/09/use-more-magic-literals/</guid>
       <description>&lt;p&gt;In programming courses one of the first thing you&amp;rsquo;re taught is to avoid “magic literals” – numbers or strings that are hardcoded in the middle of an algorithm. The recommended solution is to extract them into a constant. Sometimes this is great advice, for example:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold;&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;amount &lt;span style=&#34;color: #666666;&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;1000)&lt;/span&gt; &lt;span style=&#34;color: #666666;&#34;&gt;{&lt;/span&gt;
-  checkAdditionalAuthorization&lt;span style=&#34;color: #666666;&#34;&gt;();&lt;/span&gt;
-&lt;span style=&#34;color: #666666;&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;if (amount &amp;gt; 1000) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  checkAdditionalAuthorization();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s not a hard and fast rule though.  For example:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;value&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;replace&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;PATTERN_TO_REPLACE&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; token&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;is dramatically less readable and maintainable than:&lt;/p&gt;
-&lt;div style=&#34;background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;value&lt;span style=&#34;color: #666666;&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #7d9029;&#34;&gt;replace&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #ba2121;&#34;&gt;&#34;%VALUE%&#34;&lt;/span&gt;&lt;span style=&#34;color: #666666;&#34;&gt;,&lt;/span&gt; token&lt;span style=&#34;color: #666666;&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Extracting a constant in this case just reduced the locality of the code, requiring someone reading the code to unnecessarily jump around the code to understand it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;value.replace(PATTERN_TO_REPLACE, token)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;is dramatically less readable and maintainable than:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;value.replace(&amp;#34;%VALUE%&amp;#34;, token)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Extracting a constant in this case just reduced the locality of the code, requiring someone reading the code to unnecessarily jump around the code to understand it.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;My rule of thumb is that you should extract a constant only when:&lt;/p&gt;
 &lt;ul&gt;

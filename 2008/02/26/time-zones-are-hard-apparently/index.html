@@ -5,11 +5,13 @@
 <title>Time Zones Are Hard (Apparently) · Symphonious</title>
 <meta name="description" content="You know if there&rsquo;s one thing more confusing and less documented in programming than character set encodings, it has to be time zones. For example, …">
 <link rel="canonical" href="https://www.symphonious.net/2008/02/26/time-zones-are-hard-apparently/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -31,7 +33,7 @@
 </div></header>
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="You know if there&rsquo;s one thing more confusing and less documented in programming than character set encodings, it has to be time zones. For example, here&rsquo;s the package tracking log for my new monitor:
-Date &lt;td&gt; &lt;strong&gt;Time&lt;/strong&gt; &lt;/td&gt; &lt;td&gt; &lt;strong&gt;Location&lt;/strong&gt; &lt;/td&gt; &lt;td&gt; &lt;strong&gt;Event Details&lt;/strong&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; Feb 26, 2008 &lt;/td&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; 04:29:00 AM &lt;/td&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; SWANSEA WEST GLAM GB &lt;/td&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; Arrival Scan &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; Feb 25, 2008 &lt;/td&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; 10:30:00 PM &lt;/td&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; SWANSEA WEST GLAM GB &lt;/td&gt; &lt;td nowrap=&quot;nowrap&quot;&gt; Departure Scan &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/td&gt; "><header class="article-heading"><h1 data-pagefind-meta="title">Time Zones Are Hard (Apparently)</h1><p class="article-meta"><time datetime="2008-02-26">26 February 2008</time> <span aria-hidden="true">·</span> 1 min read</p></header><div class="prose"><p>You know if there&rsquo;s one thing more confusing and less documented in programming than character set encodings, it has to be time zones. For example, here&rsquo;s the package tracking log for my new monitor:</p>
+Date Time Location Event Details Feb 26, 2008 04:29:00 AM SWANSEA WEST GLAM GB Arrival Scan Feb 25, 2008 10:30:00 PM SWANSEA WEST GLAM GB Departure Scan "><header class="article-heading"><h1 data-pagefind-meta="title">Time Zones Are Hard (Apparently)</h1><p class="article-meta"><time datetime="2008-02-26">26 February 2008</time> <span aria-hidden="true">·</span> 1 min read</p></header><div class="prose"><p>You know if there&rsquo;s one thing more confusing and less documented in programming than character set encodings, it has to be time zones. For example, here&rsquo;s the package tracking log for my new monitor:</p>
 <table border="0" cellpadding="5" cellspacing="0" width="100%">
   <tr>
     <td>
@@ -40,57 +42,46 @@ Date &lt;td&gt; &lt;strong&gt;Time&lt;/strong&gt; &lt;/td&gt; &lt;td&gt; &lt;str
           <td>
             <strong>Date</strong>
           </td>
-<pre><code>      &lt;td&gt;
-        &lt;strong&gt;Time&lt;/strong&gt;
-      &lt;/td&gt;
-      
-      &lt;td&gt;
-        &lt;strong&gt;Location&lt;/strong&gt;
-      &lt;/td&gt;
-      
-      &lt;td&gt;
-        &lt;strong&gt;Event Details&lt;/strong&gt;
-      &lt;/td&gt;
-    &lt;/tr&gt;
-    
-    &lt;tr&gt;
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        Feb 26, 2008
-      &lt;/td&gt;
-      
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        04:29:00 AM
-      &lt;/td&gt;
-      
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        SWANSEA WEST GLAM GB
-      &lt;/td&gt;
-      
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        Arrival Scan
-      &lt;/td&gt;
-    &lt;/tr&gt;
-    
-    &lt;tr&gt;
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        Feb 25, 2008
-      &lt;/td&gt;
-      
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        10:30:00 PM
-      &lt;/td&gt;
-      
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        SWANSEA WEST GLAM GB
-      &lt;/td&gt;
-      
-      &lt;td nowrap=&quot;nowrap&quot;&gt;
-        Departure Scan
-      &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/table&gt;
-&lt;/td&gt;
-</code></pre>
+          <td>
+            <strong>Time</strong>
+          </td>
+          <td>
+            <strong>Location</strong>
+          </td>
+          <td>
+            <strong>Event Details</strong>
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap">
+            Feb 26, 2008
+          </td>
+          <td nowrap="nowrap">
+            04:29:00 AM
+          </td>
+          <td nowrap="nowrap">
+            SWANSEA WEST GLAM GB
+          </td>
+          <td nowrap="nowrap">
+            Arrival Scan
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap">
+            Feb 25, 2008
+          </td>
+          <td nowrap="nowrap">
+            10:30:00 PM
+          </td>
+          <td nowrap="nowrap">
+            SWANSEA WEST GLAM GB
+          </td>
+          <td nowrap="nowrap">
+            Departure Scan
+          </td>
+        </tr>
+      </table>
+    </td>
   </tr>
 </table>
 <p> </p>

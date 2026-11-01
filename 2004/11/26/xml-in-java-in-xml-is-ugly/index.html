@@ -5,11 +5,13 @@
 <title>XML In Java In XML Is Ugly · Symphonious</title>
 <meta name="description" content="I&#8217;ve been struggling with getting Cocoon and Exist to work together properly and allow me to insert an XML snippet into a document in the database. …">
 <link rel="canonical" href="https://www.symphonious.net/2004/11/26/xml-in-java-in-xml-is-ugly/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -35,117 +37,33 @@
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; ?&gt;
-</pre>
-
-<pre>
 &lt;xsp:page xmlns:xsp=&quot;http://apache.org/xsp&quot;
-</pre>
-
-<pre>
     xmlns:xsp-request=&quot;http://apache.org/xsp/request/2.0&quot;
-</pre>
-
-<pre>
     xmlns:xdb=&quot;http://exist-db.org/xmldb/1.0&quot;&gt;
-</pre>
-
-<pre>
     &lt;result&gt;
-</pre>
-
-<pre>
     &lt;xdb:driver class=&quot;org.exist.xmldb.DatabaseImpl&quot; /&gt;
-</pre>
-
-<pre>
     &lt;xdb:collection uri=&quot;xmldb:exist:///db/features&quot; user=&quot;admin&quot; password=&quot;password&quot;&gt;
-</pre>
-
-<pre>
         &lt;xsp:logic&gt;
-</pre>
-
-<pre>
             String comment = &lt;xsp-request:get-parameter name=&quot;comment&quot; /&gt;;
-</pre>
-
-<pre>
             String author = &lt;xsp-request:get-parameter name=&quot;author&quot; /&gt;;
-</pre>
-
-<pre>
             String id = &lt;xsp-request:get-parameter name=&quot;id&quot; /&gt;;
-</pre>
-
-<pre>
             String xupdateQuery = &quot;&amp;lt;xupdate:modifications version='1.0' xmlns:        xupdate='http://www.xmldb.org/xupdate'&amp;gt;&amp;lt;xupdate:append select='/my:featureList/  my:feature[@id = &quot; + id + &quot;]/my:comments'&amp;gt;&amp;lt;xupdate:element name='my:comment'     namespace='http://www.ephox.com/featureManager'&amp;gt;&amp;lt;xupdate:attribute               name='author'&amp;gt;&quot; + author + &quot;&amp;lt;/xupdate:attribute&amp;gt;&quot; + comment + &quot;&amp;lt;/xupdate:  element&amp;gt;&amp;lt;/xupdate:append&amp;gt;&amp;lt;/xupdate:modifications&amp;gt;&quot;;
-</pre>
-
-<pre>
             try {
-</pre>
-
-<pre>
                 XUpdateQueryService service = (XUpdateQueryService)collection.           getService(&quot;XUpdateQueryService&quot;, &quot;1.0&quot;);
-</pre>
-
-<pre>
                 service.update(xupdateQuery);
-</pre>
-
-<pre>
             } catch (Exception e) {
-</pre>
-
-<pre>
                 e.printStackTrace();
-</pre>
-
-<pre>
             }
-</pre>
-
-<pre>
         &lt;/xsp:logic&gt;
-</pre>
-
-<pre>
         &lt;xdb:execute&gt;
-</pre>
-
-<pre>
             &lt;xdb:xpath&gt;
-</pre>
-
-<pre>
                 &quot;/my:featureList/my:feature[@id = &lt;xsp-request:get-parameter             name=&quot;id&quot; /&gt;]
-</pre>
-
-<pre>
             &lt;/xdb:xpath&gt;
-</pre>
-
-<pre>
         &lt;/xdb:execute&gt;
-</pre>
-
-<pre>
     &lt;/xdb:collection&gt;
-</pre>
-
-<pre>
     &lt;greeting&gt;
-</pre>
-
-<pre>
     &lt;/greeting&gt;
-</pre>
-
-<pre>
     &lt;/result&gt;
-</pre>
-
-<pre>
 &lt;/xsp:page&gt;
 </pre>
 

@@ -5,11 +5,12 @@
 <title>General · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/categories/general/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -53,13 +54,10 @@ Source: <em><a href="https://allenpike.com/2018/the-great-bug-hunt/">The Great B
 <article class="post-summary"><div class="date-gutter"><time datetime="2016-06-17">17 Jun 2016</time></div><div><h2><a href="/2016/06/17/fun-with-commonjs/">Fun with CommonJS</a></h2><div class="prose excerpt"><p>I&rsquo;ve recently started a little side project to create a java implementation of a CommonJS compiler: <a href="https://github.com/ajsutton/commonjs-java">commonjs-java</a> which is available on github under the Apache 2 license. It&rsquo;s output is targeted at browsers, bundling together all the dependencies into one javascript file.</p>
 <p>There are plenty of utilities that can do that for you on the command line or as part of a build process (e.g. browserify) and in most cases you should stick with them, but I had a couple of requirements that drove me to want a Java implementation:</p></div><a class="read-more" href="/2016/06/17/fun-with-commonjs/">Continue reading<span class="sr-only">: Fun with CommonJS</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-10-08">8 Oct 2015</time></div><div><h2><a href="/2015/10/09/use-more-magic-literals/">Use More Magic Literals</a></h2><div class="prose excerpt"><p>In programming courses one of the first thing you&rsquo;re taught is to avoid “magic literals” – numbers or strings that are hardcoded in the middle of an algorithm. The recommended solution is to extract them into a constant. Sometimes this is great advice, for example:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008000; font-weight: bold;">if</span> <span style="color: #666666;">(</span>amount <span style="color: #666666;">&gt;</span> <span style="color: #666666;">1000)</span> <span style="color: #666666;">{</span>
-  checkAdditionalAuthorization<span style="color: #666666;">();</span>
-<span style="color: #666666;">}</span>
-</pre>
-</div>
-<p>would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.</p></div><a class="read-more" href="/2015/10/09/use-more-magic-literals/">Continue reading<span class="sr-only">: Use More Magic Literals</span> <span aria-hidden="true">→</span></a></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>if (amount &gt; 1000) {
+</span></span><span style="display:flex;"><span>  checkAdditionalAuthorization();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.</p></div><a class="read-more" href="/2015/10/09/use-more-magic-literals/">Continue reading<span class="sr-only">: Use More Magic Literals</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-09-30">30 Sep 2015</time></div><div><h2><a href="/2015/09/30/playing-with-ruby-on-rails-2/">Playing with Ruby on Rails</a></h2><div class="prose excerpt"><p>I&rsquo;ve been playing around with ruby on rails recently, partly to play around with rails and partly to take a run at a web app I&rsquo;ve been considering (<a href="https://github.com/ajsutton/river">which I&rsquo;ve open sourced</a> because why not?).</p>
 <p>It turns out the last time I played with it was <a href="https://www.symphonious.net/2005/06/19/playing-with-ruby-on-rails/">back in 2005</a> and slightly amusingly my thoughts on it haven&rsquo;t changed all that much. The lack of configuration is still good, but the amount of magic involved makes it hard to understand what&rsquo;s going on. The ease of finding documentation has improved dramatically – 10 years of blog posts really help. I&rsquo;m still using TextMate and it&rsquo;s still annoying that I can&rsquo;t click a method name to jump to it&rsquo;s definition – I hear good things about RubyMine but I&rsquo;m not keen to invest that kind of money in what may be a very short-lived experiment.</p></div><a class="read-more" href="/2015/09/30/playing-with-ruby-on-rails-2/">Continue reading<span class="sr-only">: Playing with Ruby on Rails</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2015-06-23">23 Jun 2015</time></div><div><h2><a href="/2015/06/24/end-to-end-tests-lmax-update/">End to End Tests @ LMAX Update</a></h2><div class="prose excerpt"><p>A little while back I said that <a href="https://www.symphonious.net/2015/04/30/making-end-to-end-tests-work/">LMAX ran around 11,000 end to end tests in around 50 minutes</a>. Since then we&rsquo;ve deployed some new hardware to run our continuous integration on, plus continued building new stuff and are now running about 11,500 tests in under 20 minutes.</p>

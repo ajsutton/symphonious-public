@@ -5,11 +5,12 @@
 <title>Code and Geek Stuff · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/categories/code-and-geek-stuff/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -32,7 +33,7 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>Code and Geek Stuff</h1></header>
-<article class="post-summary"><div class="date-gutter"><time datetime="2012-05-16">16 May 2012</time></div><div><h2><a href="/2012/05/16/growing-a-team-by-investing-in-tools/">Growing a Team By Investing in Tools</a></h2><div class="prose excerpt"><p><img loading="lazy" class="size-thumbnail wp-image-1687 alignleft" src="http://www.symphonious.net/wp-content/uploads/2012/05/Andy_Tools_Hammer_Spanner-150x150.png" alt="Tools" width="150" height="150" srcset="https://www.symphonious.net/wp-content/uploads/2012/05/Andy_Tools_Hammer_Spanner-150x150.png 150w, https://www.symphonious.net/wp-content/uploads/2012/05/Andy_Tools_Hammer_Spanner.png 200w" sizes="(max-width: 150px) 100vw, 150px" />It&rsquo;s widely recognised that adding people to a team often doesn&rsquo;t result in increases in velocity and can even reduce the velocity of the team due to the extra communication overhead. Instead, teams look to increasing levels of automation and tools to improve their productivity without adding extra people.</p></div><a class="read-more" href="/2012/05/16/growing-a-team-by-investing-in-tools/">Continue reading<span class="sr-only">: Growing a Team By Investing in Tools</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2012-05-16">16 May 2012</time></div><div><h2><a href="/2012/05/16/growing-a-team-by-investing-in-tools/">Growing a Team By Investing in Tools</a></h2><div class="prose excerpt"><p><img loading="lazy" class="size-thumbnail wp-image-1687 alignleft" src="/wp-content/uploads/2012/05/Andy_Tools_Hammer_Spanner-150x150.png" alt="Tools" width="150" height="150" srcset="/wp-content/uploads/2012/05/Andy_Tools_Hammer_Spanner-150x150.png 150w, /wp-content/uploads/2012/05/Andy_Tools_Hammer_Spanner.png 200w" sizes="(max-width: 150px) 100vw, 150px" />It&rsquo;s widely recognised that adding people to a team often doesn&rsquo;t result in increases in velocity and can even reduce the velocity of the team due to the extra communication overhead. Instead, teams look to increasing levels of automation and tools to improve their productivity without adding extra people.</p></div><a class="read-more" href="/2012/05/16/growing-a-team-by-investing-in-tools/">Continue reading<span class="sr-only">: Growing a Team By Investing in Tools</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2012-05-02">2 May 2012</time></div><div><h2><a href="/2012/05/02/go-faster-by-not-working/">Go Faster By Not Working</a></h2><div class="prose excerpt"><p>We all know by now that continuous integration is part of good software development – check in regularly and have a suite of automated tests run to confirm that everything is working as expected. If a test fails, jump on it quickly and get the build back to green. Simple right?</p>
 <p>But what happens when something goes wrong in a way that can’t be fixed quickly? For example, the build server has a hardware fault or runs out of disk space. You can’t just rollback the faulty change, its going to take time to get the build back to green. As your CI system grows, it may take time just to understand what went wrong. If your team is small they may all be taken up fixing the problem, but if the team is larger a pair focusses on fixing the build as quickly as possible and the other developers carry on working. Now you have two problems.</p></div><a class="read-more" href="/2012/05/02/go-faster-by-not-working/">Continue reading<span class="sr-only">: Go Faster By Not Working</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2012-03-19">19 Mar 2012</time></div><div><h2><a href="/2012/03/19/resolving-svn-tree-conflicts/">Resolving SVN Tree Conflicts</a></h2><div class="prose excerpt"><p>SVN tree conflicts can be insanely annoying – especially when they occur because you’ve deleted something locally and then an incoming change also deletes it. They can also be hard to resolve from most IDEs.</p>
@@ -63,27 +64,26 @@
 <p>However, nearly all of these tips really boil down to how to be more productive at writing text and the mechanics of writing code – editing actual source code files, jumping to different places in those files, executing commands more efficiently etc. Are these really the tasks that consume the vast majority of a developers time?</p></div><a class="read-more" href="/2012/01/02/bottlenecks-in-programmer-productivity/">Continue reading<span class="sr-only">: Bottlenecks in Programmer Productivity</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2011-11-13">13 Nov 2011</time></div><div><h2><a href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Simple Long Poll Patterns in JavaScript</a></h2><div class="prose excerpt"><p>A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d document them for posterity.</p>
 <h2 id="simple-long-poll-loop">Simple Long Poll Loop</h2>
-<noscript>
-  <pre><code class="language-javascript javascript">(function($) {
-    var longPollUrl = '/longpoll';
-<pre><code>var lastReceivedSequence;
-
-function poll() {
-    $.ajax(longPollUrl, {
-        data: { 'lastSequence': lastReceivedSequence },
-        dataType: 'json',
-        timeout: 15000,
-        success: function(data) {
-            if (!data) return;
-            lastReceivedSequence = data.sequenceNumber;
-            $(window).trigger('onLongPollEvent', data);
-        },
-        complete: poll
-    });
-}
-</code></pre>
-<p>})(jQuery);</code></pre>
-</noscript></p></div><a class="read-more" href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Continue reading<span class="sr-only">: Simple Long Poll Patterns in JavaScript</span> <span aria-hidden="true">→</span></a></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">longPollUrl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/longpoll&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastReceivedSequence</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">poll</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ajax</span>(<span style="color:#a6e22e">longPollUrl</span>, {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;lastSequence&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">lastReceivedSequence</span> },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dataType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;json&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">timeout</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">15000</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lastReceivedSequence</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">sequenceNumber</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">trigger</span>(<span style="color:#e6db74">&#39;onLongPollEvent&#39;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">complete</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">poll</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})(<span style="color:#a6e22e">jQuery</span>);
+</span></span></code></pre></div><p>There’s very little special about this – it basically just uses jQuery to do a standard long poll. The pattern that I like is that instead of calling a particular function directly to handle events it just uses the jQuery trigger function to fire an event that can be handled by any interested code, without introducing tight coupling between the two bits of code. Listeners would receive events with:</p></div><a class="read-more" href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Continue reading<span class="sr-only">: Simple Long Poll Patterns in JavaScript</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2011-09-26">26 Sep 2011</time></div><div><h2><a href="/2011/09/26/background-logging-with-the-disruptor/">Background Logging with the Disruptor</a></h2><div class="prose excerpt"><p><a href="http://vanillajava.blogspot.com/2011/09/exchange-and-gc-less-java.html">Peter Lawrey posted an example of using the Exchanger class from core Java to implement a background logging implementation</a>. He briefly compared it to the <a href="http://code.google.com/p/disruptor/">LMAX disruptor</a> and since someone requested it, I thought it might be interesting to show a similar implementation using the disruptor.</p>
 <p>Firstly, let’s revisit the very high level differences between the exchanger and the disruptor. Peter notes:</p></div><a class="read-more" href="/2011/09/26/background-logging-with-the-disruptor/">Continue reading<span class="sr-only">: Background Logging with the Disruptor</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2011-07-12">12 Jul 2011</time></div><div><h2><a href="/2011/07/12/martin-fowler-on-the-lmax-architecture/">Martin Fowler on the LMAX Architecture</a></h2><div class="prose excerpt"><p><a href="http://martinfowler.com/articles/lmax.html">Martin Fowler has posted an excellent overview of the LMAX architecture</a> which helps put the use-cases and key considerations that led to the <a href="http://code.google.com/p/disruptor/">LMAX disruptor pattern</a> in context.</p>

@@ -5,11 +5,13 @@
 <title>Table Alignment · Symphonious</title>
 <meta name="description" content="One of the great challenges of writing an HTML editor is discovering and smoothing over all the weird complexities in HTML. There are just some areas of HTML …">
 <link rel="canonical" href="https://www.symphonious.net/2009/02/02/table-alignment/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -32,8 +34,8 @@
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="One of the great challenges of writing an HTML editor is discovering and smoothing over all the weird complexities in HTML. There are just some areas of HTML (and CSS) that are brain-dead stupid and you have to wonder how on earth it ever came to be like that. I suspect most of those brain-dead areas are involved with alignment or tables. This of course means that aligning tables is particularly stupid.
 "><header class="article-heading"><h1 data-pagefind-meta="title">Table Alignment</h1><p class="article-meta"><time datetime="2009-02-02">2 February 2009</time> <span aria-hidden="true">·</span> 2 min read</p></header><div class="prose"><p>One of the great challenges of writing an HTML editor is discovering and smoothing over all the weird complexities in HTML. There are just some areas of HTML (and CSS) that are brain-dead stupid and you have to wonder how on earth it ever came to be like that. I suspect most of those brain-dead areas are involved with alignment or tables. This of course means that aligning tables is particularly stupid.</p>
-<p>Let’s start with just HTML. There’s an align attribute in HTML which seems nice and straight forward <code>&amp;#60;p align=”right”&amp;#62;</code> will align the the paragraph content to the right. <code>&amp;#60;p align=”center”&amp;#62;</code> will center the paragraph content. Unfortunately this doesn’t hold true for tables.  <code>&amp;#60;table align=”left”&amp;#62;</code> will <em>float the table itself</em> left, allowing the text to wrap around the table. <code>&amp;#60;table align=”right”&amp;#62;</code> will do the same on the right, but <code>&amp;#60;table align=”center”&amp;#62;</code> will just center the table itself, without wrapping text around it.</p>
-<p>Now add in CSS – which at least by itself is much more sensible.  <code>&amp;#60;table style=”text-align: center”&amp;#62;</code> has no effect on the table itself, but centers all the contents of the cells. <code>&amp;#60;table style=”float: left”&amp;#62;</code> floats left as does float: right. So far so good, but what if we want to center the table itself? That would be <code>&amp;#60;table style=”margin-left: auto; margin-right: auto;”&amp;#62;</code>  What the?</p>
+<p>Let’s start with just HTML. There’s an align attribute in HTML which seems nice and straight forward <code>&lt;p align=”right”&gt;</code> will align the the paragraph content to the right. <code>&lt;p align=”center”&gt;</code> will center the paragraph content. Unfortunately this doesn’t hold true for tables.  <code>&lt;table align=”left”&gt;</code> will <em>float the table itself</em> left, allowing the text to wrap around the table. <code>&lt;table align=”right”&gt;</code> will do the same on the right, but <code>&lt;table align=”center”&gt;</code> will just center the table itself, without wrapping text around it.</p>
+<p>Now add in CSS – which at least by itself is much more sensible.  <code>&lt;table style=”text-align: center”&gt;</code> has no effect on the table itself, but centers all the contents of the cells. <code>&lt;table style=”float: left”&gt;</code> floats left as does float: right. So far so good, but what if we want to center the table itself? That would be <code>&lt;table style=”margin-left: auto; margin-right: auto;”&gt;</code>  What the?</p>
 <p>I’m sure there are good and logical reasons for all these crazy things, but anyone who’s tried to provide an align attribute in a table dialog that’s compliant with both old and new browsers and is intuitive for users has quite significant bald patches because of this.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2009/01/22/newsgator-craziness/"><span>← Earlier</span>NewsGator Craziness</a><a href="/2009/02/05/useful-wcm-ifix-nullpointerexception-in-cmpntutilssetsourceidandname/"><span>Later →</span>Useful WCM iFix – NullPointerException in CmpntUtils.setSourceIDAndName</a></nav>

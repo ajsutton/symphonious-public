@@ -5,11 +5,13 @@
 <title>Testing@LMAX – Replacements in DSL · Symphonious</title>
 <meta name="description" content="Given our DSL makes heavy use of aliases, we often have to provide a way to include the real name or ID as part of some string. For example, an audit record for …">
 <link rel="canonical" href="https://www.symphonious.net/2015/08/27/testinglmax-replacements-in-dsl/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -40,7 +42,7 @@ registrationAPI.createUser(&#34;someUser&#34;); someUser is just an alias, the D
 <p>someUser is just an alias, the DSL creates a unique username to use and the system assigns a unique account ID that the DSL keeps track of for us. So to write a test that the new account audit record is written correctly, we need a way to build the expected audit string.</p>
 <p>Our initial attempt was straight forward enough:</p>
 <pre>adminAPI.verifyAuditEntry(<br />  "expression: Created account &lt;accountId&gt; with username &lt;username&gt;.",<br /> "account: someUser",<br />);</pre>
-<p>The DSL substitutes <accountId> and <username> with the real values for us. Simple, neat, worked well for quite a while. Except that over time we kept finding more and more things that needed to be substituted and encountered situations where an audit log would reference to two different accounts or multiple instruments, leading us to have <accountId2> and <accountId3> replacements.</p>
+<p>The DSL substitutes <code>&lt;accountId&gt;</code> and <code>&lt;username&gt;</code> with the real values for us. Simple, neat, worked well for quite a while. Except that over time we kept finding more and more things that needed to be substituted and encountered situations where an audit log would reference to two different accounts or multiple instruments, leading us to have <code>&lt;accountId2&gt;</code> and <code>&lt;accountId3&gt;</code> replacements.</p>
 <p>So a little while back some of my clever colleagues changed things around to a slightly more complex but much more flexible syntax:</p>
 <pre>adminAPI.verifyAuditEntry(<br />  "expression: Created account &lt;accountId:someUser&gt; with username &lt;username:someUser&gt;."<br />);</pre>
 <p>Essentially, the replacement now contains both the type of value to insert as well as the alias to look up. This has been a minor revolution for our DSL – it&rsquo;s now much easier to handle all sorts of complex cases and it&rsquo;s much clearer which alias is being used for each replacement.</p>

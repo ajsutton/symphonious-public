@@ -161,7 +161,7 @@ pid=com.ibm.workplace.wcm.api.WCM_SiteArea/plugins/ca0d04004e034ec59853f8b5e96d1
       <link>https://www.symphonious.net/2009/05/07/key-ibm-lwcm-config-file/</link>
       <pubDate>Thu, 07 May 2009 08:21:32 +0000</pubDate>
       <guid>https://www.symphonious.net/2009/05/07/key-ibm-lwcm-config-file/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; style=&#34; float: right;&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/05/reminder-hand_benji_park_37872.png&#34; height=&#34;128&#34; width=&#34;90&#34; alt=&#34;Reminder&#34; /&gt;Note to self:&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; style=&#34; float: right;&#34; src=&#34;https://www.symphonious.net/wp-content/uploads/2009/05/reminder-hand_benji_park_37872.png&#34; height=&#34;128&#34; width=&#34;90&#34; alt=&#34;Reminder&#34; /&gt;Note to self:&lt;/p&gt;
 &lt;p&gt;That magical file that controls just about everything you ever want to control about IBM LWCM (at least so far as things that are controlled from the file system rather than the web interface) is under the profile directory at /wcm/shared/app/config/wcmservices/WCMConfigService.properties&lt;/p&gt;
 &lt;p&gt;This includes:&lt;/p&gt;
 &lt;ul class=&#34;greenTick&#34;&gt;
@@ -188,7 +188,7 @@ pid=com.ibm.workplace.wcm.api.WCM_SiteArea/plugins/ca0d04004e034ec59853f8b5e96d1
       <link>https://www.symphonious.net/2009/03/26/devices-have-disabilities-too/</link>
       <pubDate>Thu, 26 Mar 2009 10:30:39 +0000</pubDate>
       <guid>https://www.symphonious.net/2009/03/26/devices-have-disabilities-too/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://www.symphonious.net/wp-content/uploads/2009/03/accessibility.png&#34; alt=&#34;Accessibility Icon&#34; height=&#34;215&#34; width=&#34;200&#34; style=&#34; float: right;&#34; /&gt;The &lt;a href=&#34;http://www.australianit.news.com.au/story/0,24897,25231165-5013040,00.html&#34;&gt;Australian brings news of the growing battle for mobile banking leadership among Australian banks&lt;/a&gt;:&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.symphonious.net/wp-content/uploads/2009/03/accessibility.png&#34; alt=&#34;Accessibility Icon&#34; height=&#34;215&#34; width=&#34;200&#34; style=&#34; float: right;&#34; /&gt;The &lt;a href=&#34;http://www.australianit.news.com.au/story/0,24897,25231165-5013040,00.html&#34;&gt;Australian brings news of the growing battle for mobile banking leadership among Australian banks&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Brisbane-based Suncorp launched the first mobile browser-based banking service and last week made it compatible with iPhone and Google Android handsets.&lt;/p&gt;
 &lt;p&gt;The Commonwealth Bank has similarly updated its mobile service, which will work on any internet-enabled mobile phone, and has additional functionality for the iPhone.&lt;/p&gt;

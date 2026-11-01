@@ -5,11 +5,13 @@
 <title>Internationalising Vue Components · Symphonious</title>
 <meta name="description" content="As Vue gradually spreads through our JavaScript, it&rsquo;s reached the point where we need to support internationalisation. We already have a system for …">
 <link rel="canonical" href="https://www.symphonious.net/2017/08/29/internationalising-vue-components/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -42,28 +44,16 @@
 <h1>{{ t(‘header.title&rsquo;) }}</h1></li>
 </ol>
 <p>Using a directive is nice and simple but doesn&rsquo;t work if the text is dynamic (any {{data}} values are already resolved in the element text). Explicitly calling a function to perform the translation leads to pretty unwieldy templates.</p>
-<p>What we&rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use <i18n></i18n> instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&rsquo;s not. So a simple example might be:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;&lt;i18n&gt;</span>Hello world!<span style="color: #007700;">&lt;/i18n&gt;&lt;/p&gt;</span>
-</pre>
-</div>
-<p>To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;</span><span style="color: #557799;">{</span><span style="color: #333333;">{</span><span style="color: #0000cc;">translate</span><span style="color: #333333;">(</span><span style="background-color: #fff0f0;">"Hello world!"</span><span style="color: #333333;">)</span><span style="color: #557799;">}</span>}<span style="color: #007700;">&lt;/p&gt;</span>
-</pre>
-</div>
-<p>Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.</p>
+<p>What we&rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use <code>&lt;i18n&gt;&lt;/i18n&gt;</code> instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&rsquo;s not. So a simple example might be:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;p&gt;&lt;i18n&gt;Hello world!&lt;/i18n&gt;&lt;/p&gt;
+</span></span></code></pre></div><p>To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;p&gt;{{translate(&#34;Hello world!&#34;)}}&lt;/p&gt;
+</span></span></code></pre></div><p>Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.</p>
 <p>When the string includes parameters we write them in the same way as a normal Vue template, for example:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;&lt;i18n&gt;</span>Hello {{name}}!<span style="color: #007700;">&lt;/i18n&gt;&lt;/p&gt;</span>
-</pre>
-</div>
-<p>And our pre-loader translates it in exactly the same way:</p>
-<div style="background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #007700;">&lt;p&gt;</span><span style="color: #557799;">{</span><span style="color: #333333;">{</span><span style="color: #0000cc;">translate</span><span style="color: #333333;">(</span><span style="background-color: #fff0f0;">"Hello {{name\}\}!"</span><span style="color: #333333;">)</span><span style="color: #557799;">}</span>}<span style="color: #007700;">&lt;/p&gt;</span>
-</pre>
-</div>
-<p>The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;p&gt;&lt;i18n&gt;Hello {{name}}!&lt;/i18n&gt;&lt;/p&gt;
+</span></span></code></pre></div><p>And our pre-loader translates it in exactly the same way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;p&gt;{{translate(&#34;Hello {{name\}\}!&#34;)}}&lt;/p&gt;
+</span></span></code></pre></div><p>The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.</p>
 <p>At this point, Vue won&rsquo;t replace {{name}} with the actual value of name because it&rsquo;s part of a JavaScript string, not part of the template. The good part of that is that our translation function will now be looking up the string to translate prior to variable substitution.  So it will look for a translation for “Hello {{name}}!” rather than needing translations for every possible name. Once we find the translation, the translate function then uses a regex to find and replace each placeholder with the actual value from the vue instance. </p>
 <p>Notably, this process means that you can&rsquo;t use anything but a simple variable name in placeholders within translated strings (though it can refer to a computed property). This is actually a good thing because we don&rsquo;t want to send a string off to the translators that contains complex JavaScript they won&rsquo;t understand. In fact, we have tests that place additional restrictions on strings to translate to ensure they are easily manageable through the translation process.</p>
 </div></article>

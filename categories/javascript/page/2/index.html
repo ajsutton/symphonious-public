@@ -5,11 +5,12 @@
 <title>JavaScript · Symphonious</title>
 <meta name="description" content="">
 <link rel="canonical" href="https://www.symphonious.net/categories/javascript/">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -45,27 +46,26 @@
 <p>In order to test specific pieces of the application, we want to be able to inject stubs or mocks into the module being tested. For example, if we had a module:</p></div><a class="read-more" href="/2013/07/08/injecting-stubsmocks-into-tests-with-require-js/">Continue reading<span class="sr-only">: Injecting Stubs/Mocks into Tests with Require.js</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2011-11-13">13 Nov 2011</time></div><div><h2><a href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Simple Long Poll Patterns in JavaScript</a></h2><div class="prose excerpt"><p>A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d document them for posterity.</p>
 <h2 id="simple-long-poll-loop">Simple Long Poll Loop</h2>
-<noscript>
-  <pre><code class="language-javascript javascript">(function($) {
-    var longPollUrl = '/longpoll';
-<pre><code>var lastReceivedSequence;
-
-function poll() {
-    $.ajax(longPollUrl, {
-        data: { 'lastSequence': lastReceivedSequence },
-        dataType: 'json',
-        timeout: 15000,
-        success: function(data) {
-            if (!data) return;
-            lastReceivedSequence = data.sequenceNumber;
-            $(window).trigger('onLongPollEvent', data);
-        },
-        complete: poll
-    });
-}
-</code></pre>
-<p>})(jQuery);</code></pre>
-</noscript></p></div><a class="read-more" href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Continue reading<span class="sr-only">: Simple Long Poll Patterns in JavaScript</span> <span aria-hidden="true">→</span></a></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">longPollUrl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/longpoll&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastReceivedSequence</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">poll</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ajax</span>(<span style="color:#a6e22e">longPollUrl</span>, {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;lastSequence&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">lastReceivedSequence</span> },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dataType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;json&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">timeout</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">15000</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">data</span>) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lastReceivedSequence</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">sequenceNumber</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">trigger</span>(<span style="color:#e6db74">&#39;onLongPollEvent&#39;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">complete</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">poll</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})(<span style="color:#a6e22e">jQuery</span>);
+</span></span></code></pre></div><p>There’s very little special about this – it basically just uses jQuery to do a standard long poll. The pattern that I like is that instead of calling a particular function directly to handle events it just uses the jQuery trigger function to fire an event that can be handled by any interested code, without introducing tight coupling between the two bits of code. Listeners would receive events with:</p></div><a class="read-more" href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Continue reading<span class="sr-only">: Simple Long Poll Patterns in JavaScript</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-11-24">24 Nov 2010</time></div><div><h2><a href="/2010/11/24/controlling-focus-in-firefox/">Controlling Focus in Firefox</a></h2><div class="prose excerpt"><p>I have a bunch of JavaScript unit tests and for some of them I need to trigger a real keypress – one that activates the browser’s default functionality, not just triggers the JavaScript listeners. To do that, I have a <a href="https://github.com/ephox/JSRobot/">simple signed applet that uses the AWT Robot</a> to programmatically trigger the keypresses. Mostly, this works brilliantly.</p></div><a class="read-more" href="/2010/11/24/controlling-focus-in-firefox/">Continue reading<span class="sr-only">: Controlling Focus in Firefox</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-10-09">9 Oct 2010</time></div><div><h2><a href="/2010/10/09/javascript-performance-for-vs-foreach/">JavaScript Performance: For vs ForEach</a></h2><div class="prose excerpt"><p>As part of <a href="http://www.symphonious.net/2010/10/07/optimising-javascript/">exploring JavaScript performance</a>, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using <a href="http://jsperf.com/">jsperf.com</a> I could set up a simple test case pretty quickly and easily: <a href="http://jsperf.com/for-vs-foreach/5">for vs forEach</a>.</p></div><a class="read-more" href="/2010/10/09/javascript-performance-for-vs-foreach/">Continue reading<span class="sr-only">: JavaScript Performance: For vs ForEach</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-10-07">7 Oct 2010</time></div><div><h2><a href="/2010/10/07/optimising-javascript/">Optimising JavaScript</a></h2><div class="prose excerpt"><p>I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.</p></div><a class="read-more" href="/2010/10/07/optimising-javascript/">Continue reading<span class="sr-only">: Optimising JavaScript</span> <span aria-hidden="true">→</span></a></div></article>

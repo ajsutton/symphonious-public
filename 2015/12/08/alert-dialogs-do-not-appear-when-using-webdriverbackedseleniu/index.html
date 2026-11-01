@@ -5,11 +5,13 @@
 <title>Alert Dialogs Do Not Appear When Using WebDriverBackedSeleniu · Symphonious</title>
 <meta name="description" content="With Selenium 1, JavaScript alert and confirmation dialogs were intercepted by the Selenium JavaScript library so they never appeared on-screen and were …">
 <link rel="canonical" href="https://www.symphonious.net/2015/12/08/alert-dialogs-do-not-appear-when-using-webdriverbackedseleniu/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -36,21 +38,18 @@ With Selenium 2 aka WebDriver, the dialogs do appear on screen and you access t
 <p>With Selenium 2 aka WebDriver, the dialogs <em>do</em> appear on screen and you access them with webDriver.switchTo().alert() which returns an Alert instance for further interactions.</p>
 <p>However, when you use WebDriverBackedSelenium to mix Selenium 1 and WebDriver APIs – for example, during migrations from one to the other – the alerts don&rsquo;t appear on screen and webDriver.switchTo().alert() always throws a NoAlertPresentException. This makes migration problematic because selenium.chooseOkOnNextConfirmation() doesn&rsquo;t have any effect if the next confirmation is triggered by an action performed directly through Web Driver.</p>
 <p>The solution is to avoid WebDriverBackedSelenium entirely and instead create a WebDriverCommandProcessor, configure it to not emulate dialogs and pass it to DefaultSelenium.</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #008000; font-weight: bold;">public</span> Selenium <span style="color: #0000ff;">createSelenium</span><span style="color: #666666;">(</span>
-  <span style="color: #008000; font-weight: bold;">final</span> WebDriver webDriver<span style="color: #666666;">,</span> 
-  <span style="color: #008000; font-weight: bold;">final</span> String baseUrl<span style="color: #666666;">)</span> 
-<span style="color: #666666;">{</span>
-  WebDriverCommandProcessor commandProcessor <span style="color: #666666;">=</span> 
-    <span style="color: #008000; font-weight: bold;">new</span> <span style="color: #0000ff;">WebDriverCommandProcessor</span><span style="color: #666666;">(</span>baseUrl<span style="color: #666666;">,</span> <span style="color: #666666;">()</span> <span style="color: #666666;">-&gt;</span> webDriver<span style="color: #666666;">);</span>
-  commandProcessor<span style="color: #666666;">.</span><span style="color: #7d9029;">setEnableAlertOverrides</span><span style="color: #666666;">(</span><span style="color: #008000; font-weight: bold;">false</span><span style="color: #666666;">);</span>
-  processor<span style="color: #666666;">.</span><span style="color: #7d9029;">start</span><span style="color: #666666;">();</span>
-  <span style="color: #008000; font-weight: bold;">return</span> <span style="color: #008000; font-weight: bold;">new</span> <span style="color: #0000ff;">DefaultSelenium</span><span style="color: #666666;">(</span>commandProcessor<span style="color: #666666;">);</span>
-<span style="color: #666666;">}</span>
-</pre>
-</div>
-<p>The key method call here is setEnableAlertOverride(false) which disables the alert emulation.  Note that the Selenium 1 methods for interacting with dialogs will no longer work – you have to switch all alert handling over to WebDriver.</p>
-<p>Also note the subtle but important use of a closure to provide a Supplier<WebDriver> instead of just passing the webDriver. The overloaded constructor instance that takes a WebDriver immediately calls start() on the processor and setEnableAlertOverrides must be called before start().</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>public Selenium createSelenium(
+</span></span><span style="display:flex;"><span>  final WebDriver webDriver,
+</span></span><span style="display:flex;"><span>  final String baseUrl)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  WebDriverCommandProcessor commandProcessor =
+</span></span><span style="display:flex;"><span>    new WebDriverCommandProcessor(baseUrl, () -&gt; webDriver);
+</span></span><span style="display:flex;"><span>  commandProcessor.setEnableAlertOverrides(false);
+</span></span><span style="display:flex;"><span>  processor.start();
+</span></span><span style="display:flex;"><span>  return new DefaultSelenium(commandProcessor);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The key method call here is setEnableAlertOverride(false) which disables the alert emulation.  Note that the Selenium 1 methods for interacting with dialogs will no longer work – you have to switch all alert handling over to WebDriver.</p>
+<p>Also note the subtle but important use of a closure to provide a <code>Supplier&lt;WebDriver&gt;</code> instead of just passing the webDriver. The overloaded constructor instance that takes a WebDriver immediately calls start() on the processor and setEnableAlertOverrides must be called before start().</p>
 <p>It&rsquo;s unfortunate, but understandable, that Selenium 1 and WebDriver style alert interactions can&rsquo;t be mixed as that would make migration a lot easier. At least with this approach you can convert your alert interactions over in one batch then convert all the other interactions incrementally.</p>
 </div></article>
 <nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2015/12/04/testinglmax-introducing-elementspecification/"><span>← Earlier</span>Testing@LMAX – Introducing ElementSpecification</a><a href="/2016/02/29/testinglmax-making-test-output-useful/"><span>Later →</span>Testing@LMAX – Making Test Output Useful</a></nav>

@@ -5,11 +5,13 @@
 <title>Don’t Make Your Design Responsive · Symphonious</title>
 <meta name="description" content="Every web based product is adding “responsive design” to their feature lists. Unfortunately in many cases that responsive design is actually making their …">
 <link rel="canonical" href="https://www.symphonious.net/2014/07/26/dont-make-your-design-responsive/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -36,14 +38,14 @@ The problem is that common CSS libraries and grid systems, including the extrem
 <p>The problem is that common CSS libraries and grid systems, including the extremely popular bootstrap, imply that a design can be made responsive using fixed cut-off points and the design just automatically adjusts. In reality making a design responsive requires tailoring the cut off points so that the design adjusts at the points where it stops working well.</p>
 <p>For example, let&rsquo;s look at the bootstrap documentation and in particular the top menu it uses. The bootstrap documentation gets it right, we can shrink the window down right to the point where the menus only just fit and they stick to the full size design:</p>
 <div id="attachment_1936" style="width: 575px" class="wp-caption alignnone">
-  <a href="/wp-content/uploads/2014/07/menu-expanded.png"><img aria-describedby="caption-attachment-1936" loading="lazy" class="wp-image-1936 size-large" src="/wp-content/uploads/2014/07/menu-expanded-1024x421.png" alt="Menu remains full-size for as long as it can fit." width="565" height="232" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-expanded-1024x421.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-expanded-300x123.png 300w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-expanded.png 1774w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <a href="/wp-content/uploads/2014/07/menu-expanded.png"><img aria-describedby="caption-attachment-1936" loading="lazy" class="wp-image-1936 size-large" src="/wp-content/uploads/2014/07/menu-expanded-1024x421.png" alt="Menu remains full-size for as long as it can fit." width="565" height="232" srcset="/wp-content/uploads/2014/07/menu-expanded-1024x421.png 1024w, /wp-content/uploads/2014/07/menu-expanded-300x123.png 300w, /wp-content/uploads/2014/07/menu-expanded.png 1774w" sizes="(max-width: 565px) 100vw, 565px" /></a>
   <p id="caption-attachment-1936" class="wp-caption-text">
     Menu remains full-size for as long as it can fit.
   </p>
 </div>
 <p>If we shrink the window further the menus wouldn&rsquo;t fit anymore so they correctly switch to the hamburger style:</p>
 <div id="attachment_1937" style="width: 575px" class="wp-caption alignnone">
-  <a href="/wp-content/uploads/2014/07/menu-collapsed.png"><img aria-describedby="caption-attachment-1937" loading="lazy" class="size-large wp-image-1937" src="/wp-content/uploads/2014/07/menu-collapsed-1024x427.png" alt="Menu collapses once it would no longer fit." width="565" height="235" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-collapsed-1024x427.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-collapsed-300x125.png 300w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-collapsed.png 1750w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <a href="/wp-content/uploads/2014/07/menu-collapsed.png"><img aria-describedby="caption-attachment-1937" loading="lazy" class="size-large wp-image-1937" src="/wp-content/uploads/2014/07/menu-collapsed-1024x427.png" alt="Menu collapses once it would no longer fit." width="565" height="235" srcset="/wp-content/uploads/2014/07/menu-collapsed-1024x427.png 1024w, /wp-content/uploads/2014/07/menu-collapsed-300x125.png 300w, /wp-content/uploads/2014/07/menu-collapsed.png 1750w" sizes="(max-width: 565px) 100vw, 565px" /></a>
   <p id="caption-attachment-1937" class="wp-caption-text">
     Menu collapses once it would no longer fit.
   </p>
@@ -51,14 +53,14 @@ The problem is that common CSS libraries and grid systems, including the extrem
 <p>That&rsquo;s the <em>right</em> way to do it. The cutoff points have been specifically tailored for the content. There are other stylistic changes as well as these structural ones – the designer believes that centred text works better for headings on smaller screens for example. That&rsquo;s fine, they&rsquo;re fairly arbitrary design decisions based on what the designer believes looks best. I&rsquo;m focussed on structural issues.</p>
 <p>To see what happens if we ignore let&rsquo;s pretend that we add a new menu item:</p>
 <div id="attachment_1939" style="width: 575px" class="wp-caption alignnone">
-  <a href="/wp-content/uploads/2014/07/menu-new-item-fitting.png"><img aria-describedby="caption-attachment-1939" loading="lazy" class="wp-image-1939 size-large" src="/wp-content/uploads/2014/07/menu-new-item-fitting-1024x337.png" alt="Our &quot;New Item&quot; shown correctly when the window is wide enough." width="565" height="185" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-fitting-1024x337.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-fitting-300x98.png 300w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <a href="/wp-content/uploads/2014/07/menu-new-item-fitting.png"><img aria-describedby="caption-attachment-1939" loading="lazy" class="wp-image-1939 size-large" src="/wp-content/uploads/2014/07/menu-new-item-fitting-1024x337.png" alt="Our &quot;New Item&quot; shown correctly when the window is wide enough." width="565" height="185" srcset="/wp-content/uploads/2014/07/menu-new-item-fitting-1024x337.png 1024w, /wp-content/uploads/2014/07/menu-new-item-fitting-300x98.png 300w" sizes="(max-width: 565px) 100vw, 565px" /></a>
   <p id="caption-attachment-1939" class="wp-caption-text">
     Our &#8220;New Item&#8221; shown correctly when the window is wide enough.
   </p>
 </div>
 <p>But now when we shrink the window down, the breakpoint is in the wrong place:</p>
 <div id="attachment_1940" style="width: 575px" class="wp-caption alignnone">
-  <a href="/wp-content/uploads/2014/07/menu-new-item-too-small.png"><img aria-describedby="caption-attachment-1940" loading="lazy" class="size-large wp-image-1940" src="/wp-content/uploads/2014/07/menu-new-item-too-small-1024x367.png" alt="The &quot;New Item&quot; menu no longer fits but causes incorrect wrapping because the break point is wrong." width="565" height="202" srcset="https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-too-small-1024x367.png 1024w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-too-small-300x107.png 300w, https://www.symphonious.net/wp-content/uploads/2014/07/menu-new-item-too-small.png 2032w" sizes="(max-width: 565px) 100vw, 565px" /></a>
+  <a href="/wp-content/uploads/2014/07/menu-new-item-too-small.png"><img aria-describedby="caption-attachment-1940" loading="lazy" class="size-large wp-image-1940" src="/wp-content/uploads/2014/07/menu-new-item-too-small-1024x367.png" alt="The &quot;New Item&quot; menu no longer fits but causes incorrect wrapping because the break point is wrong." width="565" height="202" srcset="/wp-content/uploads/2014/07/menu-new-item-too-small-1024x367.png 1024w, /wp-content/uploads/2014/07/menu-new-item-too-small-300x107.png 300w, /wp-content/uploads/2014/07/menu-new-item-too-small.png 2032w" sizes="(max-width: 565px) 100vw, 565px" /></a>
   <p id="caption-attachment-1940" class="wp-caption-text">
     The &#8220;New Item&#8221; menu no longer fits but causes incorrect wrapping because the break point is wrong.
   </p>

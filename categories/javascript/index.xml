@@ -40,28 +40,16 @@
 &lt;h1&gt;{{ t(‘header.title&amp;rsquo;) }}&lt;/h1&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Using a directive is nice and simple but doesn&amp;rsquo;t work if the text is dynamic (any {{data}} values are already resolved in the element text). Explicitly calling a function to perform the translation leads to pretty unwieldy templates.&lt;/p&gt;
-&lt;p&gt;What we&amp;rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use &lt;i18n&gt;&lt;/i18n&gt; instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&amp;rsquo;s not. So a simple example might be:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello world!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello world!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.&lt;/p&gt;
+&lt;p&gt;What we&amp;rsquo;ve settled on is a pretty direct translation of our mustache system to Vue. We use &lt;code&gt;&amp;lt;i18n&amp;gt;&amp;lt;/i18n&amp;gt;&lt;/code&gt; instead of {{#i18n}}{{/i18n}} since the content of {{…}} in Vue is expected to be valid JavaScript and IDEs flag it as an error if it&amp;rsquo;s not. So a simple example might be:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;Hello world!&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To make it actually translate, we use a HTML pre-loader for the webpack vue-loader that translates that into:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;{{translate(&amp;#34;Hello world!&amp;#34;)}}&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Finally, on the client side, a global Vue mixin provides the implementation of translate that looks up the translated version of that string and replace it.&lt;/p&gt;
 &lt;p&gt;When the string includes parameters we write them in the same way as a normal Vue template, for example:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;&lt;/span&gt;Hello {{name}}!&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;And our pre-loader translates it in exactly the same way:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #0000cc;&#34;&gt;translate&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#34;Hello {{name\}\}!&#34;&lt;/span&gt;&lt;span style=&#34;color: #333333;&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #557799;&#34;&gt;}&lt;/span&gt;}&lt;span style=&#34;color: #007700;&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;&amp;lt;i18n&amp;gt;Hello {{name}}!&amp;lt;/i18n&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And our pre-loader translates it in exactly the same way:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;p&amp;gt;{{translate(&amp;#34;Hello {{name\}\}!&amp;#34;)}}&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The only slightly tricky bit is that the pre-loader escapes the } characters, otherwise Vue treats them as the end of the template string and it results in JavaScript errors.&lt;/p&gt;
 &lt;p&gt;At this point, Vue won&amp;rsquo;t replace {{name}} with the actual value of name because it&amp;rsquo;s part of a JavaScript string, not part of the template. The good part of that is that our translation function will now be looking up the string to translate prior to variable substitution.  So it will look for a translation for “Hello {{name}}!” rather than needing translations for every possible name. Once we find the translation, the translate function then uses a regex to find and replace each placeholder with the actual value from the vue instance. &lt;/p&gt;
 &lt;p&gt;Notably, this process means that you can&amp;rsquo;t use anything but a simple variable name in placeholders within translated strings (though it can refer to a computed property). This is actually a good thing because we don&amp;rsquo;t want to send a string off to the translators that contains complex JavaScript they won&amp;rsquo;t understand. In fact, we have tests that place additional restrictions on strings to translate to ensure they are easily manageable through the translation process.&lt;/p&gt;
 </description>
@@ -86,22 +74,24 @@
       <guid>https://www.symphonious.net/2017/07/19/moolah-diaries-tracking-account-balances/</guid>
       <description>&lt;p&gt;Moolah has two separate Vuex modules, transactions and accounts. That&amp;rsquo;s a fairly reasonably logical separation, but in the new Moolah, it&amp;rsquo;s not a complete separation. Moolah only ever loads a subset of transactions – typically the most recent transactions from the currently selected account.  As a result, accounts have their own current balance property because they can&amp;rsquo;t always calculate it off of their transactions.&lt;/p&gt;
 &lt;p&gt;That means that sometimes the transaction Vuex module needs to make changes to state owned by the account module which is a rather unpleasant breach of module separation. While we ensured transaction balances remained consistent inside each mutation, we can&amp;rsquo;t do that for account balances because Vuex (presumably deliberately) makes it impossible for a mutation to access or change state outside of the module itself. Instead, I&amp;rsquo;ve used a simple Vuex plugin that watches the balance on the most recent transaction and notifies the account module when it changes:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;import&lt;/span&gt; {mutations as accountsMutations} from &lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;./accountsStore&#39;&lt;/span&gt;;
-&lt;p&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;default&lt;/span&gt; store &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; store.watch(
-(state) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
-&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; state.transactions.transactions.length &lt;span style=&#34;color: #333333;&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt; &lt;br /&gt;&lt;span style=&#34;color: #333333;&#34;&gt;                                 ?&lt;/span&gt; state.transactions.transactions[&lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt;].balance &lt;br /&gt;&lt;span style=&#34;color: #333333;&#34;&gt;                                 :&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt;;
-},
-(newValue, oldValue) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
-&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;if&lt;/span&gt; (store.getters[&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&amp;ldquo;accounts/selectedAccount&amp;rdquo;&lt;/span&gt;] &lt;span style=&#34;color: #333333;&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt; &lt;span style=&#34;color: #333333;&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;br /&gt;           newValue &lt;span style=&#34;color: #333333;&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;undefined&lt;/span&gt;) {
-store.commit(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&amp;lsquo;accounts/&amp;rsquo;&lt;/span&gt; &lt;span style=&#34;color: #333333;&#34;&gt;+&lt;/span&gt; accountsMutations.updateAccount, {
-id&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; store.state.selectedAccountId, &lt;br /&gt;                patch&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; {balance&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; newValue}
-});
-}
-});
-&lt;/pre&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Most of the complexity there is dealing with the case where we don&amp;rsquo;t yet have transaction or don&amp;rsquo;t have a selected account. This essentially makes the syncing between transaction balances and account balances a separate responsibility that belongs to this plugin.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import {mutations as accountsMutations} from &amp;#39;./accountsStore&amp;#39;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export default store =&amp;gt; store.watch(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (state) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        return state.transactions.transactions.length &amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                 ? state.transactions.transactions[].balance
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                 : undefined;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (newValue, oldValue) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        if (store.getters[&amp;#34;accounts/selectedAccount&amp;#34;] !== undefined &amp;amp;&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           newValue !== undefined) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            store.commit(&amp;#39;accounts/&amp;#39; + accountsMutations.updateAccount, {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                id: store.state.selectedAccountId,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                patch: {balance: newValue}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Most of the complexity there is dealing with the case where we don&amp;rsquo;t yet have transaction or don&amp;rsquo;t have a selected account. This essentially makes the syncing between transaction balances and account balances a separate responsibility that belongs to this plugin.&lt;/p&gt;
 &lt;p&gt;The plugin doesn&amp;rsquo;t completely handle transfers between accounts. The balance for the account currently being edited updates correctly, but the balance for the account on the other side of the transfer doesn&amp;rsquo;t update. I&amp;rsquo;m not particularly happy with the solution, but at least for now the responsibility of reacting to transfer changes is in the transaction module&amp;rsquo;s actions. The action can easily calculate the effects of transaction changes on the balances of other accounts and use Vuex&amp;rsquo;s dispatch to send a notification over to the account module to perform the update. Mutations can&amp;rsquo;t dispatch events so it has to be the action that does it.&lt;/p&gt;
 &lt;p&gt;This leaves responsibility for updating the current account&amp;rsquo;s balance with the plugin and the responsibility for updating other account&amp;rsquo;s balances with the transaction module which is ugly. Perhaps the transaction module actions should be responsible for all account balances. Probably the right answer is to extract a separate class/function that the transaction module notifies at the end of each action with the state of the transaction before and after. Then that new class/function is responsible for updating account balances. Will need to prod the code a bit to see if that really can be done…&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -197,54 +187,45 @@ id&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; store.state.selecte
       <guid>https://www.symphonious.net/2017/06/15/unit-testing-javascript-promises-with-synchronous-tests/</guid>
       <description>&lt;p&gt;With Promise/A+ spreading through the world of JavaScript at a rapid pace, there&amp;rsquo;s one little detail that makes them very hard to unit test: any chained actions (via .then()) are only called when the execution stack contains only platform code. That&amp;rsquo;s a good thing in the real world but it makes unit testing much more complex because resolving a promise isn&amp;rsquo;t enough – you also need to empty the execution stack.&lt;/p&gt;
 &lt;p&gt;The first, and best, way to address these challenges is to take advantage of your test runner&amp;rsquo;s asynchronous test support. Mocha for example allows you to return a promise from your test and waits for it to be either resolved to indicate success or rejected to indicate failure. For example:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;it(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;should pass asynchronously&#39;&lt;/span&gt;, &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;new&lt;/span&gt; Promise((resolve, reject) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; {
-        setTimeout(resolve, &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;100&lt;/span&gt;);
-    })
-});
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;This works well when you&amp;rsquo;re testing code that returns the promise to you so you can chain any assertions you need and then return the final promise to the test runner. However, there are often cases where promises are used internally to a component which this approach can&amp;rsquo;t solve. For example, a UI component that periodically makes requests to the server to update the data it displays. &lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;it(&amp;#39;should pass asynchronously&amp;#39;, function() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    return new Promise((resolve, reject) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        setTimeout(resolve, 100);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This works well when you&amp;rsquo;re testing code that returns the promise to you so you can chain any assertions you need and then return the final promise to the test runner. However, there are often cases where promises are used internally to a component which this approach can&amp;rsquo;t solve. For example, a UI component that periodically makes requests to the server to update the data it displays. &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://sinonjs.org/&#34;&gt;Sinon.js&lt;/a&gt; makes it easy to stub out the HTTP request using it&amp;rsquo;s fake server and the periodic updates using a fake clock, but if promises are used sinon&amp;rsquo;s clock.tick() isn&amp;rsquo;t enough to trigger chained actions. They&amp;rsquo;ll only execute after your test method returns and since there&amp;rsquo;s no reason, and often no way, for the UI component to pass a promise for it&amp;rsquo;s updates out of the component we can&amp;rsquo;t just depend on the test runner. That&amp;rsquo;s where &lt;a href=&#34;https://github.com/taylorhakes/promise-mock&#34;&gt;promise-mock&lt;/a&gt; comes in. It replaces the normal Promise implementation with one that allows your unit test to trigger callbacks at any point.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s avoid all the clock and HTTP stubbing by testing this very simple example of code using a Promise internally:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;let&lt;/span&gt; value &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #0000dd; font-weight: bold;&#34;&gt;&lt;/span&gt;;
-module.exports &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; {
-    setValueViaImmediatePromise&lt;span style=&#34;color: #333333;&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt; (newValue) {
-        &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;new&lt;/span&gt; Promise((resolve, reject) &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; resolve(newValue))
-                .then(result &lt;span style=&#34;color: #333333;&#34;&gt;=&amp;gt;&lt;/span&gt; value &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; result);
-    },
-&lt;pre&gt;&lt;code&gt;getValue&amp;lt;span style=&amp;quot;color: #333333;&amp;quot;&amp;gt;:&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt; () {
-    &amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;return&amp;lt;/span&amp;gt; value;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;};
-&lt;/pre&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Our test is then:&lt;/p&gt;
-&lt;div style=&#34;background: #ffffff; overflow: auto; width: auto; border: solid gray; border-width: .1em .1em .1em .8em; padding: .2em .6em;&#34;&gt;
-  &lt;pre style=&#34;margin: 0; line-height: 125%;&#34;&gt;&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;const&lt;/span&gt; asyncThing &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;./asyncThing&#39;&lt;/span&gt;);
-&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;const&lt;/span&gt; PromiseMock &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;promise-mock&#39;&lt;/span&gt;);
-&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;const&lt;/span&gt; expect &lt;span style=&#34;color: #333333;&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;expect.js&#39;&lt;/span&gt;);
-describe.only(&lt;span style=&#34;background-color: #fff0f0;&#34;&gt;&#39;with promise-mock&#39;&lt;/span&gt;, &lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt;() {
-    beforeEach(&lt;span style=&#34;color: #008800; font-weight: bold;&#34;&gt;function&lt;/span&gt;() {
-        PromiseMock.install();
-    });
-&lt;pre&gt;&lt;code&gt;afterEach(&amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt;() {
-    PromiseMock.uninstall();
-});
-
-it(&amp;lt;span style=&amp;quot;background-color: #fff0f0;&amp;quot;&amp;gt;&#39;should set value asynchronously and keep internals to itself&#39;&amp;lt;/span&amp;gt;, &amp;lt;span style=&amp;quot;color: #008800; font-weight: bold;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt;() {
-    asyncThing.setValueViaImmediatePromise(&amp;lt;span style=&amp;quot;color: #0000dd; font-weight: bold;&amp;quot;&amp;gt;3&amp;lt;/span&amp;gt;);
-    Promise.runAll();
-    expect(asyncThing.getValue()).to.be(&amp;lt;span style=&amp;quot;color: #0000dd; font-weight: bold;&amp;quot;&amp;gt;3&amp;lt;/span&amp;gt;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;});
-&lt;/pre&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;We have a beforeEach and afterEach to install and uninstall the mocked promise, then when we want the promise callbacks to execute in our test, we simply call Promise.runAll().  In most cases, promise-mock combined with sinon&amp;rsquo;s fake HTTP server and stub clock is enough to let us write easy-to-follow, synchronous tests that cover asynchronous behaviour.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;let value = ;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;module.exports = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    setValueViaImmediatePromise: function (newValue) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        return new Promise((resolve, reject) =&amp;gt; resolve(newValue))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                .then(result =&amp;gt; value = result);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    getValue: function () {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        return value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our test is then:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;const asyncThing = require(&amp;#39;./asyncThing&amp;#39;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;const PromiseMock = require(&amp;#39;promise-mock&amp;#39;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;const expect = require(&amp;#39;expect.js&amp;#39;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;describe.only(&amp;#39;with promise-mock&amp;#39;, function() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    beforeEach(function() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        PromiseMock.install();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    afterEach(function() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        PromiseMock.uninstall();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    it(&amp;#39;should set value asynchronously and keep internals to itself&amp;#39;, function() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        asyncThing.setValueViaImmediatePromise(3);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Promise.runAll();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        expect(asyncThing.getValue()).to.be(3);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We have a beforeEach and afterEach to install and uninstall the mocked promise, then when we want the promise callbacks to execute in our test, we simply call Promise.runAll().  In most cases, promise-mock combined with sinon&amp;rsquo;s fake HTTP server and stub clock is enough to let us write easy-to-follow, synchronous tests that cover asynchronous behaviour.&lt;/p&gt;
 &lt;p&gt;Keeping our tests synchronous isn&amp;rsquo;t just about making them easy to read though – it also means we&amp;rsquo;re in control of how asynchronous callbacks interleave. So we can write tests to check what happens if action A finishes before action B &lt;em&gt;and&lt;/em&gt; tests for what happens if it&amp;rsquo;s the other way around. Lots and lots of bugs hide in those areas.&lt;/p&gt;
 &lt;h3 id=&#34;promisemockinstall-not-working&#34;&gt;PromiseMock.install() Not Working&lt;/h3&gt;
 &lt;p&gt;All that sounds great, but I spent a long time trying to work out why PromiseMock.install() didn&amp;rsquo;t ever seem to change the Promise implementation. I could see that window.Promise === PromiseMock was true, but without the window prefix I was still getting the original promise implementation (Promise !== PromiseMock).&lt;/p&gt;

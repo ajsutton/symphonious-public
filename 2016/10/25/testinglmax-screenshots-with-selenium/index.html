@@ -5,11 +5,13 @@
 <title>Testing@LMAX – Screenshots with Selenium/WebDriver · Symphonious</title>
 <meta name="description" content="When an automated UI test fails, it can be hard to tell exactly what went wrong just from the failure message. The failure message typically just says that some …">
 <link rel="canonical" href="https://www.symphonious.net/2016/10/25/testinglmax-screenshots-with-selenium/">
+
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-<link rel="stylesheet" href="/css/after-hours.min.4fc6201cab0b24b459740d1d2e610ee3d74399d671832cf4e9a671b3cb4d8809.css" integrity="sha256-T8YgHKsLJLRZdA0dLmEO49dDmdZxgyz06aZxs8tNiAk=">
+<link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
 
 </head>
 <body class="inner">
@@ -34,11 +36,9 @@
 "><header class="article-heading"><h1 data-pagefind-meta="title">Testing@LMAX – Screenshots with Selenium/WebDriver</h1><p class="article-meta"><time datetime="2016-10-25">25 October 2016</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>When an automated UI test fails, it can be hard to tell exactly what went wrong just from the failure message. The failure message typically just says that some element the test was looking for wasn&rsquo;t found, but it doesn&rsquo;t tell you what was there.  Was there an error message displayed instead? Was the operation still executing? Did something completely unexpected happen instead?</p>
 <p>To answer those questions our DSL automatically captures a screenshot when any UI operation fails and we include a link to it in the failure message. That way when someone reviews the test result they can see exactly what was on screen which typically makes it straight forward to identify what went wrong and fix it.</p>
 <p>Until recently we&rsquo;d been using the convenient and helpful looking <code>TakesScreenshot.getScreenshotAs</code> method that WebDriver provides.  For example:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;"><span style="color: #666666;">((</span>TakesScreenshot<span style="color: #666666;">)</span>webDriver<span style="color: #666666;">).</span><span style="color: #7d9029;">getScreenshotAs</span><span style="color: #666666;">(<br /></span><span style="color: #008000; font-weight: bold;">    new</span> SaveScreenshotOutputType<span style="color: #666666;">(</span>pngFilename<span style="color: #666666;">));</span>
-</pre>
-</div>
-<p>As expected, this creates a PNG image in the specified location that looks for all the world like a screenshot of the browser content. Unfortunately, it&rsquo;s lying.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>((TakesScreenshot)webDriver).getScreenshotAs(
+</span></span><span style="display:flex;"><span>    new SaveScreenshotOutputType(pngFilename));
+</span></span></code></pre></div><p>As expected, this creates a PNG image in the specified location that looks for all the world like a screenshot of the browser content. Unfortunately, it&rsquo;s lying.</p>
 <p>WebDriver actually does something very clever and gets the browser to render the page content into a canvas element and then saves that as the PNG file. This is an extremely close approximation of what the page looks like with two important exceptions:</p>
 <ol>
 <li>It doesn&rsquo;t respect the viewport size so body content is never scrolled off-screen.</li>
@@ -46,11 +46,8 @@
 </ol>
 <p>Both of these things can be an issue – the scrolled-off-screen one being the most problematic.  Modern WebDriver quite accurately simulates a user clicking and typing keys so if somethings not on screen it can&rsquo;t be clicked. When your test fails because an element was “present but not visible” and the screenshot shows it as very clearly visible, hilarity ensues. Very frustrating hilarity.</p>
 <p>To fix this we&rsquo;ve started taking honest-to-goodness screenshots. Since all our tests get their own X session (courtesy of vncserver) their windows are completely isolated from each other and a dump of the entire screen will capture precisely what a real user would see, browser chrome and scrolling included. Linux provides an entertaining array of options for capturing screenshots from the command line but the one that happened to be already installed was import, part of the ImageMagick suite. We simply execute:</p>
-<div style="background: #f8f8f8; overflow: auto; width: auto; padding: .2em .6em;">
-  <pre style="margin: 0; line-height: 125%;">import -display :20 -window root screenshot.png
-</pre>
-</div>
-<p>where :20 is the X display this particular test has been allocated and screenshot.png is where we want the screenshot to wind up.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>import -display :20 -window root screenshot.png
+</span></span></code></pre></div><p>where :20 is the X display this particular test has been allocated and screenshot.png is where we want the screenshot to wind up.</p>
 <p>Since the WebDriver screenshot can be useful as well – for example finding out an error message is displayed at the top of the screen  we continue to grab that too.</p>
 <p>Finally, for completeness we grab a dump of the DOM to a HTML file so we can later inspect what IDs, classes, attributes etc are present, including any hidden elements. <code>webDriver.getPageSource()</code> makes that easy and we append an extra HTML comment that includes webDriver.getCurrentUrl() for good measure.</p>
 </div></article>
