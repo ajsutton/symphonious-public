@@ -1,419 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Symphonious</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.164.0">
-    
-    
-    
-      <meta name="robots" content="index, follow">
-    
-    
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posts · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/posts/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 
-  
 
 
-    
 
 
-    
-      
 
-    
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/" aria-current="page">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
 
-    
-    
-      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Symphonious" />
-      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="Symphonious" />
-      
-    
+</div></header>
 
-    
-      <link rel="canonical" href="https://www.symphonious.net/posts/">
-    
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>Writing</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-12-10">10 Dec 2004</time></div><div><h2><a href="/2004/12/10/bugzilla-search-bites/">Bugzilla Search Bites</a></h2><div class="prose excerpt"><p>A while back I complained that <a href="http://www.intencha.com/adrian/so_much_for_standards_compliant.php">Mozilla didn&#8217;t support align on colgroups</a>. &nbsp;Byron suggested that I should log a bug and his comment suggests that he&#8217;d actually searched and found that one hadn&#8217;t yet been logged.</p>
 
-    <meta property="og:url" content="https://www.symphonious.net/posts/">
-	<meta property="og:site_name" content="Symphonious">
-	<meta property="og:title" content="Posts">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="website">
+<p>I too searched, specifically for the term &quot;colgroup&quot; and out of the 3 or 4 bugs that were returned, none were what I was complaining about. &nbsp;So I spent the 20 minutes or so that it takes to jump through all the hoops that the Mozilla team want you to jump through to log a bug and gather all the required information, including creating a simple test case etc. &nbsp;Finally I submit my bug and within five minutes it&#8217;s marked as a duplicate of <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=915">a bug</a> that has been going on and on and on and on forever. &nbsp;Seriously, it shouldn&#8217;t take over two years and hundreds of comments to sort this out.</p></div><a class="read-more" href="/2004/12/10/bugzilla-search-bites/">Continue reading<span class="sr-only">: Bugzilla Search Bites</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-12-10">10 Dec 2004</time></div><div><h2><a href="/2004/12/10/speccing-lists/">Speccing Lists</a></h2><div class="prose excerpt"><p>I&#8217;ve commented a few times before about how difficult it is to test text manipulation code and most of that is caused by the fact that it&#8217;s so hard to comprehensively define all the possible states, user actions and resultant behaviors that are expected. &nbsp;There&#8217;s just way too many different cases that can occur (infinite in fact). &nbsp;The two hardest areas for most rich text editors are lists and tables (not surprisingly since their really the only complex structure used in text markup). &nbsp;In order to improve behavior in those areas and avoid any regressions we&#8217;ve started specing out the expected behavior.</p></div><a class="read-more" href="/2004/12/10/speccing-lists/">Continue reading<span class="sr-only">: Speccing Lists</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-29">29 Nov 2004</time></div><div><h2><a href="/2004/11/29/no-wonder-xml-databases-havent-taken-off/">No Wonder XML Databases Haven’t Taken Off</a></h2><div class="prose excerpt"><p>XML databases and the standards to work with them (primarily XUpdate and XQuery) are just plain crap. &nbsp;Why is it that I need to learn two completely different languages which utilize two completely different programming styles to work with a database? &nbsp;Why is it that I can&#8217;t seem to convert between a String and XML nodes in either of those languages? &nbsp;I mean, wouldn&#8217;t seem obvious that when working with an XML database someone might have some XML coming in as a parameter and want to deal with it as XML instead of as a String &#8211; say to put it into the database? &nbsp;Isn&#8217;t it obvious that someone might want to get a part of the XML file they&#8217;re processing using XSLT as a string instead of a node-set? &nbsp;I don&#8217;t mean get the text nodes within the XML fragment, I mean all the element declarations and namespaces etc, etc. &nbsp;Sure they&#8217;re more than just random text but if you wanted to output it so it could be edited it would be nice to be able to without jumping through hoops.</p></div><a class="read-more" href="/2004/11/29/no-wonder-xml-databases-havent-taken-off/">Continue reading<span class="sr-only">: No Wonder XML Databases Haven’t Taken Off</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-29">29 Nov 2004</time></div><div><h2><a href="/2004/11/29/rss-reader-feature-idea/">RSS Reader Feature Idea</a></h2><div class="prose excerpt"><p>It would be really nice to be able to subscribe to an RSS feed for a limited time. &nbsp;There&#8217;s two reasons for this. Firstly so that you can subscribe to the comments RSS feed for a particular article you won&#8217;t to track the discussion for but then have it drop out of your feeds once the conversation dies down (this might be best implemented as auto-unsubscribe after x days of inactivity).</p></div><a class="read-more" href="/2004/11/29/rss-reader-feature-idea/">Continue reading<span class="sr-only">: RSS Reader Feature Idea</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-29">29 Nov 2004</time></div><div><h2><a href="/2004/11/29/beauty-is-only-skin-deep/">Beauty Is Only Skin Deep</a></h2><div class="prose excerpt"><p>A couple of people commented on my <a href="http://www.intencha.com/adrian/beautiful_code_is_important.php">beautful code</a> entry saying that the IDE should take care of code formatting and indentation and that &#8216;<i>beautiful code&#8217; is mostly about design</i>. &nbsp;I&#8217;d have to disagree, beauty is only skin deep. &nbsp;The design of code doesn&#8217;t make it beautiful, it makes it maintainable &#8211; it makes it work.</p></div><a class="read-more" href="/2004/11/29/beauty-is-only-skin-deep/">Continue reading<span class="sr-only">: Beauty Is Only Skin Deep</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-27">27 Nov 2004</time></div><div><h2><a href="/2004/11/27/objectequalsadrian-sutton-true/">Object.equals(“Adrian Sutton”) == true</a></h2><div class="prose excerpt"><p><a href="http://www.google.com/search?q=%22Adrian+Sutton%22&amp;#38;ie=UTF-8&amp;#38;oe=UTF-8">According to Google</a>, I&#8217;m now the <a href="http://www.intencha.com/adrian/objectequals.php">Object.equals()</a> guy (for those who read via RSS only, I notice this because of the Google search that displays on the <a href="http://www.intencha.com/adrian/">front page</a>).</p></div><a class="read-more" href="/2004/11/27/objectequalsadrian-sutton-true/">Continue reading<span class="sr-only">: Object.equals(“Adrian Sutton”) == true</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-27">27 Nov 2004</time></div><div><h2><a href="/2004/11/27/beautiful-code-is-important/">Beautiful Code Is Important</a></h2><div class="prose excerpt"><p>Any half-decent coder will agree that writing readable code is important and that good comments are a part of that. &nbsp;More and more I&#8217;m getting the impression that that&#8217;s not enough.</p>
 
-	<meta itemprop="name" content="Posts">
-	<meta itemprop="datePublished" content="2026-08-16T19:22:52+10:00">
-	<meta itemprop="dateModified" content="2026-08-16T19:22:52+10:00">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Posts">
+<p>Code should be a thing of beauty. &nbsp;Not necessarily &quot;oh that&#8217;s a beautiful algorithm&quot; and definitely not &quot;oh wow that&#8217;s clever&quot; but beautifully laid out with every blank line considered for meaning and well thought out comments everywhere. &nbsp;Every construct and every line should match the selected coding style and real thought should be put into why that particular coding style was selected.</p></div><a class="read-more" href="/2004/11/27/beautiful-code-is-important/">Continue reading<span class="sr-only">: Beautiful Code Is Important</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-26">26 Nov 2004</time></div><div><h2><a href="/2004/11/26/xml-in-java-in-xml-is-ugly/">XML In Java In XML Is Ugly</a></h2><div class="prose excerpt"><p>I&#8217;ve been struggling with getting Cocoon and Exist to work together properly and allow me to insert an XML snippet into a document in the database. &nbsp;Apart from the fact that the apparent assumption seems to be that no one would ever have an XML snippet being fed into an XML-based system and thus all the &lt; and &gt; characters should be converted to entities, plus the fact that Exists seems to only want to retrieve stuff from the database and not change stuff in the database, I&#8217;ve wound up with the following:</p></div><a class="read-more" href="/2004/11/26/xml-in-java-in-xml-is-ugly/">Continue reading<span class="sr-only">: XML In Java In XML Is Ugly</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-23">23 Nov 2004</time></div><div><h2><a href="/2004/11/23/so-much-for-standards-compliant/">So Much For Standards Compliant</a></h2><div class="prose excerpt"><p>Maybe I&#8217;m expecting too much but I would have thought that a <a href="http://www.mozilla.org">browser</a> that claimed to be standards compliant might actually implement the standard&#8230;. &nbsp;In particular I&#8217;m annoyed that Gecko doesn&#8217;t fully support HTML 4 tables (it ignores the align and valign attributes on colgroup and col elements). &nbsp;IE gets it right. &nbsp;To be fair, Safari also ignores them. &nbsp;Oh and of course you can&#8217;t achieve the same thing via CSS since CSS styles don&#8217;t get applied either via a styles attribute or via embedded styles (rightfully&nbsp;so&nbsp;since&nbsp;the&nbsp;standard&nbsp;doesn&#8217;t&nbsp;say&nbsp;they should be applied).&nbsp; &nbsp;You have to manually markup each cell in the column. Yuck..</p></div><a class="read-more" href="/2004/11/23/so-much-for-standards-compliant/">Continue reading<span class="sr-only">: So Much For Standards Compliant</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-20">20 Nov 2004</time></div><div><h2><a href="/2004/11/20/derby-is-cool/">Derby Is Cool</a></h2><div class="prose excerpt"><p>I thought it was worth mentioning that I got to play with Derby as part of the Time Tracker mini-project I mentioned earlier. &nbsp;Very cool. &nbsp;I&#8217;ve not had a need to work with an embedded database before so it was really nice to have a small, efficient library that handled all my data storage needs. &nbsp;The only complaint I&#8217;d have is that it needs to use a directory to store stuff in (it&#8217;s a little more flexible than that but a directory is always created and used). &nbsp;It would be really nice to be able to just point it at a file and say &quot;that&#8217;s my database, do your thing&quot;.</p></div><a class="read-more" href="/2004/11/20/derby-is-cool/">Continue reading<span class="sr-only">: Derby Is Cool</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-20">20 Nov 2004</time></div><div><h2><a href="/2004/11/20/jdic/">JDIC</a></h2><div class="prose excerpt"><p><a href="http://jdic.dev.java.net">Java Desktop Integration Components</a> (JDIC) is a set of components aimed at making OS specific functionality available to Java programs and to allow Java programs to make better use of existing code within the OS.</p>
 
-      
-    
-	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
-<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
-<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
-<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
-<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
-  </head><body class="ma0 avenir bg-near-white production">
+<p>The tray icon integration is an excellent example of this. &nbsp;It&#8217;s quite common for a Windows application to make functionality available via a system tray icon and now via JDIC Java apps can do just that. &nbsp;During some down time after our last release I had a chance to play with this while developing an internal time tracking application and it worked out really well. &nbsp;The system tray icon acts as the main UI for the program so it&#8217;s neatly tucked out of the way so it doesn&#8217;t waste screen space but always quickly available so recording time spent on a task is highly efficient. &nbsp;The downside is that it doesn&#8217;t seem to map to an OS X dock icon menu yet (the API doesn&#8217;t really fit that model particularly well anyway but it could be done).</p></div><a class="read-more" href="/2004/11/20/jdic/">Continue reading<span class="sr-only">: JDIC</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2004-11-19">19 Nov 2004</time></div><div><h2><a href="/2004/11/19/why-so-anti-sun/">Why So Anti-Sun?</a></h2><div class="prose excerpt"><p>I really don&#8217;t understand why there&#8217;s so much anti-Sun sentiment around these days. &nbsp;I mean, the opensource movement in general just seems to have it in for Sun no matter what they announce or plan it&#8217;s either never good enough of there&#8217;s some sinister plan behind it. &nbsp;I don&#8217;t get it. &nbsp;Sun is one of very few big companies who are seriously weighing up the prospects of opensource and seem to generally be finding that opensource can work for them and moving in that direction. &nbsp;The opensource movement however, far from encouraging this is pulling out all stops in a smear campaign against Sun.</p></div><a class="read-more" href="/2004/11/19/why-so-anti-sun/">Continue reading<span class="sr-only">: Why So Anti-Sun?</span> <span aria-hidden="true">→</span></a></div></article>
 
-    
+<nav class="pagination" aria-label="Archive pages"><a href="/posts/page/78/">← Newer posts</a><span>Page 79 of 102</span><a href="/posts/page/80/">Older posts →</a></nav>
 
-  
-  
-  <header class="cover bg-top" style="background-image: url('https://www.symphonious.net/images/header.png');">
-    
-    <div class="bg-black-60">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Symphonious
-      
-    </a>
-    <div class="flex-l items-center">
-      
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
 
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
-              About Me
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
-              CV
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
-              Testing@LMAX
-            </a>
-          </li>
-          
-        </ul>
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
-    </div>
-  </header>
-
-
-    <main class="pb7" role="main">
-      
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
-    <section class="flex-ns mt5 flex-wrap justify-around">
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        December 10, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/12/10/speccing-lists/" class="link black dim">
-        Speccing Lists
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I&#8217;ve commented a few times before about how difficult it is to test text manipulation code and most of that is caused by the fact that it&#8217;s so hard to comprehensively define all the possible states, user actions and resultant behaviors that are expected. &nbsp;There&#8217;s just way too many different cases that can occur (infinite in fact). &nbsp;The two hardest areas for most rich text editors are lists and tables (not surprisingly since their really the only complex structure used in text markup). &nbsp;In order to improve behavior in those areas and avoid any regressions we&#8217;ve started specing out the expected behavior.</p>
-    </div>
-  <a href="/2004/12/10/speccing-lists/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 29, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/29/no-wonder-xml-databases-havent-taken-off/" class="link black dim">
-        No Wonder XML Databases Haven’t Taken Off
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>XML databases and the standards to work with them (primarily XUpdate and XQuery) are just plain crap. &nbsp;Why is it that I need to learn two completely different languages which utilize two completely different programming styles to work with a database? &nbsp;Why is it that I can&#8217;t seem to convert between a String and XML nodes in either of those languages? &nbsp;I mean, wouldn&#8217;t seem obvious that when working with an XML database someone might have some XML coming in as a parameter and want to deal with it as XML instead of as a String &#8211; say to put it into the database? &nbsp;Isn&#8217;t it obvious that someone might want to get a part of the XML file they&#8217;re processing using XSLT as a string instead of a node-set? &nbsp;I don&#8217;t mean get the text nodes within the XML fragment, I mean all the element declarations and namespaces etc, etc. &nbsp;Sure they&#8217;re more than just random text but if you wanted to output it so it could be edited it would be nice to be able to without jumping through hoops.</p>
-    </div>
-  <a href="/2004/11/29/no-wonder-xml-databases-havent-taken-off/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 29, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/29/rss-reader-feature-idea/" class="link black dim">
-        RSS Reader Feature Idea
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>It would be really nice to be able to subscribe to an RSS feed for a limited time. &nbsp;There&#8217;s two reasons for this. Firstly so that you can subscribe to the comments RSS feed for a particular article you won&#8217;t to track the discussion for but then have it drop out of your feeds once the conversation dies down (this might be best implemented as auto-unsubscribe after x days of inactivity).</p>
-    </div>
-  <a href="/2004/11/29/rss-reader-feature-idea/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 29, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/29/beauty-is-only-skin-deep/" class="link black dim">
-        Beauty Is Only Skin Deep
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>A couple of people commented on my <a href="http://www.intencha.com/adrian/beautiful_code_is_important.php">beautful code</a> entry saying that the IDE should take care of code formatting and indentation and that &#8216;<i>beautiful code&#8217; is mostly about design</i>. &nbsp;I&#8217;d have to disagree, beauty is only skin deep. &nbsp;The design of code doesn&#8217;t make it beautiful, it makes it maintainable &#8211; it makes it work.</p>
-
-<p>You&#8217;ll have to excuse the inherent sexism in the following analogy &#8211; it happens to be the best one I can think of.</p>
-    </div>
-  <a href="/2004/11/29/beauty-is-only-skin-deep/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 27, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/27/objectequalsadrian-sutton-true/" class="link black dim">
-        Object.equals(“Adrian Sutton”) == true
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="http://www.google.com/search?q=%22Adrian+Sutton%22&amp;#38;ie=UTF-8&amp;#38;oe=UTF-8">According to Google</a>, I&#8217;m now the <a href="http://www.intencha.com/adrian/objectequals.php">Object.equals()</a> guy (for those who read via RSS only, I notice this because of the Google search that displays on the <a href="http://www.intencha.com/adrian/">front page</a>).</p>
-    </div>
-  <a href="/2004/11/27/objectequalsadrian-sutton-true/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 27, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/27/beautiful-code-is-important/" class="link black dim">
-        Beautiful Code Is Important
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Any half-decent coder will agree that writing readable code is important and that good comments are a part of that. &nbsp;More and more I&#8217;m getting the impression that that&#8217;s not enough.</p>
-
-<p>Code should be a thing of beauty. &nbsp;Not necessarily &quot;oh that&#8217;s a beautiful algorithm&quot; and definitely not &quot;oh wow that&#8217;s clever&quot; but beautifully laid out with every blank line considered for meaning and well thought out comments everywhere. &nbsp;Every construct and every line should match the selected coding style and real thought should be put into why that particular coding style was selected.</p>
-    </div>
-  <a href="/2004/11/27/beautiful-code-is-important/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 26, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/26/xml-in-java-in-xml-is-ugly/" class="link black dim">
-        XML In Java In XML Is Ugly
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I&#8217;ve been struggling with getting Cocoon and Exist to work together properly and allow me to insert an XML snippet into a document in the database. &nbsp;Apart from the fact that the apparent assumption seems to be that no one would ever have an XML snippet being fed into an XML-based system and thus all the &lt; and &gt; characters should be converted to entities, plus the fact that Exists seems to only want to retrieve stuff from the database and not change stuff in the database, I&#8217;ve wound up with the following:</p>
-    </div>
-  <a href="/2004/11/26/xml-in-java-in-xml-is-ugly/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 23, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/23/so-much-for-standards-compliant/" class="link black dim">
-        So Much For Standards Compliant
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Maybe I&#8217;m expecting too much but I would have thought that a <a href="http://www.mozilla.org">browser</a> that claimed to be standards compliant might actually implement the standard&#8230;. &nbsp;In particular I&#8217;m annoyed that Gecko doesn&#8217;t fully support HTML 4 tables (it ignores the align and valign attributes on colgroup and col elements). &nbsp;IE gets it right. &nbsp;To be fair, Safari also ignores them. &nbsp;Oh and of course you can&#8217;t achieve the same thing via CSS since CSS styles don&#8217;t get applied either via a styles attribute or via embedded styles (rightfully&nbsp;so&nbsp;since&nbsp;the&nbsp;standard&nbsp;doesn&#8217;t&nbsp;say&nbsp;they should be applied).&nbsp; &nbsp;You have to manually markup each cell in the column. Yuck..</p>
-    </div>
-  <a href="/2004/11/23/so-much-for-standards-compliant/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 20, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/20/derby-is-cool/" class="link black dim">
-        Derby Is Cool
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I thought it was worth mentioning that I got to play with Derby as part of the Time Tracker mini-project I mentioned earlier. &nbsp;Very cool. &nbsp;I&#8217;ve not had a need to work with an embedded database before so it was really nice to have a small, efficient library that handled all my data storage needs. &nbsp;The only complaint I&#8217;d have is that it needs to use a directory to store stuff in (it&#8217;s a little more flexible than that but a directory is always created and used). &nbsp;It would be really nice to be able to just point it at a file and say &quot;that&#8217;s my database, do your thing&quot;.</p>
-    </div>
-  <a href="/2004/11/20/derby-is-cool/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 20, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/20/jdic/" class="link black dim">
-        JDIC
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="http://jdic.dev.java.net">Java Desktop Integration Components</a> (JDIC) is a set of components aimed at making OS specific functionality available to Java programs and to allow Java programs to make better use of existing code within the OS.</p>
-
-<p>The tray icon integration is an excellent example of this. &nbsp;It&#8217;s quite common for a Windows application to make functionality available via a system tray icon and now via JDIC Java apps can do just that. &nbsp;During some down time after our last release I had a chance to play with this while developing an internal time tracking application and it worked out really well. &nbsp;The system tray icon acts as the main UI for the program so it&#8217;s neatly tucked out of the way so it doesn&#8217;t waste screen space but always quickly available so recording time spent on a task is highly efficient. &nbsp;The downside is that it doesn&#8217;t seem to map to an OS X dock icon menu yet (the API doesn&#8217;t really fit that model particularly well anyway but it could be done).</p>
-    </div>
-  <a href="/2004/11/20/jdic/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 19, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/19/why-so-anti-sun/" class="link black dim">
-        Why So Anti-Sun?
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I really don&#8217;t understand why there&#8217;s so much anti-Sun sentiment around these days. &nbsp;I mean, the opensource movement in general just seems to have it in for Sun no matter what they announce or plan it&#8217;s either never good enough of there&#8217;s some sinister plan behind it. &nbsp;I don&#8217;t get it. &nbsp;Sun is one of very few big companies who are seriously weighing up the prospects of opensource and seem to generally be finding that opensource can work for them and moving in that direction. &nbsp;The opensource movement however, far from encouraging this is pulling out all stops in a smear campaign against Sun.</p>
-    </div>
-  <a href="/2004/11/19/why-so-anti-sun/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        November 19, 2004
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/2004/11/19/make-vs-ant/" class="link black dim">
-        Make vs Ant
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="http://www.onlamp.com">ONLamp.com</a> has <a href="http://www.onlamp.com/pub/a/onlamp/2004/11/18/gnumake_3e.html" title="">an article</a> comparing alternatives to make (heavily biased towards make). &nbsp;In fact it only looks at ant and IDEs, I assume because it&#8217;s an extract from a book about make. &nbsp;It also focuses very heavily on Java development which is a real shame because Java development is the one area that make is almost never a good option.</p>
-
-<p>The main reason that make isn&#8217;t a good option for Java despite it&#8217;s technical abilities is that every Java developer is expected to know at least a little about ant &#8211; a huge number won&#8217;t know anything about make and very few Java developers who work on Windows will have it installed. &nbsp;Every self-respecting Java developer will have ant installed and configured on their machines. &nbsp;It&#8217;s just the done thing when you work with Java. &nbsp;No self respecting C programmer would develop on a machine without make, no self-respecting Java programmer develops on a machine without ant.</p>
-    </div>
-  <a href="/2004/11/19/make-vs-ant/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-    </section>
-		<ul class="pagination pagination-default">
-			<li class="page-item">
-				<a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-			</li>
-		<li class="page-item">
-			<a href="/posts/page/78/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-		</li>
-			<li class="page-item">
-				<a href="/posts/page/77/" aria-label="Page 77" class="page-link" role="button">77</a>
-			</li>
-			<li class="page-item">
-				<a href="/posts/page/78/" aria-label="Page 78" class="page-link" role="button">78</a>
-			</li>
-			<li class="page-item active">
-				<a aria-current="page" aria-label="Page 79" class="page-link" role="button">79</a>
-			</li>
-			<li class="page-item">
-				<a href="/posts/page/80/" aria-label="Page 80" class="page-link" role="button">80</a>
-			</li>
-			<li class="page-item">
-				<a href="/posts/page/81/" aria-label="Page 81" class="page-link" role="button">81</a>
-			</li>
-		<li class="page-item">
-			<a href="/posts/page/80/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-		</li>
-			<li class="page-item">
-				<a href="/posts/page/102/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-			</li>
-		</ul></article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
-    &copy;  Adrian Sutton 2004 - 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
-</html>
+</body></html>

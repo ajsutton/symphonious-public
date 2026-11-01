@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code and Geek Stuff · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/categories/code-and-geek-stuff/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>Code and Geek Stuff</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-07-05">5 Jul 2010</time></div><div><h2><a href="/2010/07/05/range-extractcontents-bug-in-firefox-pre-3-5/">range.extractContents Bug in Firefox Pre-3.5</a></h2><div class="prose excerpt"><p>It’s not often I say things like <a href="http://twitter.com/ajsutton/status/17785844544">this</a>, but oddly today’s problems are Firefox exclusive. It turns out that prior to Firefox 3.5 Range.extractContents is subtly but, for my uses, devastatingly broken. Basically, on any browser except those earlier versions of FireFox the test below should pass:</p>
+<pre>test(&#39;range.extractContents&#39;, 2, function() {
+  var item1, item2, list, r, fragment, test;
+  test = document.createElement(&#39;div&#39;); 
+  test.id = &#39;test&#39;;
+  test.innerHTML = &#39;&#60;ul&#62;&#60;li id=&#34;item1&#34;&#62;Item 1&#60;/li&#62;&#60;li id=&#34;item2&#34;&#62;Item 2&#60;/li&#62;&#60;/ul&#62;&#39;;
+  document.body.appendChild(test);
+
+  item1 = document.getElementById(&#39;item1&#39;);
+  item2 = document.getElementById(&#39;item2&#39;);
+  list = item1.parentNode;
+
+  r = document.createRange();
+  r.setStart(list, 0);
+  r.setEnd(list, 1);
+  fragment = r.extractContents();
+  list.appendChild(fragment);
+
+  ok(item1 === document.getElementById(&#39;item1&#39;), &#39;Item 1 must not be cloned&#39;);
+  ok(item2 === document.getElementById(&#39;item2&#39;), &#39;Item 2 must not be cloned&#39;);
+}
+</pre>
+<p>Basically, extractContents should remove the nodes within the range from the document and give them to you in a DocumentFragment (so you can put them somewhere else usually). The key requirement is that they be the <em>same</em> nodes unless only a part of the node is within the range, at which point the node should be shallow cloned and split.</p></div><a class="read-more" href="/2010/07/05/range-extractcontents-bug-in-firefox-pre-3-5/">Continue reading<span class="sr-only">: range.extractContents Bug in Firefox Pre-3.5</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-06-30">30 Jun 2010</time></div><div><h2><a href="/2010/06/30/whos-committed-in-my-git-repository/">Who’s Committed in my Git Repository?</a></h2><div class="prose excerpt"><p>Note to self: if you ever want to get a simple list of people who have committed to a git repository, the command you want is:</p>
+<pre>git log --format=&#39;%aN &#60;%ae&#62;&#39; | sort -u | uniq
+</pre>
+<p>Or for just the e-mail address:</p>
+<pre>git log --format=&#39;%ae&#39; | sort -u | uniq
+</pre>
+<p>Or for just the name:</p>
+<pre>git log --format=&#39;%aN&#39; | sort -u | uniq
+</pre>
+<p>This is in the help manual but it’s way down the bottom so takes ages to read through to find it.</p></div><a class="read-more" href="/2010/06/30/whos-committed-in-my-git-repository/">Continue reading<span class="sr-only">: Who’s Committed in my Git Repository?</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-06-15">15 Jun 2010</time></div><div><h2><a href="/2010/06/15/java-awt-robot-and-windows-remote-desktop/">Java AWT Robot and Windows Remote Desktop</a></h2><div class="prose excerpt"><h3 id="problem">Problem</h3>
+<p>If you’re attempting to use the Java AWT Robot to help automate tests, you may find it convenient to log in via remote desktop to watch the tests execute and verify they work well. You may also find that they work fine while you’re watching them but then inexplicably start failing whenever you aren’t. Basically your test is an <a href="http://en.wikipedia.org/wiki/Blink_(Doctor_Who)">angel from Dr Who</a>.</p></div><a class="read-more" href="/2010/06/15/java-awt-robot-and-windows-remote-desktop/">Continue reading<span class="sr-only">: Java AWT Robot and Windows Remote Desktop</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-04-26">26 Apr 2010</time></div><div><h2><a href="/2010/04/26/building-in-the-cloud/">Building in the Cloud</a></h2><div class="prose excerpt"><p>Once upon a time, the state of the art for building software projects was to have a continuous integration server so your builds were repeatable, reliable and performed in a controlled environment. As a bonus they also ran a whole suite of automated tests so you knew that what came out was at least reasonable quality.</p></div><a class="read-more" href="/2010/04/26/building-in-the-cloud/">Continue reading<span class="sr-only">: Building in the Cloud</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-04-07">7 Apr 2010</time></div><div><h2><a href="/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/">RightScale AWS Amazon EC2 Library for Ruby</a></h2><div class="prose excerpt"><p>I’ve always known you could do a lot of programmatic stuff with Amazon but I’ve simultaneously been too lazy to actually look into it in detail and never really needed to. However, I’ve stumbled across <a href="http://www.ioncannon.net/system-administration/199/automounting-amazon-ebs-volumes-on-ec2-instances/">instructions for auto-mounting an EBS volume</a> which turns out to be very handy, and leads on to the particularly awesome <a href="http://rightscale.rubyforge.org/">right_aws ruby gem</a>.</p></div><a class="read-more" href="/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/">Continue reading<span class="sr-only">: RightScale AWS Amazon EC2 Library for Ruby</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-04-05">5 Apr 2010</time></div><div><h2><a href="/2010/04/05/stop-concatenating-css-files/">Stop Concatenating CSS Files</a></h2><div class="prose excerpt"><p>One of the common examples of the limits of Maven and other “strict” build tools was how difficult is to concatenate CSS files together as part of the build. It’s nice to be able to split CSS files up to categorize things but the extra HTTP requests really slow down page loads, so the build should concatenate them back together. What I’ve come to realise though, is that building a custom concatenation script is just another instance where people are reinventing the wheel in build systems, and getting less power as a result.</p></div><a class="read-more" href="/2010/04/05/stop-concatenating-css-files/">Continue reading<span class="sr-only">: Stop Concatenating CSS Files</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-03-09">9 Mar 2010</time></div><div><h2><a href="/2010/03/09/returning-parameters-in-jmock-2/">Returning Parameters in JMock 2</a></h2><div class="prose excerpt"><p>If you have a method like:</p>
+<pre><code>String getParameter(String name, String defaultValue)
+</code></pre>
+<p>where defaultValue is returned if the parameter isn’t specified, it can be challenging to get the right behavior in JMock without just hard coding what the defaultValue should be. Fortunately, a custom match which doubles as an Action can solve this pretty easily:</p></div><a class="read-more" href="/2010/03/09/returning-parameters-in-jmock-2/">Continue reading<span class="sr-only">: Returning Parameters in JMock 2</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-03-03">3 Mar 2010</time></div><div><h2><a href="/2010/03/03/show-me-the-metrics/">Show Me the Metrics</a></h2><div class="prose excerpt"><p>There’s been a lot of new innovations going on in programming languages and development techniques in general lately, but there’s a really key missing element: metrics.</p>
+<p>Seeing posts like Stephan Schmidt’s <a href="http://codemonkeyism.com/generation-java-programming-style/">Go Ahead: Next Generation Java Programming Style</a> and <a href="http://beust.com/weblog2/archives/000517.html">the response from Cedric Otaku</a> really should make any professional software engineer concerned about the future of their craft. Not because either of them are necessarily right or wrong, but because two highly skilled engineers are engaged in debate based purely on pure personal preference. There’s barely even any anecdotal evidence provided, let alone actual measurements to see what impact on productivity, quality or other desirable qualities the proposed approaches have.</p></div><a class="read-more" href="/2010/03/03/show-me-the-metrics/">Continue reading<span class="sr-only">: Show Me the Metrics</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-30">30 Jan 2010</time></div><div><h2><a href="/2010/01/30/auto-update-is-a-killer-technology/">Auto-update is a Killer Technology</a></h2><div class="prose excerpt"><p>There’s a huge amount of new technology pouring out into the world these days – lots of it focussed around the web and consumers and the key term that keeps being talked about it ubiquity. Flash brought video to the web because it was ubiquitous, HTML5 will kill flash once it’s ubiquitous, mobile web access is becoming ubiquitous etc. The most striking thing in all of this is just how quickly these new technologies are actually finding their way into real world usage.</p></div><a class="read-more" href="/2010/01/30/auto-update-is-a-killer-technology/">Continue reading<span class="sr-only">: Auto-update is a Killer Technology</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-27">27 Jan 2010</time></div><div><h2><a href="/2010/01/27/on-funny-variable-names/">On Funny Variable Names</a></h2><div class="prose excerpt"><p>Emmanuel Lécharny – <a href="http://hrabal.blogspot.com/2010/01/pick-good-names-for-your-methodsdata.html">Pick good names for your methods/data structures…</a></p>
+<blockquote>
+<p>5 years later, when I come back into this crap, I have *no* bloody idea about what is what. Is Twix for the frontend or the backend ?</p>
+<p><em>When you pick a name, and when you think it&rsquo;s funny, just think about those, and probably you, who will not have fun at all when it&rsquo;ll be time to fix some code in this area, with no clue about what Twix and Snickers are…</em></p>
+</blockquote></div><a class="read-more" href="/2010/01/27/on-funny-variable-names/">Continue reading<span class="sr-only">: On Funny Variable Names</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-25">25 Jan 2010</time></div><div><h2><a href="/2010/01/25/ant-subant-and-basedir/">Ant, Subant and Basedir</a></h2><div class="prose excerpt"><p><img loading="lazy" alt="Apache Ant logo" width="115" height="75" src="http://www.symphonious.net/wp-content/uploads/2010/01/project-logo_6038245254255283799.gif" style=" float: left;" />Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the <ant> task with the <subant> task you’re probably in for a surprise.</p>
+<p>I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the <ant> task to build it. The ant task was:</p></div><a class="read-more" href="/2010/01/25/ant-subant-and-basedir/">Continue reading<span class="sr-only">: Ant, Subant and Basedir</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-21">21 Jan 2010</time></div><div><h2><a href="/2010/01/21/apache-pivot/">Apache Pivot</a></h2><div class="prose excerpt"><p>Thanks to a tweet from <a href="http://twitter.com/bdelacretaz/status/8019996240">@bdelacretaz</a> I discovered <a href="http://pivot.apache.org/">Apache Pivot</a> today. It does indeed have a nice website, and the library itself looks great. It’s pitched as an RIA framework and mostly seems focussed on browser based deployment via applets. However, pivot apps can also be deployed as standalone applications which is where I think it’s most promising.</p></div><a class="read-more" href="/2010/01/21/apache-pivot/">Continue reading<span class="sr-only">: Apache Pivot</span> <span aria-hidden="true">→</span></a></div></article>
+
+<nav class="pagination" aria-label="Archive pages"><a href="/categories/code-and-geek-stuff/page/11/">← Newer posts</a><span>Page 12 of 49</span><a href="/categories/code-and-geek-stuff/page/13/">Older posts →</a></nav>
+
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

@@ -1,161 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Revisiting Java on the iPhone | Symphonious</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Around the time of the iPhone’s initial release, I wrote:
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisiting Java on the iPhone · Symphonious</title>
+<meta name="description" content="Around the time of the iPhone’s initial release, I wrote:
+It&rsquo;s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone …">
+<link rel="canonical" href="https://www.symphonious.net/2008/05/29/revisiting-java-on-the-iphone/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-It&rsquo;s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I&rsquo;ll concede that most of the existing games for mobile phones probably wouldn&rsquo;t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today&rsquo;s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java.
-Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
-    <meta name="generator" content="Hugo 0.164.0">
-    
-    
-    
-      <meta name="robots" content="index, follow">
-    
-    <meta name="author" content="Adrian Sutton">
-    
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 
-  
-
-
-    
-
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="https://www.symphonious.net/2008/05/29/revisiting-java-on-the-iphone/">
-    
-
-    <meta property="og:url" content="https://www.symphonious.net/2008/05/29/revisiting-java-on-the-iphone/">
-	<meta property="og:site_name" content="Symphonious">
-	<meta property="og:title" content="Revisiting Java on the iPhone">
-	<meta property="og:description" content="Around the time of the iPhone’s initial release, I wrote:
-It’s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I’ll concede that most of the existing games for mobile phones probably wouldn’t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today’s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2008-05-29T09:19:11+00:00">
-		<meta property="article:modified_time" content="2008-05-29T09:19:11+00:00">
-
-	<meta itemprop="name" content="Revisiting Java on the iPhone">
-	<meta itemprop="description" content="Around the time of the iPhone’s initial release, I wrote:
-It’s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I’ll concede that most of the existing games for mobile phones probably wouldn’t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today’s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
-	<meta itemprop="datePublished" content="2008-05-29T09:19:11+00:00">
-	<meta itemprop="dateModified" content="2008-05-29T09:19:11+00:00">
-	<meta itemprop="wordCount" content="552">
-	<meta itemprop="keywords" content="Apple">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Revisiting Java on the iPhone">
-	<meta name="twitter:description" content="Around the time of the iPhone’s initial release, I wrote:
-It’s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I’ll concede that most of the existing games for mobile phones probably wouldn’t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today’s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).">
-
-      
-    
-	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
-<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
-<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
-<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
-<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
-  </head><body class="ma0 avenir bg-near-white production">
-
-    
-   
-  
-
-  
-  
-  
-  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
-    <div class="bg-black-60">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Symphonious
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
-              About Me
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
-              CV
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
-              Testing@LMAX
-            </a>
-          </li>
-          
-        </ul>
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-      <div class="tc-l pv6 ph3 ph4-ns">
-        
-          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Revisiting Java on the iPhone</div>
-          
-        
-      </div>
-    </div>
-  </header>
 
 
 
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-          
-        POSTS
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Revisiting Java on the iPhone</h1>
-      
-      <p class="tracked">
-        By <strong>Adrian Sutton</strong>
-      </p>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2008-05-29T09:19:11Z">May 29, 2008</time>
-      
 
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Around the time of the iPhone’s initial release, <a href="http://www.symphonious.net/2007/01/21/the-killer-java-application/">I wrote</a>:</p>
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/" aria-current="page">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Around the time of the iPhone’s initial release, I wrote:
+It&rsquo;s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I&rsquo;ll concede that most of the existing games for mobile phones probably wouldn&rsquo;t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today&rsquo;s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java. Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).
+"><header class="article-heading"><p class="section-label">Writing</p><h1 data-pagefind-meta="title">Revisiting Java on the iPhone</h1><p class="article-meta"><time datetime="2008-05-29">29 May 2008</time> <span aria-hidden="true">·</span> 3 min read</p></header><div class="prose"><p>Around the time of the iPhone’s initial release, <a href="http://www.symphonious.net/2007/01/21/the-killer-java-application/">I wrote</a>:</p>
 <blockquote>
 <p>It&rsquo;s this popularity of Java in the mobile phone world that makes the lack of Java on the iPhone seem so odd to me. I can understand Apple wanting to have complete control over the iPhone interface, and I&rsquo;ll concede that most of the existing games for mobile phones probably wouldn&rsquo;t translate very well to the keypadless iPhone, but it will be interesting to see if Apple can satisfy the great desire for cool little mobile games that today&rsquo;s teenagers, a key market segment for the iPhone, without leveraging the existing knowledge mobile games developers have in Java.
 Turns out I was completely wrong. Teenagers don’t give a damn about those gimmicky little games on their mobile phones, they just use them because they’re there. The iPhone’s coolness factor and the built in iPod is all that matters. Even wandering around Australia (where iPhone’s aren’t yet available) with my iPhone, lots of people asked about browsing the web, the iPod etc but not a single person asked about games (and yes, I do know quite a few teenagers who were doing the asking but still nothing about games).</p>
@@ -170,33 +48,9 @@ This one is panning out exactly as expected. People will make a lot of money sel
 <p>The other part that may be interesting is what happens to the ring tone market as more and more phones use standard MP3s for the ring tone and make it easy to load them onto the phone. The iPhone should nail this and Nokia and Sony-Ericsson are pushing their MP3 player capabilities. Nokia&rsquo;s even going so far as to note how easy it is to get music onto the phone in their Australian marketing.
 Turns out the iPhone has the worst ring tone capabilities of any phone I’ve used in the past 2-3 years mostly because it doesn’t allow you to use any old MP3 you happen to have (and because the volume is <em>way</em> too quiet). The saving grace is that the iPhone happens to have the best default ring tones of any phone I’ve used – but still way too quiet. I’d be quite interested to find out how many ring tone sales Apple is doing through the iTunes Music Store given that it also avoids the subscription scam that most ring tones are sold through.</p>
 </blockquote>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      </div>
-    </div>
+</div></article>
+<nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2008/05/28/pain-vs-pay-off/"><span>← Earlier</span>Pain vs Pay-Off</a><a href="/2008/05/30/lessons-from-a-changelog/"><span>Later →</span>Lessons From a Changelog</a></nav>
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
 
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
-    &copy;  Adrian Sutton 2004 - 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
-</html>
+</body></html>

@@ -1,155 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Use Asynchronous Integration | Symphonious</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="In James Shore&rsquo;s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything&rsquo;s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can&rsquo;t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
-    <meta name="generator" content="Hugo 0.164.0">
-    
-    
-    
-      <meta name="robots" content="index, follow">
-    
-    <meta name="author" content="Adrian Sutton">
-    
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use Asynchronous Integration · Symphonious</title>
+<meta name="description" content="In James Shore&rsquo;s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check …">
+<link rel="canonical" href="https://www.symphonious.net/2006/08/27/use-asynchronous-integration/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 
-  
-
-
-    
-
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="https://www.symphonious.net/2006/08/27/use-asynchronous-integration/">
-    
-
-    <meta property="og:url" content="https://www.symphonious.net/2006/08/27/use-asynchronous-integration/">
-	<meta property="og:site_name" content="Symphonious">
-	<meta property="og:title" content="Use Asynchronous Integration">
-	<meta property="og:description" content="In James Shore’s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything’s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can’t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2006-08-27T00:47:01+00:00">
-		<meta property="article:modified_time" content="2006-08-27T00:47:01+00:00">
-
-	<meta itemprop="name" content="Use Asynchronous Integration">
-	<meta itemprop="description" content="In James Shore’s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything’s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can’t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
-	<meta itemprop="datePublished" content="2006-08-27T00:47:01+00:00">
-	<meta itemprop="dateModified" content="2006-08-27T00:47:01+00:00">
-	<meta itemprop="wordCount" content="2076">
-	<meta itemprop="keywords" content="XP">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Use Asynchronous Integration">
-	<meta name="twitter:description" content="In James Shore’s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything’s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can’t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.">
-
-      
-    
-	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
-<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
-<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
-<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
-<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
-  </head><body class="ma0 avenir bg-near-white production">
-
-    
-   
-  
-
-  
-  
-  
-  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
-    <div class="bg-black-60">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Symphonious
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
-              About Me
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
-              CV
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
-              Testing@LMAX
-            </a>
-          </li>
-          
-        </ul>
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-      <div class="tc-l pv6 ph3 ph4-ns">
-        
-          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Use Asynchronous Integration</div>
-          
-        
-      </div>
-    </div>
-  </header>
 
 
 
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-          
-        POSTS
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Use Asynchronous Integration</h1>
-      
-      <p class="tracked">
-        By <strong>Adrian Sutton</strong>
-      </p>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2006-08-27T00:47:01Z">August 27, 2006</time>
-      
 
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>In <a href="http://www.jamesshore.com/Agile-Book/continuous_integration.html">James Shore&rsquo;s chapter on Continuous Integration</a> for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything&rsquo;s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can&rsquo;t see how this is encouraged by adding up to twenty minutes of work<a href="#footnote1-1156631682875" class="footnote" id="footlink1-1156631682875" name="footlink1-1156631682875">1</a> every time you want to check in.</p>
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/" aria-current="page">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="In James Shore&rsquo;s chapter on Continuous Integration for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything&rsquo;s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can&rsquo;t see how this is encouraged by adding up to twenty minutes of work1 every time you want to check in.
+"><header class="article-heading"><p class="section-label">Writing</p><h1 data-pagefind-meta="title">Use Asynchronous Integration</h1><p class="article-meta"><time datetime="2006-08-27">27 August 2006</time> <span aria-hidden="true">·</span> 10 min read</p></header><div class="prose"><p>In <a href="http://www.jamesshore.com/Agile-Book/continuous_integration.html">James Shore&rsquo;s chapter on Continuous Integration</a> for his upcoming book, he strongly recommends using synchronous integration, where each time you check in you stop and wait for two builds to complete before moving on, in favor of asynchronous integration, where you check in and move on to your next task leaving an automated build server to check everything&rsquo;s still okay. The whole point of continuous integration is that your team integrates regularly, so that you avoid conflicts. I can&rsquo;t see how this is encouraged by adding up to twenty minutes of work<a href="#footnote1-1156631682875" class="footnote" id="footlink1-1156631682875" name="footlink1-1156631682875">1</a> every time you want to check in.</p>
 <p>The advantage of synchronous integration is that you always know the build is broken – sort of. In reality you may find that the build broke, but you lock out all the other developers from accessing the source code repository while you check in and do the test build, about ten minutes every time someone checks in<a id="footlink5-1156639192281" href="#footnote5-1156639192281" class="footnote" name="footlink5-1156639192281">5</a>. This lock out period provides the illusion that the build is always passing, because anytime someone checks out the code base or does an update, they get fully working code with all the tests passing. It&rsquo;s really useful to know that anytime you update that you won&rsquo;t get any unexpected surprises, but adding in this delay means less frequent integration cycles, more time waiting around and a greater chance of integration problems.</p>
 <p>With asynchronous integration you accept the risk that every now and then the build might break and in exchange encourage people to integrate more often, allow people to integrate part way through a story without interrupting their flow<a href="#footnote2-1156632272031" class="footnote" name="footlink2-1156632272031" id="footlink2-1156632272031">2</a> and let the whole team know when a problem has come up. Letting the whole team know is an unexpected benefit, it means that when the build breaks, the whole team is informed that an unintended side-effect has been encountered and that help might be needed to resolve it. Most of the build failures we see are complex issues where a new feature is impacting on the expected results of an existing feature, and since we&rsquo;re working with a legacy code base the failing test may not make it obvious why the failure is important. People new to the code base may well have thought that the failing test just needed to be updated because what it was asserting was outside of its intended scope. Fortunately, since the whole team sees the problem, the more experienced people may recall why that was important and be able to provide advice on how to make the test clearer in its intentions and how to resolve the conflict in functionality.</p>
 <p>Being able to check in more regularly is a big advantage as well. If the check in process takes twenty minutes to complete, you might check in two maybe three times a day, with the check in process taking one to two minutes, we check in five to ten times a day. That&rsquo;s a lot more regular integration and a lot less chance for conflicts. If the team is working on completely separate areas of the product that&rsquo;s probably not so useful, but often working on commercial products you find the features you&rsquo;re adding are related. Even with a well designed code base with limited coupling<a href="#footnote3-1156636632000" class="footnote" name="footlink3-1156636632000" id="footlink3-1156636632000">3</a>, there&rsquo;s a good chance of conflicts when you&rsquo;ve got the whole team working on improving the functionality of list handling.</p>
@@ -192,33 +74,9 @@
 <p class="footnote">
   <a id="footnote5-1156639192281" href="#footlink5-1156639192281" name="footnote5-1156639192281">5</a> &#8211; ten minutes because the first build on your local machine is done before you take the integration token<a href="#footlink5-1156639192281" class="footnotereturn">&#8617;</a>
 </p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      </div>
-    </div>
+</div></article>
+<nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2006/08/25/dont-blame-the-committer/"><span>← Earlier</span>Don’t Blame The Committer</a><a href="/2006/08/27/how-do-you-start-tdd/"><span>Later →</span>How Do You Start TDD?</a></nav>
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
 
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
-    &copy;  Adrian Sutton 2004 - 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
-</html>
+</body></html>

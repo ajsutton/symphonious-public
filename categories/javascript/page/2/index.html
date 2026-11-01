@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaScript · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/categories/javascript/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>JavaScript</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2013-09-13">13 Sep 2013</time></div><div><h2><a href="/2013/09/13/uglifyuglify2-rickshaw-requirejs-and-minification/">Uglify/Uglify2, Rickshaw, Requirejs and Minification</a></h2><div class="prose excerpt"><p>If you have:</p>
+<ul>
+<li>A javascript project using require.js</li>
+<li>Which is optimised using r.js</li>
+<li>Includes Rickshaw or any other library that uses the prototype class system</li>
+</ul>
+<p>Then you are very likely here because you&rsquo;re trying to enable JavaScript optimization (minification) and finding that suddenly stuff breaks.</p>
+<p>The problem is that the prototype class system allows overriding methods to call the original method by adding a $super as the first parameter to the function. From <a href="http://prototypejs.org/learn/class-inheritance">the prototype docs</a>:</p></div><a class="read-more" href="/2013/09/13/uglifyuglify2-rickshaw-requirejs-and-minification/">Continue reading<span class="sr-only">: Uglify/Uglify2, Rickshaw, Requirejs and Minification</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2013-07-24">24 Jul 2013</time></div><div><h2><a href="/2013/07/24/javascript-drag-and-drop-events/">JavaScript Drag and Drop Events</a></h2><div class="prose excerpt"><p>Note to self: when you next need to handle drag and drop events in javascript, just use <a href="http://threedubmedia.com/code/event/drag">jquery.event.drag from ThreeDubMedia</a>. Simple jquery based API and automatically handles the most annoying part of javascript drag handlers – dealing with cases where the user starts dragging inside an element, drags right out of the element and then releases the mouse.</p></div><a class="read-more" href="/2013/07/24/javascript-drag-and-drop-events/">Continue reading<span class="sr-only">: JavaScript Drag and Drop Events</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2013-07-08">8 Jul 2013</time></div><div><h2><a href="/2013/07/08/injecting-stubsmocks-into-tests-with-require-js/">Injecting Stubs/Mocks into Tests with Require.js</a></h2><div class="prose excerpt"><p>I&rsquo;ve recently embarked on a fairly complex new application, a large part of which is a webapp written in JavaScript. The application uses require.js to handle modules and loading of dependencies and we want to be able to unit test our JavaScript.</p>
+<p>In order to test specific pieces of the application, we want to be able to inject stubs or mocks into the module being tested. For example, if we had a module:</p></div><a class="read-more" href="/2013/07/08/injecting-stubsmocks-into-tests-with-require-js/">Continue reading<span class="sr-only">: Injecting Stubs/Mocks into Tests with Require.js</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2011-11-13">13 Nov 2011</time></div><div><h2><a href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Simple Long Poll Patterns in JavaScript</a></h2><div class="prose excerpt"><p>A couple of little patterns for writing long-poll based JavaScript applications have evolved in some internal apps I’ve been working on lately so I thought I’d document them for posterity.</p>
+<h2 id="simple-long-poll-loop">Simple Long Poll Loop</h2>
+<noscript>
+  <pre><code class="language-javascript javascript">(function($) {
+    var longPollUrl = '/longpoll';
+<pre><code>var lastReceivedSequence;
+
+function poll() {
+    $.ajax(longPollUrl, {
+        data: { 'lastSequence': lastReceivedSequence },
+        dataType: 'json',
+        timeout: 15000,
+        success: function(data) {
+            if (!data) return;
+            lastReceivedSequence = data.sequenceNumber;
+            $(window).trigger('onLongPollEvent', data);
+        },
+        complete: poll
+    });
+}
+</code></pre>
+<p>})(jQuery);</code></pre>
+</noscript></p></div><a class="read-more" href="/2011/11/13/simple-long-poll-patterns-in-javascript/">Continue reading<span class="sr-only">: Simple Long Poll Patterns in JavaScript</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-11-24">24 Nov 2010</time></div><div><h2><a href="/2010/11/24/controlling-focus-in-firefox/">Controlling Focus in Firefox</a></h2><div class="prose excerpt"><p>I have a bunch of JavaScript unit tests and for some of them I need to trigger a real keypress – one that activates the browser’s default functionality, not just triggers the JavaScript listeners. To do that, I have a <a href="https://github.com/ephox/JSRobot/">simple signed applet that uses the AWT Robot</a> to programmatically trigger the keypresses. Mostly, this works brilliantly.</p></div><a class="read-more" href="/2010/11/24/controlling-focus-in-firefox/">Continue reading<span class="sr-only">: Controlling Focus in Firefox</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-10-09">9 Oct 2010</time></div><div><h2><a href="/2010/10/09/javascript-performance-for-vs-foreach/">JavaScript Performance: For vs ForEach</a></h2><div class="prose excerpt"><p>As part of <a href="http://www.symphonious.net/2010/10/07/optimising-javascript/">exploring JavaScript performance</a>, I started wondering if the particular method of looping made a difference to performance. After all, one of the most often repeated bits of advice is that JavaScript is much faster if you loop backwards through an array instead of forwards and the slow part of my code was a loop. Using <a href="http://jsperf.com/">jsperf.com</a> I could set up a simple test case pretty quickly and easily: <a href="http://jsperf.com/for-vs-foreach/5">for vs forEach</a>.</p></div><a class="read-more" href="/2010/10/09/javascript-performance-for-vs-foreach/">Continue reading<span class="sr-only">: JavaScript Performance: For vs ForEach</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-10-07">7 Oct 2010</time></div><div><h2><a href="/2010/10/07/optimising-javascript/">Optimising JavaScript</a></h2><div class="prose excerpt"><p>I’ve been working to build a better filter for pasting from Microsoft Word into TinyMCE and if you know anything about filtering what Word calls HTML, you know there’s an awful lot of work to be done. As such, performance becomes a real issue – ideally we’d like to be able to filter reasonable sized documents (10-20 pages) in under the half a second that users generally call snappy.</p></div><a class="read-more" href="/2010/10/07/optimising-javascript/">Continue reading<span class="sr-only">: Optimising JavaScript</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-09-29">29 Sep 2010</time></div><div><h2><a href="/2010/09/29/canvas-based-editors/">Canvas-based Editors</a></h2><div class="prose excerpt"><p>Over the weekend I went to JSConf EU and every time I met someone and told them I was working on TinyMCE the conversation rapidly veered off into why contentEditable is too hard/buggy to work with and how it would be so much better if it was all built on top of canvas or just used the DOM with a custom selection API. This matched the thinking throughout the conference that it doesn’t really matter how messed up browsers are because JavaScript can be used to work around it.</p></div><a class="read-more" href="/2010/09/29/canvas-based-editors/">Continue reading<span class="sr-only">: Canvas-based Editors</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-09-13">13 Sep 2010</time></div><div><h2><a href="/2010/09/13/contenteditable-in-mobile-webkit/">contentEditable in Mobile WebKit</a></h2><div class="prose excerpt"><h3 id="what-is-contenteditable">What Is contentEditable?</h3>
+<p>JavaScript editors are all fundamentally based on a technology called contentEditable which makes a part of the web page become editable by the user. While there is a lot of functionality that’s usually bundled under the “contentEditable” title, there are a few core parts which are essential for a browser to support correctly<a href="#footnote1:1278939007857">1</a>{#footlink1:1278939007857.footnote}:</p></div><a class="read-more" href="/2010/09/13/contenteditable-in-mobile-webkit/">Continue reading<span class="sr-only">: contentEditable in Mobile WebKit</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-07-05">5 Jul 2010</time></div><div><h2><a href="/2010/07/05/range-extractcontents-bug-in-firefox-pre-3-5/">range.extractContents Bug in Firefox Pre-3.5</a></h2><div class="prose excerpt"><p>It’s not often I say things like <a href="http://twitter.com/ajsutton/status/17785844544">this</a>, but oddly today’s problems are Firefox exclusive. It turns out that prior to Firefox 3.5 Range.extractContents is subtly but, for my uses, devastatingly broken. Basically, on any browser except those earlier versions of FireFox the test below should pass:</p>
+<pre>test(&#39;range.extractContents&#39;, 2, function() {
+  var item1, item2, list, r, fragment, test;
+  test = document.createElement(&#39;div&#39;); 
+  test.id = &#39;test&#39;;
+  test.innerHTML = &#39;&#60;ul&#62;&#60;li id=&#34;item1&#34;&#62;Item 1&#60;/li&#62;&#60;li id=&#34;item2&#34;&#62;Item 2&#60;/li&#62;&#60;/ul&#62;&#39;;
+  document.body.appendChild(test);
+
+  item1 = document.getElementById(&#39;item1&#39;);
+  item2 = document.getElementById(&#39;item2&#39;);
+  list = item1.parentNode;
+
+  r = document.createRange();
+  r.setStart(list, 0);
+  r.setEnd(list, 1);
+  fragment = r.extractContents();
+  list.appendChild(fragment);
+
+  ok(item1 === document.getElementById(&#39;item1&#39;), &#39;Item 1 must not be cloned&#39;);
+  ok(item2 === document.getElementById(&#39;item2&#39;), &#39;Item 2 must not be cloned&#39;);
+}
+</pre>
+<p>Basically, extractContents should remove the nodes within the range from the document and give them to you in a DocumentFragment (so you can put them somewhere else usually). The key requirement is that they be the <em>same</em> nodes unless only a part of the node is within the range, at which point the node should be shallow cloned and split.</p></div><a class="read-more" href="/2010/07/05/range-extractcontents-bug-in-firefox-pre-3-5/">Continue reading<span class="sr-only">: range.extractContents Bug in Firefox Pre-3.5</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-06-08">8 Jun 2010</time></div><div><h2><a href="/2010/06/08/javascript-testing-in-the-cloud/">JavaScript Testing in the Cloud</a></h2><div class="prose excerpt"><p>One of the things <a href="http://tinymce.ephox.com">Ephox is contributing to TinyMCE</a> is a build farm to run the automated tests in various browsers which <a href="http://tinymce.ephox.com/test-results">winds up publishing it’s results for all to see</a>. This has been pretty interesting to set up and there are a range of different approaches. Matt Raible posted recently about <a href="http://raibledesigns.com/rd/entry/running_selenium_tests_on_sauce">his experiences using Selenium with Sauce Labs</a>. I had initially looked into that as well, but was worried about a few of the issues Matt hit and TinyMCE had already written a lot of tests using <a href="http://docs.jquery.com/QUnit">QUnit</a> rather than Selenium.</p></div><a class="read-more" href="/2010/06/08/javascript-testing-in-the-cloud/">Continue reading<span class="sr-only">: JavaScript Testing in the Cloud</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-03-12">12 Mar 2010</time></div><div><h2><a href="/2010/03/12/wanted-open-source-evangelisttinymce-guru/">Wanted: Open Source Evangelist/TinyMCE Guru</a></h2><div class="prose excerpt"><p>From the <a href="http://www.ephox.com/aboutus/jobs.html">job description:</a></p>
+<blockquote>
+<p>We are seeking a Software Developer who is experienced in creating sophisticated, highly interactive, JavaScript applications. Ideally we desire someone that has experience in TinyMCE or has experience working as part of an open source project. The right person will have the ability to work remotely in a highly collaborative manner with virtual teams.
+I’m pretty excited about this new opening within Ephox. Lots of great stuff to come out of it hopefully, but in particular helping Ephox to start working better with Open Source communities and developing some awesome stuff with JavaScript. While TinyMCE experience is something we’re particularly keen to have “ready to go” if possible, whoever fills this role is going to become a web content editor expert in general from Tiny to CK, Dojo and of course our personal favourite <a href="http://editlive.com/">EditLive!</a></p>
+</blockquote></div><a class="read-more" href="/2010/03/12/wanted-open-source-evangelisttinymce-guru/">Continue reading<span class="sr-only">: Wanted: Open Source Evangelist/TinyMCE Guru</span> <span aria-hidden="true">→</span></a></div></article>
+
+<nav class="pagination" aria-label="Archive pages"><a href="/categories/javascript/">← Newer posts</a><span>Page 2 of 3</span><a href="/categories/javascript/page/3/">Older posts →</a></nav>
+
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

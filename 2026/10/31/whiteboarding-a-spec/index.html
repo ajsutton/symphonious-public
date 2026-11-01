@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whiteboarding a Spec · Symphonious</title>
+<meta name="description" content="I&rsquo;ve been in New York the past couple of weeks planning out a new project. Part of that work has been working out how the new thing will be built - what …">
+<link rel="canonical" href="https://www.symphonious.net/2026/10/31/whiteboarding-a-spec/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/" aria-current="page">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="I&rsquo;ve been in New York the past couple of weeks planning out a new project. Part of that work has been working out how the new thing will be built - what protocol and contract changes are needed and how does it all fit in with the existing system? Ultimately we want to create a specification that we have a reasonably high confidence in, but getting that means working through a lot of scenarios and potential designs which is best done on a whiteboard. We found a really powerful way of using AI to help without winding up with a giant pile of AI slop.
+"><header class="article-heading"><p class="section-label">Writing</p><h1 data-pagefind-meta="title">Whiteboarding a Spec</h1><p class="article-meta"><time datetime="2026-10-31">31 October 2026</time> <span aria-hidden="true">·</span> 4 min read</p></header><div class="prose"><p>I&rsquo;ve been in New York the past couple of weeks planning out a new project. Part
+of that work has been working out <em>how</em> the new thing will be built - what
+protocol and contract changes are needed and how does it all fit in with the
+existing system? Ultimately we want to create a specification that we have a
+reasonably high confidence in, but getting that means working through a lot of
+scenarios and potential designs which is best done on a whiteboard. We found a
+really powerful way of using AI to help without winding up with a giant pile of
+AI slop.</p>
+<p>Prior to getting together in person, there was a good idea of the customer
+requirements and a steel-man approach we could use. That was pretty much
+entirely AI slop, but AI slop is a great way to play around with a PoC and try
+out many different ideas quickly. From there we shut ourselves in a conference
+room and did what engineers have been doing forever - we talked through the
+design, scribbled on a whiteboard and tried to find ways to either improve or
+break it. What&rsquo;s relatively new for me (been doing it for most of the year) is
+to also dial into a Google Meet and have it record a transcription of everything
+in the room. Prior to AI you&rsquo;d never read such a transcription - it might be
+useful to search and find specific decisions but mostly it went unused. With AI,
+each evening I got it to summarise the transcript and update a notion page that
+captured our work. More likely to be useful at some point - especially after
+kicking the AI a few times to make it an up to date record, not a historical
+summary of all discussions. That page became a pretty good summary of decisions
+we&rsquo;d made and where we were up to - still clearly AI slop but usable.</p>
+<p>What really surprised me though, was that after a few days of going back and
+forward on design options, changing our minds, breaking things, fixing them,
+getting confused ourselves and referencing older designs we had to change, we
+just ask AI to read the transcripts and write a spec. It did have the benefit of
+starting from our existing specs repo which gave a large corpus of examples for
+the style to use. It churned out a quite readable and 90% accurate spec. We
+still had to go through it all and made quite a lot of corrections but it saved
+us a day or two of manual writing, and even without AI there&rsquo;s always a ton of
+things to fix.</p>
+<p>I&rsquo;ve now read the spec end to end a few times as well as digging into specific
+parts to help build task break downs and things like that - it reads really well
+and while there&rsquo;s a few AI-isms through it, it&rsquo;s definitely not slop and is
+really useful. Each milestone in the project still has a task to &ldquo;write&rdquo; the
+relevant piece of the spec to make sure it is updated with any final adjustments
+we make from actual implementation and to remove the last few AI-isms but it was
+a significant time saver.</p>
+<p>Perhaps even more than the work hours we saved though, is the immediacy of
+having spec documents ready. I was only available in-person for two weeks and we
+had a lot to get through - normally we&rsquo;d have just made some notes or recordings
+and left writing the actual spec for afterwards since it can be done more async.
+But then we&rsquo;d be left to review it async rather than being able to do that in
+person. Given our first pass review identified a few sections we needed to
+significantly rework because we&rsquo;d missed something, the AI generated spec let us
+resolve that in person with high bandwidth communication. Much better than
+having to schedule a lot of early morning calls for me.</p>
+<p>And of course, afterwards we can have AI generate really bad songs about
+everything we discussed, full of all kinds of in jokes and weird sayings that
+happened in the room. But it only really makes sense if you were in the room
+where it happened&hellip;</p></div></article>
+<nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2026/08/16/just-vibe-code-it-yourself/"><span>← Earlier</span>Just Vibe Code It Yourself</a></nav>
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

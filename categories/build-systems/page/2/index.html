@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Systems · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/categories/build-systems/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>Build Systems</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-04-05">5 Apr 2010</time></div><div><h2><a href="/2010/04/05/stop-concatenating-css-files/">Stop Concatenating CSS Files</a></h2><div class="prose excerpt"><p>One of the common examples of the limits of Maven and other “strict” build tools was how difficult is to concatenate CSS files together as part of the build. It’s nice to be able to split CSS files up to categorize things but the extra HTTP requests really slow down page loads, so the build should concatenate them back together. What I’ve come to realise though, is that building a custom concatenation script is just another instance where people are reinventing the wheel in build systems, and getting less power as a result.</p></div><a class="read-more" href="/2010/04/05/stop-concatenating-css-files/">Continue reading<span class="sr-only">: Stop Concatenating CSS Files</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-25">25 Jan 2010</time></div><div><h2><a href="/2010/01/25/using-ivy-for-dependency-management/">Using Ivy for Dependency Management</a></h2><div class="prose excerpt"><p>At first glance, <a href="http://ant.apache.org/ivy/">Ivy</a> looks like a re-implementation of Maven’s dependency management that works nicely with ant, and to some degree it is, but it also adds some pretty significant improvements and some pretty significant complexity.</p>
+<h3 id="maven-compatibility">Maven Compatibility</h3>
+<p>Firstly, Ivy is compatible with Maven repositories, so if you think the way Maven manages dependencies is perfect, but don’t want to buy into the rest of Maven, Ivy provides a good answer. The configuration is a little bit different and you’ll have to learn a little bit about Ivy’s configurations which are both more powerful and more complex than Maven’s dependency “scope”, but you won’t have to go too far into them.</p></div><a class="read-more" href="/2010/01/25/using-ivy-for-dependency-management/">Continue reading<span class="sr-only">: Using Ivy for Dependency Management</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-25">25 Jan 2010</time></div><div><h2><a href="/2010/01/25/ant-subant-and-basedir/">Ant, Subant and Basedir</a></h2><div class="prose excerpt"><p><img loading="lazy" alt="Apache Ant logo" width="115" height="75" src="http://www.symphonious.net/wp-content/uploads/2010/01/project-logo_6038245254255283799.gif" style=" float: left;" />Here’s an important lesson for people combining ant scripts – the way basedir is calculated is very unlikely to be what you expect. In particular, if you combine the <ant> task with the <subant> task you’re probably in for a surprise.</p>
+<p>I learnt this important life lesson when the improved build scripts I’d been working on failed on the build server even though it worked perfectly on my machine. The difference is that the build server is running cruise control and it has a wrapper ant script which checks out a fresh copy of the project then uses the <ant> task to build it. The ant task was:</p></div><a class="read-more" href="/2010/01/25/ant-subant-and-basedir/">Continue reading<span class="sr-only">: Ant, Subant and Basedir</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-22">22 Jan 2010</time></div><div><h2><a href="/2010/01/22/three-types-of-ant-scripts/">Three Types of Ant Scripts</a></h2><div class="prose excerpt"><p><a href="http://bryanpendleton.blogspot.com/2010/01/ant-version-18-is-nearing-release.html">Bryan comments on the three types of ant scripts</a>:</p>
+<blockquote>
+<p>In my experience, there are three types of Ant scripts that you encounter &ldquo;in the wild&rdquo;:</p>
+<ul>
+<li>Small Ant scripts, generally Java-only, which can use most of Ant&rsquo;s default behaviors and are clear and simple. A lot of open source build scripts are this way.</li>
+<li>Serious commercial Ant scripts written before macrodef and import became available. These are generally impossible to understand and evolve, and the reality is that a small cadre of Build Wizards keep them running. Such systems often involve a substantial number of custom Ant tasks.</li>
+<li>Serious commercial Ant scripts written to use macrodef and import. In my experience, the need for custom Ant tasks drops way off with Ant releases post-1.6.</li>
+</ul>
+</blockquote>
+<p>This really does ring true to me. Ant scripts can fairly quickly become unwieldy and difficult to work with if you aren’t using import and macrodef, but with them you can achieve so much more without the complexity getting out of hand. They won’t absolve you of the need to properly understand ant and the declarative paradigm it wants you to work with, but it’s much more approachable.</p></div><a class="read-more" href="/2010/01/22/three-types-of-ant-scripts/">Continue reading<span class="sr-only">: Three Types of Ant Scripts</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-11">11 Jan 2010</time></div><div><h2><a href="/2010/01/11/comparing-build-systems/">Comparing Build Systems</a></h2><div class="prose excerpt"><p>After spending some time <a href="http://www.symphonious.net/2010/01/04/on-build-systems/">thinking about</a> and using different build systems, I can’t say I really like any of them all that much. I know have a reasonably complex project, using submodules that can be built with ant, buildr, maven and gradle – with varying degrees of support for the Ephox specific requirements and reporting.</p>
+<h3 id="maven"><a href="http://maven.apache.org/">Maven</a></h3>
+<p>Ah, the Java world’s favorite whipping boy. The more I play with Maven, the more I start to understand why it gets such a bad wrap: it’s too easy to get started and do it all wrong. Maven is not a build tool that is quick to start using – it requires planning, common conventions, a number of extras systems such as repository servers be set up and templates to be designed. However, Maven does an unfortunately good job of working if you just create a simple pom.xml and run mvn.</p></div><a class="read-more" href="/2010/01/11/comparing-build-systems/">Continue reading<span class="sr-only">: Comparing Build Systems</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-06">6 Jan 2010</time></div><div><h2><a href="/2010/01/06/project-directory-structure/">Project Directory Structure</a></h2><div class="prose excerpt"><p>Having spent a bunch of time looking at various build systems and tools, one of the simplest and most effective improvements I’ve discovered is to always use the Maven project structure. It doesn’t matter if you’re not using Maven, there’s no downside to using it and every build tool that uses convention over configuration uses the Maven structure.</p></div><a class="read-more" href="/2010/01/06/project-directory-structure/">Continue reading<span class="sr-only">: Project Directory Structure</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-04">4 Jan 2010</time></div><div><h2><a href="/2010/01/04/on-build-systems/">On Build Systems</a></h2><div class="prose excerpt"><p>Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.</p></div><a class="read-more" href="/2010/01/04/on-build-systems/">Continue reading<span class="sr-only">: On Build Systems</span> <span aria-hidden="true">→</span></a></div></article>
+
+<nav class="pagination" aria-label="Archive pages"><a href="/categories/build-systems/">← Newer posts</a><span>Page 2 of 2</span></nav>
+
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

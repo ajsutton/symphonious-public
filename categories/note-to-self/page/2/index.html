@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note to Self · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/categories/note-to-self/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>Note to Self</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2013-09-13">13 Sep 2013</time></div><div><h2><a href="/2013/09/13/uglifyuglify2-rickshaw-requirejs-and-minification/">Uglify/Uglify2, Rickshaw, Requirejs and Minification</a></h2><div class="prose excerpt"><p>If you have:</p>
+<ul>
+<li>A javascript project using require.js</li>
+<li>Which is optimised using r.js</li>
+<li>Includes Rickshaw or any other library that uses the prototype class system</li>
+</ul>
+<p>Then you are very likely here because you&rsquo;re trying to enable JavaScript optimization (minification) and finding that suddenly stuff breaks.</p>
+<p>The problem is that the prototype class system allows overriding methods to call the original method by adding a $super as the first parameter to the function. From <a href="http://prototypejs.org/learn/class-inheritance">the prototype docs</a>:</p></div><a class="read-more" href="/2013/09/13/uglifyuglify2-rickshaw-requirejs-and-minification/">Continue reading<span class="sr-only">: Uglify/Uglify2, Rickshaw, Requirejs and Minification</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2013-07-24">24 Jul 2013</time></div><div><h2><a href="/2013/07/24/javascript-drag-and-drop-events/">JavaScript Drag and Drop Events</a></h2><div class="prose excerpt"><p>Note to self: when you next need to handle drag and drop events in javascript, just use <a href="http://threedubmedia.com/code/event/drag">jquery.event.drag from ThreeDubMedia</a>. Simple jquery based API and automatically handles the most annoying part of javascript drag handlers – dealing with cases where the user starts dragging inside an element, drags right out of the element and then releases the mouse.</p></div><a class="read-more" href="/2013/07/24/javascript-drag-and-drop-events/">Continue reading<span class="sr-only">: JavaScript Drag and Drop Events</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2012-03-27">27 Mar 2012</time></div><div><h2><a href="/2012/03/27/ignoring-changes-to-tracked-files-in-git/">Ignoring Changes to Tracked Files in Git</a></h2><div class="prose excerpt"><p>I’m going to want to remember this one day, so here’s a pointer to <a href="http://archive.robwilkerson.org/2010/03/02/git-tip-ignore-changes-to-tracked-files/">Rob Wilderson’s Ignore Changes to Tracked Files in Git</a>.</p>
+<p>I’m especially going to want to remember the bit about how to find which files I’ve ignored in this way.</p></div><a class="read-more" href="/2012/03/27/ignoring-changes-to-tracked-files-in-git/">Continue reading<span class="sr-only">: Ignoring Changes to Tracked Files in Git</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2012-02-28">28 Feb 2012</time></div><div><h2><a href="/2012/02/28/how-to-round-trip-data-via-ssh/">How To Round-Trip Data Via SSH</a></h2><div class="prose excerpt"><p>I keep forgetting this so for the record, you can use SSH to round trip data out to a remote server and back to your own box.  This is most useful for adding latency and bandwidth limitations to a connection when doing website testing.  The trick is to use both local and remote port forwards:</p></div><a class="read-more" href="/2012/02/28/how-to-round-trip-data-via-ssh/">Continue reading<span class="sr-only">: How To Round-Trip Data Via SSH</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-06-30">30 Jun 2010</time></div><div><h2><a href="/2010/06/30/whos-committed-in-my-git-repository/">Who’s Committed in my Git Repository?</a></h2><div class="prose excerpt"><p>Note to self: if you ever want to get a simple list of people who have committed to a git repository, the command you want is:</p>
+<pre>git log --format=&#39;%aN &#60;%ae&#62;&#39; | sort -u | uniq
+</pre>
+<p>Or for just the e-mail address:</p>
+<pre>git log --format=&#39;%ae&#39; | sort -u | uniq
+</pre>
+<p>Or for just the name:</p>
+<pre>git log --format=&#39;%aN&#39; | sort -u | uniq
+</pre>
+<p>This is in the help manual but it’s way down the bottom so takes ages to read through to find it.</p></div><a class="read-more" href="/2010/06/30/whos-committed-in-my-git-repository/">Continue reading<span class="sr-only">: Who’s Committed in my Git Repository?</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-04-07">7 Apr 2010</time></div><div><h2><a href="/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/">RightScale AWS Amazon EC2 Library for Ruby</a></h2><div class="prose excerpt"><p>I’ve always known you could do a lot of programmatic stuff with Amazon but I’ve simultaneously been too lazy to actually look into it in detail and never really needed to. However, I’ve stumbled across <a href="http://www.ioncannon.net/system-administration/199/automounting-amazon-ebs-volumes-on-ec2-instances/">instructions for auto-mounting an EBS volume</a> which turns out to be very handy, and leads on to the particularly awesome <a href="http://rightscale.rubyforge.org/">right_aws ruby gem</a>.</p></div><a class="read-more" href="/2010/04/07/rightscale-aws-amazon-ec2-library-for-ruby/">Continue reading<span class="sr-only">: RightScale AWS Amazon EC2 Library for Ruby</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-06-12">12 Jun 2009</time></div><div><h2><a href="/2009/06/12/stuff-i-might-need-someday/">Stuff I Might Need Someday</a></h2><div class="prose excerpt"><p>A few things I’ve discovered today that look potentially useful in the future:</p>
+<ul>
+<li><a href="http://www.antennahouse.com/product/ahf50/ahf5top.htm">Antenna House Formatter V5</a> – converts HTML and CSS to PDF, including support for MathML. Heck, supporting CSS well is a plus – most HTML to PDF conversions don’t. Hat tip to one of our clients for finding that.</li>
+<li><a href="http://flowplayer.org/tools/index.html">jQuery Tools</a> – there are plenty of JavaScript UI libraries around, but this one looks better componentized than most. It’s also a good, small set of components that normal web pages are likely to want, rather than being more specifically useful in web applications, though it could be used there too.</li>
+<li><a href="http://flowplayer.org/index.html">FlowPlayer</a> – actually I knew about this one but only just got around to looking at the details. Handy looking open source flash video player. They’ve somehow converted the GPL into a license that requires attribution which is really odd, most likely to keep their commercial licensing option open. It’s their license so they can do what they want with it but I would have thought there’d be a better fitting license.</li>
+</ul></div><a class="read-more" href="/2009/06/12/stuff-i-might-need-someday/">Continue reading<span class="sr-only">: Stuff I Might Need Someday</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-04-16">16 Apr 2009</time></div><div><h2><a href="/2009/04/16/xmlserializer-class-for-sax-events/">XmlSerializer Class for SAX Events</a></h2><div class="prose excerpt"><p>Note to self: <a href="http://about.validator.nu/htmlparser/apidocs/nu/validator/htmlparser/sax/XmlSerializer.html">the nu.validator has a really handy looking SAX handler that serializes the XML</a>.</p>
+<p>Hat tip to Henri Sivonen for pointing this out along with a <a href="http://hsivonen.iki.fi/producing-xml/">bunch of other useful XML generating tips</a>.</p></div><a class="read-more" href="/2009/04/16/xmlserializer-class-for-sax-events/">Continue reading<span class="sr-only">: XmlSerializer Class for SAX Events</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-04-03">3 Apr 2009</time></div><div><h2><a href="/2009/04/03/installing-ibm-portal-on-linux/">Installing IBM Portal on Linux</a></h2><div class="prose excerpt"><p>When installing most if not all versions of IBM Portal on Linux, to get the installer to run you need to install a couple of extra packages:</p>
+<ul>
+<li>openmotif</li>
+<li>compat-libstdc++</li>
+</ul>
+<p>Depending on the options you chose when first installing Linux there may be more – the easiest way to find them is to know that the graphical installer sends it’s error messages to /tmp/wpinstalllog.txt. It’s usually fairly easy to match the error messages up to the package you need to install to fix it.</p></div><a class="read-more" href="/2009/04/03/installing-ibm-portal-on-linux/">Continue reading<span class="sr-only">: Installing IBM Portal on Linux</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-02-23">23 Feb 2009</time></div><div><h2><a href="/2009/02/23/useful-link-roundup/">Useful Link Roundup</a></h2><div class="prose excerpt"><p>I have far more tabs open in NetNewsWire than I can handle, so here’s all the stuff that’s open more so I can find them again if I need them than because I actually want to comment on them or do something with them right now:</p>
+<p><a href="http://a.deveria.com/caniuse/#agents=All&amp;cats=All&amp;eras=All&amp;statuses=All">When Can I Use?</a> – Useful page for getting a rough idea of the current state of support for web stuff in browsers.  Not perfect but definitely a very good starting point.</p></div><a class="read-more" href="/2009/02/23/useful-link-roundup/">Continue reading<span class="sr-only">: Useful Link Roundup</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-02-20">20 Feb 2009</time></div><div><h2><a href="/2009/02/20/vmware-web-access-cant-login-after-upgrading-to-debian-lenny/">VMWare Web Access Can’t Login After Upgrading to Debian Lenny</a></h2><div class="prose excerpt"><p>This one should be obvious but well, it wasn’t… When you upgrade to the latest Debian stable (Lenny at time of writing which was released 14 Feb 2009), it will upgrade PAM and a few other really important login-type modules.  At the time it will tell you that you have to restart any services that use PAM or they mightn’t authenticate properly and offer to restart a number of services for you so everything seems happy.</p></div><a class="read-more" href="/2009/02/20/vmware-web-access-cant-login-after-upgrading-to-debian-lenny/">Continue reading<span class="sr-only">: VMWare Web Access Can’t Login After Upgrading to Debian Lenny</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-02-05">5 Feb 2009</time></div><div><h2><a href="/2009/02/05/useful-wcm-ifix-nullpointerexception-in-cmpntutilssetsourceidandname/">Useful WCM iFix – NullPointerException in CmpntUtils.setSourceIDAndName</a></h2><div class="prose excerpt"><p>If you happen to try and import a WCM library and have it fail, then later find that some HTML components trigger errors in the WCM interface when you try to view or edit them – you need iFix <a href="http://www-01.ibm.com/support/docview.wss?uid=swg1PK60048">6.0.1.3-WCM-PK60048</a>.</p></div><a class="read-more" href="/2009/02/05/useful-wcm-ifix-nullpointerexception-in-cmpntutilssetsourceidandname/">Continue reading<span class="sr-only">: Useful WCM iFix – NullPointerException in CmpntUtils.setSourceIDAndName</span> <span aria-hidden="true">→</span></a></div></article>
+
+<nav class="pagination" aria-label="Archive pages"><a href="/categories/note-to-self/">← Newer posts</a><span>Page 2 of 4</span><a href="/categories/note-to-self/page/3/">Older posts →</a></nav>
+
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

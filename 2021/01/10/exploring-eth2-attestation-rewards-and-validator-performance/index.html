@@ -1,159 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Exploring Eth2: Attestation Rewards and Validator Performance | Symphonious</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward defining attestation effectiveness which focuses on the inclusion distance for attestations. That revealed a bunch of opportunities for clients to improve the attestation inclusion distance and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.
-But then beaconcha.in added a view of how much was earned for each attestation. Suddenly people were left wondering why some of their “rewards” were negative even though the attestation was included quickly. It became obvious that inclusion distance was only one part of attestation rewards.">
-    <meta name="generator" content="Hugo 0.164.0">
-    
-    
-    
-      <meta name="robots" content="index, follow">
-    
-    <meta name="author" content="Adrian Sutton">
-    
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exploring Eth2: Attestation Rewards and Validator Performance · Symphonious</title>
+<meta name="description" content="Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big …">
+<link rel="canonical" href="https://www.symphonious.net/2021/01/10/exploring-eth2-attestation-rewards-and-validator-performance/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 
-  
-
-
-    
-
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="https://www.symphonious.net/2021/01/10/exploring-eth2-attestation-rewards-and-validator-performance/">
-    
-
-    <meta property="og:url" content="https://www.symphonious.net/2021/01/10/exploring-eth2-attestation-rewards-and-validator-performance/">
-	<meta property="og:site_name" content="Symphonious">
-	<meta property="og:title" content="Exploring Eth2: Attestation Rewards and Validator Performance">
-	<meta property="og:description" content="Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward defining attestation effectiveness which focuses on the inclusion distance for attestations. That revealed a bunch of opportunities for clients to improve the attestation inclusion distance and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.
-But then beaconcha.in added a view of how much was earned for each attestation. Suddenly people were left wondering why some of their “rewards” were negative even though the attestation was included quickly. It became obvious that inclusion distance was only one part of attestation rewards.">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2021-01-10T01:41:02+00:00">
-		<meta property="article:modified_time" content="2021-01-10T01:41:02+00:00">
-
-	<meta itemprop="name" content="Exploring Eth2: Attestation Rewards and Validator Performance">
-	<meta itemprop="description" content="Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward defining attestation effectiveness which focuses on the inclusion distance for attestations. That revealed a bunch of opportunities for clients to improve the attestation inclusion distance and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.
-But then beaconcha.in added a view of how much was earned for each attestation. Suddenly people were left wondering why some of their “rewards” were negative even though the attestation was included quickly. It became obvious that inclusion distance was only one part of attestation rewards.">
-	<meta itemprop="datePublished" content="2021-01-10T01:41:02+00:00">
-	<meta itemprop="dateModified" content="2021-01-10T01:41:02+00:00">
-	<meta itemprop="wordCount" content="1110">
-	<meta itemprop="keywords" content="Blockchain,Code and Geek Stuff,Ethereum">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Exploring Eth2: Attestation Rewards and Validator Performance">
-	<meta name="twitter:description" content="Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward defining attestation effectiveness which focuses on the inclusion distance for attestations. That revealed a bunch of opportunities for clients to improve the attestation inclusion distance and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.
-But then beaconcha.in added a view of how much was earned for each attestation. Suddenly people were left wondering why some of their “rewards” were negative even though the attestation was included quickly. It became obvious that inclusion distance was only one part of attestation rewards.">
-
-      
-    
-	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
-<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
-<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
-<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
-<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
-  </head><body class="ma0 avenir bg-near-white production">
-
-    
-   
-  
-
-  
-  
-  
-  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
-    <div class="bg-black-60">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Symphonious
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
-              About Me
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
-              CV
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
-              Testing@LMAX
-            </a>
-          </li>
-          
-        </ul>
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-      <div class="tc-l pv6 ph3 ph4-ns">
-        
-          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Eth2: Attestation Rewards and Validator Performance</div>
-          
-        
-      </div>
-    </div>
-  </header>
 
 
 
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-          
-        POSTS
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Exploring Eth2: Attestation Rewards and Validator Performance</h1>
-      
-      <p class="tracked">
-        By <strong>Adrian Sutton</strong>
-      </p>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2021-01-10T01:41:02Z">January 10, 2021</time>
-      
 
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward <a href="https://www.attestant.io/posts/defining-attestation-effectiveness/">defining attestation effectiveness</a> which focuses on the inclusion distance for attestations. That revealed <a href="https://www.symphonious.net/2020/09/08/exploring-eth2-attestation-inclusion/">a bunch of opportunities for clients to improve the attestation inclusion distance</a> and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.</p>
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/" aria-current="page">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward defining attestation effectiveness which focuses on the inclusion distance for attestations. That revealed a bunch of opportunities for clients to improve the attestation inclusion distance and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.
+"><header class="article-heading"><p class="section-label">Writing</p><h1 data-pagefind-meta="title">Exploring Eth2: Attestation Rewards and Validator Performance</h1><p class="article-meta"><time datetime="2021-01-10">10 January 2021</time> <span aria-hidden="true">·</span> 6 min read</p></header><div class="prose"><p>Through the beacon chain testnets people have been gradually developing better ways to evaluate how well their validators are working. Jim McDonald made a big leap forward <a href="https://www.attestant.io/posts/defining-attestation-effectiveness/">defining attestation effectiveness</a> which focuses on the inclusion distance for attestations. That revealed <a href="https://www.symphonious.net/2020/09/08/exploring-eth2-attestation-inclusion/">a bunch of opportunities for clients to improve the attestation inclusion distance</a> and attestation effectiveness scores improved quite dramatically until now scores are generally at or close to 100% pretty consistently.</p>
 <p>But then <a href="https://beaconcha.in">beaconcha.in</a> added a view of how much was earned for each attestation. Suddenly people were left wondering why some of their “rewards” were negative even though the attestation was included quickly. It became obvious that inclusion distance was only one part of attestation rewards.</p>
 <h3 id="how-attestation-rewards-work">How Attestation Rewards Work</h3>
 <p>There are four parts in total:</p>
@@ -201,33 +79,9 @@ But then beaconcha.in added a view of how much was earned for each attestation. 
 <p>One key piece of randomness that&rsquo;s still creeping into these scores though are that its significantly more likely to get the target wrong if you&rsquo;re attesting to the first slot of the epoch – because then target and head are the same and those first blocks are tending to come quite late. There are spec changes coming which should solve this but it is still affecting results at the moment.</p>
 <h3 id="what-about-block-rewards">What About Block Rewards?</h3>
 <p>For now I&rsquo;m just looking at what percentage of blocks are successfully proposed when scheduled (should be 100%). There are a lot of factors that affect the maximum reward available for blocks – while blocks aren&rsquo;t reaching the limit on number of attestations that can be included, I&rsquo;d expect that all the variation in rewards comes down to luck. Definitely an area that could use some further research though.</p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      </div>
-    </div>
+</div></article>
+<nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2020/12/04/exploring-eth2-attestation-inclusion-rates-with-chaind/"><span>← Earlier</span>Exploring Eth2: Attestation Inclusion Rates with chaind</a><a href="/2021/02/13/hard-truths-for-eth-stakers/"><span>Later →</span>Hard Truths for ETH Stakers</a></nav>
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
 
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
-    &copy;  Adrian Sutton 2004 - 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
-</html>
+</body></html>

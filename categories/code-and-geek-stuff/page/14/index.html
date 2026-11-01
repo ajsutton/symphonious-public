@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code and Geek Stuff · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/categories/code-and-geek-stuff/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>Code and Geek Stuff</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-06-02">2 Jun 2009</time></div><div><h2><a href="/2009/06/02/cheaters-never-prosper/">Cheaters Never Prosper</a></h2><div class="prose excerpt"><p>The development I seem to do these days tends to run at the extremes of reliability – either it has to be fully tested, nice, clean, production ready code, or it’s complete throw away code where development time is the only consideration.</p>
+<p>The advantage of doing this rapid fire development is that you wind up with proof of concept code for most situations you’re every likely to run into. The disadvantage is that the code is rubbish and probably no use to you at all. That bit me once again today. I wanted to quickly whip up a plugin that makes pasting plain text into EditLive! work the way I want it to. I have a plugin that filters pasted content to wrap it in a blockquote for my blog so clearly I could just reuse that as a starting point. Sadly, I cheated:</p></div><a class="read-more" href="/2009/06/02/cheaters-never-prosper/">Continue reading<span class="sr-only">: Cheaters Never Prosper</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-29">29 May 2009</time></div><div><h2><a href="/2009/05/29/i-hate-deployment/">I Hate Deployment</a></h2><div class="prose excerpt"><p>Deployment ruins everything. So many cool technologies that let you develop more rapidly and do awesomely cool stuff fall down at the last hurdle of deployment. Sometimes it’s because they haven’t thought it through properly so it’s just plain too hard, but often it’s just that it’s too hard to convince people that it won’t be another headache for them.</p></div><a class="read-more" href="/2009/05/29/i-hate-deployment/">Continue reading<span class="sr-only">: I Hate Deployment</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-25">25 May 2009</time></div><div><h2><a href="/2009/05/25/php-libraries-hate-ram/">PHP Libraries Hate Ram</a></h2><div class="prose excerpt"><p>I’ve come to the conclusion that PHP libraries are simply designed to eat up RAM and do their very best to never spit it back out. There seems to be an assumption that everything will be done in RAM and then at the last possible moment dump everything out to the browser.</p>
+<p>Sadly, this doesn’t work if what you’re building in RAM happens to be a zip file containing a whole heap of images. There are a few zip libraries around for PHP but none of them can directly stream the created zip file back out to the browser. Most of them create the entire zip file in RAM and then tell you to just ‘echo zip-&gt;file();’ which is just plain crazy. Others can “stream” but only to disk where they have random access.</p></div><a class="read-more" href="/2009/05/25/php-libraries-hate-ram/">Continue reading<span class="sr-only">: PHP Libraries Hate Ram</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-22">22 May 2009</time></div><div><h2><a href="/2009/05/22/found-in-my-bashrc/">Found in my .bashrc</a></h2><div class="prose excerpt"><p>Apparently my bashrc is append-only:</p>
+<pre>export gucis=z1419539@gucis.cit.gu.edu.au:
+</pre>
+<p>For those who didn’t study IT at Griffith Uni, <em>gucis</em> is the student UNIX server. This particular shortcut was so that I could scp files over there more easily. Actually, given that gucis had open access to the Internet and my dorm room didn’t<a href="#footnote1:1243014118649">1</a>{#footlink1:1243014118649.footnote}, it was far more often transferring files <em>from</em> gucis back to my local machine. I finally removed those shortcuts today.</p></div><a class="read-more" href="/2009/05/22/found-in-my-bashrc/">Continue reading<span class="sr-only">: Found in my .bashrc</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-15">15 May 2009</time></div><div><h2><a href="/2009/05/15/standings-in-the-browser-race/">Standings in the Browser Race</a></h2><div class="prose excerpt"><p>The otherwise mostly link bait suggestion from Matt Asay that <a href="http://news.cnet.com/8301-13505_3-10212764-16.html">Apple and Google should drop their browsers in favour of FireFox</a> triggered an interesting reaction for me. The argument goes along the lines that IE is dominating the browser landscape and FireFox is clearly the second place runner, so everyone who wants to bring down IE should just pool resources behind FireFox. My immediate reaction was to wonder why people saw FireFox as the best horse to back.</p></div><a class="read-more" href="/2009/05/15/standings-in-the-browser-race/">Continue reading<span class="sr-only">: Standings in the Browser Race</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-08">8 May 2009</time></div><div><h2><a href="/2009/05/08/ibm-wcm-6102-remote-api-content-creation-problem/">IBM WCM 6.1.0.2 Remote API Content Creation Problem</a></h2><div class="prose excerpt"><p>I’m stumped so I’m throwing this one out there in the hope that someone might know the answer. I have a JSP component that builds a URL to create a new content item, in a specific site area with a specific authoring template. It works great on Portal 6.0.1.3 and Portal 6.1.0.0 but breaks on 6.1.0.1 and 6.1.0.2. When you go to the URL, it correctly starts creating content but instead of skipping the stage where it asks for an authoring template it just gives a blank list to choose from. If you omit the authoring template from the URL it will correctly list all templates and go on to create the content.</p></div><a class="read-more" href="/2009/05/08/ibm-wcm-6102-remote-api-content-creation-problem/">Continue reading<span class="sr-only">: IBM WCM 6.1.0.2 Remote API Content Creation Problem</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-07">7 May 2009</time></div><div><h2><a href="/2009/05/07/key-ibm-lwcm-config-file/">Key IBM LWCM Config File</a></h2><div class="prose excerpt"><p><img loading="lazy" style=" float: right;" src="http://www.symphonious.net/wp-content/uploads/2009/05/reminder-hand_benji_park_37872.png" height="128" width="90" alt="Reminder" />Note to self:</p>
+<p>That magical file that controls just about everything you ever want to control about IBM LWCM (at least so far as things that are controlled from the file system rather than the web interface) is under the profile directory at /wcm/shared/app/config/wcmservices/WCMConfigService.properties</p>
+<p>This includes:</p>
+<ul class="greenTick">
+  <li>
+    configuring backwards compatibility for WCM 6.0 -> 6.1 migrations. Primarily the don’t expire content immediately when no expire date is set.
+  </li>
+  <li>
+    setting up the SMTP server properties so you can get e-mail notifications in workflow <ul class="blueArrow">
+      <li>
+        Side note: These get annoying really quickly if you’re not careful.
+      </li>
+    </ul>
+  </li>
+  <li>
+    A bunch of stuff on caching that looks cool. I wonder what the changes I just made will do…
+  </li>
+</ul>
+<p>Also, why did it take me this long to add fancy list bullet styles to my blog stylesheet? Mixing the blue and green is probably a bit much – I should create a blue tick or green arrow, but oh well, I’m drunk with power.</p></div><a class="read-more" href="/2009/05/07/key-ibm-lwcm-config-file/">Continue reading<span class="sr-only">: Key IBM LWCM Config File</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-05">5 May 2009</time></div><div><h2><a href="/2009/05/05/communities-and-git/">Communities and Git</a></h2><div class="prose excerpt"><p><img alt="Group" style=" float: right;" src="http://www.symphonious.net/wp-content/uploads/2009/05/groupevent-coloured2_43793.png" />The conversation that has sprung up around how the use of distributed version control, Github in particular, affects community is a refreshing change in the blogosphere<a id="footlink1:1241547946232" class="footnote" name="footlink1:1241547946232" href="#footnote1:1241547946232">1</a>. It’s people collectively thinking things through rather than just reacting in uproar or following the latest meme.</p>
+<p>The latest installment is from Ben Hyde, <a href="http://enthusiasm.cozy.org/archives/2009/05/git-balene-for-knowledge"><em>git: Balene for Knowledge</em></a><a id="footlink2:1241548025976" class="footnote" name="footlink2:1241548025976" href="#footnote2:1241548025976">2</a>. It’s definitely worth reading in its entirety, but let me pull out a couple of key points:</p></div><a class="read-more" href="/2009/05/05/communities-and-git/">Continue reading<span class="sr-only">: Communities and Git</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-05-05">5 May 2009</time></div><div><h2><a href="/2009/05/05/private-variables-and-other-javascript-links/">Private Variables and Other JavaScript Links</a></h2><div class="prose excerpt"><p><img style=" float: right;" src="http://www.symphonious.net/wp-content/uploads/2009/05/javascript_links_15663.png" alt="JavaScript Links" />A few handy links about JavaScript techniques.</p>
+<ul>
+<li><a href="http://www.stevesouders.com/blog/2009/04/27/loading-scripts-without-blocking/">Loading Scripts Without Blocking</a> – Steve Souders</li>
+<li><a href="http://www.stevesouders.com/blog/2008/12/27/coupling-async-scripts/">Coupling Asynchronous Scripts</a> – Steve Souders</li>
+<li><a href="http://snook.ca/archives/javascript/no-love-for-module-pattern">Why I Don’t Love JavaScript’s Module Pattern</a> – Jonathan Snook</li>
+</ul>
+<p>I find the last one on JavaScript’s module pattern most interesting. It’s main reason for existing is to add the concept of private variables to a language which was designed without any access controls. It reminds me a lot of the argument around typing in languages. Many people think having the compiler enforce variable types leads to fewer bugs, in this case the compiler is enforcing access controls.</p></div><a class="read-more" href="/2009/05/05/private-variables-and-other-javascript-links/">Continue reading<span class="sr-only">: Private Variables and Other JavaScript Links</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-04-27">27 Apr 2009</time></div><div><h2><a href="/2009/04/27/should-you-publish-crap-code/">Should You Publish Crap Code?</a></h2><div class="prose excerpt"><p><img loading="lazy" width="61" style=" float: right;" src="http://www.symphonious.net/wp-content/uploads/2009/04/ear_-_body_part_nicu_buc_2283.png" height="88" alt="Ear" />I spent the weekend discovering just how poorly thought out and poorly supported closed captioning is in online video. Some highlights (based on the SRT format because that was the only one I could find any information about syntax for):</p>
+<ul class="blueArrow">
+  <li>
+    Definitive guides to the format either don’t exist or are so poorly used that they don’t appear in the first 3-4 pages of a Google search.
+  </li>
+  <li>
+    Timestamps use a non-standard format. The inventor was apparently French so instead of the usual hh:mm:ss.ttt the period is replaced with a comma. I sympathise with everything being US-centric, but the number of people who were making this mistake on forums etc and the number of players who support period but not comma (and visa-versa) is scary.
+  </li>
+  <li>
+    Only DOS line endings are supported. \r\n is fine as part of the standard, but why can’t players be a little liberal in what they accept? It’s not like \n or \r by itself within the caption is going to work anyway…
+  </li>
+  <li>
+    No standard font, so no way to know if the caption will fit or not.
+  </li>
+  <li>
+    Absolutely zero feedback from any player I found about why it was ignoring the captions.
+  </li>
+  <li>
+    <em>Really, really poor tooling support for creating captions.</em>
+  </li>
+</ul>
+<p>So, coming around to the real point of this post, I wound up writing my own tool to help take a script, synchronize it to the spoken voice and output the right format. Worked a treat, and now I have working captions on my video. I suspect it would be useful to others and there’s certainly plenty to do to improve it that would be great if others jumped in and helped with.</p></div><a class="read-more" href="/2009/04/27/should-you-publish-crap-code/">Continue reading<span class="sr-only">: Should You Publish Crap Code?</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-04-20">20 Apr 2009</time></div><div><h2><a href="/2009/04/20/telling-it-like-it-is/">Telling It Like It Is</a></h2><div class="prose excerpt"><p><a href="http://realtech.burningbird.net/web/best-practices/my-abbreviated-self">Shelley Powers</a>:</p>
+<blockquote>
+<p>Weblogging, where no one really knows how many people are following you, most people don&rsquo;t care, we can actually communicate complete thoughts, and do what we want with our URLs.
+Twitter is like haikus, an interesting application of extreme limits that inspires creativity and a different way of thinking. Entirely useful, fascinating pursuit, good luck to you all. Haikus have their strong points, but let’s face it even the best haikus don’t come close to telling the same kind of story as a novel, or even a ballad. Even a great long string of haikus wouldn’t.</p>
+</blockquote></div><a class="read-more" href="/2009/04/20/telling-it-like-it-is/">Continue reading<span class="sr-only">: Telling It Like It Is</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-04-03">3 Apr 2009</time></div><div><h2><a href="/2009/04/03/installing-ibm-portal-on-linux/">Installing IBM Portal on Linux</a></h2><div class="prose excerpt"><p>When installing most if not all versions of IBM Portal on Linux, to get the installer to run you need to install a couple of extra packages:</p>
+<ul>
+<li>openmotif</li>
+<li>compat-libstdc++</li>
+</ul>
+<p>Depending on the options you chose when first installing Linux there may be more – the easiest way to find them is to know that the graphical installer sends it’s error messages to /tmp/wpinstalllog.txt. It’s usually fairly easy to match the error messages up to the package you need to install to fix it.</p></div><a class="read-more" href="/2009/04/03/installing-ibm-portal-on-linux/">Continue reading<span class="sr-only">: Installing IBM Portal on Linux</span> <span aria-hidden="true">→</span></a></div></article>
+
+<nav class="pagination" aria-label="Archive pages"><a href="/categories/code-and-geek-stuff/page/13/">← Newer posts</a><span>Page 14 of 49</span><a href="/categories/code-and-geek-stuff/page/15/">Older posts →</a></nav>
+
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

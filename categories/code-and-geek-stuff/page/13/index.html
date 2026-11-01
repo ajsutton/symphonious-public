@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code and Geek Stuff · Symphonious</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.symphonious.net/categories/code-and-geek-stuff/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
+
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+
+
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell">
+<header class="listing-heading"><p class="section-label">The archive</p><h1>Code and Geek Stuff</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-21">21 Jan 2010</time></div><div><h2><a href="/2010/01/21/better-file-system-apis/">Better File System APIs</a></h2><div class="prose excerpt"><p><a href="http://techtangents.wordpress.com/2010/01/20/filesystems/">Dylan complained about the lack of testability with file system APIs</a>, which reminded me of a neat looking library I stumbled across while looking at build systems: <a href="http://www.entityfs.org/">EntityFS</a>. Among a bunch of other useful sounding things it provides:</p>
+<blockquote>
+<p><span class="Apple-style-span" style=" border-collapse: separate; color: rgb(0, 0, 0); font-family: Times; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium;"><span class="Apple-style-span" style=" font-family: serif; line-height: 20px; text-align: left;">File system APIs are backend-independent. File systems can be created in RAM memory, on Zip files, on file system directories, etcetera</span></span>
+Sadly it’s under the LGPL which makes it difficult if you happen to sell to big enterprises that are still somewhat scared of GPL type licenses, but they’re nowhere near as common as they used to be. I should note though that Holocene Software are offering commercial licenses for an undisclosed price.</p>
+</blockquote></div><a class="read-more" href="/2010/01/21/better-file-system-apis/">Continue reading<span class="sr-only">: Better File System APIs</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-01-04">4 Jan 2010</time></div><div><h2><a href="/2010/01/04/on-build-systems/">On Build Systems</a></h2><div class="prose excerpt"><p>Recently, the subject of build tools and systems has come up again at Ephox and it appears the topic is rising up again around the internet. As part of this I’ve been reading up on and playing with a bunch of build tools to get a feel for their benefits and limitations, so it seemed worthwhile writing up what I find as I go along.</p></div><a class="read-more" href="/2010/01/04/on-build-systems/">Continue reading<span class="sr-only">: On Build Systems</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-12-08">8 Dec 2009</time></div><div><h2><a href="/2009/12/08/alfresco-virtualization-server-not-responding-unable-to-preview-site/">Alfresco Virtualization Server Not Responding – Unable to Preview Site</a></h2><div class="prose excerpt"><p>If you’ve tried to set up Alfresco 3.2 and use the WCM component, you’ve probably run into one or more<a href="#footnote1:1260264856408">1</a>{#footlink1:1260264856408.footnote} of these problems:</p>
+<ol>
+<li>
+<p>When you click “Preview Website” you get an unable to connect message.</p>
+<ul>
+<li>You need to start the virtualization server that provides the previews or configure it’s IP correctly.</li>
+</ul>
+</li>
+<li>
+<p>When you click “Preview Website” you get a blank page and the browser is “connecting” forever.</p>
+<ul>
+<li>You did the right thing and entered a root password other than ‘admin’ in the installer and now you’re being punished for it. Go and update the virtualization server configuration and give it the admin password you entered.</li>
+</ul>
+</li>
+<li>
+<p>When you click “Preview Website” you get a response immediately that just reports “Virtual website not found”.</p>
+<ul>
+<li>You started the virtualization server too soon after starting Alfresco. Restart it.</li>
+</ul>
+</li>
+<li>
+<p>When you try to deploy the server it fails to connect.</p>
+<ul>
+<li>You need to download and install the deployment server.</li>
+</ul>
+</li>
+<li>
+<p>You’re trying to follow the getting started example, but when you get to creating content from the Press Release Form, it just gives you an error: Cannot resolve the name &lsquo;pr:company_footer_choices&rsquo;.</p>
+<ul>
+<li>You need to get the virtualization server working. Also make sure you have done the bulk import step and can preview the site.</li>
+</ul>
+</li>
+</ol></div><a class="read-more" href="/2009/12/08/alfresco-virtualization-server-not-responding-unable-to-preview-site/">Continue reading<span class="sr-only">: Alfresco Virtualization Server Not Responding – Unable to Preview Site</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-10-19">19 Oct 2009</time></div><div><h2><a href="/2009/10/19/using-scala-in-net/">Using Scala in .NET</a></h2><div class="prose excerpt"><p>Having become quite interested in <a href="http://www.symphonious.net/2009/09/25/the-new-cross-platform/">languages that support deployment on both Java and .NET</a>, then <a href="http://www.symphonious.net/2009/10/15/getting-into-scala/">diving into Scala</a> to find it’s a good language, the obvious next step is to try using Scala on .NET. I found a little time over the weekend to try that out with good success. Notably, I haven’t tried this in a real project yet so there may yet be some significant catches, but so far it looks really quite promising.</p></div><a class="read-more" href="/2009/10/19/using-scala-in-net/">Continue reading<span class="sr-only">: Using Scala in .NET</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-10-15">15 Oct 2009</time></div><div><h2><a href="/2009/10/15/getting-into-scala/">Getting Into Scala</a></h2><div class="prose excerpt"><p>When I was in Australia visiting <a href="http://www.symphonious.net/2009/10/01/a-great-team/">Ephox’s awesome engineering team</a> recently, it was suggested that we should be seriously looking at using Scala for some or all of the server side development we have coming up. The key benefit that was described to me was based on productivity – I certainly think that has merit but I’m somewhat more interested in it being a potential solution to <a href="http://www.symphonious.net/2009/09/25/the-new-cross-platform/">the new cross platform problem</a><a href="#footnote1:1255615173985">1</a>{#footlink1:1255615173985.footnote}. Options like JRuby and Jython are also a possibility in this space, but Scala fits more nicely into a Java programmers mind-set and is designed with the JVM in mind, so while it pushes a lot of boundaries, ultimately it fits with the JVM and Java very nicely<a href="#footnote2:1255615348893">2</a>{#footlink2:1255615348893.footnote}.</p></div><a class="read-more" href="/2009/10/15/getting-into-scala/">Continue reading<span class="sr-only">: Getting Into Scala</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-09-25">25 Sep 2009</time></div><div><h2><a href="/2009/09/25/the-new-cross-platform/">The New Cross Platform</a></h2><div class="prose excerpt"><p>When I first started professional programming, Java was reasonably young and was being hailed as a work of genius with it’s cross platform deployment capabilities. Programming was going to be revolutionised forever and all programs would run on any OS<a href="#footnote1:1253859827521">1</a>{#footlink1:1253859827521.footnote}. Then Java wound up being most popular on the server side and liberated server code from the choice of OS more than the desktop side<a href="#footnote2:1253860194622">2</a>{#footlink2:1253860194622.footnote}.</p></div><a class="read-more" href="/2009/09/25/the-new-cross-platform/">Continue reading<span class="sr-only">: The New Cross Platform</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-09-04">4 Sep 2009</time></div><div><h2><a href="/2009/09/04/are-web-pages-still-safe/">Are Web Pages Still Safe?</a></h2><div class="prose excerpt"><p>The relentless addition of cool features in HTML5 is getting a lot of web developers excited and there’s really no doubt that it will be a huge step forward for the web. The more I follow the WhatWG mailing list though, the more I think we’re long past the era where it was considered safe to visit web pages. I’m not talking about browser security holes which have been around for a fair while and certainly do pose a risk, I’m talking about the things that are actually by design.</p></div><a class="read-more" href="/2009/09/04/are-web-pages-still-safe/">Continue reading<span class="sr-only">: Are Web Pages Still Safe?</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-09-03">3 Sep 2009</time></div><div><h2><a href="/2009/09/03/stop-suffering-in-silence/">Stop Suffering in Silence</a></h2><div class="prose excerpt"><p>I keep seeing otherwise intelligent people<a href="#footnote1:1251967506123">1</a>{#footlink1:1251967506123.footnote} encounter problems with software but never actually report them to anyone who could fix them. For commercial software opening a support ticket takes just a few minutes and usually gets the issue resolved pretty quickly so you can stop wasting time suffering through it or complaining about it. For open source software it’s often a bit more difficult – you need to join the users mailing list and ask questions there, follow up if you don’t get a response and maybe even put together a solid bug report. Still nothing ominous.</p></div><a class="read-more" href="/2009/09/03/stop-suffering-in-silence/">Continue reading<span class="sr-only">: Stop Suffering in Silence</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-08-28">28 Aug 2009</time></div><div><h2><a href="/2009/08/28/the-point-of-surveys/">The Point of Surveys</a></h2><div class="prose excerpt"><p>Every so often while using NetSuite, it pops up and asks me to fill in a quick little survey – basically how likely are you to recommend NetSuite and why? This is annoying when your in a rush but on balance not a bad way for them to ensure their customers are happy.</p>
+<p>There’s just one catch – every single time I tell them that I’d never recommend NetSuite and that they should improve product quality, specifically they should handle escaping XML tags correctly. As a company that makes HTML editors, we quite often send and receive emails that talk about HTML tags rather than just including them. Unfortunately, NetSuite for the past 5 years or more has happily messed these emails up and we’ve had to come up with complicated ways to get the original email text back out. We’ve reported this to them on multiple occasions and at one point had to actually put in a XSS exploit to get them to understand how big a problem it was. Over time they’ve shifted where the correct HTML will appear in the system, but never actually fixed it entirely.</p></div><a class="read-more" href="/2009/08/28/the-point-of-surveys/">Continue reading<span class="sr-only">: The Point of Surveys</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-07-09">9 Jul 2009</time></div><div><h2><a href="/2009/07/09/amazon-ec2-as-a-webhost-redux/">Amazon EC2 As A Webhost Redux</a></h2><div class="prose excerpt"><p>Back in 2007 <a href="http://www.symphonious.net/2007/07/24/amazon-sc2-as-a-webhost/">I looked at EC2 for a web server</a> and while <a href="http://www.symphonious.net/2007/08/03/hosting-on-amazon-ec2/">it wound up being feasible</a> it had a number of drawbacks:</p>
+<blockquote>
+<p>Those familiar with EC2 won&rsquo;t be surprised to hear that we won&rsquo;t be going with the service for three reasons:</p>
+<ol>
+<li>It&rsquo;s at least as expensive as the dedicated server we&rsquo;d need.</li>
+<li>The filesystem gets reset everytime the server reboots (S3 provides a REST API to store and retrieve data, not a filesystem)</li>
+<li>The server gets a new IP address every time it reboots.</li>
+</ol>
+</blockquote>
+<p>Since then Amazon have rolled out new services that solve problems 2 and 3 and reserved instances to help with 1. What surprises me after a couple of years running a single EC2 instance with an app that’s using S3 for storage though is just how stable it has been.</p></div><a class="read-more" href="/2009/07/09/amazon-ec2-as-a-webhost-redux/">Continue reading<span class="sr-only">: Amazon EC2 As A Webhost Redux</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-07-08">8 Jul 2009</time></div><div><h2><a href="/2009/07/08/hot-or-not-the-web-as-an-sdk/">Hot or Not: The Web as an SDK</a></h2><div class="prose excerpt"><p>Remember back when the iPhone first came out and Steve Jobs proudly announced that the SDK for it was “the web”? Apparently history really does repeat itself because now <a href="http://googleblog.blogspot.com/2009/07/introducing-google-chrome-os.html">Google is trying the exact same thing with Chrome OS</a>:</p>
+<blockquote>
+<p>The software architecture is simple — Google Chrome running within a new windowing system on top of a Linux kernel. For application developers, the web is the platform. All web-based applications will automatically work and new applications can be written using your favorite web technologies.
+The decision was extremely unpopular with the iPhone but no doubt it will be extremely popular with Google because it matches people’s expectations. Interestingly, <a href="http://www.symphonious.net/2009/06/26/why-the-iphone-has-succeeded/">the most common reason people give for the iPhone’s success is now the App Store</a>. I guess we’ll get a chance to see if they’re right or not. I don’t see the web as the only API working even though it would work very well for a large percentage of computer usage. Twitter would be a particularly good example of why – you can use Twitter via the web and certainly some people do, but the standalone clients are by far and away the best way to use it. The same generally applies to instant messaging as well.</p>
+</blockquote></div><a class="read-more" href="/2009/07/08/hot-or-not-the-web-as-an-sdk/">Continue reading<span class="sr-only">: Hot or Not: The Web as an SDK</span> <span aria-hidden="true">→</span></a></div></article>
+<article class="post-summary"><div class="date-gutter"><time datetime="2009-06-22">22 Jun 2009</time></div><div><h2><a href="/2009/06/22/i-love-parser-generators-i-hate-parser-generators/">I Love Parser Generators, I Hate Parser Generators</a></h2><div class="prose excerpt"><p><img loading="lazy" width="185" src="http://www.symphonious.net/wp-content/uploads/2009/06/pitr_LEGO_smiley_-_scared.png" height="200" style=" float: left;" alt="Parsers drive me mad." />I was reminded on the weekend of how much I like working with parser generators – they’re just so pure and clean. You really feel like you’re working with a grammar and all those CS lectures come flooding back. Writing code to parse the same content by hand just never has that feel. Plus they create incredibly accurate parsers in very little time at all.</p></div><a class="read-more" href="/2009/06/22/i-love-parser-generators-i-hate-parser-generators/">Continue reading<span class="sr-only">: I Love Parser Generators, I Hate Parser Generators</span> <span aria-hidden="true">→</span></a></div></article>
+
+<nav class="pagination" aria-label="Archive pages"><a href="/categories/code-and-geek-stuff/page/12/">← Newer posts</a><span>Page 13 of 49</span><a href="/categories/code-and-geek-stuff/page/14/">Older posts →</a></nav>
+
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
+
+</body></html>

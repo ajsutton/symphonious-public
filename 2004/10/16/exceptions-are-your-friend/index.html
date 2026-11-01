@@ -1,155 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Exceptions Are Your Friend | Symphonious</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Benjamin claims that exceptions are evil, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin&rsquo;s first problem with exceptions is that they&rsquo;re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you&rsquo;re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can&rsquo;t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn&rsquo;t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
-    <meta name="generator" content="Hugo 0.164.0">
-    
-    
-    
-      <meta name="robots" content="index, follow">
-    
-    <meta name="author" content="Adrian Sutton">
-    
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exceptions Are Your Friend · Symphonious</title>
+<meta name="description" content="Benjamin claims that exceptions are evil, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, …">
+<link rel="canonical" href="https://www.symphonious.net/2004/10/16/exceptions-are-your-friend/">
+<meta name="theme-color" content="#182630">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.9e566d654693b28b62de98ca4610a9c34e237d646525d7a0c0d7692eebcb8c4d.css" >
+<link rel="stylesheet" href="/css/after-hours.min.110d8ea5faa0a89efae85e5deaccbc497a4e47204981b56d3f11cef178fad122.css" integrity="sha256-EQ2OpfqgqJ766F5d6sy8SXpORyBJgbVtPxHO8Xj60SI=">
+
+</head>
+<body class="inner">
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 
-  
-
-
-    
-
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="https://www.symphonious.net/2004/10/16/exceptions-are-your-friend/">
-    
-
-    <meta property="og:url" content="https://www.symphonious.net/2004/10/16/exceptions-are-your-friend/">
-	<meta property="og:site_name" content="Symphonious">
-	<meta property="og:title" content="Exceptions Are Your Friend">
-	<meta property="og:description" content="Benjamin claims that exceptions are evil, he couldn’t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin’s first problem with exceptions is that they’re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you’re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can’t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn’t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2004-10-16T09:57:28+00:00">
-		<meta property="article:modified_time" content="2004-10-16T09:57:28+00:00">
-
-	<meta itemprop="name" content="Exceptions Are Your Friend">
-	<meta itemprop="description" content="Benjamin claims that exceptions are evil, he couldn’t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin’s first problem with exceptions is that they’re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you’re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can’t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn’t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
-	<meta itemprop="datePublished" content="2004-10-16T09:57:28+00:00">
-	<meta itemprop="dateModified" content="2004-10-16T09:57:28+00:00">
-	<meta itemprop="wordCount" content="2049">
-	<meta itemprop="keywords" content="Code and Geek Stuff">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Exceptions Are Your Friend">
-	<meta name="twitter:description" content="Benjamin claims that exceptions are evil, he couldn’t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin’s first problem with exceptions is that they’re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you’re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can’t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn’t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):">
-
-      
-    
-	<link rel="shortcut icon" href="/images/logo/cropped-Music-32x32.png" />
-<link rel="icon" href="/images/logo/cropped-Music-32x32.png" sizes="32x32"/>
-<link rel="icon" href="/images/logo/cropped-Music-192x192.png" sizes="192x192"/>
-<link rel="apple-touch-icon" href="/images/logo/cropped-Music-180x180.png"/>
-<meta name="msapplication-TileImage" content="/images/logo/cropped-Music-270x270.png"/>
-  </head><body class="ma0 avenir bg-near-white production">
-
-    
-   
-  
-
-  
-  
-  
-  <header class="cover bg-center" style="background-image: url('https://www.symphonious.net/images/header.png');">
-    <div class="bg-black-60">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Symphonious
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/about-me/" title="About Me page">
-              About Me
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/cv/" title="CV page">
-              CV
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="/testing-at-lmax/" title="Testing@LMAX page">
-              Testing@LMAX
-            </a>
-          </li>
-          
-        </ul>
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-      <div class="tc-l pv6 ph3 ph4-ns">
-        
-          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Exceptions Are Your Friend</div>
-          
-        
-      </div>
-    </div>
-  </header>
 
 
 
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-          
-        POSTS
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Exceptions Are Your Friend</h1>
-      
-      <p class="tracked">
-        By <strong>Adrian Sutton</strong>
-      </p>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2004-10-16T09:57:28Z">October 16, 2004</time>
-      
 
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy f4 mw8 nested-links mid-gray"><p>Benjamin claims that <a href="http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/2004/10/16#exceptions">exceptions are evil</a>, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin&rsquo;s first problem with exceptions is that they&rsquo;re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you&rsquo;re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can&rsquo;t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn&rsquo;t have to work in those situations, but it must behave predictably because one or more of those situations <em>will</em> occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):</p>
+
+<header class="site-header inner-hero" data-pagefind-ignore>
+<picture class="hero-photo"><source media="(max-width: 600px)" srcset="/images/moogerah-dusk_hu_fe9b7bf525fd6cd6.webp"><img src="/images/moogerah-dusk_hu_7f24882435c75886.webp" width="1920" height="220" alt="Moogerah Dam at dusk, photographed by Adrian Sutton" fetchpriority="high"></picture>
+<div class="header-shell">
+<div class="topline"><a class="wordmark" href="/" aria-label="Symphonious home">Symphonious</a>
+<nav aria-label="Main navigation"><a href="/posts/" aria-current="page">Writing</a><a href="/about-me/">About</a><a href="/testing-at-lmax/">Testing@LMAX</a><a href="/cv/">CV</a></nav><form class="header-search" role="search" action="/search/" method="get"><label class="sr-only" for="header-query">Search the writing</label><input id="header-query" type="search" name="q" placeholder="Search…" required><button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button></form><a class="header-search-link" href="/search/" aria-label="Search the writing"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a></div>
+
+</div></header>
+
+<main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="Benjamin claims that exceptions are evil, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin&rsquo;s first problem with exceptions is that they&rsquo;re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you&rsquo;re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can&rsquo;t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn&rsquo;t have to work in those situations, but it must behave predictably because one or more of those situations will occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):
+"><header class="article-heading"><p class="section-label">Writing</p><h1 data-pagefind-meta="title">Exceptions Are Your Friend</h1><p class="article-meta"><time datetime="2004-10-16">16 October 2004</time> <span aria-hidden="true">·</span> 10 min read</p></header><div class="prose"><p>Benjamin claims that <a href="http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/2004/10/16#exceptions">exceptions are evil</a>, he couldn&rsquo;t be more wrong. Exceptions are in fact one of the best ideas that has been added to languages, particularly checked exceptions which force people to deal with error situations. Benjamin&rsquo;s first problem with exceptions is that they&rsquo;re impossible to test. This assertion is flat out wrong. Exceptions simply make you aware of a case that you&rsquo;re not testing. For instance, say we have a function that writes to a file, as part of our testing we should test that it behaves correctly (ie: produces the expected behavior) even in situations when the file can&rsquo;t be written either because of a lack of permissions, a full disk, missing directory, network error or hardware failure. It doesn&rsquo;t have to work in those situations, but it must behave predictably because one or more of those situations <em>will</em> occur when the program is in production at some point or another. Without exceptions, the code might look something like (using some convenient but totally fictional libraries):</p>
 <pre><code>public void writeFile(String path, String output) {
     new FileWriter(path).write(output);
 } So when we're writing test cases we pass in a path and some output and then check that the contents of the file matches the output we gave and are happy. Our code coverage now returns 100% for that method. The trouble is the actual test coverage is much, much lower than 100% because it hasn't tested any of the error conditions. There's not even any indication that things might go wrong there. C programmers will be the first to tell you that you must always check the return code from IO libraries so that you detect errors &amp;#8211; exceptions make that process more obvious and checked exceptions makes you take action to handle the case (even if your handling of it is really bad). So now lets take a look at that method again, with exceptions: 
@@ -206,33 +88,9 @@ public void testErrorCase() throws Exception {
 <blockquote>
 <p>When dealing with the operating system, just use the damn return codes But return codes are just a primitive, non-obvious form of exceptions. The only real difference is that it&rsquo;s extremely simply to ignore return codes whereas exceptions terminate the thread if you don&rsquo;t do something about them. Checking return codes adds exactly the same amount of complexity as handling exceptions does – it&rsquo;s one extra branch for every different response to the return code.</p>
 </blockquote>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      </div>
-    </div>
+</div></article>
+<nav class="post-navigation" aria-label="More writing" data-pagefind-ignore><a href="/2004/10/15/anti-anti-anti-smokers/"><span>← Earlier</span>Anti-Anti-Anti-Smokers</a><a href="/2004/10/18/exceptions-are-your-friend-but-so-is-garbage-collection/"><span>Later →</span>Exceptions Are Your Friend (but so is garbage collection)</a></nav>
+</main>
+<footer class="site-footer page-shell" data-pagefind-ignore><div class="footer-main"><a class="footer-brand" href="/"><img src="/images/after-hours-icon.svg" width="30" height="30" alt=""> Symphonious</a><span>Living in a state of accord.</span></div><div class="footer-details"><span>© Adrian Sutton 2004–2026</span><span>Moogerah photograph by Adrian Sutton</span><a href="https://github.com/ajsutton">GitHub</a><a href="https://slots.symphonious.net">Slot Finder</a><a class="feed-link" href="/index.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg></a></div></footer>
 
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.symphonious.net/" >
-    &copy;  Adrian Sutton 2004 - 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
-</html>
+</body></html>
