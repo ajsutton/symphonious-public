@@ -85,7 +85,9 @@ needs, for you it&amp;rsquo;s great. That presents quite a challenge for the wid
 small development shops building high quality, but relatively small software.
 More and more, people really can just build it for themselves and get exactly
 what they want. It won&amp;rsquo;t &lt;em&gt;out sell&lt;/em&gt; your product, but if enough people start
-doing it, you still wind up without any customers.&lt;/p&gt;
+doing it, you still wind up without any customers.&lt;/p&gt;&lt;figure class=&#34;feature-image&#34; data-pagefind-ignore&gt;
+  &lt;img src=&#34;https://www.symphonious.net/images/posts/just-vibe-code-it-yourself.webp&#34; srcset=&#34;https://www.symphonious.net/images/posts/just-vibe-code-it-yourself_hu_b3b63cc73e1852cb.webp 480w, https://www.symphonious.net/images/posts/just-vibe-code-it-yourself_hu_296727de76c5d789.webp 740w, https://www.symphonious.net/images/posts/just-vibe-code-it-yourself.webp 884w&#34; sizes=&#34;(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 96px), 740px&#34; width=&#34;884&#34; height=&#34;442&#34; alt=&#34;Hands assembling a wooden laptop with a recipe, calendar and checklist, tailoring software to personal needs.&#34; decoding=&#34;async&#34;&gt;
+&lt;/figure&gt;
 &lt;p&gt;There&amp;rsquo;s plenty of software that&amp;rsquo;s still safe from this. Vibe-coding Microsoft
 Word or Excel would be pretty crazy. The basics generally work extremely well
 for people and they have a large depth of functionality that usually scratches
@@ -179,7 +181,9 @@ potential but I haven&amp;rsquo;t seen anything that really feels right to me ye
       <guid>https://www.symphonious.net/2026/06/18/ads-evading-pi-hole-with-ios-27/</guid>
       <description>&lt;p&gt;I YOLO installed the iOS 27 beta and noticed ads creeping back into apps that
 have been clean for years. The &lt;a href=&#34;https://pi-hole.net/&#34;&gt;Pi-hole&lt;/a&gt; was still running
-and still showing blocked queries — the ads were just loading anyway.&lt;/p&gt;
+and still showing blocked queries — the ads were just loading anyway.&lt;/p&gt;&lt;figure class=&#34;feature-image&#34; data-pagefind-ignore&gt;
+  &lt;img src=&#34;https://www.symphonious.net/images/posts/ads-evading-pi-hole.webp&#34; srcset=&#34;https://www.symphonious.net/images/posts/ads-evading-pi-hole_hu_a9a68e9815b37cf9.webp 480w, https://www.symphonious.net/images/posts/ads-evading-pi-hole_hu_1e413f5e34d39b70.webp 740w, https://www.symphonious.net/images/posts/ads-evading-pi-hole.webp 884w&#34; sizes=&#34;(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 96px), 740px&#34; width=&#34;884&#34; height=&#34;442&#34; alt=&#34;Advertising bypassing a home network filter over a cellular connection to a smartphone.&#34; decoding=&#34;async&#34;&gt;
+&lt;/figure&gt;
 &lt;p&gt;The culprit was &amp;ldquo;Connectivity Assist&amp;rdquo; in the Wi-Fi settings, aka Cellular
 Fallback. When the Pi-hole blackholes an ad domain the request fails, iOS
 decides the Wi-Fi must be flaky, and helpfully retries the same request over
@@ -195,7 +199,9 @@ burns through my data allowance to do it.&lt;/p&gt;
       <guid>https://www.symphonious.net/2026/06/01/moolah-diaries-a-month-later/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s been a month since
 &lt;a href=&#34;https://www.symphonious.net/2026/04/28/moolah-diaries-going-all-in/&#34;&gt;I went all in on using Moolah&lt;/a&gt; so
-time to check in on how its going.&lt;/p&gt;
+time to check in on how its going.&lt;/p&gt;&lt;figure class=&#34;feature-image&#34; data-pagefind-ignore&gt;
+  &lt;img src=&#34;https://www.symphonious.net/images/posts/moolah-a-month-later.webp&#34; srcset=&#34;https://www.symphonious.net/images/posts/moolah-a-month-later_hu_d3ccdf0266bd0e77.webp 480w, https://www.symphonious.net/images/posts/moolah-a-month-later_hu_53232834affe318c.webp 740w, https://www.symphonious.net/images/posts/moolah-a-month-later.webp 884w&#34; sizes=&#34;(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 96px), 740px&#34; width=&#34;884&#34; height=&#34;442&#34; alt=&#34;A personal finance dashboard beside a ledger, calendar and coins, with unfinished components waiting nearby.&#34; decoding=&#34;async&#34;&gt;
+&lt;/figure&gt;
 &lt;p&gt;Firstly the bugs - there are still some but generally in the functions I&amp;rsquo;m
 actually using there aren&amp;rsquo;t many and things are generally pretty polished. Most
 importantly regressions are rare so as I work through fixing things it keeps
@@ -262,7 +268,9 @@ and a positional &lt;code&gt;params&lt;/code&gt; array. Numbers come back as hex
 numbers, balances, gas, timestamps, all of it — so even after you&amp;rsquo;ve wrestled
 the request together you&amp;rsquo;re piping the response through something to turn
 &lt;code&gt;0x1bc16d674ec80000&lt;/code&gt; back into a number a human can read. It does just about
-everything it can to be hostile to a quick &lt;code&gt;curl&lt;/code&gt;.&lt;/p&gt;
+everything it can to be hostile to a quick &lt;code&gt;curl&lt;/code&gt;.&lt;/p&gt;&lt;figure class=&#34;feature-image&#34; data-pagefind-ignore&gt;
+  &lt;img src=&#34;https://www.symphonious.net/images/posts/ethereum-rest-api.webp&#34; srcset=&#34;https://www.symphonious.net/images/posts/ethereum-rest-api_hu_6d165f1063a152e5.webp 480w, https://www.symphonious.net/images/posts/ethereum-rest-api_hu_32c776d17bfc190a.webp 740w, https://www.symphonious.net/images/posts/ethereum-rest-api.webp 884w&#34; sizes=&#34;(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 96px), 740px&#34; width=&#34;884&#34; height=&#34;442&#34; alt=&#34;A mechanical adapter turning tangled Ethereum connections into neatly organised resource cards.&#34; decoding=&#34;async&#34;&gt;
+&lt;/figure&gt;
 &lt;p&gt;Tools like &lt;a href=&#34;https://book.getfoundry.sh/cast/&#34;&gt;Foundry&amp;rsquo;s &lt;code&gt;cast&lt;/code&gt;&lt;/a&gt; make it usable,
 and I reach for them constantly, but they&amp;rsquo;re still fiddly for ad-hoc poking and
 they don&amp;rsquo;t help at all when something other than your terminal wants to talk to

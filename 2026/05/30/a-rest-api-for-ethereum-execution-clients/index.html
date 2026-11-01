@@ -7,6 +7,19 @@
 <link rel="canonical" href="https://www.symphonious.net/2026/05/30/a-rest-api-for-ethereum-execution-clients/">
 
 
+<meta property="og:type" content="article">
+<meta property="og:title" content="A REST API for Ethereum Execution Clients">
+<meta property="og:url" content="https://www.symphonious.net/2026/05/30/a-rest-api-for-ethereum-execution-clients/">
+<meta property="og:description" content="The JSON-RPC API that Ethereum execution clients expose is genuinely awful to work with. Every call is a POST with a jsonrpc envelope, a method string and a …">
+<meta property="og:image" content="https://www.symphonious.net/images/posts/ethereum-rest-api.webp">
+<meta property="og:image:width" content="884">
+<meta property="og:image:height" content="442">
+<meta property="og:image:alt" content="A mechanical adapter turning tangled Ethereum connections into neatly organised resource cards.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A REST API for Ethereum Execution Clients">
+<meta name="twitter:image" content="https://www.symphonious.net/images/posts/ethereum-rest-api.webp">
+<meta name="twitter:image:alt" content="A mechanical adapter turning tangled Ethereum connections into neatly organised resource cards.">
+
 <meta name="theme-color" content="#182630">
 <link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
@@ -41,7 +54,9 @@ and a positional <code>params</code> array. Numbers come back as hex strings —
 numbers, balances, gas, timestamps, all of it — so even after you&rsquo;ve wrestled
 the request together you&rsquo;re piping the response through something to turn
 <code>0x1bc16d674ec80000</code> back into a number a human can read. It does just about
-everything it can to be hostile to a quick <code>curl</code>.</p>
+everything it can to be hostile to a quick <code>curl</code>.</p><figure class="feature-image" data-pagefind-ignore>
+  <img src="https://www.symphonious.net/images/posts/ethereum-rest-api.webp" srcset="/images/posts/ethereum-rest-api_hu_6d165f1063a152e5.webp 480w, /images/posts/ethereum-rest-api_hu_32c776d17bfc190a.webp 740w, /images/posts/ethereum-rest-api.webp 884w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 96px), 740px" width="884" height="442" alt="A mechanical adapter turning tangled Ethereum connections into neatly organised resource cards." decoding="async">
+</figure>
 <p>Tools like <a href="https://book.getfoundry.sh/cast/">Foundry&rsquo;s <code>cast</code></a> make it usable,
 and I reach for them constantly, but they&rsquo;re still fiddly for ad-hoc poking and
 they don&rsquo;t help at all when something other than your terminal wants to talk to
