@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,7 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2010-09-10">10 Sep 2010</time></div><div><h2><a href="/2010/09/10/p-tags-and-flash/">P Tags and Flash</a></h2><div class="prose excerpt"><p><img loading="lazy" alt="" src="/wp-content/uploads/2010/09/ParagraphMarker_1786812506017956051.png" width="84" height="113" style=" float: right;" />One of the most difficult situations to work with is when your output needs to be rendered using Flash. The HTML support in Flash is absolutely horrendous – worse even than in most email clients. Contrary to popular belief, <a href="http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&amp;file=00000930.html">Flash</a> <em><a href="http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&amp;file=00000930.html">does</a></em> <a href="http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&amp;file=00000930.html">support P tags</a>. You will however need to ensure the text field is set to multiline. The BR tag is also only supported in multiline fields. The problem most people hit is that Flash doesn’t support the margin-top and margin-bottom attributes so you can’t get rid of the blank line between paragraphs.</p></div><a class="read-more" href="/2010/09/10/p-tags-and-flash/">Continue reading<span class="sr-only">: P Tags and Flash</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-09-09">9 Sep 2010</time></div><div><h2><a href="/2010/09/09/p-tags-and-single-line-fields/">P Tags and Single Line Fields</a></h2><div class="prose excerpt"><p><img loading="lazy" alt="" width="84" height="113" src="/wp-content/uploads/2010/09/ParagraphMarker_1786812506017956051.png" style=" float: right;" />One of the common reasons people want to avoid P tags in content is because the field is designed to hold just a single paragraph, so having multiple P tags inside the content would break the template layout when it’s rendered. Usually the template renders the content as something like:</p>
 <pre>&#60;p&#62;&#60;%= fieldContent %&#62;&#60;/p&#62;
 </pre>
@@ -90,7 +95,6 @@
 <p>This is in the help manual but it’s way down the bottom so takes ages to read through to find it.</p></div><a class="read-more" href="/2010/06/30/whos-committed-in-my-git-repository/">Continue reading<span class="sr-only">: Who’s Committed in my Git Repository?</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2010-06-15">15 Jun 2010</time></div><div><h2><a href="/2010/06/15/java-awt-robot-and-windows-remote-desktop/">Java AWT Robot and Windows Remote Desktop</a></h2><div class="prose excerpt"><h3 id="problem">Problem</h3>
 <p>If you’re attempting to use the Java AWT Robot to help automate tests, you may find it convenient to log in via remote desktop to watch the tests execute and verify they work well. You may also find that they work fine while you’re watching them but then inexplicably start failing whenever you aren’t. Basically your test is an <a href="http://en.wikipedia.org/wiki/Blink_(Doctor_Who)">angel from Dr Who</a>.</p></div><a class="read-more" href="/2010/06/15/java-awt-robot-and-windows-remote-desktop/">Continue reading<span class="sr-only">: Java AWT Robot and Windows Remote Desktop</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2010-06-14">14 Jun 2010</time></div><div><h2><a href="/2010/06/14/null-security-manager-breaks-liveconnect-in-os-x-firefox/">Null Security Manager Breaks LiveConnect in OS X Firefox</a></h2><div class="prose excerpt"><p>Normally applets run in a security sandbox, much like JavaScript, but with signed applets those restrictions are lifted and the applet can do anything. At least, that’s the theory – in practice most implementations leave a security manager instance installed but with significantly reduced restrictions (such that most programs will never be affected by them). To get around these remaining restrictions, applets can remove or replace the security manager:</p></div><a class="read-more" href="/2010/06/14/null-security-manager-breaks-liveconnect-in-os-x-firefox/">Continue reading<span class="sr-only">: Null Security Manager Breaks LiveConnect in OS X Firefox</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/19/">← Newer posts</a><span>Page 20 of 102</span><a href="/posts/page/21/">Older posts →</a></nav>
 

@@ -4,6 +4,13 @@
     <title>Performance on Symphonious</title>
     <link>https://www.symphonious.net/categories/performance/</link>
     <description>Recent content in Performance on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Performance on Symphonious</title>
+      <link>https://www.symphonious.net/categories/performance/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

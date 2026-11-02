@@ -4,6 +4,13 @@
     <title>Tags on Symphonious</title>
     <link>https://www.symphonious.net/tags/</link>
     <description>Recent content in Tags on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Tags on Symphonious</title>
+      <link>https://www.symphonious.net/tags/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright><atom:link href="https://www.symphonious.net/tags/index.xml" rel="self" type="application/rss+xml" />

@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,8 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2013-07-08">8 Jul 2013</time></div><div><h2><a href="/2013/07/08/injecting-stubsmocks-into-tests-with-require-js/">Injecting Stubs/Mocks into Tests with Require.js</a></h2><div class="prose excerpt"><p>I&rsquo;ve recently embarked on a fairly complex new application, a large part of which is a webapp written in JavaScript. The application uses require.js to handle modules and loading of dependencies and we want to be able to unit test our JavaScript.</p>
+<p>In order to test specific pieces of the application, we want to be able to inject stubs or mocks into the module being tested. For example, if we had a module:</p></div><a class="read-more" href="/2013/07/08/injecting-stubsmocks-into-tests-with-require-js/">Continue reading<span class="sr-only">: Injecting Stubs/Mocks into Tests with Require.js</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2013-06-11">11 Jun 2013</time></div><div><h2><a href="/2013/06/12/importing-an-ant-buildfile-multiple-times/">Importing an ant buildfile multiple times</a></h2><div class="prose excerpt"><p>According to <a href="https://ant.apache.org/manual/Tasks/import.html">the ant documentation</a>:</p>
 <blockquote>
 <p>It is possible to include the same file more than once by using different prefixes, it is not possible to import the same file more than once.</p>
@@ -66,10 +72,6 @@
 <p>Often things are put in configuration files so that they are easy to change later, often without a full redeployment of the software, but that also implies it can be changed without going through the full testing that a release would usually be subject to. It&rsquo;s rare for automated tests to cover more than one possible setting for these configuration options so changing them in production is equivalent to deploying completely untested code. What&rsquo;s worse, it&rsquo;s quick and easy to do with no audit trail of what happened and when.</p></div><a class="read-more" href="/2012/06/05/minimise-configuration/">Continue reading<span class="sr-only">: Minimise Configuration</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2012-05-28">28 May 2012</time></div><div><h2><a href="/2012/05/28/default-to-development-settings/">Default to Development Settings</a></h2><div class="prose excerpt"><p>Most systems have multiple configuration profiles – one for production, one for development and often other profiles for staging, testing etc.  Minimising differences between these configurations is critical but there are inevitably some things that just have to be different. This then leaves the question, what should the default settings be?</p>
 <p>There are three main options:</p></div><a class="read-more" href="/2012/05/28/default-to-development-settings/">Continue reading<span class="sr-only">: Default to Development Settings</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2012-05-22">22 May 2012</time></div><div><h2><a href="/2012/05/23/juries-and-complex-subjects/">Juries and Complex Subjects</a></h2><div class="prose excerpt"><p>There is a lot of discussion at the moment about the Oracle v Google trial today, mostly centring around how impossible it is for the jury to understand the very technical concepts involved in the case.  <a href="http://daringfireball.net/linked/2012/05/22/jury-oracle-google">As Daring Fireball puts it</a>:</p>
-<blockquote>
-<p>How could a randomly-selected jury possibly decide this? No knock intended against the jurors themselves — and it sounds like they’re doing their best to make an informed decision. But there’s a difference between a jury of your citizen peers and a jury of your technical peers.</p>
-</blockquote></div><a class="read-more" href="/2012/05/23/juries-and-complex-subjects/">Continue reading<span class="sr-only">: Juries and Complex Subjects</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/13/">← Newer posts</a><span>Page 14 of 102</span><a href="/posts/page/15/">Older posts →</a></nav>
 

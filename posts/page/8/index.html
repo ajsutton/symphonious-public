@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,8 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2017-03-19">19 Mar 2017</time></div><div><h2><a href="/2017/03/20/finding-what-buck-actually-built/">Finding What Buck Actually Built</a></h2><div class="prose excerpt"><p><a href="https://buckbuild.com">Buck</a> is a weird but very fast build tool that happens to be rather opaque about where it actually puts the things you build with it. They wind up somewhere under the buck-out folder but there&rsquo;s no guarantee where and everything under there is considered buck&rsquo;s private little scratch pad.</p>
+<p>So how do you get build results out so they can be used? For things with built-in support like Java libraries you can use ‘buck publish&rsquo; to push them out to a repo but that doesn&rsquo;t work for things you&rsquo;ve built with a custom genrule. In those cases you could use an additional genrule build target to actually publish but it would only run when one of it&rsquo;s dependencies have changed. Sometimes that&rsquo;s an excellent feature but it&rsquo;s not always what you want.</p></div><a class="read-more" href="/2017/03/20/finding-what-buck-actually-built/">Continue reading<span class="sr-only">: Finding What Buck Actually Built</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2017-03-12">12 Mar 2017</time></div><div><h2><a href="/2017/03/13/replacing-symlinks-with-hardlinks/">Replacing Symlinks with Hardlinks</a></h2><div class="prose excerpt"><p>Symlinks have been causing me grief lately.  Our build tool, buck, loves creating symlinks but publishes corrupt cache artefacts for any build rule that includes a symlink amongst it&rsquo;s output.</p>
 <p>We also wind up calling out to npm to manage JavaScript dependencies and it has an annoying (for us) habit of resolving symlinks when processing files and then failing to find required libraries because the node_modules folder was back where the symlink was, not with the original file. Mostly this problem is caused by buck creating so many symlinks.</p></div><a class="read-more" href="/2017/03/13/replacing-symlinks-with-hardlinks/">Continue reading<span class="sr-only">: Replacing Symlinks with Hardlinks</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2017-01-09">9 Jan 2017</time></div><div><h2><a href="/2017/01/09/benq-gw2765-monitor-display-port-no-signal-detected/">Benq GW2765 Monitor Display Port “No Signal Detected”</a></h2><div class="prose excerpt"><p>I have three Benq GW2765 monitors which periodically report “No Signal Detected” for DisplayPort even when the computer it&rsquo;s attached to recognises the monitor is present (displaying it in the monitors/displays list etc). Changing  the DisplayPort cable or plugging it into a different computer doesn&rsquo;t help (I tried with both Mac OS X and Linux/Fedora machines), but HDMI and D-Sub connections work perfectly (but can&rsquo;t support the full screen resolution). I can even disconnect a cable from a working monitor, plug it into a non-working monitor and it will continue to complain about no signal, but plug the cable back into the working monitor and it carries on working fine.</p></div><a class="read-more" href="/2017/01/09/benq-gw2765-monitor-display-port-no-signal-detected/">Continue reading<span class="sr-only">: Benq GW2765 Monitor Display Port “No Signal Detected”</span> <span aria-hidden="true">→</span></a></div></article>
@@ -57,11 +63,6 @@
 <li>Strongly discourage writing overly complicated selectors.</li>
 </ul>
 <p>Essentially, we use ElementSpecification anywhere that we would have written CSS or XPath selectors by hand. ElementSpecification will automatically select the most appropriate format to use – choosing between a simple ID selector, CSS or XPath.</p></div><a class="read-more" href="/2015/12/04/testinglmax-introducing-elementspecification/">Continue reading<span class="sr-only">: Testing@LMAX – Introducing ElementSpecification</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2015-10-08">8 Oct 2015</time></div><div><h2><a href="/2015/10/09/use-more-magic-literals/">Use More Magic Literals</a></h2><div class="prose excerpt"><p>In programming courses one of the first thing you&rsquo;re taught is to avoid “magic literals” – numbers or strings that are hardcoded in the middle of an algorithm. The recommended solution is to extract them into a constant. Sometimes this is great advice, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>if (amount &gt; 1000) {
-</span></span><span style="display:flex;"><span>  checkAdditionalAuthorization();
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>would be much more readable if we extracted a ADDITIONAL_AUTHORIZATION_THRESHOLD variable – primarily so the magic 1000 gets a name.</p></div><a class="read-more" href="/2015/10/09/use-more-magic-literals/">Continue reading<span class="sr-only">: Use More Magic Literals</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/7/">← Newer posts</a><span>Page 8 of 102</span><a href="/posts/page/9/">Older posts →</a></nav>
 

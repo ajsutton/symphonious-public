@@ -4,6 +4,13 @@
     <title>Code and Geek Stuff on Symphonious</title>
     <link>https://www.symphonious.net/categories/code-and-geek-stuff/</link>
     <description>Recent content in Code and Geek Stuff on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Code and Geek Stuff on Symphonious</title>
+      <link>https://www.symphonious.net/categories/code-and-geek-stuff/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

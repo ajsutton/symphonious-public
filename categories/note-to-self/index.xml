@@ -4,6 +4,13 @@
     <title>Note to Self on Symphonious</title>
     <link>https://www.symphonious.net/categories/note-to-self/</link>
     <description>Recent content in Note to Self on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Note to Self on Symphonious</title>
+      <link>https://www.symphonious.net/categories/note-to-self/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

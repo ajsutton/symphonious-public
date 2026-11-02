@@ -4,6 +4,13 @@
     <title>ConsenSys on Symphonious</title>
     <link>https://www.symphonious.net/categories/consensys/</link>
     <description>Recent content in ConsenSys on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>ConsenSys on Symphonious</title>
+      <link>https://www.symphonious.net/categories/consensys/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

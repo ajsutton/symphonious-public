@@ -4,6 +4,13 @@
     <title>System Administration on Symphonious</title>
     <link>https://www.symphonious.net/categories/system-administration/</link>
     <description>Recent content in System Administration on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>System Administration on Symphonious</title>
+      <link>https://www.symphonious.net/categories/system-administration/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

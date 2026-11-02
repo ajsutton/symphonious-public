@@ -4,6 +4,13 @@
     <title>Ephox on Symphonious</title>
     <link>https://www.symphonious.net/categories/ephox/</link>
     <description>Recent content in Ephox on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Ephox on Symphonious</title>
+      <link>https://www.symphonious.net/categories/ephox/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

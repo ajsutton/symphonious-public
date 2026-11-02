@@ -4,6 +4,13 @@
     <title>Rants on Symphonious</title>
     <link>https://www.symphonious.net/categories/rants/</link>
     <description>Recent content in Rants on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Rants on Symphonious</title>
+      <link>https://www.symphonious.net/categories/rants/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

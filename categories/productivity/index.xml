@@ -4,6 +4,13 @@
     <title>Productivity on Symphonious</title>
     <link>https://www.symphonious.net/categories/productivity/</link>
     <description>Recent content in Productivity on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>Productivity on Symphonious</title>
+      <link>https://www.symphonious.net/categories/productivity/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

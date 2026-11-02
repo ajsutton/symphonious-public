@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,8 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2005-08-06">6 Aug 2005</time></div><div><h2><a href="/2005/08/06/converting-from-cvs-to-subversion/">Converting From CVS to Subversion</a></h2><div class="prose excerpt"><p>For the past few weeks I&rsquo;ve been investigating and planning a move from CVS (CVSNT actually) to Subversion at work. Hopefully this week I&rsquo;ll be able to do the actual conversion and see what mess it makes.</p>
+<p>The main thing that&rsquo;s missing from Subversion is an exact equivalent for CVS&rsquo;s meta-modules. Subversion&rsquo;s externals are good but need to support relative URLs so that branching is simple. Even so, it&rsquo;s not that hard to go back and re-edit the externals property after branching and it can probably be automated with a small script.  It might actually be a good opportunity to automate adding new branches to our automatic build setup as well so whenever we create a new branch the build machine (affectionately known as Bob) automatically starts building it.</p></div><a class="read-more" href="/2005/08/06/converting-from-cvs-to-subversion/">Continue reading<span class="sr-only">: Converting From CVS to Subversion</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2005-08-01">1 Aug 2005</time></div><div><h2><a href="/2005/08/01/about-ken-and-leo/">About Ken and Leo</a></h2><div class="prose excerpt"><p>Ken Coar starts each post with a one-line comment/quip/remark which may or may not be related to the topic of the post.  Apparently Leo Simmons reads them:</p>
 <blockquote>
 <p>Hi, Leo!</p>
@@ -58,8 +64,6 @@
 <p>Also, a massive thanks to <a href="http://diffidence.org">Iain</a> for letting me use his server up until now (the header image is his too).  The service was excellent – you&rsquo;ll have to come round for gratitude beer and nachos soon.</p></div><a class="read-more" href="/2005/07/10/395/">Continue reading<span class="sr-only">: Server Move</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2005-07-09">9 Jul 2005</time></div><div><h2><a href="/2005/07/09/beach-trip/">Beach Trip</a></h2><div class="prose excerpt"><p>Headed down to Tweed Heads with SWHO (she who is happily obeyed) and took some nice photos, here&rsquo;s my favorite.  Click for a bigger version – give me a yell if for some reason you want the full 2048×1536 version.</p>
 <p><a href="/wp-content/TheHut.jpg"><img alt="Roadside Shelter at Kirra Beach" src="/wp-content/thumb-TheHut.jpg" border="0" /></a></p></div><a class="read-more" href="/2005/07/09/beach-trip/">Continue reading<span class="sr-only">: Beach Trip</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2005-07-08">8 Jul 2005</time></div><div><h2><a href="/2005/07/08/login-gems-for-ruby-on-rails/">Login Gems For Ruby on Rails</a></h2><div class="prose excerpt"><p>Most people have probably already worked this out but if you&rsquo;re new to rails or new to rails login components, you probably want to use <a href="http://wiki.rubyonrails.com/rails/show/LoginGenerator">Login Generator</a> and avoid <a href="http://wiki.rubyonrails.com/rails/show/SaltedLoginGeneratorQuickstart">Salted Login Generator</a> like the plague.</p>
-<p>Login Generator is extremely quick and easy to get up and running with, is made up of a small amount of clean code, has no dependencies and works with Ruby on Rails 0.13.</p></div><a class="read-more" href="/2005/07/08/login-gems-for-ruby-on-rails/">Continue reading<span class="sr-only">: Login Gems For Ruby on Rails</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/68/">← Newer posts</a><span>Page 69 of 102</span><a href="/posts/page/70/">Older posts →</a></nav>
 

@@ -4,6 +4,13 @@
     <title>PegaSys on Symphonious</title>
     <link>https://www.symphonious.net/categories/pegasys/</link>
     <description>Recent content in PegaSys on Symphonious</description>
+    <image>
+      <url>https://www.symphonious.net/images/after-hours-icon.png</url>
+      <title>PegaSys on Symphonious</title>
+      <link>https://www.symphonious.net/categories/pegasys/</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
     <copyright>Adrian Sutton 2004 -</copyright>

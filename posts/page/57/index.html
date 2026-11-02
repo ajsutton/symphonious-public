@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,16 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2006-07-22">22 Jul 2006</time></div><div><h2><a href="/2006/07/22/windows-installer-annoyances/">Windows Installer Annoyances</a></h2><div class="prose excerpt"><p>I&rsquo;m not sure there are many platforms that make installing software more painful than Windows. Linux used to present a worthy challenge but apt-get and similar systems are so common and so comprehensive now that it&rsquo;s generally smooth. Some of the main annoyances are:</p>
+<ul>
+<li>Clicking next, next, next, next just to get the install started. Are all those screens really needed? Couldn&rsquo;t we at least skip the welcome screen?</li>
+<li>Icons, icons everywhere and not a scrap of user control. I&rsquo;m looking at you NetBeans – I didn&rsquo;t tell you to put an icon on my desktop. And you Thunderbird, why the heck do you feel compelled to add yourself to my quick launch bar? Windows Media Player does the same thing. Rack off all of you. You can put a shortcut in the Start menu under programs and that&rsquo;s it.</li>
+<li>License keys. Is there anything more futile? Why waste my time with them when I can just use the same key on multiple machines to pirate the software anyway?</li>
+<li>Uninstallers and readme&rsquo;s in the start menu. Add/Remove Programs handles uninstalling, just give me the product and get rid of the extra crap in the menu. You&rsquo;ll probably wind up with just one icon left and you can get rid of the folder altogether. Kudos to Microsoft for leading the way on this – Virtual PC has no folder and Office has just the programs in it&rsquo;s folder.</li>
+<li>No auto-sort in the start menu. Is it really that hard to just keep things sorted by name without me having to do it?</li>
+<li>Unlock toolbar, resize quick launch area, lock toolbar, discover the size has changed because the dividers aren&rsquo;t shown anymore, repeat the process until you get it to the right size. Anyone heard of size to fit?</li>
+</ul>
+<p>I think that covers most of the issues I&rsquo;ve had. It makes me appreciate how nice OS X apps are to install, even if they do <a href="http://www.symphonious.net/2006/06/08/ill-tell-you-where-you-can-drag-your-icon/" title="I'll Tell You Where You Can Drag Your Icon...">hide the applications folder</a>.</p></div><a class="read-more" href="/2006/07/22/windows-installer-annoyances/">Continue reading<span class="sr-only">: Windows Installer Annoyances</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2006-07-22">22 Jul 2006</time></div><div><h2><a href="/2006/07/22/firewalls-that-corrupt/">Firewalls That Corrupt</a></h2><div class="prose excerpt"><p>A few days ago I did a clean reinstall of my Windows machine to clean up the mess of partitions and OS boot menus that had developed from trying out different OS&rsquo;s. While reinstalling drivers, I discovered that my computer came with Norton Internet Security so I figured I may as well install it<a id="footlink1" class="footnote" name="footlink1" href="#footnote1">1</a>, I also discovered an nVidia firewall tool and installed that too. Then I started downloading programs to install – firefox, Java etc. Everything I downloaded was corrupt. I disabled both firewalls and everything was still getting corrupted, even though I could download them on my Mac just fine. Even JavaScript files and applets were being corrupted while downloading.</p></div><a class="read-more" href="/2006/07/22/firewalls-that-corrupt/">Continue reading<span class="sr-only">: Firewalls That Corrupt</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2006-07-12">12 Jul 2006</time></div><div><h2><a href="/2006/07/12/more-javascript-fun/">More JavaScript Fun</a></h2><div class="prose excerpt"><p>Quite some time ago I talked about <a href="http://www.symphonious.net/2004/03/18/javascript-fun/" title="JavaScript Fun">redefining and rewriting handler functions in JavaScript</a>, but what if you want to add or redefine methods in an existing class? JavaScript classes<a href="#footnote1" id="footlink1" name="footlink1" class="footnote">1</a> are based on prototyping so the model is somewhat different to actual object oriented languages. Here&rsquo;s one way to define a class, MyThing:</p>
 <pre>function MyThing&#160;{
@@ -64,10 +78,6 @@ function doStuff() { }
 </ul>
 </blockquote>
 <p>I&rsquo;ve always been of the mind that GUIs are faster than command lines for any task which you don&rsquo;t do often enough to know off by heart. I imagine the same applies in this case – any task you perform often enough to learn the keyboard shortcut off by heart is faster by keyboard shortcut, otherwise using the mouse is faster. Unfortunately, this means that when you begin using a new command frequently, you have to go through a period of slower use in order to learn the keyboard shortcut, after which you should be faster.</p></div><a class="read-more" href="/2006/06/23/keyboard-vs-mouse/">Continue reading<span class="sr-only">: Keyboard vs Mouse</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2006-06-21">21 Jun 2006</time></div><div><h2><a href="/2006/06/21/velocity-and-estimate-accuracy/">Velocity and Estimate Accuracy</a></h2><div class="prose excerpt"><p>In my previous post on <a href="http://www.symphonious.net/2006/06/19/tracking-estimate-accuracy/" title="Tracking Estimate Accuracy">tracking estimate accuracy</a>, Stephen Thorne commented:</p>
-<blockquote>
-<p>I thought the entire idea about estimates is that they should be self correcting? Estimates made in some arbitary numbering system, you sum up the estimates, divide by the time actually taken, then you have an accurate picture of how one developers estimates map to reality…</p>
-</blockquote></div><a class="read-more" href="/2006/06/21/velocity-and-estimate-accuracy/">Continue reading<span class="sr-only">: Velocity and Estimate Accuracy</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/56/">← Newer posts</a><span>Page 57 of 102</span><a href="/posts/page/58/">Older posts →</a></nav>
 

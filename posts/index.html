@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,12 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2026-11-02">2 Nov 2026</time></div><div><h2><a href="/2026/11/02/new-blog-design/">New Blog Design</a></h2><div class="prose excerpt"><p>It&rsquo;s been around 10 to 15 years since the last time this blog&rsquo;s design changed
+so it seemed like it was due. The cover image is from a gorgeous spot on Lake
+Moogerah which has the most amazing sunsets. I&rsquo;ve been fortunate enough to
+travel out there for a few Church small group retreats and it&rsquo;s always very
+special. Such a wonderful place to slow down, spend time with God and appreciate
+the beauty of his creation.</p></div><a class="read-more" href="/2026/11/02/new-blog-design/">Continue reading<span class="sr-only">: New Blog Design</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2026-10-31">31 Oct 2026</time></div><div><h2><a href="/2026/10/31/whiteboarding-a-spec/">Whiteboarding a Spec</a></h2><div class="prose excerpt"><p>I&rsquo;ve been in New York the past couple of weeks planning out a new project. Part
 of that work has been working out <em>how</em> the new thing will be built - what
 protocol and contract changes are needed and how does it all fit in with the
@@ -100,9 +110,6 @@ out of date. At this point, I&rsquo;m all in.</p></div><a class="read-more" href
 <article class="post-summary"><div class="date-gutter"><time datetime="2026-04-13">13 Apr 2026</time></div><div><h2><a href="/2026/04/13/moolah-diaries-letting-ai-analyse-its-own-work/">Moolah Diaries: Letting AI Analyse Its Own Work</a></h2><div class="prose excerpt"><p>I used custom software called Moolah to track my personal finances for many years now. Originally it was written in JavaScript with moolah-server providing the backend and moolah the frontend. This holidays I&rsquo;ve been vibe coding a replacement written entirely in Swift. It seems like a somewhat useful experiment to learn more about the trade offs of extreme AI usage, so I had Claude dig into the available stats from GitHub and its session logs to compare the two projects and see what we can learn. It&rsquo;s not a controlled experiment so lots of room for interpretation, but an interesting data point none the less.</p>
 <p>The initial version it came out with was a bit absurdly positive about AI, along the lines of I wrote 10x the lines of code in 0.2% of the time - more code is better! But with a bit of prompting and providing additional background it came out with the report below. I&rsquo;ll write up some more human thoughts on the experience later, but I think the AI-crunched numbers are worth sharing by themselves to set the scene and because the key learnings are genuinely useful.</p></div><a class="read-more" href="/2026/04/13/moolah-diaries-letting-ai-analyse-its-own-work/">Continue reading<span class="sr-only">: Moolah Diaries: Letting AI Analyse Its Own Work</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2026-03-10">10 Mar 2026</time></div><div><h2><a href="/2026/03/10/making-claude-code-tell-you-what-its-doing/">Making Claude Code Tell You What It&#39;s Doing</a></h2><div class="prose excerpt"><p>Claude Code has a <a href="https://docs.anthropic.com/en/docs/claude-code/status-line">status line</a> that sits at the bottom of the terminal showing things like the current directory, git branch, model, and context window usage. It&rsquo;s driven by a shell script that receives JSON on stdin and prints whatever it wants. I wanted to add one more thing: a short description of what the session is actually working on.</p></div><a class="read-more" href="/2026/03/10/making-claude-code-tell-you-what-its-doing/">Continue reading<span class="sr-only">: Making Claude Code Tell You What It&#39;s Doing</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2026-03-07">7 Mar 2026</time></div><div><h2><a href="/2026/03/07/claude-docker/">Claude Docker</a></h2><div class="prose excerpt"><p>I&rsquo;ve been using <a href="https://claude.ai/claude-code">Claude Code</a> a lot lately. It&rsquo;s become a core part of how I work — planning changes, exploring unfamiliar codebases, writing and reviewing code. But giving an AI agent the ability to run arbitrary shell commands on your machine does make you think a bit more carefully about what&rsquo;s happening on your host system.</p>
-<p>The natural answer is to run it in a container. Not as a security boundary — Claude still needs access to your code, your git config, a GitHub token, and the internet — but as a way to keep all the side effects contained. If it installs random packages, creates temp files, or leaves build artifacts scattered around, that&rsquo;s all happening inside the container rather than on your actual machine. It also makes the environment completely reproducible and disposable. Something goes wrong? Tear it down and rebuild.</p>
-<p>So I built <a href="https://github.com/ajsutton/claude-docker">claude-docker</a> to do exactly that.</p></div><a class="read-more" href="/2026/03/07/claude-docker/">Continue reading<span class="sr-only">: Claude Docker</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><span>Page 1 of 102</span><a href="/posts/page/2/">Older posts →</a></nav>
 

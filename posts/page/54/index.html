@@ -7,7 +7,11 @@
 <link rel="canonical" href="https://www.symphonious.net/posts/">
 
 <meta name="theme-color" content="#182630">
-<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="/images/after-hours-icon-32.png" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/images/after-hours-icon.svg" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
 <link rel="alternate" type="application/rss+xml" title="Symphonious" href="/index.xml">
 
 <link rel="stylesheet" href="/css/after-hours.min.9209d3362dce3cfbddcd1fa001ebcab9976fd6e7056d81ba327f8638ffd29472.css" integrity="sha256-kgnTNi3OPPvdzR&#43;gAevKuZdv1ucFbYG6Mn&#43;GOP/SlHI=">
@@ -33,6 +37,14 @@
 
 <main id="main" class="page-shell">
 <header class="listing-heading"><h1>All Posts</h1></header>
+<article class="post-summary"><div class="date-gutter"><time datetime="2006-09-23">23 Sep 2006</time></div><div><h2><a href="/2006/09/23/software-teams-must-gel/">Software Teams Must Gel</a></h2><div class="prose excerpt"><p><a href="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/23999411/article.pl">Slashdot linked off</a> to an old interview with Kent Beck and Cynthia Andres, but it was interesting to see the number of people complaining about the pair programming aspect of XP. Comments like:</p>
+<blockquote>
+<p>Programmers are solo beasts – putting two of these dragons behind one keyboard is asking for trouble.</p>
+</blockquote>
+<p>and:</p>
+<blockquote>
+<p>In the OO Programming course I had this year, they encouraged us to practice extreme programming. Well, it sucked… Everytime my partner and I encountered a little problem and one of us had an idea, he had to explain it to the other, which took at least 3 times as long as just typing it out, which in almost every case made the idea perfectly clear. Suffice to say, after about 4 hours we gave up and just sent each other any files we had edited (of course making sure we didn&rsquo;t work on the same file at the same time).</p>
+</blockquote></div><a class="read-more" href="/2006/09/23/software-teams-must-gel/">Continue reading<span class="sr-only">: Software Teams Must Gel</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2006-09-18">18 Sep 2006</time></div><div><h2><a href="/2006/09/19/junit-memory-usage-in-eclipse/">JUnit Memory Usage In Eclipse</a></h2><div class="prose excerpt"><p>If you happen to run a lot of JUnit tests in one go with Eclipse, you may find that towards the end they start to slow down or throw OutOfMemoryExceptions. They do that because the Eclipse JUnit plugin creates a new instance of the TestCase for each test method, calls setup, test method, tearDown and then for some reason keeps the object around. This means that if your tearDown doesn&rsquo;t null out all the fields in the test class you can wind up with a whole lot of wasted memory.</p></div><a class="read-more" href="/2006/09/19/junit-memory-usage-in-eclipse/">Continue reading<span class="sr-only">: JUnit Memory Usage In Eclipse</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2006-09-18">18 Sep 2006</time></div><div><h2><a href="/2006/09/18/encapsulating-understanding-in-code/">Encapsulating Understanding In Code</a></h2><div class="prose excerpt"><p>In most software projects, there are a few areas that are just really complex to get your head around. It&rsquo;s not something that refactoring can solve, the underlying concepts are just difficult to work out. Fortunately as software developers, we can learn that information once and encapsulate it in code that will understand it for us and even apply it in new situations that we didn&rsquo;t originally consider.</p></div><a class="read-more" href="/2006/09/18/encapsulating-understanding-in-code/">Continue reading<span class="sr-only">: Encapsulating Understanding In Code</span> <span aria-hidden="true">→</span></a></div></article>
 <article class="post-summary"><div class="date-gutter"><time datetime="2006-09-14">14 Sep 2006</time></div><div><h2><a href="/2006/09/14/quick-java-puzzler/">Quick Java Puzzler</a></h2><div class="prose excerpt"><p>While I&rsquo;m waiting for Eclipse to do an update: What&rsquo;s the one value you can pass to Math.abs(int) and get a negative value from?<br>
@@ -54,7 +66,6 @@ Just ran into a bug caused because of it – fortunately it was picked up by the
 <blockquote>
 <p>It turns out that having a meme tracker for the feeds you subscribe to can produce some interesting results. The big issue is that some feeds either rewrite URLs to include a redirect through their server, or strip all HTML and just give you a snippet of the article. This makes it basically impossible to determine if two items link to the same article.</p>
 </blockquote></div><a class="read-more" href="/2006/09/02/another-thing-to-dislike-about-obnoxious-referrer-links/">Continue reading<span class="sr-only">: Another Thing To Dislike About Obnoxious Referrer Links</span> <span aria-hidden="true">→</span></a></div></article>
-<article class="post-summary"><div class="date-gutter"><time datetime="2006-09-02">2 Sep 2006</time></div><div><h2><a href="/2006/09/02/stop-using-wikis-as-documentation/">Stop Using Wikis As Documentation</a></h2><div class="prose excerpt"><p>A lot of projects these days have taken to using a wiki as a way to get the community to write the documentation for them. This appears to work really well with a huge range of pages being created telling you how to do all kinds of stuff. Unfortunately, for anyone who actually needs to learn about the project, these pages are about as useful as tits on a charging bull.</p></div><a class="read-more" href="/2006/09/02/stop-using-wikis-as-documentation/">Continue reading<span class="sr-only">: Stop Using Wikis As Documentation</span> <span aria-hidden="true">→</span></a></div></article>
 
 <nav class="pagination" aria-label="Archive pages"><a href="/posts/page/53/">← Newer posts</a><span>Page 54 of 102</span><a href="/posts/page/55/">Older posts →</a></nav>
 
