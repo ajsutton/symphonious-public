@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Returning Parameters in JMock 2 · Symphonious</title>
 <meta name="description" content="If you have a method like:
-String getParameter(String name, String defaultValue)where defaultValue is returned if the parameter isn’t specified, it can be …">
+String getParameter(String name, String defaultValue) where defaultValue is returned if the parameter isn’t specified, it can be …">
 <link rel="canonical" href="https://www.symphonious.net/2010/03/09/returning-parameters-in-jmock-2/">
 
 
@@ -38,7 +38,7 @@ String getParameter(String name, String defaultValue)where defaultValue is retu
 </div></header>
 
 <main id="main" class="page-shell"><article class="single-article" data-pagefind-body data-pagefind-meta="intro[data-intro]" data-intro="If you have a method like:
-String getParameter(String name, String defaultValue)where defaultValue is returned if the parameter isn’t specified, it can be challenging to get the right behavior in JMock without just hard coding what the defaultValue should be. Fortunately, a custom match which doubles as an Action can solve this pretty easily:
+String getParameter(String name, String defaultValue) where defaultValue is returned if the parameter isn’t specified, it can be challenging to get the right behavior in JMock without just hard coding what the defaultValue should be. Fortunately, a custom match which doubles as an Action can solve this pretty easily:
 "><header class="article-heading"><h1 data-pagefind-meta="title">Returning Parameters in JMock 2</h1><p class="article-meta"><time datetime="2010-03-09">9 March 2010</time> <span aria-hidden="true">·</span> 1 min read</p></header><div class="prose"><p>If you have a method like:</p>
 <pre><code>String getParameter(String name, String defaultValue)
 </code></pre>

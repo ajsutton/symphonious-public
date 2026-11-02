@@ -44,7 +44,7 @@ void setNativeLookAndFeel() {
 &#160;&#160;&#160;} catch (Exception e) {
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;// Handle exception somehow.
 &#160;&#160;&#160;&#160;}
-}As far as I know, there&rsquo;s no way to write a test that doesn&rsquo;t also exercise UIManager, so we&rsquo;ll have to live with that, but we can test that the UI is set and the exception handled.
+} As far as I know, there&rsquo;s no way to write a test that doesn&rsquo;t also exercise UIManager, so we&rsquo;ll have to live with that, but we can test that the UI is set and the exception handled.
 "><header class="article-heading"><h1 data-pagefind-meta="title">How To Test Exception Handling When Setting The System Look And Feel</h1><p class="article-meta"><time datetime="2006-04-29">29 April 2006</time> <span aria-hidden="true">·</span> 1 min read</p></header><div class="prose"><p>Setting the system look and feel is a common task in applications and if you&rsquo;re shooting for 100% test coverage, it&rsquo;s problematic because it uses two static methods and has checked exceptions. Typically you have something like:</p>
 <pre>void setNativeLookAndFeel() {<br />
  &#160;&#160;&#160;try {<br />
